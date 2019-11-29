@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const abstract_model_1 = require("./abstract-model");
-const versions = require("./version-checks");
+const AbstractModel_1 = require("./AbstractModel");
+const versions = require("./versionChecks");
 const units = require("./units");
 const elements = require("./elements");
 const utils_1 = require("../utils");
@@ -90,11 +90,11 @@ var instancehelpers;
         if (!owner) {
             throw new Error("Please provide a container or model");
         }
-        const model = owner instanceof abstract_model_1.AbstractModel ? owner : owner._model;
+        const model = owner instanceof AbstractModel_1.AbstractModel ? owner : owner._model;
         const instance = new constructor(model, constructor.structureTypeName, utils_1.utils.randomUuid(), false, null, null);
         checkStructureVersion(instance);
         instance._initializeNewInstance();
-        if (parentPropName && !(owner instanceof abstract_model_1.AbstractModel)) {
+        if (parentPropName && !(owner instanceof AbstractModel_1.AbstractModel)) {
             if (parentPropIsList) {
                 owner[parentPropName].push(instance);
             }

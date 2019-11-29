@@ -767,6 +767,36 @@ export declare namespace codeactions {
         static create(model: IModel): ParameterizedEntityType;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.4.0: introduced
+     */
+    interface IStringTemplateParameterType extends IParameterType {
+        readonly model: IModel;
+        readonly containerAsCodeActionParameter: ICodeActionParameter;
+        asLoaded(): StringTemplateParameterType;
+        load(callback: (element: StringTemplateParameterType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<StringTemplateParameterType>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.4.0: introduced
+     */
+    class StringTemplateParameterType extends ParameterType implements IStringTemplateParameterType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsCodeActionParameter: CodeActionParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): StringTemplateParameterType;
+    }
+    /**
      * In version 7.21.0: introduced
      */
     interface IStringType extends IPrimitiveType {

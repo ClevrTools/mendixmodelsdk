@@ -416,7 +416,18 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    class BasicCodeActionParameterValue extends CodeActionParameterValue {
+    abstract class ExpressionBasedCodeActionParameterValue extends CodeActionParameterValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
+        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 7.21.0: introduced
+     */
+    class BasicCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -746,6 +757,14 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): CloseFormAction;
+    }
+    abstract class CodeActionParameterMapping extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsJavaActionCallAction: JavaActionCallAction;
+        readonly containerAsJavaScriptActionCallAction: JavaScriptActionCallAction;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/committing-objects relevant section in reference guide}
@@ -1164,7 +1183,7 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    class EntityTypeCodeActionParameterValue extends CodeActionParameterValue {
+    class EntityTypeCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -1347,7 +1366,7 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    class ExportMappingParameterValue extends CodeActionParameterValue {
+    class ExportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -1908,7 +1927,7 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    class ImportMappingParameterValue extends CodeActionParameterValue {
+    class ImportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -2062,7 +2081,7 @@ export declare namespace microflows {
          */
         static create(model: IModel): JavaActionCallAction;
     }
-    class JavaActionParameterMapping extends internal.Element {
+    class JavaActionParameterMapping extends CodeActionParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -2099,8 +2118,7 @@ export declare namespace microflows {
         static create(model: IModel): JavaActionParameterMapping;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.4.0: removed experimental
      * In version 7.21.0: introduced
      */
     class JavaScriptActionCallAction extends MicroflowAction {
@@ -2110,9 +2128,6 @@ export declare namespace microflows {
         readonly containerAsActionActivity: ActionActivity;
         javaScriptAction: javascriptactions.IJavaScriptAction | null;
         readonly javaScriptActionQualifiedName: string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
         readonly parameterMappings: internal.IList<JavaScriptActionParameterMapping>;
         useReturnVariable: boolean;
         outputVariableName: string;
@@ -2134,11 +2149,10 @@ export declare namespace microflows {
         static create(model: IModel): JavaScriptActionCallAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.4.0: removed experimental
      * In version 7.21.0: introduced
      */
-    class JavaScriptActionParameterMapping extends internal.Element {
+    class JavaScriptActionParameterMapping extends CodeActionParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -2683,7 +2697,7 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    class MicroflowParameterValue extends CodeActionParameterValue {
+    class MicroflowParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -2966,6 +2980,32 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ProxyConfiguration;
+    }
+    /**
+     * In version 8.4.0: introduced
+     */
+    class PushToClientAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsActionActivity: ActionActivity;
+        dataVariableName: string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PushToClientAction instance in the SDK and on the server.
+         * The new PushToClientAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createIn(container: ActionActivity): PushToClientAction;
+        /**
+         * Creates and returns a new PushToClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PushToClientAction;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/call-rest-action relevant section in reference guide}
@@ -3496,6 +3536,7 @@ export declare namespace microflows {
         readonly containerAsHttpConfiguration: HttpConfiguration;
         readonly containerAsLogMessageAction: LogMessageAction;
         readonly containerAsShowMessageAction: ShowMessageAction;
+        readonly containerAsStringTemplateParameterValue: StringTemplateParameterValue;
         readonly containerAsValidationFeedbackAction: ValidationFeedbackAction;
         readonly arguments: internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3507,6 +3548,7 @@ export declare namespace microflows {
         readonly containerAsCustomRequestHandling: CustomRequestHandling;
         readonly containerAsHttpConfiguration: HttpConfiguration;
         readonly containerAsLogMessageAction: LogMessageAction;
+        readonly containerAsStringTemplateParameterValue: StringTemplateParameterValue;
         text: string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3532,10 +3574,57 @@ export declare namespace microflows {
         static createInLogMessageActionUnderMessageTemplate(container: LogMessageAction): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'template' property
+         * of the parent StringTemplateParameterValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInStringTemplateParameterValueUnderTemplate(container: StringTemplateParameterValue): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): StringTemplate;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.4.0: introduced
+     */
+    class StringTemplateParameterValue extends CodeActionParameterValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
+        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
+        template: StringTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * The new StringTemplateParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInJavaActionParameterMappingUnderParameterValue(container: JavaActionParameterMapping): StringTemplateParameterValue;
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * The new StringTemplateParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaScriptActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInJavaScriptActionParameterMappingUnderParameterValue(container: JavaScriptActionParameterMapping): StringTemplateParameterValue;
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): StringTemplateParameterValue;
     }
     class Subtract extends BinaryListOperation {
         static structureTypeName: string;

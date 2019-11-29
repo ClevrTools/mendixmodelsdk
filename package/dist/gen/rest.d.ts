@@ -80,6 +80,11 @@ export declare namespace rest {
          * In version 8.0.0: introduced
          */
         httpConfiguration: microflows.HttpConfiguration;
+        /**
+         * In version 8.4.0: introduced
+         */
+        headersMicroflow: microflows.IMicroflow | null;
+        readonly headersMicroflowQualifiedName: string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -274,6 +279,14 @@ export declare namespace rest {
          * In version 8.0.0: introduced
          */
         readonly authenticationTypes: internal.IList<RestAuthenticationType>;
+        /**
+         * In version 8.4.0: introduced
+         */
+        summary: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        description: string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.

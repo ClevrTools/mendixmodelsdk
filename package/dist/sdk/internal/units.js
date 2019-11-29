@@ -4,7 +4,7 @@ const elements_1 = require("./elements");
 const structures_1 = require("./structures");
 const instances_1 = require("./instances");
 const properties_1 = require("./properties");
-const primitives_1 = require("./properties/primitives");
+const PrimitiveProperty_1 = require("./properties/PrimitiveProperty");
 /**
  * Base class for implementations of {@link IAbstractUnit}.
  */
@@ -135,7 +135,7 @@ class StructuralUnit extends AbstractUnit {
             $Type: this.structureTypeName
         };
         this.allProperties()
-            .filter(prop => prop instanceof primitives_1.PrimitiveProperty)
+            .filter(prop => prop instanceof PrimitiveProperty_1.PrimitiveProperty)
             .forEach(prop => {
             const propertyValue = prop._toJSON();
             json[prop.name] = propertyValue;

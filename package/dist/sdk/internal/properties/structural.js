@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mobx_1 = require("mobx");
-const abstract_property_1 = require("./abstract-property");
+const AbstractProperty_1 = require("./AbstractProperty");
 /**
  * Note: structural child values are updated through AbstractModel._addUnitToStructuralParent.
  */
 /**
  * Value of a property owned by a structural unit.
  */
-class StructuralChildProperty extends abstract_property_1.AbstractProperty {
+class StructuralChildProperty extends AbstractProperty_1.AbstractProperty {
     constructor(declaredOn, parent, name, value, targetRefType) {
         super(declaredOn, parent, name, value);
     }
@@ -61,7 +61,7 @@ exports.StructuralChildProperty = StructuralChildProperty;
  * Property instance that wraps a list of structural units.
  * Structural child values are updated through AbstractModel._addUnitToStructuralParent.
  */
-class StructuralChildListProperty extends abstract_property_1.AbstractProperty {
+class StructuralChildListProperty extends AbstractProperty_1.AbstractProperty {
     constructor(declaredOn, parent, name, value, targetRefType) {
         super(declaredOn, parent, name, value);
     }

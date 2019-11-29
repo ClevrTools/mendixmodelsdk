@@ -134,7 +134,7 @@ class Structure {
     resolveByIdReferences() {
         this.traverse(s => {
             s.loadedProperties()
-                .filter(property => property instanceof by_id_reference_1.ByIdReferenceProperty)
+                .filter(property => property instanceof ByIdReferenceProperty_1.ByIdReferenceProperty)
                 .forEach(property => property.resolveReference());
         });
     }
@@ -242,7 +242,7 @@ class Structure {
     /** @internal */
     _updateWithJsonImpl(json) {
         for (const key in json) {
-            if (key !== "$ID" && key !== "$Type" && this["__" + key] instanceof abstract_property_1.AbstractProperty) {
+            if (key !== "$ID" && key !== "$Type" && this["__" + key] instanceof AbstractProperty_1.AbstractProperty) {
                 this["__" + key].updateWithRawValue(json[key]);
             }
         }
@@ -415,9 +415,9 @@ exports.Structure = Structure;
  * Late dependencies on others, structures should be defined first for proper inheritance!
  */
 const elements = require("./elements");
-const abstract_property_1 = require("./properties/abstract-property");
+const AbstractProperty_1 = require("./properties/AbstractProperty");
 const properties = require("./properties");
 const units = require("./units");
-const by_id_reference_1 = require("./properties/by-id-reference");
+const ByIdReferenceProperty_1 = require("./properties/ByIdReferenceProperty");
 const instances_1 = require("./instances");
 //# sourceMappingURL=structures.js.map

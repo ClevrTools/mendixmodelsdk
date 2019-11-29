@@ -1,4 +1,4 @@
-export * from "./delta-manager";
-export * from "./delta-processor";
-export * from "./delta-sender";
+export * from "./DeltaManager";
+export * from "./DeltaProcessor";
+export * from "./DeltaSender";
 export * from "./deltas";

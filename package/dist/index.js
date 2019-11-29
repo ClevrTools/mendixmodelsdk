@@ -28,8 +28,8 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./version"));
-var mendix_model_1 = require("./mendix-model");
-exports.Model = mendix_model_1.Model;
+var Model_1 = require("./Model");
+exports.Model = Model_1.Model;
 __export(require("./gen/all-model-classes"));
 __export(require("./gen/metamodelversion"));
 __export(require("./sdk/utils"));
@@ -48,10 +48,10 @@ exports.UndoManager = internal_1.UndoManager;
 exports.UndoState = internal_1.UndoState;
 exports.createElementFromJSON = internal_1.createElementFromJSON;
 exports.ModelEventReceiver = internal_1.ModelEventReceiver;
-var as_model_sdk_code_serializer_1 = require("./sdk/extras/as-model-sdk-code-serializer");
-exports.JavaScriptSerializer = as_model_sdk_code_serializer_1.JavaScriptSerializer;
-var transaction_manager_1 = require("./sdk/internal/deltas/transaction-manager");
-exports.Transaction = transaction_manager_1.Transaction;
-exports.runInTransaction = transaction_manager_1.runInTransaction;
-exports.beginTransaction = transaction_manager_1.beginTransaction;
+var JavaScriptSerializer_1 = require("./sdk/extras/JavaScriptSerializer");
+exports.JavaScriptSerializer = JavaScriptSerializer_1.JavaScriptSerializer;
+var TransactionManager_1 = require("./sdk/internal/deltas/TransactionManager");
+exports.Transaction = TransactionManager_1.Transaction;
+exports.runInTransaction = TransactionManager_1.runInTransaction;
+exports.beginTransaction = TransactionManager_1.beginTransaction;
 //# sourceMappingURL=index.js.map

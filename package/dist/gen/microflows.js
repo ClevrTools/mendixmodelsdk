@@ -988,7 +988,33 @@ var microflows;
     /**
      * In version 7.21.0: introduced
      */
-    class BasicCodeActionParameterValue extends CodeActionParameterValue {
+    class ExpressionBasedCodeActionParameterValue extends CodeActionParameterValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ExpressionBasedCodeActionParameterValue() cannot be invoked directly, please use 'model.microflows.createExpressionBasedCodeActionParameterValue()'");
+            }
+        }
+        get containerAsJavaActionParameterMapping() {
+            return super.getContainerAs(JavaActionParameterMapping);
+        }
+        get containerAsJavaScriptActionParameterMapping() {
+            return super.getContainerAs(JavaScriptActionParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ExpressionBasedCodeActionParameterValue.structureTypeName = "Microflows$ExpressionBasedCodeActionParameterValue";
+    ExpressionBasedCodeActionParameterValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "7.21.0"
+    }, internal.StructureType.Element);
+    microflows.ExpressionBasedCodeActionParameterValue = ExpressionBasedCodeActionParameterValue;
+    /**
+     * In version 7.21.0: introduced
+     */
+    class BasicCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -1734,6 +1760,27 @@ var microflows;
     CloseFormAction.structureTypeName = "Microflows$CloseFormAction";
     CloseFormAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CloseFormAction = CloseFormAction;
+    class CodeActionParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CodeActionParameterMapping() cannot be invoked directly, please use 'model.microflows.createCodeActionParameterMapping()'");
+            }
+        }
+        get containerAsJavaActionCallAction() {
+            return super.getContainerAs(JavaActionCallAction);
+        }
+        get containerAsJavaScriptActionCallAction() {
+            return super.getContainerAs(JavaScriptActionCallAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CodeActionParameterMapping.structureTypeName = "Microflows$CodeActionParameterMapping";
+    CodeActionParameterMapping.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    microflows.CodeActionParameterMapping = CodeActionParameterMapping;
     /**
      * See: {@link https://docs.mendix.com/refguide7/committing-objects relevant section in reference guide}
      */
@@ -2719,7 +2766,7 @@ var microflows;
     /**
      * In version 7.21.0: introduced
      */
-    class EntityTypeCodeActionParameterValue extends CodeActionParameterValue {
+    class EntityTypeCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -3118,7 +3165,7 @@ var microflows;
     /**
      * In version 7.21.0: introduced
      */
-    class ExportMappingParameterValue extends CodeActionParameterValue {
+    class ExportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -4586,7 +4633,7 @@ var microflows;
     /**
      * In version 7.21.0: introduced
      */
-    class ImportMappingParameterValue extends CodeActionParameterValue {
+    class ImportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -4950,7 +4997,7 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.JavaActionCallAction = JavaActionCallAction;
-    class JavaActionParameterMapping extends internal.Element {
+    class JavaActionParameterMapping extends CodeActionParameterMapping {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -5064,8 +5111,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.JavaActionParameterMapping = JavaActionParameterMapping;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.4.0: removed experimental
      * In version 7.21.0: introduced
      */
     class JavaScriptActionCallAction extends MicroflowAction {
@@ -5095,9 +5141,6 @@ var microflows;
         get javaScriptActionQualifiedName() {
             return this.__javaScriptAction.qualifiedName();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
         get parameterMappings() {
             return this.__parameterMappings.get();
         }
@@ -5143,16 +5186,16 @@ var microflows;
     JavaScriptActionCallAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.21.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["8.4.0"]
         }
     }, internal.StructureType.Element);
     microflows.JavaScriptActionCallAction = JavaScriptActionCallAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.4.0: removed experimental
      * In version 7.21.0: introduced
      */
-    class JavaScriptActionParameterMapping extends internal.Element {
+    class JavaScriptActionParameterMapping extends CodeActionParameterMapping {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -5223,7 +5266,8 @@ var microflows;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["8.4.0"]
         }
     }, internal.StructureType.Element);
     microflows.JavaScriptActionParameterMapping = JavaScriptActionParameterMapping;
@@ -6469,7 +6513,7 @@ var microflows;
     /**
      * In version 7.21.0: introduced
      */
-    class MicroflowParameterValue extends CodeActionParameterValue {
+    class MicroflowParameterValue extends ExpressionBasedCodeActionParameterValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -7058,6 +7102,57 @@ var microflows;
         introduced: "7.15.0"
     }, internal.StructureType.Element);
     microflows.ProxyConfiguration = ProxyConfiguration;
+    /**
+     * In version 8.4.0: introduced
+     */
+    class PushToClientAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__dataVariableName = new internal.PrimitiveProperty(PushToClientAction, this, "dataVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new PushToClientAction() cannot be invoked directly, please use 'model.microflows.createPushToClientAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get dataVariableName() {
+            return this.__dataVariableName.get();
+        }
+        set dataVariableName(newValue) {
+            this.__dataVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new PushToClientAction instance in the SDK and on the server.
+         * The new PushToClientAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, PushToClientAction.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, PushToClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new PushToClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PushToClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PushToClientAction.structureTypeName = "Microflows$PushToClientAction";
+    PushToClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.4.0"
+    }, internal.StructureType.Element);
+    microflows.PushToClientAction = PushToClientAction;
     /**
      * See: {@link https://docs.mendix.com/refguide7/call-rest-action relevant section in reference guide}
      *
@@ -8375,6 +8470,9 @@ var microflows;
         get containerAsShowMessageAction() {
             return super.getContainerAs(ShowMessageAction);
         }
+        get containerAsStringTemplateParameterValue() {
+            return super.getContainerAs(StringTemplateParameterValue);
+        }
         get containerAsValidationFeedbackAction() {
             return super.getContainerAs(ValidationFeedbackAction);
         }
@@ -8406,6 +8504,9 @@ var microflows;
         }
         get containerAsLogMessageAction() {
             return super.getContainerAs(LogMessageAction);
+        }
+        get containerAsStringTemplateParameterValue() {
+            return super.getContainerAs(StringTemplateParameterValue);
         }
         get text() {
             return this.__text.get();
@@ -8443,6 +8544,18 @@ var microflows;
         }
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'template' property
+         * of the parent StringTemplateParameterValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInStringTemplateParameterValueUnderTemplate(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "template", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -8457,6 +8570,85 @@ var microflows;
     StringTemplate.structureTypeName = "Microflows$StringTemplate";
     StringTemplate.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.StringTemplate = StringTemplate;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.4.0: introduced
+     */
+    class StringTemplateParameterValue extends CodeActionParameterValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__template = new internal.PartProperty(StringTemplateParameterValue, this, "template", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new StringTemplateParameterValue() cannot be invoked directly, please use 'model.microflows.createStringTemplateParameterValue()'");
+            }
+        }
+        get containerAsJavaActionParameterMapping() {
+            return super.getContainerAs(JavaActionParameterMapping);
+        }
+        get containerAsJavaScriptActionParameterMapping() {
+            return super.getContainerAs(JavaScriptActionParameterMapping);
+        }
+        get template() {
+            return this.__template.get();
+        }
+        set template(newValue) {
+            this.__template.set(newValue);
+        }
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * The new StringTemplateParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInJavaActionParameterMappingUnderParameterValue(container) {
+            internal.createInVersionCheck(container.model, StringTemplateParameterValue.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, StringTemplateParameterValue, "parameterValue", false);
+        }
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * The new StringTemplateParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaScriptActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInJavaScriptActionParameterMappingUnderParameterValue(container) {
+            internal.createInVersionCheck(container.model, StringTemplateParameterValue.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, StringTemplateParameterValue, "parameterValue", false);
+        }
+        /**
+         * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StringTemplateParameterValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.template = StringTemplate.create(this.model);
+        }
+    }
+    StringTemplateParameterValue.structureTypeName = "Microflows$StringTemplateParameterValue";
+    StringTemplateParameterValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.4.0",
+        properties: {
+            template: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.StringTemplateParameterValue = StringTemplateParameterValue;
     class Subtract extends BinaryListOperation {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);

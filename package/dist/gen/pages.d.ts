@@ -1707,6 +1707,11 @@ export declare namespace pages {
     interface IBuildingBlock extends ITemplateFormBase {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 8.4.0: added public
+         * In version 8.3.0: introduced
+         */
+        readonly platform: SnippetType;
         asLoaded(): BuildingBlock;
         load(callback: (element: BuildingBlock) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BuildingBlock>;
@@ -1730,6 +1735,7 @@ export declare namespace pages {
          */
         readonly widgets: internal.IList<Widget>;
         /**
+         * In version 8.4.0: added public
          * In version 8.3.0: introduced
          */
         platform: SnippetType;
@@ -16594,8 +16600,18 @@ export declare namespace pages {
         readonly containerAsMicroflowSettings: MicroflowSettings;
         parameter: microflows.IMicroflowParameter;
         readonly parameterQualifiedName: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        variable: PageVariable;
+        /**
+         * In version 8.4.0: deleted
+         */
         widget: EntityWidget | null;
         readonly widgetLocalName: string | null;
+        /**
+         * In version 8.4.0: deleted
+         */
         useAllPages: boolean;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -16773,8 +16789,18 @@ export declare namespace pages {
         readonly containerAsNanoflowSource: NanoflowSource;
         parameter: microflows.INanoflowParameter;
         readonly parameterQualifiedName: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        variable: PageVariable;
+        /**
+         * In version 8.4.0: deleted
+         */
         widget: EntityWidget | null;
         readonly widgetLocalName: string | null;
+        /**
+         * In version 8.4.0: deleted
+         */
         useAllPages: boolean;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -19289,6 +19315,44 @@ export declare namespace pages {
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container: projects.IFolderBase): PageTemplate;
+    }
+    /**
+     * In version 8.4.0: introduced
+     */
+    class PageVariable extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsMicroflowParameterMapping: MicroflowParameterMapping;
+        readonly containerAsNanoflowParameterMapping: NanoflowParameterMapping;
+        widget: Widget | null;
+        readonly widgetLocalName: string | null;
+        useAllPages: boolean;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent MicroflowParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInMicroflowParameterMappingUnderVariable(container: MicroflowParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent NanoflowParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInNanoflowParameterMappingUnderVariable(container: NanoflowParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PageVariable;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/password-text-box relevant section in reference guide}
@@ -21875,7 +21939,6 @@ export declare namespace pages {
         queryId: string;
         readonly allowedUserRoles: internal.IList<security.IUserRole>;
         readonly allowedUserRolesQualifiedNames: string[];
-        schemaId: string;
         xPath: string;
         /**
          * In version 7.21.0: introduced
@@ -21890,6 +21953,18 @@ export declare namespace pages {
          * In version 7.14.0: introduced
          */
         pageName: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        widgetName: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        readonly usedAssociations: internal.IList<string>;
+        /**
+         * In version 8.4.0: deleted
+         */
+        schemaId: string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrievalQuery instance in the SDK and on the server.
@@ -21899,6 +21974,7 @@ export declare namespace pages {
         static create(model: IModel): RetrievalQuery;
     }
     /**
+     * In version 8.4.0: deleted
      * In version 6.2.0: introduced
      */
     class RetrievalSchema extends internal.Element {
@@ -24243,6 +24319,11 @@ export declare namespace pages {
         readonly containerAsFolderBase: projects.IFolderBase;
         readonly entity: domainmodels.IEntity | null;
         readonly entityQualifiedName: string | null;
+        /**
+         * In version 8.4.0: added public
+         * In version 8.0.0: introduced
+         */
+        readonly type: SnippetType;
         asLoaded(): Snippet;
         load(callback: (element: Snippet) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Snippet>;
@@ -24266,6 +24347,7 @@ export declare namespace pages {
          */
         readonly widgets: internal.IList<Widget>;
         /**
+         * In version 8.4.0: added public
          * In version 8.0.0: introduced
          */
         type: SnippetType;

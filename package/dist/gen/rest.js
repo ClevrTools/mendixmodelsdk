@@ -81,6 +81,8 @@ var rest;
             this.__proxyPassword = new internal.ByNameReferenceProperty(ConsumedODataService, this, "proxyPassword", null, "Constants$Constant");
             /** @internal */
             this.__httpConfiguration = new internal.PartProperty(ConsumedODataService, this, "httpConfiguration", null, true);
+            /** @internal */
+            this.__headersMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "headersMicroflow", null, "Microflows$Microflow");
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -183,6 +185,18 @@ var rest;
             this.__httpConfiguration.set(newValue);
         }
         /**
+         * In version 8.4.0: introduced
+         */
+        get headersMicroflow() {
+            return this.__headersMicroflow.get();
+        }
+        set headersMicroflow(newValue) {
+            this.__headersMicroflow.set(newValue);
+        }
+        get headersMicroflowQualifiedName() {
+            return this.__headersMicroflow.qualifiedName();
+        }
+        /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -216,6 +230,9 @@ var rest;
                 required: {
                     currentValue: true
                 }
+            },
+            headersMicroflow: {
+                introduced: "8.4.0"
             }
         },
         experimental: {
@@ -604,6 +621,10 @@ var rest;
             this.__authenticationMicroflow = new internal.ByNameReferenceProperty(PublishedODataService, this, "authenticationMicroflow", null, "Microflows$Microflow");
             /** @internal */
             this.__authenticationTypes = new internal.EnumListProperty(PublishedODataService, this, "authenticationTypes", [], RestAuthenticationType);
+            /** @internal */
+            this.__summary = new internal.PrimitiveProperty(PublishedODataService, this, "summary", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(PublishedODataService, this, "description", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -676,6 +697,24 @@ var rest;
             return this.__authenticationTypes.get();
         }
         /**
+         * In version 8.4.0: introduced
+         */
+        get summary() {
+            return this.__summary.get();
+        }
+        set summary(newValue) {
+            this.__summary.set(newValue);
+        }
+        /**
+         * In version 8.4.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -714,6 +753,12 @@ var rest;
             },
             authenticationTypes: {
                 introduced: "8.0.0"
+            },
+            summary: {
+                introduced: "8.4.0"
+            },
+            description: {
+                introduced: "8.4.0"
             }
         }
     }, internal.StructureType.ModelUnit);

@@ -91,6 +91,40 @@ var javascriptactions;
         }
     }, internal.StructureType.Element);
     javascriptactions.JavaScriptActionParameter = JavaScriptActionParameter;
+    /**
+     * In version 8.4.0: introduced
+     */
+    class NanoflowJavaScriptActionParameterType extends codeactions_1.codeactions.ParameterType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NanoflowJavaScriptActionParameterType() cannot be invoked directly, please use 'model.javascriptactions.createNanoflowJavaScriptActionParameterType()'");
+            }
+        }
+        get containerAsCodeActionParameter() {
+            return super.getContainerAs(codeactions_1.codeactions.CodeActionParameter);
+        }
+        /**
+         * Creates and returns a new NanoflowJavaScriptActionParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NanoflowJavaScriptActionParameterType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NanoflowJavaScriptActionParameterType.structureTypeName = "JavaScriptActions$NanoflowJavaScriptActionParameterType";
+    NanoflowJavaScriptActionParameterType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.4.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    javascriptactions.NanoflowJavaScriptActionParameterType = NanoflowJavaScriptActionParameterType;
 })(javascriptactions = exports.javascriptactions || (exports.javascriptactions = {}));
 const projects_1 = require("./projects");
 //# sourceMappingURL=javascriptactions.js.map

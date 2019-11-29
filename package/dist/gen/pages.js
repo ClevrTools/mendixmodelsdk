@@ -3515,6 +3515,7 @@ var pages;
             return this.__widgets.get();
         }
         /**
+         * In version 8.4.0: added public
          * In version 8.3.0: introduced
          */
         get platform() {
@@ -3550,7 +3551,11 @@ var pages;
                 introduced: "7.15.0"
             },
             platform: {
-                introduced: "8.3.0"
+                introduced: "8.3.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.4.0"]
+                }
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -28975,6 +28980,8 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(MicroflowParameterMapping, this, "parameter", null, "Microflows$MicroflowParameter");
             /** @internal */
+            this.__variable = new internal.PartProperty(MicroflowParameterMapping, this, "variable", null, true);
+            /** @internal */
             this.__widget = new internal.LocalByNameReferenceProperty(MicroflowParameterMapping, this, "widget", null, "Pages$EntityWidget");
             /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(MicroflowParameterMapping, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
@@ -28994,6 +29001,18 @@ var pages;
         get parameterQualifiedName() {
             return this.__parameter.qualifiedName();
         }
+        /**
+         * In version 8.4.0: introduced
+         */
+        get variable() {
+            return this.__variable.get();
+        }
+        set variable(newValue) {
+            this.__variable.set(newValue);
+        }
+        /**
+         * In version 8.4.0: deleted
+         */
         get widget() {
             return this.__widget.get();
         }
@@ -29003,6 +29022,9 @@ var pages;
         get widgetLocalName() {
             return this.__widget.localName();
         }
+        /**
+         * In version 8.4.0: deleted
+         */
         get useAllPages() {
             return this.__useAllPages.get();
         }
@@ -29032,6 +29054,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__variable.isAvailable) {
+                this.variable = PageVariable.create(this.model);
+            }
         }
     }
     MicroflowParameterMapping.structureTypeName = "Pages$MicroflowParameterMapping";
@@ -29042,6 +29067,20 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            variable: {
+                introduced: "8.4.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            widget: {
+                deleted: "8.4.0",
+                deletionMessage: "Use variable instead"
+            },
+            useAllPages: {
+                deleted: "8.4.0",
+                deletionMessage: "Use variable instead"
             }
         }
     }, internal.StructureType.Element);
@@ -29358,6 +29397,8 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(NanoflowParameterMapping, this, "parameter", null, "Microflows$NanoflowParameter");
             /** @internal */
+            this.__variable = new internal.PartProperty(NanoflowParameterMapping, this, "variable", null, true);
+            /** @internal */
             this.__widget = new internal.LocalByNameReferenceProperty(NanoflowParameterMapping, this, "widget", null, "Pages$EntityWidget");
             /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(NanoflowParameterMapping, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
@@ -29380,6 +29421,18 @@ var pages;
         get parameterQualifiedName() {
             return this.__parameter.qualifiedName();
         }
+        /**
+         * In version 8.4.0: introduced
+         */
+        get variable() {
+            return this.__variable.get();
+        }
+        set variable(newValue) {
+            this.__variable.set(newValue);
+        }
+        /**
+         * In version 8.4.0: deleted
+         */
         get widget() {
             return this.__widget.get();
         }
@@ -29389,6 +29442,9 @@ var pages;
         get widgetLocalName() {
             return this.__widget.localName();
         }
+        /**
+         * In version 8.4.0: deleted
+         */
         get useAllPages() {
             return this.__useAllPages.get();
         }
@@ -29430,6 +29486,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__variable.isAvailable) {
+                this.variable = PageVariable.create(this.model);
+            }
         }
     }
     NanoflowParameterMapping.structureTypeName = "Pages$NanoflowParameterMapping";
@@ -29440,6 +29499,20 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            variable: {
+                introduced: "8.4.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            widget: {
+                deleted: "8.4.0",
+                deletionMessage: "Use variable instead"
+            },
+            useAllPages: {
+                deleted: "8.4.0",
+                deletionMessage: "Use variable instead"
             }
         }
     }, internal.StructureType.Element);
@@ -33619,6 +33692,84 @@ var pages;
     }, internal.StructureType.ModelUnit);
     pages.PageTemplate = PageTemplate;
     /**
+     * In version 8.4.0: introduced
+     */
+    class PageVariable extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__widget = new internal.LocalByNameReferenceProperty(PageVariable, this, "widget", null, "Pages$Widget");
+            /** @internal */
+            this.__useAllPages = new internal.PrimitiveProperty(PageVariable, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
+            }
+        }
+        get containerAsMicroflowParameterMapping() {
+            return super.getContainerAs(MicroflowParameterMapping);
+        }
+        get containerAsNanoflowParameterMapping() {
+            return super.getContainerAs(NanoflowParameterMapping);
+        }
+        get widget() {
+            return this.__widget.get();
+        }
+        set widget(newValue) {
+            this.__widget.set(newValue);
+        }
+        get widgetLocalName() {
+            return this.__widget.localName();
+        }
+        get useAllPages() {
+            return this.__useAllPages.get();
+        }
+        set useAllPages(newValue) {
+            this.__useAllPages.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent MicroflowParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInMicroflowParameterMappingUnderVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent NanoflowParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.4.0 and higher
+         */
+        static createInNanoflowParameterMappingUnderVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PageVariable);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.useAllPages = false;
+        }
+    }
+    PageVariable.structureTypeName = "Pages$PageVariable";
+    PageVariable.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.4.0"
+    }, internal.StructureType.Element);
+    pages.PageVariable = PageVariable;
+    /**
      * See: {@link https://docs.mendix.com/refguide7/password-text-box relevant section in reference guide}
      *
      * In version 7.0.2: introduced
@@ -37538,8 +37689,6 @@ var pages;
             /** @internal */
             this.__allowedUserRoles = new internal.ByNameReferenceListProperty(RetrievalQuery, this, "allowedUserRoles", [], "Security$UserRole");
             /** @internal */
-            this.__schemaId = new internal.PrimitiveProperty(RetrievalQuery, this, "schemaId", "", internal.PrimitiveTypeEnum.Guid);
-            /** @internal */
             this.__xPath = new internal.PrimitiveProperty(RetrievalQuery, this, "xPath", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(RetrievalQuery, this, "microflow", null, "Microflows$Microflow");
@@ -37547,6 +37696,12 @@ var pages;
             this.__entityPath = new internal.PrimitiveProperty(RetrievalQuery, this, "entityPath", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__pageName = new internal.PrimitiveProperty(RetrievalQuery, this, "pageName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__widgetName = new internal.PrimitiveProperty(RetrievalQuery, this, "widgetName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__usedAssociations = new internal.PrimitiveListProperty(RetrievalQuery, this, "usedAssociations", [], internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__schemaId = new internal.PrimitiveProperty(RetrievalQuery, this, "schemaId", "", internal.PrimitiveTypeEnum.Guid);
             if (arguments.length < 4) {
                 throw new Error("new RetrievalQuery() cannot be invoked directly, please use 'model.pages.createRetrievalQuery()'");
             }
@@ -37562,12 +37717,6 @@ var pages;
         }
         get allowedUserRolesQualifiedNames() {
             return this.__allowedUserRoles.qualifiedNames();
-        }
-        get schemaId() {
-            return this.__schemaId.get();
-        }
-        set schemaId(newValue) {
-            this.__schemaId.set(newValue);
         }
         get xPath() {
             return this.__xPath.get();
@@ -37606,6 +37755,30 @@ var pages;
             this.__pageName.set(newValue);
         }
         /**
+         * In version 8.4.0: introduced
+         */
+        get widgetName() {
+            return this.__widgetName.get();
+        }
+        set widgetName(newValue) {
+            this.__widgetName.set(newValue);
+        }
+        /**
+         * In version 8.4.0: introduced
+         */
+        get usedAssociations() {
+            return this.__usedAssociations.get();
+        }
+        /**
+         * In version 8.4.0: deleted
+         */
+        get schemaId() {
+            return this.__schemaId.get();
+        }
+        set schemaId(newValue) {
+            this.__schemaId.set(newValue);
+        }
+        /**
          * Creates and returns a new RetrievalQuery instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
@@ -37616,7 +37789,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.schemaId = utils_1.utils.randomUuid();
+            if (this.__schemaId.isAvailable) {
+                this.schemaId = utils_1.utils.randomUuid();
+            }
         }
     }
     RetrievalQuery.structureTypeName = "Pages$RetrievalQuery";
@@ -37631,11 +37806,22 @@ var pages;
             },
             pageName: {
                 introduced: "7.14.0"
+            },
+            widgetName: {
+                introduced: "8.4.0"
+            },
+            usedAssociations: {
+                introduced: "8.4.0"
+            },
+            schemaId: {
+                deleted: "8.4.0",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);
     pages.RetrievalQuery = RetrievalQuery;
     /**
+     * In version 8.4.0: deleted
      * In version 6.2.0: introduced
      */
     class RetrievalSchema extends internal.Element {
@@ -37699,6 +37885,8 @@ var pages;
     RetrievalSchema.structureTypeName = "Pages$RetrievalSchema";
     RetrievalSchema.versionInfo = new exports.StructureVersionInfo({
         introduced: "6.2.0",
+        deleted: "8.4.0",
+        deletionMessage: null,
         properties: {
             usedAttributes: {
                 deleted: "7.2.0",
@@ -41555,6 +41743,7 @@ var pages;
             return this.__widgets.get();
         }
         /**
+         * In version 8.4.0: added public
          * In version 8.0.0: introduced
          */
         get type() {
@@ -41598,7 +41787,11 @@ var pages;
                 introduced: "7.15.0"
             },
             type: {
-                introduced: "8.0.0"
+                introduced: "8.0.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.4.0"]
+                }
             }
         }
     }, internal.StructureType.ModelUnit);

@@ -82,11 +82,11 @@ export declare abstract class Structure implements IStructure {
  * Late dependencies on others, structures should be defined first for proper inheritance!
  */
 import * as elements from "./elements";
-import { AbstractProperty } from "./properties/abstract-property";
+import { AbstractProperty } from "./properties/AbstractProperty";
 import * as properties from "./properties";
 import * as units from "./units";
-import { AbstractModel, IAbstractModel } from "./abstract-model";
-import { StructureVersionInfo } from "./version-checks";
+import { AbstractModel, IAbstractModel } from "./AbstractModel";
+import { StructureVersionInfo } from "./versionChecks";
 import { IStructureJSON } from "./deltas";
 export declare namespace aliases {
     type IContainer = units.IStructuralUnit | elements.IAbstractElement;

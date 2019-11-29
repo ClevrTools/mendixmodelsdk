@@ -1,9 +1,9 @@
-import { AbstractModel, IAbstractModel } from "./abstract-model";
-import * as versions from "./version-checks";
+import { AbstractModel, IAbstractModel } from "./AbstractModel";
+import * as versions from "./versionChecks";
 import * as structures from "./structures";
 import * as units from "./units";
 import * as elements from "./elements";
-import * as transport from "./transport-interfaces";
+import * as transport from "./transportInterfaces";
 /**
  * The `instances` module contains various classes and functions
  * which revolve around creating/maintaining/updating actual model contents.

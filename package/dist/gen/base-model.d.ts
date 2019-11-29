@@ -1,4 +1,4 @@
-import { IAbstractModel, AbstractModel } from "../sdk/internal/abstract-model";
+import { IAbstractModel, AbstractModel } from "../sdk/internal/AbstractModel";
 import { appservices } from "./appservices";
 import { codeactions } from "./codeactions";
 import { constants } from "./constants";

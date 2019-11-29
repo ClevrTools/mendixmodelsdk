@@ -27,6 +27,7 @@ __export(require("./mappings"));
 __export(require("./menus"));
 __export(require("./messagedefinitions"));
 __export(require("./microflows"));
+__export(require("./nanoflows"));
 __export(require("./nativepages"));
 __export(require("./navigation"));
 __export(require("./pages"));

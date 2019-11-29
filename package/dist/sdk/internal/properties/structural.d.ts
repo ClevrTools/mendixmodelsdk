@@ -1,5 +1,5 @@
 import { IObservableValue } from "mobx";
-import { AbstractProperty } from "./abstract-property";
+import { AbstractProperty } from "./AbstractProperty";
 import { IList } from "../instances";
 import { IStructureClass } from "../structures";
 import { IModelUnit, IStructuralUnit, StructuralUnit } from "../units";

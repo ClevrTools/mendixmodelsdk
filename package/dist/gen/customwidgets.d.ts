@@ -61,6 +61,7 @@ export declare namespace customwidgets {
         static Icon: WidgetValueTypeEnum;
         static Image: WidgetValueTypeEnum;
         static Integer: WidgetValueTypeEnum;
+        static Decimal: WidgetValueTypeEnum;
         static Microflow: WidgetValueTypeEnum;
         static Nanoflow: WidgetValueTypeEnum;
         static Object: WidgetValueTypeEnum;
@@ -912,6 +913,10 @@ export declare namespace customwidgets {
          * In version 8.0.0: introduced
          */
         onChangeProperty: string;
+        /**
+         * In version 8.4.0: introduced
+         */
+        dataSourceProperty: string;
         readonly attributeTypes: internal.IList<CustomWidgetAttributeType>;
         readonly enumerationValues: internal.IList<WidgetEnumerationValue>;
         objectType: WidgetObjectType | null;

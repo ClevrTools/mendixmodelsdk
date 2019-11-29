@@ -64,6 +64,32 @@ export declare namespace javascriptactions {
          */
         static create(model: IModel): JavaScriptActionParameter;
     }
+    /**
+     * In version 8.4.0: introduced
+     */
+    interface INanoflowJavaScriptActionParameterType extends codeactions.IParameterType {
+        readonly model: IModel;
+        readonly containerAsCodeActionParameter: codeactions.ICodeActionParameter;
+        asLoaded(): NanoflowJavaScriptActionParameterType;
+        load(callback: (element: NanoflowJavaScriptActionParameterType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NanoflowJavaScriptActionParameterType>;
+    }
+    /**
+     * In version 8.4.0: introduced
+     */
+    class NanoflowJavaScriptActionParameterType extends codeactions.ParameterType implements INanoflowJavaScriptActionParameterType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        readonly containerAsCodeActionParameter: codeactions.CodeActionParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NanoflowJavaScriptActionParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NanoflowJavaScriptActionParameterType;
+    }
 }
 import { projects } from "./projects";
 import { IModel } from "./base-model";

@@ -1,5 +1,5 @@
-import * as transport from "./transport-interfaces";
-import { AbstractModel } from "./abstract-model";
+import * as transport from "./transportInterfaces";
+import { AbstractModel } from "./AbstractModel";
 import { AbstractElement, IAbstractElement } from "./elements";
 import { Structure, IStructure } from "./structures";
 /**

@@ -1,5 +1,5 @@
 import * as structures from "./structures";
-import { AbstractModel, IAbstractModel } from "./abstract-model";
+import { AbstractModel, IAbstractModel } from "./AbstractModel";
 /**
  * The `elements` module contains various classes and functions
  * related to elements, specifically: (abstract) elements.

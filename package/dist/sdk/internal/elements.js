@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("./utils");
+const promiseOrCallbacks_1 = require("./promiseOrCallbacks");
 /* tslint:disable:no-circular-imports */
 const structures = require("./structures");
 /**
@@ -57,7 +57,7 @@ class AbstractElement extends structures.Structure {
         else {
             forceRefresh = arg1;
         }
-        return utils_1.promiseOrCallbacks((resolve, reject) => {
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
             this.unit._model.loadUnitById(this.unit.id, forceRefresh, () => {
                 // this element should be loaded now!
                 this._assertLoaded();

@@ -24,13 +24,13 @@ THE SOFTWARE.
 
 export * from "./version";
 export * from "./common";
-export { IModel, Model, ModelSdkClient } from "./mendix-model";
+export { IModel, Model, ModelSdkClient } from "./Model";
 export * from "./gen/all-model-classes";
 export * from "./gen/metamodelversion";
 export * from "./sdk/utils";
-export * from "./sdk/config";
+export * from "./sdk/configuration";
 export * from "./sdk/internal/properties";
 export { IStructure, Structure, IList, IAbstractUnit, AbstractUnit, IAbstractElement, AbstractElement, AbstractEnum, IElement, Element, IModelUnit, ModelUnit, IStructuralUnit, StructuralUnit, ITransportation, IRequestOptions, IRequestMultipartBinaryFileUploadOptions, IRequestFileDownloadOptions, aliases, IWorkingCopyMetaData, ILockData, IMergeState, IMprMetaData, IWorkingCopy, IModelServerClient, IStructureJson, IAbstractUnitJson, IAbstractElementJson, AbstractModel, IAbstractModel, Delta, Version, UndoManager, UndoState, IResponse, IResponseCallback, createElementFromJSON, ModelEventReceiver, IModelEvent } from "./sdk/internal";
-export { IGetFilesOptions, IBuildError, IProblem, IProblemLocation, IProblemArguments, IUpdateAppJobStatus, IDeployJobStatus, IEnvironmentStatus, ILockWorkingCopyOptions, LockType, ILockWorkingCopyResponse, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./sdk/internal/transport-interfaces";
-export { JavaScriptSerializer } from "./sdk/extras/as-model-sdk-code-serializer";
-export { Transaction, runInTransaction, beginTransaction } from "./sdk/internal/deltas/transaction-manager";
+export { IGetFilesOptions, IBuildError, IProblem, IProblemLocation, IProblemArguments, IUpdateAppJobStatus, IDeployJobStatus, IEnvironmentStatus, ILockWorkingCopyOptions, LockType, ILockWorkingCopyResponse, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./sdk/internal/transportInterfaces";
+export { JavaScriptSerializer } from "./sdk/extras/JavaScriptSerializer";
+export { Transaction, runInTransaction, beginTransaction } from "./sdk/internal/deltas/TransactionManager";

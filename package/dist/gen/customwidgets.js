@@ -102,6 +102,9 @@ var customwidgets;
     });
     WidgetValueTypeEnum.Image = new WidgetValueTypeEnum("Image", {});
     WidgetValueTypeEnum.Integer = new WidgetValueTypeEnum("Integer", {});
+    WidgetValueTypeEnum.Decimal = new WidgetValueTypeEnum("Decimal", {
+        introduced: "8.4.0"
+    });
     WidgetValueTypeEnum.Microflow = new WidgetValueTypeEnum("Microflow", {});
     WidgetValueTypeEnum.Nanoflow = new WidgetValueTypeEnum("Nanoflow", {
         introduced: "7.13.0"
@@ -1858,6 +1861,8 @@ var customwidgets;
             /** @internal */
             this.__onChangeProperty = new internal.PrimitiveProperty(WidgetValueType, this, "onChangeProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__dataSourceProperty = new internal.PrimitiveProperty(WidgetValueType, this, "dataSourceProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__attributeTypes = new internal.EnumListProperty(WidgetValueType, this, "attributeTypes", [], CustomWidgetAttributeType);
             /** @internal */
             this.__enumerationValues = new internal.PartListProperty(WidgetValueType, this, "enumerationValues", []);
@@ -1943,6 +1948,15 @@ var customwidgets;
         set onChangeProperty(newValue) {
             this.__onChangeProperty.set(newValue);
         }
+        /**
+         * In version 8.4.0: introduced
+         */
+        get dataSourceProperty() {
+            return this.__dataSourceProperty.get();
+        }
+        set dataSourceProperty(newValue) {
+            this.__dataSourceProperty.set(newValue);
+        }
         get attributeTypes() {
             return this.__attributeTypes.get();
         }
@@ -1993,6 +2007,9 @@ var customwidgets;
         properties: {
             onChangeProperty: {
                 introduced: "8.0.0"
+            },
+            dataSourceProperty: {
+                introduced: "8.4.0"
             }
         }
     }, internal.StructureType.Element);

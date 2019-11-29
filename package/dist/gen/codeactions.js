@@ -1195,6 +1195,45 @@ var codeactions;
     }, internal.StructureType.Element);
     codeactions.ParameterizedEntityType = ParameterizedEntityType;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.4.0: introduced
+     */
+    class StringTemplateParameterType extends ParameterType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new StringTemplateParameterType() cannot be invoked directly, please use 'model.codeactions.createStringTemplateParameterType()'");
+            }
+        }
+        get containerAsCodeActionParameter() {
+            return super.getContainerAs(CodeActionParameter);
+        }
+        /**
+         * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StringTemplateParameterType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    StringTemplateParameterType.structureTypeName = "CodeActions$StringTemplateParameterType";
+    StringTemplateParameterType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.4.0",
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    codeactions.StringTemplateParameterType = StringTemplateParameterType;
+    /**
      * In version 7.21.0: introduced
      */
     class StringType extends PrimitiveType {

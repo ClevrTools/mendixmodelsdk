@@ -1,11 +1,11 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
-const abstract_model_1 = require("../sdk/internal/abstract-model");
+const AbstractModel_1 = require("../sdk/internal/AbstractModel");
 /**
  * Class to find generated model units.
  */
-class BaseModel extends abstract_model_1.AbstractModel {
+class BaseModel extends AbstractModel_1.AbstractModel {
     allBuildingBlocks() {
         return super._allOfTypes(["Pages$BuildingBlock"]);
     }
