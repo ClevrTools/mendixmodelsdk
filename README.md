@@ -6,6 +6,15 @@ Use to to keep customizations and bugfixes for the npm module while updating.
 
 ## Changes
 
+* `package.json` - Line: **2**
+
+```javascript
+//Original
+"name": "mendixmodelsdk",
+// Updated
+"name": "@gajduk/mendixmodelsdk",
+```
+
 * `/dist/sdk/internal/model-server-client-impl.js` - Line: **93**  
 
 ```javascript
@@ -19,7 +28,7 @@ this.createDownloadHandler(outFilePath, (data, response) => {
 }
 ```
 
-* `/dist/sdk/internal/rest-transportation.js` - Line: **93**  
+* `/dist/sdk/internal/rest-transportation.js` - Line: **9**  
 
 
 ```javascript
