@@ -1,0 +1,115 @@
+{
+  "_from": "mendixmodelsdk@4.26.0",
+  "_id": "mendixmodelsdk@4.26.0",
+  "_inBundle": false,
+  "_integrity": "sha512-TyY5ToCp9quhfKM0y9ciqYCePhHN0ll+MMSwOFfdnREFudy1g+xJR2g0kg5y2bW+nRqBZlaN7ynpFbPpbwxX4g==",
+  "_location": "/mendixmodelsdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "mendixmodelsdk@4.26.0",
+    "name": "mendixmodelsdk",
+    "escapedName": "mendixmodelsdk",
+    "rawSpec": "4.26.0",
+    "saveSpec": null,
+    "fetchSpec": "4.26.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mendixmodelsdk/-/mendixmodelsdk-4.26.0.tgz",
+  "_shasum": "34af05a723e18cb7f6c7bcd096ffb2cf93a3f28f",
+  "_spec": "mendixmodelsdk@4.26.0",
+  "_where": "D:\\Mendix Projects\\SMART Digital Factory-main_2\\Azure Node Js ACR",
+  "author": {
+    "name": "Mendix"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@types/eventsource": "^1.0.1",
+    "deep-equal": "^1.0.1",
+    "eventsource": "^1.0.5",
+    "mobx": "^5.0.0",
+    "request": "^2.81.0",
+    "requestretry": "^4.0.2",
+    "uuid": "^3.0.1",
+    "wolfy87-eventemitter": "^5.2.1"
+  },
+  "deprecated": false,
+  "description": "Mendix Model SDK",
+  "devDependencies": {
+    "@mendix/tslint-rules": "^0.5.0",
+    "@types/chai": "^4.1.0",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/chai-jest-snapshot": "^1.3.2",
+    "@types/deep-equal": "^1.0.1",
+    "@types/mocha": "^2.2.35",
+    "@types/node": "^10.11.4",
+    "@types/proxyquire": "^1.3.28",
+    "@types/request": "^2.0.1",
+    "@types/requestretry": "^1.12.5",
+    "@types/uuid": "^3.4.3",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-jest-snapshot": "^2.0.0",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
+    "proxyquire": "^1.8.0",
+    "source-map-support": "^0.5.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.20.0",
+    "tslint-microsoft-contrib": "^5.2.1",
+    "tslint-no-circular-imports": "^0.6.1",
+    "typedoc": "0.5.5",
+    "typescript": "~3.6.3"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "mendixmodelsdk",
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules/",
+      "dist/"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  },
+  "scripts": {
+    "build": "tsc",
+    "build-ci": "tsc",
+    "clean": "rm -rf dist/ test-output/ doc/generated-doc/ tmp/",
+    "clean-build": "rm -rf node_modules && yarn install && yarn run build",
+    "coverage": "nyc --require ts-node/register mocha --colors --compilers ts-node/register \"src/test/unit-tests/**/*.ts\" \"src/test-mendix/unit-tests/**/*.ts\"",
+    "generate-ts-doc": "bash ./scripts/generate-typedoc.sh",
+    "kill-debuggers": "kill-by-port -p 5858",
+    "lint": "tslint --project tsconfig.json --format msbuild",
+    "postbuild": "node scripts/add-license.js",
+    "postbuild-ci": "node scripts/add-license.js",
+    "prebuild": "node scripts/write-version.js",
+    "prebuild-ci": "node scripts/write-version.js",
+    "pretest": "tsc",
+    "pretest-debug": "yarn run kill-debuggers && yarn run build",
+    "test": "mocha --colors --recursive --timeout 10s --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
+    "test-no-compilation": "CI=true mocha --colors --recursive --timeout 10s --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
+    "test-watch": "mocha --colors --watch --timeout 5s --recursive --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
+    "unit-test": "yarn run test",
+    "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test"
+  },
+  "types": "dist/index",
+  "version": "4.26.0"
+}

@@ -1,0 +1,7 @@
+node_modules
+coverage
+dist
+doc
+tmp
+coverage
+.nyc_output

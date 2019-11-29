@@ -1,0 +1,376 @@
+"use strict";
+/* tslint:disable */
+Object.defineProperty(exports, "__esModule", { value: true });
+const abstract_model_1 = require("../sdk/internal/abstract-model");
+/**
+ * Class to find generated model units.
+ */
+class BaseModel extends abstract_model_1.AbstractModel {
+    allBuildingBlocks() {
+        return super._allOfTypes(["Pages$BuildingBlock"]);
+    }
+    allCodeActions() {
+        return super._allOfTypes(["JavaActions$JavaAction", "JavaScriptActions$JavaScriptAction"]);
+    }
+    allConstants() {
+        return super._allOfTypes(["Constants$Constant"]);
+    }
+    allConsumedAppServices() {
+        return super._allOfTypes(["AppServices$ConsumedAppService"]);
+    }
+    allConsumedODataServices() {
+        return super._allOfTypes(["Rest$ConsumedODataService"]);
+    }
+    allDataSets() {
+        return super._allOfTypes(["DataSets$DataSet"]);
+    }
+    allDocuments() {
+        return super._allOfTypes([
+            "AppServices$ConsumedAppService",
+            "Constants$Constant",
+            "DataSets$DataSet",
+            "DocumentTemplates$DocumentTemplate",
+            "Enumerations$Enumeration",
+            "ExportMappings$ExportMapping",
+            "Images$ImageCollection",
+            "ImportMappings$ImportMapping",
+            "JavaActions$JavaAction",
+            "JavaScriptActions$JavaScriptAction",
+            "JsonStructures$JsonStructure",
+            "Menus$MenuDocument",
+            "MessageDefinitions$MessageDefinitionCollection",
+            "Microflows$Microflow",
+            "Microflows$Nanoflow",
+            "Microflows$Rule",
+            "NativePages$NativeLayout",
+            "NativePages$NativePage",
+            "Pages$BuildingBlock",
+            "Pages$Layout",
+            "Pages$Page",
+            "Pages$PageTemplate",
+            "Pages$Snippet",
+            "RegularExpressions$RegularExpression",
+            "Rest$ConsumedODataService",
+            "Rest$PublishedODataService",
+            "Rest$PublishedRestService",
+            "ScheduledEvents$ScheduledEvent",
+            "WebServices$ImportedWebService",
+            "WebServices$PublishedAppService",
+            "WebServices$PublishedWebService",
+            "XmlSchemas$XmlSchema"
+        ]);
+    }
+    allDocumentTemplates() {
+        return super._allOfTypes(["DocumentTemplates$DocumentTemplate"]);
+    }
+    allDomainModels() {
+        return super._allOfTypes(["DomainModels$DomainModel"]);
+    }
+    allEnumerations() {
+        return super._allOfTypes(["Enumerations$Enumeration"]);
+    }
+    allExportMappings() {
+        return super._allOfTypes(["ExportMappings$ExportMapping"]);
+    }
+    allFolders() {
+        return super._allOfTypes(["Projects$Folder"]);
+    }
+    allFolderBases() {
+        return super._allOfTypes(["Projects$Folder", "Projects$Module"]);
+    }
+    allFormBases() {
+        return super._allOfTypes([
+            "NativePages$NativeLayout",
+            "NativePages$NativePage",
+            "Pages$BuildingBlock",
+            "Pages$Layout",
+            "Pages$Page",
+            "Pages$PageTemplate",
+            "Pages$Snippet"
+        ]);
+    }
+    allImageCollections() {
+        return super._allOfTypes(["Images$ImageCollection"]);
+    }
+    allImportMappings() {
+        return super._allOfTypes(["ImportMappings$ImportMapping"]);
+    }
+    allImportedWebServices() {
+        return super._allOfTypes(["WebServices$ImportedWebService"]);
+    }
+    allJavaActions() {
+        return super._allOfTypes(["JavaActions$JavaAction"]);
+    }
+    allJavaScriptActions() {
+        return super._allOfTypes(["JavaScriptActions$JavaScriptAction"]);
+    }
+    allJsonStructures() {
+        return super._allOfTypes(["JsonStructures$JsonStructure"]);
+    }
+    allLayouts() {
+        return super._allOfTypes(["Pages$Layout"]);
+    }
+    allMappingDocuments() {
+        return super._allOfTypes(["ExportMappings$ExportMapping", "ImportMappings$ImportMapping"]);
+    }
+    allMenuDocuments() {
+        return super._allOfTypes(["Menus$MenuDocument"]);
+    }
+    allMessageDefinitionCollections() {
+        return super._allOfTypes(["MessageDefinitions$MessageDefinitionCollection"]);
+    }
+    allMicroflows() {
+        return super._allOfTypes(["Microflows$Microflow"]);
+    }
+    allMicroflowBases() {
+        return super._allOfTypes(["Microflows$Microflow", "Microflows$Nanoflow", "Microflows$Rule"]);
+    }
+    allModules() {
+        return super._allOfTypes(["Projects$Module"]);
+    }
+    allModuleDocuments() {
+        return super._allOfTypes([
+            "AppServices$ConsumedAppService",
+            "Constants$Constant",
+            "DataSets$DataSet",
+            "DocumentTemplates$DocumentTemplate",
+            "DomainModels$DomainModel",
+            "Enumerations$Enumeration",
+            "ExportMappings$ExportMapping",
+            "Images$ImageCollection",
+            "ImportMappings$ImportMapping",
+            "JavaActions$JavaAction",
+            "JavaScriptActions$JavaScriptAction",
+            "JsonStructures$JsonStructure",
+            "Menus$MenuDocument",
+            "MessageDefinitions$MessageDefinitionCollection",
+            "Microflows$Microflow",
+            "Microflows$Nanoflow",
+            "Microflows$Rule",
+            "NativePages$NativeLayout",
+            "NativePages$NativePage",
+            "Pages$BuildingBlock",
+            "Pages$Layout",
+            "Pages$Page",
+            "Pages$PageTemplate",
+            "Pages$Snippet",
+            "RegularExpressions$RegularExpression",
+            "Rest$ConsumedODataService",
+            "Rest$PublishedODataService",
+            "Rest$PublishedRestService",
+            "ScheduledEvents$ScheduledEvent",
+            "WebServices$ImportedWebService",
+            "WebServices$PublishedAppService",
+            "WebServices$PublishedWebService",
+            "XmlSchemas$XmlSchema"
+        ]);
+    }
+    allModuleSecurities() {
+        return super._allOfTypes(["Security$ModuleSecurity"]);
+    }
+    allMxSchemas() {
+        return super._allOfTypes(["JsonStructures$JsonStructure", "XmlSchemas$XmlSchema"]);
+    }
+    allNanoflows() {
+        return super._allOfTypes(["Microflows$Nanoflow"]);
+    }
+    allNativeLayouts() {
+        return super._allOfTypes(["NativePages$NativeLayout"]);
+    }
+    allNativePages() {
+        return super._allOfTypes(["NativePages$NativePage"]);
+    }
+    allNavigationDocuments() {
+        return super._allOfTypes(["Navigation$NavigationDocument"]);
+    }
+    allPages() {
+        return super._allOfTypes(["Pages$Page"]);
+    }
+    allPageTemplates() {
+        return super._allOfTypes(["Pages$PageTemplate"]);
+    }
+    allProjects() {
+        return super._allOfTypes(["Projects$Project"]);
+    }
+    allProjectConversions() {
+        return super._allOfTypes(["Projects$ProjectConversion"]);
+    }
+    allProjectDocuments() {
+        return super._allOfTypes([
+            "Navigation$NavigationDocument",
+            "Security$ProjectSecurity",
+            "Settings$ProjectSettings",
+            "Texts$SystemTextCollection"
+        ]);
+    }
+    allProjectSecurities() {
+        return super._allOfTypes(["Security$ProjectSecurity"]);
+    }
+    allProjectSettings() {
+        return super._allOfTypes(["Settings$ProjectSettings"]);
+    }
+    allPublishedAppServices() {
+        return super._allOfTypes(["WebServices$PublishedAppService"]);
+    }
+    allPublishedODataServices() {
+        return super._allOfTypes(["Rest$PublishedODataService"]);
+    }
+    allPublishedRestServices() {
+        return super._allOfTypes(["Rest$PublishedRestService"]);
+    }
+    allPublishedServiceBases() {
+        return super._allOfTypes(["WebServices$PublishedAppService", "WebServices$PublishedWebService"]);
+    }
+    allPublishedWebServices() {
+        return super._allOfTypes(["WebServices$PublishedWebService"]);
+    }
+    allRegularExpressions() {
+        return super._allOfTypes(["RegularExpressions$RegularExpression"]);
+    }
+    allRemoteEntitySourceDocuments() {
+        return super._allOfTypes(["Rest$ConsumedODataService"]);
+    }
+    allRules() {
+        return super._allOfTypes(["Microflows$Rule"]);
+    }
+    allScheduledEvents() {
+        return super._allOfTypes(["ScheduledEvents$ScheduledEvent"]);
+    }
+    allServerSideMicroflows() {
+        return super._allOfTypes(["Microflows$Microflow", "Microflows$Rule"]);
+    }
+    allSnippets() {
+        return super._allOfTypes(["Pages$Snippet"]);
+    }
+    allSystemTextCollections() {
+        return super._allOfTypes(["Texts$SystemTextCollection"]);
+    }
+    allTemplateFormBases() {
+        return super._allOfTypes(["Pages$BuildingBlock", "Pages$PageTemplate"]);
+    }
+    allXmlSchemas() {
+        return super._allOfTypes(["XmlSchemas$XmlSchema"]);
+    }
+    findAppServiceActionByQualifiedName(qname) {
+        return this._resolveName("AppServices$AppServiceAction", qname);
+    }
+    findAppServiceActionParameterByQualifiedName(qname) {
+        return this._resolveName("AppServices$AppServiceActionParameter", qname);
+    }
+    findConstantByQualifiedName(qname) {
+        return this._resolveName("Constants$Constant", qname);
+    }
+    findDataSetByQualifiedName(qname) {
+        return this._resolveName("DataSets$DataSet", qname);
+    }
+    findDataSetParameterByQualifiedName(qname) {
+        return this._resolveName("DataSets$DataSetParameter", qname);
+    }
+    findDocumentTemplateByQualifiedName(qname) {
+        return this._resolveName("DocumentTemplates$DocumentTemplate", qname);
+    }
+    findAssociationBaseByQualifiedName(qname) {
+        return this._resolveName("DomainModels$AssociationBase", qname);
+    }
+    findAttributeByQualifiedName(qname) {
+        return this._resolveName("DomainModels$Attribute", qname);
+    }
+    findEntityByQualifiedName(qname) {
+        return this._resolveName("DomainModels$Entity", qname);
+    }
+    findRemoteEntitySourceDocumentByQualifiedName(qname) {
+        return this._resolveName("DomainModels$RemoteEntitySourceDocument", qname);
+    }
+    findEnumerationByQualifiedName(qname) {
+        return this._resolveName("Enumerations$Enumeration", qname);
+    }
+    findEnumerationValueByQualifiedName(qname) {
+        return this._resolveName("Enumerations$EnumerationValue", qname);
+    }
+    findExportMappingByQualifiedName(qname) {
+        return this._resolveName("ExportMappings$ExportMapping", qname);
+    }
+    findImageByQualifiedName(qname) {
+        return this._resolveName("Images$Image", qname);
+    }
+    findImportMappingByQualifiedName(qname) {
+        return this._resolveName("ImportMappings$ImportMapping", qname);
+    }
+    findJavaActionByQualifiedName(qname) {
+        return this._resolveName("JavaActions$JavaAction", qname);
+    }
+    findJavaActionParameterByQualifiedName(qname) {
+        return this._resolveName("JavaActions$JavaActionParameter", qname);
+    }
+    findJavaScriptActionByQualifiedName(qname) {
+        return this._resolveName("JavaScriptActions$JavaScriptAction", qname);
+    }
+    findJavaScriptActionParameterByQualifiedName(qname) {
+        return this._resolveName("JavaScriptActions$JavaScriptActionParameter", qname);
+    }
+    findJsonStructureByQualifiedName(qname) {
+        return this._resolveName("JsonStructures$JsonStructure", qname);
+    }
+    findMenuDocumentByQualifiedName(qname) {
+        return this._resolveName("Menus$MenuDocument", qname);
+    }
+    findMessageDefinitionByQualifiedName(qname) {
+        return this._resolveName("MessageDefinitions$MessageDefinition", qname);
+    }
+    findMicroflowByQualifiedName(qname) {
+        return this._resolveName("Microflows$Microflow", qname);
+    }
+    findMicroflowParameterByQualifiedName(qname) {
+        return this._resolveName("Microflows$MicroflowParameter", qname);
+    }
+    findNanoflowByQualifiedName(qname) {
+        return this._resolveName("Microflows$Nanoflow", qname);
+    }
+    findNanoflowParameterByQualifiedName(qname) {
+        return this._resolveName("Microflows$NanoflowParameter", qname);
+    }
+    findRuleByQualifiedName(qname) {
+        return this._resolveName("Microflows$Rule", qname);
+    }
+    findRuleParameterByQualifiedName(qname) {
+        return this._resolveName("Microflows$RuleParameter", qname);
+    }
+    findNativeLayoutByQualifiedName(qname) {
+        return this._resolveName("NativePages$NativeLayout", qname);
+    }
+    findNativePageByQualifiedName(qname) {
+        return this._resolveName("NativePages$NativePage", qname);
+    }
+    findNavigationProfileByQualifiedName(qname) {
+        return this._resolveName("Navigation$NavigationProfile", qname);
+    }
+    findLayoutByQualifiedName(qname) {
+        return this._resolveName("Pages$Layout", qname);
+    }
+    findLayoutParameterByQualifiedName(qname) {
+        return this._resolveName("Pages$LayoutParameter", qname);
+    }
+    findPageByQualifiedName(qname) {
+        return this._resolveName("Pages$Page", qname);
+    }
+    findSnippetByQualifiedName(qname) {
+        return this._resolveName("Pages$Snippet", qname);
+    }
+    findRegularExpressionByQualifiedName(qname) {
+        return this._resolveName("RegularExpressions$RegularExpression", qname);
+    }
+    findModuleRoleByQualifiedName(qname) {
+        return this._resolveName("Security$ModuleRole", qname);
+    }
+    findUserRoleByQualifiedName(qname) {
+        return this._resolveName("Security$UserRole", qname);
+    }
+    findImportedWebServiceByQualifiedName(qname) {
+        return this._resolveName("WebServices$ImportedWebService", qname);
+    }
+    findXmlSchemaByQualifiedName(qname) {
+        return this._resolveName("XmlSchemas$XmlSchema", qname);
+    }
+}
+exports.BaseModel = BaseModel;
+//# sourceMappingURL=base-model.js.map
