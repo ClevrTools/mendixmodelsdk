@@ -41,10 +41,12 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        source: DataSetSource;
-        readonly parameters: internal.IList<DataSetParameter>;
-        dataSetAccess: DataSetAccess;
+        get containerAsFolderBase(): projects.FolderBase;
+        get source(): DataSetSource;
+        set source(newValue: DataSetSource);
+        get parameters(): internal.IList<DataSetParameter>;
+        get dataSetAccess(): DataSetAccess;
+        set dataSetAccess(newValue: DataSetAccess);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new DataSet unit in the SDK and on the server.
@@ -56,8 +58,8 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSet: DataSet;
-        readonly moduleRoleAccessList: internal.IList<DataSetModuleRoleAccess>;
+        get containerAsDataSet(): DataSet;
+        get moduleRoleAccessList(): internal.IList<DataSetModuleRoleAccess>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetAccess instance in the SDK and on the server.
@@ -76,18 +78,21 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaDataSetSource: JavaDataSetSource;
-        name: string;
+        get containerAsJavaDataSetSource(): JavaDataSetSource;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        columnType: datatypes.DataType;
+        get columnType(): datatypes.DataType;
+        set columnType(newValue: datatypes.DataType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetColumn instance in the SDK and on the server.
@@ -106,9 +111,11 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetParameterAccess: DataSetParameterAccess;
-        constraintText: string;
-        enabled: boolean;
+        get containerAsDataSetParameterAccess(): DataSetParameterAccess;
+        get constraintText(): string;
+        set constraintText(newValue: string);
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetConstraintAccess instance in the SDK and on the server.
@@ -127,16 +134,18 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetParameter: DataSetParameter;
+        get containerAsDataSetParameter(): DataSetParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class DataSetDateTimeConstraint extends DataSetParameterConstraint {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetParameter: DataSetParameter;
-        modifier: DateTimeIntervalModifier;
-        length: DateTimeIntervalLength;
+        get containerAsDataSetParameter(): DataSetParameter;
+        get modifier(): DateTimeIntervalModifier;
+        set modifier(newValue: DateTimeIntervalModifier);
+        get length(): DateTimeIntervalLength;
+        set length(newValue: DateTimeIntervalLength);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetDateTimeConstraint instance in the SDK and on the server.
@@ -155,10 +164,11 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetAccess: DataSetAccess;
-        readonly parameterAccessList: internal.IList<DataSetParameterAccess>;
-        moduleRole: security.IModuleRole | null;
-        readonly moduleRoleQualifiedName: string | null;
+        get containerAsDataSetAccess(): DataSetAccess;
+        get parameterAccessList(): internal.IList<DataSetParameterAccess>;
+        get moduleRole(): security.IModuleRole | null;
+        set moduleRole(newValue: security.IModuleRole | null);
+        get moduleRoleQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetModuleRoleAccess instance in the SDK and on the server.
@@ -177,11 +187,15 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetParameter: DataSetParameter;
-        begin: string;
-        applyBegin: boolean;
-        end: string;
-        applyEnd: boolean;
+        get containerAsDataSetParameter(): DataSetParameter;
+        get begin(): string;
+        set begin(newValue: string);
+        get applyBegin(): boolean;
+        set applyBegin(newValue: boolean);
+        get end(): string;
+        set end(newValue: string);
+        get applyEnd(): boolean;
+        set applyEnd(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetNumericConstraint instance in the SDK and on the server.
@@ -200,12 +214,14 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetParameter: DataSetParameter;
-        name: string;
+        get containerAsDataSetParameter(): DataSetParameter;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        constraint: string;
+        get constraint(): string;
+        set constraint(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetObjectConstraint instance in the SDK and on the server.
@@ -232,23 +248,27 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSet: DataSet;
-        name: string;
+        get containerAsDataSet(): DataSet;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        parameterType: datatypes.DataType;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
         /**
          * In version 7.9.0: introduced
          */
-        parameterTypeIsRange: boolean;
-        readonly constraints: internal.IList<DataSetParameterConstraint>;
+        get parameterTypeIsRange(): boolean;
+        set parameterTypeIsRange(newValue: boolean);
+        get constraints(): internal.IList<DataSetParameterConstraint>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetParameter instance in the SDK and on the server.
@@ -262,15 +282,16 @@ export declare namespace datasets {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): DataSetParameter;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     class DataSetParameterAccess extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSetModuleRoleAccess: DataSetModuleRoleAccess;
-        parameterName: string;
-        readonly constraintAccessList: internal.IList<DataSetConstraintAccess>;
+        get containerAsDataSetModuleRoleAccess(): DataSetModuleRoleAccess;
+        get parameterName(): string;
+        set parameterName(newValue: string);
+        get constraintAccessList(): internal.IList<DataSetConstraintAccess>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataSetParameterAccess instance in the SDK and on the server.
@@ -289,19 +310,20 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSet: DataSet;
+        get containerAsDataSet(): DataSet;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class JavaDataSetSource extends DataSetSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSet: DataSet;
-        readonly columns: internal.IList<DataSetColumn>;
+        get containerAsDataSet(): DataSet;
+        get columns(): internal.IList<DataSetColumn>;
         /**
          * In version 8.0.0: introduced
          */
-        useLegacyCodeGeneration: boolean;
+        get useLegacyCodeGeneration(): boolean;
+        set useLegacyCodeGeneration(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaDataSetSource instance in the SDK and on the server.
@@ -320,12 +342,14 @@ export declare namespace datasets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataSet: DataSet;
+        get containerAsDataSet(): DataSet;
         /**
          * The value of this property is conceptually of type oql.OqlQuery.
          */
-        query: string;
-        ignoreErrorsInQuery: boolean;
+        get query(): string;
+        set query(newValue: string);
+        get ignoreErrorsInQuery(): boolean;
+        set ignoreErrorsInQuery(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OqlDataSetSource instance in the SDK and on the server.

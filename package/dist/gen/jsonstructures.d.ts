@@ -13,9 +13,10 @@ export declare namespace jsonstructures {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        originalValue: string;
+        get containerAsJsonStructure(): JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get originalValue(): string;
+        set originalValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JsonElement instance in the SDK and on the server.
@@ -65,12 +66,13 @@ export declare namespace jsonstructures {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        jsonSnippet: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get jsonSnippet(): string;
+        set jsonSnippet(newValue: string);
         /**
          * In version 6.6.0: introduced
          */
-        readonly elements: internal.IList<mappings.Element>;
+        get elements(): internal.IList<mappings.Element>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new JsonStructure unit in the SDK and on the server.

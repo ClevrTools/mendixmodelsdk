@@ -284,6 +284,16 @@ var pages;
     MobileFooterType.MenuBar = new MobileFooterType("MenuBar", {});
     MobileFooterType.Custom = new MobileFooterType("Custom", {});
     pages.MobileFooterType = MobileFooterType;
+    class NativeLayoutType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.NativeLayoutType";
+        }
+    }
+    NativeLayoutType.Default = new NativeLayoutType("Default", {});
+    NativeLayoutType.TopLevel = new NativeLayoutType("TopLevel", {});
+    NativeLayoutType.Popup = new NativeLayoutType("Popup", {});
+    pages.NativeLayoutType = NativeLayoutType;
     class NativeTextStyle extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -1387,6 +1397,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, ActionButton.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, ActionButton, "widget", false);
+        }
+        /**
+         * Creates and returns a new ActionButton instance in the SDK and on the server.
+         * The new ActionButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ActionButton.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ActionButton, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new ActionButton instance in the SDK and on the server.
@@ -5036,6 +5058,18 @@ var pages;
         }
         /**
          * Creates and returns a new CheckBox instance in the SDK and on the server.
+         * The new CheckBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, CheckBox.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CheckBox, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new CheckBox instance in the SDK and on the server.
          * The new CheckBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -7882,6 +7916,18 @@ var pages;
         }
         /**
          * Creates and returns a new DataGrid instance in the SDK and on the server.
+         * The new DataGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DataGrid.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DataGrid, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DataGrid instance in the SDK and on the server.
          * The new DataGrid will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -9070,6 +9116,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, DataView.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, DataView, "widget", false);
+        }
+        /**
+         * Creates and returns a new DataView instance in the SDK and on the server.
+         * The new DataView will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DataView.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DataView, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new DataView instance in the SDK and on the server.
@@ -10453,6 +10511,18 @@ var pages;
         }
         /**
          * Creates and returns a new DatePicker instance in the SDK and on the server.
+         * The new DatePicker will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DatePicker.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DatePicker, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DatePicker instance in the SDK and on the server.
          * The new DatePicker will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -11548,6 +11618,18 @@ var pages;
         }
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
+         * The new DivContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DivContainer.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DivContainer, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DivContainer instance in the SDK and on the server.
          * The new DivContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -12285,6 +12367,18 @@ var pages;
         }
         /**
          * Creates and returns a new DropDown instance in the SDK and on the server.
+         * The new DropDown will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DropDown.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DropDown, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DropDown instance in the SDK and on the server.
          * The new DropDown will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -13000,6 +13094,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, DropDownButton.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, DropDownButton, "widget", false);
+        }
+        /**
+         * Creates and returns a new DropDownButton instance in the SDK and on the server.
+         * The new DropDownButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DropDownButton.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DropDownButton, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new DropDownButton instance in the SDK and on the server.
@@ -13964,6 +14070,18 @@ var pages;
         }
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
+         * The new DynamicImageViewer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DynamicImageViewer.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DynamicImageViewer, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
          * The new DynamicImageViewer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -14739,6 +14857,18 @@ var pages;
         }
         /**
          * Creates and returns a new DynamicText instance in the SDK and on the server.
+         * The new DynamicText will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, DynamicText.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, DynamicText, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new DynamicText instance in the SDK and on the server.
          * The new DynamicText will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -15508,6 +15638,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, FileManager.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, FileManager, "widget", false);
+        }
+        /**
+         * Creates and returns a new FileManager instance in the SDK and on the server.
+         * The new FileManager will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, FileManager.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, FileManager, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new FileManager instance in the SDK and on the server.
@@ -17843,6 +17985,18 @@ var pages;
         }
         /**
          * Creates and returns a new GroupBox instance in the SDK and on the server.
+         * The new GroupBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, GroupBox.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, GroupBox, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new GroupBox instance in the SDK and on the server.
          * The new GroupBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -18614,6 +18768,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, Header.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, Header, "widget", false);
+        }
+        /**
+         * Creates and returns a new Header instance in the SDK and on the server.
+         * The new Header will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, Header.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, Header, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new Header instance in the SDK and on the server.
@@ -20291,6 +20457,18 @@ var pages;
         }
         /**
          * Creates and returns a new ImageUploader instance in the SDK and on the server.
+         * The new ImageUploader will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ImageUploader.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ImageUploader, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ImageUploader instance in the SDK and on the server.
          * The new ImageUploader will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -21077,6 +21255,18 @@ var pages;
         }
         /**
          * Creates and returns a new InputReferenceSetSelector instance in the SDK and on the server.
+         * The new InputReferenceSetSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, InputReferenceSetSelector.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, InputReferenceSetSelector, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new InputReferenceSetSelector instance in the SDK and on the server.
          * The new InputReferenceSetSelector will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -21783,6 +21973,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, Label.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, Label, "widget", false);
+        }
+        /**
+         * Creates and returns a new Label instance in the SDK and on the server.
+         * The new Label will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, Label.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, Label, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new Label instance in the SDK and on the server.
@@ -23075,6 +23277,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, LayoutGrid.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, LayoutGrid, "widget", false);
+        }
+        /**
+         * Creates and returns a new LayoutGrid instance in the SDK and on the server.
+         * The new LayoutGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, LayoutGrid.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, LayoutGrid, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new LayoutGrid instance in the SDK and on the server.
@@ -24661,6 +24875,18 @@ var pages;
         }
         /**
          * Creates and returns a new ListView instance in the SDK and on the server.
+         * The new ListView will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ListView.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ListView, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ListView instance in the SDK and on the server.
          * The new ListView will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -25196,13 +25422,43 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.ListViewTemplate = ListViewTemplate;
-    class ListViewXPathSource extends SortableEntityPathSource {
+    class XPathSourceBase extends SortableEntityPathSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__xPathConstraint = new internal.PrimitiveProperty(XPathSourceBase, this, "xPathConstraint", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new XPathSourceBase() cannot be invoked directly, please use 'model.pages.createXPathSourceBase()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsEntityWidget() {
+            return super.getContainerAs(EntityWidget);
+        }
+        /**
+         * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
+         */
+        get xPathConstraint() {
+            return this.__xPathConstraint.get();
+        }
+        set xPathConstraint(newValue) {
+            this.__xPathConstraint.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    XPathSourceBase.structureTypeName = "Pages$XPathSourceBase";
+    XPathSourceBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    pages.XPathSourceBase = XPathSourceBase;
+    class ListViewXPathSource extends XPathSourceBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__search = new internal.PartProperty(ListViewXPathSource, this, "search", null, true);
-            /** @internal */
-            this.__xPathConstraint = new internal.PrimitiveProperty(ListViewXPathSource, this, "xPathConstraint", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new ListViewXPathSource() cannot be invoked directly, please use 'model.pages.createListViewXPathSource()'");
             }
@@ -25218,15 +25474,6 @@ var pages;
         }
         set search(newValue) {
             this.__search.set(newValue);
-        }
-        /**
-         * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
-         */
-        get xPathConstraint() {
-            return this.__xPathConstraint.get();
-        }
-        set xPathConstraint(newValue) {
-            this.__xPathConstraint.set(newValue);
         }
         /**
          * Creates and returns a new ListViewXPathSource instance in the SDK and on the server.
@@ -25793,6 +26040,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, LoginButton.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, LoginButton, "widget", false);
+        }
+        /**
+         * Creates and returns a new LoginButton instance in the SDK and on the server.
+         * The new LoginButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, LoginButton.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, LoginButton, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new LoginButton instance in the SDK and on the server.
@@ -26619,6 +26878,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, LoginIdTextBox.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, LoginIdTextBox, "widget", false);
+        }
+        /**
+         * Creates and returns a new LoginIdTextBox instance in the SDK and on the server.
+         * The new LoginIdTextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, LoginIdTextBox.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, LoginIdTextBox, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new LoginIdTextBox instance in the SDK and on the server.
@@ -28380,6 +28651,18 @@ var pages;
         }
         /**
          * Creates and returns a new MenuBar instance in the SDK and on the server.
+         * The new MenuBar will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, MenuBar.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, MenuBar, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new MenuBar instance in the SDK and on the server.
          * The new MenuBar will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -29618,17 +29901,32 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__layoutType = new internal.EnumProperty(NativeLayoutContent, this, "layoutType", NativeLayoutType.Default, NativeLayoutType);
+            /** @internal */
             this.__widgets = new internal.PartListProperty(NativeLayoutContent, this, "widgets", []);
             /** @internal */
             this.__rightHeaderPlaceholder = new internal.PartProperty(NativeLayoutContent, this, "rightHeaderPlaceholder", null, false);
             /** @internal */
             this.__showBottomBar = new internal.PrimitiveProperty(NativeLayoutContent, this, "showBottomBar", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sidebar = new internal.PrimitiveProperty(NativeLayoutContent, this, "sidebar", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sidebarWidgets = new internal.PartListProperty(NativeLayoutContent, this, "sidebarWidgets", []);
             if (arguments.length < 4) {
                 throw new Error("new NativeLayoutContent() cannot be invoked directly, please use 'model.pages.createNativeLayoutContent()'");
             }
         }
         get containerAsLayout() {
             return super.getContainerAs(Layout);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get layoutType() {
+            return this.__layoutType.get();
+        }
+        set layoutType(newValue) {
+            this.__layoutType.set(newValue);
         }
         get widgets() {
             return this.__widgets.get();
@@ -29647,6 +29945,21 @@ var pages;
         }
         set showBottomBar(newValue) {
             this.__showBottomBar.set(newValue);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get sidebar() {
+            return this.__sidebar.get();
+        }
+        set sidebar(newValue) {
+            this.__sidebar.set(newValue);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get sidebarWidgets() {
+            return this.__sidebarWidgets.get();
         }
         /**
          * Creates and returns a new NativeLayoutContent instance in the SDK and on the server.
@@ -29671,8 +29984,14 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__layoutType.isAvailable) {
+                this.layoutType = NativeLayoutType.Default;
+            }
             if (this.__showBottomBar.isAvailable) {
                 this.showBottomBar = true;
+            }
+            if (this.__sidebar.isAvailable) {
+                this.sidebar = false;
             }
         }
     }
@@ -29680,8 +29999,20 @@ var pages;
     NativeLayoutContent.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.0.0",
         properties: {
+            layoutType: {
+                introduced: "8.5.0",
+                public: {
+                    currentValue: true
+                }
+            },
             showBottomBar: {
                 introduced: "8.2.0"
+            },
+            sidebar: {
+                introduced: "8.5.0"
+            },
+            sidebarWidgets: {
+                introduced: "8.5.0"
             }
         },
         public: {
@@ -30126,6 +30457,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, NavigationList.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, NavigationList, "widget", false);
+        }
+        /**
+         * Creates and returns a new NavigationList instance in the SDK and on the server.
+         * The new NavigationList will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, NavigationList.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, NavigationList, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new NavigationList instance in the SDK and on the server.
@@ -31028,6 +31371,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, NavigationTree.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, NavigationTree, "widget", false);
+        }
+        /**
+         * Creates and returns a new NavigationTree instance in the SDK and on the server.
+         * The new NavigationTree will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, NavigationTree.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, NavigationTree, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new NavigationTree instance in the SDK and on the server.
@@ -34203,6 +34558,18 @@ var pages;
         }
         /**
          * Creates and returns a new PasswordTextBox instance in the SDK and on the server.
+         * The new PasswordTextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, PasswordTextBox.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, PasswordTextBox, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new PasswordTextBox instance in the SDK and on the server.
          * The new PasswordTextBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -34891,6 +35258,18 @@ var pages;
         static createInNativeLayoutContentUnderRightHeaderPlaceholder(container) {
             internal.createInVersionCheck(container.model, Placeholder.structureTypeName, { start: "8.0.0" });
             return internal.instancehelpers.createElement(container, Placeholder, "rightHeaderPlaceholder", false);
+        }
+        /**
+         * Creates and returns a new Placeholder instance in the SDK and on the server.
+         * The new Placeholder will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, Placeholder.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, Placeholder, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new Placeholder instance in the SDK and on the server.
@@ -35600,6 +35979,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, RadioButtonGroup.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, RadioButtonGroup, "widget", false);
+        }
+        /**
+         * Creates and returns a new RadioButtonGroup instance in the SDK and on the server.
+         * The new RadioButtonGroup will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, RadioButtonGroup.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, RadioButtonGroup, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new RadioButtonGroup instance in the SDK and on the server.
@@ -36491,6 +36882,18 @@ var pages;
         }
         /**
          * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
+         * The new ReferenceSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReferenceSelector.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReferenceSelector, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
          * The new ReferenceSelector will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -37310,6 +37713,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, ReferenceSetSelector.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, ReferenceSetSelector, "widget", false);
+        }
+        /**
+         * Creates and returns a new ReferenceSetSelector instance in the SDK and on the server.
+         * The new ReferenceSetSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReferenceSetSelector.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReferenceSetSelector, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new ReferenceSetSelector instance in the SDK and on the server.
@@ -39096,6 +39511,18 @@ var pages;
         }
         /**
          * Creates and returns a new ScrollContainer instance in the SDK and on the server.
+         * The new ScrollContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ScrollContainer.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ScrollContainer, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ScrollContainer instance in the SDK and on the server.
          * The new ScrollContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -40420,6 +40847,18 @@ var pages;
         }
         /**
          * Creates and returns a new SidebarToggleButton instance in the SDK and on the server.
+         * The new SidebarToggleButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, SidebarToggleButton.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, SidebarToggleButton, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new SidebarToggleButton instance in the SDK and on the server.
          * The new SidebarToggleButton will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -41432,6 +41871,18 @@ var pages;
         }
         /**
          * Creates and returns a new SimpleMenuBar instance in the SDK and on the server.
+         * The new SimpleMenuBar will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, SimpleMenuBar.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, SimpleMenuBar, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new SimpleMenuBar instance in the SDK and on the server.
          * The new SimpleMenuBar will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -42284,6 +42735,18 @@ var pages;
         }
         /**
          * Creates and returns a new SnippetCallWidget instance in the SDK and on the server.
+         * The new SnippetCallWidget will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, SnippetCallWidget.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, SnippetCallWidget, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new SnippetCallWidget instance in the SDK and on the server.
          * The new SnippetCallWidget will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -43050,6 +43513,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, StaticImageViewer.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, StaticImageViewer, "widget", false);
+        }
+        /**
+         * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
+         * The new StaticImageViewer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, StaticImageViewer.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, StaticImageViewer, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -44506,6 +44981,18 @@ var pages;
         }
         /**
          * Creates and returns a new TabContainer instance in the SDK and on the server.
+         * The new TabContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, TabContainer.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, TabContainer, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new TabContainer instance in the SDK and on the server.
          * The new TabContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -45340,6 +45827,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, Table.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, Table, "widget", false);
+        }
+        /**
+         * Creates and returns a new Table instance in the SDK and on the server.
+         * The new Table will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, Table.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, Table, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new Table instance in the SDK and on the server.
@@ -46402,6 +46901,18 @@ var pages;
         }
         /**
          * Creates and returns a new TemplateGrid instance in the SDK and on the server.
+         * The new TemplateGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplateGrid.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, TemplateGrid, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new TemplateGrid instance in the SDK and on the server.
          * The new TemplateGrid will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -47300,6 +47811,18 @@ var pages;
         }
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
+         * The new TextArea will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, TextArea.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, TextArea, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new TextArea instance in the SDK and on the server.
          * The new TextArea will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -48052,6 +48575,18 @@ var pages;
         }
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
+         * The new TextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, TextBox.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, TextBox, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new TextBox instance in the SDK and on the server.
          * The new TextBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -48768,6 +49303,18 @@ var pages;
         }
         /**
          * Creates and returns a new Title instance in the SDK and on the server.
+         * The new Title will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, Title.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, Title, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new Title instance in the SDK and on the server.
          * The new Title will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -49465,6 +50012,18 @@ var pages;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, ValidationMessage.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, ValidationMessage, "widget", false);
+        }
+        /**
+         * Creates and returns a new ValidationMessage instance in the SDK and on the server.
+         * The new ValidationMessage will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ValidationMessage.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ValidationMessage, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new ValidationMessage instance in the SDK and on the server.

@@ -48,43 +48,69 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        metadataUrl: string;
-        metadata: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get metadataUrl(): string;
+        set metadataUrl(newValue: string);
+        get metadata(): string;
+        set metadata(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        serviceName: string;
+        get serviceName(): string;
+        set serviceName(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        version: string;
+        get version(): string;
+        set version(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        serviceId: string;
+        get serviceId(): string;
+        set serviceId(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        readonly entities: internal.IList<ODataEntity>;
-        proxyType: microflows.RequestProxyType;
-        proxyHost: constants.IConstant | null;
-        readonly proxyHostQualifiedName: string | null;
-        proxyPort: constants.IConstant | null;
-        readonly proxyPortQualifiedName: string | null;
-        proxyUsername: constants.IConstant | null;
-        readonly proxyUsernameQualifiedName: string | null;
-        proxyPassword: constants.IConstant | null;
-        readonly proxyPasswordQualifiedName: string | null;
+        get entities(): internal.IList<ODataEntity>;
+        get proxyType(): microflows.RequestProxyType;
+        set proxyType(newValue: microflows.RequestProxyType);
+        get proxyHost(): constants.IConstant | null;
+        set proxyHost(newValue: constants.IConstant | null);
+        get proxyHostQualifiedName(): string | null;
+        get proxyPort(): constants.IConstant | null;
+        set proxyPort(newValue: constants.IConstant | null);
+        get proxyPortQualifiedName(): string | null;
+        get proxyUsername(): constants.IConstant | null;
+        set proxyUsername(newValue: constants.IConstant | null);
+        get proxyUsernameQualifiedName(): string | null;
+        get proxyPassword(): constants.IConstant | null;
+        set proxyPassword(newValue: constants.IConstant | null);
+        get proxyPasswordQualifiedName(): string | null;
         /**
          * In version 8.0.0: introduced
          */
-        httpConfiguration: microflows.HttpConfiguration;
+        get httpConfiguration(): microflows.HttpConfiguration;
+        set httpConfiguration(newValue: microflows.HttpConfiguration);
         /**
          * In version 8.4.0: introduced
          */
-        headersMicroflow: microflows.IMicroflow | null;
-        readonly headersMicroflowQualifiedName: string | null;
+        get headersMicroflow(): microflows.IMicroflow | null;
+        set headersMicroflow(newValue: microflows.IMicroflow | null);
+        get headersMicroflowQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.5.0: introduced
+         */
+        get timeoutModel(): expressions.Expression;
+        set timeoutModel(newValue: expressions.Expression);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.5.0: introduced
+         */
+        get timeoutExpression(): string;
+        set timeoutExpression(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -101,12 +127,15 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedRestService: PublishedRestService;
-        allowedOrigins: constants.IConstant | null;
-        readonly allowedOriginsQualifiedName: string | null;
-        allowAuthentication: boolean;
-        maxAge: constants.IConstant | null;
-        readonly maxAgeQualifiedName: string | null;
+        get containerAsPublishedRestService(): PublishedRestService;
+        get allowedOrigins(): constants.IConstant | null;
+        set allowedOrigins(newValue: constants.IConstant | null);
+        get allowedOriginsQualifiedName(): string | null;
+        get allowAuthentication(): boolean;
+        set allowAuthentication(newValue: boolean);
+        get maxAge(): constants.IConstant | null;
+        set maxAge(newValue: constants.IConstant | null);
+        get maxAgeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CorsConfiguration instance in the SDK and on the server.
@@ -133,10 +162,12 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsODataEntity: ODataEntity;
-        name: string;
-        attribute: domainmodels.IAttribute;
-        readonly attributeQualifiedName: string;
+        get containerAsODataEntity(): ODataEntity;
+        get name(): string;
+        set name(newValue: string);
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataAttribute instance in the SDK and on the server.
@@ -163,30 +194,33 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConsumedODataService: ConsumedODataService;
-        name: string;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
+        get containerAsConsumedODataService(): ConsumedODataService;
+        get name(): string;
+        set name(newValue: string);
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
         /**
          * In version 7.19.0: introduced
          */
-        entitySet: string;
+        get entitySet(): string;
+        set entitySet(newValue: string);
         /**
          * In version 7.22.0: introduced
          */
-        readonly keyNames: internal.IList<string>;
+        get keyNames(): internal.IList<string>;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.22.0: introduced
          */
-        readonly navigationProperties: internal.IList<ODataNavigationProperty>;
+        get navigationProperties(): internal.IList<ODataNavigationProperty>;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 8.0.0: introduced
          */
-        readonly attributes: internal.IList<ODataAttribute>;
+        get attributes(): internal.IList<ODataAttribute>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataEntity instance in the SDK and on the server.
@@ -213,11 +247,14 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsODataEntity: ODataEntity;
-        name: string;
-        association: domainmodels.IAssociationBase;
-        readonly associationQualifiedName: string;
-        thisSideIsParent: boolean;
+        get containerAsODataEntity(): ODataEntity;
+        get name(): string;
+        set name(newValue: string);
+        get association(): domainmodels.IAssociationBase;
+        set association(newValue: domainmodels.IAssociationBase);
+        get associationQualifiedName(): string;
+        get thisSideIsParent(): boolean;
+        set thisSideIsParent(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
@@ -252,41 +289,49 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        namespace: string;
-        path: string;
-        readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
-        readonly allowedModuleRolesQualifiedNames: string[];
+        get containerAsFolderBase(): projects.FolderBase;
+        get namespace(): string;
+        set namespace(newValue: string);
+        get path(): string;
+        set path(newValue: string);
+        get allowedModuleRoles(): internal.IList<security.IModuleRole>;
+        get allowedModuleRolesQualifiedNames(): string[];
         /**
          * In version 8.0.0: introduced
          */
-        serviceName: string;
-        readonly resources: internal.IList<PublishedRestResource>;
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        get resources(): internal.IList<PublishedRestResource>;
         /**
          * In version 7.19.0: introduced
          */
-        publishAssociations: boolean;
+        get publishAssociations(): boolean;
+        set publishAssociations(newValue: boolean);
         /**
          * In version 8.0.0: introduced
          */
-        version: string;
+        get version(): string;
+        set version(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        authenticationMicroflow: microflows.IMicroflow | null;
-        readonly authenticationMicroflowQualifiedName: string | null;
+        get authenticationMicroflow(): microflows.IMicroflow | null;
+        set authenticationMicroflow(newValue: microflows.IMicroflow | null);
+        get authenticationMicroflowQualifiedName(): string | null;
         /**
          * In version 8.0.0: introduced
          */
-        readonly authenticationTypes: internal.IList<RestAuthenticationType>;
+        get authenticationTypes(): internal.IList<RestAuthenticationType>;
         /**
          * In version 8.4.0: introduced
          */
-        summary: string;
+        get summary(): string;
+        set summary(newValue: string);
         /**
          * In version 8.4.0: introduced
          */
-        description: string;
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
@@ -301,22 +346,28 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedODataService: PublishedODataService;
-        path: string;
+        get containerAsPublishedODataService(): PublishedODataService;
+        get path(): string;
+        set path(newValue: string);
         /**
          * In version 7.19.0: introduced
          */
-        exposedName: string;
+        get exposedName(): string;
+        set exposedName(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        summary: string;
+        get summary(): string;
+        set summary(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        description: string;
-        usePaging: boolean;
-        pageSize: number;
+        get description(): string;
+        set description(newValue: string);
+        get usePaging(): boolean;
+        set usePaging(newValue: boolean);
+        get pageSize(): number;
+        set pageSize(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedRestResource instance in the SDK and on the server.
@@ -354,44 +405,50 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        path: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get path(): string;
+        set path(newValue: string);
         /**
          * In version 7.12.0: introduced
          */
-        serviceName: string;
+        get serviceName(): string;
+        set serviceName(newValue: string);
         /**
          * In version 7.12.0: introduced
          */
-        version: string;
+        get version(): string;
+        set version(newValue: string);
         /**
          * In version 7.13.0: deleted
          * In version 7.11.0: introduced
          */
-        authenticationType: RestAuthenticationType;
+        get authenticationType(): RestAuthenticationType;
+        set authenticationType(newValue: RestAuthenticationType);
         /**
          * In version 7.13.0: introduced
          */
-        readonly authenticationTypes: internal.IList<RestAuthenticationType>;
+        get authenticationTypes(): internal.IList<RestAuthenticationType>;
         /**
          * In version 7.17.0: introduced
          */
-        authenticationMicroflow: microflows.IMicroflow | null;
-        readonly authenticationMicroflowQualifiedName: string | null;
+        get authenticationMicroflow(): microflows.IMicroflow | null;
+        set authenticationMicroflow(newValue: microflows.IMicroflow | null);
+        get authenticationMicroflowQualifiedName(): string | null;
         /**
          * In version 7.18.0: introduced
          */
-        corsConfiguration: CorsConfiguration | null;
-        readonly allowedRoles: internal.IList<security.IModuleRole>;
-        readonly allowedRolesQualifiedNames: string[];
+        get corsConfiguration(): CorsConfiguration | null;
+        set corsConfiguration(newValue: CorsConfiguration | null);
+        get allowedRoles(): internal.IList<security.IModuleRole>;
+        get allowedRolesQualifiedNames(): string[];
         /**
          * In version 7.7.0: introduced
          */
-        readonly resources: internal.IList<PublishedRestServiceResource>;
+        get resources(): internal.IList<PublishedRestServiceResource>;
         /**
          * In version 7.17.0: introduced
          */
-        readonly parameters: internal.IList<RestOperationParameter>;
+        get parameters(): internal.IList<RestOperationParameter>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedRestService unit in the SDK and on the server.
@@ -409,39 +466,49 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedRestServiceResource: PublishedRestServiceResource;
-        summary: string;
-        documentation: string;
-        path: string;
+        get containerAsPublishedRestServiceResource(): PublishedRestServiceResource;
+        get summary(): string;
+        set summary(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get path(): string;
+        set path(newValue: string);
         /**
          * In version 7.15.0: introduced
          */
-        deprecated: boolean;
+        get deprecated(): boolean;
+        set deprecated(newValue: boolean);
         /**
          * In version 7.17.0: introduced
          */
-        readonly parameters: internal.IList<RestOperationParameter>;
-        httpMethod: services.HttpMethod;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get parameters(): internal.IList<RestOperationParameter>;
+        get httpMethod(): services.HttpMethod;
+        set httpMethod(newValue: services.HttpMethod);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         /**
          * In version 7.14.0: introduced
          */
-        exportMapping: exportmappings.IExportMapping | null;
-        readonly exportMappingQualifiedName: string | null;
+        get exportMapping(): exportmappings.IExportMapping | null;
+        set exportMapping(newValue: exportmappings.IExportMapping | null);
+        get exportMappingQualifiedName(): string | null;
         /**
          * In version 7.14.0: introduced
          */
-        importMapping: importmappings.IImportMapping | null;
-        readonly importMappingQualifiedName: string | null;
+        get importMapping(): importmappings.IImportMapping | null;
+        set importMapping(newValue: importmappings.IImportMapping | null);
+        get importMappingQualifiedName(): string | null;
         /**
          * In version 7.17.0: introduced
          */
-        objectHandlingBackup: mappings.ObjectHandlingBackupEnum;
+        get objectHandlingBackup(): mappings.ObjectHandlingBackupEnum;
+        set objectHandlingBackup(newValue: mappings.ObjectHandlingBackupEnum);
         /**
          * In version 7.14.0: introduced
          */
-        commit: microflows.CommitEnum;
+        get commit(): microflows.CommitEnum;
+        set commit(newValue: microflows.CommitEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedRestServiceOperation instance in the SDK and on the server.
@@ -469,10 +536,12 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedRestService: PublishedRestService;
-        name: string;
-        documentation: string;
-        readonly operations: internal.IList<PublishedRestServiceOperation>;
+        get containerAsPublishedRestService(): PublishedRestService;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get operations(): internal.IList<PublishedRestServiceOperation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedRestServiceResource instance in the SDK and on the server.
@@ -498,29 +567,35 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedRestService: PublishedRestService;
-        readonly containerAsPublishedRestServiceOperation: PublishedRestServiceOperation;
-        name: string;
+        get containerAsPublishedRestService(): PublishedRestService;
+        get containerAsPublishedRestServiceOperation(): PublishedRestServiceOperation;
+        get name(): string;
+        set name(newValue: string);
         /**
          * In version 7.17.0: introduced
          */
-        microflowParameter: microflows.IMicroflowParameter | null;
-        readonly microflowParameterQualifiedName: string | null;
+        get microflowParameter(): microflows.IMicroflowParameter | null;
+        set microflowParameter(newValue: microflows.IMicroflowParameter | null);
+        get microflowParameterQualifiedName(): string | null;
         /**
          * In version 7.17.0: introduced
          */
-        type: datatypes.DataType;
-        parameterType: RestOperationParameterType;
+        get type(): datatypes.DataType;
+        set type(newValue: datatypes.DataType);
+        get parameterType(): RestOperationParameterType;
+        set parameterType(newValue: RestOperationParameterType);
         /**
          * In version 8.3.0: introduced
          */
-        description: string;
+        get description(): string;
+        set description(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        dataType: string;
+        get dataType(): string;
+        set dataType(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RestOperationParameter instance in the SDK and on the server.
@@ -551,6 +626,7 @@ export declare namespace rest {
 import { constants } from "./constants";
 import { datatypes } from "./datatypes";
 import { exportmappings } from "./exportmappings";
+import { expressions } from "./expressions";
 import { importmappings } from "./importmappings";
 import { mappings } from "./mappings";
 import { microflows } from "./microflows";

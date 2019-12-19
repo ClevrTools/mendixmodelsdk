@@ -1,7 +1,7 @@
 {
   "name": "@gajduk/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.27.1",
+  "version": "4.28.0",
   "author": "Mendix",
   "dependencies": {
     "@types/eventsource": "^1.0.1",

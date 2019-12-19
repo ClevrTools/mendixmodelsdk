@@ -59,10 +59,10 @@ export declare abstract class Structure implements IStructure {
     structureTypeName: string;
     id: string;
     constructor(_model: AbstractModel, structureTypeName: string, id: string, _isPartial?: boolean, container?: aliases.IContainer | null);
-    readonly container: aliases.IContainer | null;
-    readonly model: IAbstractModel;
-    abstract readonly unit: units.IAbstractUnit;
-    abstract readonly isLoaded: boolean;
+    get container(): aliases.IContainer | null;
+    get model(): IAbstractModel;
+    abstract get unit(): units.IAbstractUnit;
+    abstract get isLoaded(): boolean;
     /**
      * Deletes a model from the model.
      * This will automatically remove the item from its model parent,

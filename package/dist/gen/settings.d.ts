@@ -54,9 +54,11 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCertificateSettings: CertificateSettings;
-        type: CertificateType;
-        data: string | null;
+        get containerAsCertificateSettings(): CertificateSettings;
+        get type(): CertificateType;
+        set type(newValue: CertificateType);
+        get data(): string | null;
+        set data(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Certificate instance in the SDK and on the server.
@@ -75,15 +77,15 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
+        get containerAsProjectSettings(): ProjectSettings;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class CertificateSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        readonly certificates: internal.IList<Certificate>;
+        get containerAsProjectSettings(): ProjectSettings;
+        get certificates(): internal.IList<Certificate>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CertificateSettings instance in the SDK and on the server.
@@ -105,27 +107,42 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConfigurationSettings: ConfigurationSettings;
-        name: string;
-        applicationRootUrl: string;
-        runtimePortNumber: number;
-        adminPortNumber: number;
-        runtimePortOnlyLocal: boolean;
-        adminPortOnlyLocal: boolean;
-        maxJavaHeapSize: number;
+        get containerAsConfigurationSettings(): ConfigurationSettings;
+        get name(): string;
+        set name(newValue: string);
+        get applicationRootUrl(): string;
+        set applicationRootUrl(newValue: string);
+        get runtimePortNumber(): number;
+        set runtimePortNumber(newValue: number);
+        get adminPortNumber(): number;
+        set adminPortNumber(newValue: number);
+        get runtimePortOnlyLocal(): boolean;
+        set runtimePortOnlyLocal(newValue: boolean);
+        get adminPortOnlyLocal(): boolean;
+        set adminPortOnlyLocal(newValue: boolean);
+        get maxJavaHeapSize(): number;
+        set maxJavaHeapSize(newValue: number);
         /**
          * In version 7.21.0: deleted
          */
-        emulateCloudSecurity: boolean;
-        extraJvmParameters: string;
-        databaseType: DatabaseType;
-        databaseUrl: string;
-        databaseName: string;
-        databaseUseIntegratedSecurity: boolean;
-        databaseUserName: string;
-        databasePassword: string;
-        readonly customSettings: internal.IList<CustomSetting>;
-        readonly constantValues: internal.IList<ConstantValue>;
+        get emulateCloudSecurity(): boolean;
+        set emulateCloudSecurity(newValue: boolean);
+        get extraJvmParameters(): string;
+        set extraJvmParameters(newValue: string);
+        get databaseType(): DatabaseType;
+        set databaseType(newValue: DatabaseType);
+        get databaseUrl(): string;
+        set databaseUrl(newValue: string);
+        get databaseName(): string;
+        set databaseName(newValue: string);
+        get databaseUseIntegratedSecurity(): boolean;
+        set databaseUseIntegratedSecurity(newValue: boolean);
+        get databaseUserName(): string;
+        set databaseUserName(newValue: string);
+        get databasePassword(): string;
+        set databasePassword(newValue: string);
+        get customSettings(): internal.IList<CustomSetting>;
+        get constantValues(): internal.IList<ConstantValue>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Configuration instance in the SDK and on the server.
@@ -144,8 +161,8 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        readonly configurations: internal.IList<Configuration>;
+        get containerAsProjectSettings(): ProjectSettings;
+        get configurations(): internal.IList<Configuration>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConfigurationSettings instance in the SDK and on the server.
@@ -164,10 +181,12 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConfiguration: Configuration;
-        constant: constants.IConstant;
-        readonly constantQualifiedName: string;
-        value: string;
+        get containerAsConfiguration(): Configuration;
+        get constant(): constants.IConstant;
+        set constant(newValue: constants.IConstant);
+        get constantQualifiedName(): string;
+        get value(): string;
+        set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConstantValue instance in the SDK and on the server.
@@ -186,9 +205,11 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConfiguration: Configuration;
-        name: string;
-        value: string;
+        get containerAsConfiguration(): Configuration;
+        get name(): string;
+        set name(newValue: string);
+        get value(): string;
+        set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CustomSetting instance in the SDK and on the server.
@@ -207,7 +228,7 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
+        get containerAsProjectSettings(): ProjectSettings;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegrationProjectSettingsPart instance in the SDK and on the server.
@@ -232,8 +253,9 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        generatePostfixesForParameters: boolean;
+        get containerAsProjectSettings(): ProjectSettings;
+        get generatePostfixesForParameters(): boolean;
+        set generatePostfixesForParameters(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaActionsSettings instance in the SDK and on the server.
@@ -255,12 +277,17 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLanguageSettings: LanguageSettings;
-        code: string;
-        checkCompleteness: boolean;
-        customDateFormat: string;
-        customTimeFormat: string;
-        customDateTimeFormat: string;
+        get containerAsLanguageSettings(): LanguageSettings;
+        get code(): string;
+        set code(newValue: string);
+        get checkCompleteness(): boolean;
+        set checkCompleteness(newValue: boolean);
+        get customDateFormat(): string;
+        set customDateFormat(newValue: string);
+        get customTimeFormat(): string;
+        set customTimeFormat(newValue: string);
+        get customDateTimeFormat(): string;
+        set customDateTimeFormat(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Language instance in the SDK and on the server.
@@ -279,9 +306,10 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        defaultLanguageCode: string;
-        readonly languages: internal.IList<Language>;
+        get containerAsProjectSettings(): ProjectSettings;
+        get defaultLanguageCode(): string;
+        set defaultLanguageCode(newValue: string);
+        get languages(): internal.IList<Language>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LanguageSettings instance in the SDK and on the server.
@@ -300,8 +328,9 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        lowerCaseMicroflowVariables: boolean;
+        get containerAsProjectSettings(): ProjectSettings;
+        get lowerCaseMicroflowVariables(): boolean;
+        set lowerCaseMicroflowVariables(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
@@ -333,8 +362,8 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: projects.Project;
-        readonly settingsParts: internal.IList<ProjectSettingsPart>;
+        get containerAsProject(): projects.Project;
+        get settingsParts(): internal.IList<ProjectSettingsPart>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
         /**
          * Creates a new ProjectSettings unit in the SDK and on the server.
@@ -346,37 +375,50 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        afterStartupMicroflow: microflows.IMicroflow | null;
-        readonly afterStartupMicroflowQualifiedName: string | null;
-        beforeShutdownMicroflow: microflows.IMicroflow | null;
-        readonly beforeShutdownMicroflowQualifiedName: string | null;
-        healthCheckMicroflow: microflows.IMicroflow | null;
-        readonly healthCheckMicroflowQualifiedName: string | null;
-        firstDayOfWeek: FirstDayOfWeekEnum;
-        defaultTimeZoneCode: string;
-        scheduledEventTimeZoneCode: string;
-        hashAlgorithm: HashAlgorithmType;
-        roundingMode: RoundingMode;
-        allowUserMultipleSessions: boolean;
+        get containerAsProjectSettings(): ProjectSettings;
+        get afterStartupMicroflow(): microflows.IMicroflow | null;
+        set afterStartupMicroflow(newValue: microflows.IMicroflow | null);
+        get afterStartupMicroflowQualifiedName(): string | null;
+        get beforeShutdownMicroflow(): microflows.IMicroflow | null;
+        set beforeShutdownMicroflow(newValue: microflows.IMicroflow | null);
+        get beforeShutdownMicroflowQualifiedName(): string | null;
+        get healthCheckMicroflow(): microflows.IMicroflow | null;
+        set healthCheckMicroflow(newValue: microflows.IMicroflow | null);
+        get healthCheckMicroflowQualifiedName(): string | null;
+        get firstDayOfWeek(): FirstDayOfWeekEnum;
+        set firstDayOfWeek(newValue: FirstDayOfWeekEnum);
+        get defaultTimeZoneCode(): string;
+        set defaultTimeZoneCode(newValue: string);
+        get scheduledEventTimeZoneCode(): string;
+        set scheduledEventTimeZoneCode(newValue: string);
+        get hashAlgorithm(): HashAlgorithmType;
+        set hashAlgorithm(newValue: HashAlgorithmType);
+        get roundingMode(): RoundingMode;
+        set roundingMode(newValue: RoundingMode);
+        get allowUserMultipleSessions(): boolean;
+        set allowUserMultipleSessions(newValue: boolean);
         /**
          * In version 7.1.0: introduced
          */
-        enforceDataStorageUniqueness: boolean;
+        get enforceDataStorageUniqueness(): boolean;
+        set enforceDataStorageUniqueness(newValue: boolean);
         /**
          * In version 7.5.0: introduced
          */
-        enableDataStorageOptimisticLocking: boolean;
+        get enableDataStorageOptimisticLocking(): boolean;
+        set enableDataStorageOptimisticLocking(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          * In version 7.10.0: introduced
          */
-        enableDataStorageNewQueryHandling: boolean;
+        get enableDataStorageNewQueryHandling(): boolean;
+        set enableDataStorageNewQueryHandling(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          * In version 7.15.0: introduced
          */
-        useDeprecatedClientForWebServiceCalls: boolean;
+        get useDeprecatedClientForWebServiceCalls(): boolean;
+        set useDeprecatedClientForWebServiceCalls(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
@@ -395,29 +437,36 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSettings: ProjectSettings;
-        theme: string;
+        get containerAsProjectSettings(): ProjectSettings;
+        get theme(): string;
+        set theme(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        themeModuleName: string;
+        get themeModuleName(): string;
+        set themeModuleName(newValue: string);
         /**
          * In version 6.2.0: deleted
          */
-        feedbackWidgetUpdated: boolean;
-        enableWidgetBundling: boolean;
+        get feedbackWidgetUpdated(): boolean;
+        set feedbackWidgetUpdated(newValue: boolean);
+        get enableWidgetBundling(): boolean;
+        set enableWidgetBundling(newValue: boolean);
         /**
          * In version 6.6.0: introduced
          */
-        enableDownloadResources: boolean;
+        get enableDownloadResources(): boolean;
+        set enableDownloadResources(newValue: boolean);
         /**
          * In version 7.0.2: introduced
          */
-        enableMicroflowReachabilityAnalysis: boolean;
+        get enableMicroflowReachabilityAnalysis(): boolean;
+        set enableMicroflowReachabilityAnalysis(newValue: boolean);
         /**
          * In version 8.0.0: introduced
          */
-        themeConversionStatus: ThemeConversionStatusEnum;
+        get themeConversionStatus(): ThemeConversionStatusEnum;
+        set themeConversionStatus(newValue: ThemeConversionStatusEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.

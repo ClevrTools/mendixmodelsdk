@@ -177,6 +177,12 @@ export declare namespace pages {
         static Custom: MobileFooterType;
         protected qualifiedTsTypeName: string;
     }
+    class NativeLayoutType extends internal.AbstractEnum {
+        static Default: NativeLayoutType;
+        static TopLevel: NativeLayoutType;
+        static Popup: NativeLayoutType;
+        protected qualifiedTsTypeName: string;
+    }
     class NativeTextStyle extends internal.AbstractEnum {
         static Text: NativeTextStyle;
         static Heading1: NativeTextStyle;
@@ -332,77 +338,83 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        name: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get name(): string;
+        set name(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
-        tabIndex: number;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
+        get tabIndex(): number;
+        set tabIndex(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ConditionallyVisibleWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -412,36 +424,41 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        caption: ClientTemplate;
-        tooltip: texts.Text;
-        icon: Icon | null;
-        renderType: RenderType;
-        buttonStyle: ButtonStyle;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get caption(): ClientTemplate;
+        set caption(newValue: ClientTemplate);
+        get tooltip(): texts.Text;
+        set tooltip(newValue: texts.Text);
+        get icon(): Icon | null;
+        set icon(newValue: Icon | null);
+        get renderType(): RenderType;
+        set renderType(newValue: RenderType);
+        get buttonStyle(): ButtonStyle;
+        set buttonStyle(newValue: ButtonStyle);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -451,33 +468,35 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        action: ClientAction;
-        disabledDuringAction: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get action(): ClientAction;
+        set action(newValue: ClientAction);
+        get disabledDuringAction(): boolean;
+        set disabledDuringAction(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ActionButton instance in the SDK and on the server.
@@ -742,6 +761,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ActionButton;
         /**
          * Creates and returns a new ActionButton instance in the SDK and on the server.
+         * The new ActionButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ActionButton;
+        /**
+         * Creates and returns a new ActionButton instance in the SDK and on the server.
          * The new ActionButton will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -940,9 +968,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDropDownButton: DropDownButton;
-        readonly containerAsNavigationList: NavigationList;
-        action: ClientAction;
+        get containerAsDropDownButton(): DropDownButton;
+        get containerAsNavigationList(): NavigationList;
+        get action(): ClientAction;
+        set action(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -952,21 +981,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBarButton: ControlBarButton;
-        readonly containerAsGridColumn: GridColumn;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsLayoutGridRow: LayoutGridRow;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsPage: Page;
-        readonly containerAsPageTemplate: PageTemplate;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTableRow: TableRow;
-        readonly containerAsWidget: Widget;
-        class: string;
-        style: string;
-        readonly designProperties: internal.IList<DesignPropertyValue>;
+        get containerAsControlBarButton(): ControlBarButton;
+        get containerAsGridColumn(): GridColumn;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsLayoutGridRow(): LayoutGridRow;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsPage(): Page;
+        get containerAsPageTemplate(): PageTemplate;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsTableCell(): TableCell;
+        get containerAsTableRow(): TableRow;
+        get containerAsWidget(): Widget;
+        get class(): string;
+        set class(newValue: string);
+        get style(): string;
+        set style(newValue: string);
+        get designProperties(): internal.IList<DesignPropertyValue>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Appearance instance in the SDK and on the server.
@@ -1090,34 +1121,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class EntityPathSource extends DataSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          */
-        entityPath: string;
+        get entityPath(): string;
+        set entityPath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        entityRef: domainmodels.EntityRef | null;
+        get entityRef(): domainmodels.EntityRef | null;
+        set entityRef(newValue: domainmodels.EntityRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class AssociationSource extends EntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AssociationSource instance in the SDK and on the server.
@@ -1154,257 +1187,278 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        conditionalEditabilitySettings: ConditionalEditabilitySettings | null;
-        editable: EditableEnum;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get conditionalEditabilitySettings(): ConditionalEditabilitySettings | null;
+        set conditionalEditabilitySettings(newValue: ConditionalEditabilitySettings | null);
+        get editable(): EditableEnum;
+        set editable(newValue: EditableEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class InputWidget extends ConditionallyEditableWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.18.0: deleted
          */
-        label: texts.Text | null;
+        get label(): texts.Text | null;
+        set label(newValue: texts.Text | null);
         /**
          * In version 7.18.0: introduced
          */
-        labelTemplate: ClientTemplate | null;
+        get labelTemplate(): ClientTemplate | null;
+        set labelTemplate(newValue: ClientTemplate | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class MemberWidget extends InputWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
         /**
          * In version 6.9.0: introduced
          */
-        readOnlyStyle: ReadOnlyStyle;
+        get readOnlyStyle(): ReadOnlyStyle;
+        set readOnlyStyle(newValue: ReadOnlyStyle);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AssociationWidget extends MemberWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        selectorSource: SelectorSource;
-        selectPageSettings: PageSettings;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get selectorSource(): SelectorSource;
+        set selectorSource(newValue: SelectorSource);
+        get selectPageSettings(): PageSettings;
+        set selectPageSettings(newValue: PageSettings);
         /**
          * In version 7.13.0: deleted
          */
-        onChangeMicroflowSettings: MicroflowSettings;
+        get onChangeMicroflowSettings(): MicroflowSettings;
+        set onChangeMicroflowSettings(newValue: MicroflowSettings);
         /**
          * In version 7.13.0: introduced
          */
-        onChangeAction: ClientAction;
+        get onChangeAction(): ClientAction;
+        set onChangeAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidget extends MemberWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.6.0: deleted
          */
-        required: boolean;
+        get required(): boolean;
+        set required(newValue: boolean);
         /**
          * In version 7.6.0: deleted
          */
-        requiredMessage: texts.Text;
+        get requiredMessage(): texts.Text;
+        set requiredMessage(newValue: texts.Text);
         /**
          * In version 7.6.0: introduced
          */
-        validation: WidgetValidation;
+        get validation(): WidgetValidation;
+        set validation(newValue: WidgetValidation);
         /**
          * In version 7.13.0: deleted
          */
-        onChangeMicroflowSettings: MicroflowSettings;
+        get onChangeMicroflowSettings(): MicroflowSettings;
+        set onChangeMicroflowSettings(newValue: MicroflowSettings);
         /**
          * In version 7.13.0: deleted
          */
-        onEnterMicroflowSettings: MicroflowSettings;
+        get onEnterMicroflowSettings(): MicroflowSettings;
+        set onEnterMicroflowSettings(newValue: MicroflowSettings);
         /**
          * In version 7.13.0: deleted
          */
-        onLeaveMicroflowSettings: MicroflowSettings;
+        get onLeaveMicroflowSettings(): MicroflowSettings;
+        set onLeaveMicroflowSettings(newValue: MicroflowSettings);
         /**
          * In version 7.13.0: introduced
          */
-        onChangeAction: ClientAction;
+        get onChangeAction(): ClientAction;
+        set onChangeAction(newValue: ClientAction);
         /**
          * In version 7.13.0: introduced
          */
-        onEnterAction: ClientAction;
+        get onEnterAction(): ClientAction;
+        set onEnterAction(newValue: ClientAction);
         /**
          * In version 7.13.0: introduced
          */
-        onLeaveAction: ClientAction;
+        get onLeaveAction(): ClientAction;
+        set onLeaveAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidgetWithPlaceholder extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        placeholder: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get placeholder(): texts.Text;
+        set placeholder(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1416,24 +1470,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BackButton instance in the SDK and on the server.
@@ -1657,9 +1711,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        canvasWidth: number;
-        canvasHeight: number;
+        get containerAsFolderBase(): projects.FolderBase;
+        get canvasWidth(): number;
+        set canvasWidth(newValue: number);
+        get canvasHeight(): number;
+        set canvasHeight(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
@@ -1687,16 +1743,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.17.0: added public
          */
-        displayName: string;
+        get displayName(): string;
+        set displayName(newValue: string);
         /**
          * In version 7.17.0: introduced
          */
-        documentationUrl: string;
-        imageData: string | null;
+        get documentationUrl(): string;
+        set documentationUrl(newValue: string);
+        get imageData(): string | null;
+        set imageData(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
@@ -1725,20 +1784,22 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 8.4.0: added public
          * In version 8.3.0: introduced
          */
-        platform: SnippetType;
+        get platform(): SnippetType;
+        set platform(newValue: SnippetType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new BuildingBlock unit in the SDK and on the server.
@@ -1750,20 +1811,20 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDataViewActionButton: DataViewActionButton;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDataViewActionButton(): DataViewActionButton;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1774,31 +1835,35 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         /**
          * In version 7.10.0: introduced
          */
-        nanoflow: microflows.INanoflow | null;
-        readonly nanoflowQualifiedName: string | null;
+        get nanoflow(): microflows.INanoflow | null;
+        set nanoflow(newValue: microflows.INanoflow | null);
+        get nanoflowQualifiedName(): string | null;
         /**
          * In version 7.19.0: introduced
          */
-        readonly parameterMappings: internal.IList<NanoflowParameterMapping>;
-        progressBar: ProgressBarType;
-        progressMessage: texts.Text | null;
-        confirmationInfo: ConfirmationInfo | null;
+        get parameterMappings(): internal.IList<NanoflowParameterMapping>;
+        get progressBar(): ProgressBarType;
+        set progressBar(newValue: ProgressBarType);
+        get progressMessage(): texts.Text | null;
+        set progressMessage(newValue: texts.Text | null);
+        get confirmationInfo(): ConfirmationInfo | null;
+        set confirmationInfo(newValue: ConfirmationInfo | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
@@ -1960,28 +2025,29 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 6.7.0: introduced
          */
-        closePage: boolean;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CancelButton instance in the SDK and on the server.
@@ -2195,20 +2261,21 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        closePage: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
@@ -2368,35 +2435,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 8.0.0: introduced
          */
-        labelPosition: LabelPosition;
+        get labelPosition(): LabelPosition;
+        set labelPosition(newValue: LabelPosition);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CheckBox instance in the SDK and on the server.
@@ -2661,6 +2729,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): CheckBox;
         /**
          * Creates and returns a new CheckBox instance in the SDK and on the server.
+         * The new CheckBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): CheckBox;
+        /**
+         * Creates and returns a new CheckBox instance in the SDK and on the server.
          * The new CheckBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -2859,21 +2936,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: customwidgets.CustomWidget;
-        readonly containerAsWidgetObject: customwidgets.WidgetObject;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsButton: Button;
-        readonly containerAsControlBarButton: ControlBarButton;
-        readonly containerAsDataGrid: DataGrid;
-        readonly containerAsDynamicText: DynamicText;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsInputWidget: InputWidget;
-        template: texts.Text;
-        readonly parameters: internal.IList<ClientTemplateParameter>;
+        get containerAsCustomWidget(): customwidgets.CustomWidget;
+        get containerAsWidgetObject(): customwidgets.WidgetObject;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsButton(): Button;
+        get containerAsControlBarButton(): ControlBarButton;
+        get containerAsDataGrid(): DataGrid;
+        get containerAsDynamicText(): DynamicText;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsInputWidget(): InputWidget;
+        get template(): texts.Text;
+        set template(newValue: texts.Text);
+        get parameters(): internal.IList<ClientTemplateParameter>;
         /**
          * In version 8.3.0: introduced
          */
-        fallback: texts.Text;
+        get fallback(): texts.Text;
+        set fallback(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
@@ -2955,21 +3034,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsClientTemplate: ClientTemplate;
+        get containerAsClientTemplate(): ClientTemplate;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
         /**
          * In version 7.15.0: introduced
          */
-        formattingInfo: FormattingInfo;
+        get formattingInfo(): FormattingInfo;
+        set formattingInfo(newValue: FormattingInfo);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClientTemplateParameter instance in the SDK and on the server.
@@ -2991,19 +3073,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -3160,183 +3242,204 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        dataSource: DataSource;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get dataSource(): DataSource;
+        set dataSource(newValue: DataSource);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ListenTargetWidget extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class Grid extends ListenTargetWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        isControlBarVisible: boolean;
-        isPagingEnabled: boolean;
-        selectionMode: GridSelectionMode;
-        selectFirst: boolean;
-        defaultButtonTrigger: ClickTypeType;
-        refreshTime: number;
-        controlBar: GridControlBar;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get isControlBarVisible(): boolean;
+        set isControlBarVisible(newValue: boolean);
+        get isPagingEnabled(): boolean;
+        set isPagingEnabled(newValue: boolean);
+        get selectionMode(): GridSelectionMode;
+        set selectionMode(newValue: GridSelectionMode);
+        get selectFirst(): boolean;
+        set selectFirst(newValue: boolean);
+        get defaultButtonTrigger(): ClickTypeType;
+        set defaultButtonTrigger(newValue: ClickTypeType);
+        get refreshTime(): number;
+        set refreshTime(newValue: number);
+        get controlBar(): GridControlBar;
+        set controlBar(newValue: GridControlBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ColumnGrid extends Grid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly columns: internal.IList<GridColumn>;
-        numberOfRows: number;
-        showEmptyRows: boolean;
-        widthUnit: UnitEnum;
-        tooltipPage: IPage | null;
-        readonly tooltipPageQualifiedName: string | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get columns(): internal.IList<GridColumn>;
+        get numberOfRows(): number;
+        set numberOfRows(newValue: number);
+        get showEmptyRows(): boolean;
+        set showEmptyRows(newValue: boolean);
+        get widthUnit(): UnitEnum;
+        set widthUnit(newValue: UnitEnum);
+        get tooltipPage(): IPage | null;
+        set tooltipPage(newValue: IPage | null);
+        get tooltipPageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ControlBarItem extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        readonly containerAsGridControlBar: GridControlBar;
-        name: string;
+        get containerAsControlBar(): ControlBar;
+        get containerAsGridControlBar(): GridControlBar;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class SearchField extends ControlBarItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        caption: texts.Text;
+        get containerAsControlBar(): ControlBar;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
         /**
          * In version 7.21.0: introduced
          */
-        placeholder: texts.Text;
+        get placeholder(): texts.Text;
+        set placeholder(newValue: texts.Text);
         /**
          * In version 7.21.0: introduced
          */
-        customDateFormat: string;
-        type: SearchFieldType;
-        defaultValue: string;
+        get customDateFormat(): string;
+        set customDateFormat(newValue: string);
+        get type(): SearchFieldType;
+        set type(newValue: SearchFieldType);
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class SingleSearchField extends SearchField {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
-        operator: SearchFieldOperator;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
+        get operator(): SearchFieldOperator;
+        set operator(newValue: SearchFieldOperator);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -3346,7 +3449,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ComparisonSearchField instance in the SDK and on the server.
@@ -3365,37 +3468,40 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: customwidgets.CustomWidget;
-        readonly containerAsConditionallyEditableWidget: ConditionallyEditableWidget;
-        readonly containerAsConditionallyVisibleWidget: ConditionallyVisibleWidget;
-        readonly containerAsControlBarButton: ControlBarButton;
-        readonly containerAsLayoutGridRow: LayoutGridRow;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableRow: TableRow;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        readonly conditions: internal.IList<enumerations.Condition>;
+        get containerAsCustomWidget(): customwidgets.CustomWidget;
+        get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
+        get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
+        get containerAsControlBarButton(): ControlBarButton;
+        get containerAsLayoutGridRow(): LayoutGridRow;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableRow(): TableRow;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get conditions(): internal.IList<enumerations.Condition>;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
          * In version 7.0.1: introduced
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class ConditionalEditabilitySettings extends ConditionalSettings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: customwidgets.CustomWidget;
-        readonly containerAsConditionallyEditableWidget: ConditionallyEditableWidget;
+        get containerAsCustomWidget(): customwidgets.CustomWidget;
+        get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
@@ -3432,16 +3538,17 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: customwidgets.CustomWidget;
-        readonly containerAsConditionallyVisibleWidget: ConditionallyVisibleWidget;
-        readonly containerAsControlBarButton: ControlBarButton;
-        readonly containerAsLayoutGridRow: LayoutGridRow;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableRow: TableRow;
-        readonly moduleRoles: internal.IList<security.IModuleRole>;
-        readonly moduleRolesQualifiedNames: string[];
-        ignoreSecurity: boolean;
+        get containerAsCustomWidget(): customwidgets.CustomWidget;
+        get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
+        get containerAsControlBarButton(): ControlBarButton;
+        get containerAsLayoutGridRow(): LayoutGridRow;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableRow(): TableRow;
+        get moduleRoles(): internal.IList<security.IModuleRole>;
+        get moduleRolesQualifiedNames(): string[];
+        get ignoreSecurity(): boolean;
+        set ignoreSecurity(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConditionalVisibilitySettings instance in the SDK and on the server.
@@ -3499,11 +3606,14 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCallNanoflowClientAction: CallNanoflowClientAction;
-        readonly containerAsMicroflowSettings: MicroflowSettings;
-        question: texts.Text;
-        proceedButtonCaption: texts.Text;
-        cancelButtonCaption: texts.Text;
+        get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
+        get containerAsMicroflowSettings(): MicroflowSettings;
+        get question(): texts.Text;
+        set question(newValue: texts.Text);
+        get proceedButtonCaption(): texts.Text;
+        set proceedButtonCaption(newValue: texts.Text);
+        get cancelButtonCaption(): texts.Text;
+        set cancelButtonCaption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConfirmationInfo instance in the SDK and on the server.
@@ -3540,36 +3650,44 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsGrid: Grid;
-        readonly containerAsGridBaseSource: GridBaseSource;
-        readonly containerAsGridDatabaseSource: GridDatabaseSource;
-        readonly items: internal.IList<ControlBarItem>;
+        get containerAsDataView(): DataView;
+        get containerAsGrid(): Grid;
+        get containerAsGridBaseSource(): GridBaseSource;
+        get containerAsGridDatabaseSource(): GridDatabaseSource;
+        get items(): internal.IList<ControlBarItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ControlBarButton extends ControlBarItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        readonly containerAsGridControlBar: GridControlBar;
-        caption: ClientTemplate;
-        tooltip: texts.Text;
-        icon: Icon | null;
+        get containerAsControlBar(): ControlBar;
+        get containerAsGridControlBar(): GridControlBar;
+        get caption(): ClientTemplate;
+        set caption(newValue: ClientTemplate);
+        get tooltip(): texts.Text;
+        set tooltip(newValue: texts.Text);
+        get icon(): Icon | null;
+        set icon(newValue: Icon | null);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
-        buttonStyle: ButtonStyle;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
+        get buttonStyle(): ButtonStyle;
+        set buttonStyle(newValue: ButtonStyle);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -3579,21 +3697,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        entityRef: domainmodels.EntityRef | null;
-        pageSettings: PageSettings;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get entityRef(): domainmodels.EntityRef | null;
+        set entityRef(newValue: domainmodels.EntityRef | null);
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
@@ -3753,35 +3873,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 8.0.0: introduced
          */
-        caption: ClientTemplate;
+        get caption(): ClientTemplate;
+        set caption(newValue: ClientTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGrid instance in the SDK and on the server.
@@ -4046,6 +4167,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DataGrid;
         /**
          * Creates and returns a new DataGrid instance in the SDK and on the server.
+         * The new DataGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DataGrid;
+        /**
+         * Creates and returns a new DataGrid instance in the SDK and on the server.
          * The new DataGrid will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -4244,8 +4374,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        readonly containerAsGridControlBar: GridControlBar;
+        get containerAsControlBar(): ControlBar;
+        get containerAsGridControlBar(): GridControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -4255,8 +4385,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        pageSettings: PageSettings;
+        get containerAsControlBar(): ControlBar;
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridAddButton instance in the SDK and on the server.
@@ -4278,13 +4409,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        maxNumberOfRows: number;
-        decimalSeparator: string;
-        groupSeparator: string;
-        delimiter: string;
-        generateExcelHint: boolean;
-        useGridDateFormat: boolean;
+        get containerAsControlBar(): ControlBar;
+        get maxNumberOfRows(): number;
+        set maxNumberOfRows(newValue: number);
+        get decimalSeparator(): string;
+        set decimalSeparator(newValue: string);
+        get groupSeparator(): string;
+        set groupSeparator(newValue: string);
+        get delimiter(): string;
+        set delimiter(newValue: string);
+        get generateExcelHint(): boolean;
+        set generateExcelHint(newValue: boolean);
+        get useGridDateFormat(): boolean;
+        set useGridDateFormat(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridExportToCSVButton instance in the SDK and on the server.
@@ -4306,9 +4443,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        maxNumberOfRows: number;
-        useExcelDateType: boolean;
+        get containerAsControlBar(): ControlBar;
+        get maxNumberOfRows(): number;
+        set maxNumberOfRows(newValue: number);
+        get useExcelDateType(): boolean;
+        set useExcelDateType(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridExportToExcelButton instance in the SDK and on the server.
@@ -4330,7 +4469,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridRemoveButton instance in the SDK and on the server.
@@ -4352,76 +4491,87 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 7.15.0: deleted
          * In version 6.7.0: introduced
          */
-        footerWidget: Widget | null;
+        get footerWidget(): Widget | null;
+        set footerWidget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly footerWidgets: internal.IList<Widget>;
-        editable: boolean;
+        get footerWidgets(): internal.IList<Widget>;
+        get editable(): boolean;
+        set editable(newValue: boolean);
         /**
          * In version 6.7.0: deleted
          */
-        showControlBar: boolean;
+        get showControlBar(): boolean;
+        set showControlBar(newValue: boolean);
         /**
          * In version 6.7.0: introduced
          */
-        showFooter: boolean;
+        get showFooter(): boolean;
+        set showFooter(newValue: boolean);
         /**
          * In version 6.7.0: deleted
          */
-        closeOnSaveOrCancel: boolean;
+        get closeOnSaveOrCancel(): boolean;
+        set closeOnSaveOrCancel(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        useSchema: boolean;
-        noEntityMessage: texts.Text;
-        labelWidth: number;
+        get useSchema(): boolean;
+        set useSchema(newValue: boolean);
+        get noEntityMessage(): texts.Text;
+        set noEntityMessage(newValue: texts.Text);
+        get labelWidth(): number;
+        set labelWidth(newValue: number);
         /**
          * In version 6.7.0: deleted
          * In version 6.5.0: added optional
          */
-        controlBar: DataViewControlBar | null;
+        get controlBar(): DataViewControlBar | null;
+        set controlBar(newValue: DataViewControlBar | null);
         /**
          * In version 6.9.0: introduced
          */
-        readOnlyStyle: DataViewReadOnlyStyle;
+        get readOnlyStyle(): DataViewReadOnlyStyle;
+        set readOnlyStyle(newValue: DataViewReadOnlyStyle);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataView instance in the SDK and on the server.
@@ -4686,6 +4836,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DataView;
         /**
          * Creates and returns a new DataView instance in the SDK and on the server.
+         * The new DataView will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DataView;
+        /**
+         * Creates and returns a new DataView instance in the SDK and on the server.
          * The new DataView will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -4887,8 +5046,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        tabIndex: number;
+        get containerAsControlBar(): ControlBar;
+        get tabIndex(): number;
+        set tabIndex(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -4900,8 +5060,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        action: ClientAction;
+        get containerAsControlBar(): ControlBar;
+        get action(): ClientAction;
+        set action(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewActionButton instance in the SDK and on the server.
@@ -4928,7 +5089,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewCancelButton instance in the SDK and on the server.
@@ -4955,7 +5116,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewCloseButton instance in the SDK and on the server.
@@ -4982,8 +5143,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        closeButton: ControlBarItem | null;
+        get containerAsDataView(): DataView;
+        get closeButton(): ControlBarItem | null;
+        set closeButton(newValue: ControlBarItem | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewControlBar instance in the SDK and on the server.
@@ -5010,11 +5172,12 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         /**
          * In version 6.6.0: introduced
          */
-        syncAutomatically: boolean;
+        get syncAutomatically(): boolean;
+        set syncAutomatically(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewSaveButton instance in the SDK and on the server.
@@ -5036,8 +5199,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewSource instance in the SDK and on the server.
@@ -5074,12 +5237,15 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDatabaseSourceBase: DatabaseSourceBase;
-        readonly containerAsSelectorDatabaseSource: SelectorDatabaseSource;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        operator: DatabaseConstraintOperator;
-        value: string;
+        get containerAsDatabaseSourceBase(): DatabaseSourceBase;
+        get containerAsSelectorDatabaseSource(): SelectorDatabaseSource;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get operator(): DatabaseConstraintOperator;
+        set operator(newValue: DatabaseConstraintOperator);
+        get value(): string;
+        set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatabaseConstraint instance in the SDK and on the server.
@@ -5116,18 +5282,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        sortBar: GridSortBar;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get sortBar(): GridSortBar;
+        set sortBar(newValue: GridSortBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class DatabaseSourceBase extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        readonly databaseConstraints: internal.IList<DatabaseConstraint>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get databaseConstraints(): internal.IList<DatabaseConstraint>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -5137,32 +5304,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        formattingInfo: FormattingInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get formattingInfo(): FormattingInfo;
+        set formattingInfo(newValue: FormattingInfo);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatePicker instance in the SDK and on the server.
@@ -5427,6 +5595,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DatePicker;
         /**
          * Creates and returns a new DatePicker instance in the SDK and on the server.
+         * The new DatePicker will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DatePicker;
+        /**
+         * Creates and returns a new DatePicker instance in the SDK and on the server.
          * The new DatePicker will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -5628,20 +5805,21 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        closePage: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
@@ -5801,11 +5979,15 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAppearance: Appearance;
-        key: string;
-        type: DesignPropertyValueType;
-        stringValue: string;
-        booleanValue: boolean;
+        get containerAsAppearance(): Appearance;
+        get key(): string;
+        set key(newValue: string);
+        get type(): DesignPropertyValueType;
+        set type(newValue: DesignPropertyValueType);
+        get stringValue(): string;
+        set stringValue(newValue: string);
+        get booleanValue(): boolean;
+        set booleanValue(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
@@ -5830,47 +6012,50 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 7.23.0: introduced
          */
-        renderMode: ContainerRenderMode;
+        get renderMode(): ContainerRenderMode;
+        set renderMode(newValue: ContainerRenderMode);
         /**
          * In version 8.3.0: introduced
          */
-        onClickAction: ClientAction;
+        get onClickAction(): ClientAction;
+        set onClickAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -6135,6 +6320,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DivContainer;
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
+         * The new DivContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DivContainer;
+        /**
+         * Creates and returns a new DivContainer instance in the SDK and on the server.
          * The new DivContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -6336,35 +6530,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.2.0: introduced
          */
-        emptyOptionCaption: texts.Text;
+        get emptyOptionCaption(): texts.Text;
+        set emptyOptionCaption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DropDown instance in the SDK and on the server.
@@ -6629,6 +6824,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DropDown;
         /**
          * Creates and returns a new DropDown instance in the SDK and on the server.
+         * The new DropDown will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DropDown;
+        /**
+         * Creates and returns a new DropDown instance in the SDK and on the server.
          * The new DropDown will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -6830,32 +7034,32 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly items: internal.IList<DropDownButtonItem>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get items(): internal.IList<DropDownButtonItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DropDownButton instance in the SDK and on the server.
@@ -7120,6 +7324,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DropDownButton;
         /**
          * Creates and returns a new DropDownButton instance in the SDK and on the server.
+         * The new DropDownButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DropDownButton;
+        /**
+         * Creates and returns a new DropDownButton instance in the SDK and on the server.
          * The new DropDownButton will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -7318,10 +7531,12 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDropDownButton: DropDownButton;
-        caption: texts.Text;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
+        get containerAsDropDownButton(): DropDownButton;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DropDownButtonItem instance in the SDK and on the server.
@@ -7343,13 +7558,16 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        sortBar: GridSortBar;
+        get containerAsControlBar(): ControlBar;
+        get sortBar(): GridSortBar;
+        set sortBar(newValue: GridSortBar);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
-        allowMultipleSelect: boolean;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        get allowMultipleSelect(): boolean;
+        set allowMultipleSelect(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DropDownSearchField instance in the SDK and on the server.
@@ -7371,51 +7589,61 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        defaultImage: images.IImage | null;
-        readonly defaultImageQualifiedName: string | null;
-        widthUnit: ImageSizeUnit;
-        heightUnit: ImageSizeUnit;
-        width: number;
-        height: number;
-        responsive: boolean;
-        showAsThumbnail: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get defaultImage(): images.IImage | null;
+        set defaultImage(newValue: images.IImage | null);
+        get defaultImageQualifiedName(): string | null;
+        get widthUnit(): ImageSizeUnit;
+        set widthUnit(newValue: ImageSizeUnit);
+        get heightUnit(): ImageSizeUnit;
+        set heightUnit(newValue: ImageSizeUnit);
+        get width(): number;
+        set width(newValue: number);
+        get height(): number;
+        set height(newValue: number);
+        get responsive(): boolean;
+        set responsive(newValue: boolean);
+        get showAsThumbnail(): boolean;
+        set showAsThumbnail(newValue: boolean);
         /**
          * In version 7.18.0: deleted
          */
-        onClickBehavior: OnClickBehavior;
+        get onClickBehavior(): OnClickBehavior;
+        set onClickBehavior(newValue: OnClickBehavior);
         /**
          * In version 7.18.0: introduced
          */
-        clickAction: ClientAction;
+        get clickAction(): ClientAction;
+        set clickAction(newValue: ClientAction);
         /**
          * In version 7.18.0: introduced
          */
-        onClickEnlarge: boolean;
+        get onClickEnlarge(): boolean;
+        set onClickEnlarge(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -7680,6 +7908,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DynamicImageViewer;
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
+         * The new DynamicImageViewer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DynamicImageViewer;
+        /**
+         * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
          * The new DynamicImageViewer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -7881,37 +8118,40 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        content: ClientTemplate;
-        renderMode: TextRenderMode;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get content(): ClientTemplate;
+        set content(newValue: ClientTemplate);
+        get renderMode(): TextRenderMode;
+        set renderMode(newValue: TextRenderMode);
         /**
          * In version 8.0.0: introduced
          */
-        nativeTextStyle: NativeTextStyle;
+        get nativeTextStyle(): NativeTextStyle;
+        set nativeTextStyle(newValue: NativeTextStyle);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicText instance in the SDK and on the server.
@@ -8176,6 +8416,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): DynamicText;
         /**
          * Creates and returns a new DynamicText instance in the SDK and on the server.
+         * The new DynamicText will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): DynamicText;
+        /**
+         * Creates and returns a new DynamicText instance in the SDK and on the server.
          * The new DynamicText will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -8377,35 +8626,39 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        allowedExtensions: string;
-        type: FileManagerType;
-        maxFileSize: number;
-        showFileInBrowser: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get allowedExtensions(): string;
+        set allowedExtensions(newValue: string);
+        get type(): FileManagerType;
+        set type(newValue: FileManagerType);
+        get maxFileSize(): number;
+        set maxFileSize(newValue: number);
+        get showFileInBrowser(): boolean;
+        set showFileInBrowser(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FileManager instance in the SDK and on the server.
@@ -8670,6 +8923,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): FileManager;
         /**
          * Creates and returns a new FileManager instance in the SDK and on the server.
+         * The new FileManager will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): FileManager;
+        /**
+         * Creates and returns a new FileManager instance in the SDK and on the server.
          * The new FileManager will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -8868,18 +9130,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataGridColumn: documenttemplates.DataGridColumn;
-        readonly containerAsDynamicLabel: documenttemplates.DynamicLabel;
-        readonly containerAsClientTemplateParameter: ClientTemplateParameter;
-        readonly containerAsDatePicker: DatePicker;
-        readonly containerAsGridColumn: GridColumn;
-        readonly containerAsReferenceSelector: ReferenceSelector;
-        readonly containerAsTextBox: TextBox;
-        decimalPrecision: number;
-        groupDigits: boolean;
-        enumFormat: EnumFormat;
-        dateFormat: DateFormat;
-        customDateFormat: string;
+        get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
+        get containerAsDynamicLabel(): documenttemplates.DynamicLabel;
+        get containerAsClientTemplateParameter(): ClientTemplateParameter;
+        get containerAsDatePicker(): DatePicker;
+        get containerAsGridColumn(): GridColumn;
+        get containerAsReferenceSelector(): ReferenceSelector;
+        get containerAsTextBox(): TextBox;
+        get decimalPrecision(): number;
+        set decimalPrecision(newValue: number);
+        get groupDigits(): boolean;
+        set groupDigits(newValue: boolean);
+        get enumFormat(): EnumFormat;
+        set enumFormat(newValue: EnumFormat);
+        get dateFormat(): DateFormat;
+        set dateFormat(newValue: DateFormat);
+        get customDateFormat(): string;
+        set customDateFormat(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FormattingInfo instance in the SDK and on the server.
@@ -8940,23 +9207,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsButton: Button;
-        readonly containerAsControlBarButton: ControlBarButton;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsButton(): Button;
+        get containerAsControlBarButton(): ControlBarButton;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class GlyphIcon extends Icon {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsButton: Button;
-        readonly containerAsControlBarButton: ControlBarButton;
-        code: number;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsButton(): Button;
+        get containerAsControlBarButton(): ControlBarButton;
+        get code(): number;
+        set code(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GlyphIcon instance in the SDK and on the server.
@@ -9008,9 +9276,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        action: ClientAction;
-        maintainSelectionAfterMicroflow: boolean;
+        get containerAsControlBar(): ControlBar;
+        get action(): ClientAction;
+        set action(newValue: ClientAction);
+        get maintainSelectionAfterMicroflow(): boolean;
+        set maintainSelectionAfterMicroflow(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridActionButton instance in the SDK and on the server.
@@ -9029,9 +9299,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        searchBar: SearchBar;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get searchBar(): SearchBar;
+        set searchBar(newValue: SearchBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -9041,37 +9312,50 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsColumnGrid: ColumnGrid;
-        name: string;
-        caption: texts.Text;
+        get containerAsColumnGrid(): ColumnGrid;
+        get name(): string;
+        set name(newValue: string);
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
-        formattingInfo: FormattingInfo;
-        showTooltip: boolean;
-        aggregateCaption: texts.Text;
-        aggregateFunction: AggregateFunction;
-        editable: boolean;
-        width: number;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
+        get formattingInfo(): FormattingInfo;
+        set formattingInfo(newValue: FormattingInfo);
+        get showTooltip(): boolean;
+        set showTooltip(newValue: boolean);
+        get aggregateCaption(): texts.Text;
+        set aggregateCaption(newValue: texts.Text);
+        get aggregateFunction(): AggregateFunction;
+        set aggregateFunction(newValue: AggregateFunction);
+        get editable(): boolean;
+        set editable(newValue: boolean);
+        get width(): number;
+        set width(newValue: number);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridColumn instance in the SDK and on the server.
@@ -9093,12 +9377,14 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGrid: Grid;
+        get containerAsGrid(): Grid;
         /**
          * In version 7.13.0: deleted
          */
-        searchButton: GridSearchButton;
-        defaultButton: ControlBarItem | null;
+        get searchButton(): GridSearchButton;
+        set searchButton(newValue: GridSearchButton);
+        get defaultButton(): ControlBarItem | null;
+        set defaultButton(newValue: ControlBarItem | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridControlBar instance in the SDK and on the server.
@@ -9117,9 +9403,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        searchBar: SearchBar;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get searchBar(): SearchBar;
+        set searchBar(newValue: SearchBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridDatabaseSource instance in the SDK and on the server.
@@ -9159,7 +9446,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridDeleteButton instance in the SDK and on the server.
@@ -9184,7 +9471,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridDeselectAllButton instance in the SDK and on the server.
@@ -9208,9 +9495,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        pageSettings: PageSettings;
-        readonly pagesForSpecializations: internal.IList<PageForSpecialization>;
+        get containerAsControlBar(): ControlBar;
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
+        get pagesForSpecializations(): internal.IList<PageForSpecialization>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridEditButton instance in the SDK and on the server.
@@ -9235,16 +9523,20 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        editLocation: NewButtonEditLocation;
-        pageSettings: PageSettings;
+        get containerAsControlBar(): ControlBar;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get editLocation(): NewButtonEditLocation;
+        set editLocation(newValue: NewButtonEditLocation);
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         /**
          * In version 6.2.0: deleted
          * In version 6.0.0: deprecated
          */
-        isPersistent: boolean;
+        get isPersistent(): boolean;
+        set isPersistent(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridNewButton instance in the SDK and on the server.
@@ -9266,8 +9558,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        readonly containerAsGridControlBar: GridControlBar;
+        get containerAsControlBar(): ControlBar;
+        get containerAsGridControlBar(): GridControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSearchButton instance in the SDK and on the server.
@@ -9307,8 +9599,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
-        selectionType: SelectionType;
+        get containerAsControlBar(): ControlBar;
+        get selectionType(): SelectionType;
+        set selectionType(newValue: SelectionType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSelectAllButton instance in the SDK and on the server.
@@ -9330,11 +9623,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDropDownSearchField: DropDownSearchField;
-        readonly containerAsSelectorDatabaseSource: SelectorDatabaseSource;
-        readonly containerAsSelectorXPathSource: SelectorXPathSource;
-        readonly containerAsSortableEntityPathSource: SortableEntityPathSource;
-        readonly sortItems: internal.IList<GridSortItem>;
+        get containerAsDropDownSearchField(): DropDownSearchField;
+        get containerAsSelectorDatabaseSource(): SelectorDatabaseSource;
+        get containerAsSelectorXPathSource(): SelectorXPathSource;
+        get containerAsSortableEntityPathSource(): SortableEntityPathSource;
+        get sortItems(): internal.IList<GridSortItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSortBar instance in the SDK and on the server.
@@ -9374,18 +9667,21 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGridSortBar: GridSortBar;
+        get containerAsGridSortBar(): GridSortBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef;
-        sortDirection: SortDirection;
+        get attributeRef(): domainmodels.AttributeRef;
+        set attributeRef(newValue: domainmodels.AttributeRef);
+        get sortDirection(): SortDirection;
+        set sortDirection(newValue: SortDirection);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSortItem instance in the SDK and on the server.
@@ -9404,25 +9700,28 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        applyContext: boolean;
+        get applyContext(): boolean;
+        set applyContext(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        removeAllFromContext: boolean;
+        get removeAllFromContext(): boolean;
+        set removeAllFromContext(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        readonly removeFromContextIds: internal.IList<domainmodels.IEntity>;
-        readonly removeFromContextIdsQualifiedNames: string[];
+        get removeFromContextIds(): internal.IList<domainmodels.IEntity>;
+        get removeFromContextIdsQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridXPathSource instance in the SDK and on the server.
@@ -9462,41 +9761,44 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        caption: ClientTemplate | null;
-        collapsible: GroupBoxCollapsible;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get caption(): ClientTemplate | null;
+        set caption(newValue: ClientTemplate | null);
+        get collapsible(): GroupBoxCollapsible;
+        set collapsible(newValue: GroupBoxCollapsible);
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GroupBox instance in the SDK and on the server.
@@ -9761,6 +10063,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): GroupBox;
         /**
          * Creates and returns a new GroupBox instance in the SDK and on the server.
+         * The new GroupBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): GroupBox;
+        /**
+         * Creates and returns a new GroupBox instance in the SDK and on the server.
          * The new GroupBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -9962,47 +10273,49 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.15.0: deleted
          */
-        leftWidget: Widget | null;
+        get leftWidget(): Widget | null;
+        set leftWidget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly leftWidgets: internal.IList<Widget>;
+        get leftWidgets(): internal.IList<Widget>;
         /**
          * In version 7.15.0: deleted
          */
-        rightWidget: Widget | null;
+        get rightWidget(): Widget | null;
+        set rightWidget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly rightWidgets: internal.IList<Widget>;
+        get rightWidgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Header instance in the SDK and on the server.
@@ -10267,6 +10580,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): Header;
         /**
          * Creates and returns a new Header instance in the SDK and on the server.
+         * The new Header will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): Header;
+        /**
+         * Creates and returns a new Header instance in the SDK and on the server.
          * The new Header will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -10468,47 +10790,52 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.15.0: deleted
          */
-        firstWidget: Widget | null;
+        get firstWidget(): Widget | null;
+        set firstWidget(newValue: Widget | null);
         /**
          * In version 7.15.0: deleted
          */
-        secondWidget: Widget | null;
+        get secondWidget(): Widget | null;
+        set secondWidget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly firstWidgets: internal.IList<Widget>;
+        get firstWidgets(): internal.IList<Widget>;
         /**
          * In version 7.15.0: introduced
          */
-        readonly secondWidgets: internal.IList<Widget>;
-        animatedResize: boolean;
-        height: number;
-        position: number;
+        get secondWidgets(): internal.IList<Widget>;
+        get animatedResize(): boolean;
+        set animatedResize(newValue: boolean);
+        get height(): number;
+        set height(newValue: number);
+        get position(): number;
+        set position(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -10520,28 +10847,28 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HorizontalSplitPane instance in the SDK and on the server.
@@ -10977,13 +11304,14 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsButton: Button;
-        readonly containerAsControlBarButton: ControlBarButton;
-        image: images.IImage;
-        readonly imageQualifiedName: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsButton(): Button;
+        get containerAsControlBarButton(): ControlBarButton;
+        get image(): images.IImage;
+        set image(newValue: images.IImage);
+        get imageQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImageIcon instance in the SDK and on the server.
@@ -11035,34 +11363,37 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        allowedExtensions: string;
-        thumbnailSize: common.ISize;
-        maxFileSize: number;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get allowedExtensions(): string;
+        set allowedExtensions(newValue: string);
+        get thumbnailSize(): common.ISize;
+        set thumbnailSize(newValue: common.ISize);
+        get maxFileSize(): number;
+        set maxFileSize(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImageUploader instance in the SDK and on the server.
@@ -11327,6 +11658,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ImageUploader;
         /**
          * Creates and returns a new ImageUploader instance in the SDK and on the server.
+         * The new ImageUploader will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ImageUploader;
+        /**
+         * Creates and returns a new ImageUploader instance in the SDK and on the server.
          * The new ImageUploader will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -11525,8 +11865,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImageViewerSource instance in the SDK and on the server.
@@ -11566,31 +11906,31 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new InputReferenceSetSelector instance in the SDK and on the server.
@@ -11855,6 +12195,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): InputReferenceSetSelector;
         /**
          * Creates and returns a new InputReferenceSetSelector instance in the SDK and on the server.
+         * The new InputReferenceSetSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): InputReferenceSetSelector;
+        /**
+         * Creates and returns a new InputReferenceSetSelector instance in the SDK and on the server.
          * The new InputReferenceSetSelector will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -12056,32 +12405,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        caption: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Label instance in the SDK and on the server.
@@ -12346,6 +12696,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): Label;
         /**
          * Creates and returns a new Label instance in the SDK and on the server.
+         * The new Label will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): Label;
+        /**
+         * Creates and returns a new Label instance in the SDK and on the server.
          * The new Label will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -12574,77 +12933,91 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 8.0.0: introduced
          */
-        content: LayoutContent;
+        get content(): LayoutContent;
+        set content(newValue: LayoutContent);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 8.0.0: deleted
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 8.0.0: deleted
          * In version 7.17.0: added public
          * In version 6.8.0: added optional
          */
-        layoutCall: LayoutCall | null;
+        get layoutCall(): LayoutCall | null;
+        set layoutCall(newValue: LayoutCall | null);
         /**
          * In version 8.0.0: deleted
          * In version 6.8.0: added public
          */
-        layoutType: LayoutType;
+        get layoutType(): LayoutType;
+        set layoutType(newValue: LayoutType);
         /**
          * In version 6.8.0: deleted
          */
-        mainPlaceholder: ILayoutParameter | null;
-        readonly mainPlaceholderQualifiedName: string | null;
+        get mainPlaceholder(): ILayoutParameter | null;
+        set mainPlaceholder(newValue: ILayoutParameter | null);
+        get mainPlaceholderQualifiedName(): string | null;
         /**
          * In version 6.8.0: deleted
          */
-        acceptButtonPlaceholder: ILayoutParameter | null;
-        readonly acceptButtonPlaceholderQualifiedName: string | null;
+        get acceptButtonPlaceholder(): ILayoutParameter | null;
+        set acceptButtonPlaceholder(newValue: ILayoutParameter | null);
+        get acceptButtonPlaceholderQualifiedName(): string | null;
         /**
          * In version 6.8.0: deleted
          */
-        cancelButtonPlaceholder: ILayoutParameter | null;
-        readonly cancelButtonPlaceholderQualifiedName: string | null;
+        get cancelButtonPlaceholder(): ILayoutParameter | null;
+        set cancelButtonPlaceholder(newValue: ILayoutParameter | null);
+        get cancelButtonPlaceholderQualifiedName(): string | null;
         /**
          * In version 7.9.0: deleted
          * In version 6.8.0: introduced
          */
-        mainPlaceholderName: string;
+        get mainPlaceholderName(): string;
+        set mainPlaceholderName(newValue: string);
         /**
          * In version 7.9.0: deleted
          * In version 6.8.0: introduced
          */
-        acceptPlaceholderName: string;
+        get acceptPlaceholderName(): string;
+        set acceptPlaceholderName(newValue: string);
         /**
          * In version 7.9.0: deleted
          * In version 6.8.0: introduced
          */
-        cancelPlaceholderName: string;
+        get cancelPlaceholderName(): string;
+        set cancelPlaceholderName(newValue: string);
         /**
          * In version 7.9.0: deleted
          */
-        useMainPlaceholderForPopups: boolean;
+        get useMainPlaceholderForPopups(): boolean;
+        set useMainPlaceholderForPopups(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Layout unit in the SDK and on the server.
@@ -12680,17 +13053,18 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayout: Layout;
-        readonly containerAsPage: Page;
-        readonly containerAsPageTemplate: PageTemplate;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
+        get containerAsLayout(): Layout;
+        get containerAsPage(): Page;
+        get containerAsPageTemplate(): PageTemplate;
+        get containerAsWebLayoutContent(): WebLayoutContent;
         /**
          * In version 8.0.0: removed optional
          * In version 7.17.0: added public
          */
-        layout: ILayout | null;
-        readonly layoutQualifiedName: string | null;
-        readonly arguments: internal.IList<LayoutCallArgument>;
+        get layout(): ILayout | null;
+        set layout(newValue: ILayout | null);
+        get layoutQualifiedName(): string | null;
+        get arguments(): internal.IList<LayoutCallArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LayoutCall instance in the SDK and on the server.
@@ -12736,24 +13110,27 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayoutCall: LayoutCall;
+        get containerAsLayoutCall(): LayoutCall;
         /**
          * In version 6.8.0: deleted
          */
-        parameterName: string;
+        get parameterName(): string;
+        set parameterName(newValue: string);
         /**
          * In version 6.8.0: introduced
          */
-        parameter: ILayoutParameter;
-        readonly parameterQualifiedName: string;
+        get parameter(): ILayoutParameter;
+        set parameter(newValue: ILayoutParameter);
+        get parameterQualifiedName(): string;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LayoutCallArgument instance in the SDK and on the server.
@@ -12785,7 +13162,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayout: Layout;
+        get containerAsLayout(): Layout;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -12795,33 +13172,34 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        width: ContainerWidth;
-        readonly rows: internal.IList<LayoutGridRow>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get width(): ContainerWidth;
+        set width(newValue: ContainerWidth);
+        get rows(): internal.IList<LayoutGridRow>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LayoutGrid instance in the SDK and on the server.
@@ -13086,6 +13464,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): LayoutGrid;
         /**
          * Creates and returns a new LayoutGrid instance in the SDK and on the server.
+         * The new LayoutGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): LayoutGrid;
+        /**
+         * Creates and returns a new LayoutGrid instance in the SDK and on the server.
          * The new LayoutGrid will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -13284,40 +13671,48 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayoutGridRow: LayoutGridRow;
-        weight: number;
+        get containerAsLayoutGridRow(): LayoutGridRow;
+        get weight(): number;
+        set weight(newValue: number);
         /**
          * In version 8.3.0: introduced
          */
-        tabletWeight: number;
+        get tabletWeight(): number;
+        set tabletWeight(newValue: number);
         /**
          * In version 8.3.0: introduced
          */
-        phoneWeight: number;
+        get phoneWeight(): number;
+        set phoneWeight(newValue: number);
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         /**
          * In version 8.3.0: introduced
          */
-        verticalAlignment: LayoutGridAlignment;
+        get verticalAlignment(): LayoutGridAlignment;
+        set verticalAlignment(newValue: LayoutGridAlignment);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LayoutGridColumn instance in the SDK and on the server.
@@ -13336,33 +13731,40 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayoutGrid: LayoutGrid;
-        readonly columns: internal.IList<LayoutGridColumn>;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
+        get containerAsLayoutGrid(): LayoutGrid;
+        get columns(): internal.IList<LayoutGridColumn>;
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         /**
          * In version 8.3.0: introduced
          */
-        verticalAlignment: LayoutGridAlignment;
+        get verticalAlignment(): LayoutGridAlignment;
+        set verticalAlignment(newValue: LayoutGridAlignment);
         /**
          * In version 8.3.0: introduced
          */
-        horizontalAlignment: LayoutGridAlignment;
+        get horizontalAlignment(): LayoutGridAlignment;
+        set horizontalAlignment(newValue: LayoutGridAlignment);
         /**
          * In version 8.3.0: introduced
          */
-        spacingBetweenColumns: boolean;
+        get spacingBetweenColumns(): boolean;
+        set spacingBetweenColumns(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LayoutGridRow instance in the SDK and on the server.
@@ -13389,10 +13791,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayout: Layout;
-        name: string;
+        get containerAsLayout(): Layout;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/link-button relevant section in reference guide}
@@ -13403,27 +13806,29 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
-        linkType: LinkType;
-        address: StaticOrDynamicString;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
+        get linkType(): LinkType;
+        set linkType(newValue: LinkType);
+        get address(): StaticOrDynamicString;
+        set address(newValue: StaticOrDynamicString);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LinkButton instance in the SDK and on the server.
@@ -13646,55 +14051,62 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
-        pageSize: number;
-        clickAction: ClientAction;
-        editable: boolean;
-        readonly templates: internal.IList<ListViewTemplate>;
+        get widgets(): internal.IList<Widget>;
+        get pageSize(): number;
+        set pageSize(newValue: number);
+        get clickAction(): ClientAction;
+        set clickAction(newValue: ClientAction);
+        get editable(): boolean;
+        set editable(newValue: boolean);
+        get templates(): internal.IList<ListViewTemplate>;
         /**
          * In version 8.0.0: introduced
          */
-        scrollDirection: ScrollDirection;
+        get scrollDirection(): ScrollDirection;
+        set scrollDirection(newValue: ScrollDirection);
         /**
          * In version 8.0.0: introduced
          */
-        numberOfColumns: number;
+        get numberOfColumns(): number;
+        set numberOfColumns(newValue: number);
         /**
          * In version 8.0.0: introduced
          */
-        pullDownAction: ClientAction;
+        get pullDownAction(): ClientAction;
+        set pullDownAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListView instance in the SDK and on the server.
@@ -13959,6 +14371,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ListView;
         /**
          * Creates and returns a new ListView instance in the SDK and on the server.
+         * The new ListView will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ListView;
+        /**
+         * Creates and returns a new ListView instance in the SDK and on the server.
          * The new ListView will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -14157,9 +14578,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        search: ListViewSearch;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get search(): ListViewSearch;
+        set search(newValue: ListViewSearch);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListViewDatabaseSource instance in the SDK and on the server.
@@ -14196,18 +14618,18 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListViewDatabaseSource: ListViewDatabaseSource;
-        readonly containerAsListViewXPathSource: ListViewXPathSource;
+        get containerAsListViewDatabaseSource(): ListViewDatabaseSource;
+        get containerAsListViewXPathSource(): ListViewXPathSource;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        readonly searchPaths: internal.IList<string>;
+        get searchPaths(): internal.IList<string>;
         /**
          * In version 7.11.0: introduced
          */
-        readonly searchRefs: internal.IList<domainmodels.AttributeRef>;
+        get searchRefs(): internal.IList<domainmodels.AttributeRef>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListViewSearch instance in the SDK and on the server.
@@ -14232,17 +14654,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListView: ListView;
-        specialization: domainmodels.IEntity;
-        readonly specializationQualifiedName: string;
+        get containerAsListView(): ListView;
+        get specialization(): domainmodels.IEntity;
+        set specialization(newValue: domainmodels.IEntity);
+        get specializationQualifiedName(): string;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListViewTemplate instance in the SDK and on the server.
@@ -14257,17 +14681,27 @@ export declare namespace pages {
          */
         static create(model: IModel): ListViewTemplate;
     }
-    class ListViewXPathSource extends SortableEntityPathSource {
+    abstract class XPathSourceBase extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        search: ListViewSearch;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    class ListViewXPathSource extends XPathSourceBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get search(): ListViewSearch;
+        set search(newValue: ListViewSearch);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListViewXPathSource instance in the SDK and on the server.
@@ -14304,9 +14738,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        listenTarget: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get listenTarget(): string;
+        set listenTarget(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListenTargetSource instance in the SDK and on the server.
@@ -14348,31 +14783,32 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        validationMessageWidget: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get validationMessageWidget(): string;
+        set validationMessageWidget(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LoginButton instance in the SDK and on the server.
@@ -14637,6 +15073,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): LoginButton;
         /**
          * Creates and returns a new LoginButton instance in the SDK and on the server.
+         * The new LoginButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): LoginButton;
+        /**
+         * Creates and returns a new LoginButton instance in the SDK and on the server.
          * The new LoginButton will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -14820,33 +15265,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        label: texts.Text | null;
-        labelWidth: number;
-        placeholder: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get label(): texts.Text | null;
+        set label(newValue: texts.Text | null);
+        get labelWidth(): number;
+        set labelWidth(newValue: number);
+        get placeholder(): texts.Text;
+        set placeholder(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -14858,30 +15306,30 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LoginIdTextBox instance in the SDK and on the server.
@@ -15146,6 +15594,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): LoginIdTextBox;
         /**
          * Creates and returns a new LoginIdTextBox instance in the SDK and on the server.
+         * The new LoginIdTextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): LoginIdTextBox;
+        /**
+         * Creates and returns a new LoginIdTextBox instance in the SDK and on the server.
          * The new LoginIdTextBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -15331,24 +15788,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LogoutButton instance in the SDK and on the server.
@@ -15565,33 +16022,35 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        master: MasterDetailMasterRegion;
+        get master(): MasterDetailMasterRegion;
+        set master(newValue: MasterDetailMasterRegion);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        detail: MasterDetailDetailRegion;
+        get detail(): MasterDetailDetailRegion;
+        set detail(newValue: MasterDetailDetailRegion);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MasterDetail instance in the SDK and on the server.
@@ -15808,10 +16267,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMasterDetail: MasterDetail;
-        widget: Widget | null;
-        class: string;
-        style: string;
+        get containerAsMasterDetail(): MasterDetail;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
+        get class(): string;
+        set class(newValue: string);
+        get style(): string;
+        set style(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -15824,10 +16286,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMasterDetail: MasterDetail;
-        responsiveWeight: number;
-        tabletWeight: number;
-        title: texts.Text;
+        get containerAsMasterDetail(): MasterDetail;
+        get responsiveWeight(): number;
+        set responsiveWeight(newValue: number);
+        get tabletWeight(): number;
+        set tabletWeight(newValue: number);
+        get title(): texts.Text;
+        set title(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MasterDetailDetailRegion instance in the SDK and on the server.
@@ -15855,9 +16320,11 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMasterDetail: MasterDetail;
-        responsiveWeight: number;
-        tabletWeight: number;
+        get containerAsMasterDetail(): MasterDetail;
+        get responsiveWeight(): number;
+        set responsiveWeight(newValue: number);
+        get tabletWeight(): number;
+        set tabletWeight(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MasterDetailMasterRegion instance in the SDK and on the server.
@@ -15882,32 +16349,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        menuSource: MenuSource;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get menuSource(): MenuSource;
+        set menuSource(newValue: MenuSource);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -15917,31 +16385,31 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MenuBar instance in the SDK and on the server.
@@ -16206,6 +16674,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): MenuBar;
         /**
          * Creates and returns a new MenuBar instance in the SDK and on the server.
+         * The new MenuBar will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): MenuBar;
+        /**
+         * Creates and returns a new MenuBar instance in the SDK and on the server.
          * The new MenuBar will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -16404,16 +16881,17 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuWidget: MenuWidget;
+        get containerAsMenuWidget(): MenuWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MenuDocumentSource extends MenuSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuWidget: MenuWidget;
-        menu: menus.IMenuDocument | null;
-        readonly menuQualifiedName: string | null;
+        get containerAsMenuWidget(): MenuWidget;
+        get menu(): menus.IMenuDocument | null;
+        set menu(newValue: menus.IMenuDocument | null);
+        get menuQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MenuDocumentSource instance in the SDK and on the server.
@@ -16432,21 +16910,22 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDataViewActionButton: DataViewActionButton;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        microflowSettings: MicroflowSettings;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDataViewActionButton(): DataViewActionButton;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get microflowSettings(): MicroflowSettings;
+        set microflowSettings(newValue: MicroflowSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
@@ -16597,22 +17076,26 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowSettings: MicroflowSettings;
-        parameter: microflows.IMicroflowParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsMicroflowSettings(): MicroflowSettings;
+        get parameter(): microflows.IMicroflowParameter;
+        set parameter(newValue: microflows.IMicroflowParameter);
+        get parameterQualifiedName(): string;
         /**
          * In version 8.4.0: introduced
          */
-        variable: PageVariable;
+        get variable(): PageVariable;
+        set variable(newValue: PageVariable);
         /**
          * In version 8.4.0: deleted
          */
-        widget: EntityWidget | null;
-        readonly widgetLocalName: string | null;
+        get widget(): EntityWidget | null;
+        set widget(newValue: EntityWidget | null);
+        get widgetLocalName(): string | null;
         /**
          * In version 8.4.0: deleted
          */
-        useAllPages: boolean;
+        get useAllPages(): boolean;
+        set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterMapping instance in the SDK and on the server.
@@ -16637,28 +17120,35 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsMicroflowClientAction: MicroflowClientAction;
-        readonly containerAsMicroflowSource: MicroflowSource;
-        readonly containerAsOnClickMicroflow: OnClickMicroflow;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsSelectorMicroflowSource: SelectorMicroflowSource;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsMicroflowClientAction(): MicroflowClientAction;
+        get containerAsMicroflowSource(): MicroflowSource;
+        get containerAsOnClickMicroflow(): OnClickMicroflow;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsSelectorMicroflowSource(): SelectorMicroflowSource;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         /**
          * In version 7.19.0: introduced
          */
-        readonly parameterMappings: internal.IList<MicroflowParameterMapping>;
+        get parameterMappings(): internal.IList<MicroflowParameterMapping>;
         /**
          * In version 7.19.0: deleted
          */
-        useAllPages: boolean;
-        progressBar: ProgressBarType;
-        progressMessage: texts.Text | null;
-        asynchronous: boolean;
-        formValidations: FormValidations;
-        confirmationInfo: ConfirmationInfo | null;
+        get useAllPages(): boolean;
+        set useAllPages(newValue: boolean);
+        get progressBar(): ProgressBarType;
+        set progressBar(newValue: ProgressBarType);
+        get progressMessage(): texts.Text | null;
+        set progressMessage(newValue: texts.Text | null);
+        get asynchronous(): boolean;
+        set asynchronous(newValue: boolean);
+        get formValidations(): FormValidations;
+        set formValidations(newValue: FormValidations);
+        get confirmationInfo(): ConfirmationInfo | null;
+        set confirmationInfo(newValue: ConfirmationInfo | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowSettings instance in the SDK and on the server.
@@ -16743,9 +17233,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        microflowSettings: MicroflowSettings;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get microflowSettings(): MicroflowSettings;
+        set microflowSettings(newValue: MicroflowSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowSource instance in the SDK and on the server.
@@ -16785,23 +17276,27 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCallNanoflowClientAction: CallNanoflowClientAction;
-        readonly containerAsNanoflowSource: NanoflowSource;
-        parameter: microflows.INanoflowParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
+        get containerAsNanoflowSource(): NanoflowSource;
+        get parameter(): microflows.INanoflowParameter;
+        set parameter(newValue: microflows.INanoflowParameter);
+        get parameterQualifiedName(): string;
         /**
          * In version 8.4.0: introduced
          */
-        variable: PageVariable;
+        get variable(): PageVariable;
+        set variable(newValue: PageVariable);
         /**
          * In version 8.4.0: deleted
          */
-        widget: EntityWidget | null;
-        readonly widgetLocalName: string | null;
+        get widget(): EntityWidget | null;
+        set widget(newValue: EntityWidget | null);
+        get widgetLocalName(): string | null;
         /**
          * In version 8.4.0: deleted
          */
-        useAllPages: boolean;
+        get useAllPages(): boolean;
+        set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowParameterMapping instance in the SDK and on the server.
@@ -16835,14 +17330,15 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
-        nanoflow: microflows.INanoflow | null;
-        readonly nanoflowQualifiedName: string | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
+        get nanoflow(): microflows.INanoflow | null;
+        set nanoflow(newValue: microflows.INanoflow | null);
+        get nanoflowQualifiedName(): string | null;
         /**
          * In version 7.19.0: introduced
          */
-        readonly parameterMappings: internal.IList<NanoflowParameterMapping>;
+        get parameterMappings(): internal.IList<NanoflowParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowSource instance in the SDK and on the server.
@@ -16884,6 +17380,10 @@ export declare namespace pages {
     interface INativeLayoutContent extends ILayoutContent {
         readonly model: IModel;
         readonly containerAsLayout: ILayout;
+        /**
+         * In version 8.5.0: introduced
+         */
+        readonly layoutType: NativeLayoutType;
         asLoaded(): NativeLayoutContent;
         load(callback: (element: NativeLayoutContent) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<NativeLayoutContent>;
@@ -16895,13 +17395,29 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayout: Layout;
-        readonly widgets: internal.IList<Widget>;
-        rightHeaderPlaceholder: Placeholder | null;
+        get containerAsLayout(): Layout;
+        /**
+         * In version 8.5.0: introduced
+         */
+        get layoutType(): NativeLayoutType;
+        set layoutType(newValue: NativeLayoutType);
+        get widgets(): internal.IList<Widget>;
+        get rightHeaderPlaceholder(): Placeholder | null;
+        set rightHeaderPlaceholder(newValue: Placeholder | null);
         /**
          * In version 8.2.0: introduced
          */
-        showBottomBar: boolean;
+        get showBottomBar(): boolean;
+        set showBottomBar(newValue: boolean);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get sidebar(): boolean;
+        set sidebar(newValue: boolean);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get sidebarWidgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeLayoutContent instance in the SDK and on the server.
@@ -16926,32 +17442,32 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly items: internal.IList<NavigationListItem>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get items(): internal.IList<NavigationListItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationList instance in the SDK and on the server.
@@ -17216,6 +17732,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): NavigationList;
         /**
          * Creates and returns a new NavigationList instance in the SDK and on the server.
+         * The new NavigationList will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): NavigationList;
+        /**
+         * Creates and returns a new NavigationList instance in the SDK and on the server.
          * The new NavigationList will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -17414,28 +17939,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationList: NavigationList;
+        get containerAsNavigationList(): NavigationList;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationListItem instance in the SDK and on the server.
@@ -17454,16 +17984,18 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuWidget: MenuWidget;
+        get containerAsMenuWidget(): MenuWidget;
         /**
          * In version 7.2.0: deleted
          */
-        profileType: navigation.ProfileType;
+        get profileType(): navigation.ProfileType;
+        set profileType(newValue: navigation.ProfileType);
         /**
          * In version 7.2.0: introduced
          */
-        navigationProfile: navigation.INavigationProfile;
-        readonly navigationProfileQualifiedName: string;
+        get navigationProfile(): navigation.INavigationProfile;
+        set navigationProfile(newValue: navigation.INavigationProfile);
+        get navigationProfileQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationSource instance in the SDK and on the server.
@@ -17485,31 +18017,31 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationTree instance in the SDK and on the server.
@@ -17774,6 +18306,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): NavigationTree;
         /**
          * Creates and returns a new NavigationTree instance in the SDK and on the server.
+         * The new NavigationTree will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): NavigationTree;
+        /**
+         * Creates and returns a new NavigationTree instance in the SDK and on the server.
          * The new NavigationTree will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -17975,43 +18516,47 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 6.3.0: deleted
          */
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          * In version 6.3.0: introduced
          */
-        entityPath: string;
+        get entityPath(): string;
+        set entityPath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        entityRef: domainmodels.EntityRef | null;
-        pageSettings: PageSettings;
+        get entityRef(): domainmodels.EntityRef | null;
+        set entityRef(newValue: domainmodels.EntityRef | null);
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NewButton instance in the SDK and on the server.
@@ -18420,20 +18965,20 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDataViewActionButton: DataViewActionButton;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDataViewActionButton(): DataViewActionButton;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
@@ -18584,12 +19129,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        role: security.IUserRole | null;
-        readonly roleQualifiedName: string | null;
+        get role(): security.IUserRole | null;
+        set role(newValue: security.IUserRole | null);
+        get roleQualifiedName(): string | null;
         /**
          * In version 6.4.0: introduced
          */
-        readonly tables: internal.IList<string>;
+        get tables(): internal.IList<string>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OfflineSchema instance in the SDK and on the server.
@@ -18605,8 +19151,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        tableName: string;
-        xPath: string;
+        get tableName(): string;
+        set tableName(newValue: string);
+        get xPath(): string;
+        set xPath(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OfflineSchemaFetchInstruction instance in the SDK and on the server.
@@ -18622,7 +19170,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -18632,7 +19180,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OnClickEnlarge instance in the SDK and on the server.
@@ -18657,8 +19205,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        microflowSettings: MicroflowSettings;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get microflowSettings(): MicroflowSettings;
+        set microflowSettings(newValue: MicroflowSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OnClickMicroflow instance in the SDK and on the server.
@@ -18683,7 +19232,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OnClickNothing instance in the SDK and on the server.
@@ -18708,21 +19257,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        linkType: LinkType;
-        address: StaticOrDynamicString;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get linkType(): LinkType;
+        set linkType(newValue: LinkType);
+        get address(): StaticOrDynamicString;
+        set address(newValue: StaticOrDynamicString);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
@@ -18903,41 +19454,52 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.17.0: added public
          */
-        layoutCall: LayoutCall;
-        title: texts.Text;
+        get layoutCall(): LayoutCall;
+        set layoutCall(newValue: LayoutCall);
+        get title(): texts.Text;
+        set title(newValue: texts.Text);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         /**
          * In version 7.23.0: added public
          */
-        readonly allowedRoles: internal.IList<security.IModuleRole>;
-        readonly allowedRolesQualifiedNames: string[];
+        get allowedRoles(): internal.IList<security.IModuleRole>;
+        get allowedRolesQualifiedNames(): string[];
         /**
          * In version 6.7.0: introduced
          */
-        popupCloseAction: string;
-        popupWidth: number;
-        popupHeight: number;
-        popupResizable: boolean;
-        markAsUsed: boolean;
+        get popupCloseAction(): string;
+        set popupCloseAction(newValue: string);
+        get popupWidth(): number;
+        set popupWidth(newValue: number);
+        get popupHeight(): number;
+        set popupHeight(newValue: number);
+        get popupResizable(): boolean;
+        set popupResizable(newValue: boolean);
+        get markAsUsed(): boolean;
+        set markAsUsed(newValue: boolean);
         /**
          * In version 6.7.0: introduced
          */
-        url: string;
+        get url(): string;
+        set url(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Page unit in the SDK and on the server.
@@ -18949,25 +19511,26 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDataViewActionButton: DataViewActionButton;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        pageSettings: PageSettings;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDataViewActionButton(): DataViewActionButton;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         /**
          * In version 7.17.0: introduced
          */
-        readonly pagesForSpecializations: internal.IList<PageForSpecialization>;
+        get pagesForSpecializations(): internal.IList<PageForSpecialization>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
@@ -19115,11 +19678,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGridEditButton: GridEditButton;
-        readonly containerAsPageClientAction: PageClientAction;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
-        pageSettings: PageSettings;
+        get containerAsGridEditButton(): GridEditButton;
+        get containerAsPageClientAction(): PageClientAction;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
+        get pageSettings(): PageSettings;
+        set pageSettings(newValue: PageSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageForSpecialization instance in the SDK and on the server.
@@ -19153,24 +19718,27 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsShowPageAction: microflows.ShowPageAction;
-        readonly containerAsNavigationProfile: navigation.NavigationProfile;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsCreateObjectClientAction: CreateObjectClientAction;
-        readonly containerAsDataGridAddButton: DataGridAddButton;
-        readonly containerAsGridEditButton: GridEditButton;
-        readonly containerAsGridNewButton: GridNewButton;
-        readonly containerAsNewButton: NewButton;
-        readonly containerAsPageClientAction: PageClientAction;
-        readonly containerAsPageForSpecialization: PageForSpecialization;
-        readonly containerAsReferenceSelector: ReferenceSelector;
-        page: IPage | null;
-        readonly pageQualifiedName: string | null;
-        formTitle: texts.Text | null;
+        get containerAsShowPageAction(): microflows.ShowPageAction;
+        get containerAsNavigationProfile(): navigation.NavigationProfile;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsCreateObjectClientAction(): CreateObjectClientAction;
+        get containerAsDataGridAddButton(): DataGridAddButton;
+        get containerAsGridEditButton(): GridEditButton;
+        get containerAsGridNewButton(): GridNewButton;
+        get containerAsNewButton(): NewButton;
+        get containerAsPageClientAction(): PageClientAction;
+        get containerAsPageForSpecialization(): PageForSpecialization;
+        get containerAsReferenceSelector(): ReferenceSelector;
+        get page(): IPage | null;
+        set page(newValue: IPage | null);
+        get pageQualifiedName(): string | null;
+        get formTitle(): texts.Text | null;
+        set formTitle(newValue: texts.Text | null);
         /**
          * In version 8.0.0: deleted
          */
-        location: FormLocation;
+        get location(): FormLocation;
+        set location(newValue: FormLocation);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
@@ -19288,27 +19856,32 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.17.0: added public
          */
-        type: PageTemplateType;
+        get type(): PageTemplateType;
+        set type(newValue: PageTemplateType);
         /**
          * In version 7.17.0: added public
          */
-        layoutCall: LayoutCall;
+        get layoutCall(): LayoutCall;
+        set layoutCall(newValue: LayoutCall);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PageTemplate unit in the SDK and on the server.
@@ -19323,11 +19896,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowParameterMapping: MicroflowParameterMapping;
-        readonly containerAsNanoflowParameterMapping: NanoflowParameterMapping;
-        widget: Widget | null;
-        readonly widgetLocalName: string | null;
-        useAllPages: boolean;
+        get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
+        get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
+        get widgetLocalName(): string | null;
+        get useAllPages(): boolean;
+        set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
@@ -19363,30 +19938,30 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PasswordTextBox instance in the SDK and on the server.
@@ -19651,6 +20226,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): PasswordTextBox;
         /**
          * Creates and returns a new PasswordTextBox instance in the SDK and on the server.
+         * The new PasswordTextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): PasswordTextBox;
+        /**
+         * Creates and returns a new PasswordTextBox instance in the SDK and on the server.
          * The new PasswordTextBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -19834,31 +20418,31 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Placeholder instance in the SDK and on the server.
@@ -20132,6 +20716,15 @@ export declare namespace pages {
         static createInNativeLayoutContentUnderRightHeaderPlaceholder(container: NativeLayoutContent): Placeholder;
         /**
          * Creates and returns a new Placeholder instance in the SDK and on the server.
+         * The new Placeholder will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): Placeholder;
+        /**
+         * Creates and returns a new Placeholder instance in the SDK and on the server.
          * The new Placeholder will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -20333,32 +20926,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        renderHorizontal: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get renderHorizontal(): boolean;
+        set renderHorizontal(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RadioButtonGroup instance in the SDK and on the server.
@@ -20623,6 +21217,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): RadioButtonGroup;
         /**
          * Creates and returns a new RadioButtonGroup instance in the SDK and on the server.
+         * The new RadioButtonGroup will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): RadioButtonGroup;
+        /**
+         * Creates and returns a new RadioButtonGroup instance in the SDK and on the server.
          * The new RadioButtonGroup will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -20824,29 +21427,35 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        lowerBound: string;
+        get lowerBound(): string;
+        set lowerBound(newValue: string);
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        upperBound: string;
+        get upperBound(): string;
+        set upperBound(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        lowerBoundRef: domainmodels.AttributeRef | null;
+        get lowerBoundRef(): domainmodels.AttributeRef | null;
+        set lowerBoundRef(newValue: domainmodels.AttributeRef | null);
         /**
          * In version 7.11.0: introduced
          */
-        upperBoundRef: domainmodels.AttributeRef | null;
-        includeLower: boolean;
-        includeUpper: boolean;
+        get upperBoundRef(): domainmodels.AttributeRef | null;
+        set upperBoundRef(newValue: domainmodels.AttributeRef | null);
+        get includeLower(): boolean;
+        set includeLower(newValue: boolean);
+        get includeUpper(): boolean;
+        set includeUpper(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RangeSearchField instance in the SDK and on the server.
@@ -20868,50 +21477,57 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.6.0: deleted
          */
-        required: boolean;
+        get required(): boolean;
+        set required(newValue: boolean);
         /**
          * In version 7.6.0: deleted
          */
-        requiredMessage: texts.Text;
+        get requiredMessage(): texts.Text;
+        set requiredMessage(newValue: texts.Text);
         /**
          * In version 7.6.0: introduced
          */
-        validation: WidgetValidation;
-        renderMode: ReferenceSelectorRenderModeType;
-        gotoPageSettings: PageSettings;
-        formattingInfo: FormattingInfo;
+        get validation(): WidgetValidation;
+        set validation(newValue: WidgetValidation);
+        get renderMode(): ReferenceSelectorRenderModeType;
+        set renderMode(newValue: ReferenceSelectorRenderModeType);
+        get gotoPageSettings(): PageSettings;
+        set gotoPageSettings(newValue: PageSettings);
+        get formattingInfo(): FormattingInfo;
+        set formattingInfo(newValue: FormattingInfo);
         /**
          * In version 7.2.0: introduced
          */
-        emptyOptionCaption: texts.Text;
+        get emptyOptionCaption(): texts.Text;
+        set emptyOptionCaption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
@@ -21176,6 +21792,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ReferenceSelector;
         /**
          * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
+         * The new ReferenceSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ReferenceSelector;
+        /**
+         * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
          * The new ReferenceSelector will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -21377,62 +22002,66 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 7.13.0: deleted
          */
-        onChangeMicroflowSettings: MicroflowSettings;
+        get onChangeMicroflowSettings(): MicroflowSettings;
+        set onChangeMicroflowSettings(newValue: MicroflowSettings);
         /**
          * In version 7.13.0: introduced
          */
-        onChangeAction: ClientAction;
+        get onChangeAction(): ClientAction;
+        set onChangeAction(newValue: ClientAction);
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          */
-        readonly constrainedBy: internal.IList<string>;
+        get constrainedBy(): internal.IList<string>;
         /**
          * In version 7.11.0: introduced
          */
-        readonly constrainedByRefs: internal.IList<domainmodels.EntityRef>;
+        get constrainedByRefs(): internal.IList<domainmodels.EntityRef>;
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        removeAllFromContext: boolean;
+        get removeAllFromContext(): boolean;
+        set removeAllFromContext(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        readonly removeFromContextEntities: internal.IList<domainmodels.IEntity>;
-        readonly removeFromContextEntitiesQualifiedNames: string[];
+        get removeFromContextEntities(): internal.IList<domainmodels.IEntity>;
+        get removeFromContextEntitiesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReferenceSetSelector instance in the SDK and on the server.
@@ -21697,6 +22326,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ReferenceSetSelector;
         /**
          * Creates and returns a new ReferenceSetSelector instance in the SDK and on the server.
+         * The new ReferenceSetSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ReferenceSetSelector;
+        /**
+         * Creates and returns a new ReferenceSetSelector instance in the SDK and on the server.
          * The new ReferenceSetSelector will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -21895,8 +22533,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: EntityWidget;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReferenceSetSource instance in the SDK and on the server.
@@ -21936,35 +22574,42 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        queryId: string;
-        readonly allowedUserRoles: internal.IList<security.IUserRole>;
-        readonly allowedUserRolesQualifiedNames: string[];
-        xPath: string;
+        get queryId(): string;
+        set queryId(newValue: string);
+        get allowedUserRoles(): internal.IList<security.IUserRole>;
+        get allowedUserRolesQualifiedNames(): string[];
+        get xPath(): string;
+        set xPath(newValue: string);
         /**
          * In version 7.21.0: introduced
          */
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         /**
          * In version 7.21.0: introduced
          */
-        entityPath: string;
+        get entityPath(): string;
+        set entityPath(newValue: string);
         /**
          * In version 7.14.0: introduced
          */
-        pageName: string;
+        get pageName(): string;
+        set pageName(newValue: string);
         /**
          * In version 8.4.0: introduced
          */
-        widgetName: string;
+        get widgetName(): string;
+        set widgetName(newValue: string);
         /**
          * In version 8.4.0: introduced
          */
-        readonly usedAssociations: internal.IList<string>;
+        get usedAssociations(): internal.IList<string>;
         /**
          * In version 8.4.0: deleted
          */
-        schemaId: string;
+        get schemaId(): string;
+        set schemaId(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrievalQuery instance in the SDK and on the server.
@@ -21984,19 +22629,21 @@ export declare namespace pages {
         /**
          * In version 7.2.0: deleted
          */
-        readonly usedAttributes: internal.IList<string>;
+        get usedAttributes(): internal.IList<string>;
         /**
          * In version 7.2.0: introduced
          */
-        readonly usedAssociations: internal.IList<string>;
+        get usedAssociations(): internal.IList<string>;
         /**
          * In version 7.14.0: introduced
          */
-        widgetName: string;
+        get widgetName(): string;
+        set widgetName(newValue: string);
         /**
          * In version 7.4.0: deleted
          */
-        entity: string;
+        get entity(): string;
+        set entity(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrievalSchema instance in the SDK and on the server.
@@ -22014,32 +22661,34 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 6.6.0: introduced
          */
-        syncAutomatically: boolean;
+        get syncAutomatically(): boolean;
+        set syncAutomatically(newValue: boolean);
         /**
          * In version 6.7.0: introduced
          */
-        closePage: boolean;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SaveButton instance in the SDK and on the server.
@@ -22253,21 +22902,23 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
-        syncAutomatically: boolean;
-        closePage: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get syncAutomatically(): boolean;
+        set syncAutomatically(newValue: boolean);
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
@@ -22427,41 +23078,51 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        center: ScrollContainerRegion;
-        left: ScrollContainerRegion | null;
-        right: ScrollContainerRegion | null;
-        top: ScrollContainerRegion | null;
-        bottom: ScrollContainerRegion | null;
-        layoutMode: LayoutModeType;
-        widthMode: SizeMode;
-        width: number;
-        alignment: AlignmentEnum;
-        scrollBehavior: ScrollBehavior;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get center(): ScrollContainerRegion;
+        set center(newValue: ScrollContainerRegion);
+        get left(): ScrollContainerRegion | null;
+        set left(newValue: ScrollContainerRegion | null);
+        get right(): ScrollContainerRegion | null;
+        set right(newValue: ScrollContainerRegion | null);
+        get top(): ScrollContainerRegion | null;
+        set top(newValue: ScrollContainerRegion | null);
+        get bottom(): ScrollContainerRegion | null;
+        set bottom(newValue: ScrollContainerRegion | null);
+        get layoutMode(): LayoutModeType;
+        set layoutMode(newValue: LayoutModeType);
+        get widthMode(): SizeMode;
+        set widthMode(newValue: SizeMode);
+        get width(): number;
+        set width(newValue: number);
+        get alignment(): AlignmentEnum;
+        set alignment(newValue: AlignmentEnum);
+        get scrollBehavior(): ScrollBehavior;
+        set scrollBehavior(newValue: ScrollBehavior);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ScrollContainer instance in the SDK and on the server.
@@ -22726,6 +23387,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ScrollContainer;
         /**
          * Creates and returns a new ScrollContainer instance in the SDK and on the server.
+         * The new ScrollContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ScrollContainer;
+        /**
+         * Creates and returns a new ScrollContainer instance in the SDK and on the server.
          * The new ScrollContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -22924,33 +23594,40 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsScrollContainer: ScrollContainer;
+        get containerAsScrollContainer(): ScrollContainer;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
-        sizeMode: SizeMode;
-        size: number;
+        get widgets(): internal.IList<Widget>;
+        get sizeMode(): SizeMode;
+        set sizeMode(newValue: SizeMode);
+        get size(): number;
+        set size(newValue: number);
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
         /**
          * In version 6.10.0: introduced
          */
-        toggleMode: ToggleMode;
+        get toggleMode(): ToggleMode;
+        set toggleMode(newValue: ToggleMode);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ScrollContainerRegion instance in the SDK and on the server.
@@ -22996,10 +23673,12 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGridBaseSource: GridBaseSource;
-        readonly containerAsGridDatabaseSource: GridDatabaseSource;
-        type: SearchBarTypeEnum;
-        waitForSearch: boolean;
+        get containerAsGridBaseSource(): GridBaseSource;
+        get containerAsGridDatabaseSource(): GridDatabaseSource;
+        get type(): SearchBarTypeEnum;
+        set type(newValue: SearchBarTypeEnum);
+        get waitForSearch(): boolean;
+        set waitForSearch(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SearchBar instance in the SDK and on the server.
@@ -23027,7 +23706,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsControlBar: ControlBar;
+        get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SelectButton instance in the SDK and on the server.
@@ -23046,7 +23725,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationWidget: AssociationWidget;
+        get containerAsAssociationWidget(): AssociationWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -23056,12 +23735,13 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly databaseConstraints: internal.IList<DatabaseConstraint>;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get databaseConstraints(): internal.IList<DatabaseConstraint>;
         /**
          * In version 6.2.0: introduced
          */
-        sortBar: GridSortBar;
+        get sortBar(): GridSortBar;
+        set sortBar(newValue: GridSortBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SelectorDatabaseSource instance in the SDK and on the server.
@@ -23083,8 +23763,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        dataSourceMicroflowSettings: MicroflowSettings;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get dataSourceMicroflowSettings(): MicroflowSettings;
+        set dataSourceMicroflowSettings(newValue: MicroflowSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SelectorMicroflowSource instance in the SDK and on the server.
@@ -23103,35 +23784,39 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        sortBar: GridSortBar;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get sortBar(): GridSortBar;
+        set sortBar(newValue: GridSortBar);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          */
-        readonly constrainedBy: internal.IList<string>;
+        get constrainedBy(): internal.IList<string>;
         /**
          * In version 7.11.0: introduced
          */
-        readonly constrainedByRefs: internal.IList<domainmodels.EntityRef>;
+        get constrainedByRefs(): internal.IList<domainmodels.EntityRef>;
         /**
          * In version 8.0.0: deleted
          */
-        applyContext: boolean;
+        get applyContext(): boolean;
+        set applyContext(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        removeAllFromContext: boolean;
+        get removeAllFromContext(): boolean;
+        set removeAllFromContext(newValue: boolean);
         /**
          * In version 8.0.0: deleted
          */
-        readonly removeFromContextEntities: internal.IList<domainmodels.IEntity>;
-        readonly removeFromContextEntitiesQualifiedNames: string[];
+        get removeFromContextEntities(): internal.IList<domainmodels.IEntity>;
+        get removeFromContextEntitiesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SelectorXPathSource instance in the SDK and on the server.
@@ -23153,43 +23838,46 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         /**
          * In version 6.10.0: deleted
          */
-        region: SidebarToggleRegion;
+        get region(): SidebarToggleRegion;
+        set region(newValue: SidebarToggleRegion);
         /**
          * In version 6.10.0: deleted
          */
-        mode: SidebarToggleMode;
+        get mode(): SidebarToggleMode;
+        set mode(newValue: SidebarToggleMode);
         /**
          * In version 6.10.0: deleted
          */
-        initiallyOpen: boolean;
+        get initiallyOpen(): boolean;
+        set initiallyOpen(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SidebarToggleButton instance in the SDK and on the server.
@@ -23454,6 +24142,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): SidebarToggleButton;
         /**
          * Creates and returns a new SidebarToggleButton instance in the SDK and on the server.
+         * The new SidebarToggleButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): SidebarToggleButton;
+        /**
+         * Creates and returns a new SidebarToggleButton instance in the SDK and on the server.
          * The new SidebarToggleButton will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -23655,19 +24352,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
@@ -23827,32 +24524,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        orientation: SimpleMenuBarOrientation;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get orientation(): SimpleMenuBarOrientation;
+        set orientation(newValue: SimpleMenuBarOrientation);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SimpleMenuBar instance in the SDK and on the server.
@@ -24117,6 +24815,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): SimpleMenuBar;
         /**
          * Creates and returns a new SimpleMenuBar instance in the SDK and on the server.
+         * The new SimpleMenuBar will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): SimpleMenuBar;
+        /**
+         * Creates and returns a new SimpleMenuBar instance in the SDK and on the server.
          * The new SimpleMenuBar will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -24335,22 +25042,25 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
+        get containerAsFolderBase(): projects.FolderBase;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         /**
          * In version 8.4.0: added public
          * In version 8.0.0: introduced
          */
-        type: SnippetType;
+        get type(): SnippetType;
+        set type(newValue: SnippetType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Snippet unit in the SDK and on the server.
@@ -24362,9 +25072,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSnippetCallWidget: SnippetCallWidget;
-        snippet: ISnippet | null;
-        readonly snippetQualifiedName: string | null;
+        get containerAsSnippetCallWidget(): SnippetCallWidget;
+        get snippet(): ISnippet | null;
+        set snippet(newValue: ISnippet | null);
+        get snippetQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SnippetCall instance in the SDK and on the server.
@@ -24386,32 +25097,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        snippetCall: SnippetCall;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get snippetCall(): SnippetCall;
+        set snippetCall(newValue: SnippetCall);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SnippetCallWidget instance in the SDK and on the server.
@@ -24676,6 +25388,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): SnippetCallWidget;
         /**
          * Creates and returns a new SnippetCallWidget instance in the SDK and on the server.
+         * The new SnippetCallWidget will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): SnippetCallWidget;
+        /**
+         * Creates and returns a new SnippetCallWidget instance in the SDK and on the server.
          * The new SnippetCallWidget will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -24877,39 +25598,46 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
-        widthUnit: ImageSizeUnit;
-        heightUnit: ImageSizeUnit;
-        width: number;
-        height: number;
-        clickAction: ClientAction;
-        responsive: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
+        get widthUnit(): ImageSizeUnit;
+        set widthUnit(newValue: ImageSizeUnit);
+        get heightUnit(): ImageSizeUnit;
+        set heightUnit(newValue: ImageSizeUnit);
+        get width(): number;
+        set width(newValue: number);
+        get height(): number;
+        set height(newValue: number);
+        get clickAction(): ClientAction;
+        set clickAction(newValue: ClientAction);
+        get responsive(): boolean;
+        set responsive(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -25174,6 +25902,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): StaticImageViewer;
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
+         * The new StaticImageViewer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): StaticImageViewer;
+        /**
+         * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
          * The new StaticImageViewer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -25372,20 +26109,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLinkButton: LinkButton;
-        readonly containerAsOpenLinkClientAction: OpenLinkClientAction;
-        isDynamic: boolean;
-        value: string;
+        get containerAsLinkButton(): LinkButton;
+        get containerAsOpenLinkClientAction(): OpenLinkClientAction;
+        get isDynamic(): boolean;
+        set isDynamic(newValue: boolean);
+        get value(): string;
+        set value(newValue: string);
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attribute: string;
+        get attribute(): string;
+        set attribute(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticOrDynamicString instance in the SDK and on the server.
@@ -25419,24 +26160,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SyncButton instance in the SDK and on the server.
@@ -25650,19 +26391,19 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsBottomBarItem: nativepages.BottomBarItem;
-        readonly containerAsActionButton: ActionButton;
-        readonly containerAsActionItem: ActionItem;
-        readonly containerAsAssociationWidget: AssociationWidget;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsDynamicImageViewer: DynamicImageViewer;
-        readonly containerAsGridActionButton: GridActionButton;
-        readonly containerAsListView: ListView;
-        readonly containerAsReferenceSetSelector: ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
@@ -25822,33 +26563,34 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly tabPages: internal.IList<TabPage>;
-        defaultPage: TabPage | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get tabPages(): internal.IList<TabPage>;
+        get defaultPage(): TabPage | null;
+        set defaultPage(newValue: TabPage | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TabContainer instance in the SDK and on the server.
@@ -26113,6 +26855,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): TabContainer;
         /**
          * Creates and returns a new TabContainer instance in the SDK and on the server.
+         * The new TabContainer will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): TabContainer;
+        /**
+         * Creates and returns a new TabContainer instance in the SDK and on the server.
          * The new TabContainer will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -26314,19 +27065,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTabContainer: TabContainer;
-        name: string;
-        caption: texts.Text;
-        refreshOnShow: boolean;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
+        get containerAsTabContainer(): TabContainer;
+        get name(): string;
+        set name(newValue: string);
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get refreshOnShow(): boolean;
+        set refreshOnShow(newValue: boolean);
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TabPage instance in the SDK and on the server.
@@ -26348,35 +27104,36 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly cells: internal.IList<TableCell>;
-        readonly columns: internal.IList<TableColumn>;
-        widthUnit: UnitEnum;
-        readonly rows: internal.IList<TableRow>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get cells(): internal.IList<TableCell>;
+        get columns(): internal.IList<TableColumn>;
+        get widthUnit(): UnitEnum;
+        set widthUnit(newValue: UnitEnum);
+        get rows(): internal.IList<TableRow>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Table instance in the SDK and on the server.
@@ -26641,6 +27398,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): Table;
         /**
          * Creates and returns a new Table instance in the SDK and on the server.
+         * The new Table will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): Table;
+        /**
+         * Creates and returns a new Table instance in the SDK and on the server.
          * The new Table will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -26839,32 +27605,41 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTable: Table;
+        get containerAsTable(): Table;
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
-        isHeader: boolean;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
+        get isHeader(): boolean;
+        set isHeader(newValue: boolean);
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
-        leftColumnIndex: number;
-        topRowIndex: number;
-        width: number;
-        height: number;
+        get widgets(): internal.IList<Widget>;
+        get leftColumnIndex(): number;
+        set leftColumnIndex(newValue: number);
+        get topRowIndex(): number;
+        set topRowIndex(newValue: number);
+        get width(): number;
+        set width(newValue: number);
+        get height(): number;
+        set height(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TableCell instance in the SDK and on the server.
@@ -26883,8 +27658,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTable: Table;
-        width: number;
+        get containerAsTable(): Table;
+        get width(): number;
+        set width(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TableColumn instance in the SDK and on the server.
@@ -26903,20 +27679,24 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTable: Table;
+        get containerAsTable(): Table;
         /**
          * In version 8.0.0: deleted
          */
-        class: string;
+        get class(): string;
+        set class(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        style: string;
+        get style(): string;
+        set style(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        appearance: Appearance;
-        conditionalVisibilitySettings: ConditionalVisibilitySettings | null;
+        get appearance(): Appearance;
+        set appearance(newValue: Appearance);
+        get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TableRow instance in the SDK and on the server.
@@ -26938,34 +27718,37 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        contents: TemplateGridContents;
-        numberOfRows: number;
-        numberOfColumns: number;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get contents(): TemplateGridContents;
+        set contents(newValue: TemplateGridContents);
+        get numberOfRows(): number;
+        set numberOfRows(newValue: number);
+        get numberOfColumns(): number;
+        set numberOfColumns(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TemplateGrid instance in the SDK and on the server.
@@ -27230,6 +28013,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): TemplateGrid;
         /**
          * Creates and returns a new TemplateGrid instance in the SDK and on the server.
+         * The new TemplateGrid will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): TemplateGrid;
+        /**
+         * Creates and returns a new TemplateGrid instance in the SDK and on the server.
          * The new TemplateGrid will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -27428,15 +28220,16 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTemplateGrid: TemplateGrid;
+        get containerAsTemplateGrid(): TemplateGrid;
         /**
          * In version 7.15.0: deleted
          */
-        widget: Widget | null;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         /**
          * In version 7.15.0: introduced
          */
-        readonly widgets: internal.IList<Widget>;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TemplateGridContents instance in the SDK and on the server.
@@ -27455,32 +28248,33 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        maxLengthCode: number;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get maxLengthCode(): number;
+        set maxLengthCode(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -27490,34 +28284,37 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        numberOfLines: number;
-        counterMessage: texts.Text;
-        textTooLongMessage: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get numberOfLines(): number;
+        set numberOfLines(newValue: number);
+        get counterMessage(): texts.Text;
+        set counterMessage(newValue: texts.Text);
+        get textTooLongMessage(): texts.Text;
+        set textTooLongMessage(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -27782,6 +28579,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): TextArea;
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
+         * The new TextArea will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): TextArea;
+        /**
+         * Creates and returns a new TextArea instance in the SDK and on the server.
          * The new TextArea will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -27983,38 +28789,42 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        inputMask: string;
-        formattingInfo: FormattingInfo;
-        isPasswordBox: boolean;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get inputMask(): string;
+        set inputMask(newValue: string);
+        get formattingInfo(): FormattingInfo;
+        set formattingInfo(newValue: FormattingInfo);
+        get isPasswordBox(): boolean;
+        set isPasswordBox(newValue: boolean);
         /**
          * In version 8.0.0: introduced
          */
-        keyboardType: KeyboardType;
+        get keyboardType(): KeyboardType;
+        set keyboardType(newValue: KeyboardType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -28279,6 +29089,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): TextBox;
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
+         * The new TextBox will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): TextBox;
+        /**
+         * Creates and returns a new TextBox instance in the SDK and on the server.
          * The new TextBox will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -28480,31 +29299,31 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Title instance in the SDK and on the server.
@@ -28769,6 +29588,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): Title;
         /**
          * Creates and returns a new Title instance in the SDK and on the server.
+         * The new Title will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): Title;
+        /**
+         * Creates and returns a new Title instance in the SDK and on the server.
          * The new Title will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -28972,30 +29800,30 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: NativeLayoutContent;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsWebLayoutContent: WebLayoutContent;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsWebLayoutContent(): WebLayoutContent;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ValidationMessage instance in the SDK and on the server.
@@ -29260,6 +30088,15 @@ export declare namespace pages {
         static createInMasterDetailRegionUnderWidget(container: MasterDetailRegion): ValidationMessage;
         /**
          * Creates and returns a new ValidationMessage instance in the SDK and on the server.
+         * The new ValidationMessage will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): ValidationMessage;
+        /**
+         * Creates and returns a new ValidationMessage instance in the SDK and on the server.
          * The new ValidationMessage will be automatically stored in the 'widgets' property
          * of the parent NativeLayoutContent element passed as argument.
          *
@@ -29443,27 +30280,27 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
-        readonly widgets: internal.IList<Widget>;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VerticalFlow instance in the SDK and on the server.
@@ -29697,28 +30534,28 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: BuildingBlock;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDivContainer: DivContainer;
-        readonly containerAsGroupBox: GroupBox;
-        readonly containerAsHeader: Header;
-        readonly containerAsLayout: Layout;
-        readonly containerAsLayoutCallArgument: LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: LayoutGridColumn;
-        readonly containerAsListView: ListView;
-        readonly containerAsListViewTemplate: ListViewTemplate;
-        readonly containerAsMasterDetailRegion: MasterDetailRegion;
-        readonly containerAsNavigationListItem: NavigationListItem;
-        readonly containerAsScrollContainerRegion: ScrollContainerRegion;
-        readonly containerAsSnippet: Snippet;
-        readonly containerAsSplitPane: SplitPane;
-        readonly containerAsTabPage: TabPage;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTemplateGridContents: TemplateGridContents;
-        readonly containerAsVerticalFlow: VerticalFlow;
-        readonly containerAsReportPane: reports.ReportPane;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayout(): Layout;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsMasterDetailRegion(): MasterDetailRegion;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsSplitPane(): SplitPane;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsVerticalFlow(): VerticalFlow;
+        get containerAsReportPane(): reports.ReportPane;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VerticalSplitPane instance in the SDK and on the server.
@@ -30169,10 +31006,12 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLayout: Layout;
-        layoutType: LayoutType;
-        layoutCall: LayoutCall | null;
-        readonly widgets: internal.IList<Widget>;
+        get containerAsLayout(): Layout;
+        get layoutType(): LayoutType;
+        set layoutType(newValue: LayoutType);
+        get layoutCall(): LayoutCall | null;
+        set layoutCall(newValue: LayoutCall | null);
+        get widgets(): internal.IList<Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebLayoutContent instance in the SDK and on the server.
@@ -30197,19 +31036,22 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttributeWidget: AttributeWidget;
-        readonly containerAsReferenceSelector: ReferenceSelector;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsReferenceSelector(): ReferenceSelector;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
-        message: texts.Text;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
+        get message(): texts.Text;
+        set message(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValidation instance in the SDK and on the server.

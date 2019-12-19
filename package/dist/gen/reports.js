@@ -670,6 +670,18 @@ var reports;
         }
         /**
          * Creates and returns a new BasicReport instance in the SDK and on the server.
+         * The new BasicReport will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, BasicReport, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new BasicReport instance in the SDK and on the server.
          * The new BasicReport will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -1588,6 +1600,18 @@ var reports;
         }
         /**
          * Creates and returns a new ReportButton instance in the SDK and on the server.
+         * The new ReportButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReportButton, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ReportButton instance in the SDK and on the server.
          * The new ReportButton will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -2395,6 +2419,18 @@ var reports;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widget", false);
+        }
+        /**
+         * Creates and returns a new ReportChart instance in the SDK and on the server.
+         * The new ReportChart will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReportChart, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new ReportChart instance in the SDK and on the server.
@@ -3448,6 +3484,18 @@ var reports;
         }
         /**
          * Creates and returns a new ReportDateRangeSelector instance in the SDK and on the server.
+         * The new ReportDateRangeSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new ReportDateRangeSelector instance in the SDK and on the server.
          * The new ReportDateRangeSelector will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -4218,6 +4266,18 @@ var reports;
         static createInMasterDetailRegionUnderWidget(container) {
             internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.1.0", end: "7.14.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widget", false);
+        }
+        /**
+         * Creates and returns a new ReportDropDown instance in the SDK and on the server.
+         * The new ReportDropDown will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ReportDropDown, "sidebarWidgets", true);
         }
         /**
          * Creates and returns a new ReportDropDown instance in the SDK and on the server.

@@ -22,17 +22,20 @@ export declare namespace importmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.16.0: introduced
          */
-        parameterType: datatypes.DataType;
-        useSubtransactionsForMicroflows: boolean;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        get useSubtransactionsForMicroflows(): boolean;
+        set useSubtransactionsForMicroflows(newValue: boolean);
         /**
          * In version 7.16.0: deleted
          */
-        parameter: domainmodels.IEntity | null;
-        readonly parameterQualifiedName: string | null;
+        get parameter(): domainmodels.IEntity | null;
+        set parameter(newValue: domainmodels.IEntity | null);
+        get parameterQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ImportMapping unit in the SDK and on the server.
@@ -47,8 +50,8 @@ export declare namespace importmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMappingDocument: mappings.MappingDocument;
-        readonly containerAsObjectMappingElement: mappings.ObjectMappingElement;
+        get containerAsMappingDocument(): mappings.MappingDocument;
+        get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportObjectMappingElement instance in the SDK and on the server.
@@ -76,7 +79,7 @@ export declare namespace importmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsObjectMappingElement: mappings.ObjectMappingElement;
+        get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportValueMappingElement instance in the SDK and on the server.

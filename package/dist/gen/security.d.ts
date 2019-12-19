@@ -15,8 +15,8 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
-        readonly accessRules: internal.IList<domainmodels.AccessRule>;
+        get containerAsProjectSecurity(): ProjectSecurity;
+        get accessRules(): internal.IList<domainmodels.AccessRule>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -26,13 +26,16 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
-        userName: string;
-        password: string;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        readonly userRoles: internal.IList<IUserRole>;
-        readonly userRolesQualifiedNames: string[];
+        get containerAsProjectSecurity(): ProjectSecurity;
+        get userName(): string;
+        set userName(newValue: string);
+        get password(): string;
+        set password(newValue: string);
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get userRoles(): internal.IList<IUserRole>;
+        get userRolesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DemoUser instance in the SDK and on the server.
@@ -51,7 +54,7 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
+        get containerAsProjectSecurity(): ProjectSecurity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FileDocumentAccessRuleContainer instance in the SDK and on the server.
@@ -70,7 +73,7 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
+        get containerAsProjectSecurity(): ProjectSecurity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImageAccessRuleContainer instance in the SDK and on the server.
@@ -103,9 +106,11 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsModuleSecurity: ModuleSecurity;
-        name: string;
-        description: string;
+        get containerAsModuleSecurity(): ModuleSecurity;
+        get name(): string;
+        set name(newValue: string);
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ModuleRole instance in the SDK and on the server.
@@ -119,7 +124,7 @@ export declare namespace security {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ModuleRole;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
@@ -139,8 +144,8 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsModule: projects.Module;
-        readonly moduleRoles: internal.IList<ModuleRole>;
+        get containerAsModule(): projects.Module;
+        get moduleRoles(): internal.IList<ModuleRole>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IModule);
         /**
          * Creates a new ModuleSecurity unit in the SDK and on the server.
@@ -155,11 +160,15 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
-        minimumLength: number;
-        requireMixedCase: boolean;
-        requireSymbol: boolean;
-        requireDigit: boolean;
+        get containerAsProjectSecurity(): ProjectSecurity;
+        get minimumLength(): number;
+        set minimumLength(newValue: number);
+        get requireMixedCase(): boolean;
+        set requireMixedCase(newValue: boolean);
+        get requireSymbol(): boolean;
+        set requireSymbol(newValue: boolean);
+        get requireDigit(): boolean;
+        set requireDigit(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PasswordPolicySettings instance in the SDK and on the server.
@@ -192,31 +201,43 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: projects.Project;
-        securityLevel: SecurityLevel;
-        checkSecurity: boolean;
-        readonly userRoles: internal.IList<UserRole>;
-        adminUserName: string;
-        adminPassword: string;
-        adminUserRoleName: string;
-        enableDemoUsers: boolean;
-        readonly demoUsers: internal.IList<DemoUser>;
-        enableGuestAccess: boolean;
-        guestUserRoleName: string;
+        get containerAsProject(): projects.Project;
+        get securityLevel(): SecurityLevel;
+        set securityLevel(newValue: SecurityLevel);
+        get checkSecurity(): boolean;
+        set checkSecurity(newValue: boolean);
+        get userRoles(): internal.IList<UserRole>;
+        get adminUserName(): string;
+        set adminUserName(newValue: string);
+        get adminPassword(): string;
+        set adminPassword(newValue: string);
+        get adminUserRoleName(): string;
+        set adminUserRoleName(newValue: string);
+        get enableDemoUsers(): boolean;
+        set enableDemoUsers(newValue: boolean);
+        get demoUsers(): internal.IList<DemoUser>;
+        get enableGuestAccess(): boolean;
+        set enableGuestAccess(newValue: boolean);
+        get guestUserRoleName(): string;
+        set guestUserRoleName(newValue: string);
         /**
          * In version 8.0.0: deleted
          */
-        signInMicroflow: microflows.IMicroflow | null;
-        readonly signInMicroflowQualifiedName: string | null;
-        passwordPolicySettings: PasswordPolicySettings;
+        get signInMicroflow(): microflows.IMicroflow | null;
+        set signInMicroflow(newValue: microflows.IMicroflow | null);
+        get signInMicroflowQualifiedName(): string | null;
+        get passwordPolicySettings(): PasswordPolicySettings;
+        set passwordPolicySettings(newValue: PasswordPolicySettings);
         /**
          * In version 6.0.0: deprecated
          */
-        fileDocumentAccess: FileDocumentAccessRuleContainer;
+        get fileDocumentAccess(): FileDocumentAccessRuleContainer;
+        set fileDocumentAccess(newValue: FileDocumentAccessRuleContainer);
         /**
          * In version 6.0.0: deprecated
          */
-        imageAccess: ImageAccessRuleContainer;
+        get imageAccess(): ImageAccessRuleContainer;
+        set imageAccess(newValue: ImageAccessRuleContainer);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
         /**
          * Creates a new ProjectSecurity unit in the SDK and on the server.
@@ -242,17 +263,23 @@ export declare namespace security {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectSecurity: ProjectSecurity;
-        guid: string;
-        name: string;
-        description: string;
-        readonly moduleRoles: internal.IList<IModuleRole>;
-        readonly moduleRolesQualifiedNames: string[];
-        manageAllRoles: boolean;
-        readonly manageableRoles: internal.IList<IUserRole>;
-        readonly manageableRolesQualifiedNames: string[];
-        manageUsersWithoutRoles: boolean;
-        checkSecurity: boolean;
+        get containerAsProjectSecurity(): ProjectSecurity;
+        get guid(): string;
+        set guid(newValue: string);
+        get name(): string;
+        set name(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get moduleRoles(): internal.IList<IModuleRole>;
+        get moduleRolesQualifiedNames(): string[];
+        get manageAllRoles(): boolean;
+        set manageAllRoles(newValue: boolean);
+        get manageableRoles(): internal.IList<IUserRole>;
+        get manageableRolesQualifiedNames(): string[];
+        get manageUsersWithoutRoles(): boolean;
+        set manageUsersWithoutRoles(newValue: boolean);
+        get checkSecurity(): boolean;
+        set checkSecurity(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UserRole instance in the SDK and on the server.
@@ -266,7 +293,7 @@ export declare namespace security {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): UserRole;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
 }
 import { domainmodels } from "./domainmodels";

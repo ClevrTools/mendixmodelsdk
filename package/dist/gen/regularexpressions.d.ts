@@ -22,8 +22,9 @@ export declare namespace regularexpressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        regEx: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get regEx(): string;
+        set regEx(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new RegularExpression unit in the SDK and on the server.

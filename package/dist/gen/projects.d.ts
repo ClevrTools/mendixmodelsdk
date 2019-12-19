@@ -16,8 +16,8 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: FolderBase;
-        readonly containerAsModule: Module;
+        get containerAsFolderBase(): FolderBase;
+        get containerAsModule(): Module;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase | IModule);
     }
     interface IDocument extends IModuleDocument, internal.IByNameReferrable {
@@ -32,12 +32,15 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: FolderBase;
-        name: string;
-        documentation: string;
-        excluded: boolean;
+        get containerAsFolderBase(): FolderBase;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get excluded(): boolean;
+        set excluded(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     interface IFolderBase extends internal.IStructuralUnit {
         readonly model: IModel;
@@ -50,10 +53,10 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: FolderBase;
-        readonly containerAsProject: Project;
-        readonly folders: internal.IList<IFolder>;
-        readonly documents: internal.IList<IDocument>;
+        get containerAsFolderBase(): FolderBase;
+        get containerAsProject(): Project;
+        get folders(): internal.IList<IFolder>;
+        get documents(): internal.IList<IDocument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase | IProject);
     }
     /**
@@ -71,8 +74,9 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: FolderBase;
-        name: string;
+        get containerAsFolderBase(): FolderBase;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase);
         /**
          * Creates a new Folder unit in the SDK and on the server.
@@ -103,6 +107,10 @@ export declare namespace projects {
          */
         moduleSecurity: security.IModuleSecurity;
         fromAppStore: boolean;
+        /**
+         * In version 8.5.0: introduced
+         */
+        isReusableComponent: boolean;
         appStoreGuid: string;
         appStoreVersionGuid: string;
         appStoreVersion: string;
@@ -114,21 +122,34 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: Project;
+        get containerAsProject(): Project;
         /**
          * The index of where this Module appears in the project.
          * This property is <em>required</em>, and of type double.
          * Also, its value needs to be unique among its siblings (meaning, in code: <tt>containerAsProject.modules</tt>) in the project.
          * In other words: <tt>containerAsProject.modules.map(m => m.sortedIndex)</tt> (TS syntax) needs to be a list with unique values.
          */
-        sortIndex: number;
-        name: string;
-        domainModel: domainmodels.IDomainModel;
-        moduleSecurity: security.IModuleSecurity;
-        fromAppStore: boolean;
-        appStoreGuid: string;
-        appStoreVersionGuid: string;
-        appStoreVersion: string;
+        get sortIndex(): number;
+        set sortIndex(newValue: number);
+        get name(): string;
+        set name(newValue: string);
+        get domainModel(): domainmodels.IDomainModel;
+        set domainModel(newValue: domainmodels.IDomainModel);
+        get moduleSecurity(): security.IModuleSecurity;
+        set moduleSecurity(newValue: security.IModuleSecurity);
+        get fromAppStore(): boolean;
+        set fromAppStore(newValue: boolean);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get isReusableComponent(): boolean;
+        set isReusableComponent(newValue: boolean);
+        get appStoreGuid(): string;
+        set appStoreGuid(newValue: string);
+        get appStoreVersionGuid(): string;
+        set appStoreVersionGuid(newValue: string);
+        get appStoreVersion(): string;
+        set appStoreVersion(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
         /**
          * Creates a new Module unit in the SDK and on the server.
@@ -140,8 +161,9 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProjectConversion: ProjectConversion;
-        name: string;
+        get containerAsProjectConversion(): ProjectConversion;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OneTimeConversionMarker instance in the SDK and on the server.
@@ -176,10 +198,12 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly projectDocuments: internal.IList<IProjectDocument>;
-        readonly modules: internal.IList<IModule>;
-        projectConversion: IProjectConversion;
-        isSystemProject: boolean;
+        get projectDocuments(): internal.IList<IProjectDocument>;
+        get modules(): internal.IList<IModule>;
+        get projectConversion(): IProjectConversion;
+        set projectConversion(newValue: IProjectConversion);
+        get isSystemProject(): boolean;
+        set isSystemProject(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: internal.IStructuralUnit);
     }
     interface IProjectConversion extends internal.IModelUnit {
@@ -193,8 +217,8 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: Project;
-        readonly markers: internal.IList<OneTimeConversionMarker>;
+        get containerAsProject(): Project;
+        get markers(): internal.IList<OneTimeConversionMarker>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
         /**
          * Creates a new ProjectConversion unit in the SDK and on the server.
@@ -219,7 +243,7 @@ export declare namespace projects {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: Project;
+        get containerAsProject(): Project;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
     }
 }

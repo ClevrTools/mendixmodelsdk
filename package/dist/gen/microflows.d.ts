@@ -137,16 +137,18 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        relativeMiddlePoint: common.IPoint;
-        size: common.ISize;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get relativeMiddlePoint(): common.IPoint;
+        set relativeMiddlePoint(newValue: common.IPoint);
+        get size(): common.ISize;
+        set size(newValue: common.ISize);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class Activity extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -156,12 +158,17 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        action: MicroflowAction | null;
-        caption: string;
-        autoGenerateCaption: boolean;
-        backgroundColor: ActionActivityColor;
-        documentation: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get action(): MicroflowAction | null;
+        set action(newValue: MicroflowAction | null);
+        get caption(): string;
+        set caption(newValue: string);
+        get autoGenerateCaption(): boolean;
+        set autoGenerateCaption(newValue: boolean);
+        get backgroundColor(): ActionActivityColor;
+        set backgroundColor(newValue: ActionActivityColor);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ActionActivity instance in the SDK and on the server.
@@ -180,22 +187,23 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExportXmlAction: ExportXmlAction;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
+        get containerAsExportXmlAction(): ExportXmlAction;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class AdvancedRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        readonly parameterMappings: internal.IList<WebServiceOperationAdvancedParameterMapping>;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get parameterMappings(): internal.IList<WebServiceOperationAdvancedParameterMapping>;
         /**
          * In version 6.7.0: introduced
          */
-        nullValueOption: NullValueOption;
+        get nullValueOption(): NullValueOption;
+        set nullValueOption(newValue: NullValueOption);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AdvancedRequestHandling instance in the SDK and on the server.
@@ -229,8 +237,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        errorHandlingType: ErrorHandlingType;
+        get containerAsActionActivity(): ActionActivity;
+        get errorHandlingType(): ErrorHandlingType;
+        set errorHandlingType(newValue: ErrorHandlingType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -240,12 +249,16 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        inputListVariableName: string;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        aggregateFunction: AggregateFunctionEnum;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get inputListVariableName(): string;
+        set inputListVariableName(newValue: string);
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get aggregateFunction(): AggregateFunctionEnum;
+        set aggregateFunction(newValue: AggregateFunctionEnum);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AggregateListAction instance in the SDK and on the server.
@@ -267,8 +280,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        caption: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get caption(): string;
+        set caption(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
@@ -287,13 +301,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowBase: MicroflowBase;
-        origin: MicroflowObject;
-        destination: MicroflowObject;
-        originConnectionIndex: number;
-        destinationConnectionIndex: number;
-        originBezierVector: common.ISize;
-        destinationBezierVector: common.ISize;
+        get containerAsMicroflowBase(): MicroflowBase;
+        get origin(): MicroflowObject;
+        set origin(newValue: MicroflowObject);
+        get destination(): MicroflowObject;
+        set destination(newValue: MicroflowObject);
+        get originConnectionIndex(): number;
+        set originConnectionIndex(newValue: number);
+        get destinationConnectionIndex(): number;
+        set destinationConnectionIndex(newValue: number);
+        get originBezierVector(): common.ISize;
+        set originBezierVector(newValue: common.ISize);
+        get destinationBezierVector(): common.ISize;
+        set destinationBezierVector(newValue: common.ISize);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -303,7 +323,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowBase: MicroflowBase;
+        get containerAsMicroflowBase(): MicroflowBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AnnotationFlow instance in the SDK and on the server.
@@ -322,12 +342,15 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        appServiceAction: appservices.IAppServiceAction | null;
-        readonly appServiceActionQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<AppServiceCallParameterMapping>;
-        useVariable: boolean;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get appServiceAction(): appservices.IAppServiceAction | null;
+        set appServiceAction(newValue: appservices.IAppServiceAction | null);
+        get appServiceActionQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<AppServiceCallParameterMapping>;
+        get useVariable(): boolean;
+        set useVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AppServiceCallAction instance in the SDK and on the server.
@@ -346,19 +369,22 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAppServiceCallAction: AppServiceCallAction;
-        parameter: appservices.IAppServiceActionParameter | null;
-        readonly parameterQualifiedName: string | null;
+        get containerAsAppServiceCallAction(): AppServiceCallAction;
+        get parameter(): appservices.IAppServiceActionParameter | null;
+        set parameter(newValue: appservices.IAppServiceActionParameter | null);
+        get parameterQualifiedName(): string | null;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AppServiceCallParameterMapping instance in the SDK and on the server.
@@ -377,17 +403,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRetrieveAction: RetrieveAction;
+        get containerAsRetrieveAction(): RetrieveAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class AssociationRetrieveSource extends RetrieveSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRetrieveAction: RetrieveAction;
-        startVariableName: string;
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
+        get containerAsRetrieveAction(): RetrieveAction;
+        get startVariableName(): string;
+        set startVariableName(newValue: string);
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AssociationRetrieveSource instance in the SDK and on the server.
@@ -409,8 +437,8 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -420,8 +448,8 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -431,16 +459,18 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicCodeActionParameterValue instance in the SDK and on the server.
@@ -475,7 +505,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -486,17 +516,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicJavaActionParameterValue instance in the SDK and on the server.
@@ -518,16 +550,18 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
-        listVariableName: string;
+        get containerAsListOperationAction(): ListOperationAction;
+        get listVariableName(): string;
+        set listVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class BinaryListOperation extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
-        secondListOrObjectVariableName: string;
+        get containerAsListOperationAction(): ListOperationAction;
+        get secondListOrObjectVariableName(): string;
+        set secondListOrObjectVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -537,18 +571,20 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BinaryRequestHandling instance in the SDK and on the server.
@@ -591,7 +627,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BreakEvent instance in the SDK and on the server.
@@ -610,7 +646,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSequenceFlow: SequenceFlow;
+        get containerAsSequenceFlow(): SequenceFlow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -620,8 +656,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CastAction instance in the SDK and on the server.
@@ -643,19 +680,23 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        changeVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get changeVariableName(): string;
+        set changeVariableName(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        value: string;
+        get value(): string;
+        set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        valueModel: expressions.Expression;
-        type: ChangeListActionType;
+        get valueModel(): expressions.Expression;
+        set valueModel(newValue: expressions.Expression);
+        get type(): ChangeListActionType;
+        set type(newValue: ChangeListActionType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ChangeListAction instance in the SDK and on the server.
@@ -674,10 +715,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        readonly items: internal.IList<MemberChange>;
-        refreshInClient: boolean;
-        commit: CommitEnum;
+        get containerAsActionActivity(): ActionActivity;
+        get items(): internal.IList<MemberChange>;
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
+        get commit(): CommitEnum;
+        set commit(newValue: CommitEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -687,8 +730,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        changeVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get changeVariableName(): string;
+        set changeVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ChangeObjectAction instance in the SDK and on the server.
@@ -710,18 +754,21 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        changeVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get changeVariableName(): string;
+        set changeVariableName(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        value: string;
+        get value(): string;
+        set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        valueModel: expressions.Expression;
+        get valueModel(): expressions.Expression;
+        set valueModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ChangeVariableAction instance in the SDK and on the server.
@@ -743,7 +790,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
+        get containerAsActionActivity(): ActionActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -762,8 +809,8 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionCallAction: JavaActionCallAction;
-        readonly containerAsJavaScriptActionCallAction: JavaScriptActionCallAction;
+        get containerAsJavaActionCallAction(): JavaActionCallAction;
+        get containerAsJavaScriptActionCallAction(): JavaScriptActionCallAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -773,10 +820,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        withEvents: boolean;
-        commitVariableName: string;
-        refreshInClient: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get withEvents(): boolean;
+        set withEvents(newValue: boolean);
+        get commitVariableName(): string;
+        set commitVariableName(newValue: string);
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CommitAction instance in the SDK and on the server.
@@ -795,17 +845,18 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDatabaseRetrieveSource: DatabaseRetrieveSource;
-        readonly containerAsImportMappingCall: ImportMappingCall;
+        get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
+        get containerAsImportMappingCall(): ImportMappingCall;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class ConstantRange extends Range {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDatabaseRetrieveSource: DatabaseRetrieveSource;
-        readonly containerAsImportMappingCall: ImportMappingCall;
-        singleObject: boolean;
+        get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
+        get containerAsImportMappingCall(): ImportMappingCall;
+        get singleObject(): boolean;
+        set singleObject(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConstantRange instance in the SDK and on the server.
@@ -830,7 +881,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Contains instance in the SDK and on the server.
@@ -852,7 +903,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ContinueEvent instance in the SDK and on the server.
@@ -874,10 +925,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateListAction instance in the SDK and on the server.
@@ -899,10 +952,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateObjectAction instance in the SDK and on the server.
@@ -924,28 +979,33 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        variableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get variableName(): string;
+        set variableName(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        variableDataType: string;
+        get variableDataType(): string;
+        set variableDataType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        variableType: datatypes.DataType;
+        get variableType(): datatypes.DataType;
+        set variableType(newValue: datatypes.DataType);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        initialValue: string;
+        get initialValue(): string;
+        set initialValue(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        initialValueModel: expressions.Expression;
+        get initialValueModel(): expressions.Expression;
+        set initialValueModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateVariableAction instance in the SDK and on the server.
@@ -964,28 +1024,32 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDatabaseRetrieveSource: DatabaseRetrieveSource;
-        readonly containerAsImportMappingCall: ImportMappingCall;
+        get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
+        get containerAsImportMappingCall(): ImportMappingCall;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        limitExpression: string;
+        get limitExpression(): string;
+        set limitExpression(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        offsetExpression: string;
+        get offsetExpression(): string;
+        set offsetExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        limitExpressionModel: expressions.Expression;
+        get limitExpressionModel(): expressions.Expression;
+        set limitExpressionModel(newValue: expressions.Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        offsetExpressionModel: expressions.Expression;
+        get offsetExpressionModel(): expressions.Expression;
+        set offsetExpressionModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CustomRange instance in the SDK and on the server.
@@ -1010,9 +1074,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        template: StringTemplate;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get template(): StringTemplate;
+        set template(newValue: StringTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CustomRequestHandling instance in the SDK and on the server.
@@ -1046,15 +1111,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRetrieveAction: RetrieveAction;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        range: Range;
+        get containerAsRetrieveAction(): RetrieveAction;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get range(): Range;
+        set range(newValue: Range);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
-        sortItemList: SortItemList;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        get sortItemList(): SortItemList;
+        set sortItemList(newValue: SortItemList);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatabaseRetrieveSource instance in the SDK and on the server.
@@ -1076,9 +1145,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        deleteVariableName: string;
-        refreshInClient: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get deleteVariableName(): string;
+        set deleteVariableName(newValue: string);
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DeleteAction instance in the SDK and on the server.
@@ -1097,18 +1168,21 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGenerateDocumentAction: GenerateDocumentAction;
-        widgetName: string;
+        get containerAsGenerateDocumentAction(): GenerateDocumentAction;
+        get widgetName(): string;
+        set widgetName(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DocumentTemplateParameterMapping instance in the SDK and on the server.
@@ -1130,9 +1204,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        fileDocumentVariableName: string;
-        showFileInBrowser: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get fileDocumentVariableName(): string;
+        set fileDocumentVariableName(newValue: string);
+        get showFileInBrowser(): boolean;
+        set showFileInBrowser(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DownloadFileAction instance in the SDK and on the server.
@@ -1154,18 +1230,21 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        returnValue: string;
+        get returnValue(): string;
+        set returnValue(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        returnValueModel: expressions.Expression;
-        documentation: string;
+        get returnValueModel(): expressions.Expression;
+        set returnValueModel(newValue: expressions.Expression);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EndEvent instance in the SDK and on the server.
@@ -1187,10 +1266,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityTypeCodeActionParameterValue instance in the SDK and on the server.
@@ -1225,9 +1305,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityTypeJavaActionParameterValue instance in the SDK and on the server.
@@ -1249,8 +1330,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSequenceFlow: SequenceFlow;
-        value: string;
+        get containerAsSequenceFlow(): SequenceFlow;
+        get value(): string;
+        set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationCase instance in the SDK and on the server.
@@ -1272,7 +1354,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ErrorEvent instance in the SDK and on the server.
@@ -1294,7 +1376,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExclusiveMerge instance in the SDK and on the server.
@@ -1316,11 +1398,15 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        splitCondition: SplitCondition;
-        caption: string;
-        errorHandlingType: ErrorHandlingType;
-        documentation: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get splitCondition(): SplitCondition;
+        set splitCondition(newValue: SplitCondition);
+        get caption(): string;
+        set caption(newValue: string);
+        get errorHandlingType(): ErrorHandlingType;
+        set errorHandlingType(newValue: ErrorHandlingType);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExclusiveSplit instance in the SDK and on the server.
@@ -1343,9 +1429,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        exportMapping: exportmappings.IExportMapping | null;
-        readonly exportMappingQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get exportMapping(): exportmappings.IExportMapping | null;
+        set exportMapping(newValue: exportmappings.IExportMapping | null);
+        get exportMappingQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportMappingJavaActionParameterValue instance in the SDK and on the server.
@@ -1370,10 +1457,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
-        exportMapping: exportmappings.IExportMapping | null;
-        readonly exportMappingQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get exportMapping(): exportmappings.IExportMapping | null;
+        set exportMapping(newValue: exportmappings.IExportMapping | null);
+        get exportMappingQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportMappingParameterValue instance in the SDK and on the server.
@@ -1407,22 +1495,27 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
+        get containerAsActionActivity(): ActionActivity;
         /**
          * In version 7.6.0: deleted
          */
-        mapping: exportmappings.IExportMapping | null;
-        readonly mappingQualifiedName: string | null;
+        get mapping(): exportmappings.IExportMapping | null;
+        set mapping(newValue: exportmappings.IExportMapping | null);
+        get mappingQualifiedName(): string | null;
         /**
          * In version 7.6.0: deleted
          */
-        mappingArgumentVariableName: string;
+        get mappingArgumentVariableName(): string;
+        set mappingArgumentVariableName(newValue: string);
         /**
          * In version 7.6.0: introduced
          */
-        resultHandling: MappingRequestHandling;
-        outputMethod: OutputMethod;
-        isValidationRequired: boolean;
+        get resultHandling(): MappingRequestHandling;
+        set resultHandling(newValue: MappingRequestHandling);
+        get outputMethod(): OutputMethod;
+        set outputMethod(newValue: OutputMethod);
+        get isValidationRequired(): boolean;
+        set isValidationRequired(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportXmlAction instance in the SDK and on the server.
@@ -1441,24 +1534,26 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExclusiveSplit: ExclusiveSplit;
+        get containerAsExclusiveSplit(): ExclusiveSplit;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class ExpressionSplitCondition extends SplitCondition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExclusiveSplit: ExclusiveSplit;
+        get containerAsExclusiveSplit(): ExclusiveSplit;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExpressionSplitCondition instance in the SDK and on the server.
@@ -1477,15 +1572,16 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExportXmlAction: ExportXmlAction;
+        get containerAsExportXmlAction(): ExportXmlAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class FileDocumentExport extends OutputMethod {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExportXmlAction: ExportXmlAction;
-        targetDocumentVariableName: string;
+        get containerAsExportXmlAction(): ExportXmlAction;
+        get targetDocumentVariableName(): string;
+        set targetDocumentVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FileDocumentExport instance in the SDK and on the server.
@@ -1504,31 +1600,35 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
         /**
          * In version 7.0.0: introduced
          */
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class Filter extends InspectAttribute {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Filter instance in the SDK and on the server.
@@ -1547,7 +1647,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Find instance in the SDK and on the server.
@@ -1569,16 +1669,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFormDataRequestHandling: FormDataRequestHandling;
-        key: string;
+        get containerAsFormDataRequestHandling(): FormDataRequestHandling;
+        get key(): string;
+        set key(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        value: string;
+        get value(): string;
+        set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        valueModel: expressions.Expression;
+        get valueModel(): expressions.Expression;
+        set valueModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FormDataPart instance in the SDK and on the server.
@@ -1603,9 +1706,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        readonly parts: internal.IList<FormDataPart>;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get parts(): internal.IList<FormDataPart>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FormDataRequestHandling instance in the SDK and on the server.
@@ -1648,58 +1751,75 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        fileVariableName: string;
-        languageVariableName: string;
-        documentType: TargetDocumentType;
-        languageSetting: LanguageSettingType;
-        documentTemplate: documenttemplates.IDocumentTemplate | null;
-        readonly documentTemplateQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<DocumentTemplateParameterMapping>;
-        overrideTopMargin: boolean;
-        overrideBottomMargin: boolean;
-        overrideLeftMargin: boolean;
-        overrideRightMargin: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get fileVariableName(): string;
+        set fileVariableName(newValue: string);
+        get languageVariableName(): string;
+        set languageVariableName(newValue: string);
+        get documentType(): TargetDocumentType;
+        set documentType(newValue: TargetDocumentType);
+        get languageSetting(): LanguageSettingType;
+        set languageSetting(newValue: LanguageSettingType);
+        get documentTemplate(): documenttemplates.IDocumentTemplate | null;
+        set documentTemplate(newValue: documenttemplates.IDocumentTemplate | null);
+        get documentTemplateQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<DocumentTemplateParameterMapping>;
+        get overrideTopMargin(): boolean;
+        set overrideTopMargin(newValue: boolean);
+        get overrideBottomMargin(): boolean;
+        set overrideBottomMargin(newValue: boolean);
+        get overrideLeftMargin(): boolean;
+        set overrideLeftMargin(newValue: boolean);
+        get overrideRightMargin(): boolean;
+        set overrideRightMargin(newValue: boolean);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        marginLeftInInch: string;
+        get marginLeftInInch(): string;
+        set marginLeftInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        marginLeftInInchModel: expressions.Expression;
+        get marginLeftInInchModel(): expressions.Expression;
+        set marginLeftInInchModel(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        marginRightInInch: string;
+        get marginRightInInch(): string;
+        set marginRightInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        marginRightInInchModel: expressions.Expression;
+        get marginRightInInchModel(): expressions.Expression;
+        set marginRightInInchModel(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        marginTopInInch: string;
+        get marginTopInInch(): string;
+        set marginTopInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        marginTopInInchModel: expressions.Expression;
+        get marginTopInInchModel(): expressions.Expression;
+        set marginTopInInchModel(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        marginBottomInInch: string;
+        get marginBottomInInch(): string;
+        set marginBottomInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        marginBottomInInchModel: expressions.Expression;
+        get marginBottomInInchModel(): expressions.Expression;
+        set marginBottomInInchModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GenerateDocumentAction instance in the SDK and on the server.
@@ -1718,7 +1838,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Head instance in the SDK and on the server.
@@ -1737,55 +1857,66 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        readonly containerAsConsumedODataService: rest.ConsumedODataService;
-        overrideLocation: boolean;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get overrideLocation(): boolean;
+        set overrideLocation(newValue: boolean);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        customLocation: string;
+        get customLocation(): string;
+        set customLocation(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        customLocationModel: expressions.Expression;
+        get customLocationModel(): expressions.Expression;
+        set customLocationModel(newValue: expressions.Expression);
         /**
          * In version 6.6.0: introduced
          */
-        customLocationTemplate: StringTemplate | null;
-        useAuthentication: boolean;
+        get customLocationTemplate(): StringTemplate | null;
+        set customLocationTemplate(newValue: StringTemplate | null);
+        get useAuthentication(): boolean;
+        set useAuthentication(newValue: boolean);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        httpAuthenticationUserName: string;
+        get httpAuthenticationUserName(): string;
+        set httpAuthenticationUserName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        username: expressions.Expression;
+        get username(): expressions.Expression;
+        set username(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        authenticationPassword: string;
+        get authenticationPassword(): string;
+        set authenticationPassword(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        password: expressions.Expression;
-        readonly headerEntries: internal.IList<HttpHeaderEntry>;
+        get password(): expressions.Expression;
+        set password(newValue: expressions.Expression);
+        get headerEntries(): internal.IList<HttpHeaderEntry>;
         /**
          * In version 7.7.0: deleted
          * In version 6.6.0: introduced
          */
-        httpMethod: HttpMethod;
+        get httpMethod(): HttpMethod;
+        set httpMethod(newValue: HttpMethod);
         /**
          * In version 7.7.0: introduced
          */
-        newHttpMethod: services.HttpMethod;
+        get newHttpMethod(): services.HttpMethod;
+        set newHttpMethod(newValue: services.HttpMethod);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
@@ -1831,18 +1962,21 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsHttpConfiguration: HttpConfiguration;
-        key: string;
+        get containerAsHttpConfiguration(): HttpConfiguration;
+        get key(): string;
+        set key(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        value: string;
+        get value(): string;
+        set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        valueModel: expressions.Expression;
+        get valueModel(): expressions.Expression;
+        set valueModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HttpHeaderEntry instance in the SDK and on the server.
@@ -1861,27 +1995,34 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsResultHandling: ResultHandling;
-        mapping: importmappings.IImportMapping | null;
-        readonly mappingQualifiedName: string | null;
+        get containerAsResultHandling(): ResultHandling;
+        get mapping(): importmappings.IImportMapping | null;
+        set mapping(newValue: importmappings.IImportMapping | null);
+        get mappingQualifiedName(): string | null;
         /**
          * In version 7.17.0: introduced
          */
-        objectHandlingBackup: mappings.ObjectHandlingBackupEnum;
+        get objectHandlingBackup(): mappings.ObjectHandlingBackupEnum;
+        set objectHandlingBackup(newValue: mappings.ObjectHandlingBackupEnum);
         /**
          * In version 7.18.0: introduced
          */
-        commit: CommitEnum;
-        mappingArgumentVariableName: string;
-        range: Range;
+        get commit(): CommitEnum;
+        set commit(newValue: CommitEnum);
+        get mappingArgumentVariableName(): string;
+        set mappingArgumentVariableName(newValue: string);
+        get range(): Range;
+        set range(newValue: Range);
         /**
          * In version 7.6.0: introduced
          */
-        contentType: ContentType;
+        get contentType(): ContentType;
+        set contentType(newValue: ContentType);
         /**
          * In version 7.8.0: introduced
          */
-        forceSingleOccurrence: boolean;
+        get forceSingleOccurrence(): boolean;
+        set forceSingleOccurrence(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportMappingCall instance in the SDK and on the server.
@@ -1904,9 +2045,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        importMapping: importmappings.IImportMapping | null;
-        readonly importMappingQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get importMapping(): importmappings.IImportMapping | null;
+        set importMapping(newValue: importmappings.IImportMapping | null);
+        get importMappingQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportMappingJavaActionParameterValue instance in the SDK and on the server.
@@ -1931,10 +2073,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
-        importMapping: importmappings.IImportMapping | null;
-        readonly importMappingQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get importMapping(): importmappings.IImportMapping | null;
+        set importMapping(newValue: importmappings.IImportMapping | null);
+        get importMappingQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportMappingParameterValue instance in the SDK and on the server.
@@ -1968,10 +2111,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        xmlDocumentVariableName: string;
-        resultHandling: ResultHandling;
-        isValidationRequired: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get xmlDocumentVariableName(): string;
+        set xmlDocumentVariableName(newValue: string);
+        get resultHandling(): ResultHandling;
+        set resultHandling(newValue: ResultHandling);
+        get isValidationRequired(): boolean;
+        set isValidationRequired(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportXmlAction instance in the SDK and on the server.
@@ -1990,9 +2136,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSequenceFlow: SequenceFlow;
-        value: domainmodels.IEntity | null;
-        readonly valueQualifiedName: string | null;
+        get containerAsSequenceFlow(): SequenceFlow;
+        get value(): domainmodels.IEntity | null;
+        set value(newValue: domainmodels.IEntity | null);
+        get valueQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new InheritanceCase instance in the SDK and on the server.
@@ -2014,10 +2161,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        splitVariableName: string;
-        caption: string;
-        documentation: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get splitVariableName(): string;
+        set splitVariableName(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new InheritanceSplit instance in the SDK and on the server.
@@ -2036,7 +2186,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Intersect instance in the SDK and on the server.
@@ -2058,15 +2208,18 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        javaAction: javaactions.IJavaAction | null;
-        readonly javaActionQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<JavaActionParameterMapping>;
+        get containerAsActionActivity(): ActionActivity;
+        get javaAction(): javaactions.IJavaAction | null;
+        set javaAction(newValue: javaactions.IJavaAction | null);
+        get javaActionQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<JavaActionParameterMapping>;
         /**
          * In version 7.13.0: introduced
          */
-        useReturnVariable: boolean;
-        outputVariableName: string;
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaActionCallAction instance in the SDK and on the server.
@@ -2085,24 +2238,28 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionCallAction: JavaActionCallAction;
-        parameter: javaactions.IJavaActionParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsJavaActionCallAction(): JavaActionCallAction;
+        get parameter(): javaactions.IJavaActionParameter;
+        set parameter(newValue: javaactions.IJavaActionParameter);
+        get parameterQualifiedName(): string;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
          * In version 6.7.0: deleted
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * In version 7.21.0: deleted
          * In version 6.7.0: introduced
          */
-        value: JavaActionParameterValue;
+        get value(): JavaActionParameterValue;
+        set value(newValue: JavaActionParameterValue);
         /**
          * In version 7.21.0: introduced
          */
-        parameterValue: CodeActionParameterValue;
+        get parameterValue(): CodeActionParameterValue;
+        set parameterValue(newValue: CodeActionParameterValue);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaActionParameterMapping instance in the SDK and on the server.
@@ -2125,12 +2282,15 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        javaScriptAction: javascriptactions.IJavaScriptAction | null;
-        readonly javaScriptActionQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<JavaScriptActionParameterMapping>;
-        useReturnVariable: boolean;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get javaScriptAction(): javascriptactions.IJavaScriptAction | null;
+        set javaScriptAction(newValue: javascriptactions.IJavaScriptAction | null);
+        get javaScriptActionQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<JavaScriptActionParameterMapping>;
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaScriptActionCallAction instance in the SDK and on the server.
@@ -2156,10 +2316,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaScriptActionCallAction: JavaScriptActionCallAction;
-        parameter: javascriptactions.IJavaScriptActionParameter;
-        readonly parameterQualifiedName: string;
-        parameterValue: CodeActionParameterValue;
+        get containerAsJavaScriptActionCallAction(): JavaScriptActionCallAction;
+        get parameter(): javascriptactions.IJavaScriptActionParameter;
+        set parameter(newValue: javascriptactions.IJavaScriptActionParameter);
+        get parameterQualifiedName(): string;
+        get parameterValue(): CodeActionParameterValue;
+        set parameterValue(newValue: CodeActionParameterValue);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaScriptActionParameterMapping instance in the SDK and on the server.
@@ -2181,7 +2343,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListEquals instance in the SDK and on the server.
@@ -2203,9 +2365,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        operation: ListOperation | null;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get operation(): ListOperation | null;
+        set operation(newValue: ListOperation | null);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListOperationAction instance in the SDK and on the server.
@@ -2227,20 +2391,25 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        level: LogLevel;
+        get containerAsActionActivity(): ActionActivity;
+        get level(): LogLevel;
+        set level(newValue: LogLevel);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        node: string;
+        get node(): string;
+        set node(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        nodeModel: expressions.Expression;
-        messageTemplate: StringTemplate;
-        includeLatestStackTrace: boolean;
+        get nodeModel(): expressions.Expression;
+        set nodeModel(newValue: expressions.Expression);
+        get messageTemplate(): StringTemplate;
+        set messageTemplate(newValue: StringTemplate);
+        get includeLatestStackTrace(): boolean;
+        set includeLatestStackTrace(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LogMessageAction instance in the SDK and on the server.
@@ -2262,12 +2431,17 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        objectCollection: MicroflowObjectCollection;
-        iteratedListVariableName: string;
-        loopVariableName: string;
-        errorHandlingType: ErrorHandlingType;
-        documentation: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get objectCollection(): MicroflowObjectCollection;
+        set objectCollection(newValue: MicroflowObjectCollection);
+        get iteratedListVariableName(): string;
+        set iteratedListVariableName(newValue: string);
+        get loopVariableName(): string;
+        set loopVariableName(newValue: string);
+        get errorHandlingType(): ErrorHandlingType;
+        set errorHandlingType(newValue: ErrorHandlingType);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LoopedActivity instance in the SDK and on the server.
@@ -2286,16 +2460,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExportXmlAction: ExportXmlAction;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        mapping: exportmappings.IExportMapping | null;
-        readonly mappingQualifiedName: string | null;
-        mappingArgumentVariableName: string;
+        get containerAsExportXmlAction(): ExportXmlAction;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get mapping(): exportmappings.IExportMapping | null;
+        set mapping(newValue: exportmappings.IExportMapping | null);
+        get mappingQualifiedName(): string | null;
+        get mappingArgumentVariableName(): string;
+        set mappingArgumentVariableName(newValue: string);
         /**
          * In version 7.6.0: introduced
          */
-        contentType: ContentType;
+        get contentType(): ContentType;
+        set contentType(newValue: ContentType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MappingRequestHandling instance in the SDK and on the server.
@@ -2338,22 +2515,27 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsChangeMembersAction: ChangeMembersAction;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
-        type: ChangeActionItemType;
+        get containerAsChangeMembersAction(): ChangeMembersAction;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
+        get type(): ChangeActionItemType;
+        set type(newValue: ChangeActionItemType);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        value: string;
+        get value(): string;
+        set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        valueModel: expressions.Expression;
+        get valueModel(): expressions.Expression;
+        set valueModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MemberChange instance in the SDK and on the server.
@@ -2391,20 +2573,24 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        objectCollection: MicroflowObjectCollection;
-        readonly flows: internal.IList<Flow>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get objectCollection(): MicroflowObjectCollection;
+        set objectCollection(newValue: MicroflowObjectCollection);
+        get flows(): internal.IList<Flow>;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        returnType: string;
+        get returnType(): string;
+        set returnType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        microflowReturnType: datatypes.DataType;
-        markAsUsed: boolean;
+        get microflowReturnType(): datatypes.DataType;
+        set microflowReturnType(newValue: datatypes.DataType);
+        get markAsUsed(): boolean;
+        set markAsUsed(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     interface IServerSideMicroflow extends IMicroflowBase {
@@ -2418,8 +2604,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        applyEntityAccess: boolean;
+        get containerAsFolderBase(): projects.FolderBase;
+        get applyEntityAccess(): boolean;
+        set applyEntityAccess(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
@@ -2448,20 +2635,24 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.23.0: added public
          */
-        readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
-        readonly allowedModuleRolesQualifiedNames: string[];
+        get allowedModuleRoles(): internal.IList<security.IModuleRole>;
+        get allowedModuleRolesQualifiedNames(): string[];
         /**
          * In version 8.0.0: introduced
          */
-        microflowActionInfo: codeactions.MicroflowActionInfo | null;
-        allowConcurrentExecution: boolean;
-        concurrencyErrorMessage: texts.Text;
-        concurrencyErrorMicroflow: IMicroflow | null;
-        readonly concurrencyErrorMicroflowQualifiedName: string | null;
+        get microflowActionInfo(): codeactions.MicroflowActionInfo | null;
+        set microflowActionInfo(newValue: codeactions.MicroflowActionInfo | null);
+        get allowConcurrentExecution(): boolean;
+        set allowConcurrentExecution(newValue: boolean);
+        get concurrencyErrorMessage(): texts.Text;
+        set concurrencyErrorMessage(newValue: texts.Text);
+        get concurrencyErrorMicroflow(): IMicroflow | null;
+        set concurrencyErrorMicroflow(newValue: IMicroflow | null);
+        get concurrencyErrorMicroflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Microflow unit in the SDK and on the server.
@@ -2473,10 +2664,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowCallAction: MicroflowCallAction;
-        microflow: IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<MicroflowCallParameterMapping>;
+        get containerAsMicroflowCallAction(): MicroflowCallAction;
+        get microflow(): IMicroflow | null;
+        set microflow(newValue: IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<MicroflowCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowCall instance in the SDK and on the server.
@@ -2498,10 +2690,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        microflowCall: MicroflowCall;
-        useReturnVariable: boolean;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get microflowCall(): MicroflowCall;
+        set microflowCall(newValue: MicroflowCall);
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowCallAction instance in the SDK and on the server.
@@ -2520,19 +2715,22 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowCall: MicroflowCall;
-        parameter: IMicroflowParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsMicroflowCall(): MicroflowCall;
+        get parameter(): IMicroflowParameter;
+        set parameter(newValue: IMicroflowParameter);
+        get parameterQualifiedName(): string;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
@@ -2555,9 +2753,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        microflow: IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get microflow(): IMicroflow | null;
+        set microflow(newValue: IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowJavaActionParameterValue instance in the SDK and on the server.
@@ -2579,9 +2778,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsLoopedActivity: LoopedActivity;
-        readonly containerAsMicroflowBase: MicroflowBase;
-        readonly objects: internal.IList<MicroflowObject>;
+        get containerAsLoopedActivity(): LoopedActivity;
+        get containerAsMicroflowBase(): MicroflowBase;
+        get objects(): internal.IList<MicroflowObject>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowObjectCollection instance in the SDK and on the server.
@@ -2627,21 +2826,24 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflow: Microflow;
-        readonly containerAsRule: Rule;
-        name: string;
+        get containerAsMicroflow(): Microflow;
+        get containerAsRule(): Rule;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        parameterType: datatypes.DataType;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
@@ -2660,26 +2862,30 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflow: Microflow;
+        get containerAsMicroflow(): Microflow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MicroflowParameterObject extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
-        name: string;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        variableType: datatypes.DataType;
-        documentation: string;
+        get variableType(): datatypes.DataType;
+        set variableType(newValue: datatypes.DataType);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterObject instance in the SDK and on the server.
@@ -2701,10 +2907,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
-        microflow: IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get microflow(): IMicroflow | null;
+        set microflow(newValue: IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterValue instance in the SDK and on the server.
@@ -2759,12 +2966,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.23.0: added public
          */
-        readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
-        readonly allowedModuleRolesQualifiedNames: string[];
+        get allowedModuleRoles(): internal.IList<security.IModuleRole>;
+        get allowedModuleRolesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Nanoflow unit in the SDK and on the server.
@@ -2779,10 +2986,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNanoflowCallAction: NanoflowCallAction;
-        nanoflow: INanoflow | null;
-        readonly nanoflowQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<NanoflowCallParameterMapping>;
+        get containerAsNanoflowCallAction(): NanoflowCallAction;
+        get nanoflow(): INanoflow | null;
+        set nanoflow(newValue: INanoflow | null);
+        get nanoflowQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<NanoflowCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowCall instance in the SDK and on the server.
@@ -2807,10 +3015,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        nanoflowCall: NanoflowCall;
-        useReturnVariable: boolean;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get nanoflowCall(): NanoflowCall;
+        set nanoflowCall(newValue: NanoflowCall);
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowCallAction instance in the SDK and on the server.
@@ -2835,17 +3046,20 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNanoflowCall: NanoflowCall;
-        parameter: INanoflowParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsNanoflowCall(): NanoflowCall;
+        get parameter(): INanoflowParameter;
+        set parameter(newValue: INanoflowParameter);
+        get parameterQualifiedName(): string;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowCallParameterMapping instance in the SDK and on the server.
@@ -2891,7 +3105,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSequenceFlow: SequenceFlow;
+        get containerAsSequenceFlow(): SequenceFlow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoCase instance in the SDK and on the server.
@@ -2913,48 +3127,58 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        usernameExpression: string;
+        get usernameExpression(): string;
+        set usernameExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        usernameExpressionModel: expressions.Expression | null;
+        get usernameExpressionModel(): expressions.Expression | null;
+        set usernameExpressionModel(newValue: expressions.Expression | null);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        passwordExpression: string;
+        get passwordExpression(): string;
+        set passwordExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        passwordExpressionModel: expressions.Expression | null;
+        get passwordExpressionModel(): expressions.Expression | null;
+        set passwordExpressionModel(newValue: expressions.Expression | null);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        hostExpression: string;
+        get hostExpression(): string;
+        set hostExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        hostExpressionModel: expressions.Expression | null;
+        get hostExpressionModel(): expressions.Expression | null;
+        set hostExpressionModel(newValue: expressions.Expression | null);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        portExpression: string;
+        get portExpression(): string;
+        set portExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        portExpressionModel: expressions.Expression | null;
+        get portExpressionModel(): expressions.Expression | null;
+        set portExpressionModel(newValue: expressions.Expression | null);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        useConfigurationExpression: string;
+        get useConfigurationExpression(): string;
+        set useConfigurationExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        useConfigurationExpressionModel: expressions.Expression | null;
+        get useConfigurationExpressionModel(): expressions.Expression | null;
+        set useConfigurationExpressionModel(newValue: expressions.Expression | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ProxyConfiguration instance in the SDK and on the server.
@@ -2988,8 +3212,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        dataVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get dataVariableName(): string;
+        set dataVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PushToClientAction instance in the SDK and on the server.
@@ -3016,51 +3241,63 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        httpConfiguration: HttpConfiguration;
-        requestHandling: RequestHandling;
+        get containerAsActionActivity(): ActionActivity;
+        get httpConfiguration(): HttpConfiguration;
+        set httpConfiguration(newValue: HttpConfiguration);
+        get requestHandling(): RequestHandling;
+        set requestHandling(newValue: RequestHandling);
         /**
          * In version 6.9.0: introduced
          */
-        requestHandlingType: RequestHandlingType;
-        resultHandling: ResultHandling;
+        get requestHandlingType(): RequestHandlingType;
+        set requestHandlingType(newValue: RequestHandlingType);
+        get resultHandling(): ResultHandling;
+        set resultHandling(newValue: ResultHandling);
         /**
          * In version 6.9.0: introduced
          */
-        resultHandlingType: ResultHandlingType;
+        get resultHandlingType(): ResultHandlingType;
+        set resultHandlingType(newValue: ResultHandlingType);
         /**
          * In version 7.0.2: introduced
          */
-        errorResultHandlingType: ErrorResultHandlingType;
+        get errorResultHandlingType(): ErrorResultHandlingType;
+        set errorResultHandlingType(newValue: ErrorResultHandlingType);
         /**
          * In version 7.1.0: introduced
          */
-        useRequestTimeOut: boolean;
+        get useRequestTimeOut(): boolean;
+        set useRequestTimeOut(newValue: boolean);
         /**
          * In version 7.15.0: deleted
          * In version 7.1.0: introduced
          */
-        timeOut: number;
+        get timeOut(): number;
+        set timeOut(newValue: number);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.15.0: introduced
          */
-        timeOutModel: expressions.Expression;
+        get timeOutModel(): expressions.Expression;
+        set timeOutModel(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
          * In version 7.15.0: introduced
          */
-        timeOutExpression: string;
+        get timeOutExpression(): string;
+        set timeOutExpression(newValue: string);
         /**
          * In version 7.15.0: introduced
          */
-        requestProxyType: RequestProxyType;
+        get requestProxyType(): RequestProxyType;
+        set requestProxyType(newValue: RequestProxyType);
         /**
          * In version 7.15.0: introduced
          */
-        proxyConfiguration: ProxyConfiguration | null;
+        get proxyConfiguration(): ProxyConfiguration | null;
+        set proxyConfiguration(newValue: ProxyConfiguration | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RestCallAction instance in the SDK and on the server.
@@ -3082,23 +3319,28 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsImportXmlAction: ImportXmlAction;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        importMappingCall: ImportMappingCall | null;
-        storeInVariable: boolean;
-        outputVariableName: string;
+        get containerAsImportXmlAction(): ImportXmlAction;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get importMappingCall(): ImportMappingCall | null;
+        set importMappingCall(newValue: ImportMappingCall | null);
+        get storeInVariable(): boolean;
+        set storeInVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          * In version 6.10.0: introduced
          */
-        variableDataType: string;
+        get variableDataType(): string;
+        set variableDataType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        variableType: datatypes.DataType;
+        get variableType(): datatypes.DataType;
+        set variableType(newValue: datatypes.DataType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ResultHandling instance in the SDK and on the server.
@@ -3135,9 +3377,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        retrieveSource: RetrieveSource;
-        outputVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get retrieveSource(): RetrieveSource;
+        set retrieveSource(newValue: RetrieveSource);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrieveAction instance in the SDK and on the server.
@@ -3159,9 +3403,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        rollbackVariableName: string;
-        refreshInClient: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get rollbackVariableName(): string;
+        set rollbackVariableName(newValue: string);
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RollbackAction instance in the SDK and on the server.
@@ -3193,7 +3439,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Rule unit in the SDK and on the server.
@@ -3205,10 +3451,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRuleSplitCondition: RuleSplitCondition;
-        rule: IRule | null;
-        readonly ruleQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<RuleCallParameterMapping>;
+        get containerAsRuleSplitCondition(): RuleSplitCondition;
+        get rule(): IRule | null;
+        set rule(newValue: IRule | null);
+        get ruleQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<RuleCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuleCall instance in the SDK and on the server.
@@ -3227,19 +3474,22 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRuleCall: RuleCall;
-        parameter: IRuleParameter;
-        readonly parameterQualifiedName: string;
+        get containerAsRuleCall(): RuleCall;
+        get parameter(): IRuleParameter;
+        set parameter(newValue: IRuleParameter);
+        get parameterQualifiedName(): string;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuleCallParameterMapping instance in the SDK and on the server.
@@ -3271,15 +3521,16 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRule: Rule;
+        get containerAsRule(): Rule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class RuleSplitCondition extends SplitCondition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExclusiveSplit: ExclusiveSplit;
-        ruleCall: RuleCall;
+        get containerAsExclusiveSplit(): ExclusiveSplit;
+        get ruleCall(): RuleCall;
+        set ruleCall(newValue: RuleCall);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuleSplitCondition instance in the SDK and on the server.
@@ -3301,9 +3552,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowBase: MicroflowBase;
-        caseValue: CaseValue;
-        isErrorHandler: boolean;
+        get containerAsMicroflowBase(): MicroflowBase;
+        get caseValue(): CaseValue;
+        set caseValue(newValue: CaseValue);
+        get isErrorHandler(): boolean;
+        set isErrorHandler(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SequenceFlow instance in the SDK and on the server.
@@ -3325,7 +3578,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
+        get containerAsActionActivity(): ActionActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ShowHomePageAction instance in the SDK and on the server.
@@ -3347,10 +3600,13 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        template: TextTemplate;
-        type: ShowMessageType;
-        blocking: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get template(): TextTemplate;
+        set template(newValue: TextTemplate);
+        get type(): ShowMessageType;
+        set type(newValue: ShowMessageType);
+        get blocking(): boolean;
+        set blocking(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ShowMessageAction instance in the SDK and on the server.
@@ -3372,9 +3628,11 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        pageSettings: pages.PageSettings;
-        passedObjectVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get pageSettings(): pages.PageSettings;
+        set pageSettings(newValue: pages.PageSettings);
+        get passedObjectVariableName(): string;
+        set passedObjectVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ShowPageAction instance in the SDK and on the server.
@@ -3393,13 +3651,14 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRestCallAction: RestCallAction;
-        readonly containerAsWebServiceCallAction: WebServiceCallAction;
-        readonly parameterMappings: internal.IList<WebServiceOperationSimpleParameterMapping>;
+        get containerAsRestCallAction(): RestCallAction;
+        get containerAsWebServiceCallAction(): WebServiceCallAction;
+        get parameterMappings(): internal.IList<WebServiceOperationSimpleParameterMapping>;
         /**
          * In version 6.7.0: introduced
          */
-        nullValueOption: NullValueOption;
+        get nullValueOption(): NullValueOption;
+        set nullValueOption(newValue: NullValueOption);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SimpleRequestHandling instance in the SDK and on the server.
@@ -3433,8 +3692,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
-        sortItemList: SortItemList;
+        get containerAsListOperationAction(): ListOperationAction;
+        get sortItemList(): SortItemList;
+        set sortItemList(newValue: SortItemList);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Sort instance in the SDK and on the server.
@@ -3453,18 +3713,21 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSortItemList: SortItemList;
+        get containerAsSortItemList(): SortItemList;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef;
-        sortOrder: SortOrderEnum;
+        get attributeRef(): domainmodels.AttributeRef;
+        set attributeRef(newValue: domainmodels.AttributeRef);
+        get sortOrder(): SortOrderEnum;
+        set sortOrder(newValue: SortOrderEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SortItem instance in the SDK and on the server.
@@ -3483,9 +3746,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDatabaseRetrieveSource: DatabaseRetrieveSource;
-        readonly containerAsSort: Sort;
-        readonly items: internal.IList<SortItem>;
+        get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
+        get containerAsSort(): Sort;
+        get items(): internal.IList<SortItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SortItemList instance in the SDK and on the server.
@@ -3513,7 +3776,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMicroflowObjectCollection: MicroflowObjectCollection;
+        get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StartEvent instance in the SDK and on the server.
@@ -3532,24 +3795,25 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomRequestHandling: CustomRequestHandling;
-        readonly containerAsHttpConfiguration: HttpConfiguration;
-        readonly containerAsLogMessageAction: LogMessageAction;
-        readonly containerAsShowMessageAction: ShowMessageAction;
-        readonly containerAsStringTemplateParameterValue: StringTemplateParameterValue;
-        readonly containerAsValidationFeedbackAction: ValidationFeedbackAction;
-        readonly arguments: internal.IList<TemplateArgument>;
+        get containerAsCustomRequestHandling(): CustomRequestHandling;
+        get containerAsHttpConfiguration(): HttpConfiguration;
+        get containerAsLogMessageAction(): LogMessageAction;
+        get containerAsShowMessageAction(): ShowMessageAction;
+        get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
+        get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get arguments(): internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class StringTemplate extends Template {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomRequestHandling: CustomRequestHandling;
-        readonly containerAsHttpConfiguration: HttpConfiguration;
-        readonly containerAsLogMessageAction: LogMessageAction;
-        readonly containerAsStringTemplateParameterValue: StringTemplateParameterValue;
-        text: string;
+        get containerAsCustomRequestHandling(): CustomRequestHandling;
+        get containerAsHttpConfiguration(): HttpConfiguration;
+        get containerAsLogMessageAction(): LogMessageAction;
+        get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
+        get text(): string;
+        set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
@@ -3589,17 +3853,17 @@ export declare namespace microflows {
         static create(model: IModel): StringTemplate;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.5.0: removed experimental
      * In version 8.4.0: introduced
      */
     class StringTemplateParameterValue extends CodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: JavaScriptActionParameterMapping;
-        template: StringTemplate;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get template(): StringTemplate;
+        set template(newValue: StringTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
@@ -3630,7 +3894,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Subtract instance in the SDK and on the server.
@@ -3654,7 +3918,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
+        get containerAsActionActivity(): ActionActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SynchronizeAction instance in the SDK and on the server.
@@ -3676,7 +3940,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Tail instance in the SDK and on the server.
@@ -3695,17 +3959,19 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTemplate: Template;
+        get containerAsTemplate(): Template;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        expressionModel: expressions.Expression;
+        get expressionModel(): expressions.Expression;
+        set expressionModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TemplateArgument instance in the SDK and on the server.
@@ -3724,9 +3990,10 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsShowMessageAction: ShowMessageAction;
-        readonly containerAsValidationFeedbackAction: ValidationFeedbackAction;
-        text: texts.Text;
+        get containerAsShowMessageAction(): ShowMessageAction;
+        get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get text(): texts.Text;
+        set text(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextTemplate instance in the SDK and on the server.
@@ -3751,7 +4018,7 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsListOperationAction: ListOperationAction;
+        get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Union instance in the SDK and on the server.
@@ -3773,19 +4040,23 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        feedbackTemplate: TextTemplate;
-        objectVariableName: string;
+        get containerAsActionActivity(): ActionActivity;
+        get feedbackTemplate(): TextTemplate;
+        set feedbackTemplate(newValue: TextTemplate);
+        get objectVariableName(): string;
+        set objectVariableName(newValue: string);
         /**
          * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
          */
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
         /**
          * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
          */
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ValidationFeedbackAction instance in the SDK and on the server.
@@ -3804,8 +4075,9 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsExportXmlAction: ExportXmlAction;
-        outputVariableName: string;
+        get containerAsExportXmlAction(): ExportXmlAction;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VariableExport instance in the SDK and on the server.
@@ -3827,45 +4099,60 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsActionActivity: ActionActivity;
-        importedWebService: webservices.IImportedWebService | null;
-        readonly importedWebServiceQualifiedName: string | null;
-        serviceName: string;
-        operationName: string;
-        useRequestTimeOut: boolean;
+        get containerAsActionActivity(): ActionActivity;
+        get importedWebService(): webservices.IImportedWebService | null;
+        set importedWebService(newValue: webservices.IImportedWebService | null);
+        get importedWebServiceQualifiedName(): string | null;
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        get operationName(): string;
+        set operationName(newValue: string);
+        get useRequestTimeOut(): boolean;
+        set useRequestTimeOut(newValue: boolean);
         /**
          * In version 7.15.0: deleted
          */
-        timeOut: number;
+        get timeOut(): number;
+        set timeOut(newValue: number);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.15.0: introduced
          */
-        timeOutModel: expressions.Expression;
+        get timeOutModel(): expressions.Expression;
+        set timeOutModel(newValue: expressions.Expression);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
          * In version 7.15.0: introduced
          */
-        timeOutExpression: string;
+        get timeOutExpression(): string;
+        set timeOutExpression(newValue: string);
         /**
          * In version 6.7.0: deleted
          */
-        sendNullValueChoice: NullValueOption;
-        requestHeaderHandling: RequestHandling;
-        requestBodyHandling: RequestHandling;
-        resultHandling: ResultHandling;
-        httpConfiguration: HttpConfiguration;
-        isValidationRequired: boolean;
+        get sendNullValueChoice(): NullValueOption;
+        set sendNullValueChoice(newValue: NullValueOption);
+        get requestHeaderHandling(): RequestHandling;
+        set requestHeaderHandling(newValue: RequestHandling);
+        get requestBodyHandling(): RequestHandling;
+        set requestBodyHandling(newValue: RequestHandling);
+        get resultHandling(): ResultHandling;
+        set resultHandling(newValue: ResultHandling);
+        get httpConfiguration(): HttpConfiguration;
+        set httpConfiguration(newValue: HttpConfiguration);
+        get isValidationRequired(): boolean;
+        set isValidationRequired(newValue: boolean);
         /**
          * In version 7.15.0: introduced
          */
-        requestProxyType: RequestProxyType;
+        get requestProxyType(): RequestProxyType;
+        set requestProxyType(newValue: RequestProxyType);
         /**
          * In version 7.15.0: introduced
          */
-        proxyConfiguration: ProxyConfiguration | null;
+        get proxyConfiguration(): ProxyConfiguration | null;
+        set proxyConfiguration(newValue: ProxyConfiguration | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebServiceCallAction instance in the SDK and on the server.
@@ -3887,30 +4174,36 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAdvancedRequestHandling: AdvancedRequestHandling;
-        readonly containerAsSimpleRequestHandling: SimpleRequestHandling;
-        isChecked: boolean;
-        parameterName: string;
+        get containerAsAdvancedRequestHandling(): AdvancedRequestHandling;
+        get containerAsSimpleRequestHandling(): SimpleRequestHandling;
+        get isChecked(): boolean;
+        set isChecked(newValue: boolean);
+        get parameterName(): string;
+        set parameterName(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
-        argument: string;
+        get argument(): string;
+        set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.9.0: introduced
          */
-        argumentModel: expressions.Expression;
+        get argumentModel(): expressions.Expression;
+        set argumentModel(newValue: expressions.Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class WebServiceOperationAdvancedParameterMapping extends WebServiceOperationParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAdvancedRequestHandling: AdvancedRequestHandling;
-        mapping: exportmappings.IExportMapping | null;
-        readonly mappingQualifiedName: string | null;
-        mappingArgumentVariableName: string;
+        get containerAsAdvancedRequestHandling(): AdvancedRequestHandling;
+        get mapping(): exportmappings.IExportMapping | null;
+        set mapping(newValue: exportmappings.IExportMapping | null);
+        get mappingQualifiedName(): string | null;
+        get mappingArgumentVariableName(): string;
+        set mappingArgumentVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebServiceOperationAdvancedParameterMapping instance in the SDK and on the server.
@@ -3929,11 +4222,12 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsSimpleRequestHandling: SimpleRequestHandling;
+        get containerAsSimpleRequestHandling(): SimpleRequestHandling;
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          */
-        parameterPath: string;
+        get parameterPath(): string;
+        set parameterPath(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebServiceOperationSimpleParameterMapping instance in the SDK and on the server.

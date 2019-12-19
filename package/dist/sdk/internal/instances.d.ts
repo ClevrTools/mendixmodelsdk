@@ -26,7 +26,7 @@ export declare abstract class AbstractEnum {
     protected qualifiedTsTypeName: string;
     versionInfo: versions.LifeCycle;
     constructor(_name: string, lifeCycleInfo: versions.ILifeCycle);
-    readonly name: string;
+    get name(): string;
     toString(): string;
     qualifiedTsLiteralName(): string;
     checkEnumVersion(metaModelVersion: versions.Version, includeWarnings: boolean): void;

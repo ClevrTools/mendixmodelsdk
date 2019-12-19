@@ -1195,8 +1195,7 @@ var codeactions;
     }, internal.StructureType.Element);
     codeactions.ParameterizedEntityType = ParameterizedEntityType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.5.0: removed experimental
      * In version 8.4.0: introduced
      */
     class StringTemplateParameterType extends ParameterType {
@@ -1229,7 +1228,8 @@ var codeactions;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["8.5.0"]
         }
     }, internal.StructureType.Element);
     codeactions.StringTemplateParameterType = StringTemplateParameterType;

@@ -175,6 +175,10 @@ var webservices;
             this.__association = new internal.ByNameReferenceProperty(DataAssociation, this, "association", null, "DomainModels$AssociationBase");
             /** @internal */
             this.__exposedAssociationName = new internal.PrimitiveProperty(DataAssociation, this, "exposedAssociationName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__summary = new internal.PrimitiveProperty(DataAssociation, this, "summary", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(DataAssociation, this, "description", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new DataAssociation() cannot be invoked directly, please use 'model.webservices.createDataAssociation()'");
             }
@@ -207,6 +211,24 @@ var webservices;
             this.__exposedAssociationName.set(newValue);
         }
         /**
+         * In version 8.5.0: introduced
+         */
+        get summary() {
+            return this.__summary.get();
+        }
+        set summary(newValue) {
+            this.__summary.set(newValue);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
          * Creates and returns a new DataAssociation instance in the SDK and on the server.
          * The new DataAssociation will be automatically stored in the 'childMembers' property
          * of the parent DataEntityBase element passed as argument.
@@ -232,6 +254,12 @@ var webservices;
         properties: {
             exposedAssociationName: {
                 introduced: "8.0.0"
+            },
+            summary: {
+                introduced: "8.5.0"
+            },
+            description: {
+                introduced: "8.5.0"
             }
         }
     }, internal.StructureType.Element);
@@ -243,6 +271,10 @@ var webservices;
             this.__attributeByContract = new internal.PartProperty(DataAttribute, this, "attributeByContract", null, false);
             /** @internal */
             this.__attribute = new internal.ByNameReferenceProperty(DataAttribute, this, "attribute", null, "DomainModels$Attribute");
+            /** @internal */
+            this.__summary = new internal.PrimitiveProperty(DataAttribute, this, "summary", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(DataAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new DataAttribute() cannot be invoked directly, please use 'model.webservices.createDataAttribute()'");
             }
@@ -266,6 +298,24 @@ var webservices;
             return this.__attribute.qualifiedName();
         }
         /**
+         * In version 8.5.0: introduced
+         */
+        get summary() {
+            return this.__summary.get();
+        }
+        set summary(newValue) {
+            this.__summary.set(newValue);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.
          * The new DataAttribute will be automatically stored in the 'childMembers' property
          * of the parent DataEntityBase element passed as argument.
@@ -287,7 +337,16 @@ var webservices;
         }
     }
     DataAttribute.structureTypeName = "WebServices$DataAttribute";
-    DataAttribute.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataAttribute.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            summary: {
+                introduced: "8.5.0"
+            },
+            description: {
+                introduced: "8.5.0"
+            }
+        }
+    }, internal.StructureType.Element);
     webservices.DataAttribute = DataAttribute;
     class DataEntity extends DataEntityBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1328,6 +1387,10 @@ var webservices;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__entity = new internal.ByNameReferenceProperty(SystemIdDataAttribute, this, "entity", null, "DomainModels$Entity");
+            /** @internal */
+            this.__summary = new internal.PrimitiveProperty(SystemIdDataAttribute, this, "summary", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(SystemIdDataAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new SystemIdDataAttribute() cannot be invoked directly, please use 'model.webservices.createSystemIdDataAttribute()'");
             }
@@ -1343,6 +1406,24 @@ var webservices;
         }
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get summary() {
+            return this.__summary.get();
+        }
+        set summary(newValue) {
+            this.__summary.set(newValue);
+        }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
         }
         /**
          * Creates and returns a new SystemIdDataAttribute instance in the SDK and on the server.
@@ -1371,7 +1452,15 @@ var webservices;
     }
     SystemIdDataAttribute.structureTypeName = "WebServices$SystemIdDataAttribute";
     SystemIdDataAttribute.versionInfo = new exports.StructureVersionInfo({
-        introduced: "6.7.0"
+        introduced: "6.7.0",
+        properties: {
+            summary: {
+                introduced: "8.5.0"
+            },
+            description: {
+                introduced: "8.5.0"
+            }
+        }
     }, internal.StructureType.Element);
     webservices.SystemIdDataAttribute = SystemIdDataAttribute;
     /**

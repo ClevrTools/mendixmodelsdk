@@ -33,7 +33,7 @@ export declare abstract class AbstractElement extends structures.Structure imple
      * Checks whether all properties are available at the moment
      *  - if false, a load is required to access these properties.
      */
-    readonly isLoaded: boolean;
+    get isLoaded(): boolean;
     /**
      * Transforms a IElement interface into a Element class, loading the containing unit if necessary.
      * (Those are technically already the same, but this function makes sure its properties are available.)
@@ -73,12 +73,12 @@ export interface IElementConstructor {
 export declare abstract class Element extends AbstractElement implements IElement {
     readonly container: AbstractElement;
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: units.ModelUnit, container: AbstractElement);
-    readonly unit: units.ModelUnit;
+    get unit(): units.ModelUnit;
     /**
      * Checks whether all attributes are available ATM
      *  -  if false, a load is required to access these properties.
      */
-    readonly isLoaded: boolean;
+    get isLoaded(): boolean;
     /**
      * Detaches this element from the model, so that it can be attached in a different place.
      */

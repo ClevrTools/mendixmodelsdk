@@ -26,43 +26,65 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        readonly containerAsPublishedParameter: PublishedParameter;
-        readonly containerAsPublishedResource: PublishedResource;
-        isLockedByContract: boolean;
-        exposedName: string;
-        isOptionalByContract: boolean;
-        isOptional: boolean;
-        isNillableByContract: boolean;
-        isNillable: boolean;
-        isKey: boolean;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get containerAsPublishedParameter(): PublishedParameter;
+        get containerAsPublishedResource(): PublishedResource;
+        get isLockedByContract(): boolean;
+        set isLockedByContract(newValue: boolean);
+        get exposedName(): string;
+        set exposedName(newValue: string);
+        get isOptionalByContract(): boolean;
+        set isOptionalByContract(newValue: boolean);
+        get isOptional(): boolean;
+        set isOptional(newValue: boolean);
+        get isNillableByContract(): boolean;
+        set isNillableByContract(newValue: boolean);
+        get isNillable(): boolean;
+        set isNillable(newValue: boolean);
+        get isKey(): boolean;
+        set isKey(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class DataEntityBase extends DataMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        readonly containerAsPublishedParameter: PublishedParameter;
-        readonly containerAsPublishedResource: PublishedResource;
-        readonly childMembers: internal.IList<DataMember>;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        exposedItemName: string;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get containerAsPublishedParameter(): PublishedParameter;
+        get containerAsPublishedResource(): PublishedResource;
+        get childMembers(): internal.IList<DataMember>;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get exposedItemName(): string;
+        set exposedItemName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class DataAssociation extends DataEntityBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        associationByContract: appservices.MsdAssociation | null;
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get associationByContract(): appservices.MsdAssociation | null;
+        set associationByContract(newValue: appservices.MsdAssociation | null);
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
         /**
          * In version 8.0.0: introduced
          */
-        exposedAssociationName: string;
+        get exposedAssociationName(): string;
+        set exposedAssociationName(newValue: string);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get summary(): string;
+        set summary(newValue: string);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataAssociation instance in the SDK and on the server.
@@ -81,10 +103,22 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        attributeByContract: appservices.MsdAttribute | null;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get attributeByContract(): appservices.MsdAttribute | null;
+        set attributeByContract(newValue: appservices.MsdAttribute | null);
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        /**
+         * In version 8.5.0: introduced
+         */
+        get summary(): string;
+        set summary(newValue: string);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.
@@ -103,9 +137,9 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        readonly containerAsPublishedParameter: PublishedParameter;
-        readonly containerAsPublishedResource: PublishedResource;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get containerAsPublishedParameter(): PublishedParameter;
+        get containerAsPublishedResource(): PublishedResource;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataEntity instance in the SDK and on the server.
@@ -149,13 +183,16 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        wsdlDescription: WsdlDescription | null;
-        wsdlUrl: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get wsdlDescription(): WsdlDescription | null;
+        set wsdlDescription(newValue: WsdlDescription | null);
+        get wsdlUrl(): string;
+        set wsdlUrl(newValue: string);
         /**
          * In version 6.4.1: introduced
          */
-        useMtom: boolean;
+        get useMtom(): boolean;
+        set useMtom(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ImportedWebService unit in the SDK and on the server.
@@ -167,24 +204,37 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsServiceInfo: ServiceInfo;
-        name: string;
-        documentation: string;
-        soapAction: string;
-        requestHeaderRpcElement: RpcOperationElement;
-        requestBodyRpcElement: RpcOperationElement;
-        responseBodyRpcElement: RpcOperationElement;
-        requestHeaderElementName: string;
-        requestHeaderEncoded: boolean;
-        requestHeaderPartEncoding: PartEncoding | null;
-        requestBodyEncoded: boolean;
-        requestBodyElementName: string;
-        readonly requestBodyPartEncodings: internal.IList<PartEncoding>;
-        responseBodyElementName: string;
+        get containerAsServiceInfo(): ServiceInfo;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get soapAction(): string;
+        set soapAction(newValue: string);
+        get requestHeaderRpcElement(): RpcOperationElement;
+        set requestHeaderRpcElement(newValue: RpcOperationElement);
+        get requestBodyRpcElement(): RpcOperationElement;
+        set requestBodyRpcElement(newValue: RpcOperationElement);
+        get responseBodyRpcElement(): RpcOperationElement;
+        set responseBodyRpcElement(newValue: RpcOperationElement);
+        get requestHeaderElementName(): string;
+        set requestHeaderElementName(newValue: string);
+        get requestHeaderEncoded(): boolean;
+        set requestHeaderEncoded(newValue: boolean);
+        get requestHeaderPartEncoding(): PartEncoding | null;
+        set requestHeaderPartEncoding(newValue: PartEncoding | null);
+        get requestBodyEncoded(): boolean;
+        set requestBodyEncoded(newValue: boolean);
+        get requestBodyElementName(): string;
+        set requestBodyElementName(newValue: string);
+        get requestBodyPartEncodings(): internal.IList<PartEncoding>;
+        get responseBodyElementName(): string;
+        set responseBodyElementName(newValue: string);
         /**
          * In version 6.1.0: deleted
          */
-        allowSimpleMappingInheritance: boolean;
+        get allowSimpleMappingInheritance(): boolean;
+        set allowSimpleMappingInheritance(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OperationInfo instance in the SDK and on the server.
@@ -203,9 +253,11 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsOperationInfo: OperationInfo;
-        partName: string;
-        partXsdType: string;
+        get containerAsOperationInfo(): OperationInfo;
+        get partName(): string;
+        set partName(newValue: string);
+        get partXsdType(): string;
+        set partXsdType(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PartEncoding instance in the SDK and on the server.
@@ -237,8 +289,8 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly versionedServices: internal.IList<VersionedService>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get versionedServices(): internal.IList<VersionedService>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
@@ -258,7 +310,7 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedAppService unit in the SDK and on the server.
@@ -270,41 +322,56 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedODataService: rest.PublishedODataService;
-        readonly containerAsVersionedService: VersionedService;
-        dataEntity: DataEntity;
+        get containerAsPublishedODataService(): rest.PublishedODataService;
+        get containerAsVersionedService(): VersionedService;
+        get dataEntity(): DataEntity;
+        set dataEntity(newValue: DataEntity);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class PublishedOperation extends PublishedResource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsVersionedService: VersionedService;
-        isLockedByContract: boolean;
-        name: string;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
-        description: string;
-        documentation: string;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        readonly parameters: internal.IList<PublishedParameter>;
-        returnTypeNameByContract: string;
-        returnTypeSpecificationByContract: string;
-        entityExposedNameByContract: string;
-        entityExposedName: string;
+        get containerAsVersionedService(): VersionedService;
+        get isLockedByContract(): boolean;
+        set isLockedByContract(newValue: boolean);
+        get name(): string;
+        set name(newValue: string);
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
+        get description(): string;
+        set description(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get parameters(): internal.IList<PublishedParameter>;
+        get returnTypeNameByContract(): string;
+        set returnTypeNameByContract(newValue: string);
+        get returnTypeSpecificationByContract(): string;
+        set returnTypeSpecificationByContract(newValue: string);
+        get entityExposedNameByContract(): string;
+        set entityExposedNameByContract(newValue: string);
+        get entityExposedName(): string;
+        set entityExposedName(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        returnType: string;
+        get returnType(): string;
+        set returnType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        operationReturnType: datatypes.DataType;
-        returnTypeIsOptional: boolean;
-        returnTypeIsNillable: boolean;
+        get operationReturnType(): datatypes.DataType;
+        set operationReturnType(newValue: datatypes.DataType);
+        get returnTypeIsOptional(): boolean;
+        set returnTypeIsOptional(newValue: boolean);
+        get returnTypeIsNillable(): boolean;
+        set returnTypeIsNillable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedOperation instance in the SDK and on the server.
@@ -323,28 +390,40 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedOperation: PublishedOperation;
-        isLockedByContract: boolean;
-        parameter: microflows.IMicroflowParameter | null;
-        readonly parameterQualifiedName: string | null;
-        parameterByContract: appservices.MsdMicroflowParameter;
-        entityExposedName: string;
-        isOptionalByContract: boolean;
-        isOptional: boolean;
-        isNillable: boolean;
-        entityExposedItemNameByContract: string;
-        entityExposedItemName: string;
+        get containerAsPublishedOperation(): PublishedOperation;
+        get isLockedByContract(): boolean;
+        set isLockedByContract(newValue: boolean);
+        get parameter(): microflows.IMicroflowParameter | null;
+        set parameter(newValue: microflows.IMicroflowParameter | null);
+        get parameterQualifiedName(): string | null;
+        get parameterByContract(): appservices.MsdMicroflowParameter;
+        set parameterByContract(newValue: appservices.MsdMicroflowParameter);
+        get entityExposedName(): string;
+        set entityExposedName(newValue: string);
+        get isOptionalByContract(): boolean;
+        set isOptionalByContract(newValue: boolean);
+        get isOptional(): boolean;
+        set isOptional(newValue: boolean);
+        get isNillable(): boolean;
+        set isNillable(newValue: boolean);
+        get entityExposedItemNameByContract(): string;
+        set entityExposedItemNameByContract(newValue: string);
+        get entityExposedItemName(): string;
+        set entityExposedItemName(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        parameterType: datatypes.DataType;
-        dataEntity: DataEntity;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        get dataEntity(): DataEntity;
+        set dataEntity(newValue: DataEntity);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedParameter instance in the SDK and on the server.
@@ -376,7 +455,7 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedWebService unit in the SDK and on the server.
@@ -388,10 +467,13 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsRpcOperationElement: RpcOperationElement;
-        partName: string;
-        typeName: string;
-        elementName: string;
+        get containerAsRpcOperationElement(): RpcOperationElement;
+        get partName(): string;
+        set partName(newValue: string);
+        get typeName(): string;
+        set typeName(newValue: string);
+        get elementName(): string;
+        set elementName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RpcMessagePartElement instance in the SDK and on the server.
@@ -410,9 +492,10 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsOperationInfo: OperationInfo;
-        name: string;
-        readonly messagePartElements: internal.IList<RpcMessagePartElement>;
+        get containerAsOperationInfo(): OperationInfo;
+        get name(): string;
+        set name(newValue: string);
+        get messagePartElements(): internal.IList<RpcMessagePartElement>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RpcOperationElement instance in the SDK and on the server.
@@ -443,15 +526,21 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWsdlDescription: WsdlDescription;
-        name: string;
-        documentation: string;
-        portName: string;
-        location: string;
-        soapVersion: SoapVersion;
-        locationConstant: constants.IConstant | null;
-        readonly locationConstantQualifiedName: string | null;
-        readonly operations: internal.IList<OperationInfo>;
+        get containerAsWsdlDescription(): WsdlDescription;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get portName(): string;
+        set portName(newValue: string);
+        get location(): string;
+        set location(newValue: string);
+        get soapVersion(): SoapVersion;
+        set soapVersion(newValue: SoapVersion);
+        get locationConstant(): constants.IConstant | null;
+        set locationConstant(newValue: constants.IConstant | null);
+        get locationConstantQualifiedName(): string | null;
+        get operations(): internal.IList<OperationInfo>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ServiceInfo instance in the SDK and on the server.
@@ -473,9 +562,20 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataEntityBase: DataEntityBase;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
+        get containerAsDataEntityBase(): DataEntityBase;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        /**
+         * In version 8.5.0: introduced
+         */
+        get summary(): string;
+        set summary(newValue: string);
+        /**
+         * In version 8.5.0: introduced
+         */
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SystemIdDataAttribute instance in the SDK and on the server.
@@ -500,32 +600,47 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsPublishedServiceBase: PublishedServiceBase;
-        documentation: string;
-        targetNamespace: string;
-        headerAuthentication: HeaderAuthentication;
-        readonly operations: internal.IList<PublishedOperation>;
-        isLockedByContract: boolean;
-        enumerationsByContract: appservices.MsdEnumerationContainer | null;
+        get containerAsPublishedServiceBase(): PublishedServiceBase;
+        get documentation(): string;
+        set documentation(newValue: string);
+        get targetNamespace(): string;
+        set targetNamespace(newValue: string);
+        get headerAuthentication(): HeaderAuthentication;
+        set headerAuthentication(newValue: HeaderAuthentication);
+        get operations(): internal.IList<PublishedOperation>;
+        get isLockedByContract(): boolean;
+        set isLockedByContract(newValue: boolean);
+        get enumerationsByContract(): appservices.MsdEnumerationContainer | null;
+        set enumerationsByContract(newValue: appservices.MsdEnumerationContainer | null);
         /**
          * In version 7.13.0: introduced
          */
-        optimizedXml: boolean;
-        headerImportMapping: importmappings.IImportMapping | null;
-        readonly headerImportMappingQualifiedName: string | null;
+        get optimizedXml(): boolean;
+        set optimizedXml(newValue: boolean);
+        get headerImportMapping(): importmappings.IImportMapping | null;
+        set headerImportMapping(newValue: importmappings.IImportMapping | null);
+        get headerImportMappingQualifiedName(): string | null;
         /**
          * In version 7.17.0: introduced
          */
-        objectHandlingBackup: mappings.ObjectHandlingBackupEnum;
-        headerMicroflow: microflows.IMicroflow | null;
-        readonly headerMicroflowQualifiedName: string | null;
-        versionNumber: number;
-        caption: string;
-        description: string;
-        appServiceState: AppServiceState;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
-        validate: boolean;
+        get objectHandlingBackup(): mappings.ObjectHandlingBackupEnum;
+        set objectHandlingBackup(newValue: mappings.ObjectHandlingBackupEnum);
+        get headerMicroflow(): microflows.IMicroflow | null;
+        set headerMicroflow(newValue: microflows.IMicroflow | null);
+        get headerMicroflowQualifiedName(): string | null;
+        get versionNumber(): number;
+        set versionNumber(newValue: number);
+        get caption(): string;
+        set caption(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get appServiceState(): AppServiceState;
+        set appServiceState(newValue: AppServiceState);
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
+        get validate(): boolean;
+        set validate(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VersionedService instance in the SDK and on the server.
@@ -544,13 +659,15 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsd: appservices.Msd;
-        readonly containerAsImportedWebService: ImportedWebService;
-        readonly wsdlEntries: internal.IList<WsdlEntry>;
-        readonly schemaEntries: internal.IList<xmlschemas.XmlSchemaEntry>;
-        readonly services: internal.IList<ServiceInfo>;
-        targetNamespace: string;
-        importsHaveLocations: boolean;
+        get containerAsMsd(): appservices.Msd;
+        get containerAsImportedWebService(): ImportedWebService;
+        get wsdlEntries(): internal.IList<WsdlEntry>;
+        get schemaEntries(): internal.IList<xmlschemas.XmlSchemaEntry>;
+        get services(): internal.IList<ServiceInfo>;
+        get targetNamespace(): string;
+        set targetNamespace(newValue: string);
+        get importsHaveLocations(): boolean;
+        set importsHaveLocations(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WsdlDescription instance in the SDK and on the server.
@@ -575,11 +692,15 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWsdlDescription: WsdlDescription;
-        location: string;
-        contents: string;
-        localizedLocationFormat: string;
-        localizedContentsFormat: string;
+        get containerAsWsdlDescription(): WsdlDescription;
+        get location(): string;
+        set location(newValue: string);
+        get contents(): string;
+        set contents(newValue: string);
+        get localizedLocationFormat(): string;
+        set localizedLocationFormat(newValue: string);
+        get localizedContentsFormat(): string;
+        set localizedContentsFormat(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WsdlEntry instance in the SDK and on the server.

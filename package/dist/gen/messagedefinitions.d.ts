@@ -13,8 +13,8 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AssociationElement instance in the SDK and on the server.
@@ -48,8 +48,8 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AttributeElement instance in the SDK and on the server.
@@ -83,8 +83,8 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityElement instance in the SDK and on the server.
@@ -129,11 +129,13 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMessageDefinitionCollection: MessageDefinitionCollection;
-        name: string;
-        documentation: string;
+        get containerAsMessageDefinitionCollection(): MessageDefinitionCollection;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
@@ -156,8 +158,9 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMessageDefinitionCollection: MessageDefinitionCollection;
-        exposedEntity: ExposedEntity | null;
+        get containerAsMessageDefinitionCollection(): MessageDefinitionCollection;
+        get exposedEntity(): ExposedEntity | null;
+        set exposedEntity(newValue: ExposedEntity | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityMessageDefinition instance in the SDK and on the server.
@@ -182,18 +185,21 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        readonly containerAsEntityMessageDefinition: EntityMessageDefinition;
-        originalName: string;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get containerAsEntityMessageDefinition(): EntityMessageDefinition;
+        get originalName(): string;
+        set originalName(newValue: string);
         /**
          * In version 7.15.0: introduced
          */
-        documentation: string;
+        get documentation(): string;
+        set documentation(newValue: string);
         /**
          * In version 7.15.0: introduced
          */
-        example: string;
+        get example(): string;
+        set example(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -203,11 +209,12 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        readonly containerAsEntityMessageDefinition: EntityMessageDefinition;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get containerAsEntityMessageDefinition(): EntityMessageDefinition;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -217,10 +224,11 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        association: domainmodels.IAssociationBase;
-        readonly associationQualifiedName: string;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get association(): domainmodels.IAssociationBase;
+        set association(newValue: domainmodels.IAssociationBase);
+        get associationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExposedAssociation instance in the SDK and on the server.
@@ -254,10 +262,11 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        attribute: domainmodels.IAttribute;
-        readonly attributeQualifiedName: string;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExposedAttribute instance in the SDK and on the server.
@@ -291,9 +300,9 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
-        readonly containerAsEntityMessageDefinition: EntityMessageDefinition;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
+        get containerAsEntityMessageDefinition(): EntityMessageDefinition;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExposedEntity instance in the SDK and on the server.
@@ -351,8 +360,8 @@ export declare namespace messagedefinitions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly messageDefinitions: internal.IList<MessageDefinition>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get messageDefinitions(): internal.IList<MessageDefinition>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new MessageDefinitionCollection unit in the SDK and on the server.

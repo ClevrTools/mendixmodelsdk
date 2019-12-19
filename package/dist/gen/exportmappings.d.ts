@@ -22,17 +22,21 @@ export declare namespace exportmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        parameterName: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get parameterName(): string;
+        set parameterName(newValue: string);
         /**
          * In version 6.1.0: deleted
          */
-        parameterTypeName: string;
-        isHeader: boolean;
+        get parameterTypeName(): string;
+        set parameterTypeName(newValue: string);
+        get isHeader(): boolean;
+        set isHeader(newValue: boolean);
         /**
          * In version 6.7.0: introduced
          */
-        nullValueOption: microflows.NullValueOption;
+        get nullValueOption(): microflows.NullValueOption;
+        set nullValueOption(newValue: microflows.NullValueOption);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ExportMapping unit in the SDK and on the server.
@@ -47,8 +51,8 @@ export declare namespace exportmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMappingDocument: mappings.MappingDocument;
-        readonly containerAsObjectMappingElement: mappings.ObjectMappingElement;
+        get containerAsMappingDocument(): mappings.MappingDocument;
+        get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportObjectMappingElement instance in the SDK and on the server.
@@ -76,7 +80,7 @@ export declare namespace exportmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsObjectMappingElement: mappings.ObjectMappingElement;
+        get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportValueMappingElement instance in the SDK and on the server.

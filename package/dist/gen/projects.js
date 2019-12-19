@@ -156,6 +156,8 @@ var projects;
             /** @internal */
             this.__fromAppStore = new internal.PrimitiveProperty(Module, this, "fromAppStore", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__isReusableComponent = new internal.PrimitiveProperty(Module, this, "isReusableComponent", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
             this.__appStoreGuid = new internal.PrimitiveProperty(Module, this, "appStoreGuid", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__appStoreVersionGuid = new internal.PrimitiveProperty(Module, this, "appStoreVersionGuid", "", internal.PrimitiveTypeEnum.String);
@@ -203,6 +205,15 @@ var projects;
         set fromAppStore(newValue) {
             this.__fromAppStore.set(newValue);
         }
+        /**
+         * In version 8.5.0: introduced
+         */
+        get isReusableComponent() {
+            return this.__isReusableComponent.get();
+        }
+        set isReusableComponent(newValue) {
+            this.__isReusableComponent.set(newValue);
+        }
         get appStoreGuid() {
             return this.__appStoreGuid.get();
         }
@@ -245,6 +256,9 @@ var projects;
                 required: {
                     currentValue: true
                 }
+            },
+            isReusableComponent: {
+                introduced: "8.5.0"
             }
         }
     }, internal.StructureType.StructuralUnit);

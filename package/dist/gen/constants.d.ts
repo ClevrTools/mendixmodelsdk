@@ -22,22 +22,26 @@ export declare namespace constants {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        dataType: string;
+        get dataType(): string;
+        set dataType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        type: datatypes.DataType;
-        defaultValue: string;
+        get type(): datatypes.DataType;
+        set type(newValue: datatypes.DataType);
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         /**
          * In version 8.2.0: introduced
          */
-        exposedToClient: boolean;
+        get exposedToClient(): boolean;
+        set exposedToClient(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Constant unit in the SDK and on the server.

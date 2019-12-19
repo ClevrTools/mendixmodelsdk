@@ -32,7 +32,7 @@ export declare namespace xmlschemas {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
@@ -42,8 +42,8 @@ export declare namespace xmlschemas {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: mappings.Element;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new XmlElement instance in the SDK and on the server.
@@ -87,9 +87,10 @@ export declare namespace xmlschemas {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly entries: internal.IList<XmlSchemaEntry>;
-        filePath: string;
+        get containerAsFolderBase(): projects.FolderBase;
+        get entries(): internal.IList<XmlSchemaEntry>;
+        get filePath(): string;
+        set filePath(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new XmlSchema unit in the SDK and on the server.
@@ -101,13 +102,18 @@ export declare namespace xmlschemas {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWsdlDescription: webservices.WsdlDescription;
-        readonly containerAsXmlSchema: XmlSchema;
-        targetNamespace: string;
-        location: string;
-        contents: string;
-        localizedLocationFormat: string;
-        localizedContentsFormat: string;
+        get containerAsWsdlDescription(): webservices.WsdlDescription;
+        get containerAsXmlSchema(): XmlSchema;
+        get targetNamespace(): string;
+        set targetNamespace(newValue: string);
+        get location(): string;
+        set location(newValue: string);
+        get contents(): string;
+        set contents(newValue: string);
+        get localizedLocationFormat(): string;
+        set localizedLocationFormat(newValue: string);
+        get localizedContentsFormat(): string;
+        set localizedContentsFormat(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new XmlSchemaEntry instance in the SDK and on the server.

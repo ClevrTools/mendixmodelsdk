@@ -31,37 +31,41 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        name: string;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class ConditionSettings extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTableRow: TableRow;
-        readonly conditions: internal.IList<enumerations.Condition>;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
+        get containerAsTableRow(): TableRow;
+        get conditions(): internal.IList<enumerations.Condition>;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConditionSettings instance in the SDK and on the server.
@@ -80,32 +84,39 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          */
-        entityPath: string;
+        get entityPath(): string;
+        set entityPath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        entityRef: domainmodels.EntityRef | null;
+        get entityRef(): domainmodels.EntityRef | null;
+        set entityRef(newValue: domainmodels.EntityRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class Grid extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        cellSpacing: number;
-        cellPadding: number;
-        style: Style;
-        sortBar: GridSortBar;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get cellSpacing(): number;
+        set cellSpacing(newValue: number);
+        get cellPadding(): number;
+        set cellPadding(newValue: number);
+        get style(): Style;
+        set style(newValue: Style);
+        get sortBar(): GridSortBar;
+        set sortBar(newValue: GridSortBar);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -115,10 +126,10 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        readonly columns: internal.IList<DataGridColumn>;
-        readonly weights: internal.IList<number>;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get columns(): internal.IList<DataGridColumn>;
+        get weights(): internal.IList<number>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGrid instance in the SDK and on the server.
@@ -146,8 +157,9 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataGridColumn: DataGridColumn;
-        style: Style;
+        get containerAsDataGridColumn(): DataGridColumn;
+        get style(): Style;
+        set style(newValue: Style);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridCell instance in the SDK and on the server.
@@ -175,22 +187,29 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataGrid: DataGrid;
+        get containerAsDataGrid(): DataGrid;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
-        caption: texts.Text;
-        style: Style;
-        oddRowsCell: DataGridCell;
-        evenRowsCell: DataGridCell | null;
-        formattingInfo: pages.FormattingInfo;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get style(): Style;
+        set style(newValue: Style);
+        get oddRowsCell(): DataGridCell;
+        set oddRowsCell(newValue: DataGridCell);
+        get evenRowsCell(): DataGridCell | null;
+        set evenRowsCell(newValue: DataGridCell | null);
+        get formattingInfo(): pages.FormattingInfo;
+        set formattingInfo(newValue: pages.FormattingInfo);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataGridColumn instance in the SDK and on the server.
@@ -212,11 +231,13 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        contents: DataViewContents;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get contents(): DataViewContents;
+        set contents(newValue: DataViewContents);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataView instance in the SDK and on the server.
@@ -241,18 +262,19 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsTableRow: TableRow;
-        readonly containerAsTemplateGrid: TemplateGrid;
-        widget: Widget | null;
+        get containerAsDataView(): DataView;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsTableRow(): TableRow;
+        get containerAsTemplateGrid(): TemplateGrid;
+        get widget(): Widget | null;
+        set widget(newValue: Widget | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class DataViewContents extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: DataView;
+        get containerAsDataView(): DataView;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewContents instance in the SDK and on the server.
@@ -284,20 +306,32 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly toplevels: internal.IList<Widget>;
-        canvasWidth: number;
-        pageWidth: string;
-        pageHeight: string;
-        ppi: number;
-        marginLeftInInch: number;
-        marginRightInInch: number;
-        marginTopInInch: number;
-        marginBottomInInch: number;
-        style: Style;
-        header: Header | null;
-        footer: Footer | null;
-        showHeaderAndFooterOnFirstPage: boolean;
+        get containerAsFolderBase(): projects.FolderBase;
+        get toplevels(): internal.IList<Widget>;
+        get canvasWidth(): number;
+        set canvasWidth(newValue: number);
+        get pageWidth(): string;
+        set pageWidth(newValue: string);
+        get pageHeight(): string;
+        set pageHeight(newValue: string);
+        get ppi(): number;
+        set ppi(newValue: number);
+        get marginLeftInInch(): number;
+        set marginLeftInInch(newValue: number);
+        get marginRightInInch(): number;
+        set marginRightInInch(newValue: number);
+        get marginTopInInch(): number;
+        set marginTopInInch(newValue: number);
+        get marginBottomInInch(): number;
+        set marginBottomInInch(newValue: number);
+        get style(): Style;
+        set style(newValue: Style);
+        get header(): Header | null;
+        set header(newValue: Header | null);
+        get footer(): Footer | null;
+        set footer(newValue: Footer | null);
+        get showHeaderAndFooterOnFirstPage(): boolean;
+        set showHeaderAndFooterOnFirstPage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new DocumentTemplate unit in the SDK and on the server.
@@ -329,20 +363,23 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        name: string;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        parameterType: datatypes.DataType;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/dynamic-image-(document-template) relevant section in reference guide}
@@ -351,13 +388,17 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        defaultImage: images.IImage | null;
-        readonly defaultImageQualifiedName: string | null;
-        useThumbnail: boolean;
-        width: number;
-        height: number;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get defaultImage(): images.IImage | null;
+        set defaultImage(newValue: images.IImage | null);
+        get defaultImageQualifiedName(): string | null;
+        get useThumbnail(): boolean;
+        set useThumbnail(newValue: boolean);
+        get width(): number;
+        set width(newValue: number);
+        get height(): number;
+        set height(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -385,11 +426,14 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        style: Style;
-        renderXHTML: boolean;
-        formattingInfo: pages.FormattingInfo;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get style(): Style;
+        set style(newValue: Style);
+        get renderXHTML(): boolean;
+        set renderXHTML(newValue: boolean);
+        get formattingInfo(): pages.FormattingInfo;
+        set formattingInfo(newValue: pages.FormattingInfo);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicLabel instance in the SDK and on the server.
@@ -417,8 +461,9 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        bottomMargin: number;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get bottomMargin(): number;
+        set bottomMargin(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Footer instance in the SDK and on the server.
@@ -440,8 +485,8 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGrid: Grid;
-        readonly sortItems: internal.IList<GridSortItem>;
+        get containerAsGrid(): Grid;
+        get sortItems(): internal.IList<GridSortItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSortBar instance in the SDK and on the server.
@@ -460,18 +505,21 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsGridSortBar: GridSortBar;
+        get containerAsGridSortBar(): GridSortBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef;
-        sortOrder: pages.SortDirection;
+        get attributeRef(): domainmodels.AttributeRef;
+        set attributeRef(newValue: domainmodels.AttributeRef);
+        get sortOrder(): pages.SortDirection;
+        set sortOrder(newValue: pages.SortDirection);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GridSortItem instance in the SDK and on the server.
@@ -493,8 +541,9 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        topMargin: number;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get topMargin(): number;
+        set topMargin(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Header instance in the SDK and on the server.
@@ -516,8 +565,8 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LineBreak instance in the SDK and on the server.
@@ -545,8 +594,8 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageBreak instance in the SDK and on the server.
@@ -574,12 +623,15 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
-        width: number;
-        height: number;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
+        get width(): number;
+        set width(newValue: number);
+        get height(): number;
+        set height(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -607,10 +659,12 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        caption: texts.Text;
-        style: Style;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get style(): Style;
+        set style(newValue: Style);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticLabel instance in the SDK and on the server.
@@ -638,41 +692,67 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataGridCell: DataGridCell;
-        readonly containerAsDataGridColumn: DataGridColumn;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDynamicLabel: DynamicLabel;
-        readonly containerAsGrid: Grid;
-        readonly containerAsStaticLabel: StaticLabel;
-        readonly containerAsTable: Table;
-        readonly containerAsTableCell: TableCell;
-        readonly containerAsTitle: Title;
-        fontFamily: FontFamily;
-        fontSize: number;
-        bold: boolean;
-        italic: boolean;
-        fontColor: common.IColor;
-        backgroundColor: common.IColor;
-        overrideFontFamily: boolean;
-        overrideFontSize: boolean;
-        overrideBold: boolean;
-        overrideItalic: boolean;
-        overrideFontColor: boolean;
-        overrideBackgroundColor: boolean;
-        borderStyleTop: BorderStyle;
-        borderStyleBottom: BorderStyle;
-        borderStyleLeft: BorderStyle;
-        borderStyleRight: BorderStyle;
-        borderWidthTop: number;
-        borderWidthBottom: number;
-        borderWidthLeft: number;
-        borderWidthRight: number;
-        borderColorTop: common.IColor;
-        borderColorBottom: common.IColor;
-        borderColorLeft: common.IColor;
-        borderColorRight: common.IColor;
-        textAlign: TextAlign;
-        customStyles: string;
+        get containerAsDataGridCell(): DataGridCell;
+        get containerAsDataGridColumn(): DataGridColumn;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDynamicLabel(): DynamicLabel;
+        get containerAsGrid(): Grid;
+        get containerAsStaticLabel(): StaticLabel;
+        get containerAsTable(): Table;
+        get containerAsTableCell(): TableCell;
+        get containerAsTitle(): Title;
+        get fontFamily(): FontFamily;
+        set fontFamily(newValue: FontFamily);
+        get fontSize(): number;
+        set fontSize(newValue: number);
+        get bold(): boolean;
+        set bold(newValue: boolean);
+        get italic(): boolean;
+        set italic(newValue: boolean);
+        get fontColor(): common.IColor;
+        set fontColor(newValue: common.IColor);
+        get backgroundColor(): common.IColor;
+        set backgroundColor(newValue: common.IColor);
+        get overrideFontFamily(): boolean;
+        set overrideFontFamily(newValue: boolean);
+        get overrideFontSize(): boolean;
+        set overrideFontSize(newValue: boolean);
+        get overrideBold(): boolean;
+        set overrideBold(newValue: boolean);
+        get overrideItalic(): boolean;
+        set overrideItalic(newValue: boolean);
+        get overrideFontColor(): boolean;
+        set overrideFontColor(newValue: boolean);
+        get overrideBackgroundColor(): boolean;
+        set overrideBackgroundColor(newValue: boolean);
+        get borderStyleTop(): BorderStyle;
+        set borderStyleTop(newValue: BorderStyle);
+        get borderStyleBottom(): BorderStyle;
+        set borderStyleBottom(newValue: BorderStyle);
+        get borderStyleLeft(): BorderStyle;
+        set borderStyleLeft(newValue: BorderStyle);
+        get borderStyleRight(): BorderStyle;
+        set borderStyleRight(newValue: BorderStyle);
+        get borderWidthTop(): number;
+        set borderWidthTop(newValue: number);
+        get borderWidthBottom(): number;
+        set borderWidthBottom(newValue: number);
+        get borderWidthLeft(): number;
+        set borderWidthLeft(newValue: number);
+        get borderWidthRight(): number;
+        set borderWidthRight(newValue: number);
+        get borderColorTop(): common.IColor;
+        set borderColorTop(newValue: common.IColor);
+        get borderColorBottom(): common.IColor;
+        set borderColorBottom(newValue: common.IColor);
+        get borderColorLeft(): common.IColor;
+        set borderColorLeft(newValue: common.IColor);
+        get borderColorRight(): common.IColor;
+        set borderColorRight(newValue: common.IColor);
+        get textAlign(): TextAlign;
+        set textAlign(newValue: TextAlign);
+        get customStyles(): string;
+        set customStyles(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Style instance in the SDK and on the server.
@@ -742,13 +822,16 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        readonly rows: internal.IList<TableRow>;
-        readonly columnWeights: internal.IList<number>;
-        cellSpacing: number;
-        cellPadding: number;
-        style: Style;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get rows(): internal.IList<TableRow>;
+        get columnWeights(): internal.IList<number>;
+        get cellSpacing(): number;
+        set cellSpacing(newValue: number);
+        get cellPadding(): number;
+        set cellPadding(newValue: number);
+        get style(): Style;
+        set style(newValue: Style);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Table instance in the SDK and on the server.
@@ -776,11 +859,15 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTableRow: TableRow;
-        colSpan: number;
-        rowSpan: number;
-        isPartOfSpan: boolean;
-        style: Style;
+        get containerAsTableRow(): TableRow;
+        get colSpan(): number;
+        set colSpan(newValue: number);
+        get rowSpan(): number;
+        set rowSpan(newValue: number);
+        get isPartOfSpan(): boolean;
+        set isPartOfSpan(newValue: boolean);
+        get style(): Style;
+        set style(newValue: Style);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TableCell instance in the SDK and on the server.
@@ -802,9 +889,10 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTable: Table;
-        readonly cells: internal.IList<TableCell>;
-        conditionSettings: ConditionSettings;
+        get containerAsTable(): Table;
+        get cells(): internal.IList<TableCell>;
+        get conditionSettings(): ConditionSettings;
+        set conditionSettings(newValue: ConditionSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TableRow instance in the SDK and on the server.
@@ -826,11 +914,14 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        numberOfColumns: number;
-        oddRowsContents: TemplateGridContents;
-        evenRowsContents: TemplateGridContents | null;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get numberOfColumns(): number;
+        set numberOfColumns(newValue: number);
+        get oddRowsContents(): TemplateGridContents;
+        set oddRowsContents(newValue: TemplateGridContents);
+        get evenRowsContents(): TemplateGridContents | null;
+        set evenRowsContents(newValue: TemplateGridContents | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TemplateGrid instance in the SDK and on the server.
@@ -855,7 +946,7 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsTemplateGrid: TemplateGrid;
+        get containerAsTemplateGrid(): TemplateGrid;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TemplateGridContents instance in the SDK and on the server.
@@ -883,10 +974,12 @@ export declare namespace documenttemplates {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDocumentTemplate: DocumentTemplate;
-        readonly containerAsDropZone: DropZone;
-        caption: texts.Text;
-        style: Style;
+        get containerAsDocumentTemplate(): DocumentTemplate;
+        get containerAsDropZone(): DropZone;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get style(): Style;
+        set style(newValue: Style);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Title instance in the SDK and on the server.

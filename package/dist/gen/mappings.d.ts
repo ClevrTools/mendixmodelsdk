@@ -38,30 +38,44 @@ export declare namespace mappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJsonStructure: jsonstructures.JsonStructure;
-        readonly containerAsElement: Element;
-        readonly containerAsEntityMessageDefinition: messagedefinitions.EntityMessageDefinition;
-        elementType: ElementType;
-        primitiveType: xmlschemas.XmlPrimitiveType;
+        get containerAsJsonStructure(): jsonstructures.JsonStructure;
+        get containerAsElement(): Element;
+        get containerAsEntityMessageDefinition(): messagedefinitions.EntityMessageDefinition;
+        get elementType(): ElementType;
+        set elementType(newValue: ElementType);
+        get primitiveType(): xmlschemas.XmlPrimitiveType;
+        set primitiveType(newValue: xmlschemas.XmlPrimitiveType);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          */
-        path: string;
-        isDefaultType: boolean;
-        minOccurs: number;
-        maxOccurs: number;
-        nillable: boolean;
-        exposedName: string;
+        get path(): string;
+        set path(newValue: string);
+        get isDefaultType(): boolean;
+        set isDefaultType(newValue: boolean);
+        get minOccurs(): number;
+        set minOccurs(newValue: number);
+        get maxOccurs(): number;
+        set maxOccurs(newValue: number);
+        get nillable(): boolean;
+        set nillable(newValue: boolean);
+        get exposedName(): string;
+        set exposedName(newValue: string);
         /**
          * In version 7.6.0: introduced
          */
-        exposedItemName: string;
-        maxLength: number;
-        fractionDigits: number;
-        totalDigits: number;
-        errorMessage: string;
-        warningMessage: string;
-        readonly children: internal.IList<Element>;
+        get exposedItemName(): string;
+        set exposedItemName(newValue: string);
+        get maxLength(): number;
+        set maxLength(newValue: number);
+        get fractionDigits(): number;
+        set fractionDigits(newValue: number);
+        get totalDigits(): number;
+        set totalDigits(newValue: number);
+        get errorMessage(): string;
+        set errorMessage(newValue: string);
+        get warningMessage(): string;
+        set warningMessage(newValue: string);
+        get children(): internal.IList<Element>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -81,74 +95,92 @@ export declare namespace mappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly rootMappingElements: internal.IList<ObjectMappingElement>;
-        xmlSchema: xmlschemas.IXmlSchema | null;
-        readonly xmlSchemaQualifiedName: string | null;
+        get containerAsFolderBase(): projects.FolderBase;
+        get rootMappingElements(): internal.IList<ObjectMappingElement>;
+        get xmlSchema(): xmlschemas.IXmlSchema | null;
+        set xmlSchema(newValue: xmlschemas.IXmlSchema | null);
+        get xmlSchemaQualifiedName(): string | null;
         /**
          * In version 6.4.0: introduced
          */
-        jsonStructure: jsonstructures.IJsonStructure | null;
-        readonly jsonStructureQualifiedName: string | null;
-        rootElementName: string;
-        importedWebService: webservices.IImportedWebService | null;
-        readonly importedWebServiceQualifiedName: string | null;
-        serviceName: string;
-        operationName: string;
+        get jsonStructure(): jsonstructures.IJsonStructure | null;
+        set jsonStructure(newValue: jsonstructures.IJsonStructure | null);
+        get jsonStructureQualifiedName(): string | null;
+        get rootElementName(): string;
+        set rootElementName(newValue: string);
+        get importedWebService(): webservices.IImportedWebService | null;
+        set importedWebService(newValue: webservices.IImportedWebService | null);
+        get importedWebServiceQualifiedName(): string | null;
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        get operationName(): string;
+        set operationName(newValue: string);
         /**
          * In version 7.6.0: introduced
          */
-        messageDefinition: messagedefinitions.IMessageDefinition | null;
-        readonly messageDefinitionQualifiedName: string | null;
+        get messageDefinition(): messagedefinitions.IMessageDefinition | null;
+        set messageDefinition(newValue: messagedefinitions.IMessageDefinition | null);
+        get messageDefinitionQualifiedName(): string | null;
         /**
          * In version 7.14.0: introduced
          */
-        publicName: string;
+        get publicName(): string;
+        set publicName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     abstract class MappingElement extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMappingDocument: MappingDocument;
-        readonly containerAsObjectMappingElement: ObjectMappingElement;
-        documentation: string;
-        elementType: ElementType;
+        get containerAsMappingDocument(): MappingDocument;
+        get containerAsObjectMappingElement(): ObjectMappingElement;
+        get documentation(): string;
+        set documentation(newValue: string);
+        get elementType(): ElementType;
+        set elementType(newValue: ElementType);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: deleted
          */
-        path: string;
+        get path(): string;
+        set path(newValue: string);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: introduced
          */
-        jsonPath: string;
+        get jsonPath(): string;
+        set jsonPath(newValue: string);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: introduced
          */
-        xmlPath: string;
-        minOccurs: number;
-        maxOccurs: number;
-        nillable: boolean;
+        get xmlPath(): string;
+        set xmlPath(newValue: string);
+        get minOccurs(): number;
+        set minOccurs(newValue: number);
+        get maxOccurs(): number;
+        set maxOccurs(newValue: number);
+        get nillable(): boolean;
+        set nillable(newValue: boolean);
         /**
          * In version 6.6.0: introduced
          */
-        exposedName: string;
+        get exposedName(): string;
+        set exposedName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MappingMicroflowCall extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsObjectMappingElement: ObjectMappingElement;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        readonly parameterMappings: internal.IList<MappingMicroflowParameter>;
+        get containerAsObjectMappingElement(): ObjectMappingElement;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<MappingMicroflowParameter>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MappingMicroflowCall instance in the SDK and on the server.
@@ -167,28 +199,33 @@ export declare namespace mappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMappingMicroflowCall: MappingMicroflowCall;
-        parameter: microflows.IMicroflowParameter | null;
-        readonly parameterQualifiedName: string | null;
-        levelOfParent: number;
+        get containerAsMappingMicroflowCall(): MappingMicroflowCall;
+        get parameter(): microflows.IMicroflowParameter | null;
+        set parameter(newValue: microflows.IMicroflowParameter | null);
+        get parameterQualifiedName(): string | null;
+        get levelOfParent(): number;
+        set levelOfParent(newValue: number);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: deleted
          */
-        valueElementPath: string;
+        get valueElementPath(): string;
+        set valueElementPath(newValue: string);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: introduced
          */
-        jsonValueElementPath: string;
+        get jsonValueElementPath(): string;
+        set jsonValueElementPath(newValue: string);
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
          *
          * In version 7.6.0: introduced
          */
-        xmlValueElementPath: string;
+        get xmlValueElementPath(): string;
+        set xmlValueElementPath(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MappingMicroflowParameter instance in the SDK and on the server.
@@ -207,59 +244,78 @@ export declare namespace mappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMappingDocument: MappingDocument;
-        readonly containerAsObjectMappingElement: ObjectMappingElement;
-        mappingMicroflowCall: MappingMicroflowCall | null;
-        readonly children: internal.IList<MappingElement>;
-        entity: domainmodels.IEntity | null;
-        readonly entityQualifiedName: string | null;
-        association: domainmodels.IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
-        objectHandling: ObjectHandlingEnum;
-        objectHandlingBackup: ObjectHandlingBackupEnum;
+        get containerAsMappingDocument(): MappingDocument;
+        get containerAsObjectMappingElement(): ObjectMappingElement;
+        get mappingMicroflowCall(): MappingMicroflowCall | null;
+        set mappingMicroflowCall(newValue: MappingMicroflowCall | null);
+        get children(): internal.IList<MappingElement>;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        get association(): domainmodels.IAssociationBase | null;
+        set association(newValue: domainmodels.IAssociationBase | null);
+        get associationQualifiedName(): string | null;
+        get objectHandling(): ObjectHandlingEnum;
+        set objectHandling(newValue: ObjectHandlingEnum);
+        get objectHandlingBackup(): ObjectHandlingBackupEnum;
+        set objectHandlingBackup(newValue: ObjectHandlingBackupEnum);
         /**
          * In version 7.17.0: introduced
          */
-        objectHandlingBackupAllowOverride: boolean;
+        get objectHandlingBackupAllowOverride(): boolean;
+        set objectHandlingBackupAllowOverride(newValue: boolean);
         /**
          * In version 6.4.0: introduced
          */
-        isDefaultType: boolean;
+        get isDefaultType(): boolean;
+        set isDefaultType(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class ValueMappingElement extends MappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsObjectMappingElement: ObjectMappingElement;
+        get containerAsObjectMappingElement(): ObjectMappingElement;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        xmlDataType: string;
+        get xmlDataType(): string;
+        set xmlDataType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        type: datatypes.DataType;
-        isKey: boolean;
-        isXmlAttribute: boolean;
+        get type(): datatypes.DataType;
+        set type(newValue: datatypes.DataType);
+        get isKey(): boolean;
+        set isKey(newValue: boolean);
+        get isXmlAttribute(): boolean;
+        set isXmlAttribute(newValue: boolean);
         /**
          * In version 6.1.0: introduced
          */
-        xmlPrimitiveType: xmlschemas.XmlPrimitiveType;
-        isContent: boolean;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        converter: microflows.IMicroflow | null;
-        readonly converterQualifiedName: string | null;
+        get xmlPrimitiveType(): xmlschemas.XmlPrimitiveType;
+        set xmlPrimitiveType(newValue: xmlschemas.XmlPrimitiveType);
+        get isContent(): boolean;
+        set isContent(newValue: boolean);
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get converter(): microflows.IMicroflow | null;
+        set converter(newValue: microflows.IMicroflow | null);
+        get converterQualifiedName(): string | null;
         /**
          * In version 6.4.1: deleted
          */
-        expectedContentTypes: string;
-        maxLength: number;
-        fractionDigits: number;
-        totalDigits: number;
+        get expectedContentTypes(): string;
+        set expectedContentTypes(newValue: string);
+        get maxLength(): number;
+        set maxLength(newValue: number);
+        get fractionDigits(): number;
+        set fractionDigits(newValue: number);
+        get totalDigits(): number;
+        set totalDigits(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
 }

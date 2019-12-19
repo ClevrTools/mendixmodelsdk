@@ -7338,13 +7338,36 @@ var microflows;
                 this.timeOut = 30;
             }
             if (this.__timeOutExpression.isAvailable) {
-                this.timeOutExpression = "30";
+                (() => {
+                    if (internal.isAtLeast("8.5.0", this.model)) {
+                        this.timeOutExpression = "300";
+                        return;
+                    }
+                    this.timeOutExpression = "30";
+                })();
             }
             if (this.__timeOutModel.isAvailable) {
-                this.timeOutModel = ((integerLiteral) => {
-                    integerLiteral.value = 30;
-                    return integerLiteral;
-                })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                (() => {
+                    if (internal.isAtLeast("8.5.0", this.model)) {
+                        this.timeOutModel = ((integerLiteral) => {
+                            integerLiteral.value = 300;
+                            return integerLiteral;
+                        })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                        return;
+                    }
+                    this.timeOutModel = ((integerLiteral) => {
+                        integerLiteral.value = 30;
+                        return integerLiteral;
+                    })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                })();
+            }
+            if (this.__useRequestTimeOut.isAvailable) {
+                (() => {
+                    if (internal.isAtLeast("8.5.0", this.model)) {
+                        this.useRequestTimeOut = true;
+                        return;
+                    }
+                })();
             }
         }
     }
@@ -8571,8 +8594,7 @@ var microflows;
     StringTemplate.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.StringTemplate = StringTemplate;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.5.0: removed experimental
      * In version 8.4.0: introduced
      */
     class StringTemplateParameterValue extends CodeActionParameterValue {
@@ -8645,7 +8667,8 @@ var microflows;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["8.5.0"]
         }
     }, internal.StructureType.Element);
     microflows.StringTemplateParameterValue = StringTemplateParameterValue;
@@ -9251,19 +9274,41 @@ var microflows;
                 this.timeOut = 30;
             }
             if (this.__timeOutExpression.isAvailable) {
-                this.timeOutExpression = "30";
+                (() => {
+                    if (internal.isAtLeast("8.5.0", this.model)) {
+                        this.timeOutExpression = "300";
+                        return;
+                    }
+                    this.timeOutExpression = "30";
+                })();
             }
             if (this.__timeOutModel.isAvailable) {
-                this.timeOutModel = ((integerLiteral) => {
-                    integerLiteral.value = 30;
-                    return integerLiteral;
-                })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                (() => {
+                    if (internal.isAtLeast("8.5.0", this.model)) {
+                        this.timeOutModel = ((integerLiteral) => {
+                            integerLiteral.value = 300;
+                            return integerLiteral;
+                        })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                        return;
+                    }
+                    this.timeOutModel = ((integerLiteral) => {
+                        integerLiteral.value = 30;
+                        return integerLiteral;
+                    })(expressions_1.expressions.IntegerLiteral.create(this.model));
+                })();
             }
+            (() => {
+                if (internal.isAtLeast("8.5.0", this.model)) {
+                    this.useRequestTimeOut = true;
+                    return;
+                }
+            })();
         }
     }
     WebServiceCallAction.structureTypeName = "Microflows$WebServiceCallAction";
     WebServiceCallAction.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            useRequestTimeOut: {},
             timeOut: {
                 deleted: "7.15.0",
                 deletionMessage: null

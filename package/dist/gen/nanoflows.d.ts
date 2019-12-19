@@ -12,10 +12,11 @@ export declare namespace nanoflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameterMapping: microflows.JavaActionParameterMapping;
-        readonly containerAsJavaScriptActionParameterMapping: microflows.JavaScriptActionParameterMapping;
-        nanoflow: microflows.INanoflow | null;
-        readonly nanoflowQualifiedName: string | null;
+        get containerAsJavaActionParameterMapping(): microflows.JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): microflows.JavaScriptActionParameterMapping;
+        get nanoflow(): microflows.INanoflow | null;
+        set nanoflow(newValue: microflows.INanoflow | null);
+        get nanoflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowParameterValue instance in the SDK and on the server.

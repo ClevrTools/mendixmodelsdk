@@ -52,37 +52,39 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        dataSet: datasets.IDataSet | null;
-        readonly dataSetQualifiedName: string | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get dataSet(): datasets.IDataSet | null;
+        set dataSet(newValue: datasets.IDataSet | null);
+        get dataSetQualifiedName(): string | null;
         /**
          * In version 6.10.0: introduced
          */
-        generateOnLoad: boolean;
+        get generateOnLoad(): boolean;
+        set generateOnLoad(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -92,37 +94,41 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        readonly columns: internal.IList<BasicReportColumn>;
-        readonly aggregates: internal.IList<BasicReportAggregate>;
-        showExportButton: boolean;
-        zoomInfo: ReportZoomInfo;
-        isPagingEnabled: boolean;
-        pageSize: number;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get columns(): internal.IList<BasicReportColumn>;
+        get aggregates(): internal.IList<BasicReportAggregate>;
+        get showExportButton(): boolean;
+        set showExportButton(newValue: boolean);
+        get zoomInfo(): ReportZoomInfo;
+        set zoomInfo(newValue: ReportZoomInfo);
+        get isPagingEnabled(): boolean;
+        set isPagingEnabled(newValue: boolean);
+        get pageSize(): number;
+        set pageSize(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicReport instance in the SDK and on the server.
@@ -387,6 +393,15 @@ export declare namespace reports {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): BasicReport;
         /**
          * Creates and returns a new BasicReport instance in the SDK and on the server.
+         * The new BasicReport will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): BasicReport;
+        /**
+         * Creates and returns a new BasicReport instance in the SDK and on the server.
          * The new BasicReport will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -585,10 +600,12 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicReport: BasicReport;
-        caption: texts.Text;
-        aggregateFunction: AggregateFunctionEnum;
-        readonly applicablePerColumn: internal.IList<boolean>;
+        get containerAsBasicReport(): BasicReport;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get aggregateFunction(): AggregateFunctionEnum;
+        set aggregateFunction(newValue: AggregateFunctionEnum);
+        get applicablePerColumn(): internal.IList<boolean>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicReportAggregate instance in the SDK and on the server.
@@ -607,12 +624,17 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicReport: BasicReport;
-        caption: texts.Text;
-        dataSetColumnName: string;
-        width: number;
-        alignment: pages.AlignmentEnum;
-        format: ColumnFormat;
+        get containerAsBasicReport(): BasicReport;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get dataSetColumnName(): string;
+        set dataSetColumnName(newValue: string);
+        get width(): number;
+        set width(newValue: number);
+        get alignment(): pages.AlignmentEnum;
+        set alignment(newValue: pages.AlignmentEnum);
+        get format(): ColumnFormat;
+        set format(newValue: ColumnFormat);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicReportColumn instance in the SDK and on the server.
@@ -634,32 +656,33 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        caption: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportButton instance in the SDK and on the server.
@@ -924,6 +947,15 @@ export declare namespace reports {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): ReportButton;
         /**
          * Creates and returns a new ReportButton instance in the SDK and on the server.
+         * The new ReportButton will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportButton;
+        /**
+         * Creates and returns a new ReportButton instance in the SDK and on the server.
          * The new ReportButton will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -1125,42 +1157,52 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        type: ChartType;
-        readonly seriess: internal.IList<ReportChartSeries>;
-        xAxisCaption: texts.Text;
-        yAxisCaption: texts.Text;
-        xAxisColumn: string;
-        xAxisFormat: ColumnFormat;
-        yAxisPrecision: number;
-        yAxisUseMinMax: boolean;
-        yAxisMinimum: number;
-        yAxisMaximum: number;
-        aspectRatio: AspectRatio;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get type(): ChartType;
+        set type(newValue: ChartType);
+        get seriess(): internal.IList<ReportChartSeries>;
+        get xAxisCaption(): texts.Text;
+        set xAxisCaption(newValue: texts.Text);
+        get yAxisCaption(): texts.Text;
+        set yAxisCaption(newValue: texts.Text);
+        get xAxisColumn(): string;
+        set xAxisColumn(newValue: string);
+        get xAxisFormat(): ColumnFormat;
+        set xAxisFormat(newValue: ColumnFormat);
+        get yAxisPrecision(): number;
+        set yAxisPrecision(newValue: number);
+        get yAxisUseMinMax(): boolean;
+        set yAxisUseMinMax(newValue: boolean);
+        get yAxisMinimum(): number;
+        set yAxisMinimum(newValue: number);
+        get yAxisMaximum(): number;
+        set yAxisMaximum(newValue: number);
+        get aspectRatio(): AspectRatio;
+        set aspectRatio(newValue: AspectRatio);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportChart instance in the SDK and on the server.
@@ -1425,6 +1467,15 @@ export declare namespace reports {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): ReportChart;
         /**
          * Creates and returns a new ReportChart instance in the SDK and on the server.
+         * The new ReportChart will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportChart;
+        /**
+         * Creates and returns a new ReportChart instance in the SDK and on the server.
          * The new ReportChart will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -1623,9 +1674,11 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsReportChart: ReportChart;
-        caption: texts.Text;
-        dataSetColumn: string;
+        get containerAsReportChart(): ReportChart;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get dataSetColumn(): string;
+        set dataSetColumn(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportChartSeries instance in the SDK and on the server.
@@ -1647,9 +1700,11 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsReportDateRangeSelector: ReportDateRangeSelector;
-        caption: texts.Text;
-        type: DateRangeFieldEnum;
+        get containerAsReportDateRangeSelector(): ReportDateRangeSelector;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get type(): DateRangeFieldEnum;
+        set type(newValue: DateRangeFieldEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportDateRangeField instance in the SDK and on the server.
@@ -1668,40 +1723,42 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
         /**
          * In version 6.10.0: introduced
          */
-        parameter: datasets.IDataSetParameter | null;
-        readonly parameterQualifiedName: string | null;
+        get parameter(): datasets.IDataSetParameter | null;
+        set parameter(newValue: datasets.IDataSetParameter | null);
+        get parameterQualifiedName(): string | null;
         /**
          * In version 6.10.0: deleted
          */
-        parameterName: string;
+        get parameterName(): string;
+        set parameterName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1711,38 +1768,44 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        readonly fields: internal.IList<ReportDateRangeField>;
-        minYear: number;
-        maxYear: number;
-        fieldsPerRow: number;
-        showFromToRange: boolean;
-        fromCaption: texts.Text;
-        toCaption: texts.Text;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get fields(): internal.IList<ReportDateRangeField>;
+        get minYear(): number;
+        set minYear(newValue: number);
+        get maxYear(): number;
+        set maxYear(newValue: number);
+        get fieldsPerRow(): number;
+        set fieldsPerRow(newValue: number);
+        get showFromToRange(): boolean;
+        set showFromToRange(newValue: boolean);
+        get fromCaption(): texts.Text;
+        set fromCaption(newValue: texts.Text);
+        get toCaption(): texts.Text;
+        set toCaption(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportDateRangeSelector instance in the SDK and on the server.
@@ -2007,6 +2070,15 @@ export declare namespace reports {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): ReportDateRangeSelector;
         /**
          * Creates and returns a new ReportDateRangeSelector instance in the SDK and on the server.
+         * The new ReportDateRangeSelector will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportDateRangeSelector;
+        /**
+         * Creates and returns a new ReportDateRangeSelector instance in the SDK and on the server.
          * The new ReportDateRangeSelector will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -2208,33 +2280,34 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: ReportPane;
-        attribute: domainmodels.IAttribute | null;
-        readonly attributeQualifiedName: string | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): ReportPane;
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportDropDown instance in the SDK and on the server.
@@ -2499,6 +2572,15 @@ export declare namespace reports {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): ReportDropDown;
         /**
          * Creates and returns a new ReportDropDown instance in the SDK and on the server.
+         * The new ReportDropDown will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportDropDown;
+        /**
+         * Creates and returns a new ReportDropDown instance in the SDK and on the server.
          * The new ReportDropDown will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -2702,27 +2784,30 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsReportPane: ReportPane;
-        parameterWidget: pages.Widget | null;
-        reportWidget: pages.Widget | null;
-        generateOnLoad: boolean;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsReportPane(): ReportPane;
+        get parameterWidget(): pages.Widget | null;
+        set parameterWidget(newValue: pages.Widget | null);
+        get reportWidget(): pages.Widget | null;
+        set reportWidget(newValue: pages.Widget | null);
+        get generateOnLoad(): boolean;
+        set generateOnLoad(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportPane instance in the SDK and on the server.
@@ -2933,10 +3018,11 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicReport: BasicReport;
-        targetPage: pages.IPage | null;
-        readonly targetPageQualifiedName: string | null;
-        readonly mappings: internal.IList<ReportZoomMapping>;
+        get containerAsBasicReport(): BasicReport;
+        get targetPage(): pages.IPage | null;
+        set targetPage(newValue: pages.IPage | null);
+        get targetPageQualifiedName(): string | null;
+        get mappings(): internal.IList<ReportZoomMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportZoomInfo instance in the SDK and on the server.
@@ -2955,9 +3041,11 @@ export declare namespace reports {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsReportZoomInfo: ReportZoomInfo;
-        targetParameterName: string;
-        sourceReportColumnName: string;
+        get containerAsReportZoomInfo(): ReportZoomInfo;
+        get targetParameterName(): string;
+        set targetParameterName(newValue: string);
+        get sourceReportColumnName(): string;
+        set sourceReportColumnName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReportZoomMapping instance in the SDK and on the server.

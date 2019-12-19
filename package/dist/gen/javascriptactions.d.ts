@@ -28,7 +28,7 @@ export declare namespace javascriptactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new JavaScriptAction unit in the SDK and on the server.
@@ -55,7 +55,7 @@ export declare namespace javascriptactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeAction: codeactions.CodeAction;
+        get containerAsCodeAction(): codeactions.CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaScriptActionParameter instance in the SDK and on the server.
@@ -81,7 +81,7 @@ export declare namespace javascriptactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: codeactions.CodeActionParameter;
+        get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowJavaScriptActionParameterType instance in the SDK and on the server.

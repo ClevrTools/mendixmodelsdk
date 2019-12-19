@@ -14,5 +14,5 @@ export declare class ModelEventReceiver {
     onNewModelEvent(callback: (modelEvent: IModelEvent) => void): void;
     start(lastEventId: number): void;
     stop(): void;
-    readonly isRunning: boolean;
+    get isRunning(): boolean;
 }

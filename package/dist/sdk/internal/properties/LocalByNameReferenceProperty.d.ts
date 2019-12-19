@@ -17,6 +17,6 @@ export declare class LocalByNameReferenceProperty<T extends INamedElement> exten
     set(newValue: T | null): void;
     updateWithRawValue(value: string): void;
     localName(): string | null;
-    readonly targetType: string;
+    get targetType(): string;
     deepCopyInto(clone: Structure, idMap?: utils.IMap<Structure>, unresolvedIdentifierFixers?: ((idMap: utils.IMap<Structure>) => void)[]): void;
 }

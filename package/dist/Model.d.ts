@@ -13,7 +13,7 @@ export declare class Model extends base.BaseModel implements IModel {
      * Returns the structural unit of type "Projects$Project" which is the project's root,
      * cast to the appropriate type.
      */
-    readonly root: classes.projects.IProject;
+    get root(): classes.projects.IProject;
     findModuleByQualifiedName(qname: string): classes.projects.IModule | null;
 }
 export declare type ModelSdkClient = ModelSdkClientImpl<IModel, Model>;

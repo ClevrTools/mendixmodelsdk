@@ -26,7 +26,7 @@ export declare abstract class AbstractProperty<T, P> {
     constructor(declaredOn: structures.IStructureClass, parent: structures.Structure, name: string, initialValue: T, ...moreArgs: any[]);
     abstract get(): T;
     abstract updateWithRawValue(value: any): void;
-    readonly versionInfo: versions.PropertyVersionInfo;
+    get versionInfo(): versions.PropertyVersionInfo;
     reportAvailabilityIssues(): void;
     dispose(): void;
     abstract deepCopyInto(clone: structures.Structure, idMap: utils.IMap<structures.Structure>, unresolvedIdentifierFixers: ((idMap: utils.IMap<structures.Structure>) => void)[]): void;

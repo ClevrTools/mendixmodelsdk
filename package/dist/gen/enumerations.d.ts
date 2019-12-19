@@ -9,10 +9,12 @@ export declare namespace enumerations {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConditionSettings: documenttemplates.ConditionSettings;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        attributeValue: string;
-        editableVisible: boolean;
+        get containerAsConditionSettings(): documenttemplates.ConditionSettings;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get attributeValue(): string;
+        set attributeValue(newValue: string);
+        get editableVisible(): boolean;
+        set editableVisible(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Condition instance in the SDK and on the server.
@@ -51,8 +53,8 @@ export declare namespace enumerations {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly values: internal.IList<EnumerationValue>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get values(): internal.IList<EnumerationValue>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Enumeration unit in the SDK and on the server.
@@ -78,11 +80,14 @@ export declare namespace enumerations {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEnumeration: Enumeration;
-        name: string;
-        caption: texts.Text;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
+        get containerAsEnumeration(): Enumeration;
+        get name(): string;
+        set name(newValue: string);
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationValue instance in the SDK and on the server.
@@ -96,7 +101,7 @@ export declare namespace enumerations {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): EnumerationValue;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
 }
 import { documenttemplates } from "./documenttemplates";

@@ -37,14 +37,20 @@ export declare namespace scheduledevents {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        startDateTime: string;
-        timeZone: TimeZoneEnum;
-        interval: number;
-        intervalType: IntervalType;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        enabled: boolean;
+        get containerAsFolderBase(): projects.FolderBase;
+        get startDateTime(): string;
+        set startDateTime(newValue: string);
+        get timeZone(): TimeZoneEnum;
+        set timeZone(newValue: TimeZoneEnum);
+        get interval(): number;
+        set interval(newValue: number);
+        get intervalType(): IntervalType;
+        set intervalType(newValue: IntervalType);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ScheduledEvent unit in the SDK and on the server.

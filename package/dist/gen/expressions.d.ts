@@ -38,39 +38,40 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -82,48 +83,52 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        operator: BinaryOperator;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get operator(): BinaryOperator;
+        set operator(newValue: BinaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        left: Expression;
+        get left(): Expression;
+        set left(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        right: Expression;
+        get right(): Expression;
+        set right(newValue: Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BinaryExpression instance in the SDK and on the server.
@@ -541,6 +546,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): BinaryExpression;
         /**
          * Creates and returns a new BinaryExpression instance in the SDK and on the server.
+         * The new BinaryExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): BinaryExpression;
+        /**
+         * Creates and returns a new BinaryExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -555,39 +569,40 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -599,40 +614,42 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        value: boolean;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get value(): boolean;
+        set value(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
@@ -1050,6 +1067,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): BooleanLiteral;
         /**
          * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
+         * The new BooleanLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): BooleanLiteral;
+        /**
+         * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1064,41 +1090,43 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        constant: constants.IConstant;
-        readonly constantQualifiedName: string;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get constant(): constants.IConstant;
+        set constant(newValue: constants.IConstant);
+        get constantQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
@@ -1516,6 +1544,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): ConstantRefExpression;
         /**
          * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
+         * The new ConstantRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): ConstantRefExpression;
+        /**
+         * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1530,39 +1567,40 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
@@ -1980,6 +2018,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): EmptyLiteral;
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
+         * The new EmptyLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): EmptyLiteral;
+        /**
+         * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1994,41 +2041,43 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        value: enumerations.IEnumerationValue;
-        readonly valueQualifiedName: string;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get value(): enumerations.IEnumerationValue;
+        set value(newValue: enumerations.IEnumerationValue);
+        get valueQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
@@ -2446,6 +2495,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): EnumerationValueRefExpression;
         /**
          * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
+         * The new EnumerationValueRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): EnumerationValueRefExpression;
+        /**
+         * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -2460,40 +2518,42 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        value: number;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get value(): number;
+        set value(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatLiteral instance in the SDK and on the server.
@@ -2911,6 +2971,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): FloatLiteral;
         /**
          * Creates and returns a new FloatLiteral instance in the SDK and on the server.
+         * The new FloatLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): FloatLiteral;
+        /**
+         * Creates and returns a new FloatLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -2925,44 +2994,46 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        functionName: string;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get functionName(): string;
+        set functionName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        readonly arguments: internal.IList<Expression>;
+        get arguments(): internal.IList<Expression>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
@@ -3380,6 +3451,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): FunctionCallExpression;
         /**
          * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
+         * The new FunctionCallExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): FunctionCallExpression;
+        /**
+         * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3394,7 +3474,7 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsVariableRefExpression: VariableRefExpression;
+        get containerAsVariableRefExpression(): VariableRefExpression;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -3406,8 +3486,9 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsVariableRefExpression: VariableRefExpression;
-        referredName: string;
+        get containerAsVariableRefExpression(): VariableRefExpression;
+        get referredName(): string;
+        set referredName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new GlobalVariableRef instance in the SDK and on the server.
@@ -3434,51 +3515,55 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        condition: Expression;
+        get condition(): Expression;
+        set condition(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        ifTrue: Expression;
+        get ifTrue(): Expression;
+        set ifTrue(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        ifFalse: Expression;
+        get ifFalse(): Expression;
+        set ifFalse(newValue: Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IfExpression instance in the SDK and on the server.
@@ -3896,6 +3981,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): IfExpression;
         /**
          * Creates and returns a new IfExpression instance in the SDK and on the server.
+         * The new IfExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): IfExpression;
+        /**
+         * Creates and returns a new IfExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3910,40 +4004,42 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        value: number;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get value(): number;
+        set value(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
@@ -4361,6 +4457,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): IntegerLiteral;
         /**
          * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
+         * The new IntegerLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): IntegerLiteral;
+        /**
+         * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4375,39 +4480,40 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
@@ -4825,6 +4931,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): NoExpression;
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
+         * The new NoExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): NoExpression;
+        /**
+         * Creates and returns a new NoExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4839,7 +4954,7 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsVariableRefExpression: VariableRefExpression;
+        get containerAsVariableRefExpression(): VariableRefExpression;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoVariableRef instance in the SDK and on the server.
@@ -4866,43 +4981,45 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        expression: Expression;
+        get expression(): Expression;
+        set expression(newValue: Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
@@ -5320,6 +5437,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): ParenthesisExpression;
         /**
          * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
+         * The new ParenthesisExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): ParenthesisExpression;
+        /**
+         * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -5334,40 +5460,42 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        value: string;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get value(): string;
+        set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringLiteral instance in the SDK and on the server.
@@ -5785,6 +5913,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): StringLiteral;
         /**
          * Creates and returns a new StringLiteral instance in the SDK and on the server.
+         * The new StringLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): StringLiteral;
+        /**
+         * Creates and returns a new StringLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -5799,44 +5936,47 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        operator: UnaryOperator;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get operator(): UnaryOperator;
+        set operator(newValue: UnaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        expression: Expression;
+        get expression(): Expression;
+        set expression(newValue: Expression);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UnaryExpression instance in the SDK and on the server.
@@ -6254,6 +6394,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): UnaryExpression;
         /**
          * Creates and returns a new UnaryExpression instance in the SDK and on the server.
+         * The new UnaryExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): UnaryExpression;
+        /**
+         * Creates and returns a new UnaryExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -6268,40 +6417,42 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
-        expression: string;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get expression(): string;
+        set expression(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
@@ -6719,6 +6870,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): UnparsableExpression;
         /**
          * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
+         * The new UnparsableExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): UnparsableExpression;
+        /**
+         * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -6733,47 +6893,50 @@ export declare namespace expressions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBinaryExpression: BinaryExpression;
-        readonly containerAsFunctionCallExpression: FunctionCallExpression;
-        readonly containerAsIfExpression: IfExpression;
-        readonly containerAsParenthesisExpression: ParenthesisExpression;
-        readonly containerAsUnaryExpression: UnaryExpression;
-        readonly containerAsAppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
-        readonly containerAsBasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
-        readonly containerAsBasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
-        readonly containerAsBinaryRequestHandling: microflows.BinaryRequestHandling;
-        readonly containerAsChangeListAction: microflows.ChangeListAction;
-        readonly containerAsChangeVariableAction: microflows.ChangeVariableAction;
-        readonly containerAsCreateVariableAction: microflows.CreateVariableAction;
-        readonly containerAsCustomRange: microflows.CustomRange;
-        readonly containerAsDocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
-        readonly containerAsEndEvent: microflows.EndEvent;
-        readonly containerAsExpressionSplitCondition: microflows.ExpressionSplitCondition;
-        readonly containerAsFormDataPart: microflows.FormDataPart;
-        readonly containerAsGenerateDocumentAction: microflows.GenerateDocumentAction;
-        readonly containerAsHttpConfiguration: microflows.HttpConfiguration;
-        readonly containerAsHttpHeaderEntry: microflows.HttpHeaderEntry;
-        readonly containerAsInspectAttribute: microflows.InspectAttribute;
-        readonly containerAsLogMessageAction: microflows.LogMessageAction;
-        readonly containerAsMemberChange: microflows.MemberChange;
-        readonly containerAsMicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
-        readonly containerAsNanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
-        readonly containerAsProxyConfiguration: microflows.ProxyConfiguration;
-        readonly containerAsRestCallAction: microflows.RestCallAction;
-        readonly containerAsRuleCallParameterMapping: microflows.RuleCallParameterMapping;
-        readonly containerAsTemplateArgument: microflows.TemplateArgument;
-        readonly containerAsWebServiceCallAction: microflows.WebServiceCallAction;
-        readonly containerAsWebServiceOperationParameterMapping: microflows.WebServiceOperationParameterMapping;
-        readonly containerAsConditionalSettings: pages.ConditionalSettings;
-        readonly containerAsWidgetValidation: pages.WidgetValidation;
+        get containerAsBinaryExpression(): BinaryExpression;
+        get containerAsFunctionCallExpression(): FunctionCallExpression;
+        get containerAsIfExpression(): IfExpression;
+        get containerAsParenthesisExpression(): ParenthesisExpression;
+        get containerAsUnaryExpression(): UnaryExpression;
+        get containerAsAppServiceCallParameterMapping(): microflows.AppServiceCallParameterMapping;
+        get containerAsBasicCodeActionParameterValue(): microflows.BasicCodeActionParameterValue;
+        get containerAsBasicJavaActionParameterValue(): microflows.BasicJavaActionParameterValue;
+        get containerAsBinaryRequestHandling(): microflows.BinaryRequestHandling;
+        get containerAsChangeListAction(): microflows.ChangeListAction;
+        get containerAsChangeVariableAction(): microflows.ChangeVariableAction;
+        get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsCustomRange(): microflows.CustomRange;
+        get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
+        get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
+        get containerAsFormDataPart(): microflows.FormDataPart;
+        get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
+        get containerAsHttpConfiguration(): microflows.HttpConfiguration;
+        get containerAsHttpHeaderEntry(): microflows.HttpHeaderEntry;
+        get containerAsInspectAttribute(): microflows.InspectAttribute;
+        get containerAsLogMessageAction(): microflows.LogMessageAction;
+        get containerAsMemberChange(): microflows.MemberChange;
+        get containerAsMicroflowCallParameterMapping(): microflows.MicroflowCallParameterMapping;
+        get containerAsNanoflowCallParameterMapping(): microflows.NanoflowCallParameterMapping;
+        get containerAsProxyConfiguration(): microflows.ProxyConfiguration;
+        get containerAsRestCallAction(): microflows.RestCallAction;
+        get containerAsRuleCallParameterMapping(): microflows.RuleCallParameterMapping;
+        get containerAsTemplateArgument(): microflows.TemplateArgument;
+        get containerAsWebServiceCallAction(): microflows.WebServiceCallAction;
+        get containerAsWebServiceOperationParameterMapping(): microflows.WebServiceOperationParameterMapping;
+        get containerAsConditionalSettings(): pages.ConditionalSettings;
+        get containerAsWidgetValidation(): pages.WidgetValidation;
+        get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        variable: VariableRef;
+        get variable(): VariableRef;
+        set variable(newValue: VariableRef);
         /**
          * In version 7.11.0: introduced
          */
-        member: domainmodels.MemberRef | null;
+        get member(): domainmodels.MemberRef | null;
+        set member(newValue: domainmodels.MemberRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
@@ -7191,6 +7354,15 @@ export declare namespace expressions {
         static createInWidgetValidationUnderExpressionModel(container: pages.WidgetValidation): VariableRefExpression;
         /**
          * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
+         * The new VariableRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container: rest.ConsumedODataService): VariableRefExpression;
+        /**
+         * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -7202,4 +7374,5 @@ import { domainmodels } from "./domainmodels";
 import { enumerations } from "./enumerations";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
+import { rest } from "./rest";
 import { IModel } from "./base-model";

@@ -35,7 +35,7 @@ export declare abstract class AbstractUnit extends Structure implements IAbstrac
      * Checks whether all attributes are available at this instant;
      * if false, a load is required to access these properties.
      */
-    readonly isLoaded: boolean;
+    get isLoaded(): boolean;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
 }
 export interface IStructuralUnit extends IAbstractUnit {
@@ -45,7 +45,7 @@ export interface IStructuralUnit extends IAbstractUnit {
  */
 export declare abstract class StructuralUnit extends AbstractUnit implements IStructuralUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, _ignoredIsPartial: boolean, container: IStructuralUnit);
-    readonly unit: this;
+    get unit(): this;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
     delete(): void;
     toJSON(): transport.IAbstractElementJson;
@@ -71,8 +71,8 @@ export interface IModelUnit extends IAbstractUnit, IAbstractElement {
 export declare abstract class ModelUnit extends AbstractElement implements IModelUnit {
     readonly container: StructuralUnit;
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit | null);
-    readonly unit: this;
-    readonly isLoaded: boolean;
+    get unit(): this;
+    get isLoaded(): boolean;
     /**
      * Deletes this element from the model.
      */

@@ -24,25 +24,33 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConsumedAppService: ConsumedAppService;
-        name: string;
-        caption: string;
-        description: string;
-        readonly parameters: internal.IList<AppServiceActionParameter>;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsConsumedAppService(): ConsumedAppService;
+        get name(): string;
+        set name(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get parameters(): internal.IList<AppServiceActionParameter>;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        returnType: string;
+        get returnType(): string;
+        set returnType(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        actionReturnType: datatypes.DataType;
-        returnTypeCanBeEmpty: boolean;
-        image: string;
+        get actionReturnType(): datatypes.DataType;
+        set actionReturnType(newValue: datatypes.DataType);
+        get returnTypeCanBeEmpty(): boolean;
+        set returnTypeCanBeEmpty(newValue: boolean);
+        get image(): string;
+        set image(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AppServiceAction instance in the SDK and on the server.
@@ -56,7 +64,7 @@ export declare namespace appservices {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): AppServiceAction;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     interface IAppServiceActionParameter extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -70,19 +78,23 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAppServiceAction: AppServiceAction;
-        name: string;
+        get containerAsAppServiceAction(): AppServiceAction;
+        get name(): string;
+        set name(newValue: string);
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 7.9.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 7.9.0: introduced
          */
-        parameterType: datatypes.DataType;
-        canBeEmpty: boolean;
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        get canBeEmpty(): boolean;
+        set canBeEmpty(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AppServiceActionParameter instance in the SDK and on the server.
@@ -96,7 +108,7 @@ export declare namespace appservices {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): AppServiceActionParameter;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/consumed-app-services relevant section in reference guide}
@@ -116,18 +128,27 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly actions: internal.IList<AppServiceAction>;
-        msd: Msd;
-        fromAppStore: boolean;
-        appStoreGuid: string;
-        appStoreVersionGuid: string;
-        appStoreVersion: string;
-        appServiceLocation: AppServiceLocationEnum;
-        locationConstant: constants.IConstant | null;
-        readonly locationConstantQualifiedName: string | null;
-        useTimeOut: boolean;
-        timeOut: number;
+        get containerAsFolderBase(): projects.FolderBase;
+        get actions(): internal.IList<AppServiceAction>;
+        get msd(): Msd;
+        set msd(newValue: Msd);
+        get fromAppStore(): boolean;
+        set fromAppStore(newValue: boolean);
+        get appStoreGuid(): string;
+        set appStoreGuid(newValue: string);
+        get appStoreVersionGuid(): string;
+        set appStoreVersionGuid(newValue: string);
+        get appStoreVersion(): string;
+        set appStoreVersion(newValue: string);
+        get appServiceLocation(): AppServiceLocationEnum;
+        set appServiceLocation(newValue: AppServiceLocationEnum);
+        get locationConstant(): constants.IConstant | null;
+        set locationConstant(newValue: constants.IConstant | null);
+        get locationConstantQualifiedName(): string | null;
+        get useTimeOut(): boolean;
+        set useTimeOut(newValue: boolean);
+        get timeOut(): number;
+        set timeOut(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedAppService unit in the SDK and on the server.
@@ -139,13 +160,19 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsConsumedAppService: ConsumedAppService;
-        version: MsdVersion;
-        metadata: MsdMetadata;
-        domainModel: MsdDomainModel;
-        enumerations: MsdEnumerationContainer;
-        wsdlDescription: webservices.WsdlDescription;
-        wsdl: string;
+        get containerAsConsumedAppService(): ConsumedAppService;
+        get version(): MsdVersion;
+        set version(newValue: MsdVersion);
+        get metadata(): MsdMetadata;
+        set metadata(newValue: MsdMetadata);
+        get domainModel(): MsdDomainModel;
+        set domainModel(newValue: MsdDomainModel);
+        get enumerations(): MsdEnumerationContainer;
+        set enumerations(newValue: MsdEnumerationContainer);
+        get wsdlDescription(): webservices.WsdlDescription;
+        set wsdlDescription(newValue: webservices.WsdlDescription);
+        get wsdl(): string;
+        set wsdl(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Msd instance in the SDK and on the server.
@@ -164,21 +191,34 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdDomainModel: MsdDomainModel;
-        readonly containerAsDataAssociation: webservices.DataAssociation;
-        name: string;
-        guid: string;
-        parentEntityName: string;
-        childEntityName: string;
-        associationType: string;
-        associationOwner: string;
-        parentDeleteBehavior: string;
-        childDeleteBehavior: string;
-        associationKind: string;
-        parentX: number;
-        parentY: number;
-        childX: number;
-        childY: number;
+        get containerAsMsdDomainModel(): MsdDomainModel;
+        get containerAsDataAssociation(): webservices.DataAssociation;
+        get name(): string;
+        set name(newValue: string);
+        get guid(): string;
+        set guid(newValue: string);
+        get parentEntityName(): string;
+        set parentEntityName(newValue: string);
+        get childEntityName(): string;
+        set childEntityName(newValue: string);
+        get associationType(): string;
+        set associationType(newValue: string);
+        get associationOwner(): string;
+        set associationOwner(newValue: string);
+        get parentDeleteBehavior(): string;
+        set parentDeleteBehavior(newValue: string);
+        get childDeleteBehavior(): string;
+        set childDeleteBehavior(newValue: string);
+        get associationKind(): string;
+        set associationKind(newValue: string);
+        get parentX(): number;
+        set parentX(newValue: number);
+        get parentY(): number;
+        set parentY(newValue: number);
+        get childX(): number;
+        set childX(newValue: number);
+        get childY(): number;
+        set childY(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdAssociation instance in the SDK and on the server.
@@ -203,14 +243,20 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdEntity: MsdEntity;
-        readonly containerAsDataAttribute: webservices.DataAttribute;
-        name: string;
-        guid: string;
-        attributeType: string;
-        enumerationName: string;
-        defaultValue: string;
-        length: number;
+        get containerAsMsdEntity(): MsdEntity;
+        get containerAsDataAttribute(): webservices.DataAttribute;
+        get name(): string;
+        set name(newValue: string);
+        get guid(): string;
+        set guid(newValue: string);
+        get attributeType(): string;
+        set attributeType(newValue: string);
+        get enumerationName(): string;
+        set enumerationName(newValue: string);
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
+        get length(): number;
+        set length(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdAttribute instance in the SDK and on the server.
@@ -235,9 +281,9 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsd: Msd;
-        readonly entities: internal.IList<MsdEntity>;
-        readonly associations: internal.IList<MsdAssociation>;
+        get containerAsMsd(): Msd;
+        get entities(): internal.IList<MsdEntity>;
+        get associations(): internal.IList<MsdAssociation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdDomainModel instance in the SDK and on the server.
@@ -256,14 +302,20 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdDomainModel: MsdDomainModel;
-        name: string;
-        guid: string;
-        generalizationName: string;
-        persistable: boolean;
-        locationX: number;
-        locationY: number;
-        readonly attributes: internal.IList<MsdAttribute>;
+        get containerAsMsdDomainModel(): MsdDomainModel;
+        get name(): string;
+        set name(newValue: string);
+        get guid(): string;
+        set guid(newValue: string);
+        get generalizationName(): string;
+        set generalizationName(newValue: string);
+        get persistable(): boolean;
+        set persistable(newValue: boolean);
+        get locationX(): number;
+        set locationX(newValue: number);
+        get locationY(): number;
+        set locationY(newValue: number);
+        get attributes(): internal.IList<MsdAttribute>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdEntity instance in the SDK and on the server.
@@ -282,10 +334,12 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdEnumerationContainer: MsdEnumerationContainer;
-        name: string;
-        guid: string;
-        readonly values: internal.IList<MsdEnumerationValue>;
+        get containerAsMsdEnumerationContainer(): MsdEnumerationContainer;
+        get name(): string;
+        set name(newValue: string);
+        get guid(): string;
+        set guid(newValue: string);
+        get values(): internal.IList<MsdEnumerationValue>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdEnumeration instance in the SDK and on the server.
@@ -304,9 +358,9 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsd: Msd;
-        readonly containerAsVersionedService: webservices.VersionedService;
-        readonly enumerations: internal.IList<MsdEnumeration>;
+        get containerAsMsd(): Msd;
+        get containerAsVersionedService(): webservices.VersionedService;
+        get enumerations(): internal.IList<MsdEnumeration>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdEnumerationContainer instance in the SDK and on the server.
@@ -331,11 +385,14 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdEnumeration: MsdEnumeration;
-        name: string;
-        guid: string;
-        readonly translations: internal.IList<MsdText>;
-        image: string;
+        get containerAsMsdEnumeration(): MsdEnumeration;
+        get name(): string;
+        set name(newValue: string);
+        get guid(): string;
+        set guid(newValue: string);
+        get translations(): internal.IList<MsdText>;
+        get image(): string;
+        set image(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdEnumerationValue instance in the SDK and on the server.
@@ -354,20 +411,31 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsd: Msd;
-        name: string;
-        documentation: string;
-        version: number;
-        publishDateTime: string;
-        serviceGuid: string;
-        versionGuid: string;
-        instanceGuid: string;
-        readonly supportedProtocols: internal.IList<string>;
-        headerAuthentication: string;
-        readonly microflows: internal.IList<MsdMicroflow>;
-        caption: string;
-        image: string;
-        description: string;
+        get containerAsMsd(): Msd;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get version(): number;
+        set version(newValue: number);
+        get publishDateTime(): string;
+        set publishDateTime(newValue: string);
+        get serviceGuid(): string;
+        set serviceGuid(newValue: string);
+        get versionGuid(): string;
+        set versionGuid(newValue: string);
+        get instanceGuid(): string;
+        set instanceGuid(newValue: string);
+        get supportedProtocols(): internal.IList<string>;
+        get headerAuthentication(): string;
+        set headerAuthentication(newValue: string);
+        get microflows(): internal.IList<MsdMicroflow>;
+        get caption(): string;
+        set caption(newValue: string);
+        get image(): string;
+        set image(newValue: string);
+        get description(): string;
+        set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdMetadata instance in the SDK and on the server.
@@ -386,19 +454,27 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdMetadata: MsdMetadata;
-        name: string;
-        documentation: string;
-        image: string;
-        description: string;
-        readonly parameters: internal.IList<MsdMicroflowParameter>;
-        returnType: string;
+        get containerAsMsdMetadata(): MsdMetadata;
+        get name(): string;
+        set name(newValue: string);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get image(): string;
+        set image(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get parameters(): internal.IList<MsdMicroflowParameter>;
+        get returnType(): string;
+        set returnType(newValue: string);
         /**
          * In version 6.1.0: deleted
          */
-        systemEntityType: string;
-        returnTypeSpecification: string;
-        returnTypeCanBeEmpty: boolean;
+        get systemEntityType(): string;
+        set systemEntityType(newValue: string);
+        get returnTypeSpecification(): string;
+        set returnTypeSpecification(newValue: string);
+        get returnTypeCanBeEmpty(): boolean;
+        set returnTypeCanBeEmpty(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdMicroflow instance in the SDK and on the server.
@@ -417,16 +493,21 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdMicroflow: MsdMicroflow;
-        readonly containerAsPublishedParameter: webservices.PublishedParameter;
-        name: string;
-        type: string;
-        typeSpecification: string;
+        get containerAsMsdMicroflow(): MsdMicroflow;
+        get containerAsPublishedParameter(): webservices.PublishedParameter;
+        get name(): string;
+        set name(newValue: string);
+        get type(): string;
+        set type(newValue: string);
+        get typeSpecification(): string;
+        set typeSpecification(newValue: string);
         /**
          * In version 6.1.0: deleted
          */
-        systemEntityType: string;
-        canBeEmpty: boolean;
+        get systemEntityType(): string;
+        set systemEntityType(newValue: string);
+        get canBeEmpty(): boolean;
+        set canBeEmpty(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdMicroflowParameter instance in the SDK and on the server.
@@ -451,9 +532,11 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsdEnumerationValue: MsdEnumerationValue;
-        languageCode: string;
-        caption: string;
+        get containerAsMsdEnumerationValue(): MsdEnumerationValue;
+        get languageCode(): string;
+        set languageCode(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdText instance in the SDK and on the server.
@@ -472,8 +555,9 @@ export declare namespace appservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMsd: Msd;
-        version: number;
+        get containerAsMsd(): Msd;
+        get version(): number;
+        set version(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MsdVersion instance in the SDK and on the server.

@@ -83,6 +83,10 @@ var rest;
             this.__httpConfiguration = new internal.PartProperty(ConsumedODataService, this, "httpConfiguration", null, true);
             /** @internal */
             this.__headersMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "headersMicroflow", null, "Microflows$Microflow");
+            /** @internal */
+            this.__timeoutModel = new internal.PartProperty(ConsumedODataService, this, "timeoutModel", null, true);
+            /** @internal */
+            this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -197,6 +201,28 @@ var rest;
             return this.__headersMicroflow.qualifiedName();
         }
         /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.5.0: introduced
+         */
+        get timeoutModel() {
+            return this.__timeoutModel.get();
+        }
+        set timeoutModel(newValue) {
+            this.__timeoutModel.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.5.0: introduced
+         */
+        get timeoutExpression() {
+            return this.__timeoutExpression.get();
+        }
+        set timeoutExpression(newValue) {
+            this.__timeoutExpression.set(newValue);
+        }
+        /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -210,6 +236,15 @@ var rest;
                 this.httpConfiguration = microflows_1.microflows.HttpConfiguration.create(this.model);
             }
             this.proxyType = microflows_1.microflows.RequestProxyType.DefaultProxy;
+            if (this.__timeoutExpression.isAvailable) {
+                this.timeoutExpression = "300";
+            }
+            if (this.__timeoutModel.isAvailable) {
+                this.timeoutModel = ((integerLiteral) => {
+                    integerLiteral.value = 300;
+                    return integerLiteral;
+                })(expressions_1.expressions.IntegerLiteral.create(this.model));
+            }
         }
     }
     ConsumedODataService.structureTypeName = "Rest$ConsumedODataService";
@@ -233,6 +268,15 @@ var rest;
             },
             headersMicroflow: {
                 introduced: "8.4.0"
+            },
+            timeoutModel: {
+                introduced: "8.5.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            timeoutExpression: {
+                introduced: "8.5.0"
             }
         },
         experimental: {
@@ -1462,6 +1506,7 @@ var rest;
     rest.RestOperationParameter = RestOperationParameter;
 })(rest = exports.rest || (exports.rest = {}));
 const datatypes_1 = require("./datatypes");
+const expressions_1 = require("./expressions");
 const mappings_1 = require("./mappings");
 const microflows_1 = require("./microflows");
 const services_1 = require("./services");

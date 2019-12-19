@@ -14,10 +14,13 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeNavigationProfile: navigation.NativeNavigationProfile;
-        caption: texts.Text;
-        icon: pages.Icon | null;
-        action: pages.ClientAction;
+        get containerAsNativeNavigationProfile(): navigation.NativeNavigationProfile;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get icon(): pages.Icon | null;
+        set icon(newValue: pages.Icon | null);
+        get action(): pages.ClientAction;
+        set action(newValue: pages.ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BottomBarItem instance in the SDK and on the server.
@@ -58,12 +61,13 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly widgets: internal.IList<pages.Widget>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get widgets(): internal.IList<pages.Widget>;
         /**
          * In version 7.22.0: introduced
          */
-        headerWidget: pages.Widget | null;
+        get headerWidget(): pages.Widget | null;
+        set headerWidget(newValue: pages.Widget | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new NativeLayout unit in the SDK and on the server.
@@ -81,10 +85,11 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativePage: NativePage;
-        parameter: pages.ILayoutParameter;
-        readonly parameterQualifiedName: string;
-        readonly widgets: internal.IList<pages.Widget>;
+        get containerAsNativePage(): NativePage;
+        get parameter(): pages.ILayoutParameter;
+        set parameter(newValue: pages.ILayoutParameter);
+        get parameterQualifiedName(): string;
+        get widgets(): internal.IList<pages.Widget>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeLayoutCallArgument instance in the SDK and on the server.
@@ -125,18 +130,19 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        layout: INativeLayout;
-        readonly layoutQualifiedName: string;
+        get layout(): INativeLayout;
+        set layout(newValue: INativeLayout);
+        get layoutQualifiedName(): string;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.23.0: introduced
          */
-        readonly arguments: internal.IList<NativeLayoutCallArgument>;
+        get arguments(): internal.IList<NativeLayoutCallArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new NativePage unit in the SDK and on the server.
@@ -154,22 +160,23 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsMenuItem: menus.MenuItem;
-        readonly containerAsActionButton: pages.ActionButton;
-        readonly containerAsActionItem: pages.ActionItem;
-        readonly containerAsAssociationWidget: pages.AssociationWidget;
-        readonly containerAsAttributeWidget: pages.AttributeWidget;
-        readonly containerAsDynamicImageViewer: pages.DynamicImageViewer;
-        readonly containerAsGridActionButton: pages.GridActionButton;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsReferenceSetSelector: pages.ReferenceSetSelector;
-        readonly containerAsStaticImageViewer: pages.StaticImageViewer;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): pages.ActionButton;
+        get containerAsActionItem(): pages.ActionItem;
+        get containerAsAssociationWidget(): pages.AssociationWidget;
+        get containerAsAttributeWidget(): pages.AttributeWidget;
+        get containerAsDynamicImageViewer(): pages.DynamicImageViewer;
+        get containerAsGridActionButton(): pages.GridActionButton;
+        get containerAsListView(): pages.ListView;
+        get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
+        get containerAsStaticImageViewer(): pages.StaticImageViewer;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        page: INativePage | null;
-        readonly pageQualifiedName: string | null;
+        get page(): INativePage | null;
+        set page(newValue: INativePage | null);
+        get pageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativePageClientAction instance in the SDK and on the server.
@@ -305,25 +312,25 @@ export declare namespace nativepages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeLayout: NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
+        get containerAsNativeLayout(): NativeLayout;
+        get containerAsNativeLayoutCallArgument(): NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativePlaceholder instance in the SDK and on the server.

@@ -182,14 +182,14 @@ export declare abstract class AbstractModel implements IAbstractModel {
     workingCopy: IWorkingCopy;
     metaModelVersion: Version;
     mxVersionForModel: Version;
-    abstract readonly root: IStructuralUnit;
+    abstract get root(): IStructuralUnit;
     constructor(_client: IModelServerClient, _errorHandler: common.IErrorCallback);
     setErrorHandler(callback: common.IErrorCallback): void;
     closeConnection(callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     closeConnection(): Promise<void>;
     flushChanges(callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     flushChanges(): Promise<void>;
-    readonly id: string;
+    get id(): string;
     /**
      * Returns a defensive collection of all units in this model.
      */

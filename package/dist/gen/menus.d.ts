@@ -22,8 +22,9 @@ export declare namespace menus {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        itemCollection: MenuItemCollection;
+        get containerAsFolderBase(): projects.FolderBase;
+        get itemCollection(): MenuItemCollection;
+        set itemCollection(newValue: MenuItemCollection);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new MenuDocument unit in the SDK and on the server.
@@ -35,10 +36,10 @@ export declare namespace menus {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuDocument: MenuDocument;
-        readonly containerAsMenuItemContainer: MenuItemContainer;
-        readonly containerAsNavigationProfile: navigation.NavigationProfile;
-        readonly items: internal.IList<MenuItem>;
+        get containerAsMenuDocument(): MenuDocument;
+        get containerAsMenuItemContainer(): MenuItemContainer;
+        get containerAsNavigationProfile(): navigation.NavigationProfile;
+        get items(): internal.IList<MenuItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -48,10 +49,13 @@ export declare namespace menus {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuItemContainer: MenuItemContainer;
-        caption: texts.Text;
-        icon: pages.Icon | null;
-        action: pages.ClientAction;
+        get containerAsMenuItemContainer(): MenuItemContainer;
+        get caption(): texts.Text;
+        set caption(newValue: texts.Text);
+        get icon(): pages.Icon | null;
+        set icon(newValue: pages.Icon | null);
+        get action(): pages.ClientAction;
+        set action(newValue: pages.ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MenuItem instance in the SDK and on the server.
@@ -70,8 +74,8 @@ export declare namespace menus {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsMenuDocument: MenuDocument;
-        readonly containerAsNavigationProfile: navigation.NavigationProfile;
+        get containerAsMenuDocument(): MenuDocument;
+        get containerAsNavigationProfile(): navigation.NavigationProfile;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MenuItemCollection instance in the SDK and on the server.

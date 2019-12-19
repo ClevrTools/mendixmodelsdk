@@ -39,18 +39,20 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationProfile: NavigationProfile;
-        page: pages.IPage | null;
-        readonly pageQualifiedName: string | null;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get containerAsNavigationProfile(): NavigationProfile;
+        get page(): pages.IPage | null;
+        set page(newValue: pages.IPage | null);
+        get pageQualifiedName(): string | null;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class HomePage extends HomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationProfile: NavigationProfile;
+        get containerAsNavigationProfile(): NavigationProfile;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HomePage instance in the SDK and on the server.
@@ -80,19 +82,20 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationDocument: NavigationDocument;
+        get containerAsNavigationDocument(): NavigationDocument;
         /**
          * In version 7.2.0: introduced
          */
-        name: string;
+        get name(): string;
+        set name(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 7.22.0: introduced
          */
-        readonly offlineEntityConfigs: internal.IList<OfflineEntityConfig> | null;
+        get offlineEntityConfigs(): internal.IList<OfflineEntityConfig> | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * In version 7.22.0: introduced
@@ -111,19 +114,20 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationDocument: NavigationDocument;
-        homePage: pages.IPage | null;
-        readonly homePageQualifiedName: string | null;
+        get containerAsNavigationDocument(): NavigationDocument;
+        get homePage(): pages.IPage | null;
+        set homePage(newValue: pages.IPage | null);
+        get homePageQualifiedName(): string | null;
         /**
          * In version 8.0.0: introduced
          */
-        readonly roleBasedNativeHomePages: internal.IList<RoleBasedNativeHomePage>;
+        get roleBasedNativeHomePages(): internal.IList<RoleBasedNativeHomePage>;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 8.0.0: introduced
          */
-        readonly bottomBarItems: internal.IList<nativepages.BottomBarItem>;
+        get bottomBarItems(): internal.IList<nativepages.BottomBarItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
@@ -162,47 +166,55 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsProject: projects.Project;
+        get containerAsProject(): projects.Project;
         /**
          * In version 7.2.0: introduced
          */
-        readonly profiles: internal.IList<NavigationProfileBase>;
+        get profiles(): internal.IList<NavigationProfileBase>;
         /**
          * In version 7.2.0: deleted
          */
-        phoneProfile: NavigationProfile;
+        get phoneProfile(): NavigationProfile;
+        set phoneProfile(newValue: NavigationProfile);
         /**
          * In version 7.2.0: deleted
          */
-        tabletProfile: NavigationProfile;
+        get tabletProfile(): NavigationProfile;
+        set tabletProfile(newValue: NavigationProfile);
         /**
          * In version 7.2.0: deleted
          */
-        desktopProfile: NavigationProfile;
+        get desktopProfile(): NavigationProfile;
+        set desktopProfile(newValue: NavigationProfile);
         /**
          * In version 7.2.0: deleted
          * In version 7.0.2: introduced
          */
-        hybridTabletProfile: NavigationProfile;
+        get hybridTabletProfile(): NavigationProfile;
+        set hybridTabletProfile(newValue: NavigationProfile);
         /**
          * In version 7.2.0: deleted
          * In version 7.0.2: introduced
          */
-        hybridPhoneProfile: NavigationProfile;
+        get hybridPhoneProfile(): NavigationProfile;
+        set hybridPhoneProfile(newValue: NavigationProfile);
         /**
          * In version 7.0.2: deleted
          */
-        offlinePhoneProfile: NavigationProfile;
+        get offlinePhoneProfile(): NavigationProfile;
+        set offlinePhoneProfile(newValue: NavigationProfile);
         /**
          * In version 7.0.0: deleted
          * In version 6.10.4: introduced
          */
-        hybridPhoneProfile6: NavigationProfile;
+        get hybridPhoneProfile6(): NavigationProfile;
+        set hybridPhoneProfile6(newValue: NavigationProfile);
         /**
          * In version 7.0.0: deleted
          * In version 6.10.4: introduced
          */
-        hybridTabletProfile6: NavigationProfile;
+        get hybridTabletProfile6(): NavigationProfile;
+        set hybridTabletProfile6(newValue: NavigationProfile);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
         /**
          * Creates a new NavigationDocument unit in the SDK and on the server.
@@ -227,33 +239,41 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationDocument: NavigationDocument;
+        get containerAsNavigationDocument(): NavigationDocument;
         /**
          * In version 7.2.0: introduced
          */
-        kind: ProfileKind;
+        get kind(): ProfileKind;
+        set kind(newValue: ProfileKind);
         /**
          * In version 7.2.0: deleted
          */
-        enabled: boolean;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
         /**
          * In version 7.2.0: deleted
          * In version 7.0.2: introduced
          */
-        offlineEnabled: boolean;
-        homePage: HomePage;
-        readonly roleBasedHomePages: internal.IList<RoleBasedHomePage>;
-        applicationTitle: string;
+        get offlineEnabled(): boolean;
+        set offlineEnabled(newValue: boolean);
+        get homePage(): HomePage;
+        set homePage(newValue: HomePage);
+        get roleBasedHomePages(): internal.IList<RoleBasedHomePage>;
+        get applicationTitle(): string;
+        set applicationTitle(newValue: string);
         /**
          * In version 7.0.2: introduced
          */
-        loginPageSettings: pages.PageSettings;
-        menuItemCollection: menus.MenuItemCollection;
+        get loginPageSettings(): pages.PageSettings;
+        set loginPageSettings(newValue: pages.PageSettings);
+        get menuItemCollection(): menus.MenuItemCollection;
+        set menuItemCollection(newValue: menus.MenuItemCollection);
         /**
          * In version 7.0.0: deleted
          * In version 6.10.4: introduced
          */
-        offlineEnabled6: boolean;
+        get offlineEnabled6(): boolean;
+        set offlineEnabled6(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationProfile instance in the SDK and on the server.
@@ -361,14 +381,17 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationProfileBase: NavigationProfileBase;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
-        shouldDownload: boolean;
+        get containerAsNavigationProfileBase(): NavigationProfileBase;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
+        get shouldDownload(): boolean;
+        set shouldDownload(newValue: boolean);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        constraint: string;
+        get constraint(): string;
+        set constraint(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OfflineEntityConfig instance in the SDK and on the server.
@@ -390,9 +413,10 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNavigationProfile: NavigationProfile;
-        userRole: security.IUserRole | null;
-        readonly userRoleQualifiedName: string | null;
+        get containerAsNavigationProfile(): NavigationProfile;
+        get userRole(): security.IUserRole | null;
+        set userRole(newValue: security.IUserRole | null);
+        get userRoleQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RoleBasedHomePage instance in the SDK and on the server.
@@ -414,11 +438,13 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsNativeNavigationProfile: NativeNavigationProfile;
-        page: pages.IPage | null;
-        readonly pageQualifiedName: string | null;
-        userRole: security.IUserRole | null;
-        readonly userRoleQualifiedName: string | null;
+        get containerAsNativeNavigationProfile(): NativeNavigationProfile;
+        get page(): pages.IPage | null;
+        set page(newValue: pages.IPage | null);
+        get pageQualifiedName(): string | null;
+        get userRole(): security.IUserRole | null;
+        set userRole(newValue: security.IUserRole | null);
+        get userRoleQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RoleBasedNativeHomePage instance in the SDK and on the server.

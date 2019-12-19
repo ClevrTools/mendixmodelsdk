@@ -17,9 +17,11 @@ export declare namespace images {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsImageCollection: ImageCollection;
-        name: string;
-        imageData: string | null;
+        get containerAsImageCollection(): ImageCollection;
+        get name(): string;
+        set name(newValue: string);
+        get imageData(): string | null;
+        set imageData(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Image instance in the SDK and on the server.
@@ -33,7 +35,7 @@ export declare namespace images {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Image;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/images relevant section in reference guide}
@@ -53,8 +55,8 @@ export declare namespace images {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
-        readonly images: internal.IList<Image>;
+        get containerAsFolderBase(): projects.FolderBase;
+        get images(): internal.IList<Image>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ImageCollection unit in the SDK and on the server.

@@ -22,7 +22,7 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: CodeActionParameter;
+        get containerAsCodeActionParameter(): CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -46,8 +46,9 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: CodeActionParameter;
-        type: Type;
+        get containerAsCodeActionParameter(): CodeActionParameter;
+        get type(): Type;
+        set type(newValue: Type);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicParameterType instance in the SDK and on the server.
@@ -75,9 +76,9 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsListType: ListType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsListType(): ListType;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -98,8 +99,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -120,8 +121,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -177,23 +178,25 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.21.0: introduced
          */
-        readonly actionTypeParameters: internal.IList<TypeParameter>;
+        get actionTypeParameters(): internal.IList<TypeParameter>;
         /**
          * In version 7.21.0: introduced
          */
-        actionReturnType: Type;
+        get actionReturnType(): Type;
+        set actionReturnType(newValue: Type);
         /**
          * In version 7.21.0: introduced
          */
-        modelerActionInfo: MicroflowActionInfo | null;
+        get modelerActionInfo(): MicroflowActionInfo | null;
+        set modelerActionInfo(newValue: MicroflowActionInfo | null);
         /**
          * In version 7.21.0: introduced
          */
-        readonly actionParameters: internal.IList<CodeActionParameter>;
+        get actionParameters(): internal.IList<CodeActionParameter>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     interface ICodeActionParameter extends internal.IElement, internal.IByNameReferrable {
@@ -219,23 +222,27 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsJavaAction: javaactions.JavaAction;
-        name: string;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsJavaAction(): javaactions.JavaAction;
+        get name(): string;
+        set name(newValue: string);
         /**
          * In version 7.21.0: introduced
          */
-        actionParameterType: ParameterType;
+        get actionParameterType(): ParameterType;
+        set actionParameterType(newValue: ParameterType);
         /**
          * In version 6.10.0: introduced
          */
-        description: string;
+        get description(): string;
+        set description(newValue: string);
         /**
          * In version 7.18.0: introduced
          */
-        category: string;
+        get category(): string;
+        set category(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * In version 7.21.0: introduced
@@ -256,9 +263,9 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsListType: ListType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsListType(): ListType;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -285,11 +292,12 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsListType: ListType;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsListType(): ListType;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConcreteEntityType instance in the SDK and on the server.
@@ -343,8 +351,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -389,8 +397,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -435,8 +443,9 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: CodeActionParameter;
-        typeParameter: TypeParameter | null;
+        get containerAsCodeActionParameter(): CodeActionParameter;
+        get typeParameter(): TypeParameter | null;
+        set typeParameter(newValue: TypeParameter | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityTypeParameterType instance in the SDK and on the server.
@@ -468,10 +477,11 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        enumeration: enumerations.IEnumeration;
-        readonly enumerationQualifiedName: string;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get enumeration(): enumerations.IEnumeration;
+        set enumeration(newValue: enumerations.IEnumeration);
+        get enumerationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -516,8 +526,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -562,8 +572,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -612,9 +622,10 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        parameter: EntityType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get parameter(): EntityType;
+        set parameter(newValue: EntityType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -663,12 +674,15 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsMicroflow: microflows.Microflow;
-        caption: string;
-        category: string;
-        icon: images.IImage | null;
-        readonly iconQualifiedName: string | null;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsMicroflow(): microflows.Microflow;
+        get caption(): string;
+        set caption(newValue: string);
+        get category(): string;
+        set category(newValue: string);
+        get icon(): images.IImage | null;
+        set icon(newValue: images.IImage | null);
+        get iconQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
@@ -727,10 +741,11 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
-        readonly containerAsListType: ListType;
-        typeParameter: TypeParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
+        get containerAsListType(): ListType;
+        get typeParameter(): TypeParameter;
+        set typeParameter(newValue: TypeParameter);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ParameterizedEntityType instance in the SDK and on the server.
@@ -767,8 +782,7 @@ export declare namespace codeactions {
         static create(model: IModel): ParameterizedEntityType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.5.0: removed experimental
      * In version 8.4.0: introduced
      */
     interface IStringTemplateParameterType extends IParameterType {
@@ -779,15 +793,14 @@ export declare namespace codeactions {
         load(forceRefresh?: boolean): Promise<StringTemplateParameterType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 8.5.0: removed experimental
      * In version 8.4.0: introduced
      */
     class StringTemplateParameterType extends ParameterType implements IStringTemplateParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: CodeActionParameter;
+        get containerAsCodeActionParameter(): CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.
@@ -814,8 +827,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -860,8 +873,9 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeAction: CodeAction;
-        name: string;
+        get containerAsCodeAction(): CodeAction;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TypeParameter instance in the SDK and on the server.
@@ -869,7 +883,7 @@ export declare namespace codeactions {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): TypeParameter;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * In version 8.3.0: introduced
@@ -889,8 +903,8 @@ export declare namespace codeactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsCodeAction: CodeAction;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.

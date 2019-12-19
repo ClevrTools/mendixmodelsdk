@@ -57,6 +57,7 @@ export declare namespace customwidgets {
         static EntityConstraint: WidgetValueTypeEnum;
         static Enumeration: WidgetValueTypeEnum;
         static Expression: WidgetValueTypeEnum;
+        static File: WidgetValueTypeEnum;
         static Form: WidgetValueTypeEnum;
         static Icon: WidgetValueTypeEnum;
         static Image: WidgetValueTypeEnum;
@@ -79,49 +80,55 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: WidgetValue;
-        readonly containerAsNativeLayout: nativepages.NativeLayout;
-        readonly containerAsNativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
-        readonly containerAsBuildingBlock: pages.BuildingBlock;
-        readonly containerAsDataView: pages.DataView;
-        readonly containerAsDivContainer: pages.DivContainer;
-        readonly containerAsGroupBox: pages.GroupBox;
-        readonly containerAsHeader: pages.Header;
-        readonly containerAsLayout: pages.Layout;
-        readonly containerAsLayoutCallArgument: pages.LayoutCallArgument;
-        readonly containerAsLayoutGridColumn: pages.LayoutGridColumn;
-        readonly containerAsListView: pages.ListView;
-        readonly containerAsListViewTemplate: pages.ListViewTemplate;
-        readonly containerAsMasterDetailRegion: pages.MasterDetailRegion;
-        readonly containerAsNativeLayoutContent: pages.NativeLayoutContent;
-        readonly containerAsNavigationListItem: pages.NavigationListItem;
-        readonly containerAsScrollContainerRegion: pages.ScrollContainerRegion;
-        readonly containerAsSnippet: pages.Snippet;
-        readonly containerAsSplitPane: pages.SplitPane;
-        readonly containerAsTabPage: pages.TabPage;
-        readonly containerAsTableCell: pages.TableCell;
-        readonly containerAsTemplateGridContents: pages.TemplateGridContents;
-        readonly containerAsVerticalFlow: pages.VerticalFlow;
-        readonly containerAsWebLayoutContent: pages.WebLayoutContent;
-        readonly containerAsReportPane: reports.ReportPane;
-        type: CustomWidgetType | null;
-        object: WidgetObject | null;
+        get containerAsWidgetValue(): WidgetValue;
+        get containerAsNativeLayout(): nativepages.NativeLayout;
+        get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
+        get containerAsBuildingBlock(): pages.BuildingBlock;
+        get containerAsDataView(): pages.DataView;
+        get containerAsDivContainer(): pages.DivContainer;
+        get containerAsGroupBox(): pages.GroupBox;
+        get containerAsHeader(): pages.Header;
+        get containerAsLayout(): pages.Layout;
+        get containerAsLayoutCallArgument(): pages.LayoutCallArgument;
+        get containerAsLayoutGridColumn(): pages.LayoutGridColumn;
+        get containerAsListView(): pages.ListView;
+        get containerAsListViewTemplate(): pages.ListViewTemplate;
+        get containerAsMasterDetailRegion(): pages.MasterDetailRegion;
+        get containerAsNativeLayoutContent(): pages.NativeLayoutContent;
+        get containerAsNavigationListItem(): pages.NavigationListItem;
+        get containerAsScrollContainerRegion(): pages.ScrollContainerRegion;
+        get containerAsSnippet(): pages.Snippet;
+        get containerAsSplitPane(): pages.SplitPane;
+        get containerAsTabPage(): pages.TabPage;
+        get containerAsTableCell(): pages.TableCell;
+        get containerAsTemplateGridContents(): pages.TemplateGridContents;
+        get containerAsVerticalFlow(): pages.VerticalFlow;
+        get containerAsWebLayoutContent(): pages.WebLayoutContent;
+        get containerAsReportPane(): reports.ReportPane;
+        get type(): CustomWidgetType | null;
+        set type(newValue: CustomWidgetType | null);
+        get object(): WidgetObject | null;
+        set object(newValue: WidgetObject | null);
         /**
          * In version 8.1.0: introduced
          */
-        labelTemplate: pages.ClientTemplate | null;
+        get labelTemplate(): pages.ClientTemplate | null;
+        set labelTemplate(newValue: pages.ClientTemplate | null);
         /**
          * In version 8.1.0: introduced
          */
-        conditionalEditabilitySettings: pages.ConditionalEditabilitySettings | null;
+        get conditionalEditabilitySettings(): pages.ConditionalEditabilitySettings | null;
+        set conditionalEditabilitySettings(newValue: pages.ConditionalEditabilitySettings | null);
         /**
          * In version 8.1.0: introduced
          */
-        editable: pages.EditableEnum;
+        get editable(): pages.EditableEnum;
+        set editable(newValue: pages.EditableEnum);
         /**
          * In version 8.1.0: introduced
          */
-        conditionalVisibilitySettings: pages.ConditionalVisibilitySettings | null;
+        get conditionalVisibilitySettings(): pages.ConditionalVisibilitySettings | null;
+        set conditionalVisibilitySettings(newValue: pages.ConditionalVisibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CustomWidget instance in the SDK and on the server.
@@ -386,6 +393,15 @@ export declare namespace customwidgets {
         static createInMasterDetailRegionUnderWidget(container: pages.MasterDetailRegion): CustomWidget;
         /**
          * Creates and returns a new CustomWidget instance in the SDK and on the server.
+         * The new CustomWidget will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): CustomWidget;
+        /**
+         * Creates and returns a new CustomWidget instance in the SDK and on the server.
          * The new CustomWidget will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -580,40 +596,87 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): CustomWidget;
     }
+    /**
+     * In version 8.5.0: introduced
+     */
+    class CustomWidgetDatabaseSource extends pages.DatabaseSourceBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsWidgetValue(): WidgetValue;
+        get containerAsEntityWidget(): pages.EntityWidget;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * The new CustomWidgetDatabaseSource will be automatically stored in the 'dataSource' property
+         * of the parent WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInWidgetValueUnderDataSource(container: WidgetValue): CustomWidgetDatabaseSource;
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * The new CustomWidgetDatabaseSource will be automatically stored in the 'dataSource' property
+         * of the parent pages.EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInEntityWidgetUnderDataSource(container: pages.EntityWidget): CustomWidgetDatabaseSource;
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CustomWidgetDatabaseSource;
+    }
     class CustomWidgetType extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: CustomWidget;
-        widgetId: string;
-        needsEntityContext: boolean;
+        get containerAsCustomWidget(): CustomWidget;
+        get widgetId(): string;
+        set widgetId(newValue: string);
+        get needsEntityContext(): boolean;
+        set needsEntityContext(newValue: boolean);
         /**
          * In version 7.19.0: introduced
          */
-        pluginWidget: boolean;
-        name: string;
-        description: string;
+        get pluginWidget(): boolean;
+        set pluginWidget(newValue: boolean);
+        get name(): string;
+        set name(newValue: string);
+        get description(): string;
+        set description(newValue: string);
         /**
          * In version 8.0.0: introduced
          */
-        supportedPlatform: client.SupportedPlatform;
-        phoneGapEnabled: boolean;
-        offlineCapable: boolean;
+        get supportedPlatform(): client.SupportedPlatform;
+        set supportedPlatform(newValue: client.SupportedPlatform);
+        get phoneGapEnabled(): boolean;
+        set phoneGapEnabled(newValue: boolean);
+        get offlineCapable(): boolean;
+        set offlineCapable(newValue: boolean);
         /**
          * In version 7.1.0: deleted
          * In version 7.0.0: introduced
          */
-        experimentalApi: boolean;
-        objectType: WidgetObjectType;
+        get experimentalApi(): boolean;
+        set experimentalApi(newValue: boolean);
+        get objectType(): WidgetObjectType;
+        set objectType(newValue: WidgetObjectType);
         /**
          * In version 8.0.0: deleted
          * In version 7.23.0: introduced
          */
-        labeled: boolean;
+        get labeled(): boolean;
+        set labeled(newValue: boolean);
         /**
          * In version 8.3.0: introduced
          */
-        helpUrl: string;
+        get helpUrl(): string;
+        set helpUrl(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CustomWidgetType instance in the SDK and on the server.
@@ -628,13 +691,50 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): CustomWidgetType;
     }
+    /**
+     * In version 8.5.0: introduced
+     */
+    class CustomWidgetXPathSource extends pages.XPathSourceBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsWidgetValue(): WidgetValue;
+        get containerAsEntityWidget(): pages.EntityWidget;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * The new CustomWidgetXPathSource will be automatically stored in the 'dataSource' property
+         * of the parent WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInWidgetValueUnderDataSource(container: WidgetValue): CustomWidgetXPathSource;
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * The new CustomWidgetXPathSource will be automatically stored in the 'dataSource' property
+         * of the parent pages.EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInEntityWidgetUnderDataSource(container: pages.EntityWidget): CustomWidgetXPathSource;
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CustomWidgetXPathSource;
+    }
     class WidgetEnumerationValue extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValueType: WidgetValueType;
-        key: string;
-        caption: string;
+        get containerAsWidgetValueType(): WidgetValueType;
+        get key(): string;
+        set key(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetEnumerationValue instance in the SDK and on the server.
@@ -653,18 +753,20 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidget: CustomWidget;
-        readonly containerAsWidgetValue: WidgetValue;
+        get containerAsCustomWidget(): CustomWidget;
+        get containerAsWidgetValue(): WidgetValue;
         /**
          * In version 7.13.0: added optional
          */
-        type: WidgetObjectType | null;
-        readonly properties: internal.IList<WidgetProperty>;
+        get type(): WidgetObjectType | null;
+        set type(newValue: WidgetObjectType | null);
+        get properties(): internal.IList<WidgetProperty>;
         /**
          * In version 8.1.0: deleted
          * In version 7.23.0: introduced
          */
-        labelTemplate: pages.ClientTemplate | null;
+        get labelTemplate(): pages.ClientTemplate | null;
+        set labelTemplate(newValue: pages.ClientTemplate | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetObject instance in the SDK and on the server.
@@ -689,9 +791,9 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCustomWidgetType: CustomWidgetType;
-        readonly containerAsWidgetValueType: WidgetValueType;
-        readonly propertyTypes: internal.IList<WidgetPropertyType>;
+        get containerAsCustomWidgetType(): CustomWidgetType;
+        get containerAsWidgetValueType(): WidgetValueType;
+        get propertyTypes(): internal.IList<WidgetPropertyType>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetObjectType instance in the SDK and on the server.
@@ -716,15 +818,17 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetObject: WidgetObject;
+        get containerAsWidgetObject(): WidgetObject;
         /**
          * In version 7.13.0: added optional
          */
-        type: WidgetPropertyType | null;
+        get type(): WidgetPropertyType | null;
+        set type(newValue: WidgetPropertyType | null);
         /**
          * In version 7.13.0: added optional
          */
-        value: WidgetValue | null;
+        get value(): WidgetValue | null;
+        set value(newValue: WidgetValue | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetProperty instance in the SDK and on the server.
@@ -743,16 +847,22 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetObjectType: WidgetObjectType;
-        key: string;
-        category: string;
-        caption: string;
-        description: string;
-        isDefault: boolean;
+        get containerAsWidgetObjectType(): WidgetObjectType;
+        get key(): string;
+        set key(newValue: string);
+        get category(): string;
+        set category(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get isDefault(): boolean;
+        set isDefault(newValue: boolean);
         /**
          * In version 7.13.0: added optional
          */
-        valueType: WidgetValueType | null;
+        get valueType(): WidgetValueType | null;
+        set valueType(newValue: WidgetValueType | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetPropertyType instance in the SDK and on the server.
@@ -771,10 +881,13 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValueType: WidgetValueType;
-        type: WidgetReturnTypeEnum;
-        isList: boolean;
-        entityProperty: string;
+        get containerAsWidgetValueType(): WidgetValueType;
+        get type(): WidgetReturnTypeEnum;
+        set type(newValue: WidgetReturnTypeEnum);
+        get isList(): boolean;
+        set isList(newValue: boolean);
+        get entityProperty(): string;
+        set entityProperty(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetReturnType instance in the SDK and on the server.
@@ -793,9 +906,11 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValueType: WidgetValueType;
-        languageCode: string;
-        text: string;
+        get containerAsWidgetValueType(): WidgetValueType;
+        get languageCode(): string;
+        set languageCode(newValue: string);
+        get text(): string;
+        set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetTranslation instance in the SDK and on the server.
@@ -814,72 +929,89 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetProperty: WidgetProperty;
-        type: WidgetValueType;
-        primitiveValue: string;
+        get containerAsWidgetProperty(): WidgetProperty;
+        get type(): WidgetValueType;
+        set type(newValue: WidgetValueType);
+        get primitiveValue(): string;
+        set primitiveValue(newValue: string);
         /**
          * The value of this property is conceptually of type paths.LegacyEntityPath.
          *
          * In version 7.11.0: deleted
          */
-        entityPath: string;
+        get entityPath(): string;
+        set entityPath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        entityRef: domainmodels.EntityRef | null;
+        get entityRef(): domainmodels.EntityRef | null;
+        set entityRef(newValue: domainmodels.EntityRef | null);
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
          *
          * In version 7.11.0: deleted
          */
-        attributePath: string;
+        get attributePath(): string;
+        set attributePath(newValue: string);
         /**
          * In version 7.11.0: introduced
          */
-        attributeRef: domainmodels.AttributeRef | null;
-        page: pages.IPage | null;
-        readonly pageQualifiedName: string | null;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
+        get page(): pages.IPage | null;
+        set page(newValue: pages.IPage | null);
+        get pageQualifiedName(): string | null;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         /**
          * In version 7.13.0: introduced
          */
-        nanoflow: microflows.INanoflow | null;
-        readonly nanoflowQualifiedName: string | null;
+        get nanoflow(): microflows.INanoflow | null;
+        set nanoflow(newValue: microflows.INanoflow | null);
+        get nanoflowQualifiedName(): string | null;
         /**
          * In version 8.0.0: introduced
          */
-        icon: pages.Icon | null;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
-        translatableValue: texts.Text | null;
+        get icon(): pages.Icon | null;
+        set icon(newValue: pages.Icon | null);
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
+        get translatableValue(): texts.Text | null;
+        set translatableValue(newValue: texts.Text | null);
         /**
          * In version 7.23.0: introduced
          */
-        textTemplate: pages.ClientTemplate | null;
+        get textTemplate(): pages.ClientTemplate | null;
+        set textTemplate(newValue: pages.ClientTemplate | null);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
-        readonly objects: internal.IList<WidgetObject>;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        get objects(): internal.IList<WidgetObject>;
         /**
          * In version 7.19.0: introduced
          */
-        action: pages.ClientAction;
+        get action(): pages.ClientAction;
+        set action(newValue: pages.ClientAction);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
          * In version 8.0.0: introduced
          */
-        expression: string;
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * In version 8.2.0: introduced
          */
-        readonly widgets: internal.IList<pages.Widget>;
+        get widgets(): internal.IList<pages.Widget>;
         /**
          * In version 8.3.0: introduced
          */
-        dataSource: pages.DataSource | null;
+        get dataSource(): pages.DataSource | null;
+        set dataSource(newValue: pages.DataSource | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValue instance in the SDK and on the server.
@@ -898,30 +1030,44 @@ export declare namespace customwidgets {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetPropertyType: WidgetPropertyType;
-        type: WidgetValueTypeEnum;
-        isList: boolean;
-        entityProperty: string;
-        allowNonPersistableEntities: boolean;
-        isPath: IsPath;
-        pathType: PathType;
-        parameterIsList: boolean;
-        multiline: boolean;
-        defaultValue: string;
-        required: boolean;
+        get containerAsWidgetPropertyType(): WidgetPropertyType;
+        get type(): WidgetValueTypeEnum;
+        set type(newValue: WidgetValueTypeEnum);
+        get isList(): boolean;
+        set isList(newValue: boolean);
+        get entityProperty(): string;
+        set entityProperty(newValue: string);
+        get allowNonPersistableEntities(): boolean;
+        set allowNonPersistableEntities(newValue: boolean);
+        get isPath(): IsPath;
+        set isPath(newValue: IsPath);
+        get pathType(): PathType;
+        set pathType(newValue: PathType);
+        get parameterIsList(): boolean;
+        set parameterIsList(newValue: boolean);
+        get multiline(): boolean;
+        set multiline(newValue: boolean);
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
+        get required(): boolean;
+        set required(newValue: boolean);
         /**
          * In version 8.0.0: introduced
          */
-        onChangeProperty: string;
+        get onChangeProperty(): string;
+        set onChangeProperty(newValue: string);
         /**
          * In version 8.4.0: introduced
          */
-        dataSourceProperty: string;
-        readonly attributeTypes: internal.IList<CustomWidgetAttributeType>;
-        readonly enumerationValues: internal.IList<WidgetEnumerationValue>;
-        objectType: WidgetObjectType | null;
-        returnType: WidgetReturnType | null;
-        readonly translations: internal.IList<WidgetTranslation>;
+        get dataSourceProperty(): string;
+        set dataSourceProperty(newValue: string);
+        get attributeTypes(): internal.IList<CustomWidgetAttributeType>;
+        get enumerationValues(): internal.IList<WidgetEnumerationValue>;
+        get objectType(): WidgetObjectType | null;
+        set objectType(newValue: WidgetObjectType | null);
+        get returnType(): WidgetReturnType | null;
+        set returnType(newValue: WidgetReturnType | null);
+        get translations(): internal.IList<WidgetTranslation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValueType instance in the SDK and on the server.

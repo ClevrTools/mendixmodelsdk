@@ -96,6 +96,9 @@ var customwidgets;
     WidgetValueTypeEnum.Expression = new WidgetValueTypeEnum("Expression", {
         introduced: "8.0.0"
     });
+    WidgetValueTypeEnum.File = new WidgetValueTypeEnum("File", {
+        introduced: "8.5.0"
+    });
     WidgetValueTypeEnum.Form = new WidgetValueTypeEnum("Form", {});
     WidgetValueTypeEnum.Icon = new WidgetValueTypeEnum("Icon", {
         introduced: "8.0.0"
@@ -617,6 +620,18 @@ var customwidgets;
         }
         /**
          * Creates and returns a new CustomWidget instance in the SDK and on the server.
+         * The new CustomWidget will be automatically stored in the 'sidebarWidgets' property
+         * of the parent pages.NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, CustomWidget.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CustomWidget, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new CustomWidget instance in the SDK and on the server.
          * The new CustomWidget will be automatically stored in the 'widgets' property
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
@@ -901,6 +916,64 @@ var customwidgets;
         }
     }, internal.StructureType.Element);
     customwidgets.CustomWidget = CustomWidget;
+    /**
+     * In version 8.5.0: introduced
+     */
+    class CustomWidgetDatabaseSource extends pages_1.pages.DatabaseSourceBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CustomWidgetDatabaseSource() cannot be invoked directly, please use 'model.customwidgets.createCustomWidgetDatabaseSource()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(WidgetValue);
+        }
+        get containerAsEntityWidget() {
+            return super.getContainerAs(pages_1.pages.EntityWidget);
+        }
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * The new CustomWidgetDatabaseSource will be automatically stored in the 'dataSource' property
+         * of the parent WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInWidgetValueUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, CustomWidgetDatabaseSource.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CustomWidgetDatabaseSource, "dataSource", false);
+        }
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * The new CustomWidgetDatabaseSource will be automatically stored in the 'dataSource' property
+         * of the parent pages.EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInEntityWidgetUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, CustomWidgetDatabaseSource.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CustomWidgetDatabaseSource, "dataSource", false);
+        }
+        /**
+         * Creates and returns a new CustomWidgetDatabaseSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CustomWidgetDatabaseSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CustomWidgetDatabaseSource.structureTypeName = "CustomWidgets$CustomWidgetDatabaseSource";
+    CustomWidgetDatabaseSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.5.0"
+    }, internal.StructureType.Element);
+    customwidgets.CustomWidgetDatabaseSource = CustomWidgetDatabaseSource;
     class CustomWidgetType extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1079,6 +1152,64 @@ var customwidgets;
         }
     }, internal.StructureType.Element);
     customwidgets.CustomWidgetType = CustomWidgetType;
+    /**
+     * In version 8.5.0: introduced
+     */
+    class CustomWidgetXPathSource extends pages_1.pages.XPathSourceBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CustomWidgetXPathSource() cannot be invoked directly, please use 'model.customwidgets.createCustomWidgetXPathSource()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(WidgetValue);
+        }
+        get containerAsEntityWidget() {
+            return super.getContainerAs(pages_1.pages.EntityWidget);
+        }
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * The new CustomWidgetXPathSource will be automatically stored in the 'dataSource' property
+         * of the parent WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInWidgetValueUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, CustomWidgetXPathSource.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CustomWidgetXPathSource, "dataSource", false);
+        }
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * The new CustomWidgetXPathSource will be automatically stored in the 'dataSource' property
+         * of the parent pages.EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInEntityWidgetUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, CustomWidgetXPathSource.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, CustomWidgetXPathSource, "dataSource", false);
+        }
+        /**
+         * Creates and returns a new CustomWidgetXPathSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CustomWidgetXPathSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CustomWidgetXPathSource.structureTypeName = "CustomWidgets$CustomWidgetXPathSource";
+    CustomWidgetXPathSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.5.0"
+    }, internal.StructureType.Element);
+    customwidgets.CustomWidgetXPathSource = CustomWidgetXPathSource;
     class WidgetEnumerationValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);

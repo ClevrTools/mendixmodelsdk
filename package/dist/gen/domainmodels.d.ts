@@ -59,19 +59,24 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        readonly containerAsAccessRuleContainerBase: security.AccessRuleContainerBase;
-        readonly memberAccesses: internal.IList<MemberAccess>;
-        readonly moduleRoles: internal.IList<security.IModuleRole>;
-        readonly moduleRolesQualifiedNames: string[];
-        documentation: string;
-        allowCreate: boolean;
-        allowDelete: boolean;
-        defaultMemberAccessRights: MemberAccessRights;
+        get containerAsEntity(): Entity;
+        get containerAsAccessRuleContainerBase(): security.AccessRuleContainerBase;
+        get memberAccesses(): internal.IList<MemberAccess>;
+        get moduleRoles(): internal.IList<security.IModuleRole>;
+        get moduleRolesQualifiedNames(): string[];
+        get documentation(): string;
+        set documentation(newValue: string);
+        get allowCreate(): boolean;
+        set allowCreate(newValue: boolean);
+        get allowDelete(): boolean;
+        set allowDelete(newValue: boolean);
+        get defaultMemberAccessRights(): MemberAccessRights;
+        set defaultMemberAccessRights(newValue: MemberAccessRights);
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
-        xPathConstraint: string;
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AccessRule instance in the SDK and on the server.
@@ -99,10 +104,13 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDomainModel: DomainModel;
-        caption: string;
-        location: common.IPoint;
-        width: number;
+        get containerAsDomainModel(): DomainModel;
+        get caption(): string;
+        set caption(newValue: string);
+        get location(): common.IPoint;
+        set location(newValue: common.IPoint);
+        get width(): number;
+        set width(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
@@ -148,23 +156,31 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDomainModel: DomainModel;
-        name: string;
-        dataStorageGuid: string;
-        type: AssociationType;
-        owner: AssociationOwner;
-        deleteBehavior: AssociationDeleteBehavior;
-        parent: Entity;
-        documentation: string;
+        get containerAsDomainModel(): DomainModel;
+        get name(): string;
+        set name(newValue: string);
+        get dataStorageGuid(): string;
+        set dataStorageGuid(newValue: string);
+        get type(): AssociationType;
+        set type(newValue: AssociationType);
+        get owner(): AssociationOwner;
+        set owner(newValue: AssociationOwner);
+        get deleteBehavior(): AssociationDeleteBehavior;
+        set deleteBehavior(newValue: AssociationDeleteBehavior);
+        get parent(): Entity;
+        set parent(newValue: Entity);
+        get documentation(): string;
+        set documentation(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 8.3.0: introduced
          */
-        remoteSourceDocument: IRemoteEntitySourceDocument | null;
-        readonly remoteSourceDocumentQualifiedName: string | null;
+        get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
+        set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
+        get remoteSourceDocumentQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
@@ -187,10 +203,13 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDomainModel: DomainModel;
-        child: Entity;
-        parentConnection: common.IPoint;
-        childConnection: common.IPoint;
+        get containerAsDomainModel(): DomainModel;
+        get child(): Entity;
+        set child(newValue: Entity);
+        get parentConnection(): common.IPoint;
+        set parentConnection(newValue: common.IPoint);
+        get childConnection(): common.IPoint;
+        set childConnection(newValue: common.IPoint);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Association instance in the SDK and on the server.
@@ -209,11 +228,15 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAssociationBase: AssociationBase;
-        parentDeleteBehavior: DeletingBehavior;
-        childDeleteBehavior: DeletingBehavior;
-        parentErrorMessage: texts.Text | null;
-        childErrorMessage: texts.Text | null;
+        get containerAsAssociationBase(): AssociationBase;
+        get parentDeleteBehavior(): DeletingBehavior;
+        set parentDeleteBehavior(newValue: DeletingBehavior);
+        get childDeleteBehavior(): DeletingBehavior;
+        set childDeleteBehavior(newValue: DeletingBehavior);
+        get parentErrorMessage(): texts.Text | null;
+        set parentErrorMessage(newValue: texts.Text | null);
+        get childErrorMessage(): texts.Text | null;
+        set childErrorMessage(newValue: texts.Text | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AssociationDeleteBehavior instance in the SDK and on the server.
@@ -235,21 +258,22 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsAttributeWidget: documenttemplates.AttributeWidget;
-        readonly containerAsDataGridColumn: documenttemplates.DataGridColumn;
-        readonly containerAsDocumentTemplatesGridSortItem: documenttemplates.GridSortItem;
-        readonly containerAsVariableRefExpression: expressions.VariableRefExpression;
-        readonly containerAsSortItem: microflows.SortItem;
-        readonly containerAsClientTemplateParameter: pages.ClientTemplateParameter;
-        readonly containerAsGridColumn: pages.GridColumn;
-        readonly containerAsPagesGridSortItem: pages.GridSortItem;
-        readonly containerAsListViewSearch: pages.ListViewSearch;
-        readonly containerAsMemberWidget: pages.MemberWidget;
-        readonly containerAsRangeSearchField: pages.RangeSearchField;
-        readonly containerAsSingleSearchField: pages.SingleSearchField;
-        readonly containerAsStaticOrDynamicString: pages.StaticOrDynamicString;
-        entityRef: IndirectEntityRef | null;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
+        get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
+        get containerAsDocumentTemplatesGridSortItem(): documenttemplates.GridSortItem;
+        get containerAsVariableRefExpression(): expressions.VariableRefExpression;
+        get containerAsSortItem(): microflows.SortItem;
+        get containerAsClientTemplateParameter(): pages.ClientTemplateParameter;
+        get containerAsGridColumn(): pages.GridColumn;
+        get containerAsPagesGridSortItem(): pages.GridSortItem;
+        get containerAsListViewSearch(): pages.ListViewSearch;
+        get containerAsMemberWidget(): pages.MemberWidget;
+        get containerAsRangeSearchField(): pages.RangeSearchField;
+        get containerAsSingleSearchField(): pages.SingleSearchField;
+        get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
+        get entityRef(): IndirectEntityRef | null;
+        set entityRef(newValue: IndirectEntityRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -259,9 +283,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsVariableRefExpression: expressions.VariableRefExpression;
-        association: IAssociationBase;
-        readonly associationQualifiedName: string;
+        get containerAsVariableRefExpression(): expressions.VariableRefExpression;
+        get association(): IAssociationBase;
+        set association(newValue: IAssociationBase);
+        get associationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AssociationRef instance in the SDK and on the server.
@@ -298,15 +323,20 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        name: string;
-        dataStorageGuid: string;
-        type: AttributeType;
-        documentation: string;
+        get containerAsEntity(): Entity;
+        get name(): string;
+        set name(newValue: string);
+        get dataStorageGuid(): string;
+        set dataStorageGuid(newValue: string);
+        get type(): AttributeType;
+        set type(newValue: AttributeType);
+        get documentation(): string;
+        set documentation(newValue: string);
         /**
          * In version 6.6.0: added public
          */
-        value: ValueType;
+        get value(): ValueType;
+        set value(newValue: ValueType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
@@ -320,7 +350,7 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Attribute;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * In version 7.11.0: introduced
@@ -329,22 +359,23 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsAttributeWidget: documenttemplates.AttributeWidget;
-        readonly containerAsDataGridColumn: documenttemplates.DataGridColumn;
-        readonly containerAsDocumentTemplatesGridSortItem: documenttemplates.GridSortItem;
-        readonly containerAsVariableRefExpression: expressions.VariableRefExpression;
-        readonly containerAsSortItem: microflows.SortItem;
-        readonly containerAsClientTemplateParameter: pages.ClientTemplateParameter;
-        readonly containerAsGridColumn: pages.GridColumn;
-        readonly containerAsPagesGridSortItem: pages.GridSortItem;
-        readonly containerAsListViewSearch: pages.ListViewSearch;
-        readonly containerAsMemberWidget: pages.MemberWidget;
-        readonly containerAsRangeSearchField: pages.RangeSearchField;
-        readonly containerAsSingleSearchField: pages.SingleSearchField;
-        readonly containerAsStaticOrDynamicString: pages.StaticOrDynamicString;
-        attribute: IAttribute;
-        readonly attributeQualifiedName: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
+        get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
+        get containerAsDocumentTemplatesGridSortItem(): documenttemplates.GridSortItem;
+        get containerAsVariableRefExpression(): expressions.VariableRefExpression;
+        get containerAsSortItem(): microflows.SortItem;
+        get containerAsClientTemplateParameter(): pages.ClientTemplateParameter;
+        get containerAsGridColumn(): pages.GridColumn;
+        get containerAsPagesGridSortItem(): pages.GridSortItem;
+        get containerAsListViewSearch(): pages.ListViewSearch;
+        get containerAsMemberWidget(): pages.MemberWidget;
+        get containerAsRangeSearchField(): pages.RangeSearchField;
+        get containerAsSingleSearchField(): pages.SingleSearchField;
+        get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
+        get attribute(): IAttribute;
+        set attribute(newValue: IAttribute);
+        get attributeQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AttributeRef instance in the SDK and on the server.
@@ -499,7 +530,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface INumericAttributeTypeBase extends IAttributeType {
@@ -513,7 +544,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IIntegerAttributeTypeBase extends INumericAttributeTypeBase {
@@ -527,7 +558,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IAutoNumberAttributeType extends IIntegerAttributeTypeBase {
@@ -541,7 +572,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
@@ -567,7 +598,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
@@ -593,7 +624,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
@@ -625,7 +656,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -645,10 +676,12 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        passEntity: boolean;
+        get containerAsAttribute(): Attribute;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get passEntity(): boolean;
+        set passEntity(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CalculatedValue instance in the SDK and on the server.
@@ -679,9 +712,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDomainModel: DomainModel;
-        child: IEntity;
-        readonly childQualifiedName: string;
+        get containerAsDomainModel(): DomainModel;
+        get child(): IEntity;
+        set child(newValue: IEntity);
+        get childQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CrossAssociation instance in the SDK and on the server.
@@ -707,7 +741,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IFloatAttributeTypeBase extends IDecimalAttributeTypeBase {
@@ -721,7 +755,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -741,7 +775,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
@@ -767,8 +801,9 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
-        localizeDate: boolean;
+        get containerAsAttribute(): Attribute;
+        get localizeDate(): boolean;
+        set localizeDate(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
@@ -794,7 +829,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
@@ -816,14 +851,14 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: documenttemplates.EntityWidget;
-        readonly containerAsMemberRef: MemberRef;
-        readonly containerAsCreateObjectClientAction: pages.CreateObjectClientAction;
-        readonly containerAsEntityPathSource: pages.EntityPathSource;
-        readonly containerAsNewButton: pages.NewButton;
-        readonly containerAsReferenceSetSelector: pages.ReferenceSetSelector;
-        readonly containerAsSelectorXPathSource: pages.SelectorXPathSource;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): documenttemplates.EntityWidget;
+        get containerAsMemberRef(): MemberRef;
+        get containerAsCreateObjectClientAction(): pages.CreateObjectClientAction;
+        get containerAsEntityPathSource(): pages.EntityPathSource;
+        get containerAsNewButton(): pages.NewButton;
+        get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
+        get containerAsSelectorXPathSource(): pages.SelectorXPathSource;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -833,15 +868,16 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: documenttemplates.EntityWidget;
-        readonly containerAsCreateObjectClientAction: pages.CreateObjectClientAction;
-        readonly containerAsEntityPathSource: pages.EntityPathSource;
-        readonly containerAsNewButton: pages.NewButton;
-        readonly containerAsReferenceSetSelector: pages.ReferenceSetSelector;
-        readonly containerAsSelectorXPathSource: pages.SelectorXPathSource;
-        entity: IEntity;
-        readonly entityQualifiedName: string;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): documenttemplates.EntityWidget;
+        get containerAsCreateObjectClientAction(): pages.CreateObjectClientAction;
+        get containerAsEntityPathSource(): pages.EntityPathSource;
+        get containerAsNewButton(): pages.NewButton;
+        get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
+        get containerAsSelectorXPathSource(): pages.SelectorXPathSource;
+        get entity(): IEntity;
+        set entity(newValue: IEntity);
+        get entityQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DirectEntityRef instance in the SDK and on the server.
@@ -933,12 +969,13 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsModule: projects.Module;
-        documentation: string;
-        readonly entities: internal.IList<Entity>;
-        readonly annotations: internal.IList<Annotation>;
-        readonly associations: internal.IList<Association>;
-        readonly crossAssociations: internal.IList<CrossAssociation>;
+        get containerAsModule(): projects.Module;
+        get documentation(): string;
+        set documentation(newValue: string);
+        get entities(): internal.IList<Entity>;
+        get annotations(): internal.IList<Annotation>;
+        get associations(): internal.IList<Association>;
+        get crossAssociations(): internal.IList<CrossAssociation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IModule);
         /**
          * Creates a new DomainModel unit in the SDK and on the server.
@@ -981,35 +1018,44 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsDomainModel: DomainModel;
-        name: string;
-        dataStorageGuid: string;
-        location: common.IPoint;
-        documentation: string;
-        generalization: GeneralizationBase;
-        readonly attributes: internal.IList<Attribute>;
-        readonly validationRules: internal.IList<ValidationRule>;
-        readonly eventHandlers: internal.IList<EventHandler>;
-        readonly indexes: internal.IList<Index>;
-        readonly accessRules: internal.IList<AccessRule>;
-        image: images.IImage | null;
-        readonly imageQualifiedName: string | null;
+        get containerAsDomainModel(): DomainModel;
+        get name(): string;
+        set name(newValue: string);
+        get dataStorageGuid(): string;
+        set dataStorageGuid(newValue: string);
+        get location(): common.IPoint;
+        set location(newValue: common.IPoint);
+        get documentation(): string;
+        set documentation(newValue: string);
+        get generalization(): GeneralizationBase;
+        set generalization(newValue: GeneralizationBase);
+        get attributes(): internal.IList<Attribute>;
+        get validationRules(): internal.IList<ValidationRule>;
+        get eventHandlers(): internal.IList<EventHandler>;
+        get indexes(): internal.IList<Index>;
+        get accessRules(): internal.IList<AccessRule>;
+        get image(): images.IImage | null;
+        set image(newValue: images.IImage | null);
+        get imageQualifiedName(): string | null;
         /**
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
-        isRemote: boolean;
+        get isRemote(): boolean;
+        set isRemote(newValue: boolean);
         /**
          * In version 7.17.0: introduced
          */
-        remoteSource: string;
+        get remoteSource(): string;
+        set remoteSource(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * In version 8.2.0: introduced
          */
-        remoteSourceDocument: IRemoteEntitySourceDocument | null;
-        readonly remoteSourceDocumentQualifiedName: string | null;
+        get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
+        set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
+        get remoteSourceDocumentQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1023,7 +1069,7 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Entity;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
     /**
      * In version 7.11.0: introduced
@@ -1032,11 +1078,13 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsIndirectEntityRef: IndirectEntityRef;
-        association: IAssociationBase;
-        readonly associationQualifiedName: string;
-        destinationEntity: IEntity;
-        readonly destinationEntityQualifiedName: string;
+        get containerAsIndirectEntityRef(): IndirectEntityRef;
+        get association(): IAssociationBase;
+        set association(newValue: IAssociationBase);
+        get associationQualifiedName(): string;
+        get destinationEntity(): IEntity;
+        set destinationEntity(newValue: IEntity);
+        get destinationEntityQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityRefStep instance in the SDK and on the server.
@@ -1070,9 +1118,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
-        enumeration: enumerations.IEnumeration;
-        readonly enumerationQualifiedName: string;
+        get containerAsAttribute(): Attribute;
+        get enumeration(): enumerations.IEnumeration;
+        set enumeration(newValue: enumerations.IEnumeration);
+        get enumerationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
@@ -1091,18 +1140,21 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
+        get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class EqualsToRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
-        useValue: boolean;
-        equalsToValue: string;
-        equalsToAttribute: IAttribute | null;
-        readonly equalsToAttributeQualifiedName: string | null;
+        get containerAsValidationRule(): ValidationRule;
+        get useValue(): boolean;
+        set useValue(newValue: boolean);
+        get equalsToValue(): string;
+        set equalsToValue(newValue: string);
+        get equalsToAttribute(): IAttribute | null;
+        set equalsToAttribute(newValue: IAttribute | null);
+        get equalsToAttributeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EqualsToRuleInfo instance in the SDK and on the server.
@@ -1124,13 +1176,18 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        moment: ActionMoment;
-        event: EventType;
-        microflow: microflows.IMicroflow | null;
-        readonly microflowQualifiedName: string | null;
-        raiseErrorOnFalse: boolean;
-        passEventObject: boolean;
+        get containerAsEntity(): Entity;
+        get moment(): ActionMoment;
+        set moment(newValue: ActionMoment);
+        get event(): EventType;
+        set event(newValue: EventType);
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get raiseErrorOnFalse(): boolean;
+        set raiseErrorOnFalse(newValue: boolean);
+        get passEventObject(): boolean;
+        set passEventObject(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EventHandler instance in the SDK and on the server.
@@ -1162,7 +1219,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
@@ -1188,7 +1245,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
+        get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IGeneralization extends IGeneralizationBase {
@@ -1207,9 +1264,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        generalization: IEntity;
-        readonly generalizationQualifiedName: string;
+        get containerAsEntity(): Entity;
+        get generalization(): IEntity;
+        set generalization(newValue: IEntity);
+        get generalizationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Generalization instance in the SDK and on the server.
@@ -1235,7 +1293,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
@@ -1257,9 +1315,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        dataStorageGuid: string;
-        readonly attributes: internal.IList<IndexedAttribute>;
+        get containerAsEntity(): Entity;
+        get dataStorageGuid(): string;
+        set dataStorageGuid(newValue: string);
+        get attributes(): internal.IList<IndexedAttribute>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Index instance in the SDK and on the server.
@@ -1278,13 +1337,16 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsIndex: Index;
-        type: IndexedAttributeType;
-        attribute: Attribute | null;
+        get containerAsIndex(): Index;
+        get type(): IndexedAttributeType;
+        set type(newValue: IndexedAttributeType);
+        get attribute(): Attribute | null;
+        set attribute(newValue: Attribute | null);
         /**
          * In version 7.14.0: introduced
          */
-        ascending: boolean;
+        get ascending(): boolean;
+        set ascending(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IndexedAttribute instance in the SDK and on the server.
@@ -1306,15 +1368,15 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsWidgetValue: customwidgets.WidgetValue;
-        readonly containerAsEntityWidget: documenttemplates.EntityWidget;
-        readonly containerAsMemberRef: MemberRef;
-        readonly containerAsCreateObjectClientAction: pages.CreateObjectClientAction;
-        readonly containerAsEntityPathSource: pages.EntityPathSource;
-        readonly containerAsNewButton: pages.NewButton;
-        readonly containerAsReferenceSetSelector: pages.ReferenceSetSelector;
-        readonly containerAsSelectorXPathSource: pages.SelectorXPathSource;
-        readonly steps: internal.IList<EntityRefStep>;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsEntityWidget(): documenttemplates.EntityWidget;
+        get containerAsMemberRef(): MemberRef;
+        get containerAsCreateObjectClientAction(): pages.CreateObjectClientAction;
+        get containerAsEntityPathSource(): pages.EntityPathSource;
+        get containerAsNewButton(): pages.NewButton;
+        get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
+        get containerAsSelectorXPathSource(): pages.SelectorXPathSource;
+        get steps(): internal.IList<EntityRefStep>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IndirectEntityRef instance in the SDK and on the server.
@@ -1406,7 +1468,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
@@ -1432,7 +1494,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
+        get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
@@ -1451,8 +1513,9 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
-        maxLength: number;
+        get containerAsValidationRule(): ValidationRule;
+        get maxLength(): number;
+        set maxLength(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MaxLengthRuleInfo instance in the SDK and on the server.
@@ -1471,12 +1534,15 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAccessRule: AccessRule;
-        attribute: IAttribute | null;
-        readonly attributeQualifiedName: string | null;
-        association: IAssociationBase | null;
-        readonly associationQualifiedName: string | null;
-        accessRights: MemberAccessRights;
+        get containerAsAccessRule(): AccessRule;
+        get attribute(): IAttribute | null;
+        set attribute(newValue: IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        get association(): IAssociationBase | null;
+        set association(newValue: IAssociationBase | null);
+        get associationQualifiedName(): string | null;
+        get accessRights(): MemberAccessRights;
+        set accessRights(newValue: MemberAccessRights);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MemberAccess instance in the SDK and on the server.
@@ -1519,24 +1585,29 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
+        get containerAsEntity(): Entity;
         /**
          * In version 8.2.0: added public
          */
-        hasChangedDate: boolean;
+        get hasChangedDate(): boolean;
+        set hasChangedDate(newValue: boolean);
         /**
          * In version 8.2.0: added public
          */
-        hasCreatedDate: boolean;
+        get hasCreatedDate(): boolean;
+        set hasCreatedDate(newValue: boolean);
         /**
          * In version 8.2.0: added public
          */
-        hasOwner: boolean;
+        get hasOwner(): boolean;
+        set hasOwner(newValue: boolean);
         /**
          * In version 8.2.0: added public
          */
-        hasChangedBy: boolean;
-        persistable: boolean;
+        get hasChangedBy(): boolean;
+        set hasChangedBy(newValue: boolean);
+        get persistable(): boolean;
+        set persistable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoGeneralization instance in the SDK and on the server.
@@ -1555,16 +1626,23 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
-        typeOfRange: RangeType;
-        useMinValue: boolean;
-        useMaxValue: boolean;
-        minValue: string;
-        maxValue: string;
-        minAttribute: IAttribute | null;
-        readonly minAttributeQualifiedName: string | null;
-        maxAttribute: IAttribute | null;
-        readonly maxAttributeQualifiedName: string | null;
+        get containerAsValidationRule(): ValidationRule;
+        get typeOfRange(): RangeType;
+        set typeOfRange(newValue: RangeType);
+        get useMinValue(): boolean;
+        set useMinValue(newValue: boolean);
+        get useMaxValue(): boolean;
+        set useMaxValue(newValue: boolean);
+        get minValue(): string;
+        set minValue(newValue: string);
+        get maxValue(): string;
+        set maxValue(newValue: string);
+        get minAttribute(): IAttribute | null;
+        set minAttribute(newValue: IAttribute | null);
+        get minAttributeQualifiedName(): string | null;
+        get maxAttribute(): IAttribute | null;
+        set maxAttribute(newValue: IAttribute | null);
+        get maxAttributeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RangeRuleInfo instance in the SDK and on the server.
@@ -1583,9 +1661,10 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
-        regularExpression: regularexpressions.IRegularExpression | null;
-        readonly regularExpressionQualifiedName: string | null;
+        get containerAsValidationRule(): ValidationRule;
+        get regularExpression(): regularexpressions.IRegularExpression | null;
+        set regularExpression(newValue: regularexpressions.IRegularExpression | null);
+        get regularExpressionQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RegExRuleInfo instance in the SDK and on the server.
@@ -1621,14 +1700,14 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
+        get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RequiredRuleInfo instance in the SDK and on the server.
@@ -1660,8 +1739,9 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
-        defaultValue: string;
+        get containerAsAttribute(): Attribute;
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StoredValue instance in the SDK and on the server.
@@ -1687,8 +1767,9 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsAttribute: Attribute;
-        length: number;
+        get containerAsAttribute(): Attribute;
+        get length(): number;
+        set length(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
@@ -1707,7 +1788,7 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsValidationRule: ValidationRule;
+        get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UniqueRuleInfo instance in the SDK and on the server.
@@ -1729,11 +1810,14 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsEntity: Entity;
-        attribute: IAttribute;
-        readonly attributeQualifiedName: string;
-        errorMessage: texts.Text;
-        ruleInfo: RuleInfo;
+        get containerAsEntity(): Entity;
+        get attribute(): IAttribute;
+        set attribute(newValue: IAttribute);
+        get attributeQualifiedName(): string;
+        get errorMessage(): texts.Text;
+        set errorMessage(newValue: texts.Text);
+        get ruleInfo(): RuleInfo;
+        set ruleInfo(newValue: RuleInfo);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ValidationRule instance in the SDK and on the server.

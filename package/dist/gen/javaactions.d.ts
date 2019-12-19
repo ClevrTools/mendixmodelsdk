@@ -24,7 +24,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -50,8 +50,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        type: Type;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get type(): Type;
+        set type(newValue: Type);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicParameterType instance in the SDK and on the server.
@@ -91,10 +92,10 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        readonly containerAsListType: ListType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get containerAsListType(): ListType;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -118,9 +119,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -144,9 +145,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -204,10 +205,10 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        readonly containerAsListType: ListType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get containerAsListType(): ListType;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -237,12 +238,13 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        readonly containerAsListType: ListType;
-        entity: domainmodels.IEntity;
-        readonly entityQualifiedName: string;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get containerAsListType(): ListType;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConcreteEntityType instance in the SDK and on the server.
@@ -308,9 +310,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -367,9 +369,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -425,8 +427,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        typeParameter: TypeParameter | null;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get typeParameter(): TypeParameter | null;
+        set typeParameter(newValue: TypeParameter | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EntityTypeParameterType instance in the SDK and on the server.
@@ -470,11 +473,12 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        enumeration: enumerations.IEnumeration;
-        readonly enumerationQualifiedName: string;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get enumeration(): enumerations.IEnumeration;
+        set enumeration(newValue: enumerations.IEnumeration);
+        get enumerationQualifiedName(): string;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -527,7 +531,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: codeactions.CodeActionParameter;
+        get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportMappingJavaActionParameterType instance in the SDK and on the server.
@@ -555,7 +559,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExportMappingParameterType instance in the SDK and on the server.
@@ -594,9 +598,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -649,7 +653,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: codeactions.CodeActionParameter;
+        get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportMappingJavaActionParameterType instance in the SDK and on the server.
@@ -677,7 +681,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportMappingParameterType instance in the SDK and on the server.
@@ -716,9 +720,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -802,36 +806,40 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsFolderBase: projects.FolderBase;
+        get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.21.0: deleted
          * In version 6.6.0: introduced
          */
-        readonly typeParameters: internal.IList<TypeParameter>;
+        get typeParameters(): internal.IList<TypeParameter>;
         /**
          * In version 7.21.0: deleted
          */
-        readonly parameters: internal.IList<JavaActionParameter>;
+        get parameters(): internal.IList<JavaActionParameter>;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 6.6.0: deleted
          */
-        returnType: string;
+        get returnType(): string;
+        set returnType(newValue: string);
         /**
          * In version 7.21.0: deleted
          * In version 6.6.0: introduced
          */
-        javaReturnType: Type;
+        get javaReturnType(): Type;
+        set javaReturnType(newValue: Type);
         /**
          * In version 7.21.0: deleted
          * In version 6.6.0: introduced
          */
-        microflowActionInfo: MicroflowActionInfo | null;
+        get microflowActionInfo(): MicroflowActionInfo | null;
+        set microflowActionInfo(newValue: MicroflowActionInfo | null);
         /**
          * In version 8.0.0: introduced
          */
-        useLegacyCodeGeneration: boolean;
+        get useLegacyCodeGeneration(): boolean;
+        set useLegacyCodeGeneration(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new JavaAction unit in the SDK and on the server.
@@ -871,24 +879,27 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeAction: codeactions.CodeAction;
-        readonly containerAsJavaAction: JavaAction;
+        get containerAsCodeAction(): codeactions.CodeAction;
+        get containerAsJavaAction(): JavaAction;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.
          *
          * In version 6.6.0: deleted
          */
-        type: string;
+        get type(): string;
+        set type(newValue: string);
         /**
          * In version 6.7.0: deleted
          * In version 6.6.0: introduced
          */
-        javaType: Type;
+        get javaType(): Type;
+        set javaType(newValue: Type);
         /**
          * In version 7.21.0: deleted
          * In version 6.7.0: introduced
          */
-        parameterType: ParameterType;
+        get parameterType(): ParameterType;
+        set parameterType(newValue: ParameterType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JavaActionParameter instance in the SDK and on the server.
@@ -940,10 +951,11 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        parameter: EntityType;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get parameter(): EntityType;
+        set parameter(newValue: EntityType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -1004,11 +1016,14 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaAction: JavaAction;
-        caption: string;
-        category: string;
-        icon: images.IImage | null;
-        readonly iconQualifiedName: string | null;
+        get containerAsJavaAction(): JavaAction;
+        get caption(): string;
+        set caption(newValue: string);
+        get category(): string;
+        set category(newValue: string);
+        get icon(): images.IImage | null;
+        set icon(newValue: images.IImage | null);
+        get iconQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
@@ -1043,7 +1058,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsCodeActionParameter: codeactions.CodeActionParameter;
+        get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowJavaActionParameterType instance in the SDK and on the server.
@@ -1071,7 +1086,7 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterType instance in the SDK and on the server.
@@ -1115,11 +1130,12 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
-        readonly containerAsListType: ListType;
-        typeParameter: TypeParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
+        get containerAsListType(): ListType;
+        get typeParameter(): TypeParameter;
+        set typeParameter(newValue: TypeParameter);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ParameterizedEntityType instance in the SDK and on the server.
@@ -1185,9 +1201,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsBasicParameterType: BasicParameterType;
-        readonly containerAsJavaAction: JavaAction;
-        readonly containerAsJavaActionParameter: JavaActionParameter;
+        get containerAsBasicParameterType(): BasicParameterType;
+        get containerAsJavaAction(): JavaAction;
+        get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -1243,8 +1259,9 @@ export declare namespace javaactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        readonly containerAsJavaAction: JavaAction;
-        name: string;
+        get containerAsJavaAction(): JavaAction;
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TypeParameter instance in the SDK and on the server.
@@ -1261,7 +1278,7 @@ export declare namespace javaactions {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): TypeParameter;
-        readonly qualifiedName: string | null;
+        get qualifiedName(): string | null;
     }
 }
 import { domainmodels } from "./domainmodels";

@@ -152,6 +152,9 @@ var expressions;
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
         }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -281,6 +284,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get operator() {
             return this.__operator.get();
@@ -860,6 +866,18 @@ var expressions;
         }
         /**
          * Creates and returns a new BinaryExpression instance in the SDK and on the server.
+         * The new BinaryExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, BinaryExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, BinaryExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new BinaryExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1005,6 +1023,9 @@ var expressions;
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
         }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1130,6 +1151,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get value() {
             return this.__value.get();
@@ -1691,6 +1715,18 @@ var expressions;
         }
         /**
          * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
+         * The new BooleanLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, BooleanLiteral.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, BooleanLiteral, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1822,6 +1858,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get constant() {
             return this.__constant.get();
@@ -2386,6 +2425,18 @@ var expressions;
         }
         /**
          * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
+         * The new ConstantRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, ConstantRefExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ConstantRefExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -2522,6 +2573,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
@@ -3077,6 +3131,18 @@ var expressions;
         }
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
+         * The new EmptyLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, EmptyLiteral.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, EmptyLiteral, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3208,6 +3274,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get value() {
             return this.__value.get();
@@ -3775,6 +3844,18 @@ var expressions;
         }
         /**
          * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
+         * The new EnumerationValueRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, EnumerationValueRefExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, EnumerationValueRefExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3913,6 +3994,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get value() {
             return this.__value.get();
@@ -4474,6 +4558,18 @@ var expressions;
         }
         /**
          * Creates and returns a new FloatLiteral instance in the SDK and on the server.
+         * The new FloatLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, FloatLiteral.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, FloatLiteral, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new FloatLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4607,6 +4703,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get functionName() {
             return this.__functionName.get();
@@ -5174,6 +5273,18 @@ var expressions;
         }
         /**
          * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
+         * The new FunctionCallExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, FunctionCallExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, FunctionCallExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -5393,6 +5504,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -5975,6 +6089,18 @@ var expressions;
         }
         /**
          * Creates and returns a new IfExpression instance in the SDK and on the server.
+         * The new IfExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, IfExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, IfExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new IfExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -6126,6 +6252,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get value() {
             return this.__value.get();
@@ -6687,6 +6816,18 @@ var expressions;
         }
         /**
          * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
+         * The new IntegerLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, IntegerLiteral.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, IntegerLiteral, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -6816,6 +6957,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
@@ -7371,6 +7515,18 @@ var expressions;
         }
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
+         * The new NoExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, NoExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, NoExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new NoExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -7550,6 +7706,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -8114,6 +8273,18 @@ var expressions;
         }
         /**
          * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
+         * The new ParenthesisExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, ParenthesisExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, ParenthesisExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -8253,6 +8424,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get value() {
             return this.__value.get();
@@ -8814,6 +8988,18 @@ var expressions;
         }
         /**
          * Creates and returns a new StringLiteral instance in the SDK and on the server.
+         * The new StringLiteral will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, StringLiteral.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, StringLiteral, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new StringLiteral instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -8947,6 +9133,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get operator() {
             return this.__operator.get();
@@ -9517,6 +9706,18 @@ var expressions;
         }
         /**
          * Creates and returns a new UnaryExpression instance in the SDK and on the server.
+         * The new UnaryExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, UnaryExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, UnaryExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new UnaryExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -9657,6 +9858,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         get expression() {
             return this.__expression.get();
@@ -10218,6 +10422,18 @@ var expressions;
         }
         /**
          * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
+         * The new UnparsableExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, UnparsableExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, UnparsableExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -10351,6 +10567,9 @@ var expressions;
         }
         get containerAsWidgetValidation() {
             return super.getContainerAs(pages_1.pages.WidgetValidation);
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -10924,6 +11143,18 @@ var expressions;
         }
         /**
          * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
+         * The new VariableRefExpression will be automatically stored in the 'timeoutModel' property
+         * of the parent rest.ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.5.0 and higher
+         */
+        static createInConsumedODataServiceUnderTimeoutModel(container) {
+            internal.createInVersionCheck(container.model, VariableRefExpression.structureTypeName, { start: "8.5.0" });
+            return internal.instancehelpers.createElement(container, VariableRefExpression, "timeoutModel", false);
+        }
+        /**
+         * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -10957,4 +11188,5 @@ var expressions;
 })(expressions = exports.expressions || (exports.expressions = {}));
 const microflows_1 = require("./microflows");
 const pages_1 = require("./pages");
+const rest_1 = require("./rest");
 //# sourceMappingURL=expressions.js.map

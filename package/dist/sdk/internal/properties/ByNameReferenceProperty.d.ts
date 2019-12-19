@@ -14,7 +14,7 @@ export declare class ByNameReferenceProperty<T extends IAbstractElement> extends
     set(newValue: T | null): void;
     updateWithRawValue(value: string): void;
     qualifiedName(): string | null;
-    readonly targetType: string;
+    get targetType(): string;
     deepCopyInto(clone: Structure, idMap: utils.IMap<Structure>, unresolvedIdentifierFixers: ((idMap: utils.IMap<Structure>) => void)[]): void;
 }
 /**
@@ -36,6 +36,6 @@ export declare class ByNameReferenceListProperty<T extends IAbstractElement> ext
     updateWithRawValue(value: string[]): void;
     qualifiedNames(): string[];
     dispose(): void;
-    readonly targetType: string;
+    get targetType(): string;
     deepCopyInto(clone: Structure, idMap: utils.IMap<Structure>, unresolvedIdentifierFixers: ((idMap: utils.IMap<Structure>) => void)[]): void;
 }
