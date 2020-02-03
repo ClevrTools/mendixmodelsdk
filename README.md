@@ -4,6 +4,9 @@ A fork of npm mendixmodelsdk
 
 Use to to keep customizations and bugfixes for the npm module while updating.
 
+To publish changes navigate to package and run `npm publish`
+ 
+
 ## Changes
 
 * `package.json` - Line: **2**
