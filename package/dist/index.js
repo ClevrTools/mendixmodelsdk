@@ -48,6 +48,7 @@ exports.UndoManager = internal_1.UndoManager;
 exports.UndoState = internal_1.UndoState;
 exports.createElementFromJSON = internal_1.createElementFromJSON;
 exports.ModelEventReceiver = internal_1.ModelEventReceiver;
+exports.createModelUnitFromJSON = internal_1.createModelUnitFromJSON;
 var JavaScriptSerializer_1 = require("./sdk/extras/JavaScriptSerializer");
 exports.JavaScriptSerializer = JavaScriptSerializer_1.JavaScriptSerializer;
 var TransactionManager_1 = require("./sdk/internal/deltas/TransactionManager");

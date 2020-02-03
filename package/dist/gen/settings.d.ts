@@ -50,6 +50,35 @@ export declare namespace settings {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Settings`.
      */
+    /**
+     * In version 8.6.0: introduced
+     */
+    class ActionActivityDefaultColor extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsModelerSettings(): ModelerSettings;
+        get actionActivityType(): string;
+        set actionActivityType(newValue: string);
+        get backgroundColor(): microflows.ActionActivityColor;
+        set backgroundColor(newValue: microflows.ActionActivityColor);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ActionActivityDefaultColor instance in the SDK and on the server.
+         * The new ActionActivityDefaultColor will be automatically stored in the 'actionActivityDefaultColors' property
+         * of the parent ModelerSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container: ModelerSettings): ActionActivityDefaultColor;
+        /**
+         * Creates and returns a new ActionActivityDefaultColor instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ActionActivityDefaultColor;
+    }
     class Certificate extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -331,6 +360,10 @@ export declare namespace settings {
         get containerAsProjectSettings(): ProjectSettings;
         get lowerCaseMicroflowVariables(): boolean;
         set lowerCaseMicroflowVariables(newValue: boolean);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get actionActivityDefaultColors(): internal.IList<ActionActivityDefaultColor>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.

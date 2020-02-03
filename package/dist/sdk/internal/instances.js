@@ -5,6 +5,7 @@ const versions = require("./versionChecks");
 const units = require("./units");
 const elements = require("./elements");
 const utils_1 = require("../utils");
+const ByIdReferenceProperty_1 = require("./properties/ByIdReferenceProperty");
 /**
  * Base class for enumerations in the meta model.
  * Literals of an enumeration are generated as public static constants of the generated sub class
@@ -32,13 +33,48 @@ exports.AbstractEnum = AbstractEnum;
 /**
  * Creates a new element instance from JSON. All element IDs are replaced by new ones.
  * After creation, the element can be attached to a container.
+ * Optionally populate the given map from original to new IDs.
  */
-function createElementFromJSON(model, json) {
-    const instance = instancehelpers.createNewElementInstanceFromJSON(model, json);
+function createElementFromJSON(model, json, idToStructureMap = {}) {
+    const oldToNewIdMap = {};
+    // Copy the json because we are going to change its IDs
+    const jsonCopy = JSON.parse(JSON.stringify(json));
+    replaceJsonIds(jsonCopy, oldToNewIdMap);
+    const instance = instancehelpers.createNewElementInstanceFromJSON(model, jsonCopy);
+    for (const key in oldToNewIdMap) {
+        idToStructureMap[key] = instance.findElementById(oldToNewIdMap[key]);
+    }
+    updateByIdReferencesFromMap(instance, idToStructureMap);
     instance.resolveByIdReferences();
     return instance;
 }
 exports.createElementFromJSON = createElementFromJSON;
+/**
+ * Creates a new model unit from JSON and attaches it to the provided container unit.
+ * All element IDs are replaced by new ones.
+ */
+function createModelUnitFromJSON(containerUnit, containmentName, contents) {
+    const oldToNewIdMap = {};
+    // Copy the contents because we are going to change its IDs
+    const contentsCopy = JSON.parse(JSON.stringify(contents));
+    replaceJsonIds(contentsCopy, oldToNewIdMap);
+    const unit = instancehelpers.createUnitFromJSON(containerUnit.model, {
+        $ID: contentsCopy.$ID,
+        $Type: contentsCopy.$Type,
+        contents: contentsCopy,
+        containerId: containerUnit.id,
+        containmentName
+    }, false);
+    const idToStructureMap = {};
+    for (const key in oldToNewIdMap) {
+        idToStructureMap[key] = unit.findElementById(oldToNewIdMap[key]);
+    }
+    updateByIdReferencesFromMap(unit, idToStructureMap);
+    unit.resolveByIdReferences();
+    unit._handleCreateSelf();
+    return unit;
+}
+exports.createModelUnitFromJSON = createModelUnitFromJSON;
 // namespace is a workaround for typedoc
 var instancehelpers;
 (function (instancehelpers) {
@@ -155,6 +191,28 @@ var instancehelpers;
         return structure instanceof elements.AbstractElement && structure._isByNameReferrable();
     }
     instancehelpers.structureIsByNameReferrable = structureIsByNameReferrable;
+    function createUnitFromJSON(model, json, resolveByIdReferences = true) {
+        const container = model._units[json.containerId];
+        if (!container) {
+            throw new Error(`Cannot find container unit with ID '${json.containerId}'`);
+        }
+        const property = container["__" + json.containmentName];
+        if (!property) {
+            throw new Error(`Invalid containment name '${json.containmentName}'`);
+        }
+        const unit = instancehelpers.abstractUnitJsonToInstance(model, json, true);
+        if (!unit) {
+            throw new Error("Cannot create a unit from the given unit json: " + JSON.stringify(json));
+        }
+        model._resolveContainer(unit, json.containerId);
+        model._qualifiedNameCache.addStructureToCache(unit);
+        unit._markLoaded();
+        if (resolveByIdReferences) {
+            unit.resolveByIdReferences();
+        }
+        return unit;
+    }
+    instancehelpers.createUnitFromJSON = createUnitFromJSON;
 })(instancehelpers = exports.instancehelpers || (exports.instancehelpers = {}));
 function checkStructureVersion(instance) {
     instance.versionInfo.checkStructureVersion(instance);
@@ -177,5 +235,40 @@ function createStructureFromJson(initializer, findInstance, callback, json) {
         return structure;
     }
     return _createInstanceWithInitializer(initializer, callback, json);
+}
+function replaceJsonIds(json, oldToNewIdMap) {
+    var _a;
+    if ((_a = json) === null || _a === void 0 ? void 0 : _a.$ID) {
+        const newId = utils_1.utils.randomUuid();
+        oldToNewIdMap[json.$ID] = newId;
+        json.$ID = newId;
+        for (const key in json) {
+            if (key !== "$ID" && key !== "$Type") {
+                replaceJsonIds(json[key], oldToNewIdMap);
+            }
+        }
+    }
+    else if (Array.isArray(json)) {
+        for (const item of json) {
+            replaceJsonIds(item, oldToNewIdMap);
+        }
+    }
+}
+function updateByIdReferencesFromMap(element, idToStructureMap) {
+    element.traverse(structure => {
+        structure
+            .allProperties()
+            .filter(p => p instanceof ByIdReferenceProperty_1.ByIdReferenceProperty)
+            .forEach(p => {
+            const property = p;
+            const referenceId = property.observableValue.getRawValue();
+            if (referenceId && idToStructureMap[referenceId]) {
+                // Avoid generating deltas while updating ByIdReferences
+                property.parent._isUpdating = true;
+                property.observableValue.updateWithRawValue(idToStructureMap[referenceId].id);
+                property.parent._isUpdating = false;
+            }
+        });
+    });
 }
 //# sourceMappingURL=instances.js.map

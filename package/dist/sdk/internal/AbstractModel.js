@@ -492,6 +492,9 @@ class AbstractModel {
     onEventProcessed(callback) {
         this.modelEventManager.onEventProcessed(callback);
     }
+    onFileChangesReceived(callback) {
+        this.modelEventManager.onFileChangesReceived(callback);
+    }
 }
 __decorate([
     mobx_1.observable.shallow

@@ -2942,9 +2942,11 @@ export declare namespace pages {
         get containerAsButton(): Button;
         get containerAsControlBarButton(): ControlBarButton;
         get containerAsDataGrid(): DataGrid;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
         get containerAsDynamicText(): DynamicText;
         get containerAsGroupBox(): GroupBox;
         get containerAsInputWidget(): InputWidget;
+        get containerAsStaticImageViewer(): StaticImageViewer;
         get template(): texts.Text;
         set template(newValue: texts.Text);
         get parameters(): internal.IList<ClientTemplateParameter>;
@@ -3004,6 +3006,15 @@ export declare namespace pages {
         static createInDataGridUnderCaption(container: DataGrid): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'alternativeText' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInDynamicImageViewerUnderAlternativeText(container: DynamicImageViewer): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'content' property
          * of the parent DynamicText element passed as argument.
          */
@@ -3023,6 +3034,15 @@ export declare namespace pages {
          *  7.18.0 and higher
          */
         static createInInputWidgetUnderLabelTemplate(container: InputWidget): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'alternativeText' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInStaticImageViewerUnderAlternativeText(container: StaticImageViewer): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -7644,6 +7664,11 @@ export declare namespace pages {
          */
         get onClickEnlarge(): boolean;
         set onClickEnlarge(newValue: boolean);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get alternativeText(): ClientTemplate;
+        set alternativeText(newValue: ClientTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -22610,6 +22635,10 @@ export declare namespace pages {
          */
         get schemaId(): string;
         set schemaId(newValue: string);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get parameters(): internal.IList<RetrievalQueryParameter>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrievalQuery instance in the SDK and on the server.
@@ -22617,6 +22646,35 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RetrievalQuery;
+    }
+    /**
+     * In version 8.6.0: introduced
+     */
+    class RetrievalQueryParameter extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsRetrievalQuery(): RetrievalQuery;
+        get name(): string;
+        set name(newValue: string);
+        get type(): string;
+        set type(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container: RetrievalQuery): RetrievalQueryParameter;
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RetrievalQueryParameter;
     }
     /**
      * In version 8.4.0: deleted
@@ -25638,6 +25696,11 @@ export declare namespace pages {
         set clickAction(newValue: ClientAction);
         get responsive(): boolean;
         set responsive(newValue: boolean);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get alternativeText(): ClientTemplate;
+        set alternativeText(newValue: ClientTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.

@@ -8,6 +8,15 @@ const projects_1 = require("./projects");
 const webservices_1 = require("./webservices");
 var rest;
 (function (rest) {
+    class ODataVersion extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "rest.ODataVersion";
+        }
+    }
+    ODataVersion.OData3 = new ODataVersion("OData3", {});
+    ODataVersion.OData4 = new ODataVersion("OData4", {});
+    rest.ODataVersion = ODataVersion;
     class RestAuthenticationType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -62,6 +71,8 @@ var rest;
             /** @internal */
             this.__metadata = new internal.PrimitiveProperty(ConsumedODataService, this, "metadata", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__metadataReferences = new internal.PartListProperty(ConsumedODataService, this, "metadataReferences", []);
+            /** @internal */
             this.__serviceName = new internal.PrimitiveProperty(ConsumedODataService, this, "serviceName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__version = new internal.PrimitiveProperty(ConsumedODataService, this, "version", "", internal.PrimitiveTypeEnum.String);
@@ -87,6 +98,8 @@ var rest;
             this.__timeoutModel = new internal.PartProperty(ConsumedODataService, this, "timeoutModel", null, true);
             /** @internal */
             this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__oDataVersion = new internal.EnumProperty(ConsumedODataService, this, "oDataVersion", ODataVersion.OData3, ODataVersion);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -103,6 +116,12 @@ var rest;
         }
         set metadata(newValue) {
             this.__metadata.set(newValue);
+        }
+        /**
+         * In version 8.6.0: introduced
+         */
+        get metadataReferences() {
+            return this.__metadataReferences.get();
         }
         /**
          * In version 8.0.0: introduced
@@ -223,6 +242,15 @@ var rest;
             this.__timeoutExpression.set(newValue);
         }
         /**
+         * In version 8.6.0: introduced
+         */
+        get oDataVersion() {
+            return this.__oDataVersion.get();
+        }
+        set oDataVersion(newValue) {
+            this.__oDataVersion.set(newValue);
+        }
+        /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -234,6 +262,9 @@ var rest;
             super._initializeDefaultProperties();
             if (this.__httpConfiguration.isAvailable) {
                 this.httpConfiguration = microflows_1.microflows.HttpConfiguration.create(this.model);
+            }
+            if (this.__oDataVersion.isAvailable) {
+                this.oDataVersion = ODataVersion.OData3;
             }
             this.proxyType = microflows_1.microflows.RequestProxyType.DefaultProxy;
             if (this.__timeoutExpression.isAvailable) {
@@ -251,6 +282,9 @@ var rest;
     ConsumedODataService.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.18.0",
         properties: {
+            metadataReferences: {
+                introduced: "8.6.0"
+            },
             serviceName: {
                 introduced: "8.0.0"
             },
@@ -277,6 +311,9 @@ var rest;
             },
             timeoutExpression: {
                 introduced: "8.5.0"
+            },
+            oDataVersion: {
+                introduced: "8.6.0"
             }
         },
         experimental: {
@@ -360,6 +397,53 @@ var rest;
         introduced: "7.18.0"
     }, internal.StructureType.Element);
     rest.CorsConfiguration = CorsConfiguration;
+    /**
+     * In version 8.6.0: introduced
+     */
+    class MetadataReference extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__uri = new internal.PrimitiveProperty(MetadataReference, this, "uri", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__metadata = new internal.PrimitiveProperty(MetadataReference, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MetadataReference() cannot be invoked directly, please use 'model.rest.createMetadataReference()'");
+            }
+        }
+        get containerAsConsumedODataService() {
+            return super.getContainerAs(ConsumedODataService);
+        }
+        get uri() {
+            return this.__uri.get();
+        }
+        set uri(newValue) {
+            this.__uri.set(newValue);
+        }
+        get metadata() {
+            return this.__metadata.get();
+        }
+        set metadata(newValue) {
+            this.__metadata.set(newValue);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MetadataReference);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MetadataReference.structureTypeName = "Rest$MetadataReference";
+    MetadataReference.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    rest.MetadataReference = MetadataReference;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *

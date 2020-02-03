@@ -5,13 +5,14 @@ import { projects } from "./projects";
 export declare namespace microflows {
     class ActionActivityColor extends internal.AbstractEnum {
         static Default: ActionActivityColor;
-        static Red: ActionActivityColor;
-        static Orange: ActionActivityColor;
-        static Yellow: ActionActivityColor;
-        static Green: ActionActivityColor;
         static Blue: ActionActivityColor;
-        static Purple: ActionActivityColor;
         static Gray: ActionActivityColor;
+        static Green: ActionActivityColor;
+        static LightBlue: ActionActivityColor;
+        static Orange: ActionActivityColor;
+        static Purple: ActionActivityColor;
+        static Red: ActionActivityColor;
+        static Yellow: ActionActivityColor;
         protected qualifiedTsTypeName: string;
     }
     class AggregateFunctionEnum extends internal.AbstractEnum {
@@ -128,6 +129,14 @@ export declare namespace microflows {
         static DOC: TargetDocumentType;
         static RTF: TargetDocumentType;
         static ODT: TargetDocumentType;
+        protected qualifiedTsTypeName: string;
+    }
+    class TypedTemplateArgumentType extends internal.AbstractEnum {
+        static Boolean: TypedTemplateArgumentType;
+        static DateTime: TypedTemplateArgumentType;
+        static Decimal: TypedTemplateArgumentType;
+        static Integer: TypedTemplateArgumentType;
+        static String: TypedTemplateArgumentType;
         protected qualifiedTsTypeName: string;
     }
     /**
@@ -3121,6 +3130,48 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
+     * In version 8.6.0: introduced
+     */
+    abstract class TypedTemplateArgument extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsTypedTemplate(): TypedTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.6.0: introduced
+     */
+    class PrimitiveTypedTemplateArgument extends TypedTemplateArgument {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsTypedTemplate(): TypedTemplate;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        get type(): TypedTemplateArgumentType;
+        set type(newValue: TypedTemplateArgumentType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PrimitiveTypedTemplateArgument instance in the SDK and on the server.
+         * The new PrimitiveTypedTemplateArgument will be automatically stored in the 'arguments' property
+         * of the parent TypedTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container: TypedTemplate): PrimitiveTypedTemplateArgument;
+        /**
+         * Creates and returns a new PrimitiveTypedTemplateArgument instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PrimitiveTypedTemplateArgument;
+    }
+    /**
      * In version 7.15.0: introduced
      */
     class ProxyConfiguration extends internal.Element {
@@ -3842,7 +3893,7 @@ export declare namespace microflows {
          * of the parent StringTemplateParameterValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.4.0 and higher
+         *  8.4.0 to 8.5.0
          */
         static createInStringTemplateParameterValueUnderTemplate(container: StringTemplateParameterValue): StringTemplate;
         /**
@@ -3862,8 +3913,16 @@ export declare namespace microflows {
         model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        /**
+         * In version 8.6.0: deleted
+         */
         get template(): StringTemplate;
         set template(newValue: StringTemplate);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get typedTemplate(): TypedTemplate;
+        set typedTemplate(newValue: TypedTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
@@ -4013,6 +4072,34 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): TextTemplate;
+    }
+    /**
+     * In version 8.6.0: introduced
+     */
+    class TypedTemplate extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
+        get text(): string;
+        set text(newValue: string);
+        get arguments(): internal.IList<TypedTemplateArgument>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new TypedTemplate instance in the SDK and on the server.
+         * The new TypedTemplate will be automatically stored in the 'typedTemplate' property
+         * of the parent StringTemplateParameterValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container: StringTemplateParameterValue): TypedTemplate;
+        /**
+         * Creates and returns a new TypedTemplate instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): TypedTemplate;
     }
     class Union extends BinaryListOperation {
         static structureTypeName: string;

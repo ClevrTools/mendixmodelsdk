@@ -95,6 +95,12 @@ class ByIdReference {
         this.referenceId = value;
         this.isResolved = false;
     }
+    /**
+     * Get the row target id, the target might be not resolved yet
+     */
+    getRawValue() {
+        return this.referenceId;
+    }
 }
 exports.ByIdReference = ByIdReference;
 //# sourceMappingURL=ByIdReference.js.map

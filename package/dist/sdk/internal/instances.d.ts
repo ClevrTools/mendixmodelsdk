@@ -4,6 +4,7 @@ import * as structures from "./structures";
 import * as units from "./units";
 import * as elements from "./elements";
 import * as transport from "./transportInterfaces";
+import { utils } from "../utils";
 /**
  * The `instances` module contains various classes and functions
  * which revolve around creating/maintaining/updating actual model contents.
@@ -34,8 +35,14 @@ export declare abstract class AbstractEnum {
 /**
  * Creates a new element instance from JSON. All element IDs are replaced by new ones.
  * After creation, the element can be attached to a container.
+ * Optionally populate the given map from original to new IDs.
  */
-export declare function createElementFromJSON(model: IAbstractModel, json: transport.IAbstractElementJson): elements.Element;
+export declare function createElementFromJSON(model: IAbstractModel, json: transport.IAbstractElementJson, idToStructureMap?: utils.IMap<structures.Structure>): elements.Element;
+/**
+ * Creates a new model unit from JSON and attaches it to the provided container unit.
+ * All element IDs are replaced by new ones.
+ */
+export declare function createModelUnitFromJSON(containerUnit: units.IStructuralUnit, containmentName: string, contents: transport.IAbstractElementJson): units.ModelUnit;
 export declare namespace instancehelpers {
     /**
      * Given some a (normalized) JSON representation of a unit,
@@ -66,5 +73,6 @@ export declare namespace instancehelpers {
     function lookupClass(qualifiedTypeName: string, classes: any): InstanceConstructor;
     function structureAffectsQualifiedNames(structure: structures.IStructure): boolean;
     function structureIsByNameReferrable(structure: structures.IStructure): structure is elements.AbstractElement;
+    function createUnitFromJSON(model: AbstractModel, json: transport.IAbstractUnitJson, resolveByIdReferences?: boolean): units.IAbstractUnit;
 }
 export declare type InstanceConstructor = elements.IElementConstructor | units.IAbstractUnitConstructor;

@@ -16,6 +16,7 @@ exports.ModelUnit = units_1.ModelUnit;
 var instances_1 = require("./internal/instances");
 exports.AbstractEnum = instances_1.AbstractEnum;
 exports.createElementFromJSON = instances_1.createElementFromJSON;
+exports.createModelUnitFromJSON = instances_1.createModelUnitFromJSON;
 exports.instancehelpers = instances_1.instancehelpers;
 __export(require("./internal/properties"));
 __export(require("./internal/ByIdReference"));

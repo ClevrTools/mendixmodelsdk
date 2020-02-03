@@ -201,24 +201,13 @@ class DeltaProcessor {
         if (!delta.unitTree) {
             throw new Error("Missing unitTree");
         }
-        const container = deltaUtils.getUnit(this.model, delta.containerId);
-        const parentProperty = deltaUtils.getProperty(container, delta.containmentName);
-        if (!parentProperty) {
-            throw new Error(`Invalid containmentName '${delta.containmentName}'`);
-        }
-        const unit = instances_1.instancehelpers.abstractUnitJsonToInstance(this.model, {
+        instances_1.instancehelpers.createUnitFromJSON(this.model, {
             $ID: delta.unitId,
             $Type: delta.contentType,
             contents: delta.unitTree,
             containerId: delta.containerId,
             containmentName: delta.containmentName
-        }, true);
-        if (!unit) {
-            throw new Error("Cannot create a unit from the given unitTree: " + JSON.stringify(delta.unitTree));
-        }
-        this.model._resolveContainer(unit, delta.containerId);
-        this.model._qualifiedNameCache.addStructureToCache(unit);
-        unit.resolveByIdReferences();
+        });
     }
     processDeleteUnitDelta(delta) {
         const unit = this.getUnit(delta);

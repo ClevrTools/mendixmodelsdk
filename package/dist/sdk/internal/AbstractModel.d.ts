@@ -168,6 +168,7 @@ export interface IAbstractModel {
     startReceivingEvents(): void;
     stopReceivingEvents(): void;
     onEventProcessed(callback: common.IVoidCallback): void;
+    onFileChangesReceived(callback: (files: string[]) => void): void;
 }
 export interface IUnitsMap {
     [id: string]: IAbstractUnit;
@@ -237,6 +238,7 @@ export declare abstract class AbstractModel implements IAbstractModel {
     startReceivingEvents(): void;
     stopReceivingEvents(): void;
     onEventProcessed(callback: common.IVoidCallback): void;
+    onFileChangesReceived(callback: (files: string[]) => void): void;
 }
 export interface ISubResolver {
     (parent: IStructure, partName: string): IStructure;

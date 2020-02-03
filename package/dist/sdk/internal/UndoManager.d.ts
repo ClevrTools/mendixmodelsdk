@@ -18,8 +18,8 @@ export declare class UndoManager {
 export declare class UndoState {
     private deltaManager;
     constructor(deltaManager: IDeltaManager);
-    readonly canUndo: boolean;
-    readonly canRedo: boolean;
+    get canUndo(): boolean;
+    get canRedo(): boolean;
     undo(): void;
     redo(): void;
     clear(): void;

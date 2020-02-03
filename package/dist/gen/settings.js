@@ -80,6 +80,66 @@ var settings;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Settings`.
      */
+    /**
+     * In version 8.6.0: introduced
+     */
+    class ActionActivityDefaultColor extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__actionActivityType = new internal.PrimitiveProperty(ActionActivityDefaultColor, this, "actionActivityType", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__backgroundColor = new internal.EnumProperty(ActionActivityDefaultColor, this, "backgroundColor", microflows_1.microflows.ActionActivityColor.LightBlue, microflows_1.microflows.ActionActivityColor);
+            if (arguments.length < 4) {
+                throw new Error("new ActionActivityDefaultColor() cannot be invoked directly, please use 'model.settings.createActionActivityDefaultColor()'");
+            }
+        }
+        get containerAsModelerSettings() {
+            return super.getContainerAs(ModelerSettings);
+        }
+        get actionActivityType() {
+            return this.__actionActivityType.get();
+        }
+        set actionActivityType(newValue) {
+            this.__actionActivityType.set(newValue);
+        }
+        get backgroundColor() {
+            return this.__backgroundColor.get();
+        }
+        set backgroundColor(newValue) {
+            this.__backgroundColor.set(newValue);
+        }
+        /**
+         * Creates and returns a new ActionActivityDefaultColor instance in the SDK and on the server.
+         * The new ActionActivityDefaultColor will be automatically stored in the 'actionActivityDefaultColors' property
+         * of the parent ModelerSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ActionActivityDefaultColor.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, ActionActivityDefaultColor, "actionActivityDefaultColors", true);
+        }
+        /**
+         * Creates and returns a new ActionActivityDefaultColor instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ActionActivityDefaultColor);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.backgroundColor = microflows_1.microflows.ActionActivityColor.LightBlue;
+        }
+    }
+    ActionActivityDefaultColor.structureTypeName = "Settings$ActionActivityDefaultColor";
+    ActionActivityDefaultColor.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    settings.ActionActivityDefaultColor = ActionActivityDefaultColor;
     class Certificate extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -757,6 +817,8 @@ var settings;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__lowerCaseMicroflowVariables = new internal.PrimitiveProperty(ModelerSettings, this, "lowerCaseMicroflowVariables", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__actionActivityDefaultColors = new internal.PartListProperty(ModelerSettings, this, "actionActivityDefaultColors", []);
             if (arguments.length < 4) {
                 throw new Error("new ModelerSettings() cannot be invoked directly, please use 'model.settings.createModelerSettings()'");
             }
@@ -769,6 +831,12 @@ var settings;
         }
         set lowerCaseMicroflowVariables(newValue) {
             this.__lowerCaseMicroflowVariables.set(newValue);
+        }
+        /**
+         * In version 8.6.0: introduced
+         */
+        get actionActivityDefaultColors() {
+            return this.__actionActivityDefaultColors.get();
         }
         /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
@@ -792,7 +860,13 @@ var settings;
         }
     }
     ModelerSettings.structureTypeName = "Settings$ModelerSettings";
-    ModelerSettings.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ModelerSettings.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            actionActivityDefaultColors: {
+                introduced: "8.6.0"
+            }
+        }
+    }, internal.StructureType.Element);
     settings.ModelerSettings = ModelerSettings;
     /**
      * See: {@link https://docs.mendix.com/refguide7/project-settings relevant section in reference guide}
@@ -1153,4 +1227,5 @@ var settings;
     }, internal.StructureType.Element);
     settings.WebUIProjectSettingsPart = WebUIProjectSettingsPart;
 })(settings = exports.settings || (exports.settings = {}));
+const microflows_1 = require("./microflows");
 //# sourceMappingURL=settings.js.map

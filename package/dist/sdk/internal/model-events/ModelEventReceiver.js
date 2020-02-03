@@ -6,27 +6,45 @@ class ModelEventReceiver {
         this.workingCopyId = workingCopyId;
         this.client = client;
         this.errorHandler = errorHandler;
-        this.eventEmitter = new EventEmitter_1.EventEmitter();
+        this.deltaEventEmitter = new EventEmitter_1.EventEmitter();
+        this.fileEventEmitter = new EventEmitter_1.EventEmitter();
         this.eventSource = null;
     }
-    onNewModelEvent(callback) {
-        this.eventEmitter.on("NewModelEvent", callback);
+    onDeltaEvent(callback) {
+        this.deltaEventEmitter.on("DeltaEvent", callback);
+    }
+    onFileEvent(callback) {
+        this.fileEventEmitter.on("FileEvent", callback);
     }
     start(lastEventId) {
         if (this.eventSource) {
             return;
         }
         this.eventSource = this.client.getModelEventSource(this.workingCopyId, lastEventId);
-        this.eventSource.onerror = (e) => console.error(e);
+        this.eventSource.onerror = (e) => this.errorHandler.handleError(`We received an error event from the EventSource: ${JSON.stringify(e)}`, undefined);
         this.eventSource.addEventListener("deltas", (event) => {
             try {
-                const modelEvent = JSON.parse(event.data);
-                modelEvent.deltas.forEach(delta => {
+                const deltaEvent = JSON.parse(event.data);
+                deltaEvent.deltas.forEach(delta => {
                     if (!delta) {
                         throw new Error("Invalid delta: " + delta);
                     }
                 });
-                this.eventEmitter.emit("NewModelEvent", modelEvent);
+                this.deltaEventEmitter.emit("DeltaEvent", deltaEvent);
+            }
+            catch (err) {
+                this.errorHandler.handleError(`An error occurred while processing the incoming event: ${err.message}`, undefined);
+            }
+        });
+        this.eventSource.addEventListener("fileChanges", (event) => {
+            try {
+                const fileEvent = JSON.parse(event.data);
+                fileEvent.files.forEach(file => {
+                    if (!file) {
+                        throw new Error(`Invalid file: '${file}'`);
+                    }
+                });
+                this.fileEventEmitter.emit("FileEvent", fileEvent);
             }
             catch (err) {
                 this.errorHandler.handleError(`An error occurred while processing the incoming event: ${err.message}`, undefined);

@@ -5376,6 +5376,9 @@ var pages;
         get containerAsDataGrid() {
             return super.getContainerAs(DataGrid);
         }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
         get containerAsDynamicText() {
             return super.getContainerAs(DynamicText);
         }
@@ -5384,6 +5387,9 @@ var pages;
         }
         get containerAsInputWidget() {
             return super.getContainerAs(InputWidget);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
         }
         get template() {
             return this.__template.get();
@@ -5469,6 +5475,18 @@ var pages;
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'alternativeText' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInDynamicImageViewerUnderAlternativeText(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "alternativeText", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'content' property
          * of the parent DynamicText element passed as argument.
          */
@@ -5494,6 +5512,18 @@ var pages;
         static createInInputWidgetUnderLabelTemplate(container) {
             internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "7.18.0" });
             return internal.instancehelpers.createElement(container, ClientTemplate, "labelTemplate", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'alternativeText' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInStaticImageViewerUnderAlternativeText(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "alternativeText", false);
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
@@ -13569,6 +13599,8 @@ var pages;
             this.__clickAction = new internal.PartProperty(DynamicImageViewer, this, "clickAction", null, true);
             /** @internal */
             this.__onClickEnlarge = new internal.PrimitiveProperty(DynamicImageViewer, this, "onClickEnlarge", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__alternativeText = new internal.PartProperty(DynamicImageViewer, this, "alternativeText", null, true);
             if (arguments.length < 4) {
                 throw new Error("new DynamicImageViewer() cannot be invoked directly, please use 'model.pages.createDynamicImageViewer()'");
             }
@@ -13719,6 +13751,15 @@ var pages;
         }
         set onClickEnlarge(newValue) {
             this.__onClickEnlarge.set(newValue);
+        }
+        /**
+         * In version 8.6.0: introduced
+         */
+        get alternativeText() {
+            return this.__alternativeText.get();
+        }
+        set alternativeText(newValue) {
+            this.__alternativeText.set(newValue);
         }
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -14343,6 +14384,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__alternativeText.isAvailable) {
+                this.alternativeText = ClientTemplate.create(this.model);
+            }
             if (this.__clickAction.isAvailable) {
                 this.clickAction = NoClientAction.create(this.model);
             }
@@ -14391,6 +14435,12 @@ var pages;
             },
             onClickEnlarge: {
                 introduced: "7.18.0"
+            },
+            alternativeText: {
+                introduced: "8.6.0",
+                required: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.Element);
@@ -38117,6 +38167,8 @@ var pages;
             this.__usedAssociations = new internal.PrimitiveListProperty(RetrievalQuery, this, "usedAssociations", [], internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__schemaId = new internal.PrimitiveProperty(RetrievalQuery, this, "schemaId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
+            this.__parameters = new internal.PartListProperty(RetrievalQuery, this, "parameters", []);
             if (arguments.length < 4) {
                 throw new Error("new RetrievalQuery() cannot be invoked directly, please use 'model.pages.createRetrievalQuery()'");
             }
@@ -38194,6 +38246,12 @@ var pages;
             this.__schemaId.set(newValue);
         }
         /**
+         * In version 8.6.0: introduced
+         */
+        get parameters() {
+            return this.__parameters.get();
+        }
+        /**
          * Creates and returns a new RetrievalQuery instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
@@ -38231,10 +38289,72 @@ var pages;
             schemaId: {
                 deleted: "8.4.0",
                 deletionMessage: null
+            },
+            parameters: {
+                introduced: "8.6.0"
             }
         }
     }, internal.StructureType.Element);
     pages.RetrievalQuery = RetrievalQuery;
+    /**
+     * In version 8.6.0: introduced
+     */
+    class RetrievalQueryParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(RetrievalQueryParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.PrimitiveProperty(RetrievalQueryParameter, this, "type", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new RetrievalQueryParameter() cannot be invoked directly, please use 'model.pages.createRetrievalQueryParameter()'");
+            }
+        }
+        get containerAsRetrievalQuery() {
+            return super.getContainerAs(RetrievalQuery);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
+        }
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RetrievalQueryParameter);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RetrievalQueryParameter.structureTypeName = "Pages$RetrievalQueryParameter";
+    RetrievalQueryParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    pages.RetrievalQueryParameter = RetrievalQueryParameter;
     /**
      * In version 8.4.0: deleted
      * In version 6.2.0: introduced
@@ -43042,6 +43162,8 @@ var pages;
             this.__clickAction = new internal.PartProperty(StaticImageViewer, this, "clickAction", null, true);
             /** @internal */
             this.__responsive = new internal.PrimitiveProperty(StaticImageViewer, this, "responsive", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__alternativeText = new internal.PartProperty(StaticImageViewer, this, "alternativeText", null, true);
             if (arguments.length < 4) {
                 throw new Error("new StaticImageViewer() cannot be invoked directly, please use 'model.pages.createStaticImageViewer()'");
             }
@@ -43165,6 +43287,15 @@ var pages;
         }
         set responsive(newValue) {
             this.__responsive.set(newValue);
+        }
+        /**
+         * In version 8.6.0: introduced
+         */
+        get alternativeText() {
+            return this.__alternativeText.get();
+        }
+        set alternativeText(newValue) {
+            this.__alternativeText.set(newValue);
         }
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -43789,6 +43920,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__alternativeText.isAvailable) {
+                this.alternativeText = ClientTemplate.create(this.model);
+            }
             this.clickAction = NoClientAction.create(this.model);
             this.heightUnit = ImageSizeUnit.Auto;
             this.responsive = true;
@@ -43799,6 +43933,12 @@ var pages;
     StaticImageViewer.versionInfo = new exports.StructureVersionInfo({
         properties: {
             clickAction: {
+                required: {
+                    currentValue: true
+                }
+            },
+            alternativeText: {
+                introduced: "8.6.0",
                 required: {
                     currentValue: true
                 }

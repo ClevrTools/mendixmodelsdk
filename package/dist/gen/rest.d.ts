@@ -4,6 +4,11 @@ import { domainmodels } from "./domainmodels";
 import { projects } from "./projects";
 import { webservices } from "./webservices";
 export declare namespace rest {
+    class ODataVersion extends internal.AbstractEnum {
+        static OData3: ODataVersion;
+        static OData4: ODataVersion;
+        protected qualifiedTsTypeName: string;
+    }
     class RestAuthenticationType extends internal.AbstractEnum {
         static Basic: RestAuthenticationType;
         static None: RestAuthenticationType;
@@ -53,6 +58,10 @@ export declare namespace rest {
         set metadataUrl(newValue: string);
         get metadata(): string;
         set metadata(newValue: string);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get metadataReferences(): internal.IList<MetadataReference>;
         /**
          * In version 8.0.0: introduced
          */
@@ -111,6 +120,11 @@ export declare namespace rest {
          */
         get timeoutExpression(): string;
         set timeoutExpression(newValue: string);
+        /**
+         * In version 8.6.0: introduced
+         */
+        get oDataVersion(): ODataVersion;
+        set oDataVersion(newValue: ODataVersion);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -152,6 +166,26 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): CorsConfiguration;
+    }
+    /**
+     * In version 8.6.0: introduced
+     */
+    class MetadataReference extends internal.Element {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsConsumedODataService(): ConsumedODataService;
+        get uri(): string;
+        set uri(newValue: string);
+        get metadata(): string;
+        set metadata(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MetadataReference;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.

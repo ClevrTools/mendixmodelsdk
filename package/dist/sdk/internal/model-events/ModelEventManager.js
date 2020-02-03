@@ -13,7 +13,7 @@ class ModelEventManager {
         this.deltaProcessor = deltaProcessor;
         this.currentEventId = currentEventId;
         this.eventReceiver = new ModelEventReceiver_1.ModelEventReceiver(workingCopyId, model._client, model);
-        this.eventReceiver.onNewModelEvent(modelEvent => this.scheduleEvent(modelEvent));
+        this.eventReceiver.onDeltaEvent(deltaEvent => this.scheduleEvent(deltaEvent));
         deltaManager.onNewDelta(this.onNewDelta.bind(this));
     }
     start() {
@@ -51,8 +51,11 @@ class ModelEventManager {
     onEventProcessed(callback) {
         this.eventEmitter.on("ModelEventProcessed", callback);
     }
-    scheduleEvent(modelEvent) {
-        this.eventQueue.push(modelEvent);
+    onFileChangesReceived(callback) {
+        this.eventReceiver.onFileEvent(fileEvent => callback(fileEvent.files));
+    }
+    scheduleEvent(deltaEvent) {
+        this.eventQueue.push(deltaEvent);
         this.processEventsQueue();
     }
     onNewDelta() {
@@ -67,18 +70,18 @@ class ModelEventManager {
         }
         while (true) {
             this.processLoadedUnits();
-            const modelEvent = this.eventQueue.shift();
-            if (modelEvent) {
-                if (modelEvent.id <= this.currentEventId) {
+            const deltaEvent = this.eventQueue.shift();
+            if (deltaEvent) {
+                if (deltaEvent.id <= this.currentEventId) {
                     // Ignore this event as we have already processed it.
                     continue;
                 }
                 // Process deltas inside a MobX action, as there might be inconsistent states in between processing the individual deltas.
                 mobx_1.runInAction(() => {
-                    this.deltaProcessor.processDeltas(modelEvent.deltas);
+                    this.deltaProcessor.processDeltas(deltaEvent.deltas);
                     this.eventEmitter.emit("ModelEventProcessed", undefined);
                 });
-                this.currentEventId = modelEvent.id;
+                this.currentEventId = deltaEvent.id;
             }
             else {
                 break;

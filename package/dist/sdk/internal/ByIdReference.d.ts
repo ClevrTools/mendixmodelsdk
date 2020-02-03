@@ -25,4 +25,8 @@ export declare class ByIdReference<T extends elements.AbstractElement> {
      * Sets only the raw target id, without trying to resolve that.
      */
     updateWithRawValue(value: string): void;
+    /**
+     * Get the row target id, the target might be not resolved yet
+     */
+    getRawValue(): string | null;
 }

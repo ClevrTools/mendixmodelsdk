@@ -13,13 +13,16 @@ var microflows;
         }
     }
     ActionActivityColor.Default = new ActionActivityColor("Default", {});
-    ActionActivityColor.Red = new ActionActivityColor("Red", {});
-    ActionActivityColor.Orange = new ActionActivityColor("Orange", {});
-    ActionActivityColor.Yellow = new ActionActivityColor("Yellow", {});
-    ActionActivityColor.Green = new ActionActivityColor("Green", {});
     ActionActivityColor.Blue = new ActionActivityColor("Blue", {});
-    ActionActivityColor.Purple = new ActionActivityColor("Purple", {});
     ActionActivityColor.Gray = new ActionActivityColor("Gray", {});
+    ActionActivityColor.Green = new ActionActivityColor("Green", {});
+    ActionActivityColor.LightBlue = new ActionActivityColor("LightBlue", {
+        introduced: "8.6.0"
+    });
+    ActionActivityColor.Orange = new ActionActivityColor("Orange", {});
+    ActionActivityColor.Purple = new ActionActivityColor("Purple", {});
+    ActionActivityColor.Red = new ActionActivityColor("Red", {});
+    ActionActivityColor.Yellow = new ActionActivityColor("Yellow", {});
     microflows.ActionActivityColor = ActionActivityColor;
     class AggregateFunctionEnum extends internal.AbstractEnum {
         constructor() {
@@ -211,6 +214,18 @@ var microflows;
     TargetDocumentType.RTF = new TargetDocumentType("RTF", {});
     TargetDocumentType.ODT = new TargetDocumentType("ODT", {});
     microflows.TargetDocumentType = TargetDocumentType;
+    class TypedTemplateArgumentType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.TypedTemplateArgumentType";
+        }
+    }
+    TypedTemplateArgumentType.Boolean = new TypedTemplateArgumentType("Boolean", {});
+    TypedTemplateArgumentType.DateTime = new TypedTemplateArgumentType("DateTime", {});
+    TypedTemplateArgumentType.Decimal = new TypedTemplateArgumentType("Decimal", {});
+    TypedTemplateArgumentType.Integer = new TypedTemplateArgumentType("Integer", {});
+    TypedTemplateArgumentType.String = new TypedTemplateArgumentType("String", {});
+    microflows.TypedTemplateArgumentType = TypedTemplateArgumentType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Microflows`.
      */
@@ -6934,6 +6949,92 @@ var microflows;
     NoCase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.NoCase = NoCase;
     /**
+     * In version 8.6.0: introduced
+     */
+    class TypedTemplateArgument extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new TypedTemplateArgument() cannot be invoked directly, please use 'model.microflows.createTypedTemplateArgument()'");
+            }
+        }
+        get containerAsTypedTemplate() {
+            return super.getContainerAs(TypedTemplate);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TypedTemplateArgument.structureTypeName = "Microflows$TypedTemplateArgument";
+    TypedTemplateArgument.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    microflows.TypedTemplateArgument = TypedTemplateArgument;
+    /**
+     * In version 8.6.0: introduced
+     */
+    class PrimitiveTypedTemplateArgument extends TypedTemplateArgument {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__expression = new internal.PrimitiveProperty(PrimitiveTypedTemplateArgument, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.EnumProperty(PrimitiveTypedTemplateArgument, this, "type", TypedTemplateArgumentType.String, TypedTemplateArgumentType);
+            if (arguments.length < 4) {
+                throw new Error("new PrimitiveTypedTemplateArgument() cannot be invoked directly, please use 'model.microflows.createPrimitiveTypedTemplateArgument()'");
+            }
+        }
+        get containerAsTypedTemplate() {
+            return super.getContainerAs(TypedTemplate);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new PrimitiveTypedTemplateArgument instance in the SDK and on the server.
+         * The new PrimitiveTypedTemplateArgument will be automatically stored in the 'arguments' property
+         * of the parent TypedTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, PrimitiveTypedTemplateArgument.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, PrimitiveTypedTemplateArgument, "arguments", true);
+        }
+        /**
+         * Creates and returns a new PrimitiveTypedTemplateArgument instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PrimitiveTypedTemplateArgument);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = TypedTemplateArgumentType.String;
+        }
+    }
+    PrimitiveTypedTemplateArgument.structureTypeName = "Microflows$PrimitiveTypedTemplateArgument";
+    PrimitiveTypedTemplateArgument.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    microflows.PrimitiveTypedTemplateArgument = PrimitiveTypedTemplateArgument;
+    /**
      * In version 7.15.0: introduced
      */
     class ProxyConfiguration extends internal.Element {
@@ -8571,10 +8672,10 @@ var microflows;
          * of the parent StringTemplateParameterValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.4.0 and higher
+         *  8.4.0 to 8.5.0
          */
         static createInStringTemplateParameterValueUnderTemplate(container) {
-            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.4.0" });
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.4.0", end: "8.5.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "template", false);
         }
         /**
@@ -8602,6 +8703,8 @@ var microflows;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__template = new internal.PartProperty(StringTemplateParameterValue, this, "template", null, true);
+            /** @internal */
+            this.__typedTemplate = new internal.PartProperty(StringTemplateParameterValue, this, "typedTemplate", null, true);
             if (arguments.length < 4) {
                 throw new Error("new StringTemplateParameterValue() cannot be invoked directly, please use 'model.microflows.createStringTemplateParameterValue()'");
             }
@@ -8612,11 +8715,23 @@ var microflows;
         get containerAsJavaScriptActionParameterMapping() {
             return super.getContainerAs(JavaScriptActionParameterMapping);
         }
+        /**
+         * In version 8.6.0: deleted
+         */
         get template() {
             return this.__template.get();
         }
         set template(newValue) {
             this.__template.set(newValue);
+        }
+        /**
+         * In version 8.6.0: introduced
+         */
+        get typedTemplate() {
+            return this.__typedTemplate.get();
+        }
+        set typedTemplate(newValue) {
+            this.__typedTemplate.set(newValue);
         }
         /**
          * Creates and returns a new StringTemplateParameterValue instance in the SDK and on the server.
@@ -8653,7 +8768,12 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.template = StringTemplate.create(this.model);
+            if (this.__template.isAvailable) {
+                this.template = StringTemplate.create(this.model);
+            }
+            if (this.__typedTemplate.isAvailable) {
+                this.typedTemplate = TypedTemplate.create(this.model);
+            }
         }
     }
     StringTemplateParameterValue.structureTypeName = "Microflows$StringTemplateParameterValue";
@@ -8661,6 +8781,14 @@ var microflows;
         introduced: "8.4.0",
         properties: {
             template: {
+                deleted: "8.6.0",
+                deletionMessage: "Use 'TypedTemplate' instead",
+                required: {
+                    currentValue: true
+                }
+            },
+            typedTemplate: {
+                introduced: "8.6.0",
                 required: {
                     currentValue: true
                 }
@@ -8917,6 +9045,62 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.TextTemplate = TextTemplate;
+    /**
+     * In version 8.6.0: introduced
+     */
+    class TypedTemplate extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__text = new internal.PrimitiveProperty(TypedTemplate, this, "text", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__arguments = new internal.PartListProperty(TypedTemplate, this, "arguments", []);
+            if (arguments.length < 4) {
+                throw new Error("new TypedTemplate() cannot be invoked directly, please use 'model.microflows.createTypedTemplate()'");
+            }
+        }
+        get containerAsStringTemplateParameterValue() {
+            return super.getContainerAs(StringTemplateParameterValue);
+        }
+        get text() {
+            return this.__text.get();
+        }
+        set text(newValue) {
+            this.__text.set(newValue);
+        }
+        get arguments() {
+            return this.__arguments.get();
+        }
+        /**
+         * Creates and returns a new TypedTemplate instance in the SDK and on the server.
+         * The new TypedTemplate will be automatically stored in the 'typedTemplate' property
+         * of the parent StringTemplateParameterValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, TypedTemplate.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, TypedTemplate, "typedTemplate", false);
+        }
+        /**
+         * Creates and returns a new TypedTemplate instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TypedTemplate);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TypedTemplate.structureTypeName = "Microflows$TypedTemplate";
+    TypedTemplate.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.6.0"
+    }, internal.StructureType.Element);
+    microflows.TypedTemplate = TypedTemplate;
     class Union extends BinaryListOperation {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);

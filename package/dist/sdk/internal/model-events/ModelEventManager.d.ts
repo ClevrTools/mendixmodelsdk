@@ -2,13 +2,14 @@ import { AbstractModel } from "../AbstractModel";
 import { ModelEventReceiver } from "./ModelEventReceiver";
 import { DeltaProcessor, IDeltaManager } from "../deltas";
 import { common } from "../../../common";
-import { IModelEvent } from "./IModelEvent";
+import { IDeltaEvent } from "./IModelEvent";
 export interface IModelEventManager {
     start(): void;
     stop(): void;
     loadUnitStarted(): void;
     loadUnitCompleted(eventId: number, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     onEventProcessed(callback: common.IVoidCallback): void;
+    onFileChangesReceived(callback: (files: string[]) => void): void;
 }
 export interface ILoadUnitResult {
     eventId: number;
@@ -29,7 +30,8 @@ export declare class ModelEventManager implements IModelEventManager {
     loadUnitStarted(): void;
     loadUnitCompleted(eventId: number, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     onEventProcessed(callback: common.IVoidCallback): void;
-    scheduleEvent(modelEvent: IModelEvent): void;
+    onFileChangesReceived(callback: (files: string[]) => void): void;
+    scheduleEvent(deltaEvent: IDeltaEvent): void;
     private onNewDelta;
     private processEventsQueue;
     private processLoadedUnits;
