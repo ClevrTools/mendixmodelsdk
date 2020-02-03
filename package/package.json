@@ -1,5 +1,5 @@
 {
-  "name": "mendixmodelsdk",
+  "name": "@gajduk/mendixmodelsdk",
   "description": "Mendix Model SDK",
   "version": "4.29.0",
   "author": "Mendix",
