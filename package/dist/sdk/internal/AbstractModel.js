@@ -25,6 +25,7 @@ const utils_1 = require("../utils");
 const properties_1 = require("./properties");
 const QualifiedNameCache_1 = require("./QualifiedNameCache");
 const EventEmitter_1 = require("./EventEmitter");
+const WorkingCopyEventReceiver_1 = require("./working-copy-events/WorkingCopyEventReceiver");
 const ModelEventManager_1 = require("./model-events/ModelEventManager");
 const promiseOrCallbacks_1 = require("./promiseOrCallbacks");
 const metamodelversion_1 = require("../../gen/metamodelversion");
@@ -63,6 +64,8 @@ class AbstractModel {
         /** @internal */
         this._isInitialized = false;
         /** @internal */
+        this.lastEventId = -1;
+        /** @internal */
         this.eventEmitter = new EventEmitter_1.EventEmitter();
         this._client = _client;
         this._errorHandler = _errorHandler;
@@ -77,6 +80,7 @@ class AbstractModel {
             const workingCopyPromise = new Promise((resolve, reject) => this._client.loadWorkingCopyMetaData(workingCopyId, resolve, reject));
             const unitInterfacesPromise = new Promise((resolve, reject) => this._client.loadUnitInterfaces(workingCopyId, resolve, reject));
             const [workingCopy, { units: unitInterfaces, eventId }] = yield Promise.all([workingCopyPromise, unitInterfacesPromise]);
+            this.setlastEventId(eventId);
             this.workingCopy = workingCopy;
             this.metaModelVersion = versionChecks_1.parseAsNormalizedVersion(workingCopy.metaData.metaModelVersion);
             this.mxVersionForModel = versionChecks_1.parseAsNormalizedVersion(workingCopy.mprMetaData._ProductVersion);
@@ -86,6 +90,7 @@ class AbstractModel {
             }
             this.deltaManager = new deltas_1.DeltaManager(this);
             this.modelEventManager = new ModelEventManager_1.ModelEventManager(this, this.deltaManager, new deltas_1.DeltaProcessor(this), workingCopyId, eventId);
+            this.workingCopyEventReceiver = new WorkingCopyEventReceiver_1.WorkingCopyEventReceiver(workingCopyId, this._client, this);
             this.processUnitInterfaces(unitInterfaces);
             this._isInitialized = true;
         });
@@ -119,6 +124,13 @@ class AbstractModel {
     flushChanges(callback, errorCallback) {
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
             this.deltaManager.flushChanges(resolve, reject);
+        }, callback, errorCallback || this._errorHandler);
+    }
+    getLastEventId(callback, errorCallback) {
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+            this.flushChanges(() => {
+                resolve(this.lastEventId);
+            }, reject);
         }, callback, errorCallback || this._errorHandler);
     }
     get id() {
@@ -430,13 +442,19 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, resolve, reject), callback, errorCallback);
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
+            this.setlastEventId(lastEventId);
+            resolve();
+        }, reject), callback, errorCallback);
     }
     deleteFile(filePath, callback, errorCallback) {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, resolve, reject), callback, errorCallback);
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
+            this.setlastEventId(lastEventId);
+            resolve();
+        }, reject), callback, errorCallback);
     }
     getAppEnvironmentStatus(callback, errorCallback) {
         if (callback) {
@@ -483,17 +501,44 @@ class AbstractModel {
     onUnitLoaded(callback) {
         this.eventEmitter.on("UnitLoaded", callback);
     }
-    startReceivingEvents() {
+    /**
+     * Before calling this API, ensure that all handlers (i.e. onModelEventProcessed()), have been registered
+     */
+    startReceivingModelEvents() {
         this.modelEventManager.start();
     }
-    stopReceivingEvents() {
+    stopReceivingModelEvents() {
         this.modelEventManager.stop();
     }
-    onEventProcessed(callback) {
+    onModelEventProcessed(callback) {
         this.modelEventManager.onEventProcessed(callback);
     }
     onFileChangesReceived(callback) {
         this.modelEventManager.onFileChangesReceived(callback);
+    }
+    /**
+     * Before calling this API, ensure that all handlers (i.e. onBuildResultEventReceived() and/or onWorkingCopyDataEventReceived() ), have been registered
+     */
+    startReceivingWorkingCopyEvents() {
+        this.workingCopyEventReceiver.start();
+        this.workingCopyEventReceiver.onWorkingCopyDataEvent((workingCopyDataEvent) => {
+            this.workingCopy = workingCopyDataEvent.data;
+        });
+    }
+    stopReceivingWorkingCopyEvents() {
+        this.workingCopyEventReceiver.stop();
+    }
+    onBuildResultEventReceived(callback) {
+        this.workingCopyEventReceiver.onBuildResultEvent(callback);
+    }
+    onWorkingCopyDataEventReceived(callback) {
+        this.workingCopyEventReceiver.onWorkingCopyDataEvent(callback);
+    }
+    /** @internal */
+    setlastEventId(eventId) {
+        if (eventId > this.lastEventId) {
+            this.lastEventId = eventId;
+        }
     }
 }
 __decorate([

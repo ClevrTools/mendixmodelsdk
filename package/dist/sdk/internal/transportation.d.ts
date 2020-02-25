@@ -15,7 +15,7 @@ export interface ITransportation {
      * Send a HTTP request that will be retried in case of network errors, with specified method, url, data, success and failure callbacks.
      */
     retryableRequest<T>(options: IRequestOptions, success: IResponseCallback<T>, failure: common.IErrorCallback): void;
-    requestMultipartBinaryFileUpload<T>(options: IRequestMultipartBinaryFileUploadOptions, success: common.ICallback<T>, failure: common.IErrorCallback): void;
+    requestMultipartBinaryFileUpload<T>(options: IRequestMultipartBinaryFileUploadOptions, success: IResponseCallback<T>, failure: common.IErrorCallback): void;
     requestFileDownload<T>(options: IRequestFileDownloadOptions, success: IResponseCallback<T>, failure: common.IErrorCallback): void;
 }
 export declare type RequestMethod = "get" | "put" | "post" | "delete";

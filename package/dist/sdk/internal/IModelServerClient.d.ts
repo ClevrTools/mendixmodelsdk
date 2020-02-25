@@ -71,11 +71,11 @@ export interface IModelServerClient {
     /**
      * Uploads the supplied file to the specified filepath.
      */
-    putFile(workingCopyId: string, inFilePath: string | Blob, filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    putFile(workingCopyId: string, inFilePath: string | Blob, filePath: string, callback: common.ICallback<number>, errorCallback: common.IErrorCallback): void;
     /**
      * Deletes the file with the specified filepath.
      */
-    deleteFile(workingCopyId: string, filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    deleteFile(workingCopyId: string, filePath: string, callback: common.ICallback<number>, errorCallback: common.IErrorCallback): void;
     /**
      * Retrieves the working copy id that the given project ID maps to.
      */
@@ -107,10 +107,15 @@ export interface IModelServerClient {
      */
     commitToTeamServer(workingCopyId: string, options: ICommitToTeamServerOptions, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     /**
-     * Returns an EventSource instance that will emit events that occur on the working copy.
+     * Returns an EventSource instance that will emit events that occur on the working copy model.
      */
     getModelEventSource(workingCopyId: string, lastFetchedEventId: number): EventSource;
+    /**
+     * Returns an EventSource instance that will emit events that occur on the working copy level.
+     */
+    getWorkingCopyEventSource(workingCopyId: string): EventSource;
 }
 export interface ISendDeltasResult {
     firstError: any;
+    eventId: number;
 }

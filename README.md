@@ -18,19 +18,6 @@ To publish changes navigate to package and run `npm publish`
 "name": "@gajduk/mendixmodelsdk",
 ```
 
-* `/dist/sdk/internal/model-server-client-impl.js` - Line: **93**  
-
-```javascript
-//Original
-this.createDownloadHandler(outFilePath, (data, response) => {
-    callback(data);
-}
-// Updated
-this.createDownloadHandler(outFilePath, (data, response) => {
-    callback(data);
-}
-```
-
 * `/dist/sdk/internal/rest-transportation.js` - Line: **9**  
 
 

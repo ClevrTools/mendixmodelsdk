@@ -16,3 +16,4 @@ export * from "./internal/AbstractModel";
 export { UndoManager, UndoState } from "./internal/UndoManager";
 export { ModelEventReceiver } from "./internal/model-events/ModelEventReceiver";
 export * from "./internal/model-events/IModelEvent";
+export * from "./internal/working-copy-events/IWorkingCopyEvent";

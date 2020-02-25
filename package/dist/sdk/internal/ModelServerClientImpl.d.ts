@@ -33,8 +33,8 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     sendDeltas(workingCopyId: string, deltas: Delta[], callback: common.ICallback<ISendDeltasResult>, errorCallback: common.IErrorCallback): void;
     getFiles(workingCopyId: string, options: IGetFilesOptions, callback: common.ICallback<any>, errorCallback: common.IErrorCallback): void;
     getFile(workingCopyId: string, filePath: string, outFilePath: string, callback: common.ICallback<any>, errorCallback: common.IErrorCallback): void;
-    putFile(workingCopyId: string, inFilePath: string | Blob, filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
-    deleteFile(workingCopyId: string, filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    putFile(workingCopyId: string, inFilePath: string | Blob, filePath: string, callback: common.ICallback<number>, errorCallback: common.IErrorCallback): void;
+    deleteFile(workingCopyId: string, filePath: string, callback: common.ICallback<number>, errorCallback: common.IErrorCallback): void;
     getAppEnvironmentStatus(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
     getAppEnvironmentStatusV2(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
     getMyWorkingCopies(callback: common.ICallback<IWorkingCopy[]>, errorCallback: common.IErrorCallback): void;
@@ -52,6 +52,7 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     unlockWorkingCopy(workingCopyId: string, lockType: LockType | undefined, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     commitToTeamServer(workingCopyId: string, options: ICommitToTeamServerOptions, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     getModelEventSource(workingCopyId: string, lastEventId: number): EventSource;
+    getWorkingCopyEventSource(workingCopyId: string): EventSource;
     private parseAppUpdateStatus;
     private sendGetUnitRequest;
     private createDownloadHandler;

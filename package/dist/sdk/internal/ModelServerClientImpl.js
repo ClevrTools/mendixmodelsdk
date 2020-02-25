@@ -140,7 +140,13 @@ class ModelServerClientImpl {
             url: `${apiEndPoint}wc/${workingCopyId}/deltas`,
             headers: this.getHeadersForModificationRequest(),
             body: { deltas: deltas }
-        }, callback, errorCallback);
+        }, (data, response) => {
+            var _a;
+            callback({
+                firstError: (_a = data) === null || _a === void 0 ? void 0 : _a.firstError,
+                eventId: Number(response.headers["last-event-id"])
+            });
+        }, errorCallback);
     }
     getFiles(workingCopyId, options, callback, errorCallback) {
         if (!options.format) {
@@ -174,14 +180,18 @@ class ModelServerClientImpl {
             headers: this.getHeadersForModificationRequest(),
             fileParameterName: "file",
             fileName: inFilePath
-        }, callback, errorCallback);
+        }, (data, response) => {
+            callback(Number(response.headers["last-event-id"]));
+        }, errorCallback);
     }
     deleteFile(workingCopyId, filePath, callback, errorCallback) {
         this.transportation.request({
             method: "delete",
             url: `${apiEndPoint}wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`,
             headers: this.getHeadersForModificationRequest()
-        }, callback, errorCallback);
+        }, (data, response) => {
+            callback(Number(response.headers["last-event-id"]));
+        }, errorCallback);
     }
     getAppEnvironmentStatus(workingCopyId, callback, errorCallback) {
         this.transportation.retryableRequest({
@@ -287,6 +297,19 @@ class ModelServerClientImpl {
                 headers: {
                     Authorization: `Basic ${Buffer.from(authInfo.username + ":" + authInfo.password).toString("base64")}`,
                     "Last-Event-ID": lastEventId
+                }
+            });
+        }
+    }
+    getWorkingCopyEventSource(workingCopyId) {
+        if (utils_1.utils.isBrowser()) {
+            return new EventSource(`${location.protocol}//${location.host}/api/v1/wc/${workingCopyId}/wc-events`);
+        }
+        else {
+            const authInfo = getAuthInfo_1.getAuthInfo(this.config);
+            return new EventSource(`${this.config.endPoint}/v1/wc/${workingCopyId}/wc-events`, {
+                headers: {
+                    Authorization: `Basic ${Buffer.from(authInfo.username + ":" + authInfo.password).toString("base64")}`
                 }
             });
         }

@@ -3631,6 +3631,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -3698,6 +3701,9 @@ var pages;
         }
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
         }
         /**
          * In version 7.10.0: introduced
@@ -3926,6 +3932,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CallNanoflowClientAction.structureTypeName, { start: "7.8.0" });
             return internal.instancehelpers.createElement(container, CallNanoflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
+         * The new CallNanoflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, CallNanoflowClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, CallNanoflowClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
@@ -4395,6 +4413,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get closePage() {
             return this.__closePage.get();
         }
@@ -4592,6 +4613,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, CancelChangesClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
+         * The new CancelChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, CancelChangesClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
@@ -5696,6 +5729,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
          * The new ClosePageClientAction will be automatically stored in the 'action' property
@@ -5887,6 +5923,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, ClosePageClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
+         * The new ClosePageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, ClosePageClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -7270,6 +7318,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get entityRef() {
             return this.__entityRef.get();
         }
@@ -7473,6 +7524,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, CreateObjectClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
+         * The new CreateObjectClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, CreateObjectClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
@@ -10879,6 +10942,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get closePage() {
             return this.__closePage.get();
         }
@@ -11076,6 +11142,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, DeleteClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
+         * The new DeleteClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, DeleteClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
@@ -29093,6 +29171,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get microflowSettings() {
             return this.__microflowSettings.get();
         }
@@ -29278,6 +29359,18 @@ var pages;
          */
         static createInStaticImageViewerUnderClickAction(container) {
             return internal.instancehelpers.createElement(container, MicroflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
+         * The new MicroflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, MicroflowClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, MicroflowClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
@@ -32458,6 +32551,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
          * The new NoClientAction will be automatically stored in the 'action' property
@@ -32637,6 +32733,18 @@ var pages;
          */
         static createInStaticImageViewerUnderClickAction(container) {
             return internal.instancehelpers.createElement(container, NoClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new NoClientAction instance in the SDK and on the server.
+         * The new NoClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, NoClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, NoClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
@@ -32977,6 +33085,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get linkType() {
             return this.__linkType.get();
         }
@@ -33180,6 +33291,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, OpenLinkClientAction.structureTypeName, { start: "7.3.0" });
             return internal.instancehelpers.createElement(container, OpenLinkClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
+         * The new OpenLinkClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, OpenLinkClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, OpenLinkClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
@@ -33466,6 +33589,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get pageSettings() {
             return this.__pageSettings.get();
         }
@@ -33657,6 +33783,18 @@ var pages;
          */
         static createInStaticImageViewerUnderClickAction(container) {
             return internal.instancehelpers.createElement(container, PageClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new PageClientAction instance in the SDK and on the server.
+         * The new PageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, PageClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, PageClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
@@ -38893,6 +39031,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         get syncAutomatically() {
             return this.__syncAutomatically.get();
         }
@@ -39096,6 +39237,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, SaveChangesClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
+         * The new SaveChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, SaveChangesClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
@@ -41338,6 +41491,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
          * The new SignOutClientAction will be automatically stored in the 'action' property
@@ -41529,6 +41685,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "7.1.0" });
             return internal.instancehelpers.createElement(container, SignOutClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
+         * The new SignOutClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, SignOutClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
@@ -44463,6 +44631,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
          * The new SyncClientAction will be automatically stored in the 'action' property
@@ -44654,6 +44825,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SyncClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, SyncClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SyncClientAction instance in the SDK and on the server.
+         * The new SyncClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, SyncClientAction.structureTypeName, { start: "8.7.0" });
+            return internal.instancehelpers.createElement(container, SyncClientAction, "onEnterKeyPressAction", false);
         }
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
@@ -48259,6 +48442,8 @@ var pages;
             this.__isPasswordBox = new internal.PrimitiveProperty(TextBox, this, "isPasswordBox", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__keyboardType = new internal.EnumProperty(TextBox, this, "keyboardType", KeyboardType.Default, KeyboardType);
+            /** @internal */
+            this.__onEnterKeyPressAction = new internal.PartProperty(TextBox, this, "onEnterKeyPressAction", null, true);
             if (arguments.length < 4) {
                 throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
             }
@@ -48364,6 +48549,15 @@ var pages;
         }
         set keyboardType(newValue) {
             this.__keyboardType.set(newValue);
+        }
+        /**
+         * In version 8.7.0: introduced
+         */
+        get onEnterKeyPressAction() {
+            return this.__onEnterKeyPressAction.get();
+        }
+        set onEnterKeyPressAction(newValue) {
+            this.__onEnterKeyPressAction.set(newValue);
         }
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -48992,6 +49186,9 @@ var pages;
             if (this.__keyboardType.isAvailable) {
                 this.keyboardType = KeyboardType.Default;
             }
+            if (this.__onEnterKeyPressAction.isAvailable) {
+                this.onEnterKeyPressAction = NoClientAction.create(this.model);
+            }
         }
     }
     TextBox.structureTypeName = "Pages$TextBox";
@@ -49004,6 +49201,12 @@ var pages;
             },
             keyboardType: {
                 introduced: "8.0.0"
+            },
+            onEnterKeyPressAction: {
+                introduced: "8.7.0",
+                required: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.Element);

@@ -237,8 +237,7 @@ function createStructureFromJson(initializer, findInstance, callback, json) {
     return _createInstanceWithInitializer(initializer, callback, json);
 }
 function replaceJsonIds(json, oldToNewIdMap) {
-    var _a;
-    if ((_a = json) === null || _a === void 0 ? void 0 : _a.$ID) {
+    if (json === null || json === void 0 ? void 0 : json.$ID) {
         const newId = utils_1.utils.randomUuid();
         oldToNewIdMap[json.$ID] = newId;
         json.$ID = newId;

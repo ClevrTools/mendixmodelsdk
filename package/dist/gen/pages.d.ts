@@ -1825,6 +1825,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1848,6 +1849,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         /**
          * In version 7.10.0: introduced
          */
@@ -2009,6 +2011,15 @@ export declare namespace pages {
          *  7.8.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CallNanoflowClientAction;
+        /**
+         * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
+         * The new CallNanoflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CallNanoflowClientAction;
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2274,6 +2285,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get closePage(): boolean;
         set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -2421,6 +2433,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CancelChangesClientAction;
+        /**
+         * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
+         * The new CancelChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CancelChangesClientAction;
         /**
          * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -3106,6 +3127,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -3251,6 +3273,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): ClosePageClientAction;
+        /**
+         * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
+         * The new ClosePageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): ClosePageClientAction;
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -3730,6 +3761,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get entityRef(): domainmodels.EntityRef | null;
         set entityRef(newValue: domainmodels.EntityRef | null);
         get pageSettings(): PageSettings;
@@ -3879,6 +3911,15 @@ export declare namespace pages {
          *  7.17.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CreateObjectClientAction;
+        /**
+         * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
+         * The new CreateObjectClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CreateObjectClientAction;
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -5838,6 +5879,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get closePage(): boolean;
         set closePage(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -5985,6 +6027,15 @@ export declare namespace pages {
          *  7.17.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): DeleteClientAction;
+        /**
+         * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
+         * The new DeleteClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): DeleteClientAction;
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -16949,6 +17000,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get microflowSettings(): MicroflowSettings;
         set microflowSettings(newValue: MicroflowSettings);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -17087,6 +17139,15 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): MicroflowClientAction;
+        /**
+         * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
+         * The new MicroflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): MicroflowClientAction;
         /**
          * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -19004,6 +19065,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
@@ -19140,6 +19202,15 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): NoClientAction;
+        /**
+         * Creates and returns a new NoClientAction instance in the SDK and on the server.
+         * The new NoClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): NoClientAction;
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -19295,6 +19366,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get linkType(): LinkType;
         set linkType(newValue: LinkType);
         get address(): StaticOrDynamicString;
@@ -19446,6 +19518,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenLinkClientAction;
         /**
          * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
+         * The new OpenLinkClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): OpenLinkClientAction;
+        /**
+         * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -19550,6 +19631,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
         /**
@@ -19692,6 +19774,15 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): PageClientAction;
+        /**
+         * Creates and returns a new PageClientAction instance in the SDK and on the server.
+         * The new PageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): PageClientAction;
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -22973,6 +23064,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         get syncAutomatically(): boolean;
         set syncAutomatically(newValue: boolean);
         get closePage(): boolean;
@@ -23122,6 +23214,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SaveChangesClientAction;
+        /**
+         * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
+         * The new SaveChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): SaveChangesClientAction;
         /**
          * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -24423,6 +24524,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
@@ -24568,6 +24670,15 @@ export declare namespace pages {
          *  7.1.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SignOutClientAction;
+        /**
+         * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
+         * The new SignOutClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): SignOutClientAction;
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -26467,6 +26578,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
@@ -26612,6 +26724,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SyncClientAction;
+        /**
+         * Creates and returns a new SyncClientAction instance in the SDK and on the server.
+         * The new SyncClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.7.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): SyncClientAction;
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -28888,6 +29009,11 @@ export declare namespace pages {
          */
         get keyboardType(): KeyboardType;
         set keyboardType(newValue: KeyboardType);
+        /**
+         * In version 8.7.0: introduced
+         */
+        get onEnterKeyPressAction(): ClientAction;
+        set onEnterKeyPressAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.

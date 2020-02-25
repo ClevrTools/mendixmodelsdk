@@ -51,7 +51,8 @@ class DeltaSender {
         return __awaiter(this, void 0, void 0, function* () {
             while (this.queue.length > 0 && !this.hasError) {
                 try {
-                    yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
+                    const lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
+                    this.model.setlastEventId(lastEventId);
                 }
                 catch (error) {
                     this.hasError = true;
@@ -72,7 +73,7 @@ class DeltaSender {
                         reject(result.firstError);
                     }
                     else {
-                        resolve();
+                        resolve(result.eventId);
                     }
                 }, err => {
                     reject(err);

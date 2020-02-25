@@ -4,6 +4,7 @@ import { IModelServerClient } from "./IModelServerClient";
 import { IStructure } from "./structures";
 import { Version } from "./versionChecks";
 import { IWorkingCopy, IAbstractUnitJson, IGetFilesOptions, IEnvironmentStatus, IDeployJobStatus } from "./transportInterfaces";
+import { IBuildResultEvent, IWorkingCopyDataEvent } from "./working-copy-events/IWorkingCopyEvent";
 /**
  * This interface exposes a single Mendix Model.
  * This interface contains the parts of the {@link Model} that are exposed through the SDK.
@@ -45,6 +46,12 @@ export interface IAbstractModel {
      */
     flushChanges(callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     flushChanges(): Promise<void>;
+    /**
+     * Get the event id for the last processed batch of deltas in Model Server after flushing any pending deltas.
+     * If a callback is provided but no error callback is provided, errors will be handled through the default modelstore error handler.
+     */
+    getLastEventId(callback: common.ICallback<number>, errorCallback?: common.IErrorCallback): void;
+    getLastEventId(): Promise<number>;
     /**
      * Deletes this model from the server, and the (SDK) client.
      */
@@ -165,10 +172,14 @@ export interface IAbstractModel {
      */
     deleteFile(filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     deleteFile(filePath: string): Promise<void>;
-    startReceivingEvents(): void;
-    stopReceivingEvents(): void;
-    onEventProcessed(callback: common.IVoidCallback): void;
+    startReceivingModelEvents(): void;
+    stopReceivingModelEvents(): void;
+    onModelEventProcessed(callback: common.IVoidCallback): void;
     onFileChangesReceived(callback: (files: string[]) => void): void;
+    startReceivingWorkingCopyEvents(): void;
+    stopReceivingWorkingCopyEvents(): void;
+    onBuildResultEventReceived(callback: (buildResultEvent: IBuildResultEvent) => void): void;
+    onWorkingCopyDataEventReceived(callback: (workingCopyDataEvent: IWorkingCopyDataEvent) => void): void;
 }
 export interface IUnitsMap {
     [id: string]: IAbstractUnit;
@@ -190,6 +201,8 @@ export declare abstract class AbstractModel implements IAbstractModel {
     closeConnection(): Promise<void>;
     flushChanges(callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     flushChanges(): Promise<void>;
+    getLastEventId(callback: common.ICallback<number>, errorCallback?: common.IErrorCallback): void;
+    getLastEventId(): Promise<number>;
     get id(): string;
     /**
      * Returns a defensive collection of all units in this model.
@@ -235,10 +248,20 @@ export declare abstract class AbstractModel implements IAbstractModel {
     getAppUpdateStatus(jobId: string): Promise<IDeployJobStatus>;
     startAppUpdate(callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
     startAppUpdate(): Promise<IDeployJobStatus>;
-    startReceivingEvents(): void;
-    stopReceivingEvents(): void;
-    onEventProcessed(callback: common.IVoidCallback): void;
+    /**
+     * Before calling this API, ensure that all handlers (i.e. onModelEventProcessed()), have been registered
+     */
+    startReceivingModelEvents(): void;
+    stopReceivingModelEvents(): void;
+    onModelEventProcessed(callback: common.IVoidCallback): void;
     onFileChangesReceived(callback: (files: string[]) => void): void;
+    /**
+     * Before calling this API, ensure that all handlers (i.e. onBuildResultEventReceived() and/or onWorkingCopyDataEventReceived() ), have been registered
+     */
+    startReceivingWorkingCopyEvents(): void;
+    stopReceivingWorkingCopyEvents(): void;
+    onBuildResultEventReceived(callback: (buildResultEvent: IBuildResultEvent) => void): void;
+    onWorkingCopyDataEventReceived(callback: (workingCopyDataEvent: IWorkingCopyDataEvent) => void): void;
 }
 export interface ISubResolver {
     (parent: IStructure, partName: string): IStructure;
