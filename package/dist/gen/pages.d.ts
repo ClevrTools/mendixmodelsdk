@@ -1426,6 +1426,11 @@ export declare namespace pages {
          */
         get onLeaveAction(): ClientAction;
         set onLeaveAction(newValue: ClientAction);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidgetWithPlaceholder extends AttributeWidget {
@@ -19845,6 +19850,7 @@ export declare namespace pages {
         get containerAsPageClientAction(): PageClientAction;
         get containerAsPageForSpecialization(): PageForSpecialization;
         get containerAsReferenceSelector(): ReferenceSelector;
+        get containerAsUserTask(): workflows.UserTask;
         get page(): IPage | null;
         set page(newValue: IPage | null);
         get pageQualifiedName(): string | null;
@@ -19936,6 +19942,15 @@ export declare namespace pages {
         static createInReferenceSelectorUnderGotoPageSettings(container: ReferenceSelector): PageSettings;
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
+         * The new PageSettings will be automatically stored in the 'page' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInUserTaskUnderPage(container: workflows.UserTask): PageSettings;
+        /**
+         * Creates and returns a new PageSettings instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -20012,6 +20027,8 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAttributeWidget(): AttributeWidget;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
         get widget(): Widget | null;
@@ -20020,6 +20037,24 @@ export declare namespace pages {
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInWidgetValueUnderSourceVariable(container: customwidgets.WidgetValue): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInAttributeWidgetUnderSourceVariable(container: AttributeWidget): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property
@@ -31281,4 +31316,5 @@ import { navigation } from "./navigation";
 import { reports } from "./reports";
 import { security } from "./security";
 import { texts } from "./texts";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

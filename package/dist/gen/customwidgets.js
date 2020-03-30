@@ -1724,6 +1724,8 @@ var customwidgets;
             this.__widgets = new internal.PartListProperty(WidgetValue, this, "widgets", []);
             /** @internal */
             this.__dataSource = new internal.PartProperty(WidgetValue, this, "dataSource", null, false);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(WidgetValue, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new WidgetValue() cannot be invoked directly, please use 'model.customwidgets.createWidgetValue()'");
             }
@@ -1894,6 +1896,15 @@ var customwidgets;
             this.__dataSource.set(newValue);
         }
         /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
+        /**
          * Creates and returns a new WidgetValue instance in the SDK and on the server.
          * The new WidgetValue will be automatically stored in the 'value' property
          * of the parent WidgetProperty element passed as argument.
@@ -1962,6 +1973,9 @@ var customwidgets;
             },
             dataSource: {
                 introduced: "8.3.0"
+            },
+            sourceVariable: {
+                introduced: "8.8.0"
             }
         }
     }, internal.StructureType.Element);

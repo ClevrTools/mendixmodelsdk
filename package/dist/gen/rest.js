@@ -407,12 +407,17 @@ var rest;
             this.__uri = new internal.PrimitiveProperty(MetadataReference, this, "uri", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__metadata = new internal.PrimitiveProperty(MetadataReference, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__metadataReferences = new internal.PartListProperty(MetadataReference, this, "metadataReferences", []);
             if (arguments.length < 4) {
                 throw new Error("new MetadataReference() cannot be invoked directly, please use 'model.rest.createMetadataReference()'");
             }
         }
         get containerAsConsumedODataService() {
             return super.getContainerAs(ConsumedODataService);
+        }
+        get containerAsMetadataReference() {
+            return super.getContainerAs(MetadataReference);
         }
         get uri() {
             return this.__uri.get();
@@ -425,6 +430,48 @@ var rest;
         }
         set metadata(newValue) {
             this.__metadata.set(newValue);
+        }
+        /**
+         * In version 8.8.0: introduced
+         */
+        get metadataReferences() {
+            return this.__metadataReferences.get();
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 to 8.7.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.6.0", end: "8.7.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInConsumedODataServiceUnderMetadataReferences(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent MetadataReference element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInMetadataReferenceUnderMetadataReferences(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
         }
         /**
          * Creates and returns a new MetadataReference instance in the SDK and on the server.
@@ -441,7 +488,12 @@ var rest;
     }
     MetadataReference.structureTypeName = "Rest$MetadataReference";
     MetadataReference.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.6.0"
+        introduced: "8.6.0",
+        properties: {
+            metadataReferences: {
+                introduced: "8.8.0"
+            }
+        }
     }, internal.StructureType.Element);
     rest.MetadataReference = MetadataReference;
     /**

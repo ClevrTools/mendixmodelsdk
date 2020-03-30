@@ -66,6 +66,10 @@ class AbstractModel {
         /** @internal */
         this.lastEventId = -1;
         /** @internal */
+        this.numberOfPendingChanges = 0;
+        /** @internal */
+        this.lastBuildResultEvent = null;
+        /** @internal */
         this.eventEmitter = new EventEmitter_1.EventEmitter();
         this._client = _client;
         this._errorHandler = _errorHandler;
@@ -80,7 +84,10 @@ class AbstractModel {
             const workingCopyPromise = new Promise((resolve, reject) => this._client.loadWorkingCopyMetaData(workingCopyId, resolve, reject));
             const unitInterfacesPromise = new Promise((resolve, reject) => this._client.loadUnitInterfaces(workingCopyId, resolve, reject));
             const [workingCopy, { units: unitInterfaces, eventId }] = yield Promise.all([workingCopyPromise, unitInterfacesPromise]);
-            this.setlastEventId(eventId);
+            this.numberOfPendingChanges = 0;
+            if (eventId > this.lastEventId) {
+                this.lastEventId = eventId;
+            }
             this.workingCopy = workingCopy;
             this.metaModelVersion = versionChecks_1.parseAsNormalizedVersion(workingCopy.metaData.metaModelVersion);
             this.mxVersionForModel = versionChecks_1.parseAsNormalizedVersion(workingCopy.mprMetaData._ProductVersion);
@@ -89,6 +96,7 @@ class AbstractModel {
                 throw new Error(`The Model SDK you are using does not support opening a working copy with metamodel version '${workingCopy.metaData.metaModelVersion}'. Please update to the latest Model SDK.`);
             }
             this.deltaManager = new deltas_1.DeltaManager(this);
+            this.deltaManager.onTransactionCommitted(() => this.eventEmitter.emit("ModelOrFilesChanging", undefined));
             this.modelEventManager = new ModelEventManager_1.ModelEventManager(this, this.deltaManager, new deltas_1.DeltaProcessor(this), workingCopyId, eventId);
             this.workingCopyEventReceiver = new WorkingCopyEventReceiver_1.WorkingCopyEventReceiver(workingCopyId, this._client, this);
             this.processUnitInterfaces(unitInterfaces);
@@ -442,19 +450,29 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
+        this.eventEmitter.emit("ModelOrFilesChanging", undefined);
+        this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
-            this.setlastEventId(lastEventId);
+            this.completePendingChange(lastEventId);
             resolve();
-        }, reject), callback, errorCallback);
+        }, err => {
+            this.completePendingChange();
+            reject(err);
+        }), callback, errorCallback);
     }
     deleteFile(filePath, callback, errorCallback) {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
+        this.eventEmitter.emit("ModelOrFilesChanging", undefined);
+        this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
-            this.setlastEventId(lastEventId);
+            this.completePendingChange(lastEventId);
             resolve();
-        }, reject), callback, errorCallback);
+        }, err => {
+            this.completePendingChange();
+            reject(err);
+        }), callback, errorCallback);
     }
     getAppEnvironmentStatus(callback, errorCallback) {
         if (callback) {
@@ -510,6 +528,9 @@ class AbstractModel {
     stopReceivingModelEvents() {
         this.modelEventManager.stop();
     }
+    onModelOrFilesChanging(callback) {
+        this.eventEmitter.on("ModelOrFilesChanging", callback);
+    }
     onModelEventProcessed(callback) {
         this.modelEventManager.onEventProcessed(callback);
     }
@@ -524,20 +545,45 @@ class AbstractModel {
         this.workingCopyEventReceiver.onWorkingCopyDataEvent((workingCopyDataEvent) => {
             this.workingCopy = workingCopyDataEvent.data;
         });
+        this.workingCopyEventReceiver.onBuildResultEvent((buildResultEvent) => {
+            this.publishBuildResult(buildResultEvent);
+        });
     }
     stopReceivingWorkingCopyEvents() {
         this.workingCopyEventReceiver.stop();
     }
+    /** @internal */
+    startPendingChange() {
+        this.numberOfPendingChanges += 1;
+    }
+    /** @internal */
+    completePendingChange(eventId) {
+        if (eventId && eventId > this.lastEventId) {
+            this.lastEventId = eventId;
+        }
+        if (this.numberOfPendingChanges > 0) {
+            this.numberOfPendingChanges -= 1;
+            if (this.numberOfPendingChanges === 0) {
+                this.publishBuildResult();
+            }
+        }
+        else {
+            throw new Error("Model SDK error: trying to complete a non existing model change");
+        }
+    }
     onBuildResultEventReceived(callback) {
-        this.workingCopyEventReceiver.onBuildResultEvent(callback);
+        this.eventEmitter.on("BuildResultEvent", callback);
     }
     onWorkingCopyDataEventReceived(callback) {
         this.workingCopyEventReceiver.onWorkingCopyDataEvent(callback);
     }
     /** @internal */
-    setlastEventId(eventId) {
-        if (eventId > this.lastEventId) {
-            this.lastEventId = eventId;
+    publishBuildResult(buildResultEvent) {
+        if (buildResultEvent && (!this.lastBuildResultEvent || buildResultEvent.data.eventId > this.lastBuildResultEvent.data.eventId)) {
+            this.lastBuildResultEvent = buildResultEvent;
+        }
+        if (this.numberOfPendingChanges === 0 && this.lastBuildResultEvent && this.lastEventId === this.lastBuildResultEvent.data.eventId) {
+            this.eventEmitter.emit("BuildResultEvent", this.lastBuildResultEvent);
         }
     }
 }

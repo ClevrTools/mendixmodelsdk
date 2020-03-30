@@ -2,6 +2,11 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 export declare namespace codeactions {
+    class StringTemplateParameterGrammar extends internal.AbstractEnum {
+        static Text: StringTemplateParameterGrammar;
+        static Sql: StringTemplateParameterGrammar;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `CodeActions`.
      */
@@ -788,6 +793,10 @@ export declare namespace codeactions {
     interface IStringTemplateParameterType extends IParameterType {
         readonly model: IModel;
         readonly containerAsCodeActionParameter: ICodeActionParameter;
+        /**
+         * In version 8.8.0: introduced
+         */
+        readonly grammar: StringTemplateParameterGrammar;
         asLoaded(): StringTemplateParameterType;
         load(callback: (element: StringTemplateParameterType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringTemplateParameterType>;
@@ -801,6 +810,11 @@ export declare namespace codeactions {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsCodeActionParameter(): CodeActionParameter;
+        /**
+         * In version 8.8.0: introduced
+         */
+        get grammar(): StringTemplateParameterGrammar;
+        set grammar(newValue: StringTemplateParameterGrammar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.

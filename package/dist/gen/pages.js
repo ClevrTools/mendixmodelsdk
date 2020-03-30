@@ -2677,6 +2677,8 @@ var pages;
             this.__onEnterAction = new internal.PartProperty(AttributeWidget, this, "onEnterAction", null, true);
             /** @internal */
             this.__onLeaveAction = new internal.PartProperty(AttributeWidget, this, "onLeaveAction", null, true);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(AttributeWidget, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new AttributeWidget() cannot be invoked directly, please use 'model.pages.createAttributeWidget()'");
             }
@@ -2837,6 +2839,15 @@ var pages;
         set onLeaveAction(newValue) {
             this.__onLeaveAction.set(newValue);
         }
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2924,6 +2935,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            sourceVariable: {
+                introduced: "8.8.0"
             }
         }
     }, internal.StructureType.Element);
@@ -33959,6 +33973,9 @@ var pages;
         get containerAsReferenceSelector() {
             return super.getContainerAs(ReferenceSelector);
         }
+        get containerAsUserTask() {
+            return super.getContainerAs(workflows_1.workflows.UserTask);
+        }
         get page() {
             return this.__page.get();
         }
@@ -34086,6 +34103,18 @@ var pages;
          */
         static createInReferenceSelectorUnderGotoPageSettings(container) {
             return internal.instancehelpers.createElement(container, PageSettings, "gotoPageSettings", false);
+        }
+        /**
+         * Creates and returns a new PageSettings instance in the SDK and on the server.
+         * The new PageSettings will be automatically stored in the 'page' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInUserTaskUnderPage(container) {
+            internal.createInVersionCheck(container.model, PageSettings.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageSettings, "page", false);
         }
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
@@ -34248,6 +34277,12 @@ var pages;
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
             }
         }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
         get containerAsMicroflowParameterMapping() {
             return super.getContainerAs(MicroflowParameterMapping);
         }
@@ -34268,6 +34303,30 @@ var pages;
         }
         set useAllPages(newValue) {
             this.__useAllPages.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInWidgetValueUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInAttributeWidgetUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
@@ -51855,4 +51914,5 @@ const nativepages_1 = require("./nativepages");
 const navigation_1 = require("./navigation");
 const reports_1 = require("./reports");
 const texts_1 = require("./texts");
+const workflows_1 = require("./workflows");
 //# sourceMappingURL=pages.js.map

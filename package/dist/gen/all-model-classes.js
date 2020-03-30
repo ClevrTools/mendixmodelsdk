@@ -41,5 +41,6 @@ __export(require("./services"));
 __export(require("./settings"));
 __export(require("./texts"));
 __export(require("./webservices"));
+__export(require("./workflows"));
 __export(require("./xmlschemas"));
 //# sourceMappingURL=all-model-classes.js.map

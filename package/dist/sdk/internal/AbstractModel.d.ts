@@ -174,6 +174,7 @@ export interface IAbstractModel {
     deleteFile(filePath: string): Promise<void>;
     startReceivingModelEvents(): void;
     stopReceivingModelEvents(): void;
+    onModelOrFilesChanging(callback: common.IVoidCallback): void;
     onModelEventProcessed(callback: common.IVoidCallback): void;
     onFileChangesReceived(callback: (files: string[]) => void): void;
     startReceivingWorkingCopyEvents(): void;
@@ -253,6 +254,7 @@ export declare abstract class AbstractModel implements IAbstractModel {
      */
     startReceivingModelEvents(): void;
     stopReceivingModelEvents(): void;
+    onModelOrFilesChanging(callback: common.IVoidCallback): void;
     onModelEventProcessed(callback: common.IVoidCallback): void;
     onFileChangesReceived(callback: (files: string[]) => void): void;
     /**

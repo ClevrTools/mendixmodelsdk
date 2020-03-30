@@ -50,14 +50,16 @@ class DeltaSender {
     processQueue() {
         return __awaiter(this, void 0, void 0, function* () {
             while (this.queue.length > 0 && !this.hasError) {
+                let lastEventId = undefined;
                 try {
-                    const lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
-                    this.model.setlastEventId(lastEventId);
+                    this.model.startPendingChange();
+                    lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
                 }
                 catch (error) {
                     this.hasError = true;
                     this.errorCallback(error);
                 }
+                this.model.completePendingChange(lastEventId);
             }
             this.pending = false;
             if (!this.hasError) {

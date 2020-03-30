@@ -32,7 +32,7 @@ export interface ILockData {
     duration?: number;
 }
 export declare type IMergeState = ILockData;
-export declare type LockType = "bidi" | "conversion" | "edit" | "commit" | "update" | "switch";
+export declare type LockType = "bidi" | "conversion" | "edit" | "commit" | "update" | "switch" | "commit-wc";
 export interface ILockWorkingCopyOptions {
     /**
      * The lock type, which indicates the purpose for which the working copy is locked.

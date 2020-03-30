@@ -1226,6 +1226,63 @@ var settings;
         }
     }, internal.StructureType.Element);
     settings.WebUIProjectSettingsPart = WebUIProjectSettingsPart;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.8.0: introduced
+     */
+    class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowsProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWorkflowsProjectSettingsPart()'");
+            }
+        }
+        get containerAsProjectSettings() {
+            return super.getContainerAs(ProjectSettings);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * The new WorkflowsProjectSettingsPart will be automatically stored in the 'settingsParts' property
+         * of the parent ProjectSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowsProjectSettingsPart.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, WorkflowsProjectSettingsPart, "settingsParts", true);
+        }
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowsProjectSettingsPart);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = false;
+        }
+    }
+    WorkflowsProjectSettingsPart.structureTypeName = "Settings$WorkflowsProjectSettingsPart";
+    WorkflowsProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.8.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    settings.WorkflowsProjectSettingsPart = WorkflowsProjectSettingsPart;
 })(settings = exports.settings || (exports.settings = {}));
 const microflows_1 = require("./microflows");
 //# sourceMappingURL=settings.js.map

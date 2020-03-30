@@ -57,6 +57,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "WebServices$ImportedWebService",
             "WebServices$PublishedAppService",
             "WebServices$PublishedWebService",
+            "Workflows$Workflow",
             "XmlSchemas$XmlSchema"
         ]);
     }
@@ -162,6 +163,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "WebServices$ImportedWebService",
             "WebServices$PublishedAppService",
             "WebServices$PublishedWebService",
+            "Workflows$Workflow",
             "XmlSchemas$XmlSchema"
         ]);
     }
@@ -247,6 +249,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allTemplateFormBases() {
         return super._allOfTypes(["Pages$BuildingBlock", "Pages$PageTemplate"]);
+    }
+    allWorkflows() {
+        return super._allOfTypes(["Workflows$Workflow"]);
     }
     allXmlSchemas() {
         return super._allOfTypes(["XmlSchemas$XmlSchema"]);

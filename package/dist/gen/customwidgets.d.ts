@@ -1012,6 +1012,11 @@ export declare namespace customwidgets {
          */
         get dataSource(): pages.DataSource | null;
         set dataSource(newValue: pages.DataSource | null);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable(): pages.PageVariable | null;
+        set sourceVariable(newValue: pages.PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValue instance in the SDK and on the server.

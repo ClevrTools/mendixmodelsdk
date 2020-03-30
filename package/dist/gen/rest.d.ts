@@ -175,11 +175,43 @@ export declare namespace rest {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsConsumedODataService(): ConsumedODataService;
+        get containerAsMetadataReference(): MetadataReference;
         get uri(): string;
         set uri(newValue: string);
         get metadata(): string;
         set metadata(newValue: string);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get metadataReferences(): internal.IList<MetadataReference>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 to 8.7.0
+         */
+        static createIn(container: ConsumedODataService): MetadataReference;
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInConsumedODataServiceUnderMetadataReferences(container: ConsumedODataService): MetadataReference;
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent MetadataReference element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInMetadataReferenceUnderMetadataReferences(container: MetadataReference): MetadataReference;
         /**
          * Creates and returns a new MetadataReference instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

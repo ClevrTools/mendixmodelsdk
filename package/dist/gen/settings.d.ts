@@ -514,6 +514,35 @@ export declare namespace settings {
          */
         static create(model: IModel): WebUIProjectSettingsPart;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.8.0: introduced
+     */
+    class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsProjectSettings(): ProjectSettings;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * The new WorkflowsProjectSettingsPart will be automatically stored in the 'settingsParts' property
+         * of the parent ProjectSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createIn(container: ProjectSettings): WorkflowsProjectSettingsPart;
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowsProjectSettingsPart;
+    }
 }
 import { constants } from "./constants";
 import { microflows } from "./microflows";

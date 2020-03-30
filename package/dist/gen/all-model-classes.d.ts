@@ -36,4 +36,5 @@ export * from "./services";
 export * from "./settings";
 export * from "./texts";
 export * from "./webservices";
+export * from "./workflows";
 export * from "./xmlschemas";
