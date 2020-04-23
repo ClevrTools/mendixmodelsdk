@@ -70,7 +70,7 @@ class TransactionManager {
     }
     deltaReceived(delta) {
         if (delta.deltaType === "DETACH_ELEMENT") {
-            const unit = deltaUtils_1.asModelUnit(deltaUtils_1.getUnit(this.model, delta.unitId));
+            const unit = deltaUtils_1.asModelUnit(deltaUtils_1.getUnit(this.model, delta.unitId), delta);
             const element = deltaUtils_1.getElement(this.model, unit, delta.elementId);
             const handle = element.container._childHandle(element);
             if (handle.containingProperty.isRequired && element.container instanceof elements_1.AbstractElement) {

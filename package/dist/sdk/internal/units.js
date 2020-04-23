@@ -85,7 +85,9 @@ class AbstractUnit extends structures_1.Structure {
         this._sendDeleteDelta();
         this._container = null;
         this.traverse(element => {
-            element._state = "deleted";
+            const structure = element;
+            structure._state = "deleted";
+            structure._dispose();
         });
         this._dispose();
         this._isDoingDelete = false;

@@ -96,7 +96,6 @@ class AbstractModel {
                 throw new Error(`The Model SDK you are using does not support opening a working copy with metamodel version '${workingCopy.metaData.metaModelVersion}'. Please update to the latest Model SDK.`);
             }
             this.deltaManager = new deltas_1.DeltaManager(this);
-            this.deltaManager.onTransactionCommitted(() => this.eventEmitter.emit("ModelOrFilesChanging", undefined));
             this.modelEventManager = new ModelEventManager_1.ModelEventManager(this, this.deltaManager, new deltas_1.DeltaProcessor(this), workingCopyId, eventId);
             this.workingCopyEventReceiver = new WorkingCopyEventReceiver_1.WorkingCopyEventReceiver(workingCopyId, this._client, this);
             this.processUnitInterfaces(unitInterfaces);
@@ -450,7 +449,6 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        this.eventEmitter.emit("ModelOrFilesChanging", undefined);
         this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
             this.completePendingChange(lastEventId);
@@ -464,7 +462,6 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        this.eventEmitter.emit("ModelOrFilesChanging", undefined);
         this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
             this.completePendingChange(lastEventId);
@@ -528,8 +525,8 @@ class AbstractModel {
     stopReceivingModelEvents() {
         this.modelEventManager.stop();
     }
-    onModelOrFilesChanging(callback) {
-        this.eventEmitter.on("ModelOrFilesChanging", callback);
+    onModelChange(callback) {
+        this.eventEmitter.on("ModelChange", callback);
     }
     onModelEventProcessed(callback) {
         this.modelEventManager.onEventProcessed(callback);
@@ -554,6 +551,7 @@ class AbstractModel {
     }
     /** @internal */
     startPendingChange() {
+        this.eventEmitter.emit("ModelChange", undefined);
         this.numberOfPendingChanges += 1;
     }
     /** @internal */

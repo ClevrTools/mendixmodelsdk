@@ -152,6 +152,8 @@ var rest;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: added public
          */
         get entities() {
             return this.__entities.get();
@@ -293,6 +295,12 @@ var rest;
             },
             serviceId: {
                 introduced: "8.0.0"
+            },
+            entities: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.9.0"]
+                }
             },
             httpConfiguration: {
                 introduced: "8.0.0",
@@ -573,6 +581,7 @@ var rest;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 7.18.0: introduced
      */
     class ODataEntity extends internal.Element {
@@ -586,6 +595,8 @@ var rest;
             this.__entitySet = new internal.PrimitiveProperty(ODataEntity, this, "entitySet", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__keyNames = new internal.PrimitiveListProperty(ODataEntity, this, "keyNames", [], internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__key = new internal.PartProperty(ODataEntity, this, "key", null, false);
             /** @internal */
             this.__navigationProperties = new internal.PartListProperty(ODataEntity, this, "navigationProperties", []);
             /** @internal */
@@ -622,10 +633,22 @@ var rest;
             this.__entitySet.set(newValue);
         }
         /**
+         * In version 8.9.0: deleted
          * In version 7.22.0: introduced
          */
         get keyNames() {
             return this.__keyNames.get();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: introduced
+         */
+        get key() {
+            return this.__key.get();
+        }
+        set key(newValue) {
+            this.__key.set(newValue);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -681,7 +704,15 @@ var rest;
                 introduced: "7.19.0"
             },
             keyNames: {
-                introduced: "7.22.0"
+                introduced: "7.22.0",
+                deleted: "8.9.0",
+                deletionMessage: null
+            },
+            key: {
+                introduced: "8.9.0",
+                public: {
+                    currentValue: true
+                }
             },
             navigationProperties: {
                 introduced: "7.22.0"
@@ -690,11 +721,167 @@ var rest;
                 introduced: "8.0.0"
             }
         },
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     rest.ODataEntity = ODataEntity;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class ODataKey extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parts = new internal.PartListProperty(ODataKey, this, "parts", []);
+            if (arguments.length < 4) {
+                throw new Error("new ODataKey() cannot be invoked directly, please use 'model.rest.createODataKey()'");
+            }
+        }
+        get containerAsODataEntity() {
+            return super.getContainerAs(ODataEntity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get parts() {
+            return this.__parts.get();
+        }
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataEntity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataKey.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, ODataKey, "key", false);
+        }
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataKey);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataKey.structureTypeName = "Rest$ODataKey";
+    ODataKey.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            parts: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataKey = ODataKey;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class ODataKeyPart extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(ODataKeyPart, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__entityKeyPartName = new internal.PrimitiveProperty(ODataKeyPart, this, "entityKeyPartName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.PartProperty(ODataKeyPart, this, "type", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new ODataKeyPart() cannot be invoked directly, please use 'model.rest.createODataKeyPart()'");
+            }
+        }
+        get containerAsODataKey() {
+            return super.getContainerAs(ODataKey);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get entityKeyPartName() {
+            return this.__entityKeyPartName.get();
+        }
+        set entityKeyPartName(newValue) {
+            this.__entityKeyPartName.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * The new ODataKeyPart will be automatically stored in the 'parts' property
+         * of the parent ODataKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataKeyPart.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, ODataKeyPart, "parts", true);
+        }
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataKeyPart);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = domainmodels_1.domainmodels.LongAttributeType.create(this.model);
+        }
+    }
+    ODataKeyPart.structureTypeName = "Rest$ODataKeyPart";
+    ODataKeyPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            type: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataKeyPart = ODataKeyPart;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *

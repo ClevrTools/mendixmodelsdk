@@ -33,6 +33,7 @@ export interface IModelServerClient {
     checkAccess(workingCopyId: string, memberOpenId: string, callback: common.ICallback<boolean>, errorCallback: common.IErrorCallback): void;
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     getAppEnvironmentStatus(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
     getAppEnvironmentStatusV2(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
     /**

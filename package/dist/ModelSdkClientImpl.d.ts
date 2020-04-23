@@ -65,6 +65,11 @@ export declare class ModelSdkClientImpl<IT extends internal.IAbstractModel, CT e
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     revokeAccessByProject(projectId: string, memberOpenId: string): Promise<void>;
     /**
+     * Sets all members that have access specified by their OpenID to the default working copy of this project.
+     */
+    setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setProjectMembers(projectId: string, memberOpenids: string[]): Promise<void>;
+    /**
      * Returns whether the member specified to his/her OpenID has (been granted) access to this working copy.
      */
     checkAccess(workingCopyId: string, memberOpenId: string, callback: common.ICallback<boolean>, errorCallback: common.IErrorCallback): void;

@@ -522,6 +522,8 @@ export declare namespace domainmodels {
     interface IAttributeType extends internal.IElement {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): AttributeType;
         load(callback: (element: AttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AttributeType>;
@@ -531,11 +533,15 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface INumericAttributeTypeBase extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): NumericAttributeTypeBase;
         load(callback: (element: NumericAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<NumericAttributeTypeBase>;
@@ -545,11 +551,15 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IIntegerAttributeTypeBase extends INumericAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): IntegerAttributeTypeBase;
         load(callback: (element: IntegerAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerAttributeTypeBase>;
@@ -559,11 +569,15 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IAutoNumberAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): AutoNumberAttributeType;
         load(callback: (element: AutoNumberAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AutoNumberAttributeType>;
@@ -573,13 +587,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): AutoNumberAttributeType;
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -590,6 +633,8 @@ export declare namespace domainmodels {
     interface IBinaryAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): BinaryAttributeType;
         load(callback: (element: BinaryAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BinaryAttributeType>;
@@ -599,13 +644,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): BinaryAttributeType;
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -616,6 +690,8 @@ export declare namespace domainmodels {
     interface IBooleanAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): BooleanAttributeType;
         load(callback: (element: BooleanAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BooleanAttributeType>;
@@ -625,13 +701,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): BooleanAttributeType;
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -733,6 +838,8 @@ export declare namespace domainmodels {
     interface IDecimalAttributeTypeBase extends INumericAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DecimalAttributeTypeBase;
         load(callback: (element: DecimalAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalAttributeTypeBase>;
@@ -742,11 +849,15 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IFloatAttributeTypeBase extends IDecimalAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): FloatAttributeTypeBase;
         load(callback: (element: FloatAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatAttributeTypeBase>;
@@ -756,6 +867,8 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -764,6 +877,8 @@ export declare namespace domainmodels {
     interface ICurrencyAttributeType extends IFloatAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): CurrencyAttributeType;
         load(callback: (element: CurrencyAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CurrencyAttributeType>;
@@ -776,13 +891,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): CurrencyAttributeType;
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -793,6 +937,8 @@ export declare namespace domainmodels {
     interface IDateTimeAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DateTimeAttributeType;
         load(callback: (element: DateTimeAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DateTimeAttributeType>;
@@ -802,6 +948,8 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get localizeDate(): boolean;
         set localizeDate(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -809,8 +957,35 @@ export declare namespace domainmodels {
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): DateTimeAttributeType;
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -821,6 +996,8 @@ export declare namespace domainmodels {
     interface IDecimalAttributeType extends IDecimalAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DecimalAttributeType;
         load(callback: (element: DecimalAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalAttributeType>;
@@ -830,13 +1007,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): DecimalAttributeType;
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1072,6 +1278,77 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 8.9.0: introduced
+     */
+    interface IEntityKey extends internal.IElement {
+        readonly model: IModel;
+        readonly parts: internal.IList<IEntityKeyPart>;
+        asLoaded(): EntityKey;
+        load(callback: (element: EntityKey) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityKey>;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKey extends internal.Element implements IEntityKey {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get parts(): internal.IList<EntityKeyPart>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityKey;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    interface IEntityKeyPart extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsEntityKey: IEntityKey;
+        readonly name: string;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly type: IAttributeType;
+        asLoaded(): EntityKeyPart;
+        load(callback: (element: EntityKeyPart) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityKeyPart>;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKeyPart extends internal.Element implements IEntityKeyPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsEntityKey(): EntityKey;
+        get name(): string;
+        set name(newValue: string);
+        get type(): AttributeType;
+        set type(newValue: AttributeType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * The new EntityKeyPart will be automatically stored in the 'parts' property
+         * of the parent EntityKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: EntityKey): EntityKeyPart;
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityKeyPart;
+        get qualifiedName(): string | null;
+    }
+    /**
      * In version 7.11.0: introduced
      */
     class EntityRefStep extends internal.Element {
@@ -1105,6 +1382,8 @@ export declare namespace domainmodels {
     interface IEnumerationAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1119,6 +1398,8 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get enumeration(): enumerations.IEnumeration;
         set enumeration(newValue: enumerations.IEnumeration);
         get enumerationQualifiedName(): string;
@@ -1127,8 +1408,35 @@ export declare namespace domainmodels {
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): EnumerationAttributeType;
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1208,6 +1516,8 @@ export declare namespace domainmodels {
     interface IFloatAttributeType extends IFloatAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): FloatAttributeType;
         load(callback: (element: FloatAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatAttributeType>;
@@ -1220,13 +1530,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): FloatAttributeType;
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1285,6 +1624,8 @@ export declare namespace domainmodels {
     interface IHashedStringAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): HashedStringAttributeType;
         load(callback: (element: HashedStringAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<HashedStringAttributeType>;
@@ -1294,13 +1635,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): HashedStringAttributeType;
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1460,6 +1830,8 @@ export declare namespace domainmodels {
     interface IIntegerAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): IntegerAttributeType;
         load(callback: (element: IntegerAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerAttributeType>;
@@ -1469,13 +1841,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): IntegerAttributeType;
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1486,6 +1887,8 @@ export declare namespace domainmodels {
     interface ILongAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): LongAttributeType;
         load(callback: (element: LongAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<LongAttributeType>;
@@ -1495,13 +1898,42 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): LongAttributeType;
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1759,6 +2191,8 @@ export declare namespace domainmodels {
     interface IStringAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): StringAttributeType;
         load(callback: (element: StringAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringAttributeType>;
@@ -1768,6 +2202,8 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get length(): number;
         set length(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1775,8 +2211,35 @@ export declare namespace domainmodels {
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): StringAttributeType;
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1841,6 +2304,7 @@ import { images } from "./images";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
 import { regularexpressions } from "./regularexpressions";
+import { rest } from "./rest";
 import { security } from "./security";
 import { texts } from "./texts";
 import { IModel } from "./base-model";

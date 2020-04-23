@@ -42,9 +42,9 @@ function findElementInStructures(structures, elementId) {
     }
     return null;
 }
-function asModelUnit(unit) {
+function asModelUnit(unit, delta) {
     if (!(unit instanceof units_1.ModelUnit)) {
-        throw new Error(`Cannot perform delta on non model unit`);
+        throw new Error(`Cannot process delta '${delta.deltaType}' on structural unit '${unit.structureTypeName}'`);
     }
     return unit;
 }

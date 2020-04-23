@@ -21,6 +21,10 @@ export interface IAbstractUnit extends IStructure {
      *  (which corresponds to the unit being partial).
      */
     isLoaded: boolean;
+    /**
+     * Deletes the unit from the model
+     */
+    delete(): void;
 }
 export interface IAbstractUnitConstructor {
     new (...args: any[]): ModelUnit | StructuralUnit;
@@ -39,6 +43,7 @@ export declare abstract class AbstractUnit extends Structure implements IAbstrac
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
 }
 export interface IStructuralUnit extends IAbstractUnit {
+    toJSON(): transport.IAbstractElementJson;
 }
 /**
  * Implementation of {@link IStructuralUnit}.
@@ -63,7 +68,6 @@ export declare abstract class StructuralUnit extends AbstractUnit implements ISt
  */
 export interface IModelUnit extends IAbstractUnit, IAbstractElement {
     readonly container: IStructuralUnit;
-    delete(): void;
 }
 /**
  * Implementation of {@link IModelUnit}.

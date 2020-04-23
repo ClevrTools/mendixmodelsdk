@@ -3133,6 +3133,11 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages(): number;
+        set numberOfPages(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.

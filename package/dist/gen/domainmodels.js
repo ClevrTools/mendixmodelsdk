@@ -1063,6 +1063,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1084,6 +1090,12 @@ var domainmodels;
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -1107,6 +1119,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1129,12 +1147,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
         }
         /**
@@ -1167,12 +1227,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
         }
         /**
@@ -1205,12 +1307,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
         }
         /**
@@ -1390,6 +1534,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1411,6 +1561,12 @@ var domainmodels;
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -1437,12 +1593,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
         }
         /**
@@ -1477,6 +1675,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         get localizeDate() {
             return this.__localizeDate.get();
         }
@@ -1487,8 +1691,44 @@ var domainmodels;
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
         }
         /**
@@ -1522,12 +1762,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
         }
         /**
@@ -2021,6 +2303,130 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Entity = Entity;
     /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKey extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parts = new internal.PartListProperty(EntityKey, this, "parts", []);
+            if (arguments.length < 4) {
+                throw new Error("new EntityKey() cannot be invoked directly, please use 'model.domainmodels.createEntityKey()'");
+            }
+        }
+        get parts() {
+            return this.__parts.get();
+        }
+        /**
+         * Creates and returns a new EntityKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EntityKey);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EntityKey.structureTypeName = "DomainModels$EntityKey";
+    EntityKey.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            parts: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntityKey = EntityKey;
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKeyPart extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(EntityKeyPart, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.PartProperty(EntityKeyPart, this, "type", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new EntityKeyPart() cannot be invoked directly, please use 'model.domainmodels.createEntityKeyPart()'");
+            }
+        }
+        get containerAsEntityKey() {
+            return super.getContainerAs(EntityKey);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * The new EntityKeyPart will be automatically stored in the 'parts' property
+         * of the parent EntityKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EntityKeyPart.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, EntityKeyPart, "parts", true);
+        }
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EntityKeyPart);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = LongAttributeType.create(this.model);
+        }
+    }
+    EntityKeyPart.structureTypeName = "DomainModels$EntityKeyPart";
+    EntityKeyPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            type: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntityKeyPart = EntityKeyPart;
+    /**
      * In version 7.11.0: introduced
      */
     class EntityRefStep extends internal.Element {
@@ -2109,6 +2515,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         get enumeration() {
             return this.__enumeration.get();
         }
@@ -2122,8 +2534,44 @@ var domainmodels;
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
         }
         /**
@@ -2333,12 +2781,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
         }
         /**
@@ -2452,12 +2942,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
         }
         /**
@@ -2765,12 +3297,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
         }
         /**
@@ -2803,12 +3377,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
         }
         /**
@@ -3329,6 +3945,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         get length() {
             return this.__length.get();
         }
@@ -3339,8 +3961,44 @@ var domainmodels;
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
         }
         /**
@@ -3488,6 +4146,7 @@ const documenttemplates_1 = require("./documenttemplates");
 const expressions_1 = require("./expressions");
 const microflows_1 = require("./microflows");
 const pages_1 = require("./pages");
+const rest_1 = require("./rest");
 const security_1 = require("./security");
 const texts_1 = require("./texts");
 //# sourceMappingURL=domainmodels.js.map

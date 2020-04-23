@@ -373,6 +373,12 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findImportedWebServiceByQualifiedName(qname) {
         return this._resolveName("WebServices$ImportedWebService", qname);
     }
+    findWorkflowByQualifiedName(qname) {
+        return this._resolveName("Workflows$Workflow", qname);
+    }
+    findWorkflowActivityOutcomeByQualifiedName(qname) {
+        return this._resolveName("Workflows$WorkflowActivityOutcome", qname);
+    }
     findXmlSchemaByQualifiedName(qname) {
         return this._resolveName("XmlSchemas$XmlSchema", qname);
     }

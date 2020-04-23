@@ -5700,6 +5700,8 @@ var pages;
     class ClosePageClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__numberOfPages = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new ClosePageClientAction() cannot be invoked directly, please use 'model.pages.createClosePageClientAction()'");
             }
@@ -5745,6 +5747,15 @@ var pages;
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
+        }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages() {
+            return this.__numberOfPages.get();
+        }
+        set numberOfPages(newValue) {
+            this.__numberOfPages.set(newValue);
         }
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -5961,11 +5972,19 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__numberOfPages.isAvailable) {
+                this.numberOfPages = 1;
+            }
         }
     }
     ClosePageClientAction.structureTypeName = "Pages$ClosePageClientAction";
     ClosePageClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.0.2"
+        introduced: "7.0.2",
+        properties: {
+            numberOfPages: {
+                introduced: "8.9.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.ClosePageClientAction = ClosePageClientAction;
     class EntityWidget extends ConditionallyVisibleWidget {

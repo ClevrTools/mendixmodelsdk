@@ -103,6 +103,15 @@ class ModelSdkClientImpl {
             this.client.revokeAccessByProject(projectId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
     }
+    setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
+        if (callback) {
+            checkCallbacks(callback, errorCallback);
+        }
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+            assertBackendAccess(this.connectionConfig);
+            this.client.setProjectMembers(projectId, memberOpenids, resolve, reject);
+        }, callback, errorCallback);
+    }
     checkAccess(workingCopyId, memberOpenId, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);

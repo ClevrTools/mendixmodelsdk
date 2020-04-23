@@ -12,11 +12,14 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 8.8.0: introduced
      */
     class WorkflowActivity extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -32,6 +35,15 @@ var workflows;
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
         get caption() {
             return this.__caption.get();
         }
@@ -40,6 +52,8 @@ var workflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: added public
          */
         get possibleOutcomes() {
             return this.__possibleOutcomes.get();
@@ -56,6 +70,9 @@ var workflows;
         set location(newValue) {
             this.__location.set(newValue);
         }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -65,6 +82,24 @@ var workflows;
     WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
     WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
+        properties: {
+            name: {
+                introduced: "8.9.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            possibleOutcomes: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.9.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -73,6 +108,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 8.8.0: introduced
      */
     class EndWorkflowActivity extends WorkflowActivity {
@@ -113,6 +149,10 @@ var workflows;
     EndWorkflowActivity.structureTypeName = "Workflows$EndWorkflowActivity";
     EndWorkflowActivity.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -214,6 +254,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 8.8.0: introduced
      */
     class StartWorkflowActivity extends WorkflowActivity {
@@ -254,6 +295,10 @@ var workflows;
     StartWorkflowActivity.structureTypeName = "Workflows$StartWorkflowActivity";
     StartWorkflowActivity.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -262,6 +307,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 8.8.0: introduced
      */
     class UserTask extends WorkflowActivity {
@@ -272,7 +318,13 @@ var workflows;
             /** @internal */
             this.__taskCaption = new internal.PrimitiveProperty(UserTask, this, "taskCaption", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__subject = new internal.PartProperty(UserTask, this, "subject", null, true);
+            /** @internal */
             this.__taskDescription = new internal.PrimitiveProperty(UserTask, this, "taskDescription", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PartProperty(UserTask, this, "description", null, true);
+            /** @internal */
+            this.__userRole = new internal.ByNameReferenceProperty(UserTask, this, "userRole", null, "Security$UserRole");
             if (arguments.length < 4) {
                 throw new Error("new UserTask() cannot be invoked directly, please use 'model.workflows.createUserTask()'");
             }
@@ -286,17 +338,53 @@ var workflows;
         set page(newValue) {
             this.__page.set(newValue);
         }
+        /**
+         * In version 8.9.0: deleted
+         */
         get taskCaption() {
             return this.__taskCaption.get();
         }
         set taskCaption(newValue) {
             this.__taskCaption.set(newValue);
         }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get subject() {
+            return this.__subject.get();
+        }
+        set subject(newValue) {
+            this.__subject.set(newValue);
+        }
+        /**
+         * In version 8.9.0: deleted
+         */
         get taskDescription() {
             return this.__taskDescription.get();
         }
         set taskDescription(newValue) {
             this.__taskDescription.set(newValue);
+        }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get userRole() {
+            return this.__userRole.get();
+        }
+        set userRole(newValue) {
+            this.__userRole.set(newValue);
+        }
+        get userRoleQualifiedName() {
+            return this.__userRole.qualifiedName();
         }
         /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
@@ -321,11 +409,46 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__description.isAvailable) {
+                this.description = microflows_1.microflows.StringTemplate.create(this.model);
+            }
+            if (this.__subject.isAvailable) {
+                this.subject = microflows_1.microflows.StringTemplate.create(this.model);
+            }
         }
     }
     UserTask.structureTypeName = "Workflows$UserTask";
     UserTask.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
+        properties: {
+            taskCaption: {
+                deleted: "8.9.0",
+                deletionMessage: null
+            },
+            subject: {
+                introduced: "8.9.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            taskDescription: {
+                deleted: "8.9.0",
+                deletionMessage: null
+            },
+            description: {
+                introduced: "8.9.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            userRole: {
+                introduced: "8.9.0"
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -342,14 +465,23 @@ var workflows;
             /** @internal */
             this.__context = new internal.ByNameReferenceProperty(Workflow, this, "context", null, "DomainModels$Entity");
             /** @internal */
+            this.__contextEntity = new internal.ByNameReferenceProperty(Workflow, this, "contextEntity", null, "DomainModels$Entity");
+            /** @internal */
             this.__activities = new internal.PartListProperty(Workflow, this, "activities", []);
             /** @internal */
             this.__flows = new internal.PartListProperty(Workflow, this, "flows", []);
+            /** @internal */
+            this.__title = new internal.PrimitiveProperty(Workflow, this, "title", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(Workflow, this, "description", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
+        /**
+         * In version 8.9.0: deleted
+         */
         get context() {
             return this.__context.get();
         }
@@ -360,7 +492,21 @@ var workflows;
             return this.__context.qualifiedName();
         }
         /**
+         * In version 8.9.0: introduced
+         */
+        get contextEntity() {
+            return this.__contextEntity.get();
+        }
+        set contextEntity(newValue) {
+            this.__contextEntity.set(newValue);
+        }
+        get contextEntityQualifiedName() {
+            return this.__contextEntity.qualifiedName();
+        }
+        /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: added public
          */
         get activities() {
             return this.__activities.get();
@@ -372,11 +518,33 @@ var workflows;
             return this.__flows.get();
         }
         /**
+         * In version 8.9.0: introduced
+         */
+        get title() {
+            return this.__title.get();
+        }
+        set title(newValue) {
+            this.__title.set(newValue);
+        }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
          * Creates a new Workflow unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container) {
             return internal.instancehelpers.createUnit(container, Workflow);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return true;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -388,12 +556,32 @@ var workflows;
         introduced: "8.8.0",
         properties: {
             context: {
+                deleted: "8.9.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
                 required: {
                     currentValue: true
                 }
+            },
+            contextEntity: {
+                introduced: "8.9.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            activities: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.9.0"]
+                }
+            },
+            title: {
+                introduced: "8.9.0"
+            },
+            description: {
+                introduced: "8.9.0"
             }
         },
         experimental: {
@@ -404,6 +592,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 8.8.0: introduced
      */
     class WorkflowActivityOutcome extends internal.Element {
@@ -418,6 +607,9 @@ var workflows;
         get containerAsWorkflowActivity() {
             return super.getContainerAs(WorkflowActivity);
         }
+        /**
+         * In version 8.9.0: added public
+         */
         get name() {
             return this.__name.get();
         }
@@ -445,6 +637,13 @@ var workflows;
             return internal.instancehelpers.createElement(model, WorkflowActivityOutcome);
         }
         /** @internal */
+        _isByNameReferrable() {
+            return true;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
@@ -452,10 +651,23 @@ var workflows;
     WorkflowActivityOutcome.structureTypeName = "Workflows$WorkflowActivityOutcome";
     WorkflowActivityOutcome.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.9.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["8.9.0"]
+        },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     workflows.WorkflowActivityOutcome = WorkflowActivityOutcome;
 })(workflows = exports.workflows || (exports.workflows = {}));
+const microflows_1 = require("./microflows");
 //# sourceMappingURL=workflows.js.map

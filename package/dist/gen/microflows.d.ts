@@ -800,6 +800,11 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages(): number;
+        set numberOfPages(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -3130,6 +3135,35 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class OpenUserTaskAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsActionActivity(): ActionActivity;
+        get userTaskVariable(): string;
+        set userTaskVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * The new OpenUserTaskAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ActionActivity): OpenUserTaskAction;
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenUserTaskAction;
+    }
+    /**
      * In version 8.6.0: introduced
      */
     abstract class TypedTemplateArgument extends internal.Element {
@@ -3623,6 +3657,41 @@ export declare namespace microflows {
         static create(model: IModel): SequenceFlow;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class SetWorkflowActivityOutcomeAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowActivityVariable(): string;
+        set workflowActivityVariable(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get outcome(): workflows.IWorkflowActivityOutcome | null;
+        set outcome(newValue: workflows.IWorkflowActivityOutcome | null);
+        get outcomeQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * The new SetWorkflowActivityOutcomeAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ActionActivity): SetWorkflowActivityOutcomeAction;
+        /**
+         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SetWorkflowActivityOutcomeAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
      */
     class ShowHomePageAction extends MicroflowAction {
@@ -3852,6 +3921,7 @@ export declare namespace microflows {
         get containerAsShowMessageAction(): ShowMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get containerAsUserTask(): workflows.UserTask;
         get arguments(): internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -3863,6 +3933,7 @@ export declare namespace microflows {
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
+        get containerAsUserTask(): workflows.UserTask;
         get text(): string;
         set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3896,6 +3967,24 @@ export declare namespace microflows {
          *  8.4.0 to 8.5.0
          */
         static createInStringTemplateParameterValueUnderTemplate(container: StringTemplateParameterValue): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'description' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInUserTaskUnderDescription(container: workflows.UserTask): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInUserTaskUnderSubject(container: workflows.UserTask): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -4329,6 +4418,45 @@ export declare namespace microflows {
          */
         static create(model: IModel): WebServiceOperationSimpleParameterMapping;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class WorkflowCallAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get workflow(): workflows.IWorkflow | null;
+        set workflow(newValue: workflows.IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        get workflowContextVariable(): string;
+        set workflowContextVariable(newValue: string);
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * The new WorkflowCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ActionActivity): WorkflowCallAction;
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowCallAction;
+    }
 }
 import { appservices } from "./appservices";
 import { codeactions } from "./codeactions";
@@ -4347,4 +4475,5 @@ import { security } from "./security";
 import { services } from "./services";
 import { texts } from "./texts";
 import { webservices } from "./webservices";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

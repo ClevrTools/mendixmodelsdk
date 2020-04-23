@@ -23,6 +23,7 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     checkAccess(workingCopyId: string, memberOpenId: string, callback: common.ICallback<boolean>, errorCallback: common.IErrorCallback): void;
     grantAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     exportMpk(workingCopyId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     importModuleMpk(workingCopyId: string, mpkPath: string | Blob, callback: common.ICallback<string>, errorCallback: common.IErrorCallback): void;

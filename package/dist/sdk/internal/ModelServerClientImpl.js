@@ -86,6 +86,9 @@ class ModelServerClientImpl {
     revokeAccessByProject(projectId, memberOpenId, callback, errorCallback) {
         this.transportation.request({ method: "delete", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
     }
+    setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
+        this.transportation.request({ method: "put", url: `${apiEndPoint}project/${projectId}/members`, body: { memberOpenids } }, callback, errorCallback);
+    }
     exportMpk(workingCopyId, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
             method: "get",

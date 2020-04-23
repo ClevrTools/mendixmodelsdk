@@ -39,7 +39,9 @@ class DeltaProcessor {
     }
     processUpdatePropertyValueDelta(delta) {
         const unit = deltaUtils.getUnit(this.model, delta.unitId);
-        const structure = unit instanceof units_1.StructuralUnit ? unit : deltaUtils.findElement(this.model, deltaUtils.asModelUnit(unit), delta.elementId);
+        const structure = unit instanceof units_1.StructuralUnit
+            ? unit
+            : deltaUtils.findElement(this.model, deltaUtils.asModelUnit(unit, delta), delta.elementId);
         if (!structure) {
             return;
         }
@@ -210,11 +212,11 @@ class DeltaProcessor {
         });
     }
     processDeleteUnitDelta(delta) {
-        const unit = this.getUnit(delta);
+        const unit = deltaUtils.getUnit(this.model, delta.unitId);
         deltaUtils.updateStructure(unit, () => unit.delete());
     }
     getUnit(delta) {
-        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId));
+        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId), delta);
     }
 }
 exports.DeltaProcessor = DeltaProcessor;

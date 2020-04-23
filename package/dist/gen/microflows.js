@@ -1744,12 +1744,23 @@ var microflows;
     class CloseFormAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__numberOfPages = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new CloseFormAction() cannot be invoked directly, please use 'model.microflows.createCloseFormAction()'");
             }
         }
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages() {
+            return this.__numberOfPages.get();
+        }
+        set numberOfPages(newValue) {
+            this.__numberOfPages.set(newValue);
         }
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -1770,10 +1781,19 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__numberOfPages.isAvailable) {
+                this.numberOfPages = 1;
+            }
         }
     }
     CloseFormAction.structureTypeName = "Microflows$CloseFormAction";
-    CloseFormAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    CloseFormAction.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            numberOfPages: {
+                introduced: "8.9.0"
+            }
+        }
+    }, internal.StructureType.Element);
     microflows.CloseFormAction = CloseFormAction;
     class CodeActionParameterMapping extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -6949,6 +6969,62 @@ var microflows;
     NoCase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.NoCase = NoCase;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class OpenUserTaskAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__userTaskVariable = new internal.PrimitiveProperty(OpenUserTaskAction, this, "userTaskVariable", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OpenUserTaskAction() cannot be invoked directly, please use 'model.microflows.createOpenUserTaskAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get userTaskVariable() {
+            return this.__userTaskVariable.get();
+        }
+        set userTaskVariable(newValue) {
+            this.__userTaskVariable.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * The new OpenUserTaskAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskAction.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenUserTaskAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OpenUserTaskAction.structureTypeName = "Microflows$OpenUserTaskAction";
+    OpenUserTaskAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.OpenUserTaskAction = OpenUserTaskAction;
+    /**
      * In version 8.6.0: introduced
      */
     class TypedTemplateArgument extends internal.Element {
@@ -8093,6 +8169,76 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.SequenceFlow = SequenceFlow;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class SetWorkflowActivityOutcomeAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowActivityVariable = new internal.PrimitiveProperty(SetWorkflowActivityOutcomeAction, this, "workflowActivityVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outcome = new internal.ByNameReferenceProperty(SetWorkflowActivityOutcomeAction, this, "outcome", null, "Workflows$WorkflowActivityOutcome");
+            if (arguments.length < 4) {
+                throw new Error("new SetWorkflowActivityOutcomeAction() cannot be invoked directly, please use 'model.microflows.createSetWorkflowActivityOutcomeAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowActivityVariable() {
+            return this.__workflowActivityVariable.get();
+        }
+        set workflowActivityVariable(newValue) {
+            this.__workflowActivityVariable.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get outcome() {
+            return this.__outcome.get();
+        }
+        set outcome(newValue) {
+            this.__outcome.set(newValue);
+        }
+        get outcomeQualifiedName() {
+            return this.__outcome.qualifiedName();
+        }
+        /**
+         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * The new SetWorkflowActivityOutcomeAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SetWorkflowActivityOutcomeAction.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, SetWorkflowActivityOutcomeAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SetWorkflowActivityOutcomeAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SetWorkflowActivityOutcomeAction.structureTypeName = "Microflows$SetWorkflowActivityOutcomeAction";
+    SetWorkflowActivityOutcomeAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.SetWorkflowActivityOutcomeAction = SetWorkflowActivityOutcomeAction;
+    /**
      * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
      */
     class ShowHomePageAction extends MicroflowAction {
@@ -8600,6 +8746,9 @@ var microflows;
         get containerAsValidationFeedbackAction() {
             return super.getContainerAs(ValidationFeedbackAction);
         }
+        get containerAsUserTask() {
+            return super.getContainerAs(workflows_1.workflows.UserTask);
+        }
         get arguments() {
             return this.__arguments.get();
         }
@@ -8631,6 +8780,9 @@ var microflows;
         }
         get containerAsStringTemplateParameterValue() {
             return super.getContainerAs(StringTemplateParameterValue);
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(workflows_1.workflows.UserTask);
         }
         get text() {
             return this.__text.get();
@@ -8677,6 +8829,30 @@ var microflows;
         static createInStringTemplateParameterValueUnderTemplate(container) {
             internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.4.0", end: "8.5.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "template", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'description' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInUserTaskUnderDescription(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "description", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInUserTaskUnderSubject(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "subject", false);
         }
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
@@ -9715,6 +9891,93 @@ var microflows;
     WebServiceOperationSimpleParameterMapping.structureTypeName = "Microflows$WebServiceOperationSimpleParameterMapping";
     WebServiceOperationSimpleParameterMapping.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.WebServiceOperationSimpleParameterMapping = WebServiceOperationSimpleParameterMapping;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class WorkflowCallAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(WorkflowCallAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__workflowContextVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "workflowContextVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__useReturnVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(WorkflowCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowCallAction() cannot be invoked directly, please use 'model.microflows.createWorkflowCallAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get workflowContextVariable() {
+            return this.__workflowContextVariable.get();
+        }
+        set workflowContextVariable(newValue) {
+            this.__workflowContextVariable.set(newValue);
+        }
+        get useReturnVariable() {
+            return this.__useReturnVariable.get();
+        }
+        set useReturnVariable(newValue) {
+            this.__useReturnVariable.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * The new WorkflowCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowCallAction.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, WorkflowCallAction, "action", false);
+        }
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowCallAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.useReturnVariable = true;
+        }
+    }
+    WorkflowCallAction.structureTypeName = "Microflows$WorkflowCallAction";
+    WorkflowCallAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.WorkflowCallAction = WorkflowCallAction;
 })(microflows = exports.microflows || (exports.microflows = {}));
 const datatypes_1 = require("./datatypes");
 const domainmodels_1 = require("./domainmodels");
@@ -9724,4 +9987,5 @@ const pages_1 = require("./pages");
 const rest_1 = require("./rest");
 const services_1 = require("./services");
 const texts_1 = require("./texts");
+const workflows_1 = require("./workflows");
 //# sourceMappingURL=microflows.js.map

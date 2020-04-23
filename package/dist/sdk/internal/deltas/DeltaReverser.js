@@ -26,7 +26,7 @@ class DeltaReverser {
     }
     reverseUpdatePropertyValueDelta(delta) {
         const unit = deltaUtils.getUnit(this.model, delta.unitId);
-        const structure = unit instanceof units_1.StructuralUnit ? unit : deltaUtils.getElement(this.model, deltaUtils.asModelUnit(unit), delta.elementId);
+        const structure = unit instanceof units_1.StructuralUnit ? unit : deltaUtils.getElement(this.model, deltaUtils.asModelUnit(unit, delta), delta.elementId);
         const property = deltaUtils.getProperty(structure, delta.propertyName);
         let reversedMutator;
         const mutator = delta.mutator;
@@ -109,7 +109,7 @@ class DeltaReverser {
         };
     }
     reverseDeleteUnitDelta(delta) {
-        const unit = this.getUnit(delta);
+        const unit = deltaUtils.getUnit(this.model, delta.unitId);
         return {
             deltaType: "CREATE_UNIT_TREE",
             unitId: delta.unitId,
@@ -120,7 +120,7 @@ class DeltaReverser {
         };
     }
     getUnit(delta) {
-        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId));
+        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId), delta);
     }
 }
 exports.DeltaReverser = DeltaReverser;

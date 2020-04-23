@@ -16,6 +16,17 @@ var navigation;
     DeviceType.Tablet = new DeviceType("Tablet", {});
     DeviceType.Phone = new DeviceType("Phone", {});
     navigation.DeviceType = DeviceType;
+    class OfflineEntitySyncDownloadMode extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "navigation.OfflineEntitySyncDownloadMode";
+        }
+    }
+    OfflineEntitySyncDownloadMode.All = new OfflineEntitySyncDownloadMode("All", {});
+    OfflineEntitySyncDownloadMode.Constrained = new OfflineEntitySyncDownloadMode("Constrained", {});
+    OfflineEntitySyncDownloadMode.None = new OfflineEntitySyncDownloadMode("None", {});
+    OfflineEntitySyncDownloadMode.NoneAndPreserveData = new OfflineEntitySyncDownloadMode("NoneAndPreserveData", {});
+    navigation.OfflineEntitySyncDownloadMode = OfflineEntitySyncDownloadMode;
     class ProfileKind extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -847,6 +858,8 @@ var navigation;
             /** @internal */
             this.__entity = new internal.ByNameReferenceProperty(OfflineEntityConfig, this, "entity", null, "DomainModels$Entity");
             /** @internal */
+            this.__downloadMode = new internal.EnumProperty(OfflineEntityConfig, this, "downloadMode", OfflineEntitySyncDownloadMode.All, OfflineEntitySyncDownloadMode);
+            /** @internal */
             this.__shouldDownload = new internal.PrimitiveProperty(OfflineEntityConfig, this, "shouldDownload", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__constraint = new internal.PrimitiveProperty(OfflineEntityConfig, this, "constraint", "", internal.PrimitiveTypeEnum.String);
@@ -866,6 +879,18 @@ var navigation;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get downloadMode() {
+            return this.__downloadMode.get();
+        }
+        set downloadMode(newValue) {
+            this.__downloadMode.set(newValue);
+        }
+        /**
+         * In version 8.9.0: deleted
+         */
         get shouldDownload() {
             return this.__shouldDownload.get();
         }
@@ -904,7 +929,12 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.shouldDownload = true;
+            if (this.__downloadMode.isAvailable) {
+                this.downloadMode = OfflineEntitySyncDownloadMode.All;
+            }
+            if (this.__shouldDownload.isAvailable) {
+                this.shouldDownload = true;
+            }
         }
     }
     OfflineEntityConfig.structureTypeName = "Navigation$OfflineEntityConfig";
@@ -915,6 +945,13 @@ var navigation;
                 required: {
                     currentValue: true
                 }
+            },
+            downloadMode: {
+                introduced: "8.9.0"
+            },
+            shouldDownload: {
+                deleted: "8.9.0",
+                deletionMessage: null
             }
         },
         experimental: {

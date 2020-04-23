@@ -125,6 +125,8 @@ export interface IBaseModel extends IAbstractModel {
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
+    findWorkflowActivityOutcomeByQualifiedName(qname: string): workflows.IWorkflowActivityOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -226,6 +228,8 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
+    findWorkflowActivityOutcomeByQualifiedName(qname: string): workflows.IWorkflowActivityOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**

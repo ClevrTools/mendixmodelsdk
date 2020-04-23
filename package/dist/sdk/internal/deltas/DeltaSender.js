@@ -59,7 +59,9 @@ class DeltaSender {
                     this.hasError = true;
                     this.errorCallback(error);
                 }
-                this.model.completePendingChange(lastEventId);
+                finally {
+                    this.model.completePendingChange(lastEventId);
+                }
             }
             this.pending = false;
             if (!this.hasError) {

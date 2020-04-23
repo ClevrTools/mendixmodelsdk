@@ -38,6 +38,12 @@ export declare namespace rest {
     interface IConsumedODataService extends domainmodels.IRemoteEntitySourceDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: added public
+         */
+        readonly entities: internal.IList<IODataEntity>;
         asLoaded(): ConsumedODataService;
         load(callback: (element: ConsumedODataService) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ConsumedODataService>;
@@ -79,6 +85,8 @@ export declare namespace rest {
         set serviceId(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: added public
          */
         get entities(): internal.IList<ODataEntity>;
         get proxyType(): microflows.RequestProxyType;
@@ -254,9 +262,29 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.9.0: added public
      * In version 7.18.0: introduced
      */
-    class ODataEntity extends internal.Element {
+    interface IODataEntity extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsConsumedODataService: IConsumedODataService;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: introduced
+         */
+        readonly key: IODataKey | null;
+        asLoaded(): ODataEntity;
+        load(callback: (element: ODataEntity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataEntity>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: added public
+     * In version 7.18.0: introduced
+     */
+    class ODataEntity extends internal.Element implements IODataEntity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
@@ -272,9 +300,17 @@ export declare namespace rest {
         get entitySet(): string;
         set entitySet(newValue: string);
         /**
+         * In version 8.9.0: deleted
          * In version 7.22.0: introduced
          */
         get keyNames(): internal.IList<string>;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.9.0: introduced
+         */
+        get key(): ODataKey | null;
+        set key(newValue: ODataKey | null);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -303,6 +339,102 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ODataEntity;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    interface IODataKey extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsODataEntity: IODataEntity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        readonly parts: internal.IList<IODataKeyPart>;
+        asLoaded(): ODataKey;
+        load(callback: (element: ODataKey) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataKey>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class ODataKey extends internal.Element implements IODataKey {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsODataEntity(): ODataEntity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get parts(): internal.IList<ODataKeyPart>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataEntity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ODataEntity): ODataKey;
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataKey;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    interface IODataKeyPart extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsODataKey: IODataKey;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly type: domainmodels.IAttributeType;
+        asLoaded(): ODataKeyPart;
+        load(callback: (element: ODataKeyPart) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataKeyPart>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.9.0: introduced
+     */
+    class ODataKeyPart extends internal.Element implements IODataKeyPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsODataKey(): ODataKey;
+        get name(): string;
+        set name(newValue: string);
+        get entityKeyPartName(): string;
+        set entityKeyPartName(newValue: string);
+        get type(): domainmodels.AttributeType;
+        set type(newValue: domainmodels.AttributeType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * The new ODataKeyPart will be automatically stored in the 'parts' property
+         * of the parent ODataKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ODataKey): ODataKeyPart;
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataKeyPart;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.

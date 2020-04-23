@@ -8,6 +8,13 @@ export declare namespace navigation {
         static Phone: DeviceType;
         protected qualifiedTsTypeName: string;
     }
+    class OfflineEntitySyncDownloadMode extends internal.AbstractEnum {
+        static All: OfflineEntitySyncDownloadMode;
+        static Constrained: OfflineEntitySyncDownloadMode;
+        static None: OfflineEntitySyncDownloadMode;
+        static NoneAndPreserveData: OfflineEntitySyncDownloadMode;
+        protected qualifiedTsTypeName: string;
+    }
     class ProfileKind extends internal.AbstractEnum {
         static Responsive: ProfileKind;
         static Tablet: ProfileKind;
@@ -385,6 +392,14 @@ export declare namespace navigation {
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
+        /**
+         * In version 8.9.0: introduced
+         */
+        get downloadMode(): OfflineEntitySyncDownloadMode;
+        set downloadMode(newValue: OfflineEntitySyncDownloadMode);
+        /**
+         * In version 8.9.0: deleted
+         */
         get shouldDownload(): boolean;
         set shouldDownload(newValue: boolean);
         /**

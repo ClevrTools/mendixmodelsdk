@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const EventSource = require("eventsource");
 const EventEmitter_1 = require("../EventEmitter");
 class WorkingCopyEventReceiver {
     constructor(workingCopyId, client, errorHandler) {
@@ -21,7 +22,16 @@ class WorkingCopyEventReceiver {
             return;
         }
         this.eventSource = this.client.getWorkingCopyEventSource(this.workingCopyId);
-        this.eventSource.onerror = (e) => this.errorHandler.handleError(`We received an error event from the EventSource: ${JSON.stringify(e)}`, undefined);
+        const localEventSource = this.eventSource;
+        this.eventSource.onerror = event => {
+            // We need to know whether the error resulted in a failed connection, or a temporarily interrupted one.
+            // If it is a temporary interruption — as can occur if the computer was asleep, or the server closes the connection — the browser will try again.
+            // Reference: https://www.sitepoint.com/server-sent-events/
+            if (this.eventSource !== localEventSource || localEventSource.readyState === EventSource.CONNECTING) {
+                return;
+            }
+            this.errorHandler.handleError(`WorkingCopyEventReceiver received an error event from the EventSource: ${JSON.stringify(event)}`, undefined);
+        };
         this.eventSource.addEventListener("workingCopyData", (event) => {
             try {
                 const workingCopyData = JSON.parse(event.data);
