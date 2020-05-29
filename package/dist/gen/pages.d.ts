@@ -122,6 +122,16 @@ export declare namespace pages {
         static YesInitiallyCollapsed: GroupBoxCollapsible;
         protected qualifiedTsTypeName: string;
     }
+    class GroupBoxRenderMode extends internal.AbstractEnum {
+        static Div: GroupBoxRenderMode;
+        static H1: GroupBoxRenderMode;
+        static H2: GroupBoxRenderMode;
+        static H3: GroupBoxRenderMode;
+        static H4: GroupBoxRenderMode;
+        static H5: GroupBoxRenderMode;
+        static H6: GroupBoxRenderMode;
+        protected qualifiedTsTypeName: string;
+    }
     class ImageSizeUnit extends internal.AbstractEnum {
         static Auto: ImageSizeUnit;
         static Pixels: ImageSizeUnit;
@@ -9876,6 +9886,11 @@ export declare namespace pages {
         set caption(newValue: ClientTemplate | null);
         get collapsible(): GroupBoxCollapsible;
         set collapsible(newValue: GroupBoxCollapsible);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get headerMode(): GroupBoxRenderMode;
+        set headerMode(newValue: GroupBoxRenderMode);
         /**
          * In version 7.15.0: deleted
          */
@@ -19855,7 +19870,6 @@ export declare namespace pages {
         get containerAsPageClientAction(): PageClientAction;
         get containerAsPageForSpecialization(): PageForSpecialization;
         get containerAsReferenceSelector(): ReferenceSelector;
-        get containerAsUserTask(): workflows.UserTask;
         get page(): IPage | null;
         set page(newValue: IPage | null);
         get pageQualifiedName(): string | null;
@@ -19945,15 +19959,6 @@ export declare namespace pages {
          * of the parent ReferenceSelector element passed as argument.
          */
         static createInReferenceSelectorUnderGotoPageSettings(container: ReferenceSelector): PageSettings;
-        /**
-         * Creates and returns a new PageSettings instance in the SDK and on the server.
-         * The new PageSettings will be automatically stored in the 'page' property
-         * of the parent workflows.UserTask element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
-         */
-        static createInUserTaskUnderPage(container: workflows.UserTask): PageSettings;
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -28539,6 +28544,11 @@ export declare namespace pages {
         set counterMessage(newValue: texts.Text);
         get textTooLongMessage(): texts.Text;
         set textTooLongMessage(newValue: texts.Text);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete(): boolean;
+        set autocomplete(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -29054,6 +29064,11 @@ export declare namespace pages {
          */
         get onEnterKeyPressAction(): ClientAction;
         set onEnterKeyPressAction(newValue: ClientAction);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete(): boolean;
+        set autocomplete(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -31321,5 +31336,4 @@ import { navigation } from "./navigation";
 import { reports } from "./reports";
 import { security } from "./security";
 import { texts } from "./texts";
-import { workflows } from "./workflows";
 import { IModel } from "./base-model";

@@ -1,7 +1,7 @@
 {
   "name": "@gajduk/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.32.0",
+  "version": "4.35.0",
   "author": "Mendix",
   "license": "MIT",
   "main": "dist/index.js",

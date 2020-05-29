@@ -201,6 +201,15 @@ var microflows;
     SortOrderEnum.Ascending = new SortOrderEnum("Ascending", {});
     SortOrderEnum.Descending = new SortOrderEnum("Descending", {});
     microflows.SortOrderEnum = SortOrderEnum;
+    class SynchronizationType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.SynchronizationType";
+        }
+    }
+    SynchronizationType.All = new SynchronizationType("All", {});
+    SynchronizationType.Specific = new SynchronizationType("Specific", {});
+    microflows.SynchronizationType = SynchronizationType;
     class TargetDocumentType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -6971,7 +6980,7 @@ var microflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
     class OpenUserTaskAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -6997,10 +7006,10 @@ var microflows;
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskAction.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskAction.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, OpenUserTaskAction, "action", false);
         }
         /**
@@ -7018,7 +7027,7 @@ var microflows;
     }
     OpenUserTaskAction.structureTypeName = "Microflows$OpenUserTaskAction";
     OpenUserTaskAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.9.0",
+        introduced: "8.10.0",
         experimental: {
             currentValue: true
         }
@@ -8171,27 +8180,27 @@ var microflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
-    class SetWorkflowActivityOutcomeAction extends MicroflowAction {
+    class SetTaskOutcomeAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__workflowActivityVariable = new internal.PrimitiveProperty(SetWorkflowActivityOutcomeAction, this, "workflowActivityVariable", "", internal.PrimitiveTypeEnum.String);
+            this.__workflowTaskVariable = new internal.PrimitiveProperty(SetTaskOutcomeAction, this, "workflowTaskVariable", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__outcome = new internal.ByNameReferenceProperty(SetWorkflowActivityOutcomeAction, this, "outcome", null, "Workflows$WorkflowActivityOutcome");
+            this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeAction, this, "outcome", null, "Workflows$WorkflowTaskOutcome");
             if (arguments.length < 4) {
-                throw new Error("new SetWorkflowActivityOutcomeAction() cannot be invoked directly, please use 'model.microflows.createSetWorkflowActivityOutcomeAction()'");
+                throw new Error("new SetTaskOutcomeAction() cannot be invoked directly, please use 'model.microflows.createSetTaskOutcomeAction()'");
             }
         }
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
         }
-        get workflowActivityVariable() {
-            return this.__workflowActivityVariable.get();
+        get workflowTaskVariable() {
+            return this.__workflowTaskVariable.get();
         }
-        set workflowActivityVariable(newValue) {
-            this.__workflowActivityVariable.set(newValue);
+        set workflowTaskVariable(newValue) {
+            this.__workflowTaskVariable.set(newValue);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -8206,38 +8215,38 @@ var microflows;
             return this.__outcome.qualifiedName();
         }
         /**
-         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
-         * The new SetWorkflowActivityOutcomeAction will be automatically stored in the 'action' property
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeAction will be automatically stored in the 'action' property
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, SetWorkflowActivityOutcomeAction.structureTypeName, { start: "8.9.0" });
-            return internal.instancehelpers.createElement(container, SetWorkflowActivityOutcomeAction, "action", false);
+            internal.createInVersionCheck(container.model, SetTaskOutcomeAction.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeAction, "action", false);
         }
         /**
-         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, SetWorkflowActivityOutcomeAction);
+            return internal.instancehelpers.createElement(model, SetTaskOutcomeAction);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
     }
-    SetWorkflowActivityOutcomeAction.structureTypeName = "Microflows$SetWorkflowActivityOutcomeAction";
-    SetWorkflowActivityOutcomeAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.9.0",
+    SetTaskOutcomeAction.structureTypeName = "Microflows$SetTaskOutcomeAction";
+    SetTaskOutcomeAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    microflows.SetWorkflowActivityOutcomeAction = SetWorkflowActivityOutcomeAction;
+    microflows.SetTaskOutcomeAction = SetTaskOutcomeAction;
     /**
      * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
      */
@@ -8836,10 +8845,10 @@ var microflows;
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createInUserTaskUnderDescription(container) {
-            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "description", false);
         }
         /**
@@ -8848,10 +8857,10 @@ var microflows;
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createInUserTaskUnderSubject(container) {
-            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "subject", false);
         }
         /**
@@ -9018,12 +9027,31 @@ var microflows;
     class SynchronizeAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__type = new internal.EnumProperty(SynchronizeAction, this, "type", SynchronizationType.All, SynchronizationType);
+            /** @internal */
+            this.__variableNames = new internal.PrimitiveListProperty(SynchronizeAction, this, "variableNames", [], internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new SynchronizeAction() cannot be invoked directly, please use 'model.microflows.createSynchronizeAction()'");
             }
         }
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get variableNames() {
+            return this.__variableNames.get();
         }
         /**
          * Creates and returns a new SynchronizeAction instance in the SDK and on the server.
@@ -9048,11 +9076,22 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__type.isAvailable) {
+                this.type = SynchronizationType.All;
+            }
         }
     }
     SynchronizeAction.structureTypeName = "Microflows$SynchronizeAction";
     SynchronizeAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.22.0"
+        introduced: "7.22.0",
+        properties: {
+            type: {
+                introduced: "8.10.0"
+            },
+            variableNames: {
+                introduced: "8.10.0"
+            }
+        }
     }, internal.StructureType.Element);
     microflows.SynchronizeAction = SynchronizeAction;
     class Tail extends ListOperation {
@@ -9894,7 +9933,7 @@ var microflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
     class WorkflowCallAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -9950,10 +9989,10 @@ var microflows;
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, WorkflowCallAction.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, WorkflowCallAction.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, WorkflowCallAction, "action", false);
         }
         /**
@@ -9972,7 +10011,7 @@ var microflows;
     }
     WorkflowCallAction.structureTypeName = "Microflows$WorkflowCallAction";
     WorkflowCallAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.9.0",
+        introduced: "8.10.0",
         experimental: {
             currentValue: true
         }

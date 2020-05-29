@@ -194,6 +194,20 @@ var pages;
     GroupBoxCollapsible.YesInitiallyExpanded = new GroupBoxCollapsible("YesInitiallyExpanded", {});
     GroupBoxCollapsible.YesInitiallyCollapsed = new GroupBoxCollapsible("YesInitiallyCollapsed", {});
     pages.GroupBoxCollapsible = GroupBoxCollapsible;
+    class GroupBoxRenderMode extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.GroupBoxRenderMode";
+        }
+    }
+    GroupBoxRenderMode.Div = new GroupBoxRenderMode("Div", {});
+    GroupBoxRenderMode.H1 = new GroupBoxRenderMode("H1", {});
+    GroupBoxRenderMode.H2 = new GroupBoxRenderMode("H2", {});
+    GroupBoxRenderMode.H3 = new GroupBoxRenderMode("H3", {});
+    GroupBoxRenderMode.H4 = new GroupBoxRenderMode("H4", {});
+    GroupBoxRenderMode.H5 = new GroupBoxRenderMode("H5", {});
+    GroupBoxRenderMode.H6 = new GroupBoxRenderMode("H6", {});
+    pages.GroupBoxRenderMode = GroupBoxRenderMode;
     class ImageSizeUnit extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -17687,6 +17701,8 @@ var pages;
             /** @internal */
             this.__collapsible = new internal.EnumProperty(GroupBox, this, "collapsible", GroupBoxCollapsible.YesInitiallyExpanded, GroupBoxCollapsible);
             /** @internal */
+            this.__headerMode = new internal.EnumProperty(GroupBox, this, "headerMode", GroupBoxRenderMode.H2, GroupBoxRenderMode);
+            /** @internal */
             this.__widget = new internal.PartProperty(GroupBox, this, "widget", null, false);
             /** @internal */
             this.__widgets = new internal.PartListProperty(GroupBox, this, "widgets", []);
@@ -17780,6 +17796,15 @@ var pages;
         }
         set collapsible(newValue) {
             this.__collapsible.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get headerMode() {
+            return this.__headerMode.get();
+        }
+        set headerMode(newValue) {
+            this.__headerMode.set(newValue);
         }
         /**
          * In version 7.15.0: deleted
@@ -18443,12 +18468,18 @@ var pages;
                 })(ClientTemplate.create(this.model));
             })();
             this.collapsible = GroupBoxCollapsible.YesInitiallyExpanded;
+            if (this.__headerMode.isAvailable) {
+                this.headerMode = GroupBoxRenderMode.H2;
+            }
         }
     }
     GroupBox.structureTypeName = "Pages$GroupBox";
     GroupBox.versionInfo = new exports.StructureVersionInfo({
         properties: {
             caption: {},
+            headerMode: {
+                introduced: "8.10.0"
+            },
             widget: {
                 deleted: "7.15.0",
                 deletionMessage: "Use property 'widgets' instead"
@@ -33992,9 +34023,6 @@ var pages;
         get containerAsReferenceSelector() {
             return super.getContainerAs(ReferenceSelector);
         }
-        get containerAsUserTask() {
-            return super.getContainerAs(workflows_1.workflows.UserTask);
-        }
         get page() {
             return this.__page.get();
         }
@@ -34122,18 +34150,6 @@ var pages;
          */
         static createInReferenceSelectorUnderGotoPageSettings(container) {
             return internal.instancehelpers.createElement(container, PageSettings, "gotoPageSettings", false);
-        }
-        /**
-         * Creates and returns a new PageSettings instance in the SDK and on the server.
-         * The new PageSettings will be automatically stored in the 'page' property
-         * of the parent workflows.UserTask element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
-         */
-        static createInUserTaskUnderPage(container) {
-            internal.createInVersionCheck(container.model, PageSettings.structureTypeName, { start: "8.8.0" });
-            return internal.instancehelpers.createElement(container, PageSettings, "page", false);
         }
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
@@ -47765,6 +47781,8 @@ var pages;
             this.__counterMessage = new internal.PartProperty(TextArea, this, "counterMessage", null, true);
             /** @internal */
             this.__textTooLongMessage = new internal.PartProperty(TextArea, this, "textTooLongMessage", null, true);
+            /** @internal */
+            this.__autocomplete = new internal.PrimitiveProperty(TextArea, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new TextArea() cannot be invoked directly, please use 'model.pages.createTextArea()'");
             }
@@ -47861,6 +47879,15 @@ var pages;
         }
         set textTooLongMessage(newValue) {
             this.__textTooLongMessage.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete() {
+            return this.__autocomplete.get();
+        }
+        set autocomplete(newValue) {
+            this.__autocomplete.set(newValue);
         }
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -48485,6 +48512,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__autocomplete.isAvailable) {
+                this.autocomplete = true;
+            }
             this.counterMessage = texts_1.texts.Text.create(this.model);
             this.numberOfLines = 5;
             this.textTooLongMessage = texts_1.texts.Text.create(this.model);
@@ -48502,6 +48532,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            autocomplete: {
+                introduced: "8.10.0"
             }
         }
     }, internal.StructureType.Element);
@@ -48522,6 +48555,8 @@ var pages;
             this.__keyboardType = new internal.EnumProperty(TextBox, this, "keyboardType", KeyboardType.Default, KeyboardType);
             /** @internal */
             this.__onEnterKeyPressAction = new internal.PartProperty(TextBox, this, "onEnterKeyPressAction", null, true);
+            /** @internal */
+            this.__autocomplete = new internal.PrimitiveProperty(TextBox, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
             }
@@ -48636,6 +48671,15 @@ var pages;
         }
         set onEnterKeyPressAction(newValue) {
             this.__onEnterKeyPressAction.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete() {
+            return this.__autocomplete.get();
+        }
+        set autocomplete(newValue) {
+            this.__autocomplete.set(newValue);
         }
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -49260,6 +49304,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__autocomplete.isAvailable) {
+                this.autocomplete = true;
+            }
             this.formattingInfo = FormattingInfo.create(this.model);
             if (this.__keyboardType.isAvailable) {
                 this.keyboardType = KeyboardType.Default;
@@ -49285,6 +49332,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            autocomplete: {
+                introduced: "8.10.0"
             }
         }
     }, internal.StructureType.Element);
@@ -51933,5 +51983,4 @@ const nativepages_1 = require("./nativepages");
 const navigation_1 = require("./navigation");
 const reports_1 = require("./reports");
 const texts_1 = require("./texts");
-const workflows_1 = require("./workflows");
 //# sourceMappingURL=pages.js.map

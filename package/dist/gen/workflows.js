@@ -12,18 +12,13 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: added public
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
     class WorkflowActivity extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
             this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__possibleOutcomes = new internal.PartListProperty(WorkflowActivity, this, "possibleOutcomes", []);
             /** @internal */
             this.__size = new internal.PrimitiveProperty(WorkflowActivity, this, "size", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
             /** @internal */
@@ -35,28 +30,11 @@ var workflows;
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
-        /**
-         * In version 8.9.0: introduced
-         */
-        get name() {
-            return this.__name.get();
-        }
-        set name(newValue) {
-            this.__name.set(newValue);
-        }
         get caption() {
             return this.__caption.get();
         }
         set caption(newValue) {
             this.__caption.set(newValue);
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * In version 8.9.0: added public
-         */
-        get possibleOutcomes() {
-            return this.__possibleOutcomes.get();
         }
         get size() {
             return this.__size.get();
@@ -70,9 +48,6 @@ var workflows;
         set location(newValue) {
             this.__location.set(newValue);
         }
-        get qualifiedName() {
-            return this._getQualifiedName();
-        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -81,24 +56,9 @@ var workflows;
     }
     WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
     WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
-        properties: {
-            name: {
-                introduced: "8.9.0",
-                public: {
-                    currentValue: true
-                }
-            },
-            possibleOutcomes: {
-                public: {
-                    currentValue: true,
-                    changedIn: ["8.9.0"]
-                }
-            }
-        },
+        introduced: "8.10.0",
         public: {
-            currentValue: true,
-            changedIn: ["8.9.0"]
+            currentValue: true
         },
         experimental: {
             currentValue: true
@@ -108,8 +68,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: added public
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
     class EndWorkflowActivity extends WorkflowActivity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -127,10 +86,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, EndWorkflowActivity.structureTypeName, { start: "8.8.0" });
+            internal.createInVersionCheck(container.model, EndWorkflowActivity.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, EndWorkflowActivity, "activities", true);
         }
         /**
@@ -148,10 +107,9 @@ var workflows;
     }
     EndWorkflowActivity.structureTypeName = "Workflows$EndWorkflowActivity";
     EndWorkflowActivity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+        introduced: "8.10.0",
         public: {
-            currentValue: true,
-            changedIn: ["8.9.0"]
+            currentValue: true
         },
         experimental: {
             currentValue: true
@@ -161,7 +119,7 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
     class Flow extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -171,7 +129,7 @@ var workflows;
             /** @internal */
             this.__to = new internal.ByIdReferenceProperty(Flow, this, "to", null);
             /** @internal */
-            this.__value = new internal.ByIdReferenceProperty(Flow, this, "value", null);
+            this.__value = new internal.PartProperty(Flow, this, "value", null, true);
             if (arguments.length < 4) {
                 throw new Error("new Flow() cannot be invoked directly, please use 'model.workflows.createFlow()'");
             }
@@ -212,10 +170,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, Flow.structureTypeName, { start: "8.8.0" });
+            internal.createInVersionCheck(container.model, Flow.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, Flow, "flows", true);
         }
         /**
@@ -229,11 +187,12 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            this.value = NoValue.create(this.model);
         }
     }
     Flow.structureTypeName = "Workflows$Flow";
     Flow.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+        introduced: "8.10.0",
         properties: {
             from: {
                 required: {
@@ -241,6 +200,11 @@ var workflows;
                 }
             },
             to: {
+                required: {
+                    currentValue: true
+                }
+            },
+            value: {
                 required: {
                     currentValue: true
                 }
@@ -254,8 +218,83 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: added public
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
+     */
+    class FlowValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new FlowValue() cannot be invoked directly, please use 'model.workflows.createFlowValue()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    FlowValue.structureTypeName = "Workflows$FlowValue";
+    FlowValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.FlowValue = FlowValue;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
+    class NoValue extends FlowValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NoValue() cannot be invoked directly, please use 'model.workflows.createNoValue()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * Creates and returns a new NoValue instance in the SDK and on the server.
+         * The new NoValue will be automatically stored in the 'value' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, NoValue.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, NoValue, "value", false);
+        }
+        /**
+         * Creates and returns a new NoValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NoValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NoValue.structureTypeName = "Workflows$NoValue";
+    NoValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NoValue = NoValue;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
      */
     class StartWorkflowActivity extends WorkflowActivity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -273,10 +312,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, StartWorkflowActivity.structureTypeName, { start: "8.8.0" });
+            internal.createInVersionCheck(container.model, StartWorkflowActivity.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, StartWorkflowActivity, "activities", true);
         }
         /**
@@ -294,10 +333,9 @@ var workflows;
     }
     StartWorkflowActivity.structureTypeName = "Workflows$StartWorkflowActivity";
     StartWorkflowActivity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+        introduced: "8.10.0",
         public: {
-            currentValue: true,
-            changedIn: ["8.9.0"]
+            currentValue: true
         },
         experimental: {
             currentValue: true
@@ -307,20 +345,143 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: added public
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
-    class UserTask extends WorkflowActivity {
+    class TaskOutcomeValue extends FlowValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__page = new internal.PartProperty(UserTask, this, "page", null, false);
+            this.__outcome = new internal.ByIdReferenceProperty(TaskOutcomeValue, this, "outcome", null);
+            if (arguments.length < 4) {
+                throw new Error("new TaskOutcomeValue() cannot be invoked directly, please use 'model.workflows.createTaskOutcomeValue()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get outcome() {
+            return this.__outcome.get();
+        }
+        set outcome(newValue) {
+            this.__outcome.set(newValue);
+        }
+        /**
+         * Creates and returns a new TaskOutcomeValue instance in the SDK and on the server.
+         * The new TaskOutcomeValue will be automatically stored in the 'value' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, TaskOutcomeValue.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, TaskOutcomeValue, "value", false);
+        }
+        /**
+         * Creates and returns a new TaskOutcomeValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TaskOutcomeValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TaskOutcomeValue.structureTypeName = "Workflows$TaskOutcomeValue";
+    TaskOutcomeValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        properties: {
+            outcome: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.TaskOutcomeValue = TaskOutcomeValue;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
+    class WorkflowTask extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__taskCaption = new internal.PrimitiveProperty(UserTask, this, "taskCaption", "", internal.PrimitiveTypeEnum.String);
+            this.__name = new internal.PrimitiveProperty(WorkflowTask, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__possibleOutcomes = new internal.PartListProperty(WorkflowTask, this, "possibleOutcomes", []);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowTask() cannot be invoked directly, please use 'model.workflows.createWorkflowTask()'");
+            }
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get possibleOutcomes() {
+            return this.__possibleOutcomes.get();
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowTask.structureTypeName = "Workflows$WorkflowTask";
+    WorkflowTask.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            possibleOutcomes: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.WorkflowTask = WorkflowTask;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
+    class UserTask extends WorkflowTask {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__page = new internal.ByNameReferenceProperty(UserTask, this, "page", null, "Pages$Page");
             /** @internal */
             this.__subject = new internal.PartProperty(UserTask, this, "subject", null, true);
-            /** @internal */
-            this.__taskDescription = new internal.PrimitiveProperty(UserTask, this, "taskDescription", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PartProperty(UserTask, this, "description", null, true);
             /** @internal */
@@ -338,45 +499,21 @@ var workflows;
         set page(newValue) {
             this.__page.set(newValue);
         }
-        /**
-         * In version 8.9.0: deleted
-         */
-        get taskCaption() {
-            return this.__taskCaption.get();
+        get pageQualifiedName() {
+            return this.__page.qualifiedName();
         }
-        set taskCaption(newValue) {
-            this.__taskCaption.set(newValue);
-        }
-        /**
-         * In version 8.9.0: introduced
-         */
         get subject() {
             return this.__subject.get();
         }
         set subject(newValue) {
             this.__subject.set(newValue);
         }
-        /**
-         * In version 8.9.0: deleted
-         */
-        get taskDescription() {
-            return this.__taskDescription.get();
-        }
-        set taskDescription(newValue) {
-            this.__taskDescription.set(newValue);
-        }
-        /**
-         * In version 8.9.0: introduced
-         */
         get description() {
             return this.__description.get();
         }
         set description(newValue) {
             this.__description.set(newValue);
         }
-        /**
-         * In version 8.9.0: introduced
-         */
         get userRole() {
             return this.__userRole.get();
         }
@@ -392,10 +529,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, UserTask.structureTypeName, { start: "8.8.0" });
+            internal.createInVersionCheck(container.model, UserTask.structureTypeName, { start: "8.10.0" });
             return internal.instancehelpers.createElement(container, UserTask, "activities", true);
         }
         /**
@@ -409,45 +546,27 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            if (this.__description.isAvailable) {
-                this.description = microflows_1.microflows.StringTemplate.create(this.model);
-            }
-            if (this.__subject.isAvailable) {
-                this.subject = microflows_1.microflows.StringTemplate.create(this.model);
-            }
+            this.description = microflows_1.microflows.StringTemplate.create(this.model);
+            this.subject = microflows_1.microflows.StringTemplate.create(this.model);
         }
     }
     UserTask.structureTypeName = "Workflows$UserTask";
     UserTask.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+        introduced: "8.10.0",
         properties: {
-            taskCaption: {
-                deleted: "8.9.0",
-                deletionMessage: null
-            },
             subject: {
-                introduced: "8.9.0",
                 required: {
                     currentValue: true
                 }
-            },
-            taskDescription: {
-                deleted: "8.9.0",
-                deletionMessage: null
             },
             description: {
-                introduced: "8.9.0",
                 required: {
                     currentValue: true
                 }
-            },
-            userRole: {
-                introduced: "8.9.0"
             }
         },
         public: {
-            currentValue: true,
-            changedIn: ["8.9.0"]
+            currentValue: true
         },
         experimental: {
             currentValue: true
@@ -457,13 +576,11 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
     class Workflow extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
-            /** @internal */
-            this.__context = new internal.ByNameReferenceProperty(Workflow, this, "context", null, "DomainModels$Entity");
             /** @internal */
             this.__contextEntity = new internal.ByNameReferenceProperty(Workflow, this, "contextEntity", null, "DomainModels$Entity");
             /** @internal */
@@ -479,21 +596,6 @@ var workflows;
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
-        /**
-         * In version 8.9.0: deleted
-         */
-        get context() {
-            return this.__context.get();
-        }
-        set context(newValue) {
-            this.__context.set(newValue);
-        }
-        get contextQualifiedName() {
-            return this.__context.qualifiedName();
-        }
-        /**
-         * In version 8.9.0: introduced
-         */
         get contextEntity() {
             return this.__contextEntity.get();
         }
@@ -505,8 +607,6 @@ var workflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * In version 8.9.0: added public
          */
         get activities() {
             return this.__activities.get();
@@ -517,18 +617,12 @@ var workflows;
         get flows() {
             return this.__flows.get();
         }
-        /**
-         * In version 8.9.0: introduced
-         */
         get title() {
             return this.__title.get();
         }
         set title(newValue) {
             this.__title.set(newValue);
         }
-        /**
-         * In version 8.9.0: introduced
-         */
         get description() {
             return this.__description.get();
         }
@@ -553,35 +647,17 @@ var workflows;
     }
     Workflow.structureTypeName = "Workflows$Workflow";
     Workflow.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+        introduced: "8.10.0",
         properties: {
-            context: {
-                deleted: "8.9.0",
-                deletionMessage: null,
-                public: {
-                    currentValue: true
-                },
-                required: {
-                    currentValue: true
-                }
-            },
             contextEntity: {
-                introduced: "8.9.0",
                 public: {
                     currentValue: true
                 }
             },
             activities: {
                 public: {
-                    currentValue: true,
-                    changedIn: ["8.9.0"]
+                    currentValue: true
                 }
-            },
-            title: {
-                introduced: "8.9.0"
-            },
-            description: {
-                introduced: "8.9.0"
             }
         },
         experimental: {
@@ -592,24 +668,20 @@ var workflows;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: added public
-     * In version 8.8.0: introduced
+     * In version 8.10.0: introduced
      */
-    class WorkflowActivityOutcome extends internal.Element {
+    class WorkflowTaskOutcome extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__name = new internal.PrimitiveProperty(WorkflowActivityOutcome, this, "name", "", internal.PrimitiveTypeEnum.String);
+            this.__name = new internal.PrimitiveProperty(WorkflowTaskOutcome, this, "name", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
-                throw new Error("new WorkflowActivityOutcome() cannot be invoked directly, please use 'model.workflows.createWorkflowActivityOutcome()'");
+                throw new Error("new WorkflowTaskOutcome() cannot be invoked directly, please use 'model.workflows.createWorkflowTaskOutcome()'");
             }
         }
-        get containerAsWorkflowActivity() {
-            return super.getContainerAs(WorkflowActivity);
+        get containerAsWorkflowTask() {
+            return super.getContainerAs(WorkflowTask);
         }
-        /**
-         * In version 8.9.0: added public
-         */
         get name() {
             return this.__name.get();
         }
@@ -617,24 +689,24 @@ var workflows;
             this.__name.set(newValue);
         }
         /**
-         * Creates and returns a new WorkflowActivityOutcome instance in the SDK and on the server.
-         * The new WorkflowActivityOutcome will be automatically stored in the 'possibleOutcomes' property
-         * of the parent WorkflowActivity element passed as argument.
+         * Creates and returns a new WorkflowTaskOutcome instance in the SDK and on the server.
+         * The new WorkflowTaskOutcome will be automatically stored in the 'possibleOutcomes' property
+         * of the parent WorkflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.8.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, WorkflowActivityOutcome.structureTypeName, { start: "8.8.0" });
-            return internal.instancehelpers.createElement(container, WorkflowActivityOutcome, "possibleOutcomes", true);
+            internal.createInVersionCheck(container.model, WorkflowTaskOutcome.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, WorkflowTaskOutcome, "possibleOutcomes", true);
         }
         /**
-         * Creates and returns a new WorkflowActivityOutcome instance in the SDK and on the server.
+         * Creates and returns a new WorkflowTaskOutcome instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, WorkflowActivityOutcome);
+            return internal.instancehelpers.createElement(model, WorkflowTaskOutcome);
         }
         /** @internal */
         _isByNameReferrable() {
@@ -648,26 +720,24 @@ var workflows;
             super._initializeDefaultProperties();
         }
     }
-    WorkflowActivityOutcome.structureTypeName = "Workflows$WorkflowActivityOutcome";
-    WorkflowActivityOutcome.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.8.0",
+    WorkflowTaskOutcome.structureTypeName = "Workflows$WorkflowTaskOutcome";
+    WorkflowTaskOutcome.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
         properties: {
             name: {
                 public: {
-                    currentValue: true,
-                    changedIn: ["8.9.0"]
+                    currentValue: true
                 }
             }
         },
         public: {
-            currentValue: true,
-            changedIn: ["8.9.0"]
+            currentValue: true
         },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    workflows.WorkflowActivityOutcome = WorkflowActivityOutcome;
+    workflows.WorkflowTaskOutcome = WorkflowTaskOutcome;
 })(workflows = exports.workflows || (exports.workflows = {}));
 const microflows_1 = require("./microflows");
 //# sourceMappingURL=workflows.js.map

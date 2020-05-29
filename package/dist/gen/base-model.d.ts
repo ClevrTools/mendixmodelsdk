@@ -122,11 +122,12 @@ export interface IBaseModel extends IAbstractModel {
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
+    findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowActivityOutcomeByQualifiedName(qname: string): workflows.IWorkflowActivityOutcome | null;
+    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -225,11 +226,12 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
+    findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowActivityOutcomeByQualifiedName(qname: string): workflows.IWorkflowActivityOutcome | null;
+    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**

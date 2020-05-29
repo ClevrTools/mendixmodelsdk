@@ -141,10 +141,15 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         readonly remoteSourceDocument: IRemoteEntitySourceDocument | null;
         readonly remoteSourceDocumentQualifiedName: string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        readonly source: IAssociationSource | null;
         asLoaded(): AssociationBase;
         load(callback: (element: AssociationBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AssociationBase>;
@@ -174,11 +179,17 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
         set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
         get remoteSourceDocumentQualifiedName(): string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source(): AssociationSource | null;
+        set source(newValue: AssociationSource | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         get qualifiedName(): string | null;
     }
@@ -294,6 +305,26 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): AssociationRef;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IAssociationSource extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): AssociationSource;
+        load(callback: (element: AssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AssociationSource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class AssociationSource extends internal.Element implements IAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsAssociationBase(): AssociationBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
@@ -1202,6 +1233,7 @@ export declare namespace domainmodels {
         readonly generalization: IGeneralizationBase;
         readonly attributes: internal.IList<IAttribute>;
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
@@ -1209,10 +1241,15 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         readonly remoteSourceDocument: IRemoteEntitySourceDocument | null;
         readonly remoteSourceDocumentQualifiedName: string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        readonly source: IEntitySource | null;
         asLoaded(): Entity;
         load(callback: (element: Entity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Entity>;
@@ -1244,12 +1281,14 @@ export declare namespace domainmodels {
         set image(newValue: images.IImage | null);
         get imageQualifiedName(): string | null;
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
         get isRemote(): boolean;
         set isRemote(newValue: boolean);
         /**
+         * In version 8.10.0: deleted
          * In version 7.17.0: introduced
          */
         get remoteSource(): string;
@@ -1257,11 +1296,17 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
         set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
         get remoteSourceDocumentQualifiedName(): string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source(): EntitySource | null;
+        set source(newValue: EntitySource | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1378,6 +1423,26 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): EntityRefStep;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IEntitySource extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): EntitySource;
+        load(callback: (element: EntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class EntitySource extends internal.Element implements IEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IEnumerationAttributeType extends IAttributeType {
         readonly model: IModel;
@@ -1941,6 +2006,26 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): LongAttributeType;
     }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IMappedValue extends IValueType {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): MappedValue;
+        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappedValue>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class MappedValue extends ValueType implements IMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     class MaxLengthRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -2112,6 +2197,46 @@ export declare namespace domainmodels {
         static create(model: IModel): RegExRuleInfo;
     }
     /**
+     * In version 8.10.0: introduced
+     */
+    interface IRemoteAssociationSource extends IAssociationSource {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): RemoteAssociationSource;
+        load(callback: (element: RemoteAssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RemoteAssociationSource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class RemoteAssociationSource extends AssociationSource implements IRemoteAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsAssociationBase(): AssociationBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IRemoteEntitySource extends IEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): RemoteEntitySource;
+        load(callback: (element: RemoteEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RemoteEntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class RemoteEntitySource extends EntitySource implements IRemoteEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * In version 8.2.0: introduced
@@ -2133,6 +2258,21 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get description(): string;
+        set description(newValue: string);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get catalogUrl(): string;
+        set catalogUrl(newValue: string);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get icon(): string | null;
+        set icon(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {

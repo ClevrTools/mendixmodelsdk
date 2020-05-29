@@ -364,6 +364,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findRegularExpressionByQualifiedName(qname) {
         return this._resolveName("RegularExpressions$RegularExpression", qname);
     }
+    findConsumedODataServiceByQualifiedName(qname) {
+        return this._resolveName("Rest$ConsumedODataService", qname);
+    }
     findModuleRoleByQualifiedName(qname) {
         return this._resolveName("Security$ModuleRole", qname);
     }
@@ -376,8 +379,8 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findWorkflowByQualifiedName(qname) {
         return this._resolveName("Workflows$Workflow", qname);
     }
-    findWorkflowActivityOutcomeByQualifiedName(qname) {
-        return this._resolveName("Workflows$WorkflowActivityOutcome", qname);
+    findWorkflowTaskOutcomeByQualifiedName(qname) {
+        return this._resolveName("Workflows$WorkflowTaskOutcome", qname);
     }
     findXmlSchemaByQualifiedName(qname) {
         return this._resolveName("XmlSchemas$XmlSchema", qname);

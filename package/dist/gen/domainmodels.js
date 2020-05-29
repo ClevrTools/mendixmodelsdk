@@ -281,6 +281,8 @@ var domainmodels;
             this.__documentation = new internal.PrimitiveProperty(AssociationBase, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__remoteSourceDocument = new internal.ByNameReferenceProperty(AssociationBase, this, "remoteSourceDocument", null, "DomainModels$RemoteEntitySourceDocument");
+            /** @internal */
+            this.__source = new internal.PartProperty(AssociationBase, this, "source", null, false);
             if (arguments.length < 4) {
                 throw new Error("new AssociationBase() cannot be invoked directly, please use 'model.domainmodels.createAssociationBase()'");
             }
@@ -333,6 +335,7 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         get remoteSourceDocument() {
@@ -343,6 +346,15 @@ var domainmodels;
         }
         get remoteSourceDocumentQualifiedName() {
             return this.__remoteSourceDocument.qualifiedName();
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source() {
+            return this.__source.get();
+        }
+        set source(newValue) {
+            this.__source.set(newValue);
         }
         /** @internal */
         _isByNameReferrable() {
@@ -393,6 +405,14 @@ var domainmodels;
             },
             remoteSourceDocument: {
                 introduced: "8.3.0",
+                deleted: "8.10.0",
+                deletionMessage: "The information is now stored in ODataRemoteAssociationSource",
+                public: {
+                    currentValue: true
+                }
+            },
+            source: {
+                introduced: "8.10.0",
                 public: {
                     currentValue: true
                 }
@@ -667,6 +687,32 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.AssociationRef = AssociationRef;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class AssociationSource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new AssociationSource() cannot be invoked directly, please use 'model.domainmodels.createAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AssociationSource.structureTypeName = "DomainModels$AssociationSource";
+    AssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.AssociationSource = AssociationSource;
     /**
      * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
      */
@@ -2133,6 +2179,8 @@ var domainmodels;
             this.__remoteSource = new internal.PrimitiveProperty(Entity, this, "remoteSource", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__remoteSourceDocument = new internal.ByNameReferenceProperty(Entity, this, "remoteSourceDocument", null, "DomainModels$RemoteEntitySourceDocument");
+            /** @internal */
+            this.__source = new internal.PartProperty(Entity, this, "source", null, false);
             if (arguments.length < 4) {
                 throw new Error("new Entity() cannot be invoked directly, please use 'model.domainmodels.createEntity()'");
             }
@@ -2196,6 +2244,7 @@ var domainmodels;
             return this.__image.qualifiedName();
         }
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
@@ -2206,6 +2255,7 @@ var domainmodels;
             this.__isRemote.set(newValue);
         }
         /**
+         * In version 8.10.0: deleted
          * In version 7.17.0: introduced
          */
         get remoteSource() {
@@ -2217,6 +2267,7 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         get remoteSourceDocument() {
@@ -2227,6 +2278,15 @@ var domainmodels;
         }
         get remoteSourceDocumentQualifiedName() {
             return this.__remoteSourceDocument.qualifiedName();
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source() {
+            return this.__source.get();
+        }
+        set source(newValue) {
+            this.__source.set(newValue);
         }
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -2282,16 +2342,28 @@ var domainmodels;
             },
             isRemote: {
                 introduced: "7.17.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead",
                 public: {
                     currentValue: true,
                     changedIn: ["8.2.0"]
                 }
             },
             remoteSource: {
-                introduced: "7.17.0"
+                introduced: "7.17.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead"
             },
             remoteSourceDocument: {
                 introduced: "8.2.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead",
+                public: {
+                    currentValue: true
+                }
+            },
+            source: {
+                introduced: "8.10.0",
                 public: {
                     currentValue: true
                 }
@@ -2503,6 +2575,32 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.EntityRefStep = EntityRefStep;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class EntitySource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EntitySource() cannot be invoked directly, please use 'model.domainmodels.createEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EntitySource.structureTypeName = "DomainModels$EntitySource";
+    EntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntitySource = EntitySource;
     class EnumerationAttributeType extends AttributeType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3447,6 +3545,32 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.LongAttributeType = LongAttributeType;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class MappedValue extends ValueType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappedValue.structureTypeName = "DomainModels$MappedValue";
+    MappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.MappedValue = MappedValue;
     class MaxLengthRuleInfo extends RuleInfo {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3821,6 +3945,58 @@ var domainmodels;
     RegExRuleInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.RegExRuleInfo = RegExRuleInfo;
     /**
+     * In version 8.10.0: introduced
+     */
+    class RemoteAssociationSource extends AssociationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RemoteAssociationSource() cannot be invoked directly, please use 'model.domainmodels.createRemoteAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RemoteAssociationSource.structureTypeName = "DomainModels$RemoteAssociationSource";
+    RemoteAssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.RemoteAssociationSource = RemoteAssociationSource;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class RemoteEntitySource extends EntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RemoteEntitySource() cannot be invoked directly, please use 'model.domainmodels.createRemoteEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RemoteEntitySource.structureTypeName = "DomainModels$RemoteEntitySource";
+    RemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.RemoteEntitySource = RemoteEntitySource;
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * In version 8.2.0: introduced
@@ -3828,9 +4004,42 @@ var domainmodels;
     class RemoteEntitySourceDocument extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__catalogUrl = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "catalogUrl", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__icon = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "icon", null, internal.PrimitiveTypeEnum.Blob);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get catalogUrl() {
+            return this.__catalogUrl.get();
+        }
+        set catalogUrl(newValue) {
+            this.__catalogUrl.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get icon() {
+            return this.__icon.get();
+        }
+        set icon(newValue) {
+            this.__icon.set(newValue);
         }
         /** @internal */
         _isByNameReferrable() {
@@ -3844,6 +4053,17 @@ var domainmodels;
     RemoteEntitySourceDocument.structureTypeName = "DomainModels$RemoteEntitySourceDocument";
     RemoteEntitySourceDocument.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.2.0",
+        properties: {
+            description: {
+                introduced: "8.10.0"
+            },
+            catalogUrl: {
+                introduced: "8.10.0"
+            },
+            icon: {
+                introduced: "8.10.0"
+            }
+        },
         experimental: {
             currentValue: true
         }

@@ -122,6 +122,11 @@ export declare namespace microflows {
         static Descending: SortOrderEnum;
         protected qualifiedTsTypeName: string;
     }
+    class SynchronizationType extends internal.AbstractEnum {
+        static All: SynchronizationType;
+        static Specific: SynchronizationType;
+        protected qualifiedTsTypeName: string;
+    }
     class TargetDocumentType extends internal.AbstractEnum {
         static HTML: TargetDocumentType;
         static PDF: TargetDocumentType;
@@ -3137,7 +3142,7 @@ export declare namespace microflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
     class OpenUserTaskAction extends MicroflowAction {
         static structureTypeName: string;
@@ -3153,7 +3158,7 @@ export declare namespace microflows {
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container: ActionActivity): OpenUserTaskAction;
         /**
@@ -3659,37 +3664,37 @@ export declare namespace microflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
-    class SetWorkflowActivityOutcomeAction extends MicroflowAction {
+    class SetTaskOutcomeAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsActionActivity(): ActionActivity;
-        get workflowActivityVariable(): string;
-        set workflowActivityVariable(newValue: string);
+        get workflowTaskVariable(): string;
+        set workflowTaskVariable(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          */
-        get outcome(): workflows.IWorkflowActivityOutcome | null;
-        set outcome(newValue: workflows.IWorkflowActivityOutcome | null);
+        get outcome(): workflows.IWorkflowTaskOutcome | null;
+        set outcome(newValue: workflows.IWorkflowTaskOutcome | null);
         get outcomeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
-         * The new SetWorkflowActivityOutcomeAction will be automatically stored in the 'action' property
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeAction will be automatically stored in the 'action' property
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
-        static createIn(container: ActionActivity): SetWorkflowActivityOutcomeAction;
+        static createIn(container: ActionActivity): SetTaskOutcomeAction;
         /**
-         * Creates and returns a new SetWorkflowActivityOutcomeAction instance in the SDK and on the server.
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): SetWorkflowActivityOutcomeAction;
+        static create(model: IModel): SetTaskOutcomeAction;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
@@ -3973,7 +3978,7 @@ export declare namespace microflows {
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createInUserTaskUnderDescription(container: workflows.UserTask): StringTemplate;
         /**
@@ -3982,7 +3987,7 @@ export declare namespace microflows {
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createInUserTaskUnderSubject(container: workflows.UserTask): StringTemplate;
         /**
@@ -4067,6 +4072,15 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get type(): SynchronizationType;
+        set type(newValue: SynchronizationType);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get variableNames(): internal.IList<string>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SynchronizeAction instance in the SDK and on the server.
@@ -4421,7 +4435,7 @@ export declare namespace microflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.9.0: introduced
+     * In version 8.10.0: introduced
      */
     class WorkflowCallAction extends MicroflowAction {
         static structureTypeName: string;
@@ -4447,7 +4461,7 @@ export declare namespace microflows {
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container: ActionActivity): WorkflowCallAction;
         /**
