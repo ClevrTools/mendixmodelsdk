@@ -23,36 +23,45 @@ THE SOFTWARE.
 */
 
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./version"));
+__exportStar(require("./version"), exports);
+__exportStar(require("./common"), exports);
 var Model_1 = require("./Model");
-exports.Model = Model_1.Model;
-__export(require("./gen/all-model-classes"));
-__export(require("./gen/metamodelversion"));
-__export(require("./sdk/utils"));
-__export(require("./sdk/internal/properties"));
+Object.defineProperty(exports, "Model", { enumerable: true, get: function () { return Model_1.Model; } });
+__exportStar(require("./gen/all-model-classes"), exports);
+__exportStar(require("./gen/metamodelversion"), exports);
+__exportStar(require("./sdk/utils"), exports);
+__exportStar(require("./sdk/configuration"), exports);
+__exportStar(require("./sdk/internal/properties"), exports);
 var internal_1 = require("./sdk/internal");
-exports.Structure = internal_1.Structure;
-exports.AbstractUnit = internal_1.AbstractUnit;
-exports.AbstractElement = internal_1.AbstractElement;
-exports.AbstractEnum = internal_1.AbstractEnum;
-exports.Element = internal_1.Element;
-exports.ModelUnit = internal_1.ModelUnit;
-exports.StructuralUnit = internal_1.StructuralUnit;
-exports.AbstractModel = internal_1.AbstractModel;
-exports.Version = internal_1.Version;
-exports.UndoManager = internal_1.UndoManager;
-exports.UndoState = internal_1.UndoState;
-exports.createElementFromJSON = internal_1.createElementFromJSON;
-exports.ModelEventReceiver = internal_1.ModelEventReceiver;
-exports.createModelUnitFromJSON = internal_1.createModelUnitFromJSON;
+Object.defineProperty(exports, "Structure", { enumerable: true, get: function () { return internal_1.Structure; } });
+Object.defineProperty(exports, "AbstractUnit", { enumerable: true, get: function () { return internal_1.AbstractUnit; } });
+Object.defineProperty(exports, "AbstractElement", { enumerable: true, get: function () { return internal_1.AbstractElement; } });
+Object.defineProperty(exports, "AbstractEnum", { enumerable: true, get: function () { return internal_1.AbstractEnum; } });
+Object.defineProperty(exports, "Element", { enumerable: true, get: function () { return internal_1.Element; } });
+Object.defineProperty(exports, "ModelUnit", { enumerable: true, get: function () { return internal_1.ModelUnit; } });
+Object.defineProperty(exports, "StructuralUnit", { enumerable: true, get: function () { return internal_1.StructuralUnit; } });
+Object.defineProperty(exports, "AbstractModel", { enumerable: true, get: function () { return internal_1.AbstractModel; } });
+Object.defineProperty(exports, "Version", { enumerable: true, get: function () { return internal_1.Version; } });
+Object.defineProperty(exports, "UndoManager", { enumerable: true, get: function () { return internal_1.UndoManager; } });
+Object.defineProperty(exports, "UndoState", { enumerable: true, get: function () { return internal_1.UndoState; } });
+Object.defineProperty(exports, "createElementFromJSON", { enumerable: true, get: function () { return internal_1.createElementFromJSON; } });
+Object.defineProperty(exports, "ModelEventReceiver", { enumerable: true, get: function () { return internal_1.ModelEventReceiver; } });
+Object.defineProperty(exports, "createModelUnitFromJSON", { enumerable: true, get: function () { return internal_1.createModelUnitFromJSON; } });
 var JavaScriptSerializer_1 = require("./sdk/extras/JavaScriptSerializer");
-exports.JavaScriptSerializer = JavaScriptSerializer_1.JavaScriptSerializer;
+Object.defineProperty(exports, "JavaScriptSerializer", { enumerable: true, get: function () { return JavaScriptSerializer_1.JavaScriptSerializer; } });
 var TransactionManager_1 = require("./sdk/internal/deltas/TransactionManager");
-exports.Transaction = TransactionManager_1.Transaction;
-exports.runInTransaction = TransactionManager_1.runInTransaction;
-exports.beginTransaction = TransactionManager_1.beginTransaction;
+Object.defineProperty(exports, "Transaction", { enumerable: true, get: function () { return TransactionManager_1.Transaction; } });
+Object.defineProperty(exports, "runInTransaction", { enumerable: true, get: function () { return TransactionManager_1.runInTransaction; } });
+Object.defineProperty(exports, "beginTransaction", { enumerable: true, get: function () { return TransactionManager_1.beginTransaction; } });
 //# sourceMappingURL=index.js.map

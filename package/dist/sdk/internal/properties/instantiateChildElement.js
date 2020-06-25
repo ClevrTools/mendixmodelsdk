@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.instantiateChildElement = void 0;
 const instances_1 = require("../instances");
 function instantiateChildElement(parent, value) {
     let newChild;

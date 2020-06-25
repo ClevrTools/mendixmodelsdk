@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EnumListProperty = void 0;
 const PrimitiveListProperty_1 = require("./PrimitiveListProperty");
 /**
  * A property value that is a list of enum literals.

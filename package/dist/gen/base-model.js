@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseModel = void 0;
 const AbstractModel_1 = require("../sdk/internal/AbstractModel");
 /**
  * Class to find generated model units.
@@ -17,6 +18,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allConsumedAppServices() {
         return super._allOfTypes(["AppServices$ConsumedAppService"]);
+    }
+    allConsumedKafkaServices() {
+        return super._allOfTypes(["Kafka$ConsumedKafkaService"]);
     }
     allConsumedODataServices() {
         return super._allOfTypes(["Rest$ConsumedODataService"]);
@@ -37,6 +41,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaActions$JavaAction",
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
+            "Kafka$ConsumedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -143,6 +148,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaActions$JavaAction",
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
+            "Kafka$ConsumedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -230,7 +236,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         return super._allOfTypes(["RegularExpressions$RegularExpression"]);
     }
     allRemoteEntitySourceDocuments() {
-        return super._allOfTypes(["Rest$ConsumedODataService"]);
+        return super._allOfTypes(["Kafka$ConsumedKafkaService", "Rest$ConsumedODataService"]);
     }
     allRules() {
         return super._allOfTypes(["Microflows$Rule"]);
@@ -315,6 +321,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findJsonStructureByQualifiedName(qname) {
         return this._resolveName("JsonStructures$JsonStructure", qname);
+    }
+    findConsumedKafkaServiceByQualifiedName(qname) {
+        return this._resolveName("Kafka$ConsumedKafkaService", qname);
     }
     findMenuDocumentByQualifiedName(qname) {
         return this._resolveName("Menus$MenuDocument", qname);

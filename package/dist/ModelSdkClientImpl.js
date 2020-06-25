@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelSdkClientImpl = void 0;
 const internal = require("./sdk/internal");
 const promiseOrCallbacks_1 = require("./sdk/internal/promiseOrCallbacks");
 /**

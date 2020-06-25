@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelServerClientImpl = void 0;
 const fs = require("fs");
 const path = require("path");
 const EventSource = require("eventsource");
@@ -454,6 +455,8 @@ class ModelServerClientImpl {
             longLived: workingCopyInfo.longLived === true,
             teamServerBaseBranch: workingCopyInfo.teamServerBaseBranch,
             teamServerBaseRevision: workingCopyInfo.teamServerBaseRevision,
+            teamServerBaseCommitHash: workingCopyInfo.teamServerBaseCommitHash,
+            teamServerGitUrl: workingCopyInfo.teamServerGitUrl,
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
             isCollaboration: workingCopyInfo.isCollaboration === true

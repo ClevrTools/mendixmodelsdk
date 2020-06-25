@@ -798,7 +798,7 @@ export declare namespace microflows {
         static create(model: IModel): ChangeVariableAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/close-form relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/Close+Form relevant section in reference guide}
      */
     class CloseFormAction extends MicroflowAction {
         static structureTypeName: string;
@@ -806,10 +806,18 @@ export declare namespace microflows {
         model: IModel;
         get containerAsActionActivity(): ActionActivity;
         /**
+         * In version 8.11.0: deleted
          * In version 8.9.0: introduced
          */
         get numberOfPages(): number;
         set numberOfPages(newValue: number);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): string;
+        set numberOfPagesToClose(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -3747,7 +3755,7 @@ export declare namespace microflows {
         static create(model: IModel): ShowMessageAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/Show+Page relevant section in reference guide}
      */
     class ShowPageAction extends MicroflowAction {
         static structureTypeName: string;
@@ -3758,6 +3766,13 @@ export declare namespace microflows {
         set pageSettings(newValue: pages.PageSettings);
         get passedObjectVariableName(): string;
         set passedObjectVariableName(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): string;
+        set numberOfPagesToClose(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ShowPageAction instance in the SDK and on the server.
@@ -3927,6 +3942,7 @@ export declare namespace microflows {
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
         get containerAsUserTask(): workflows.UserTask;
+        get containerAsWorkflow(): workflows.Workflow;
         get arguments(): internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -3939,6 +3955,7 @@ export declare namespace microflows {
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsUserTask(): workflows.UserTask;
+        get containerAsWorkflow(): workflows.Workflow;
         get text(): string;
         set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3990,6 +4007,15 @@ export declare namespace microflows {
          *  8.10.0 and higher
          */
         static createInUserTaskUnderSubject(container: workflows.UserTask): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createInWorkflowUnderSubject(container: workflows.Workflow): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

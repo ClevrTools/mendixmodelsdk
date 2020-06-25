@@ -3786,6 +3786,11 @@ export declare namespace pages {
         set entityRef(newValue: domainmodels.EntityRef | null);
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): number;
+        set numberOfPagesToClose(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
@@ -19663,6 +19668,11 @@ export declare namespace pages {
          * In version 7.17.0: introduced
          */
         get pagesForSpecializations(): internal.IList<PageForSpecialization>;
+        /**
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): number;
+        set numberOfPagesToClose(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
@@ -22766,6 +22776,10 @@ export declare namespace pages {
          * In version 8.4.0: introduced
          */
         get usedAssociations(): internal.IList<string>;
+        /**
+         * In version 8.11.0: introduced
+         */
+        get usedAttributes(): internal.IList<string>;
         /**
          * In version 8.4.0: deleted
          */

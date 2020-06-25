@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.JavaScriptSerializer = void 0;
 const properties = require("../internal/properties");
 const units = require("../internal/units");
 var PropertyKind;

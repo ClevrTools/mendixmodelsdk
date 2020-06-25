@@ -526,6 +526,12 @@ export declare namespace settings {
         get containerAsProjectSettings(): ProjectSettings;
         get enabled(): boolean;
         set enabled(newValue: boolean);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get userEntity(): domainmodels.IEntity | null;
+        set userEntity(newValue: domainmodels.IEntity | null);
+        get userEntityQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
@@ -545,5 +551,6 @@ export declare namespace settings {
     }
 }
 import { constants } from "./constants";
+import { domainmodels } from "./domainmodels";
 import { microflows } from "./microflows";
 import { IModel } from "./base-model";

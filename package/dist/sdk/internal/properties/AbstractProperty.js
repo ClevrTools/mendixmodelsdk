@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AbstractProperty = void 0;
 /**
  * Abstract base wrapper for property values/settings.
  * All values/settings of ModelElement-s are wrapped in the appropriate way.

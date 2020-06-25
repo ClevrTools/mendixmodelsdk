@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeltaReverser = void 0;
 const units_1 = require("../units");
 const deltaUtils = require("./deltaUtils");
 class DeltaReverser {

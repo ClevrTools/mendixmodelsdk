@@ -12,6 +12,7 @@ import { importmappings } from "./importmappings";
 import { javaactions } from "./javaactions";
 import { javascriptactions } from "./javascriptactions";
 import { jsonstructures } from "./jsonstructures";
+import { kafka } from "./kafka";
 import { mappings } from "./mappings";
 import { menus } from "./menus";
 import { messagedefinitions } from "./messagedefinitions";
@@ -34,6 +35,7 @@ export interface IBaseModel extends IAbstractModel {
     allCodeActions(): codeactions.ICodeAction[];
     allConstants(): constants.IConstant[];
     allConsumedAppServices(): appservices.IConsumedAppService[];
+    allConsumedKafkaServices(): kafka.IConsumedKafkaService[];
     allConsumedODataServices(): rest.IConsumedODataService[];
     allDataSets(): datasets.IDataSet[];
     allDocuments(): projects.IDocument[];
@@ -106,6 +108,7 @@ export interface IBaseModel extends IAbstractModel {
     findJavaScriptActionByQualifiedName(qname: string): javascriptactions.IJavaScriptAction | null;
     findJavaScriptActionParameterByQualifiedName(qname: string): javascriptactions.IJavaScriptActionParameter | null;
     findJsonStructureByQualifiedName(qname: string): jsonstructures.IJsonStructure | null;
+    findConsumedKafkaServiceByQualifiedName(qname: string): kafka.IConsumedKafkaService | null;
     findMenuDocumentByQualifiedName(qname: string): menus.IMenuDocument | null;
     findMessageDefinitionByQualifiedName(qname: string): messagedefinitions.IMessageDefinition | null;
     findMicroflowByQualifiedName(qname: string): microflows.IMicroflow | null;
@@ -138,6 +141,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allCodeActions(): codeactions.ICodeAction[];
     allConstants(): constants.IConstant[];
     allConsumedAppServices(): appservices.IConsumedAppService[];
+    allConsumedKafkaServices(): kafka.IConsumedKafkaService[];
     allConsumedODataServices(): rest.IConsumedODataService[];
     allDataSets(): datasets.IDataSet[];
     allDocuments(): projects.IDocument[];
@@ -210,6 +214,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findJavaScriptActionByQualifiedName(qname: string): javascriptactions.IJavaScriptAction | null;
     findJavaScriptActionParameterByQualifiedName(qname: string): javascriptactions.IJavaScriptActionParameter | null;
     findJsonStructureByQualifiedName(qname: string): jsonstructures.IJsonStructure | null;
+    findConsumedKafkaServiceByQualifiedName(qname: string): kafka.IConsumedKafkaService | null;
     findMenuDocumentByQualifiedName(qname: string): menus.IMenuDocument | null;
     findMessageDefinitionByQualifiedName(qname: string): messagedefinitions.IMessageDefinition | null;
     findMicroflowByQualifiedName(qname: string): microflows.IMicroflow | null;

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.StructuralChildListProperty = exports.StructuralChildProperty = void 0;
 const mobx_1 = require("mobx");
 const AbstractProperty_1 = require("./AbstractProperty");
 /**

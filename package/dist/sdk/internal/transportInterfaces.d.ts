@@ -21,6 +21,7 @@ export interface IWorkingCopyMetaData {
     avatarUrl: string;
     projectId: string;
     metaModelVersion: string;
+    teamServerBaseCommitHash?: string;
     teamServerBaseRevision?: number;
     teamServerBaseBranch?: string;
 }

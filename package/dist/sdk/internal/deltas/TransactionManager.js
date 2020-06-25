@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.runInTransaction = exports.beginTransaction = exports.TransactionManager = exports.Transaction = void 0;
 const EventEmitter_1 = require("../EventEmitter");
 const elements_1 = require("../elements");
 const deltaUtils_1 = require("./deltaUtils");

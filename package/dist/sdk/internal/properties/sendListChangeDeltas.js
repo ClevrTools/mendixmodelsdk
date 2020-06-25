@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sendListChangeDeltas = void 0;
 const utils_1 = require("../../utils");
 function sendListChangeDeltas(property, change) {
     switch (change.type) {

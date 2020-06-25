@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeltaProcessor = void 0;
 const util = require("util");
 const units_1 = require("../units");
 const elements_1 = require("../elements");

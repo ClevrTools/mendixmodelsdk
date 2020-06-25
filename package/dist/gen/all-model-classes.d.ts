@@ -18,6 +18,7 @@ export * from "./importmappings";
 export * from "./javaactions";
 export * from "./javascriptactions";
 export * from "./jsonstructures";
+export * from "./kafka";
 export * from "./mappings";
 export * from "./menus";
 export * from "./messagedefinitions";

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.promiseOrCallbacks = void 0;
 function promiseOrCallbacks(action, callback, errorCallback) {
     if (callback) {
         action(callback, errorCallback);

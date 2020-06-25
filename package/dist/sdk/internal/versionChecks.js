@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isAtLeast = exports.createInVersionCheck = exports.PropertyVersionInfo = exports.StructureVersionInfo = exports.VersionInfo = exports.StructureType = exports.ModifierValueHistory = exports.LifeCycle = exports.LifeCycleState = exports.parseAsNormalizedVersion = exports.Version = exports.contains = void 0;
 function contains(range, version) {
     if (range.start) {
         if (!Version.parse(range.start).isBeforeOrEqual(version)) {
@@ -14,74 +15,77 @@ function contains(range, version) {
     return true;
 }
 exports.contains = contains;
-class Version {
-    constructor(major, minor, patch) {
-        this.major = major;
-        this.minor = minor;
-        this.patch = patch;
-        // (empty constructor)
-    }
-    /**
-     * Parses and @returns the given string as a Version object.
-     *
-     * This function is memoised to keep memory and time consumption low,
-     * given that only a handful of versions exist at any time anyway.
-     */
-    static parse(versionString) {
-        if (!versionString) {
-            throw new Error("versionString is null or undefined");
+let Version = /** @class */ (() => {
+    class Version {
+        constructor(major, minor, patch) {
+            this.major = major;
+            this.minor = minor;
+            this.patch = patch;
+            // (empty constructor)
         }
-        let version = Version.memoisMap[versionString];
-        if (!version) {
-            const [major, minor, patch] = versionString.split(".").map(x => parseInt(x, 10));
-            version = new Version(major, minor, patch);
-            Version.memoisMap[versionString] = version;
+        /**
+         * Parses and @returns the given string as a Version object.
+         *
+         * This function is memoised to keep memory and time consumption low,
+         * given that only a handful of versions exist at any time anyway.
+         */
+        static parse(versionString) {
+            if (!versionString) {
+                throw new Error("versionString is null or undefined");
+            }
+            let version = Version.memoisMap[versionString];
+            if (!version) {
+                const [major, minor, patch] = versionString.split(".").map(x => parseInt(x, 10));
+                version = new Version(major, minor, patch);
+                Version.memoisMap[versionString] = version;
+            }
+            return version;
         }
-        return version;
-    }
-    /**
-     * Returns 0 if this version is equal to the other version.
-     * Returns a negative integer if this version is strictly smaller than the other version.
-     * Returns a positive integer if this version is strictly larger than the other version.
-     */
-    compare(other) {
-        let diff = this.major - other.major;
-        if (diff !== 0) {
-            return diff;
+        /**
+         * Returns 0 if this version is equal to the other version.
+         * Returns a negative integer if this version is strictly smaller than the other version.
+         * Returns a positive integer if this version is strictly larger than the other version.
+         */
+        compare(other) {
+            let diff = this.major - other.major;
+            if (diff !== 0) {
+                return diff;
+            }
+            diff = this.minor - other.minor;
+            if (diff !== 0) {
+                return diff;
+            }
+            return this.patch - other.patch;
         }
-        diff = this.minor - other.minor;
-        if (diff !== 0) {
-            return diff;
+        /**
+         * Returns true if this version is strictly larger than the provided version.
+         */
+        isAfter(other) {
+            return this.compare(other) > 0;
         }
-        return this.patch - other.patch;
+        isAfterOrEqual(other) {
+            return this.compare(other) >= 0;
+        }
+        /**
+         * Returns true if this version is strictly smaller compared to the provided version.
+         */
+        isBefore(other) {
+            return this.compare(other) < 0;
+        }
+        isBeforeOrEqual(other) {
+            return this.compare(other) <= 0;
+        }
+        isEqualTo(other) {
+            return this.compare(other) === 0;
+        }
+        toString() {
+            return `${this.major}.${this.minor}.${this.patch}`;
+        }
     }
-    /**
-     * Returns true if this version is strictly larger than the provided version.
-     */
-    isAfter(other) {
-        return this.compare(other) > 0;
-    }
-    isAfterOrEqual(other) {
-        return this.compare(other) >= 0;
-    }
-    /**
-     * Returns true if this version is strictly smaller compared to the provided version.
-     */
-    isBefore(other) {
-        return this.compare(other) < 0;
-    }
-    isBeforeOrEqual(other) {
-        return this.compare(other) <= 0;
-    }
-    isEqualTo(other) {
-        return this.compare(other) === 0;
-    }
-    toString() {
-        return `${this.major}.${this.minor}.${this.patch}`;
-    }
-}
+    Version.memoisMap = {};
+    return Version;
+})();
 exports.Version = Version;
-Version.memoisMap = {};
 /**
  * Parses the given string as a sem-Version, ignoring non-numeric and "extra" data,
  * and padding with ".0" where necessary.

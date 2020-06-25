@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UndoState = exports.UndoManager = void 0;
 const mobx_1 = require("mobx");
 const deepEqual = require("deep-equal");
 const units_1 = require("./units");
@@ -88,72 +89,75 @@ class UndoManager {
     }
 }
 exports.UndoManager = UndoManager;
-class UndoState {
-    constructor(deltaManager) {
-        this.deltaManager = deltaManager;
-        this.history = [];
-        this.future = [];
-        this.pendingChange = [];
-        this.containsCreateUnitTreeDeltaChange = false;
-    }
-    get canUndo() {
-        return this.history.length > 0;
-    }
-    get canRedo() {
-        return this.future.length > 0;
-    }
-    undo() {
-        if (!this.canUndo) {
-            throw new Error("No undo actions available");
+let UndoState = /** @class */ (() => {
+    class UndoState {
+        constructor(deltaManager) {
+            this.deltaManager = deltaManager;
+            this.history = [];
+            this.future = [];
+            this.pendingChange = [];
+            this.containsCreateUnitTreeDeltaChange = false;
         }
-        if (this.pendingChange.length > 0) {
-            throw new Error("Cannot undo when there are pending changes");
+        get canUndo() {
+            return this.history.length > 0;
         }
-        const change = this.history.pop();
-        this.deltaManager.processDeltas(change.map(t => t.reversedDelta).reverse());
-        this.future.push(change);
-    }
-    redo() {
-        if (!this.canRedo) {
-            throw new Error("No redo actions available");
+        get canRedo() {
+            return this.future.length > 0;
         }
-        if (this.pendingChange.length > 0) {
-            throw new Error("Cannot redo when there are pending changes");
+        undo() {
+            if (!this.canUndo) {
+                throw new Error("No undo actions available");
+            }
+            if (this.pendingChange.length > 0) {
+                throw new Error("Cannot undo when there are pending changes");
+            }
+            const change = this.history.pop();
+            this.deltaManager.processDeltas(change.map(t => t.reversedDelta).reverse());
+            this.future.push(change);
         }
-        const change = this.future.pop();
-        this.deltaManager.processDeltas(change.map(t => t.delta));
-        this.history.push(change);
-    }
-    clear() {
-        this.history.splice(0, this.history.length);
-        this.future.splice(0, this.future.length);
-    }
-    /** @internal */
-    changeCompleted() {
-        if (!this.containsCreateUnitTreeDeltaChange) {
-            this.history.push(this.pendingChange.slice());
+        redo() {
+            if (!this.canRedo) {
+                throw new Error("No redo actions available");
+            }
+            if (this.pendingChange.length > 0) {
+                throw new Error("Cannot redo when there are pending changes");
+            }
+            const change = this.future.pop();
+            this.deltaManager.processDeltas(change.map(t => t.delta));
+            this.history.push(change);
+        }
+        clear() {
+            this.history.splice(0, this.history.length);
             this.future.splice(0, this.future.length);
         }
-        this.pendingChange = [];
+        /** @internal */
+        changeCompleted() {
+            if (!this.containsCreateUnitTreeDeltaChange) {
+                this.history.push(this.pendingChange.slice());
+                this.future.splice(0, this.future.length);
+            }
+            this.pendingChange = [];
+        }
     }
-}
-__decorate([
-    mobx_1.observable.shallow
-], UndoState.prototype, "history", void 0);
-__decorate([
-    mobx_1.observable.shallow
-], UndoState.prototype, "future", void 0);
-__decorate([
-    mobx_1.computed
-], UndoState.prototype, "canUndo", null);
-__decorate([
-    mobx_1.computed
-], UndoState.prototype, "canRedo", null);
-__decorate([
-    mobx_1.action
-], UndoState.prototype, "undo", null);
-__decorate([
-    mobx_1.action
-], UndoState.prototype, "redo", null);
+    __decorate([
+        mobx_1.observable.shallow
+    ], UndoState.prototype, "history", void 0);
+    __decorate([
+        mobx_1.observable.shallow
+    ], UndoState.prototype, "future", void 0);
+    __decorate([
+        mobx_1.computed
+    ], UndoState.prototype, "canUndo", null);
+    __decorate([
+        mobx_1.computed
+    ], UndoState.prototype, "canRedo", null);
+    __decorate([
+        mobx_1.action
+    ], UndoState.prototype, "undo", null);
+    __decorate([
+        mobx_1.action
+    ], UndoState.prototype, "redo", null);
+    return UndoState;
+})();
 exports.UndoState = UndoState;
 //# sourceMappingURL=UndoManager.js.map

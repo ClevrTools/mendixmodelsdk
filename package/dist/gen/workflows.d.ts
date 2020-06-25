@@ -41,6 +41,84 @@ export declare namespace workflows {
      *
      * In version 8.10.0: introduced
      */
+    interface IWorkflowTask extends IWorkflowActivity, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        readonly name: string;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        readonly possibleOutcomes: internal.IList<IWorkflowTaskOutcome>;
+        asLoaded(): WorkflowTask;
+        load(callback: (element: WorkflowTask) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WorkflowTask>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
+    abstract class WorkflowTask extends WorkflowActivity implements IWorkflowTask {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsWorkflow(): Workflow;
+        get name(): string;
+        set name(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get possibleOutcomes(): internal.IList<WorkflowTaskOutcome>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.11.0: introduced
+     */
+    interface ICallMicroflowTask extends IWorkflowTask {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        asLoaded(): CallMicroflowTask;
+        load(callback: (element: CallMicroflowTask) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CallMicroflowTask>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.11.0: introduced
+     */
+    class CallMicroflowTask extends WorkflowTask implements ICallMicroflowTask {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsWorkflow(): Workflow;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * The new CallMicroflowTask will be automatically stored in the 'activities' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createIn(container: Workflow): CallMicroflowTask;
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallMicroflowTask;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
     interface IEndWorkflowActivity extends IWorkflowActivity {
         readonly model: IModel;
         readonly containerAsWorkflow: IWorkflow;
@@ -230,38 +308,14 @@ export declare namespace workflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.10.0: introduced
+     * In version 8.11.0: introduced
      */
-    interface IWorkflowTask extends IWorkflowActivity, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsWorkflow: IWorkflow;
-        readonly name: string;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        readonly possibleOutcomes: internal.IList<IWorkflowTaskOutcome>;
-        asLoaded(): WorkflowTask;
-        load(callback: (element: WorkflowTask) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<WorkflowTask>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.10.0: introduced
-     */
-    abstract class WorkflowTask extends WorkflowActivity implements IWorkflowTask {
+    abstract class UserSource extends internal.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         model: IModel;
-        get containerAsWorkflow(): Workflow;
-        get name(): string;
-        set name(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get possibleOutcomes(): internal.IList<WorkflowTaskOutcome>;
+        get containerAsUserTask(): UserTask;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        get qualifiedName(): string | null;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
@@ -292,9 +346,19 @@ export declare namespace workflows {
         set subject(newValue: microflows.StringTemplate);
         get description(): microflows.StringTemplate;
         set description(newValue: microflows.StringTemplate);
+        /**
+         * In version 8.11.0: deleted
+         */
         get userRole(): security.IUserRole | null;
         set userRole(newValue: security.IUserRole | null);
         get userRoleQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * In version 8.11.0: introduced
+         */
+        get userSource(): UserSource;
+        set userSource(newValue: UserSource);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
@@ -355,6 +419,17 @@ export declare namespace workflows {
         set title(newValue: string);
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get subject(): microflows.StringTemplate;
+        set subject(newValue: microflows.StringTemplate);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get overviewPage(): pages.IPage | null;
+        set overviewPage(newValue: pages.IPage | null);
+        get overviewPageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Workflow unit in the SDK and on the server.
@@ -371,6 +446,10 @@ export declare namespace workflows {
         readonly model: IModel;
         readonly containerAsWorkflowTask: IWorkflowTask;
         readonly name: string;
+        /**
+         * In version 8.11.0: introduced
+         */
+        readonly caption: string;
         asLoaded(): WorkflowTaskOutcome;
         load(callback: (element: WorkflowTaskOutcome) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<WorkflowTaskOutcome>;
@@ -387,6 +466,11 @@ export declare namespace workflows {
         get containerAsWorkflowTask(): WorkflowTask;
         get name(): string;
         set name(newValue: string);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get caption(): string;
+        set caption(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WorkflowTaskOutcome instance in the SDK and on the server.
@@ -404,6 +488,38 @@ export declare namespace workflows {
          */
         static create(model: IModel): WorkflowTaskOutcome;
         get qualifiedName(): string | null;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.11.0: introduced
+     */
+    class XPathBasedUserSource extends UserSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsUserTask(): UserTask;
+        /**
+         * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
+         */
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new XPathBasedUserSource instance in the SDK and on the server.
+         * The new XPathBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createIn(container: UserTask): XPathBasedUserSource;
+        /**
+         * Creates and returns a new XPathBasedUserSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): XPathBasedUserSource;
     }
 }
 import { domainmodels } from "./domainmodels";

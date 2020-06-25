@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelEventManager = void 0;
 const mobx_1 = require("mobx");
 const EventEmitter_1 = require("../EventEmitter");
 const ModelEventReceiver_1 = require("./ModelEventReceiver");

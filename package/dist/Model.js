@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Model = void 0;
 const base = require("./gen/base-model");
 const ModelSdkClientImpl_1 = require("./ModelSdkClientImpl");
 /**

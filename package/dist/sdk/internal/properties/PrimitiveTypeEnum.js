@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PrimitiveTypeEnum = void 0;
 /**
  * All primitive types.
  * Note: must match exactly with MxPrimitiveTypeEnum!

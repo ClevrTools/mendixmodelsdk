@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeUselessDeltas = exports.rawValue = exports.rawList = exports.getContainmentInfo = exports.checkMutator = exports.checkUpdateOrRemovalIndex = exports.checkInsertionIndex = exports.isListProperty = exports.getUnit = exports.updateStructure = exports.asModelUnit = exports.getElementNotFoundError = exports.findElement = exports.getElement = exports.getProperty = void 0;
 const util = require("util");
 const units_1 = require("../units");
 const properties_1 = require("../properties");

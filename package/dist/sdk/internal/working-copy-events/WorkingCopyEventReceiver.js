@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkingCopyEventReceiver = void 0;
 const EventSource = require("eventsource");
 const EventEmitter_1 = require("../EventEmitter");
 class WorkingCopyEventReceiver {
