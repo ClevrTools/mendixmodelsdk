@@ -585,6 +585,10 @@ var navigation;
                 /** @internal */
                 this.__applicationTitle = new internal.PrimitiveProperty(NavigationProfile, this, "applicationTitle", "", internal.PrimitiveTypeEnum.String);
                 /** @internal */
+                this.__appTitle = new internal.PartProperty(NavigationProfile, this, "appTitle", null, true);
+                /** @internal */
+                this.__appIcon = new internal.ByNameReferenceProperty(NavigationProfile, this, "appIcon", null, "Images$Image");
+                /** @internal */
                 this.__loginPageSettings = new internal.PartProperty(NavigationProfile, this, "loginPageSettings", null, true);
                 /** @internal */
                 this.__menuItemCollection = new internal.PartProperty(NavigationProfile, this, "menuItemCollection", null, true);
@@ -634,11 +638,35 @@ var navigation;
             get roleBasedHomePages() {
                 return this.__roleBasedHomePages.get();
             }
+            /**
+             * In version 8.12.0: deleted
+             */
             get applicationTitle() {
                 return this.__applicationTitle.get();
             }
             set applicationTitle(newValue) {
                 this.__applicationTitle.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get appTitle() {
+                return this.__appTitle.get();
+            }
+            set appTitle(newValue) {
+                this.__appTitle.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get appIcon() {
+                return this.__appIcon.get();
+            }
+            set appIcon(newValue) {
+                this.__appIcon.set(newValue);
+            }
+            get appIconQualifiedName() {
+                return this.__appIcon.qualifiedName();
             }
             /**
              * In version 7.0.2: introduced
@@ -800,13 +828,27 @@ var navigation;
             /** @internal */
             _initializeDefaultProperties() {
                 super._initializeDefaultProperties();
-                (() => {
-                    if (internal.isAtLeast("6.9.0", this.model)) {
-                        this.applicationTitle = "Mendix";
-                        return;
-                    }
-                    this.applicationTitle = "Mendix 5";
-                })();
+                if (this.__appTitle.isAvailable) {
+                    this.appTitle = ((text) => {
+                        text.translations.replace([
+                            ((translation) => {
+                                translation.languageCode = "en_US";
+                                translation.text = "Mendix";
+                                return translation;
+                            })(texts_1.texts.Translation.create(this.model))
+                        ]);
+                        return text;
+                    })(texts_1.texts.Text.create(this.model));
+                }
+                if (this.__applicationTitle.isAvailable) {
+                    (() => {
+                        if (internal.isAtLeast("6.9.0", this.model)) {
+                            this.applicationTitle = "Mendix";
+                            return;
+                        }
+                        this.applicationTitle = "Mendix 5";
+                    })();
+                }
                 if (this.__enabled.isAvailable) {
                     (() => {
                         if (internal.isAtLeast("6.9.0", this.model)) {
@@ -852,7 +894,19 @@ var navigation;
                         currentValue: true
                     }
                 },
-                applicationTitle: {},
+                applicationTitle: {
+                    deleted: "8.12.0",
+                    deletionMessage: "Use property 'appTitle' instead"
+                },
+                appTitle: {
+                    introduced: "8.12.0",
+                    required: {
+                        currentValue: true
+                    }
+                },
+                appIcon: {
+                    introduced: "8.12.0"
+                },
                 loginPageSettings: {
                     introduced: "7.0.2",
                     required: {
@@ -1112,4 +1166,5 @@ var navigation;
 })(navigation = exports.navigation || (exports.navigation = {}));
 const menus_1 = require("./menus");
 const pages_1 = require("./pages");
+const texts_1 = require("./texts");
 //# sourceMappingURL=navigation.js.map

@@ -43,7 +43,7 @@ export declare namespace menus {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-item relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/menu relevant section in reference guide}
      */
     class MenuItem extends MenuItemContainer {
         static structureTypeName: string;
@@ -54,6 +54,11 @@ export declare namespace menus {
         set caption(newValue: texts.Text);
         get icon(): pages.Icon | null;
         set icon(newValue: pages.Icon | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get alternativeText(): texts.Text | null;
+        set alternativeText(newValue: texts.Text | null);
         get action(): pages.ClientAction;
         set action(newValue: pages.ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

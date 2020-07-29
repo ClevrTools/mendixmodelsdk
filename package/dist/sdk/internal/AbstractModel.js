@@ -105,7 +105,7 @@ let AbstractModel = /** @class */ (() => {
             });
         }
         /** @internal */
-        processUnitInterfaces(unitInterfaces, readOnly = false) {
+        processUnitInterfaces(unitInterfaces, isLoadable = true, isReadOnly = false) {
             mobx_1.runInAction(() => {
                 unitInterfaces.forEach(unitJson => instances_1.instancehelpers.abstractUnitJsonToInstance(this, unitJson, true));
                 unitInterfaces.forEach(unitJson => {
@@ -113,9 +113,8 @@ let AbstractModel = /** @class */ (() => {
                     if (!!unitJson.containerId) {
                         this._resolveContainer(unit, unitJson.containerId);
                     }
-                    if (readOnly) {
-                        unit._isReadOnly = true;
-                    }
+                    unit._isLoadable = isLoadable;
+                    unit._isReadOnly = isReadOnly;
                 });
                 this._qualifiedNameCache.addStructureToCache(this.root);
                 Object.keys(this._units).forEach(key => this._units[key].resolveByIdReferences());
@@ -219,8 +218,8 @@ let AbstractModel = /** @class */ (() => {
                 if (!unit) {
                     this.handleError("Unknown unit ID: " + id, reject);
                 }
-                else if (unit._isReadOnly) {
-                    throw new Error("Unit cannot be loaded because it is read-only");
+                else if (!unit.isLoadable) {
+                    throw new Error("Cannot load this unit");
                 }
                 else if (forceRefresh) {
                     // make sure we can load the unit again:
@@ -415,7 +414,7 @@ let AbstractModel = /** @class */ (() => {
             }
             // Set module container to the current project's root so it can resolve
             moduleStructure.containerId = this.root.id;
-            this.processUnitInterfaces(parsedStructures, true);
+            this.processUnitInterfaces(parsedStructures, false, true);
         }
         getFilePaths(callback, errorCallback) {
             return this.getFiles(callback, errorCallback);

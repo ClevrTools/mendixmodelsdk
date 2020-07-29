@@ -30,15 +30,17 @@ var kafka;
                 /** @internal */
                 this.__serviceId = new internal.PrimitiveProperty(ConsumedKafkaService, this, "serviceId", "", internal.PrimitiveTypeEnum.String);
                 /** @internal */
-                this.__metadata = new internal.PrimitiveProperty(ConsumedKafkaService, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+                this.__serviceFeed = new internal.PrimitiveProperty(ConsumedKafkaService, this, "serviceFeed", "", internal.PrimitiveTypeEnum.String);
                 /** @internal */
-                this.__entities = new internal.PartListProperty(ConsumedKafkaService, this, "entities", []);
+                this.__metadata = new internal.PrimitiveProperty(ConsumedKafkaService, this, "metadata", "", internal.PrimitiveTypeEnum.String);
                 /** @internal */
                 this.__brokerUrl = new internal.ByNameReferenceProperty(ConsumedKafkaService, this, "brokerUrl", null, "Constants$Constant");
                 /** @internal */
                 this.__brokerUsername = new internal.ByNameReferenceProperty(ConsumedKafkaService, this, "brokerUsername", null, "Constants$Constant");
                 /** @internal */
                 this.__brokerPassword = new internal.ByNameReferenceProperty(ConsumedKafkaService, this, "brokerPassword", null, "Constants$Constant");
+                /** @internal */
+                this.__entities = new internal.PartListProperty(ConsumedKafkaService, this, "entities", []);
                 this._containmentName = "documents";
             }
             get containerAsFolderBase() {
@@ -71,17 +73,20 @@ var kafka;
             set serviceId(newValue) {
                 this.__serviceId.set(newValue);
             }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get serviceFeed() {
+                return this.__serviceFeed.get();
+            }
+            set serviceFeed(newValue) {
+                this.__serviceFeed.set(newValue);
+            }
             get metadata() {
                 return this.__metadata.get();
             }
             set metadata(newValue) {
                 this.__metadata.set(newValue);
-            }
-            /**
-             * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-             */
-            get entities() {
-                return this.__entities.get();
             }
             get brokerUrl() {
                 return this.__brokerUrl.get();
@@ -111,6 +116,14 @@ var kafka;
                 return this.__brokerPassword.qualifiedName();
             }
             /**
+             * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+             *
+             * In version 8.12.0: deleted
+             */
+            get entities() {
+                return this.__entities.get();
+            }
+            /**
              * Creates a new ConsumedKafkaService unit in the SDK and on the server.
              * Expects one argument, the projects.IFolderBase in which this unit is contained.
              */
@@ -129,6 +142,15 @@ var kafka;
         ConsumedKafkaService.structureTypeName = "Kafka$ConsumedKafkaService";
         ConsumedKafkaService.versionInfo = new exports.StructureVersionInfo({
             introduced: "8.11.0",
+            properties: {
+                serviceFeed: {
+                    introduced: "8.12.0"
+                },
+                entities: {
+                    deleted: "8.12.0",
+                    deletionMessage: null
+                }
+            },
             experimental: {
                 currentValue: true
             }
@@ -139,7 +161,7 @@ var kafka;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.11.0: introduced
+     * In version 8.12.0: deleted
      */
     let KafkaAttribute = /** @class */ (() => {
         class KafkaAttribute extends internal.Element {
@@ -166,10 +188,10 @@ var kafka;
              * of the parent KafkaEntity element passed as argument.
              *
              * Warning! Can only be used on models with the following Mendix meta model versions:
-             *  8.11.0 and higher
+             *  6.0.0 to 8.11.0
              */
             static createIn(container) {
-                internal.createInVersionCheck(container.model, KafkaAttribute.structureTypeName, { start: "8.11.0" });
+                internal.createInVersionCheck(container.model, KafkaAttribute.structureTypeName, { end: "8.11.0" });
                 return internal.instancehelpers.createElement(container, KafkaAttribute, "attributes", true);
             }
             /**
@@ -187,7 +209,8 @@ var kafka;
         }
         KafkaAttribute.structureTypeName = "Kafka$KafkaAttribute";
         KafkaAttribute.versionInfo = new exports.StructureVersionInfo({
-            introduced: "8.11.0",
+            deleted: "8.12.0",
+            deletionMessage: null,
             experimental: {
                 currentValue: true
             }
@@ -198,7 +221,7 @@ var kafka;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.11.0: introduced
+     * In version 8.12.0: deleted
      */
     let KafkaEntity = /** @class */ (() => {
         class KafkaEntity extends internal.Element {
@@ -256,6 +279,18 @@ var kafka;
             }
             /**
              * Creates and returns a new KafkaEntity instance in the SDK and on the server.
+             * The new KafkaEntity will be automatically stored in the 'entities' property
+             * of the parent ConsumedKafkaService element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.11.0 to 8.11.0
+             */
+            static createIn(container) {
+                internal.createInVersionCheck(container.model, KafkaEntity.structureTypeName, { start: "8.11.0", end: "8.11.0" });
+                return internal.instancehelpers.createElement(container, KafkaEntity, "entities", true);
+            }
+            /**
+             * Creates and returns a new KafkaEntity instance in the SDK and on the server.
              * Expects one argument: the IModel object the instance will "live on".
              * After creation, assign or add this instance to a property that accepts this kind of objects.
              */
@@ -272,7 +307,8 @@ var kafka;
         }
         KafkaEntity.structureTypeName = "Kafka$KafkaEntity";
         KafkaEntity.versionInfo = new exports.StructureVersionInfo({
-            introduced: "8.11.0",
+            deleted: "8.12.0",
+            deletionMessage: null,
             properties: {
                 name: {
                     public: {
@@ -350,7 +386,7 @@ var kafka;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.11.0: introduced
+     * In version 8.12.0: deleted
      */
     let KafkaNavigationProperty = /** @class */ (() => {
         class KafkaNavigationProperty extends internal.Element {
@@ -377,10 +413,10 @@ var kafka;
              * of the parent KafkaEntity element passed as argument.
              *
              * Warning! Can only be used on models with the following Mendix meta model versions:
-             *  8.11.0 and higher
+             *  6.0.0 to 8.11.0
              */
             static createIn(container) {
-                internal.createInVersionCheck(container.model, KafkaNavigationProperty.structureTypeName, { start: "8.11.0" });
+                internal.createInVersionCheck(container.model, KafkaNavigationProperty.structureTypeName, { end: "8.11.0" });
                 return internal.instancehelpers.createElement(container, KafkaNavigationProperty, "navigationProperties", true);
             }
             /**
@@ -398,7 +434,8 @@ var kafka;
         }
         KafkaNavigationProperty.structureTypeName = "Kafka$KafkaNavigationProperty";
         KafkaNavigationProperty.versionInfo = new exports.StructureVersionInfo({
-            introduced: "8.11.0",
+            deleted: "8.12.0",
+            deletionMessage: null,
             experimental: {
                 currentValue: true
             }
@@ -419,6 +456,8 @@ var kafka;
                 this.__sourceDocument = new internal.ByNameReferenceProperty(KafkaRemoteEntitySource, this, "sourceDocument", null, "Kafka$ConsumedKafkaService");
                 /** @internal */
                 this.__remoteName = new internal.PrimitiveProperty(KafkaRemoteEntitySource, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+                /** @internal */
+                this.__topicName = new internal.PrimitiveProperty(KafkaRemoteEntitySource, this, "topicName", "", internal.PrimitiveTypeEnum.String);
                 if (arguments.length < 4) {
                     throw new Error("new KafkaRemoteEntitySource() cannot be invoked directly, please use 'model.kafka.createKafkaRemoteEntitySource()'");
                 }
@@ -443,6 +482,15 @@ var kafka;
             }
             set remoteName(newValue) {
                 this.__remoteName.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get topicName() {
+                return this.__topicName.get();
+            }
+            set topicName(newValue) {
+                this.__topicName.set(newValue);
             }
             /**
              * Creates and returns a new KafkaRemoteEntitySource instance in the SDK and on the server.
@@ -472,6 +520,11 @@ var kafka;
         KafkaRemoteEntitySource.structureTypeName = "Kafka$KafkaRemoteEntitySource";
         KafkaRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
             introduced: "8.11.0",
+            properties: {
+                topicName: {
+                    introduced: "8.12.0"
+                }
+            },
             public: {
                 currentValue: true
             },

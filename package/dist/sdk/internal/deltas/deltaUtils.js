@@ -50,14 +50,17 @@ function asModelUnit(unit, delta) {
     return unit;
 }
 exports.asModelUnit = asModelUnit;
-function updateStructure(structure, updateAction) {
+function updateStructure(structure, isReverting, updateAction) {
     const oldIsUpdating = structure._isUpdating;
+    const oldIsReverting = structure._isReverting;
     structure._isUpdating = true;
+    structure._isReverting = isReverting;
     try {
         updateAction();
     }
     finally {
         structure._isUpdating = oldIsUpdating;
+        structure._isReverting = oldIsReverting;
     }
 }
 exports.updateStructure = updateStructure;

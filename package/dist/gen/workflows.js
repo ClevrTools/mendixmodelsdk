@@ -32,6 +32,9 @@ var workflows;
             get containerAsWorkflow() {
                 return super.getContainerAs(Workflow);
             }
+            /**
+             * In version 8.12.0: added public
+             */
             get caption() {
                 return this.__caption.get();
             }
@@ -59,6 +62,14 @@ var workflows;
         WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
         WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
             introduced: "8.10.0",
+            properties: {
+                caption: {
+                    public: {
+                        currentValue: true,
+                        changedIn: ["8.12.0"]
+                    }
+                }
+            },
             public: {
                 currentValue: true
             },

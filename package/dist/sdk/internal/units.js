@@ -15,6 +15,8 @@ class AbstractUnit extends structures_1.Structure {
         /** @internal */
         this._isLoading = false;
         /** @internal */
+        this._isLoadable = true;
+        /** @internal */
         this._isReadOnly = false;
         /** @internal */
         this._afterLoadCallbacks = [];
@@ -25,6 +27,12 @@ class AbstractUnit extends structures_1.Structure {
      */
     get isLoaded() {
         return !this._isPartial;
+    }
+    get isLoadable() {
+        return this._isLoadable;
+    }
+    get isReadOnly() {
+        return this._isReadOnly;
     }
     /** @internal */
     _markNotLoaded() {
@@ -156,6 +164,8 @@ class ModelUnit extends elements_1.AbstractElement {
         /** @internal */
         this._isLoading = false;
         /** @internal */
+        this._isLoadable = true;
+        /** @internal */
         this._isReadOnly = false;
         /* mimics multiple inheritance */
         /** @internal */
@@ -206,6 +216,12 @@ class ModelUnit extends elements_1.AbstractElement {
     }
     get isLoaded() {
         return !this._isPartial;
+    }
+    get isLoadable() {
+        return this._isLoadable;
+    }
+    get isReadOnly() {
+        return this._isReadOnly;
     }
     /** @internal */
     _dispose() {

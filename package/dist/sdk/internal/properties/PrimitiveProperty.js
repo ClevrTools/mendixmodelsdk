@@ -33,7 +33,10 @@ class PrimitiveProperty extends AbstractProperty_1.AbstractProperty {
         return value;
     }
     beforeChange(change) {
-        utils_1.utils.assertNotNull(change.newValue, this.name);
+        // skip check if reverting to a previous value since we assume the previous value is always valid
+        if (!this.parent._isReverting) {
+            utils_1.utils.assertNotNull(change.newValue, this.name);
+        }
         if (this.shouldHandleChange()) {
             this.parent._sendChangeDelta(this.name, this.getRawValue(change.newValue));
         }

@@ -36,7 +36,7 @@ class AbstractProperty {
     }
     /** @internal */
     assertWritable() {
-        if (this.parent.unit && this.parent.unit._isReadOnly) {
+        if (this.parent.unit && this.parent.unit.isReadOnly) {
             throw new Error("Cannot write properties within a readonly unit");
         }
         this.parent._assertLoaded(this);

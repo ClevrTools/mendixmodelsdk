@@ -816,7 +816,7 @@ var microflows;
     })();
     microflows.Flow = Flow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/annotation relevant section in reference guide}
      */
     let AnnotationFlow = /** @class */ (() => {
         class AnnotationFlow extends Flow {
@@ -1896,7 +1896,7 @@ var microflows;
     })();
     microflows.ChangeVariableAction = ChangeVariableAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/Close+Form relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/close-page relevant section in reference guide}
      */
     let CloseFormAction = /** @class */ (() => {
         class CloseFormAction extends MicroflowAction {
@@ -3294,7 +3294,7 @@ var microflows;
     })();
     microflows.ExclusiveMerge = ExclusiveMerge;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/exclusive-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/decisions relevant section in reference guide}
      */
     let ExclusiveSplit = /** @class */ (() => {
         class ExclusiveSplit extends MicroflowObject {
@@ -5158,7 +5158,7 @@ var microflows;
     })();
     microflows.InheritanceCase = InheritanceCase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/inheritance-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/object-type-decision relevant section in reference guide}
      */
     let InheritanceSplit = /** @class */ (() => {
         class InheritanceSplit extends MicroflowObject {
@@ -8800,7 +8800,7 @@ var microflows;
     })();
     microflows.ShowMessageAction = ShowMessageAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/Show+Page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/show-page relevant section in reference guide}
      */
     let ShowPageAction = /** @class */ (() => {
         class ShowPageAction extends MicroflowAction {
@@ -9232,6 +9232,9 @@ var microflows;
             }
             get containerAsValidationFeedbackAction() {
                 return super.getContainerAs(ValidationFeedbackAction);
+            }
+            get containerAsPageSettings() {
+                return super.getContainerAs(pages_1.pages.PageSettings);
             }
             get containerAsUserTask() {
                 return super.getContainerAs(workflows_1.workflows.UserTask);
@@ -9730,6 +9733,9 @@ var microflows;
             get containerAsValidationFeedbackAction() {
                 return super.getContainerAs(ValidationFeedbackAction);
             }
+            get containerAsPageSettings() {
+                return super.getContainerAs(pages_1.pages.PageSettings);
+            }
             get text() {
                 return this.__text.get();
             }
@@ -9751,6 +9757,18 @@ var microflows;
              */
             static createInValidationFeedbackActionUnderFeedbackTemplate(container) {
                 return internal.instancehelpers.createElement(container, TextTemplate, "feedbackTemplate", false);
+            }
+            /**
+             * Creates and returns a new TextTemplate instance in the SDK and on the server.
+             * The new TextTemplate will be automatically stored in the 'titleOverride' property
+             * of the parent pages.PageSettings element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.12.0 and higher
+             */
+            static createInPageSettingsUnderTitleOverride(container) {
+                internal.createInVersionCheck(container.model, TextTemplate.structureTypeName, { start: "8.12.0" });
+                return internal.instancehelpers.createElement(container, TextTemplate, "titleOverride", false);
             }
             /**
              * Creates and returns a new TextTemplate instance in the SDK and on the server.

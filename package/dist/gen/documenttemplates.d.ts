@@ -120,7 +120,7 @@ export declare namespace documenttemplates {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/data-grid-document-template relevant section in reference guide}
      */
     class DataGrid extends Grid {
         static structureTypeName: string;
@@ -151,7 +151,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGrid;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
      */
     class DataGridCell extends internal.Element {
         static structureTypeName: string;
@@ -181,7 +181,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGridCell;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
      */
     class DataGridColumn extends internal.Element {
         static structureTypeName: string;
@@ -225,7 +225,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGridColumn;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/data-view-document-template relevant section in reference guide}
      */
     class DataView extends EntityWidget {
         static structureTypeName: string;
@@ -382,7 +382,7 @@ export declare namespace documenttemplates {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-document-template relevant section in reference guide}
      */
     class DynamicImageViewer extends EntityWidget {
         static structureTypeName: string;
@@ -420,7 +420,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DynamicImageViewer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-document-template relevant section in reference guide}
      */
     class DynamicLabel extends AttributeWidget {
         static structureTypeName: string;
@@ -455,7 +455,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DynamicLabel;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/footer-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/footer-document-template relevant section in reference guide}
      */
     class Footer extends DropZone {
         static structureTypeName: string;
@@ -535,7 +535,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): GridSortItem;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/header-document-template relevant section in reference guide}
      */
     class Header extends DropZone {
         static structureTypeName: string;
@@ -559,7 +559,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): Header;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/line-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/line-break-document-template relevant section in reference guide}
      */
     class LineBreak extends Widget {
         static structureTypeName: string;
@@ -588,7 +588,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): LineBreak;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/page-break-document-template relevant section in reference guide}
      */
     class PageBreak extends Widget {
         static structureTypeName: string;
@@ -617,7 +617,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): PageBreak;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/static-image-document-template relevant section in reference guide}
      */
     class StaticImageViewer extends Widget {
         static structureTypeName: string;
@@ -653,7 +653,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): StaticImageViewer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/static-label-document-template relevant section in reference guide}
      */
     class StaticLabel extends Widget {
         static structureTypeName: string;
@@ -816,7 +816,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): Style;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/table-document-template relevant section in reference guide}
      */
     class Table extends Widget {
         static structureTypeName: string;
@@ -853,7 +853,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): Table;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cell-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/cell-document-template relevant section in reference guide}
      */
     class TableCell extends DropZone {
         static structureTypeName: string;
@@ -883,7 +883,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): TableCell;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/row-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/row-document-template relevant section in reference guide}
      */
     class TableRow extends internal.Element {
         static structureTypeName: string;
@@ -908,7 +908,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): TableRow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/template-grid-document-template relevant section in reference guide}
      */
     class TemplateGrid extends Grid {
         static structureTypeName: string;
@@ -968,7 +968,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): TemplateGridContents;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/title-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/title-document-template relevant section in reference guide}
      */
     class Title extends Widget {
         static structureTypeName: string;

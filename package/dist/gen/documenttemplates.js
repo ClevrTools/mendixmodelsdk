@@ -342,7 +342,7 @@ var documenttemplates;
     })();
     documenttemplates.Grid = Grid;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/data-grid-document-template relevant section in reference guide}
      */
     let DataGrid = /** @class */ (() => {
         class DataGrid extends Grid {
@@ -405,7 +405,7 @@ var documenttemplates;
     })();
     documenttemplates.DataGrid = DataGrid;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
      */
     let DataGridCell = /** @class */ (() => {
         class DataGridCell extends internal.Element {
@@ -470,7 +470,7 @@ var documenttemplates;
     })();
     documenttemplates.DataGridCell = DataGridCell;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
      */
     let DataGridColumn = /** @class */ (() => {
         class DataGridColumn extends internal.Element {
@@ -617,7 +617,7 @@ var documenttemplates;
     })();
     documenttemplates.DataGridColumn = DataGridColumn;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/data-view-document-template relevant section in reference guide}
      */
     let DataView = /** @class */ (() => {
         class DataView extends EntityWidget {
@@ -1020,7 +1020,7 @@ var documenttemplates;
     })();
     documenttemplates.DocumentTemplateParameter = DocumentTemplateParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-document-template relevant section in reference guide}
      */
     let DynamicImageViewer = /** @class */ (() => {
         class DynamicImageViewer extends EntityWidget {
@@ -1106,7 +1106,7 @@ var documenttemplates;
     })();
     documenttemplates.DynamicImageViewer = DynamicImageViewer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-document-template relevant section in reference guide}
      */
     let DynamicLabel = /** @class */ (() => {
         class DynamicLabel extends AttributeWidget {
@@ -1196,7 +1196,7 @@ var documenttemplates;
     })();
     documenttemplates.DynamicLabel = DynamicLabel;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/footer-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/footer-document-template relevant section in reference guide}
      */
     let Footer = /** @class */ (() => {
         class Footer extends DropZone {
@@ -1375,7 +1375,7 @@ var documenttemplates;
     })();
     documenttemplates.GridSortItem = GridSortItem;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/header-document-template relevant section in reference guide}
      */
     let Header = /** @class */ (() => {
         class Header extends DropZone {
@@ -1423,7 +1423,7 @@ var documenttemplates;
     })();
     documenttemplates.Header = Header;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/line-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/line-break-document-template relevant section in reference guide}
      */
     let LineBreak = /** @class */ (() => {
         class LineBreak extends Widget {
@@ -1474,7 +1474,7 @@ var documenttemplates;
     })();
     documenttemplates.LineBreak = LineBreak;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/page-break-document-template relevant section in reference guide}
      */
     let PageBreak = /** @class */ (() => {
         class PageBreak extends Widget {
@@ -1525,7 +1525,7 @@ var documenttemplates;
     })();
     documenttemplates.PageBreak = PageBreak;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/static-image-document-template relevant section in reference guide}
      */
     let StaticImageViewer = /** @class */ (() => {
         class StaticImageViewer extends Widget {
@@ -1603,7 +1603,7 @@ var documenttemplates;
     })();
     documenttemplates.StaticImageViewer = StaticImageViewer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/static-label-document-template relevant section in reference guide}
      */
     let StaticLabel = /** @class */ (() => {
         class StaticLabel extends Widget {
@@ -2057,7 +2057,7 @@ var documenttemplates;
     })();
     documenttemplates.Style = Style;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/table-document-template relevant section in reference guide}
      */
     let Table = /** @class */ (() => {
         class Table extends Widget {
@@ -2153,7 +2153,7 @@ var documenttemplates;
     })();
     documenttemplates.Table = Table;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cell-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/cell-document-template relevant section in reference guide}
      */
     let TableCell = /** @class */ (() => {
         class TableCell extends DropZone {
@@ -2236,7 +2236,7 @@ var documenttemplates;
     })();
     documenttemplates.TableCell = TableCell;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/row-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/row-document-template relevant section in reference guide}
      */
     let TableRow = /** @class */ (() => {
         class TableRow extends internal.Element {
@@ -2299,7 +2299,7 @@ var documenttemplates;
     })();
     documenttemplates.TableRow = TableRow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/template-grid-document-template relevant section in reference guide}
      */
     let TemplateGrid = /** @class */ (() => {
         class TemplateGrid extends Grid {
@@ -2429,7 +2429,7 @@ var documenttemplates;
     })();
     documenttemplates.TemplateGridContents = TemplateGridContents;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/title-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/title-document-template relevant section in reference guide}
      */
     let Title = /** @class */ (() => {
         class Title extends Widget {

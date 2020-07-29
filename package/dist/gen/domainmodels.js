@@ -2382,6 +2382,8 @@ var domainmodels;
                 this.__remoteSourceDocument = new internal.ByNameReferenceProperty(Entity, this, "remoteSourceDocument", null, "DomainModels$RemoteEntitySourceDocument");
                 /** @internal */
                 this.__source = new internal.PartProperty(Entity, this, "source", null, false);
+                /** @internal */
+                this.__capabilities = new internal.PartProperty(Entity, this, "capabilities", null, true);
                 if (arguments.length < 4) {
                     throw new Error("new Entity() cannot be invoked directly, please use 'model.domainmodels.createEntity()'");
                 }
@@ -2490,6 +2492,15 @@ var domainmodels;
                 this.__source.set(newValue);
             }
             /**
+             * In version 8.12.0: introduced
+             */
+            get capabilities() {
+                return this.__capabilities.get();
+            }
+            set capabilities(newValue) {
+                this.__capabilities.set(newValue);
+            }
+            /**
              * Creates and returns a new Entity instance in the SDK and on the server.
              * The new Entity will be automatically stored in the 'entities' property
              * of the parent DomainModel element passed as argument.
@@ -2515,6 +2526,9 @@ var domainmodels;
             /** @internal */
             _initializeDefaultProperties() {
                 super._initializeDefaultProperties();
+                if (this.__capabilities.isAvailable) {
+                    this.capabilities = EntityCapabilities.create(this.model);
+                }
                 this.dataStorageGuid = utils_1.utils.randomUuid();
                 this.generalization = NoGeneralization.create(this.model);
             }
@@ -2568,6 +2582,15 @@ var domainmodels;
                     public: {
                         currentValue: true
                     }
+                },
+                capabilities: {
+                    introduced: "8.12.0",
+                    public: {
+                        currentValue: true
+                    },
+                    required: {
+                        currentValue: true
+                    }
                 }
             },
             public: {
@@ -2577,6 +2600,64 @@ var domainmodels;
         return Entity;
     })();
     domainmodels.Entity = Entity;
+    /**
+     * In version 8.12.0: introduced
+     */
+    let EntityCapabilities = /** @class */ (() => {
+        class EntityCapabilities extends internal.Element {
+            constructor(model, structureTypeName, id, isPartial, unit, container) {
+                super(model, structureTypeName, id, isPartial, unit, container);
+                /** @internal */
+                this.__countable = new internal.PrimitiveProperty(EntityCapabilities, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
+                if (arguments.length < 4) {
+                    throw new Error("new EntityCapabilities() cannot be invoked directly, please use 'model.domainmodels.createEntityCapabilities()'");
+                }
+            }
+            get containerAsEntity() {
+                return super.getContainerAs(Entity);
+            }
+            get countable() {
+                return this.__countable.get();
+            }
+            set countable(newValue) {
+                this.__countable.set(newValue);
+            }
+            /**
+             * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+             * The new EntityCapabilities will be automatically stored in the 'capabilities' property
+             * of the parent Entity element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.12.0 and higher
+             */
+            static createIn(container) {
+                internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0" });
+                return internal.instancehelpers.createElement(container, EntityCapabilities, "capabilities", false);
+            }
+            /**
+             * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+             * Expects one argument: the IModel object the instance will "live on".
+             * After creation, assign or add this instance to a property that accepts this kind of objects.
+             */
+            static create(model) {
+                return internal.instancehelpers.createElement(model, EntityCapabilities);
+            }
+            /** @internal */
+            _initializeDefaultProperties() {
+                super._initializeDefaultProperties();
+                this.countable = true;
+            }
+        }
+        EntityCapabilities.structureTypeName = "DomainModels$EntityCapabilities";
+        EntityCapabilities.versionInfo = new exports.StructureVersionInfo({
+            introduced: "8.12.0",
+            public: {
+                currentValue: true
+            }
+        }, internal.StructureType.Element);
+        return EntityCapabilities;
+    })();
+    domainmodels.EntityCapabilities = EntityCapabilities;
     /**
      * In version 8.9.0: introduced
      */

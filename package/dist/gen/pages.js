@@ -37,6 +37,71 @@ var pages;
         return AlignmentEnum;
     })();
     pages.AlignmentEnum = AlignmentEnum;
+    let AutocompletePurposeType = /** @class */ (() => {
+        class AutocompletePurposeType extends internal.AbstractEnum {
+            constructor() {
+                super(...arguments);
+                this.qualifiedTsTypeName = "pages.AutocompletePurposeType";
+            }
+        }
+        AutocompletePurposeType.On = new AutocompletePurposeType("On", {});
+        AutocompletePurposeType.Off = new AutocompletePurposeType("Off", {});
+        AutocompletePurposeType.FullName = new AutocompletePurposeType("FullName", {});
+        AutocompletePurposeType.HonorificPrefix = new AutocompletePurposeType("HonorificPrefix", {});
+        AutocompletePurposeType.GivenName = new AutocompletePurposeType("GivenName", {});
+        AutocompletePurposeType.AdditionalName = new AutocompletePurposeType("AdditionalName", {});
+        AutocompletePurposeType.FamilyName = new AutocompletePurposeType("FamilyName", {});
+        AutocompletePurposeType.HonorificSuffix = new AutocompletePurposeType("HonorificSuffix", {});
+        AutocompletePurposeType.Nickname = new AutocompletePurposeType("Nickname", {});
+        AutocompletePurposeType.JobTitle = new AutocompletePurposeType("JobTitle", {});
+        AutocompletePurposeType.Username = new AutocompletePurposeType("Username", {});
+        AutocompletePurposeType.NewPassword = new AutocompletePurposeType("NewPassword", {});
+        AutocompletePurposeType.CurrentPassword = new AutocompletePurposeType("CurrentPassword", {});
+        AutocompletePurposeType.CompanyName = new AutocompletePurposeType("CompanyName", {});
+        AutocompletePurposeType.StreetAddress = new AutocompletePurposeType("StreetAddress", {});
+        AutocompletePurposeType.StreetAddressLine1 = new AutocompletePurposeType("StreetAddressLine1", {});
+        AutocompletePurposeType.StreetAddressLine2 = new AutocompletePurposeType("StreetAddressLine2", {});
+        AutocompletePurposeType.StreetAddressLine3 = new AutocompletePurposeType("StreetAddressLine3", {});
+        AutocompletePurposeType.AddressLevel4 = new AutocompletePurposeType("AddressLevel4", {});
+        AutocompletePurposeType.AddressLevel3 = new AutocompletePurposeType("AddressLevel3", {});
+        AutocompletePurposeType.AddressLevel2 = new AutocompletePurposeType("AddressLevel2", {});
+        AutocompletePurposeType.AddressLevel1 = new AutocompletePurposeType("AddressLevel1", {});
+        AutocompletePurposeType.CountryCode = new AutocompletePurposeType("CountryCode", {});
+        AutocompletePurposeType.CountryName = new AutocompletePurposeType("CountryName", {});
+        AutocompletePurposeType.PostalCode = new AutocompletePurposeType("PostalCode", {});
+        AutocompletePurposeType.CreditCardFullName = new AutocompletePurposeType("CreditCardFullName", {});
+        AutocompletePurposeType.CreditCardGivenName = new AutocompletePurposeType("CreditCardGivenName", {});
+        AutocompletePurposeType.CreditCardAdditionalName = new AutocompletePurposeType("CreditCardAdditionalName", {});
+        AutocompletePurposeType.CreditCardFamilyName = new AutocompletePurposeType("CreditCardFamilyName", {});
+        AutocompletePurposeType.CreditCardNumber = new AutocompletePurposeType("CreditCardNumber", {});
+        AutocompletePurposeType.CreditCardExpiration = new AutocompletePurposeType("CreditCardExpiration", {});
+        AutocompletePurposeType.CreditCardExpirationMonth = new AutocompletePurposeType("CreditCardExpirationMonth", {});
+        AutocompletePurposeType.CreditCardExpirationYear = new AutocompletePurposeType("CreditCardExpirationYear", {});
+        AutocompletePurposeType.CreditCardSecurityCode = new AutocompletePurposeType("CreditCardSecurityCode", {});
+        AutocompletePurposeType.CreditCardType = new AutocompletePurposeType("CreditCardType", {});
+        AutocompletePurposeType.TransactionCurrency = new AutocompletePurposeType("TransactionCurrency", {});
+        AutocompletePurposeType.TransactionAmount = new AutocompletePurposeType("TransactionAmount", {});
+        AutocompletePurposeType.Language = new AutocompletePurposeType("Language", {});
+        AutocompletePurposeType.Birthday = new AutocompletePurposeType("Birthday", {});
+        AutocompletePurposeType.DayOfBirth = new AutocompletePurposeType("DayOfBirth", {});
+        AutocompletePurposeType.MonthOfBirth = new AutocompletePurposeType("MonthOfBirth", {});
+        AutocompletePurposeType.YearOfBirth = new AutocompletePurposeType("YearOfBirth", {});
+        AutocompletePurposeType.Sex = new AutocompletePurposeType("Sex", {});
+        AutocompletePurposeType.Url = new AutocompletePurposeType("Url", {});
+        AutocompletePurposeType.Photo = new AutocompletePurposeType("Photo", {});
+        AutocompletePurposeType.TelephoneNumber = new AutocompletePurposeType("TelephoneNumber", {});
+        AutocompletePurposeType.TelephoneCountryCode = new AutocompletePurposeType("TelephoneCountryCode", {});
+        AutocompletePurposeType.TelephoneWithoutCountryCode = new AutocompletePurposeType("TelephoneWithoutCountryCode", {});
+        AutocompletePurposeType.TelephoneAreaCode = new AutocompletePurposeType("TelephoneAreaCode", {});
+        AutocompletePurposeType.TelephoneLocal = new AutocompletePurposeType("TelephoneLocal", {});
+        AutocompletePurposeType.TelephoneLocalPrefix = new AutocompletePurposeType("TelephoneLocalPrefix", {});
+        AutocompletePurposeType.TelephoneLocalSuffix = new AutocompletePurposeType("TelephoneLocalSuffix", {});
+        AutocompletePurposeType.TelephoneExtension = new AutocompletePurposeType("TelephoneExtension", {});
+        AutocompletePurposeType.Email = new AutocompletePurposeType("Email", {});
+        AutocompletePurposeType.InstantMessageProtocol = new AutocompletePurposeType("InstantMessageProtocol", {});
+        return AutocompletePurposeType;
+    })();
+    pages.AutocompletePurposeType = AutocompletePurposeType;
     let ButtonStyle = /** @class */ (() => {
         class ButtonStyle extends internal.AbstractEnum {
             constructor() {
@@ -1124,7 +1189,7 @@ var pages;
     })();
     pages.Button = Button;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      */
     let ActionButton = /** @class */ (() => {
         class ActionButton extends Button {
@@ -1219,6 +1284,9 @@ var pages;
             set action(newValue) {
                 this.__action.set(newValue);
             }
+            /**
+             * In version 8.12.0: deleted
+             */
             get disabledDuringAction() {
                 return this.__disabledDuringAction.get();
             }
@@ -1872,12 +1940,14 @@ var pages;
                         return clientTemplate;
                     })(ClientTemplate.create(this.model));
                 })();
-                (() => {
-                    if (internal.isAtLeast("7.16.0", this.model)) {
-                        this.disabledDuringAction = true;
-                        return;
-                    }
-                })();
+                if (this.__disabledDuringAction.isAvailable) {
+                    (() => {
+                        if (internal.isAtLeast("7.16.0", this.model)) {
+                            this.disabledDuringAction = true;
+                            return;
+                        }
+                    })();
+                }
             }
         }
         ActionButton.structureTypeName = "Pages$ActionButton";
@@ -1888,7 +1958,10 @@ var pages;
                         currentValue: true
                     }
                 },
-                disabledDuringAction: {}
+                disabledDuringAction: {
+                    deleted: "8.12.0",
+                    deletionMessage: null
+                }
             }
         }, internal.StructureType.Element);
         return ActionButton;
@@ -2434,6 +2507,8 @@ var pages;
                 this.__label = new internal.PartProperty(InputWidget, this, "label", null, false);
                 /** @internal */
                 this.__labelTemplate = new internal.PartProperty(InputWidget, this, "labelTemplate", null, false);
+                /** @internal */
+                this.__screenReaderLabel = new internal.PartProperty(InputWidget, this, "screenReaderLabel", null, false);
                 if (arguments.length < 4) {
                     throw new Error("new InputWidget() cannot be invoked directly, please use 'model.pages.createInputWidget()'");
                 }
@@ -2531,6 +2606,15 @@ var pages;
             set labelTemplate(newValue) {
                 this.__labelTemplate.set(newValue);
             }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get screenReaderLabel() {
+                return this.__screenReaderLabel.get();
+            }
+            set screenReaderLabel(newValue) {
+                this.__screenReaderLabel.set(newValue);
+            }
             /** @internal */
             _initializeDefaultProperties() {
                 super._initializeDefaultProperties();
@@ -2545,6 +2629,9 @@ var pages;
                 },
                 labelTemplate: {
                     introduced: "7.18.0"
+                },
+                screenReaderLabel: {
+                    introduced: "8.12.0"
                 }
             }
         }, internal.StructureType.Element);
@@ -3822,6 +3909,8 @@ var pages;
         class ClientAction extends internal.Element {
             constructor(model, structureTypeName, id, isPartial, unit, container) {
                 super(model, structureTypeName, id, isPartial, unit, container);
+                /** @internal */
+                this.__disabledDuringExecution = new internal.PrimitiveProperty(ClientAction, this, "disabledDuringExecution", false, internal.PrimitiveTypeEnum.Boolean);
                 if (arguments.length < 4) {
                     throw new Error("new ClientAction() cannot be invoked directly, please use 'model.pages.createClientAction()'");
                 }
@@ -3871,13 +3960,31 @@ var pages;
             get containerAsTextBox() {
                 return super.getContainerAs(TextBox);
             }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get disabledDuringExecution() {
+                return this.__disabledDuringExecution.get();
+            }
+            set disabledDuringExecution(newValue) {
+                this.__disabledDuringExecution.set(newValue);
+            }
             /** @internal */
             _initializeDefaultProperties() {
                 super._initializeDefaultProperties();
+                if (this.__disabledDuringExecution.isAvailable) {
+                    this.disabledDuringExecution = true;
+                }
             }
         }
         ClientAction.structureTypeName = "Pages$ClientAction";
-        ClientAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+        ClientAction.versionInfo = new exports.StructureVersionInfo({
+            properties: {
+                disabledDuringExecution: {
+                    introduced: "8.12.0"
+                }
+            }
+        }, internal.StructureType.Element);
         return ClientAction;
     })();
     pages.ClientAction = ClientAction;
@@ -5800,6 +5907,18 @@ var pages;
             }
             /**
              * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+             * The new ClientTemplate will be automatically stored in the 'screenReaderLabel' property
+             * of the parent InputWidget element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.12.0 and higher
+             */
+            static createInInputWidgetUnderScreenReaderLabel(container) {
+                internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.12.0" });
+                return internal.instancehelpers.createElement(container, ClientTemplate, "screenReaderLabel", false);
+            }
+            /**
+             * Creates and returns a new ClientTemplate instance in the SDK and on the server.
              * The new ClientTemplate will be automatically stored in the 'alternativeText' property
              * of the parent StaticImageViewer element passed as argument.
              *
@@ -6939,7 +7058,7 @@ var pages;
     })();
     pages.SingleSearchField = SingleSearchField;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/comparison-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     let ComparisonSearchField = /** @class */ (() => {
         class ComparisonSearchField extends SingleSearchField {
@@ -8665,7 +8784,7 @@ var pages;
     })();
     pages.GridControlBarButton = GridControlBarButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/add-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let DataGridAddButton = /** @class */ (() => {
         class DataGridAddButton extends GridControlBarButton {
@@ -8745,7 +8864,7 @@ var pages;
     })();
     pages.DataGridAddButton = DataGridAddButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-csv-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let DataGridExportToCSVButton = /** @class */ (() => {
         class DataGridExportToCSVButton extends GridControlBarButton {
@@ -8860,7 +8979,7 @@ var pages;
     })();
     pages.DataGridExportToCSVButton = DataGridExportToCSVButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-excel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let DataGridExportToExcelButton = /** @class */ (() => {
         class DataGridExportToExcelButton extends GridControlBarButton {
@@ -8941,7 +9060,7 @@ var pages;
     })();
     pages.DataGridExportToExcelButton = DataGridExportToExcelButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/remove-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let DataGridRemoveButton = /** @class */ (() => {
         class DataGridRemoveButton extends GridControlBarButton {
@@ -11663,6 +11782,8 @@ var pages;
                 this.__renderMode = new internal.EnumProperty(DivContainer, this, "renderMode", ContainerRenderMode.Div, ContainerRenderMode);
                 /** @internal */
                 this.__onClickAction = new internal.PartProperty(DivContainer, this, "onClickAction", null, true);
+                /** @internal */
+                this.__screenReaderHidden = new internal.PrimitiveProperty(DivContainer, this, "screenReaderHidden", false, internal.PrimitiveTypeEnum.Boolean);
                 if (arguments.length < 4) {
                     throw new Error("new DivContainer() cannot be invoked directly, please use 'model.pages.createDivContainer()'");
                 }
@@ -11774,6 +11895,15 @@ var pages;
             }
             set onClickAction(newValue) {
                 this.__onClickAction.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get screenReaderHidden() {
+                return this.__screenReaderHidden.get();
+            }
+            set screenReaderHidden(newValue) {
+                this.__screenReaderHidden.set(newValue);
             }
             /**
              * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -12404,6 +12534,9 @@ var pages;
                 if (this.__renderMode.isAvailable) {
                     this.renderMode = ContainerRenderMode.Div;
                 }
+                if (this.__screenReaderHidden.isAvailable) {
+                    this.screenReaderHidden = false;
+                }
             }
         }
         DivContainer.structureTypeName = "Pages$DivContainer";
@@ -12424,6 +12557,9 @@ var pages;
                     required: {
                         currentValue: true
                     }
+                },
+                screenReaderHidden: {
+                    introduced: "8.12.0"
                 }
             }
         }, internal.StructureType.Element);
@@ -12431,7 +12567,7 @@ var pages;
     })();
     pages.DivContainer = DivContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-widget relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/drop-down relevant section in reference guide}
      */
     let DropDown = /** @class */ (() => {
         class DropDown extends AttributeWidget {
@@ -13170,7 +13306,7 @@ var pages;
     })();
     pages.DropDown = DropDown;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      */
     let DropDownButton = /** @class */ (() => {
         class DropDownButton extends Button {
@@ -13988,7 +14124,7 @@ var pages;
     })();
     pages.DropDownButtonItem = DropDownButtonItem;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     let DropDownSearchField = /** @class */ (() => {
         class DropDownSearchField extends SingleSearchField {
@@ -16644,7 +16780,7 @@ var pages;
     })();
     pages.FormattingInfo = FormattingInfo;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-property relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/image relevant section in reference guide}
      */
     let Icon = /** @class */ (() => {
         class Icon extends internal.Element {
@@ -16778,7 +16914,7 @@ var pages;
     })();
     pages.GlyphIcon = GlyphIcon;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let GridActionButton = /** @class */ (() => {
         class GridActionButton extends GridControlBarButton {
@@ -17386,7 +17522,7 @@ var pages;
     })();
     pages.GridDeleteButton = GridDeleteButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deselect-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let GridDeselectAllButton = /** @class */ (() => {
         class GridDeselectAllButton extends GridControlBarButton {
@@ -17542,7 +17678,7 @@ var pages;
     })();
     pages.GridEditButton = GridEditButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-new-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let GridNewButton = /** @class */ (() => {
         class GridNewButton extends GridControlBarButton {
@@ -17658,7 +17794,7 @@ var pages;
     })();
     pages.GridNewButton = GridNewButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let GridSearchButton = /** @class */ (() => {
         class GridSearchButton extends GridControlBarButton {
@@ -17748,7 +17884,7 @@ var pages;
     })();
     pages.GridSearchButton = GridSearchButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let GridSelectAllButton = /** @class */ (() => {
         class GridSelectAllButton extends GridControlBarButton {
@@ -19860,7 +19996,7 @@ var pages;
     })();
     pages.SplitPane = SplitPane;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/horizontal-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
@@ -24619,7 +24755,7 @@ var pages;
     })();
     pages.LayoutParameter = LayoutParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/link-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.3.0: deleted
      */
@@ -27840,7 +27976,7 @@ var pages;
     })();
     pages.LoginIdTextBox = LoginIdTextBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-out-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.1.0: deleted
      */
@@ -30119,7 +30255,7 @@ var pages;
     })();
     pages.MicroflowParameterMapping = MicroflowParameterMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/starting-microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/on-click-event relevant section in reference guide}
      */
     let MicroflowSettings = /** @class */ (() => {
         class MicroflowSettings extends internal.Element {
@@ -34595,7 +34731,7 @@ var pages;
     })();
     pages.PageForSpecialization = PageForSpecialization;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/opening-pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/on-click-event relevant section in reference guide}
      */
     let PageSettings = /** @class */ (() => {
         class PageSettings extends internal.Element {
@@ -34605,6 +34741,8 @@ var pages;
                 this.__page = new internal.ByNameReferenceProperty(PageSettings, this, "page", null, "Pages$Page");
                 /** @internal */
                 this.__formTitle = new internal.PartProperty(PageSettings, this, "formTitle", null, false);
+                /** @internal */
+                this.__titleOverride = new internal.PartProperty(PageSettings, this, "titleOverride", null, false);
                 /** @internal */
                 this.__location = new internal.EnumProperty(PageSettings, this, "location", FormLocation.Popup, FormLocation);
                 if (arguments.length < 4) {
@@ -34653,11 +34791,23 @@ var pages;
             get pageQualifiedName() {
                 return this.__page.qualifiedName();
             }
+            /**
+             * In version 8.12.0: deleted
+             */
             get formTitle() {
                 return this.__formTitle.get();
             }
             set formTitle(newValue) {
                 this.__formTitle.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get titleOverride() {
+                return this.__titleOverride.get();
+            }
+            set titleOverride(newValue) {
+                this.__titleOverride.set(newValue);
             }
             /**
              * In version 8.0.0: deleted
@@ -34791,6 +34941,13 @@ var pages;
         PageSettings.structureTypeName = "Pages$PageSettings";
         PageSettings.versionInfo = new exports.StructureVersionInfo({
             properties: {
+                formTitle: {
+                    deleted: "8.12.0",
+                    deletionMessage: null
+                },
+                titleOverride: {
+                    introduced: "8.12.0"
+                },
                 location: {
                     deleted: "8.0.0",
                     deletionMessage: null
@@ -34801,7 +34958,7 @@ var pages;
     })();
     pages.PageSettings = PageSettings;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -37182,7 +37339,7 @@ var pages;
     })();
     pages.RadioButtonGroup = RadioButtonGroup;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/range-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     let RangeSearchField = /** @class */ (() => {
         class RangeSearchField extends SearchField {
@@ -41101,7 +41258,7 @@ var pages;
     })();
     pages.SearchBar = SearchBar;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     let SelectButton = /** @class */ (() => {
         class SelectButton extends GridControlBarButton {
@@ -46410,7 +46567,7 @@ var pages;
     })();
     pages.TabContainer = TabContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/tab-container relevant section in reference guide}
      */
     let TabPage = /** @class */ (() => {
         class TabPage extends internal.Element {
@@ -49318,6 +49475,8 @@ var pages;
                 this.__onEnterKeyPressAction = new internal.PartProperty(TextBox, this, "onEnterKeyPressAction", null, true);
                 /** @internal */
                 this.__autocomplete = new internal.PrimitiveProperty(TextBox, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
+                /** @internal */
+                this.__autocompletePurpose = new internal.EnumProperty(TextBox, this, "autocompletePurpose", AutocompletePurposeType.On, AutocompletePurposeType);
                 if (arguments.length < 4) {
                     throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
                 }
@@ -49441,6 +49600,15 @@ var pages;
             }
             set autocomplete(newValue) {
                 this.__autocomplete.set(newValue);
+            }
+            /**
+             * In version 8.12.0: introduced
+             */
+            get autocompletePurpose() {
+                return this.__autocompletePurpose.get();
+            }
+            set autocompletePurpose(newValue) {
+                this.__autocompletePurpose.set(newValue);
             }
             /**
              * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -50068,6 +50236,9 @@ var pages;
                 if (this.__autocomplete.isAvailable) {
                     this.autocomplete = true;
                 }
+                if (this.__autocompletePurpose.isAvailable) {
+                    this.autocompletePurpose = AutocompletePurposeType.On;
+                }
                 this.formattingInfo = FormattingInfo.create(this.model);
                 if (this.__keyboardType.isAvailable) {
                     this.keyboardType = KeyboardType.Default;
@@ -50096,6 +50267,9 @@ var pages;
                 },
                 autocomplete: {
                     introduced: "8.10.0"
+                },
+                autocompletePurpose: {
+                    introduced: "8.12.0"
                 }
             }
         }, internal.StructureType.Element);
@@ -51897,7 +52071,7 @@ var pages;
     })();
     pages.VerticalFlow = VerticalFlow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/vertical-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */

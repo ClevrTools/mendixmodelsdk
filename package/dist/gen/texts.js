@@ -152,6 +152,9 @@ var texts;
             get containerAsBottomBarItem() {
                 return super.getContainerAs(nativepages_1.nativepages.BottomBarItem);
             }
+            get containerAsNavigationProfile() {
+                return super.getContainerAs(navigation_1.navigation.NavigationProfile);
+            }
             get containerAsAttributeWidget() {
                 return super.getContainerAs(pages_1.pages.AttributeWidget);
             }
@@ -314,6 +317,18 @@ var texts;
             }
             /**
              * Creates and returns a new Text instance in the SDK and on the server.
+             * The new Text will be automatically stored in the 'alternativeText' property
+             * of the parent menus.MenuItem element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.12.0 and higher
+             */
+            static createInMenuItemUnderAlternativeText(container) {
+                internal.createInVersionCheck(container.model, Text.structureTypeName, { start: "8.12.0" });
+                return internal.instancehelpers.createElement(container, Text, "alternativeText", false);
+            }
+            /**
+             * Creates and returns a new Text instance in the SDK and on the server.
              * The new Text will be automatically stored in the 'caption' property
              * of the parent menus.MenuItem element passed as argument.
              */
@@ -347,6 +362,18 @@ var texts;
             static createInBottomBarItemUnderCaption(container) {
                 internal.createInVersionCheck(container.model, Text.structureTypeName, { start: "8.0.0" });
                 return internal.instancehelpers.createElement(container, Text, "caption", false);
+            }
+            /**
+             * Creates and returns a new Text instance in the SDK and on the server.
+             * The new Text will be automatically stored in the 'appTitle' property
+             * of the parent navigation.NavigationProfile element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  8.12.0 and higher
+             */
+            static createInNavigationProfileUnderAppTitle(container) {
+                internal.createInVersionCheck(container.model, Text.structureTypeName, { start: "8.12.0" });
+                return internal.instancehelpers.createElement(container, Text, "appTitle", false);
             }
             /**
              * Creates and returns a new Text instance in the SDK and on the server.
@@ -560,8 +587,12 @@ var texts;
              * Creates and returns a new Text instance in the SDK and on the server.
              * The new Text will be automatically stored in the 'formTitle' property
              * of the parent pages.PageSettings element passed as argument.
+             *
+             * Warning! Can only be used on models with the following Mendix meta model versions:
+             *  6.0.0 to 8.11.0
              */
             static createInPageSettingsUnderFormTitle(container) {
+                internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "8.11.0" });
                 return internal.instancehelpers.createElement(container, Text, "formTitle", false);
             }
             /**
@@ -819,6 +850,7 @@ const enumerations_1 = require("./enumerations");
 const menus_1 = require("./menus");
 const microflows_1 = require("./microflows");
 const nativepages_1 = require("./nativepages");
+const navigation_1 = require("./navigation");
 const pages_1 = require("./pages");
 const reports_1 = require("./reports");
 //# sourceMappingURL=texts.js.map

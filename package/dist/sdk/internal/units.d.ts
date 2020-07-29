@@ -22,6 +22,14 @@ export interface IAbstractUnit extends IStructure {
      */
     isLoaded: boolean;
     /**
+     * Whether this unit and all of its children (recursively) can be loaded.
+     */
+    readonly isLoadable: boolean;
+    /**
+     * Whether this unit and all of its children (recursively) are editable.
+     */
+    readonly isReadOnly: boolean;
+    /**
      * Deletes the unit from the model
      */
     delete(): void;
@@ -40,6 +48,8 @@ export declare abstract class AbstractUnit extends Structure implements IAbstrac
      * if false, a load is required to access these properties.
      */
     get isLoaded(): boolean;
+    get isLoadable(): boolean;
+    get isReadOnly(): boolean;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
 }
 export interface IStructuralUnit extends IAbstractUnit {
@@ -77,6 +87,8 @@ export declare abstract class ModelUnit extends AbstractElement implements IMode
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit | null);
     get unit(): this;
     get isLoaded(): boolean;
+    get isLoadable(): boolean;
+    get isReadOnly(): boolean;
     /**
      * Deletes this element from the model.
      */

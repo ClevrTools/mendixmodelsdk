@@ -63,7 +63,7 @@ export declare namespace enumerations {
         static createIn(container: projects.IFolderBase): Enumeration;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumeration-values relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
      */
     interface IEnumerationValue extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -74,7 +74,7 @@ export declare namespace enumerations {
         load(forceRefresh?: boolean): Promise<EnumerationValue>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumeration-values relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
      */
     class EnumerationValue extends internal.Element implements IEnumerationValue {
         static structureTypeName: string;

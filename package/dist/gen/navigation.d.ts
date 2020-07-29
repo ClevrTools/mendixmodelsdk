@@ -266,8 +266,22 @@ export declare namespace navigation {
         get homePage(): HomePage;
         set homePage(newValue: HomePage);
         get roleBasedHomePages(): internal.IList<RoleBasedHomePage>;
+        /**
+         * In version 8.12.0: deleted
+         */
         get applicationTitle(): string;
         set applicationTitle(newValue: string);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get appTitle(): texts.Text;
+        set appTitle(newValue: texts.Text);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get appIcon(): images.IImage | null;
+        set appIcon(newValue: images.IImage | null);
+        get appIconQualifiedName(): string | null;
         /**
          * In version 7.0.2: introduced
          */
@@ -479,9 +493,11 @@ export declare namespace navigation {
     }
 }
 import { domainmodels } from "./domainmodels";
+import { images } from "./images";
 import { menus } from "./menus";
 import { microflows } from "./microflows";
 import { nativepages } from "./nativepages";
 import { pages } from "./pages";
 import { security } from "./security";
+import { texts } from "./texts";
 import { IModel } from "./base-model";

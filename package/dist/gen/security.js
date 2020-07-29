@@ -200,7 +200,7 @@ var security;
     })();
     security.ImageAccessRuleContainer = ImageAccessRuleContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
      */
     let ModuleRole = /** @class */ (() => {
         class ModuleRole extends internal.Element {
@@ -569,7 +569,7 @@ var security;
     })();
     security.ProjectSecurity = ProjectSecurity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/user-roles relevant section in reference guide}
      */
     let UserRole = /** @class */ (() => {
         class UserRole extends internal.Element {

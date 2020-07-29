@@ -29,7 +29,7 @@ export declare namespace rest {
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -49,18 +49,16 @@ export declare namespace rest {
          */
         readonly version: string;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * In version 8.11.0: deleted
-         * In version 8.9.0: added public
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
          */
-        readonly entities: internal.IList<IODataEntity>;
+        readonly applicationId: string;
         asLoaded(): ConsumedODataService;
         load(callback: (element: ConsumedODataService) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ConsumedODataService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -97,17 +95,11 @@ export declare namespace rest {
         get serviceId(): string;
         set serviceId(newValue: string);
         /**
+         * In version 8.12.0: added public
          * In version 8.11.0: introduced
          */
         get applicationId(): string;
         set applicationId(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * In version 8.11.0: deleted
-         * In version 8.9.0: added public
-         */
-        get entities(): internal.IList<ODataEntity>;
         get proxyType(): microflows.RequestProxyType;
         set proxyType(newValue: microflows.RequestProxyType);
         get proxyHost(): constants.IConstant | null;
@@ -259,67 +251,6 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.11.0: deleted
-     * In version 8.0.0: introduced
-     */
-    class ODataAttribute extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ODataAttribute instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ODataAttribute;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.11.0: deleted
-     * In version 8.9.0: added public
-     * In version 7.18.0: introduced
-     */
-    interface IODataEntity extends internal.IElement {
-        readonly model: IModel;
-        readonly containerAsConsumedODataService: IConsumedODataService;
-        asLoaded(): ODataEntity;
-        load(callback: (element: ODataEntity) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<ODataEntity>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.11.0: deleted
-     * In version 8.9.0: added public
-     * In version 7.18.0: introduced
-     */
-    class ODataEntity extends internal.Element implements IODataEntity {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsConsumedODataService(): ConsumedODataService;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
-         * The new ODataEntity will be automatically stored in the 'entities' property
-         * of the parent ConsumedODataService element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.18.0 to 8.10.0
-         */
-        static createIn(container: ConsumedODataService): ODataEntity;
-        /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ODataEntity;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
      * In version 8.9.0: introduced
      */
     interface IODataKey extends internal.IElement {
@@ -449,24 +380,6 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ODataMappedValue;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.11.0: deleted
-     * In version 7.22.0: introduced
-     */
-    class ODataNavigationProperty extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ODataNavigationProperty;
     }
     /**
      * In version 8.10.0: introduced
@@ -628,6 +541,11 @@ export declare namespace rest {
          */
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get replaceIllegalChars(): boolean;
+        set replaceIllegalChars(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.

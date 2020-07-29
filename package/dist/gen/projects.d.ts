@@ -60,7 +60,7 @@ export declare namespace projects {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase | IProject);
     }
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/resources relevant section in reference guide}
      */
     interface IFolder extends IFolderBase {
         readonly model: IModel;
@@ -68,7 +68,7 @@ export declare namespace projects {
         name: string;
     }
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/resources relevant section in reference guide}
      */
     class Folder extends FolderBase implements IFolder {
         static structureTypeName: string;

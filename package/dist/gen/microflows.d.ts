@@ -331,7 +331,7 @@ export declare namespace microflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/annotation relevant section in reference guide}
      */
     class AnnotationFlow extends Flow {
         static structureTypeName: string;
@@ -798,7 +798,7 @@ export declare namespace microflows {
         static create(model: IModel): ChangeVariableAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/Close+Form relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/close-page relevant section in reference guide}
      */
     class CloseFormAction extends MicroflowAction {
         static structureTypeName: string;
@@ -1419,7 +1419,7 @@ export declare namespace microflows {
         static create(model: IModel): ExclusiveMerge;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/exclusive-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/decisions relevant section in reference guide}
      */
     class ExclusiveSplit extends MicroflowObject {
         static structureTypeName: string;
@@ -2182,7 +2182,7 @@ export declare namespace microflows {
         static create(model: IModel): InheritanceCase;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/inheritance-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/object-type-decision relevant section in reference guide}
      */
     class InheritanceSplit extends MicroflowObject {
         static structureTypeName: string;
@@ -3755,7 +3755,7 @@ export declare namespace microflows {
         static create(model: IModel): ShowMessageAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/Show+Page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/show-page relevant section in reference guide}
      */
     class ShowPageAction extends MicroflowAction {
         static structureTypeName: string;
@@ -3941,6 +3941,7 @@ export declare namespace microflows {
         get containerAsShowMessageAction(): ShowMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get containerAsPageSettings(): pages.PageSettings;
         get containerAsUserTask(): workflows.UserTask;
         get containerAsWorkflow(): workflows.Workflow;
         get arguments(): internal.IList<TemplateArgument>;
@@ -4180,6 +4181,7 @@ export declare namespace microflows {
         model: IModel;
         get containerAsShowMessageAction(): ShowMessageAction;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get containerAsPageSettings(): pages.PageSettings;
         get text(): texts.Text;
         set text(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -4195,6 +4197,15 @@ export declare namespace microflows {
          * of the parent ValidationFeedbackAction element passed as argument.
          */
         static createInValidationFeedbackActionUnderFeedbackTemplate(container: ValidationFeedbackAction): TextTemplate;
+        /**
+         * Creates and returns a new TextTemplate instance in the SDK and on the server.
+         * The new TextTemplate will be automatically stored in the 'titleOverride' property
+         * of the parent pages.PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInPageSettingsUnderTitleOverride(container: pages.PageSettings): TextTemplate;
         /**
          * Creates and returns a new TextTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

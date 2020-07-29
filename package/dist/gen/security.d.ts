@@ -89,7 +89,7 @@ export declare namespace security {
         static create(model: IModel): ImageAccessRuleContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
      */
     interface IModuleRole extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -100,7 +100,7 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<ModuleRole>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
      */
     class ModuleRole extends internal.Element implements IModuleRole {
         static structureTypeName: string;
@@ -246,7 +246,7 @@ export declare namespace security {
         static createIn(container: projects.IProject): ProjectSecurity;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/user-roles relevant section in reference guide}
      */
     interface IUserRole extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -257,7 +257,7 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<UserRole>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/user-roles relevant section in reference guide}
      */
     class UserRole extends internal.Element implements IUserRole {
         static structureTypeName: string;

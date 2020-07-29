@@ -72,6 +72,7 @@ export declare namespace texts {
         get containerAsMicroflow(): microflows.Microflow;
         get containerAsTextTemplate(): microflows.TextTemplate;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsNavigationProfile(): navigation.NavigationProfile;
         get containerAsAttributeWidget(): pages.AttributeWidget;
         get containerAsAttributeWidgetWithPlaceholder(): pages.AttributeWidgetWithPlaceholder;
         get containerAsButton(): pages.Button;
@@ -155,6 +156,15 @@ export declare namespace texts {
         static createInEnumerationValueUnderCaption(container: enumerations.EnumerationValue): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
+         * The new Text will be automatically stored in the 'alternativeText' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInMenuItemUnderAlternativeText(container: menus.MenuItem): Text;
+        /**
+         * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent menus.MenuItem element passed as argument.
          */
@@ -180,6 +190,15 @@ export declare namespace texts {
          *  8.0.0 and higher
          */
         static createInBottomBarItemUnderCaption(container: nativepages.BottomBarItem): Text;
+        /**
+         * Creates and returns a new Text instance in the SDK and on the server.
+         * The new Text will be automatically stored in the 'appTitle' property
+         * of the parent navigation.NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInNavigationProfileUnderAppTitle(container: navigation.NavigationProfile): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'requiredMessage' property
@@ -340,6 +359,9 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'formTitle' property
          * of the parent pages.PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.11.0
          */
         static createInPageSettingsUnderFormTitle(container: pages.PageSettings): Text;
         /**
@@ -500,6 +522,7 @@ import { enumerations } from "./enumerations";
 import { menus } from "./menus";
 import { microflows } from "./microflows";
 import { nativepages } from "./nativepages";
+import { navigation } from "./navigation";
 import { pages } from "./pages";
 import { reports } from "./reports";
 import { IModel } from "./base-model";

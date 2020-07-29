@@ -18,6 +18,64 @@ export declare namespace pages {
         static Right: AlignmentEnum;
         protected qualifiedTsTypeName: string;
     }
+    class AutocompletePurposeType extends internal.AbstractEnum {
+        static On: AutocompletePurposeType;
+        static Off: AutocompletePurposeType;
+        static FullName: AutocompletePurposeType;
+        static HonorificPrefix: AutocompletePurposeType;
+        static GivenName: AutocompletePurposeType;
+        static AdditionalName: AutocompletePurposeType;
+        static FamilyName: AutocompletePurposeType;
+        static HonorificSuffix: AutocompletePurposeType;
+        static Nickname: AutocompletePurposeType;
+        static JobTitle: AutocompletePurposeType;
+        static Username: AutocompletePurposeType;
+        static NewPassword: AutocompletePurposeType;
+        static CurrentPassword: AutocompletePurposeType;
+        static CompanyName: AutocompletePurposeType;
+        static StreetAddress: AutocompletePurposeType;
+        static StreetAddressLine1: AutocompletePurposeType;
+        static StreetAddressLine2: AutocompletePurposeType;
+        static StreetAddressLine3: AutocompletePurposeType;
+        static AddressLevel4: AutocompletePurposeType;
+        static AddressLevel3: AutocompletePurposeType;
+        static AddressLevel2: AutocompletePurposeType;
+        static AddressLevel1: AutocompletePurposeType;
+        static CountryCode: AutocompletePurposeType;
+        static CountryName: AutocompletePurposeType;
+        static PostalCode: AutocompletePurposeType;
+        static CreditCardFullName: AutocompletePurposeType;
+        static CreditCardGivenName: AutocompletePurposeType;
+        static CreditCardAdditionalName: AutocompletePurposeType;
+        static CreditCardFamilyName: AutocompletePurposeType;
+        static CreditCardNumber: AutocompletePurposeType;
+        static CreditCardExpiration: AutocompletePurposeType;
+        static CreditCardExpirationMonth: AutocompletePurposeType;
+        static CreditCardExpirationYear: AutocompletePurposeType;
+        static CreditCardSecurityCode: AutocompletePurposeType;
+        static CreditCardType: AutocompletePurposeType;
+        static TransactionCurrency: AutocompletePurposeType;
+        static TransactionAmount: AutocompletePurposeType;
+        static Language: AutocompletePurposeType;
+        static Birthday: AutocompletePurposeType;
+        static DayOfBirth: AutocompletePurposeType;
+        static MonthOfBirth: AutocompletePurposeType;
+        static YearOfBirth: AutocompletePurposeType;
+        static Sex: AutocompletePurposeType;
+        static Url: AutocompletePurposeType;
+        static Photo: AutocompletePurposeType;
+        static TelephoneNumber: AutocompletePurposeType;
+        static TelephoneCountryCode: AutocompletePurposeType;
+        static TelephoneWithoutCountryCode: AutocompletePurposeType;
+        static TelephoneAreaCode: AutocompletePurposeType;
+        static TelephoneLocal: AutocompletePurposeType;
+        static TelephoneLocalPrefix: AutocompletePurposeType;
+        static TelephoneLocalSuffix: AutocompletePurposeType;
+        static TelephoneExtension: AutocompletePurposeType;
+        static Email: AutocompletePurposeType;
+        static InstantMessageProtocol: AutocompletePurposeType;
+        protected qualifiedTsTypeName: string;
+    }
     class ButtonStyle extends internal.AbstractEnum {
         static Default: ButtonStyle;
         static Inverse: ButtonStyle;
@@ -472,7 +530,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      */
     class ActionButton extends Button {
         static structureTypeName: string;
@@ -505,6 +563,9 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get action(): ClientAction;
         set action(newValue: ClientAction);
+        /**
+         * In version 8.12.0: deleted
+         */
         get disabledDuringAction(): boolean;
         set disabledDuringAction(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1267,6 +1328,11 @@ export declare namespace pages {
          */
         get labelTemplate(): ClientTemplate | null;
         set labelTemplate(newValue: ClientTemplate | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderLabel(): ClientTemplate | null;
+        set screenReaderLabel(newValue: ClientTemplate | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class MemberWidget extends InputWidget {
@@ -1841,6 +1907,11 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 8.12.0: introduced
+         */
+        get disabledDuringExecution(): boolean;
+        set disabledDuringExecution(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -3072,6 +3143,15 @@ export declare namespace pages {
         static createInInputWidgetUnderLabelTemplate(container: InputWidget): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderLabel' property
+         * of the parent InputWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInInputWidgetUnderScreenReaderLabel(container: InputWidget): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'alternativeText' property
          * of the parent StaticImageViewer element passed as argument.
          *
@@ -3514,7 +3594,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/comparison-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     class ComparisonSearchField extends SingleSearchField {
         static structureTypeName: string;
@@ -4465,7 +4545,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/add-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class DataGridAddButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -4489,7 +4569,7 @@ export declare namespace pages {
         static create(model: IModel): DataGridAddButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-csv-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class DataGridExportToCSVButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -4523,7 +4603,7 @@ export declare namespace pages {
         static create(model: IModel): DataGridExportToCSVButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-excel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class DataGridExportToExcelButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -4549,7 +4629,7 @@ export declare namespace pages {
         static create(model: IModel): DataGridExportToExcelButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/remove-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class DataGridRemoveButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -6152,6 +6232,11 @@ export declare namespace pages {
          */
         get onClickAction(): ClientAction;
         set onClickAction(newValue: ClientAction);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderHidden(): boolean;
+        set screenReaderHidden(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -6620,7 +6705,7 @@ export declare namespace pages {
         static create(model: IModel): DivContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-widget relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/drop-down relevant section in reference guide}
      */
     class DropDown extends AttributeWidget {
         static structureTypeName: string;
@@ -7124,7 +7209,7 @@ export declare namespace pages {
         static create(model: IModel): DropDown;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      */
     class DropDownButton extends Button {
         static structureTypeName: string;
@@ -7648,7 +7733,7 @@ export declare namespace pages {
         static create(model: IModel): DropDownButtonItem;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     class DropDownSearchField extends SingleSearchField {
         static structureTypeName: string;
@@ -9302,7 +9387,7 @@ export declare namespace pages {
         static create(model: IModel): FormattingInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-property relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/image relevant section in reference guide}
      */
     abstract class Icon extends internal.Element {
         static structureTypeName: string;
@@ -9371,7 +9456,7 @@ export declare namespace pages {
         static create(model: IModel): GlyphIcon;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class GridActionButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -9566,7 +9651,7 @@ export declare namespace pages {
         static create(model: IModel): GridDeleteButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deselect-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class GridDeselectAllButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -9618,7 +9703,7 @@ export declare namespace pages {
         static create(model: IModel): GridEditButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-new-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class GridNewButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -9653,7 +9738,7 @@ export declare namespace pages {
         static create(model: IModel): GridNewButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class GridSearchButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -9694,7 +9779,7 @@ export declare namespace pages {
         static create(model: IModel): GridSearchButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class GridSelectAllButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -10945,7 +11030,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/horizontal-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
@@ -13904,7 +13989,7 @@ export declare namespace pages {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/link-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.3.0: deleted
      */
@@ -15886,7 +15971,7 @@ export declare namespace pages {
         static create(model: IModel): LoginIdTextBox;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-out-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.1.0: deleted
      */
@@ -17230,7 +17315,7 @@ export declare namespace pages {
         static create(model: IModel): MicroflowParameterMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/starting-microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/on-click-event relevant section in reference guide}
      */
     class MicroflowSettings extends internal.Element {
         static structureTypeName: string;
@@ -19863,7 +19948,7 @@ export declare namespace pages {
         static create(model: IModel): PageForSpecialization;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/opening-pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element {
         static structureTypeName: string;
@@ -19883,8 +19968,16 @@ export declare namespace pages {
         get page(): IPage | null;
         set page(newValue: IPage | null);
         get pageQualifiedName(): string | null;
+        /**
+         * In version 8.12.0: deleted
+         */
         get formTitle(): texts.Text | null;
         set formTitle(newValue: texts.Text | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get titleOverride(): microflows.TextTemplate | null;
+        set titleOverride(newValue: microflows.TextTemplate | null);
         /**
          * In version 8.0.0: deleted
          */
@@ -19977,7 +20070,7 @@ export declare namespace pages {
         static create(model: IModel): PageSettings;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -19999,7 +20092,7 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<PageTemplate>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -21592,7 +21685,7 @@ export declare namespace pages {
         static create(model: IModel): RadioButtonGroup;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/range-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
      */
     class RangeSearchField extends SearchField {
         static structureTypeName: string;
@@ -23918,7 +24011,7 @@ export declare namespace pages {
         static create(model: IModel): SearchBar;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
      */
     class SelectButton extends GridControlBarButton {
         static structureTypeName: string;
@@ -27302,7 +27395,7 @@ export declare namespace pages {
         static create(model: IModel): TabContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/tab-container relevant section in reference guide}
      */
     class TabPage extends internal.Element {
         static structureTypeName: string;
@@ -29083,6 +29176,11 @@ export declare namespace pages {
          */
         get autocomplete(): boolean;
         set autocomplete(newValue: boolean);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get autocompletePurpose(): AutocompletePurposeType;
+        set autocompletePurpose(newValue: AutocompletePurposeType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -30784,7 +30882,7 @@ export declare namespace pages {
         static create(model: IModel): VerticalFlow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/vertical-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */

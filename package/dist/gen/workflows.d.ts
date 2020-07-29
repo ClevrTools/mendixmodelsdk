@@ -14,6 +14,10 @@ export declare namespace workflows {
     interface IWorkflowActivity extends internal.IElement {
         readonly model: IModel;
         readonly containerAsWorkflow: IWorkflow;
+        /**
+         * In version 8.12.0: added public
+         */
+        readonly caption: string;
         asLoaded(): WorkflowActivity;
         load(callback: (element: WorkflowActivity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<WorkflowActivity>;
@@ -28,6 +32,9 @@ export declare namespace workflows {
         static versionInfo: StructureVersionInfo;
         model: IModel;
         get containerAsWorkflow(): Workflow;
+        /**
+         * In version 8.12.0: added public
+         */
         get caption(): string;
         set caption(newValue: string);
         get size(): common.ISize;

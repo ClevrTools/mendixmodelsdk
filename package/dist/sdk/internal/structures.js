@@ -24,6 +24,13 @@ let Structure = /** @class */ (() => {
              */
             this._isUpdating = true;
             /**
+             * Indicates that the internal data of this element is being reverted to its previous value,
+             * so some validation check could be skipped
+             *
+             * @internal
+             */
+            this._isReverting = false;
+            /**
              * The current state of the structure: (new|attached|detached|deleted).
              *
              * @internal

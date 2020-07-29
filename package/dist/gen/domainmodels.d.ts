@@ -1304,6 +1304,12 @@ export declare namespace domainmodels {
          * In version 8.10.0: introduced
          */
         readonly source: IEntitySource | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.12.0: introduced
+         */
+        readonly capabilities: IEntityCapabilities;
         asLoaded(): Entity;
         load(callback: (element: Entity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Entity>;
@@ -1361,6 +1367,11 @@ export declare namespace domainmodels {
          */
         get source(): EntitySource | null;
         set source(newValue: EntitySource | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get capabilities(): EntityCapabilities;
+        set capabilities(newValue: EntityCapabilities);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1375,6 +1386,43 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): Entity;
         get qualifiedName(): string | null;
+    }
+    /**
+     * In version 8.12.0: introduced
+     */
+    interface IEntityCapabilities extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): EntityCapabilities;
+        load(callback: (element: EntityCapabilities) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityCapabilities>;
+    }
+    /**
+     * In version 8.12.0: introduced
+     */
+    class EntityCapabilities extends internal.Element implements IEntityCapabilities {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        model: IModel;
+        get containerAsEntity(): Entity;
+        get countable(): boolean;
+        set countable(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * The new EntityCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createIn(container: Entity): EntityCapabilities;
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityCapabilities;
     }
     /**
      * In version 8.9.0: introduced

@@ -116,7 +116,7 @@ var projects;
     })();
     projects.FolderBase = FolderBase;
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/resources relevant section in reference guide}
      */
     let Folder = /** @class */ (() => {
         class Folder extends FolderBase {

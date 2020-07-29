@@ -3,7 +3,7 @@ import { Delta } from "./deltas";
 export declare class DeltaProcessor {
     model: AbstractModel;
     constructor(model: AbstractModel);
-    processDeltas(deltas: Delta[]): void;
+    processDeltas(deltas: Delta[], isReverting?: boolean): void;
     private processUpdatePropertyValueDelta;
     private processMutator;
     private processCreateElementTreeDelta;

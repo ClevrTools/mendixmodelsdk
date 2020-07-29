@@ -99,7 +99,7 @@ let DeltaManager = /** @class */ (() => {
             if (error) {
                 throw error;
             }
-            this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(reverseDeltas));
+            this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(reverseDeltas), true);
             this.queue.splice(0, this.queue.length);
             this.eventEmitter.emit("TransactionRollback", undefined);
         }

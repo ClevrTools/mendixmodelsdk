@@ -149,7 +149,7 @@ var instancehelpers;
         if (!(container instanceof units.StructuralUnit)) {
             throw new Error("Expected container");
         }
-        if (container._isReadOnly) {
+        if (container.isReadOnly) {
             throw new Error("Cannot create a unit in a readonly container");
         }
         const model = container._model;
