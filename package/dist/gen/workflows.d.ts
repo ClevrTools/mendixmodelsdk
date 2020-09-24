@@ -11,6 +11,45 @@ export declare namespace workflows {
      *
      * In version 8.10.0: introduced
      */
+    abstract class FlowValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.13.0: introduced
+     */
+    class BooleanOutcomeValue extends FlowValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get outcome(): boolean;
+        set outcome(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BooleanOutcomeValue instance in the SDK and on the server.
+         * The new BooleanOutcomeValue will be automatically stored in the 'value' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Flow): BooleanOutcomeValue;
+        /**
+         * Creates and returns a new BooleanOutcomeValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BooleanOutcomeValue;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
     interface IWorkflowActivity extends internal.IElement {
         readonly model: IModel;
         readonly containerAsWorkflow: IWorkflow;
@@ -27,10 +66,9 @@ export declare namespace workflows {
      *
      * In version 8.10.0: introduced
      */
-    abstract class WorkflowActivity extends internal.Element implements IWorkflowActivity {
+    abstract class WorkflowActivity extends internal.Element<IModel> implements IWorkflowActivity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
         /**
          * In version 8.12.0: added public
@@ -68,7 +106,6 @@ export declare namespace workflows {
     abstract class WorkflowTask extends WorkflowActivity implements IWorkflowTask {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
         get name(): string;
         set name(newValue: string);
@@ -99,7 +136,6 @@ export declare namespace workflows {
     class CallMicroflowTask extends WorkflowTask implements ICallMicroflowTask {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
@@ -124,6 +160,50 @@ export declare namespace workflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * In version 8.13.0: introduced
+     */
+    interface ICallWorkflowActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        asLoaded(): CallWorkflowActivity;
+        load(callback: (element: CallWorkflowActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CallWorkflowActivity>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.13.0: introduced
+     */
+    class CallWorkflowActivity extends WorkflowActivity implements ICallWorkflowActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get workflow(): IWorkflow | null;
+        set workflow(newValue: IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * The new CallWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Workflow): CallWorkflowActivity;
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallWorkflowActivity;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
      * In version 8.10.0: introduced
      */
     interface IEndWorkflowActivity extends IWorkflowActivity {
@@ -141,7 +221,6 @@ export declare namespace workflows {
     class EndWorkflowActivity extends WorkflowActivity implements IEndWorkflowActivity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -163,12 +242,83 @@ export declare namespace workflows {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.10.0: introduced
+     * In version 8.13.0: introduced
      */
-    class Flow extends internal.Element {
+    class EnumerationValueOutcomeValue extends FlowValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsFlow(): Flow;
+        get outcome(): enumerations.IEnumerationValue | null;
+        set outcome(newValue: enumerations.IEnumerationValue | null);
+        get outcomeQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EnumerationValueOutcomeValue instance in the SDK and on the server.
+         * The new EnumerationValueOutcomeValue will be automatically stored in the 'value' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Flow): EnumerationValueOutcomeValue;
+        /**
+         * Creates and returns a new EnumerationValueOutcomeValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EnumerationValueOutcomeValue;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.13.0: introduced
+     */
+    interface IExclusiveSplitActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        asLoaded(): ExclusiveSplitActivity;
+        load(callback: (element: ExclusiveSplitActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ExclusiveSplitActivity>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.13.0: introduced
+     */
+    class ExclusiveSplitActivity extends WorkflowActivity implements IExclusiveSplitActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * The new ExclusiveSplitActivity will be automatically stored in the 'activities' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Workflow): ExclusiveSplitActivity;
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ExclusiveSplitActivity;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.10.0: introduced
+     */
+    class Flow extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get containerAsWorkflow(): Workflow;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -207,22 +357,9 @@ export declare namespace workflows {
      *
      * In version 8.10.0: introduced
      */
-    abstract class FlowValue extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsFlow(): Flow;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.10.0: introduced
-     */
     class NoValue extends FlowValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFlow(): Flow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -261,7 +398,6 @@ export declare namespace workflows {
     class StartWorkflowActivity extends WorkflowActivity implements IStartWorkflowActivity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -288,7 +424,6 @@ export declare namespace workflows {
     class TaskOutcomeValue extends FlowValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFlow(): Flow;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -317,10 +452,9 @@ export declare namespace workflows {
      *
      * In version 8.11.0: introduced
      */
-    abstract class UserSource extends internal.Element {
+    abstract class UserSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsUserTask(): UserTask;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -332,6 +466,11 @@ export declare namespace workflows {
     interface IUserTask extends IWorkflowTask {
         readonly model: IModel;
         readonly containerAsWorkflow: IWorkflow;
+        /**
+         * In version 8.13.0: added public
+         */
+        readonly page: pages.IPage | null;
+        readonly pageQualifiedName: string | null;
         asLoaded(): UserTask;
         load(callback: (element: UserTask) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<UserTask>;
@@ -344,8 +483,10 @@ export declare namespace workflows {
     class UserTask extends WorkflowTask implements IUserTask {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflow(): Workflow;
+        /**
+         * In version 8.13.0: added public
+         */
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
         get pageQualifiedName(): string | null;
@@ -353,6 +494,13 @@ export declare namespace workflows {
         set subject(newValue: microflows.StringTemplate);
         get description(): microflows.StringTemplate;
         set description(newValue: microflows.StringTemplate);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.13.0: introduced
+         */
+        get dueDate(): string;
+        set dueDate(newValue: string);
         /**
          * In version 8.11.0: deleted
          */
@@ -409,7 +557,6 @@ export declare namespace workflows {
     class Workflow extends projects.Document implements IWorkflow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get contextEntity(): domainmodels.IEntity | null;
         set contextEntity(newValue: domainmodels.IEntity | null);
@@ -431,6 +578,13 @@ export declare namespace workflows {
          */
         get subject(): microflows.StringTemplate;
         set subject(newValue: microflows.StringTemplate);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.13.0: introduced
+         */
+        get dueDate(): string;
+        set dueDate(newValue: string);
         /**
          * In version 8.11.0: introduced
          */
@@ -466,10 +620,9 @@ export declare namespace workflows {
      *
      * In version 8.10.0: introduced
      */
-    class WorkflowTaskOutcome extends internal.Element implements IWorkflowTaskOutcome {
+    class WorkflowTaskOutcome extends internal.Element<IModel> implements IWorkflowTaskOutcome {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWorkflowTask(): WorkflowTask;
         get name(): string;
         set name(newValue: string);
@@ -504,7 +657,6 @@ export declare namespace workflows {
     class XPathBasedUserSource extends UserSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsUserTask(): UserTask;
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
@@ -530,6 +682,7 @@ export declare namespace workflows {
     }
 }
 import { domainmodels } from "./domainmodels";
+import { enumerations } from "./enumerations";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
 import { security } from "./security";

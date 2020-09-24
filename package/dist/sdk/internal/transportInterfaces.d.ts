@@ -21,7 +21,7 @@ export interface IWorkingCopyMetaData {
     avatarUrl: string;
     projectId: string;
     metaModelVersion: string;
-    teamServerBaseCommitHash?: string;
+    teamServerBaseCommitId?: string;
     teamServerBaseRevision?: number;
     teamServerBaseBranch?: string;
 }
@@ -88,7 +88,7 @@ export interface IStructureJson {
  * The base serialization structure of a unit, i.e. either a structural or a model unit.
  */
 export interface IAbstractUnitJson extends IStructureJson {
-    contents: IAbstractElementJson;
+    contents: Omit<IAbstractElementJson, "$ID" | "$Type">;
     containerId: string;
     containmentName: string;
 }
@@ -178,11 +178,23 @@ export interface ILoadUnitResponse {
     unit: IAbstractUnitJson;
     eventId: number;
 }
-export interface ICommitToTeamServerOptions {
+interface ICommitToTeamServerBaseOptions {
     targetBranch: string;
-    targetRevision: number;
     commitMessage: string;
-    teamServerUsername: string;
-    teamServerPassword: string;
     isWebModelerCommit?: boolean;
 }
+export interface ICommitToSVNTeamServerOptions extends ICommitToTeamServerBaseOptions {
+    repositoryType?: "svn";
+    targetRevision: number;
+    teamServerUsername: string;
+    teamServerPassword: string;
+}
+export interface ICommitToGitTeamServerOptions extends ICommitToTeamServerBaseOptions {
+    repositoryType: "git";
+    teamServerGitUrl: string;
+    authorName: string;
+    authorEmail: string;
+    targetCommitId: string;
+}
+export declare type ICommitToTeamServerOptions = ICommitToGitTeamServerOptions | ICommitToSVNTeamServerOptions;
+export {};

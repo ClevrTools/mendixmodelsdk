@@ -34,10 +34,9 @@ export declare namespace mappings {
     /**
      * In version 6.6.0: introduced
      */
-    abstract class Element extends internal.Element {
+    abstract class Element extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): Element;
         get containerAsEntityMessageDefinition(): messagedefinitions.EntityMessageDefinition;
@@ -79,7 +78,7 @@ export declare namespace mappings {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/mapping-documents relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/mapping-documents relevant section in reference guide}
      */
     interface IMappingDocument extends projects.IDocument {
         readonly model: IModel;
@@ -89,12 +88,11 @@ export declare namespace mappings {
         load(forceRefresh?: boolean): Promise<MappingDocument>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/mapping-documents relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/mapping-documents relevant section in reference guide}
      */
     abstract class MappingDocument extends projects.Document implements IMappingDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get rootMappingElements(): internal.IList<ObjectMappingElement>;
         get xmlSchema(): xmlschemas.IXmlSchema | null;
@@ -128,10 +126,9 @@ export declare namespace mappings {
         set publicName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
-    abstract class MappingElement extends internal.Element {
+    abstract class MappingElement extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMappingDocument(): MappingDocument;
         get containerAsObjectMappingElement(): ObjectMappingElement;
         get documentation(): string;
@@ -172,10 +169,9 @@ export declare namespace mappings {
         set exposedName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
-    class MappingMicroflowCall extends internal.Element {
+    class MappingMicroflowCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsObjectMappingElement(): ObjectMappingElement;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
@@ -195,10 +191,9 @@ export declare namespace mappings {
          */
         static create(model: IModel): MappingMicroflowCall;
     }
-    class MappingMicroflowParameter extends internal.Element {
+    class MappingMicroflowParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMappingMicroflowCall(): MappingMicroflowCall;
         get parameter(): microflows.IMicroflowParameter | null;
         set parameter(newValue: microflows.IMicroflowParameter | null);
@@ -243,7 +238,6 @@ export declare namespace mappings {
     abstract class ObjectMappingElement extends MappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMappingDocument(): MappingDocument;
         get containerAsObjectMappingElement(): ObjectMappingElement;
         get mappingMicroflowCall(): MappingMicroflowCall | null;
@@ -274,7 +268,6 @@ export declare namespace mappings {
     abstract class ValueMappingElement extends MappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsObjectMappingElement(): ObjectMappingElement;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.

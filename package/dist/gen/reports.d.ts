@@ -46,12 +46,11 @@ export declare namespace reports {
      * Interfaces and instance classes for types from the Mendix sub meta model `Reports`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/report-widgets relevant section in reference guide}
      */
     abstract class ReportWidget extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -88,12 +87,11 @@ export declare namespace reports {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/report-grid relevant section in reference guide}
      */
     class BasicReport extends ReportWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -596,10 +594,9 @@ export declare namespace reports {
          */
         static create(model: IModel): BasicReport;
     }
-    class BasicReportAggregate extends internal.Element {
+    class BasicReportAggregate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicReport(): BasicReport;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -620,10 +617,9 @@ export declare namespace reports {
          */
         static create(model: IModel): BasicReportAggregate;
     }
-    class BasicReportColumn extends internal.Element {
+    class BasicReportColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicReport(): BasicReport;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -650,12 +646,11 @@ export declare namespace reports {
         static create(model: IModel): BasicReportColumn;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/report-button relevant section in reference guide}
      */
     class ReportButton extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1151,12 +1146,11 @@ export declare namespace reports {
         static create(model: IModel): ReportButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-chart relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/report-chart relevant document}
      */
     class ReportChart extends ReportWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1670,10 +1664,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportChart;
     }
-    class ReportChartSeries extends internal.Element {
+    class ReportChartSeries extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsReportChart(): ReportChart;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -1694,12 +1687,11 @@ export declare namespace reports {
         static create(model: IModel): ReportChartSeries;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/date-range-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/date-range-field relevant section in reference guide}
      */
-    class ReportDateRangeField extends internal.Element {
+    class ReportDateRangeField extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsReportDateRangeSelector(): ReportDateRangeSelector;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -1722,7 +1714,6 @@ export declare namespace reports {
     abstract class ReportParameter extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1762,12 +1753,11 @@ export declare namespace reports {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-date-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/report-date-parameter relevant section in reference guide}
      */
     class ReportDateRangeSelector extends ReportParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -2274,12 +2264,11 @@ export declare namespace reports {
         static create(model: IModel): ReportDateRangeSelector;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/report-parameter relevant section in reference guide}
      */
     class ReportDropDown extends ReportParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -2776,14 +2765,13 @@ export declare namespace reports {
         static create(model: IModel): ReportDropDown;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/report-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/report-pane relevant section in reference guide}
      *
      * In version 6.10.0: deleted
      */
     class ReportPane extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): pages.DataView;
         get containerAsDivContainer(): pages.DivContainer;
         get containerAsGroupBox(): pages.GroupBox;
@@ -3014,10 +3002,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportPane;
     }
-    class ReportZoomInfo extends internal.Element {
+    class ReportZoomInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicReport(): BasicReport;
         get targetPage(): pages.IPage | null;
         set targetPage(newValue: pages.IPage | null);
@@ -3037,10 +3024,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportZoomInfo;
     }
-    class ReportZoomMapping extends internal.Element {
+    class ReportZoomMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsReportZoomInfo(): ReportZoomInfo;
         get targetParameterName(): string;
         set targetParameterName(newValue: string);

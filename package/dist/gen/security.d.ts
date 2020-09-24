@@ -11,21 +11,19 @@ export declare namespace security {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Security`.
      */
-    abstract class AccessRuleContainerBase extends internal.Element {
+    abstract class AccessRuleContainerBase extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         get accessRules(): internal.IList<domainmodels.AccessRule>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/demo-users relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/demo-users relevant section in reference guide}
      */
-    class DemoUser extends internal.Element {
+    class DemoUser extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         get userName(): string;
         set userName(newValue: string);
@@ -53,7 +51,6 @@ export declare namespace security {
     class FileDocumentAccessRuleContainer extends AccessRuleContainerBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -72,7 +69,6 @@ export declare namespace security {
     class ImageAccessRuleContainer extends AccessRuleContainerBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -89,7 +85,7 @@ export declare namespace security {
         static create(model: IModel): ImageAccessRuleContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
     interface IModuleRole extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -100,12 +96,11 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<ModuleRole>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
-    class ModuleRole extends internal.Element implements IModuleRole {
+    class ModuleRole extends internal.Element<IModel> implements IModuleRole {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsModuleSecurity(): ModuleSecurity;
         get name(): string;
         set name(newValue: string);
@@ -127,7 +122,7 @@ export declare namespace security {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
     interface IModuleSecurity extends internal.IModelUnit {
         readonly model: IModel;
@@ -138,12 +133,11 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<ModuleSecurity>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
-    class ModuleSecurity extends internal.ModelUnit implements IModuleSecurity {
+    class ModuleSecurity extends internal.ModelUnit<IModel> implements IModuleSecurity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsModule(): projects.Module;
         get moduleRoles(): internal.IList<ModuleRole>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IModule);
@@ -154,12 +148,11 @@ export declare namespace security {
         static createIn(container: projects.IModule): ModuleSecurity;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/password-policy relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/password-policy relevant section in reference guide}
      */
-    class PasswordPolicySettings extends internal.Element {
+    class PasswordPolicySettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         get minimumLength(): number;
         set minimumLength(newValue: number);
@@ -184,7 +177,7 @@ export declare namespace security {
         static create(model: IModel): PasswordPolicySettings;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-security relevant section in reference guide}
      */
     interface IProjectSecurity extends projects.IProjectDocument {
         readonly model: IModel;
@@ -195,12 +188,11 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<ProjectSecurity>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-security relevant section in reference guide}
      */
     class ProjectSecurity extends projects.ProjectDocument implements IProjectSecurity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): projects.Project;
         get securityLevel(): SecurityLevel;
         set securityLevel(newValue: SecurityLevel);
@@ -246,7 +238,7 @@ export declare namespace security {
         static createIn(container: projects.IProject): ProjectSecurity;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-roles relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/user-roles relevant section in reference guide}
      */
     interface IUserRole extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -257,12 +249,11 @@ export declare namespace security {
         load(forceRefresh?: boolean): Promise<UserRole>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-roles relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/user-roles relevant section in reference guide}
      */
-    class UserRole extends internal.Element implements IUserRole {
+    class UserRole extends internal.Element<IModel> implements IUserRole {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSecurity(): ProjectSecurity;
         get guid(): string;
         set guid(newValue: string);

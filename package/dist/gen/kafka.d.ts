@@ -1,6 +1,7 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { domainmodels } from "./domainmodels";
+import { projects } from "./projects";
 export declare namespace kafka {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Kafka`.
@@ -25,15 +26,11 @@ export declare namespace kafka {
     class ConsumedKafkaService extends domainmodels.RemoteEntitySourceDocument implements IConsumedKafkaService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
-        get metadataUrl(): string;
-        set metadataUrl(newValue: string);
         get metadataReferences(): internal.IList<rest.MetadataReference>;
-        get serviceName(): string;
-        set serviceName(newValue: string);
-        get version(): string;
-        set version(newValue: string);
+        /**
+         * In version 8.14.0: deleted
+         */
         get serviceId(): string;
         set serviceId(newValue: string);
         /**
@@ -41,8 +38,6 @@ export declare namespace kafka {
          */
         get serviceFeed(): string;
         set serviceFeed(newValue: string);
-        get metadata(): string;
-        set metadata(newValue: string);
         get brokerUrl(): constants.IConstant | null;
         set brokerUrl(newValue: constants.IConstant | null);
         get brokerUrlQualifiedName(): string | null;
@@ -52,103 +47,12 @@ export declare namespace kafka {
         get brokerPassword(): constants.IConstant | null;
         set brokerPassword(newValue: constants.IConstant | null);
         get brokerPasswordQualifiedName(): string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * In version 8.12.0: deleted
-         */
-        get entities(): internal.IList<KafkaEntity>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedKafkaService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container: projects.IFolderBase): ConsumedKafkaService;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.12.0: deleted
-     */
-    class KafkaAttribute extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsKafkaEntity(): KafkaEntity;
-        get name(): string;
-        set name(newValue: string);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new KafkaAttribute instance in the SDK and on the server.
-         * The new KafkaAttribute will be automatically stored in the 'attributes' property
-         * of the parent KafkaEntity element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.0.0 to 8.11.0
-         */
-        static createIn(container: KafkaEntity): KafkaAttribute;
-        /**
-         * Creates and returns a new KafkaAttribute instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): KafkaAttribute;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.12.0: deleted
-     */
-    interface IKafkaEntity extends internal.IElement, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsConsumedKafkaService: IConsumedKafkaService;
-        readonly name: string;
-        asLoaded(): KafkaEntity;
-        load(callback: (element: KafkaEntity) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<KafkaEntity>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.12.0: deleted
-     */
-    class KafkaEntity extends internal.Element implements IKafkaEntity {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsConsumedKafkaService(): ConsumedKafkaService;
-        get name(): string;
-        set name(newValue: string);
-        get entitySet(): string;
-        set entitySet(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get navigationProperties(): internal.IList<KafkaNavigationProperty>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get attributes(): internal.IList<KafkaAttribute>;
-        get topicName(): constants.IConstant | null;
-        set topicName(newValue: constants.IConstant | null);
-        get topicNameQualifiedName(): string | null;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new KafkaEntity instance in the SDK and on the server.
-         * The new KafkaEntity will be automatically stored in the 'entities' property
-         * of the parent ConsumedKafkaService element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 to 8.11.0
-         */
-        static createIn(container: ConsumedKafkaService): KafkaEntity;
-        /**
-         * Creates and returns a new KafkaEntity instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): KafkaEntity;
-        get qualifiedName(): string | null;
     }
     /**
      * In version 8.11.0: introduced
@@ -166,7 +70,6 @@ export declare namespace kafka {
     class KafkaMappedValue extends domainmodels.MappedValue implements IKafkaMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): domainmodels.Attribute;
         get remoteName(): string;
         set remoteName(newValue: string);
@@ -190,35 +93,6 @@ export declare namespace kafka {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.12.0: deleted
-     */
-    class KafkaNavigationProperty extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsKafkaEntity(): KafkaEntity;
-        get name(): string;
-        set name(newValue: string);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new KafkaNavigationProperty instance in the SDK and on the server.
-         * The new KafkaNavigationProperty will be automatically stored in the 'navigationProperties' property
-         * of the parent KafkaEntity element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.0.0 to 8.11.0
-         */
-        static createIn(container: KafkaEntity): KafkaNavigationProperty;
-        /**
-         * Creates and returns a new KafkaNavigationProperty instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): KafkaNavigationProperty;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
      * In version 8.11.0: introduced
      */
     interface IKafkaRemoteEntitySource extends domainmodels.IMaterializedRemoteEntitySource {
@@ -236,7 +110,6 @@ export declare namespace kafka {
     class KafkaRemoteEntitySource extends domainmodels.MaterializedRemoteEntitySource implements IKafkaRemoteEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): domainmodels.Entity;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -268,8 +141,99 @@ export declare namespace kafka {
          */
         static create(model: IModel): KafkaRemoteEntitySource;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.14.0: introduced
+     */
+    class PublishedKafkaResource extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedKafkaService(): PublishedKafkaService;
+        get entity(): domainmodels.IEntity;
+        set entity(newValue: domainmodels.IEntity);
+        get entityQualifiedName(): string;
+        get exposedName(): string;
+        set exposedName(newValue: string);
+        get topicName(): string;
+        set topicName(newValue: string);
+        get summary(): string;
+        set summary(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PublishedKafkaResource instance in the SDK and on the server.
+         * The new PublishedKafkaResource will be automatically stored in the 'resources' property
+         * of the parent PublishedKafkaService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.14.0 and higher
+         */
+        static createIn(container: PublishedKafkaService): PublishedKafkaResource;
+        /**
+         * Creates and returns a new PublishedKafkaResource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PublishedKafkaResource;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.14.0: introduced
+     */
+    interface IPublishedKafkaService extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        asLoaded(): PublishedKafkaService;
+        load(callback: (element: PublishedKafkaService) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<PublishedKafkaService>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * In version 8.14.0: introduced
+     */
+    class PublishedKafkaService extends projects.Document implements IPublishedKafkaService {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        get namespace(): string;
+        set namespace(newValue: string);
+        get serviceFeed(): string;
+        set serviceFeed(newValue: string);
+        get metadata(): string;
+        set metadata(newValue: string);
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         */
+        get resources(): internal.IList<PublishedKafkaResource>;
+        get version(): string;
+        set version(newValue: string);
+        get summary(): string;
+        set summary(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        get brokerUrl(): constants.IConstant;
+        set brokerUrl(newValue: constants.IConstant);
+        get brokerUrlQualifiedName(): string;
+        get brokerUsername(): constants.IConstant | null;
+        set brokerUsername(newValue: constants.IConstant | null);
+        get brokerUsernameQualifiedName(): string | null;
+        get brokerPassword(): constants.IConstant | null;
+        set brokerPassword(newValue: constants.IConstant | null);
+        get brokerPasswordQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+        /**
+         * Creates a new PublishedKafkaService unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container: projects.IFolderBase): PublishedKafkaService;
+    }
 }
 import { constants } from "./constants";
-import { projects } from "./projects";
 import { rest } from "./rest";
 import { IModel } from "./base-model";

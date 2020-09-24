@@ -2,11 +2,23 @@
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseModel = void 0;
+const internal_1 = require("../sdk/internal");
 const AbstractModel_1 = require("../sdk/internal/AbstractModel");
+const elements = require("../sdk/internal/elements");
 /**
  * Class to find generated model units.
  */
 class BaseModel extends AbstractModel_1.AbstractModel {
+    createElement(typeName) {
+        const elementClass = internal_1.instancehelpers.lookupClass(typeName, this._allModelClasses());
+        if (!elements.Element.isPrototypeOf(elementClass)) {
+            throw new Error(`'${typeName}' is not an element type`);
+        }
+        if (typeof elementClass.create !== "function") {
+            throw new Error(`Cannot create an element for an abstract type '${typeName}'`);
+        }
+        return internal_1.instancehelpers.createElement(this, elementClass);
+    }
     allBuildingBlocks() {
         return super._allOfTypes(["Pages$BuildingBlock"]);
     }
@@ -42,6 +54,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
             "Kafka$ConsumedKafkaService",
+            "Kafka$PublishedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -149,6 +162,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
             "Kafka$ConsumedKafkaService",
+            "Kafka$PublishedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -219,6 +233,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allPublishedAppServices() {
         return super._allOfTypes(["WebServices$PublishedAppService"]);
+    }
+    allPublishedKafkaServices() {
+        return super._allOfTypes(["Kafka$PublishedKafkaService"]);
     }
     allPublishedODataServices() {
         return super._allOfTypes(["Rest$PublishedODataService"]);

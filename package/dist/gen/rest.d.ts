@@ -29,7 +29,7 @@ export declare namespace rest {
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -39,26 +39,15 @@ export declare namespace rest {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         /**
-         * In version 8.10.0: added public
-         * In version 8.0.0: introduced
+         * In version 8.14.0: introduced
          */
-        readonly serviceName: string;
-        /**
-         * In version 8.10.0: added public
-         * In version 8.0.0: introduced
-         */
-        readonly version: string;
-        /**
-         * In version 8.12.0: added public
-         * In version 8.11.0: introduced
-         */
-        readonly applicationId: string;
+        readonly lastUpdated: string;
         asLoaded(): ConsumedODataService;
         load(callback: (element: ConsumedODataService) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ConsumedODataService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -67,39 +56,11 @@ export declare namespace rest {
     class ConsumedODataService extends domainmodels.RemoteEntitySourceDocument implements IConsumedODataService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
-        get metadataUrl(): string;
-        set metadataUrl(newValue: string);
-        get metadata(): string;
-        set metadata(newValue: string);
         /**
          * In version 8.6.0: introduced
          */
         get metadataReferences(): internal.IList<MetadataReference>;
-        /**
-         * In version 8.10.0: added public
-         * In version 8.0.0: introduced
-         */
-        get serviceName(): string;
-        set serviceName(newValue: string);
-        /**
-         * In version 8.10.0: added public
-         * In version 8.0.0: introduced
-         */
-        get version(): string;
-        set version(newValue: string);
-        /**
-         * In version 8.0.0: introduced
-         */
-        get serviceId(): string;
-        set serviceId(newValue: string);
-        /**
-         * In version 8.12.0: added public
-         * In version 8.11.0: introduced
-         */
-        get applicationId(): string;
-        set applicationId(newValue: string);
         get proxyType(): microflows.RequestProxyType;
         set proxyType(newValue: microflows.RequestProxyType);
         get proxyHost(): constants.IConstant | null;
@@ -144,6 +105,23 @@ export declare namespace rest {
          */
         get oDataVersion(): ODataVersion;
         set oDataVersion(newValue: ODataVersion);
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.13.0: introduced
+         */
+        get versionApiMockResults(): string;
+        set versionApiMockResults(newValue: string);
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.0.0: introduced
+         */
+        get serviceId(): string;
+        set serviceId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get lastUpdated(): string;
+        set lastUpdated(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -152,14 +130,13 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): ConsumedODataService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cors-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cors-settings relevant section in reference guide}
      *
      * In version 7.18.0: introduced
      */
-    class CorsConfiguration extends internal.Element {
+    class CorsConfiguration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get allowedOrigins(): constants.IConstant | null;
         set allowedOrigins(newValue: constants.IConstant | null);
@@ -189,10 +166,9 @@ export declare namespace rest {
     /**
      * In version 8.6.0: introduced
      */
-    class MetadataReference extends internal.Element {
+    class MetadataReference extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConsumedKafkaService(): kafka.ConsumedKafkaService;
         get containerAsConsumedODataService(): ConsumedODataService;
         get containerAsMetadataReference(): MetadataReference;
@@ -269,10 +245,9 @@ export declare namespace rest {
      *
      * In version 8.9.0: introduced
      */
-    class ODataKey extends internal.Element implements IODataKey {
+    class ODataKey extends internal.Element<IModel> implements IODataKey {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsODataRemoteEntitySource(): ODataRemoteEntitySource;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -316,10 +291,9 @@ export declare namespace rest {
      *
      * In version 8.9.0: introduced
      */
-    class ODataKeyPart extends internal.Element implements IODataKeyPart {
+    class ODataKeyPart extends internal.Element<IModel> implements IODataKeyPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsODataKey(): ODataKey;
         get name(): string;
         set name(newValue: string);
@@ -360,7 +334,6 @@ export declare namespace rest {
     class ODataMappedValue extends domainmodels.MappedValue implements IODataMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): domainmodels.Attribute;
         get remoteName(): string;
         set remoteName(newValue: string);
@@ -397,7 +370,6 @@ export declare namespace rest {
     class ODataRemoteAssociationSource extends domainmodels.RemoteAssociationSource implements IODataRemoteAssociationSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationBase(): domainmodels.AssociationBase;
         get remoteParentNavigationProperty(): string;
         set remoteParentNavigationProperty(newValue: string);
@@ -442,7 +414,6 @@ export declare namespace rest {
     class ODataRemoteEntitySource extends domainmodels.QueryBasedRemoteEntitySource implements IODataRemoteEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): domainmodels.Entity;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -482,7 +453,7 @@ export declare namespace rest {
         static create(model: IModel): ODataRemoteEntitySource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     interface IPublishedODataService extends projects.IDocument {
         readonly model: IModel;
@@ -492,12 +463,11 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<PublishedODataService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     class PublishedODataService extends projects.Document implements IPublishedODataService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get namespace(): string;
         set namespace(newValue: string);
@@ -554,12 +524,11 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): PublishedODataService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-resource relevant section in reference guide}
      */
     class PublishedRestResource extends webservices.PublishedResource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedODataService(): PublishedODataService;
         get path(): string;
         set path(newValue: string);
@@ -597,7 +566,7 @@ export declare namespace rest {
         static create(model: IModel): PublishedRestResource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-services relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.6.0: introduced
@@ -610,7 +579,7 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<PublishedRestService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-services relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.6.0: introduced
@@ -618,7 +587,6 @@ export declare namespace rest {
     class PublishedRestService extends projects.Document implements IPublishedRestService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get path(): string;
         set path(newValue: string);
@@ -671,15 +639,14 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): PublishedRestService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-operation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-operation relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
      */
-    class PublishedRestServiceOperation extends internal.Element {
+    class PublishedRestServiceOperation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestServiceResource(): PublishedRestServiceResource;
         get summary(): string;
         set summary(newValue: string);
@@ -741,15 +708,14 @@ export declare namespace rest {
         static create(model: IModel): PublishedRestServiceOperation;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-resource relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
      */
-    class PublishedRestServiceResource extends internal.Element {
+    class PublishedRestServiceResource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get name(): string;
         set name(newValue: string);
@@ -777,10 +743,9 @@ export declare namespace rest {
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
      */
-    class RestOperationParameter extends internal.Element {
+    class RestOperationParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get containerAsPublishedRestServiceOperation(): PublishedRestServiceOperation;
         get name(): string;

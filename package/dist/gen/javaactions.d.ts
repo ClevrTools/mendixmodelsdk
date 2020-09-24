@@ -20,10 +20,9 @@ export declare namespace javaactions {
      * In version 7.21.0: deleted
      * In version 6.7.0: introduced
      */
-    abstract class ParameterType extends internal.Element implements IParameterType {
+    abstract class ParameterType extends internal.Element<IModel> implements IParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -49,7 +48,6 @@ export declare namespace javaactions {
     class BasicParameterType extends ParameterType implements IBasicParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         get type(): Type;
         set type(newValue: Type);
@@ -88,10 +86,9 @@ export declare namespace javaactions {
      * In version 7.21.0: deleted
      * In version 6.6.0: introduced
      */
-    abstract class Type extends internal.Element implements IType {
+    abstract class Type extends internal.Element<IModel> implements IType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -118,7 +115,6 @@ export declare namespace javaactions {
     abstract class PrimitiveType extends Type implements IPrimitiveType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -144,7 +140,6 @@ export declare namespace javaactions {
     class BooleanType extends PrimitiveType implements IBooleanType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -204,7 +199,6 @@ export declare namespace javaactions {
     abstract class EntityType extends Type implements IEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -237,7 +231,6 @@ export declare namespace javaactions {
     class ConcreteEntityType extends EntityType implements IConcreteEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -309,7 +302,6 @@ export declare namespace javaactions {
     class DateTimeType extends PrimitiveType implements IDateTimeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -368,7 +360,6 @@ export declare namespace javaactions {
     class DecimalType extends PrimitiveType implements IDecimalType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -426,7 +417,6 @@ export declare namespace javaactions {
     class EntityTypeParameterType extends ParameterType implements IEntityTypeParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         get typeParameter(): TypeParameter | null;
         set typeParameter(newValue: TypeParameter | null);
@@ -472,7 +462,6 @@ export declare namespace javaactions {
     class EnumerationType extends Type implements IEnumerationType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -530,7 +519,6 @@ export declare namespace javaactions {
     class ExportMappingJavaActionParameterType extends codeactions.ParameterType implements IExportMappingJavaActionParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -558,7 +546,6 @@ export declare namespace javaactions {
     class ExportMappingParameterType extends ParameterType implements IExportMappingParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -597,7 +584,6 @@ export declare namespace javaactions {
     class FloatType extends PrimitiveType implements IFloatType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -652,7 +638,6 @@ export declare namespace javaactions {
     class ImportMappingJavaActionParameterType extends codeactions.ParameterType implements IImportMappingJavaActionParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -680,7 +665,6 @@ export declare namespace javaactions {
     class ImportMappingParameterType extends ParameterType implements IImportMappingParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -719,7 +703,6 @@ export declare namespace javaactions {
     class IntegerType extends PrimitiveType implements IIntegerType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -759,7 +742,7 @@ export declare namespace javaactions {
         static create(model: IModel): IntegerType;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/java-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/java-actions relevant section in reference guide}
      */
     interface IJavaAction extends codeactions.ICodeAction {
         readonly model: IModel;
@@ -800,12 +783,11 @@ export declare namespace javaactions {
         load(forceRefresh?: boolean): Promise<JavaAction>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/java-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/java-actions relevant section in reference guide}
      */
     class JavaAction extends codeactions.CodeAction implements IJavaAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.21.0: deleted
@@ -878,7 +860,6 @@ export declare namespace javaactions {
     class JavaActionParameter extends codeactions.CodeActionParameter implements IJavaActionParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeAction(): codeactions.CodeAction;
         get containerAsJavaAction(): JavaAction;
         /**
@@ -950,7 +931,6 @@ export declare namespace javaactions {
     class ListType extends Type implements IListType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -1012,10 +992,9 @@ export declare namespace javaactions {
      * In version 6.10.0: removed experimental
      * In version 6.6.0: introduced
      */
-    class MicroflowActionInfo extends internal.Element implements IMicroflowActionInfo {
+    class MicroflowActionInfo extends internal.Element<IModel> implements IMicroflowActionInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaAction(): JavaAction;
         get caption(): string;
         set caption(newValue: string);
@@ -1057,7 +1036,6 @@ export declare namespace javaactions {
     class MicroflowJavaActionParameterType extends codeactions.ParameterType implements IMicroflowJavaActionParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1085,7 +1063,6 @@ export declare namespace javaactions {
     class MicroflowParameterType extends ParameterType implements IMicroflowParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameter(): JavaActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1129,7 +1106,6 @@ export declare namespace javaactions {
     class ParameterizedEntityType extends EntityType implements IParameterizedEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -1200,7 +1176,6 @@ export declare namespace javaactions {
     class StringType extends PrimitiveType implements IStringType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsJavaAction(): JavaAction;
         get containerAsJavaActionParameter(): JavaActionParameter;
@@ -1255,10 +1230,9 @@ export declare namespace javaactions {
      * In version 7.21.0: deleted
      * In version 6.6.0: introduced
      */
-    class TypeParameter extends internal.Element implements ITypeParameter {
+    class TypeParameter extends internal.Element<IModel> implements ITypeParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaAction(): JavaAction;
         get name(): string;
         set name(newValue: string);

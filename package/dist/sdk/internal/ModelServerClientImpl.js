@@ -276,14 +276,7 @@ class ModelServerClientImpl {
         this.transportation.request({
             method: "post",
             url: `${apiEndPoint}wc/${workingCopyId}/commit`,
-            body: {
-                targetBranch: options.targetBranch,
-                targetRevision: options.targetRevision,
-                commitMessage: options.commitMessage,
-                teamServerUsername: options.teamServerUsername,
-                teamServerPassword: options.teamServerPassword,
-                isWebModelerCommit: options.isWebModelerCommit
-            },
+            body: options,
             longTimeout: true
         }, callback, errorCallback);
     }
@@ -455,7 +448,7 @@ class ModelServerClientImpl {
             longLived: workingCopyInfo.longLived === true,
             teamServerBaseBranch: workingCopyInfo.teamServerBaseBranch,
             teamServerBaseRevision: workingCopyInfo.teamServerBaseRevision,
-            teamServerBaseCommitHash: workingCopyInfo.teamServerBaseCommitHash,
+            teamServerBaseCommitId: workingCopyInfo.teamServerBaseCommitId,
             teamServerGitUrl: workingCopyInfo.teamServerGitUrl,
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,

@@ -53,10 +53,9 @@ export declare namespace settings {
     /**
      * In version 8.6.0: introduced
      */
-    class ActionActivityDefaultColor extends internal.Element {
+    class ActionActivityDefaultColor extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsModelerSettings(): ModelerSettings;
         get actionActivityType(): string;
         set actionActivityType(newValue: string);
@@ -79,10 +78,9 @@ export declare namespace settings {
          */
         static create(model: IModel): ActionActivityDefaultColor;
     }
-    class Certificate extends internal.Element {
+    class Certificate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCertificateSettings(): CertificateSettings;
         get type(): CertificateType;
         set type(newValue: CertificateType);
@@ -102,17 +100,15 @@ export declare namespace settings {
          */
         static create(model: IModel): Certificate;
     }
-    abstract class ProjectSettingsPart extends internal.Element {
+    abstract class ProjectSettingsPart extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class CertificateSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get certificates(): internal.IList<Certificate>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -130,12 +126,11 @@ export declare namespace settings {
         static create(model: IModel): CertificateSettings;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/configuration relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/configuration relevant section in reference guide}
      */
-    class Configuration extends internal.Element {
+    class Configuration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConfigurationSettings(): ConfigurationSettings;
         get name(): string;
         set name(newValue: string);
@@ -189,7 +184,6 @@ export declare namespace settings {
     class ConfigurationSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get configurations(): internal.IList<Configuration>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -206,10 +200,9 @@ export declare namespace settings {
          */
         static create(model: IModel): ConfigurationSettings;
     }
-    class ConstantValue extends internal.Element {
+    class ConstantValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConfiguration(): Configuration;
         get constant(): constants.IConstant;
         set constant(newValue: constants.IConstant);
@@ -230,10 +223,9 @@ export declare namespace settings {
          */
         static create(model: IModel): ConstantValue;
     }
-    class CustomSetting extends internal.Element {
+    class CustomSetting extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConfiguration(): Configuration;
         get name(): string;
         set name(newValue: string);
@@ -256,7 +248,6 @@ export declare namespace settings {
     class IntegrationProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -281,7 +272,6 @@ export declare namespace settings {
     class JavaActionsSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get generatePostfixesForParameters(): boolean;
         set generatePostfixesForParameters(newValue: boolean);
@@ -302,10 +292,9 @@ export declare namespace settings {
          */
         static create(model: IModel): JavaActionsSettings;
     }
-    class Language extends internal.Element {
+    class Language extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLanguageSettings(): LanguageSettings;
         get code(): string;
         set code(newValue: string);
@@ -334,7 +323,6 @@ export declare namespace settings {
     class LanguageSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get defaultLanguageCode(): string;
         set defaultLanguageCode(newValue: string);
@@ -356,7 +344,6 @@ export declare namespace settings {
     class ModelerSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get lowerCaseMicroflowVariables(): boolean;
         set lowerCaseMicroflowVariables(newValue: boolean);
@@ -379,7 +366,7 @@ export declare namespace settings {
         static create(model: IModel): ModelerSettings;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-settings relevant section in reference guide}
      */
     interface IProjectSettings extends projects.IProjectDocument {
         readonly model: IModel;
@@ -389,12 +376,11 @@ export declare namespace settings {
         load(forceRefresh?: boolean): Promise<ProjectSettings>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-settings relevant section in reference guide}
      */
     class ProjectSettings extends projects.ProjectDocument implements IProjectSettings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): projects.Project;
         get settingsParts(): internal.IList<ProjectSettingsPart>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
@@ -407,7 +393,6 @@ export declare namespace settings {
     class RuntimeSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get afterStartupMicroflow(): microflows.IMicroflow | null;
         set afterStartupMicroflow(newValue: microflows.IMicroflow | null);
@@ -469,7 +454,6 @@ export declare namespace settings {
     class WebUIProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get theme(): string;
         set theme(newValue: string);
@@ -522,7 +506,6 @@ export declare namespace settings {
     class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectSettings(): ProjectSettings;
         get enabled(): boolean;
         set enabled(newValue: boolean);

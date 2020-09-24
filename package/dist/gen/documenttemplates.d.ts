@@ -27,10 +27,9 @@ export declare namespace documenttemplates {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DocumentTemplates`.
      */
-    abstract class Widget extends internal.Element {
+    abstract class Widget extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get name(): string;
@@ -40,7 +39,6 @@ export declare namespace documenttemplates {
     abstract class AttributeWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         /**
@@ -57,10 +55,9 @@ export declare namespace documenttemplates {
         set attributeRef(newValue: domainmodels.AttributeRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
-    class ConditionSettings extends internal.Element {
+    class ConditionSettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTableRow(): TableRow;
         get conditions(): internal.IList<enumerations.Condition>;
         get attribute(): domainmodels.IAttribute | null;
@@ -83,7 +80,6 @@ export declare namespace documenttemplates {
     abstract class EntityWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         /**
@@ -103,7 +99,6 @@ export declare namespace documenttemplates {
     abstract class Grid extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get cellSpacing(): number;
@@ -120,12 +115,11 @@ export declare namespace documenttemplates {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-grid-document-template relevant section in reference guide}
      */
     class DataGrid extends Grid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get columns(): internal.IList<DataGridColumn>;
@@ -151,12 +145,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGrid;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns-document-template relevant section in reference guide}
      */
-    class DataGridCell extends internal.Element {
+    class DataGridCell extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataGridColumn(): DataGridColumn;
         get style(): Style;
         set style(newValue: Style);
@@ -181,12 +174,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGridCell;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns-document-template relevant section in reference guide}
      */
-    class DataGridColumn extends internal.Element {
+    class DataGridColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataGrid(): DataGrid;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -225,12 +217,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataGridColumn;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-view-document-template relevant section in reference guide}
      */
     class DataView extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get contents(): DataViewContents;
@@ -258,10 +249,9 @@ export declare namespace documenttemplates {
          */
         static create(model: IModel): DataView;
     }
-    abstract class DropZone extends internal.Element {
+    abstract class DropZone extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsTableRow(): TableRow;
@@ -273,7 +263,6 @@ export declare namespace documenttemplates {
     class DataViewContents extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -290,7 +279,7 @@ export declare namespace documenttemplates {
         static create(model: IModel): DataViewContents;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/document-templates relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/document-templates relevant section in reference guide}
      */
     interface IDocumentTemplate extends projects.IDocument {
         readonly model: IModel;
@@ -300,12 +289,11 @@ export declare namespace documenttemplates {
         load(forceRefresh?: boolean): Promise<DocumentTemplate>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/document-templates relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/document-templates relevant section in reference guide}
      */
     class DocumentTemplate extends projects.Document implements IDocumentTemplate {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get toplevels(): internal.IList<Widget>;
         get canvasWidth(): number;
@@ -359,10 +347,9 @@ export declare namespace documenttemplates {
         load(callback: (element: DocumentTemplateParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DocumentTemplateParameter>;
     }
-    class DocumentTemplateParameter extends internal.Element implements IDocumentTemplateParameter {
+    class DocumentTemplateParameter extends internal.Element<IModel> implements IDocumentTemplateParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get name(): string;
         set name(newValue: string);
@@ -382,12 +369,11 @@ export declare namespace documenttemplates {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/dynamic-image-document-template relevant section in reference guide}
      */
     class DynamicImageViewer extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get defaultImage(): images.IImage | null;
@@ -420,12 +406,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): DynamicImageViewer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/dynamic-label-document-template relevant section in reference guide}
      */
     class DynamicLabel extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get style(): Style;
@@ -455,12 +440,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): DynamicLabel;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/footer-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/footer-document-template relevant section in reference guide}
      */
     class Footer extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get bottomMargin(): number;
         set bottomMargin(newValue: number);
@@ -479,12 +463,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): Footer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sort-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sort-bar relevant section in reference guide}
      */
-    class GridSortBar extends internal.Element {
+    class GridSortBar extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGrid(): Grid;
         get sortItems(): internal.IList<GridSortItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -501,10 +484,9 @@ export declare namespace documenttemplates {
          */
         static create(model: IModel): GridSortBar;
     }
-    class GridSortItem extends internal.Element {
+    class GridSortItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGridSortBar(): GridSortBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -535,12 +517,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): GridSortItem;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/header-document-template relevant section in reference guide}
      */
     class Header extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get topMargin(): number;
         set topMargin(newValue: number);
@@ -559,12 +540,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): Header;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/line-break-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/line-break-document-template relevant section in reference guide}
      */
     class LineBreak extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -588,12 +568,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): LineBreak;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-break-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-break-document-template relevant section in reference guide}
      */
     class PageBreak extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -617,12 +596,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): PageBreak;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-image-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/static-image-document-template relevant section in reference guide}
      */
     class StaticImageViewer extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get image(): images.IImage | null;
@@ -653,12 +631,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): StaticImageViewer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-label-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/static-label-document-template relevant section in reference guide}
      */
     class StaticLabel extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get caption(): texts.Text;
@@ -686,12 +663,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): StaticLabel;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/style relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/style relevant section in reference guide}
      */
-    class Style extends internal.Element {
+    class Style extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataGridCell(): DataGridCell;
         get containerAsDataGridColumn(): DataGridColumn;
         get containerAsDocumentTemplate(): DocumentTemplate;
@@ -816,12 +792,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): Style;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/table-document-template relevant section in reference guide}
      */
     class Table extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get rows(): internal.IList<TableRow>;
@@ -853,12 +828,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): Table;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cell-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cell-document-template relevant section in reference guide}
      */
     class TableCell extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTableRow(): TableRow;
         get colSpan(): number;
         set colSpan(newValue: number);
@@ -883,12 +857,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): TableCell;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/row-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/row-document-template relevant section in reference guide}
      */
-    class TableRow extends internal.Element {
+    class TableRow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTable(): Table;
         get cells(): internal.IList<TableCell>;
         get conditionSettings(): ConditionSettings;
@@ -908,12 +881,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): TableRow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/template-grid-document-template relevant section in reference guide}
      */
     class TemplateGrid extends Grid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get numberOfColumns(): number;
@@ -945,7 +917,6 @@ export declare namespace documenttemplates {
     class TemplateGridContents extends DropZone {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTemplateGrid(): TemplateGrid;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -968,12 +939,11 @@ export declare namespace documenttemplates {
         static create(model: IModel): TemplateGridContents;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/title-document-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/title-document-template relevant section in reference guide}
      */
     class Title extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDocumentTemplate(): DocumentTemplate;
         get containerAsDropZone(): DropZone;
         get caption(): texts.Text;

@@ -17,8 +17,11 @@ export declare namespace navigation {
     }
     class ProfileKind extends internal.AbstractEnum {
         static Responsive: ProfileKind;
+        static ResponsiveOffline: ProfileKind;
         static Tablet: ProfileKind;
+        static TabletOffline: ProfileKind;
         static Phone: ProfileKind;
+        static PhoneOffline: ProfileKind;
         static NativePhone: ProfileKind;
         static Hybrid: ProfileKind;
         static HybridOffline: ProfileKind;
@@ -42,10 +45,9 @@ export declare namespace navigation {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Navigation`.
      */
-    abstract class HomePageBase extends internal.Element {
+    abstract class HomePageBase extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationProfile(): NavigationProfile;
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
@@ -58,7 +60,6 @@ export declare namespace navigation {
     class HomePage extends HomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationProfile(): NavigationProfile;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -85,10 +86,9 @@ export declare namespace navigation {
         load(callback: (element: NavigationProfileBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<NavigationProfileBase>;
     }
-    abstract class NavigationProfileBase extends internal.Element implements INavigationProfileBase {
+    abstract class NavigationProfileBase extends internal.Element<IModel> implements INavigationProfileBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationDocument(): NavigationDocument;
         /**
          * In version 7.2.0: introduced
@@ -120,7 +120,6 @@ export declare namespace navigation {
     class NativeNavigationProfile extends NavigationProfileBase implements INativeNavigationProfile {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationDocument(): NavigationDocument;
         get homePage(): pages.IPage | null;
         set homePage(newValue: pages.IPage | null);
@@ -153,7 +152,7 @@ export declare namespace navigation {
         static create(model: IModel): NativeNavigationProfile;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation relevant section in reference guide}
      */
     interface INavigationDocument extends projects.IProjectDocument {
         readonly model: IModel;
@@ -167,12 +166,11 @@ export declare namespace navigation {
         load(forceRefresh?: boolean): Promise<NavigationDocument>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation relevant section in reference guide}
      */
     class NavigationDocument extends projects.ProjectDocument implements INavigationDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): projects.Project;
         /**
          * In version 7.2.0: introduced
@@ -245,7 +243,6 @@ export declare namespace navigation {
     class NavigationProfile extends NavigationProfileBase implements INavigationProfile {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationDocument(): NavigationDocument;
         /**
          * In version 7.2.0: introduced
@@ -398,10 +395,9 @@ export declare namespace navigation {
      *
      * In version 7.22.0: introduced
      */
-    class OfflineEntityConfig extends internal.Element {
+    class OfflineEntityConfig extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationProfileBase(): NavigationProfileBase;
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
@@ -441,7 +437,6 @@ export declare namespace navigation {
     class RoleBasedHomePage extends HomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationProfile(): NavigationProfile;
         get userRole(): security.IUserRole | null;
         set userRole(newValue: security.IUserRole | null);
@@ -463,10 +458,9 @@ export declare namespace navigation {
     /**
      * In version 8.0.0: introduced
      */
-    class RoleBasedNativeHomePage extends internal.Element {
+    class RoleBasedNativeHomePage extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeNavigationProfile(): NativeNavigationProfile;
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);

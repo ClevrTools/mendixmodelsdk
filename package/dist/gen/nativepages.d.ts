@@ -10,10 +10,9 @@ export declare namespace nativepages {
      *
      * In version 8.0.0: introduced
      */
-    class BottomBarItem extends internal.Element {
+    class BottomBarItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeNavigationProfile(): navigation.NativeNavigationProfile;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -60,7 +59,6 @@ export declare namespace nativepages {
     class NativeLayout extends pages.FormBase implements INativeLayout {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get widgets(): internal.IList<pages.Widget>;
         /**
@@ -81,10 +79,9 @@ export declare namespace nativepages {
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
      */
-    class NativeLayoutCallArgument extends internal.Element {
+    class NativeLayoutCallArgument extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativePage(): NativePage;
         get parameter(): pages.ILayoutParameter;
         set parameter(newValue: pages.ILayoutParameter);
@@ -129,7 +126,6 @@ export declare namespace nativepages {
     class NativePage extends pages.FormBase implements INativePage {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -159,7 +155,6 @@ export declare namespace nativepages {
     class NativePageClientAction extends pages.ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsActionButton(): pages.ActionButton;
@@ -311,7 +306,6 @@ export declare namespace nativepages {
     class NativePlaceholder extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeLayout(): NativeLayout;
         get containerAsNativeLayoutCallArgument(): NativeLayoutCallArgument;
         get containerAsBuildingBlock(): pages.BuildingBlock;

@@ -31,9 +31,10 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.beginTransaction = exports.runInTransaction = exports.Transaction = exports.JavaScriptSerializer = exports.createModelUnitFromJSON = exports.ModelEventReceiver = exports.createElementFromJSON = exports.UndoState = exports.UndoManager = exports.Version = exports.AbstractModel = exports.StructuralUnit = exports.ModelUnit = exports.Element = exports.AbstractEnum = exports.AbstractElement = exports.AbstractUnit = exports.Structure = exports.Model = void 0;
 __exportStar(require("./version"), exports);
 __exportStar(require("./common"), exports);
 var Model_1 = require("./Model");

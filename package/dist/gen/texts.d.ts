@@ -5,10 +5,9 @@ export declare namespace texts {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Texts`.
      */
-    class SystemText extends internal.Element {
+    class SystemText extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSystemTextCollection(): SystemTextCollection;
         get text(): Text;
         set text(newValue: Text);
@@ -29,7 +28,7 @@ export declare namespace texts {
         static create(model: IModel): SystemText;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/system-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/system-texts relevant section in reference guide}
      */
     interface ISystemTextCollection extends projects.IProjectDocument {
         readonly model: IModel;
@@ -39,12 +38,11 @@ export declare namespace texts {
         load(forceRefresh?: boolean): Promise<SystemTextCollection>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/system-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/system-texts relevant section in reference guide}
      */
     class SystemTextCollection extends projects.ProjectDocument implements ISystemTextCollection {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): projects.Project;
         get systemTexts(): internal.IList<SystemText>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
@@ -55,12 +53,11 @@ export declare namespace texts {
         static createIn(container: projects.IProject): SystemTextCollection;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/translatable-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/translatable-texts relevant section in reference guide}
      */
-    class Text extends internal.Element {
+    class Text extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
         get containerAsStaticLabel(): documenttemplates.StaticLabel;
@@ -491,10 +488,9 @@ export declare namespace texts {
          */
         static create(model: IModel): Text;
     }
-    class Translation extends internal.Element {
+    class Translation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsText(): Text;
         get languageCode(): string;
         set languageCode(newValue: string);

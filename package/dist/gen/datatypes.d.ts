@@ -5,7 +5,7 @@ export declare namespace datatypes {
      * Interfaces and instance classes for types from the Mendix sub meta model `DataTypes`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-types relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-types relevant section in reference guide}
      *
      * In version 7.9.0: introduced
      */
@@ -24,14 +24,13 @@ export declare namespace datatypes {
         load(forceRefresh?: boolean): Promise<DataType>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-types relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-types relevant section in reference guide}
      *
      * In version 7.9.0: introduced
      */
-    abstract class DataType extends internal.Element implements IDataType {
+    abstract class DataType extends internal.Element<IModel> implements IDataType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -73,7 +72,6 @@ export declare namespace datatypes {
     class BinaryType extends DataType implements IBinaryType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -265,7 +263,6 @@ export declare namespace datatypes {
     class BooleanType extends DataType implements IBooleanType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -457,7 +454,6 @@ export declare namespace datatypes {
     class DateTimeType extends DataType implements IDateTimeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -649,7 +645,6 @@ export declare namespace datatypes {
     class DecimalType extends DataType implements IDecimalType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -841,7 +836,6 @@ export declare namespace datatypes {
     class EmptyType extends DataType implements IEmptyType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1038,7 +1032,6 @@ export declare namespace datatypes {
     abstract class EntityType extends DataType implements IEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1088,7 +1081,6 @@ export declare namespace datatypes {
     class EnumerationType extends DataType implements IEnumerationType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1283,7 +1275,6 @@ export declare namespace datatypes {
     class FloatType extends DataType implements IFloatType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1475,7 +1466,6 @@ export declare namespace datatypes {
     class IntegerType extends DataType implements IIntegerType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1667,7 +1657,6 @@ export declare namespace datatypes {
     class ListType extends EntityType implements IListType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -1859,7 +1848,6 @@ export declare namespace datatypes {
     class ObjectType extends EntityType implements IObjectType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -2051,7 +2039,6 @@ export declare namespace datatypes {
     class StringType extends DataType implements IStringType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -2243,7 +2230,6 @@ export declare namespace datatypes {
     class UnknownType extends DataType implements IUnknownType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;
@@ -2435,7 +2421,6 @@ export declare namespace datatypes {
     class VoidType extends DataType implements IVoidType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
         get containerAsConstant(): constants.Constant;

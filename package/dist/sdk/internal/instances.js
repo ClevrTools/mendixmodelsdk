@@ -167,19 +167,19 @@ var instancehelpers;
      */
     function lookupClass(qualifiedTypeName, classes) {
         if (!qualifiedTypeName) {
-            throw new Error("cannot look up initializer for a falsy qualified type name");
+            throw new Error("Cannot look up initializer for a falsy qualified type name");
         }
         const $index = qualifiedTypeName.indexOf("$");
         if ($index < 0 || $index === qualifiedTypeName.length - 1) {
-            throw new Error(`qualified type '${qualifiedTypeName}' is not of the form '<meta model>$<type name>'`);
+            throw new Error(`Qualified type '${qualifiedTypeName}' is not of the form '<meta model>$<type name>'`);
         }
         const metaModelName = qualifiedTypeName.substring(0, $index).toLowerCase();
         const className = qualifiedTypeName.substring($index + 1);
         if (!classes[metaModelName]) {
-            throw new Error(`no meta model with name '${metaModelName}' exists`);
+            throw new Error(`No meta model with name '${metaModelName}' exists`);
         }
         if (!classes[metaModelName][className]) {
-            throw new Error(`no type with name '${metaModelName}$${className} exists`);
+            throw new Error(`No type with name '${qualifiedTypeName}' exists`);
         }
         return classes[metaModelName][className];
     }

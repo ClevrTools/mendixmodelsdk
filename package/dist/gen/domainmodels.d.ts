@@ -30,6 +30,13 @@ export declare namespace domainmodels {
         static DeleteMeIfNoReferences: DeletingBehavior;
         protected qualifiedTsTypeName: string;
     }
+    class EnvironmentType extends internal.AbstractEnum {
+        static Production: EnvironmentType;
+        static Sandbox: EnvironmentType;
+        static NonProduction: EnvironmentType;
+        static Unknown: EnvironmentType;
+        protected qualifiedTsTypeName: string;
+    }
     class EventType extends internal.AbstractEnum {
         static Create: EventType;
         static Commit: EventType;
@@ -59,12 +66,11 @@ export declare namespace domainmodels {
      * Interfaces and instance classes for types from the Mendix sub meta model `DomainModels`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/access-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/access-rules relevant section in reference guide}
      */
-    class AccessRule extends internal.Element {
+    class AccessRule extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get containerAsAccessRuleContainerBase(): security.AccessRuleContainerBase;
         get memberAccesses(): internal.IList<MemberAccess>;
@@ -104,12 +110,11 @@ export declare namespace domainmodels {
         static create(model: IModel): AccessRule;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotations relevant section in reference guide}
      */
-    class Annotation extends internal.Element {
+    class Annotation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get caption(): string;
         set caption(newValue: string);
@@ -132,7 +137,7 @@ export declare namespace domainmodels {
         static create(model: IModel): Annotation;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     interface IAssociationBase extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -167,12 +172,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<AssociationBase>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
-    abstract class AssociationBase extends internal.Element implements IAssociationBase {
+    abstract class AssociationBase extends internal.Element<IModel> implements IAssociationBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get name(): string;
         set name(newValue: string);
@@ -211,7 +215,7 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     interface IAssociation extends IAssociationBase {
         readonly model: IModel;
@@ -225,12 +229,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<Association>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     class Association extends AssociationBase implements IAssociation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get child(): Entity;
         set child(newValue: Entity);
@@ -265,10 +268,9 @@ export declare namespace domainmodels {
     /**
      * In version 8.11.0: introduced
      */
-    class AssociationCapabilities extends internal.Element implements IAssociationCapabilities {
+    class AssociationCapabilities extends internal.Element<IModel> implements IAssociationCapabilities {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationBase(): AssociationBase;
         get navigability(): AssociationNavigability;
         set navigability(newValue: AssociationNavigability);
@@ -289,10 +291,9 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): AssociationCapabilities;
     }
-    class AssociationDeleteBehavior extends internal.Element {
+    class AssociationDeleteBehavior extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationBase(): AssociationBase;
         get parentDeleteBehavior(): DeletingBehavior;
         set parentDeleteBehavior(newValue: DeletingBehavior);
@@ -319,10 +320,9 @@ export declare namespace domainmodels {
     /**
      * In version 7.11.0: introduced
      */
-    abstract class MemberRef extends internal.Element {
+    abstract class MemberRef extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
@@ -347,7 +347,6 @@ export declare namespace domainmodels {
     class AssociationRef extends MemberRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVariableRefExpression(): expressions.VariableRefExpression;
         get association(): IAssociationBase;
         set association(newValue: IAssociationBase);
@@ -373,15 +372,14 @@ export declare namespace domainmodels {
     /**
      * In version 8.10.0: introduced
      */
-    abstract class AssociationSource extends internal.Element implements IAssociationSource {
+    abstract class AssociationSource extends internal.Element<IModel> implements IAssociationSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationBase(): AssociationBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/attributes relevant section in reference guide}
      */
     interface IAttribute extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -397,17 +395,22 @@ export declare namespace domainmodels {
          * In version 6.6.0: added public
          */
         readonly value: IValueType;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.13.0: introduced
+         */
+        readonly capabilities: IAttributeCapabilities;
         asLoaded(): Attribute;
         load(callback: (element: Attribute) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Attribute>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/attributes relevant section in reference guide}
      */
-    class Attribute extends internal.Element implements IAttribute {
+    class Attribute extends internal.Element<IModel> implements IAttribute {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get name(): string;
         set name(newValue: string);
@@ -422,6 +425,11 @@ export declare namespace domainmodels {
          */
         get value(): ValueType;
         set value(newValue: ValueType);
+        /**
+         * In version 8.13.0: introduced
+         */
+        get capabilities(): AttributeCapabilities;
+        set capabilities(newValue: AttributeCapabilities);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
@@ -438,12 +446,51 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 8.13.0: introduced
+     */
+    interface IAttributeCapabilities extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        readonly filterable: boolean;
+        readonly sortable: boolean;
+        asLoaded(): AttributeCapabilities;
+        load(callback: (element: AttributeCapabilities) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AttributeCapabilities>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class AttributeCapabilities extends internal.Element<IModel> implements IAttributeCapabilities {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
+        get sortable(): boolean;
+        set sortable(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * The new AttributeCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Attribute): AttributeCapabilities;
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AttributeCapabilities;
+    }
+    /**
      * In version 7.11.0: introduced
      */
     class AttributeRef extends MemberRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
@@ -613,10 +660,9 @@ export declare namespace domainmodels {
         load(callback: (element: AttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AttributeType>;
     }
-    abstract class AttributeType extends internal.Element implements IAttributeType {
+    abstract class AttributeType extends internal.Element<IModel> implements IAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -634,7 +680,6 @@ export declare namespace domainmodels {
     abstract class NumericAttributeTypeBase extends AttributeType implements INumericAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -652,7 +697,6 @@ export declare namespace domainmodels {
     abstract class IntegerAttributeTypeBase extends NumericAttributeTypeBase implements IIntegerAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -670,7 +714,6 @@ export declare namespace domainmodels {
     class AutoNumberAttributeType extends IntegerAttributeTypeBase implements IAutoNumberAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -727,7 +770,6 @@ export declare namespace domainmodels {
     class BinaryAttributeType extends AttributeType implements IBinaryAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -784,7 +826,6 @@ export declare namespace domainmodels {
     class BooleanAttributeType extends AttributeType implements IBooleanAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -842,10 +883,9 @@ export declare namespace domainmodels {
     /**
      * In version 6.6.0: added public
      */
-    abstract class ValueType extends internal.Element implements IValueType {
+    abstract class ValueType extends internal.Element<IModel> implements IValueType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -865,7 +905,6 @@ export declare namespace domainmodels {
     class CalculatedValue extends ValueType implements ICalculatedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
@@ -901,7 +940,6 @@ export declare namespace domainmodels {
     class CrossAssociation extends AssociationBase implements ICrossAssociation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get child(): IEntity;
         set child(newValue: IEntity);
@@ -932,7 +970,6 @@ export declare namespace domainmodels {
     abstract class DecimalAttributeTypeBase extends NumericAttributeTypeBase implements IDecimalAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -950,7 +987,6 @@ export declare namespace domainmodels {
     abstract class FloatAttributeTypeBase extends DecimalAttributeTypeBase implements IFloatAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -974,7 +1010,6 @@ export declare namespace domainmodels {
     class CurrencyAttributeType extends FloatAttributeTypeBase implements ICurrencyAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1031,7 +1066,6 @@ export declare namespace domainmodels {
     class DateTimeAttributeType extends AttributeType implements IDateTimeAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1090,7 +1124,6 @@ export declare namespace domainmodels {
     class DecimalAttributeType extends DecimalAttributeTypeBase implements IDecimalAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1138,10 +1171,9 @@ export declare namespace domainmodels {
     /**
      * In version 7.11.0: introduced
      */
-    abstract class EntityRef extends internal.Element {
+    abstract class EntityRef extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsMemberRef(): MemberRef;
@@ -1158,7 +1190,6 @@ export declare namespace domainmodels {
     class DirectEntityRef extends EntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsCreateObjectClientAction(): pages.CreateObjectClientAction;
@@ -1241,7 +1272,7 @@ export declare namespace domainmodels {
         static create(model: IModel): DirectEntityRef;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/domain-model relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/domain-model relevant section in reference guide}
      */
     interface IDomainModel extends projects.IModuleDocument {
         readonly model: IModel;
@@ -1254,12 +1285,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<DomainModel>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/domain-model relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/domain-model relevant section in reference guide}
      */
     class DomainModel extends projects.ModuleDocument implements IDomainModel {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsModule(): projects.Module;
         get documentation(): string;
         set documentation(newValue: string);
@@ -1275,7 +1305,7 @@ export declare namespace domainmodels {
         static createIn(container: projects.IModule): DomainModel;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/entities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/entities relevant section in reference guide}
      */
     interface IEntity extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -1315,12 +1345,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<Entity>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/entities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/entities relevant section in reference guide}
      */
-    class Entity extends internal.Element implements IEntity {
+    class Entity extends internal.Element<IModel> implements IEntity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get name(): string;
         set name(newValue: string);
@@ -1393,6 +1422,10 @@ export declare namespace domainmodels {
     interface IEntityCapabilities extends internal.IElement {
         readonly model: IModel;
         readonly containerAsEntity: IEntity;
+        /**
+         * In version 8.14.0: added public
+         */
+        readonly countable: boolean;
         asLoaded(): EntityCapabilities;
         load(callback: (element: EntityCapabilities) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EntityCapabilities>;
@@ -1400,11 +1433,13 @@ export declare namespace domainmodels {
     /**
      * In version 8.12.0: introduced
      */
-    class EntityCapabilities extends internal.Element implements IEntityCapabilities {
+    class EntityCapabilities extends internal.Element<IModel> implements IEntityCapabilities {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
+        /**
+         * In version 8.14.0: added public
+         */
         get countable(): boolean;
         set countable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1437,10 +1472,9 @@ export declare namespace domainmodels {
     /**
      * In version 8.9.0: introduced
      */
-    class EntityKey extends internal.Element implements IEntityKey {
+    class EntityKey extends internal.Element<IModel> implements IEntityKey {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get parts(): internal.IList<EntityKeyPart>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1468,10 +1502,9 @@ export declare namespace domainmodels {
     /**
      * In version 8.9.0: introduced
      */
-    class EntityKeyPart extends internal.Element implements IEntityKeyPart {
+    class EntityKeyPart extends internal.Element<IModel> implements IEntityKeyPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntityKey(): EntityKey;
         get name(): string;
         set name(newValue: string);
@@ -1498,10 +1531,9 @@ export declare namespace domainmodels {
     /**
      * In version 7.11.0: introduced
      */
-    class EntityRefStep extends internal.Element {
+    class EntityRefStep extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsIndirectEntityRef(): IndirectEntityRef;
         get association(): IAssociationBase;
         set association(newValue: IAssociationBase);
@@ -1539,10 +1571,9 @@ export declare namespace domainmodels {
     /**
      * In version 8.10.0: introduced
      */
-    abstract class EntitySource extends internal.Element implements IEntitySource {
+    abstract class EntitySource extends internal.Element<IModel> implements IEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -1563,7 +1594,6 @@ export declare namespace domainmodels {
     class EnumerationAttributeType extends AttributeType implements IEnumerationAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1611,17 +1641,15 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): EnumerationAttributeType;
     }
-    abstract class RuleInfo extends internal.Element {
+    abstract class RuleInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class EqualsToRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get useValue(): boolean;
         set useValue(newValue: boolean);
@@ -1645,12 +1673,11 @@ export declare namespace domainmodels {
         static create(model: IModel): EqualsToRuleInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/event-handlers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/event-handlers relevant section in reference guide}
      */
-    class EventHandler extends internal.Element {
+    class EventHandler extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get moment(): ActionMoment;
         set moment(newValue: ActionMoment);
@@ -1695,7 +1722,6 @@ export declare namespace domainmodels {
     class FloatAttributeType extends FloatAttributeTypeBase implements IFloatAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1747,10 +1773,9 @@ export declare namespace domainmodels {
         load(callback: (element: GeneralizationBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<GeneralizationBase>;
     }
-    abstract class GeneralizationBase extends internal.Element implements IGeneralizationBase {
+    abstract class GeneralizationBase extends internal.Element<IModel> implements IGeneralizationBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -1769,7 +1794,6 @@ export declare namespace domainmodels {
     class Generalization extends GeneralizationBase implements IGeneralization {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get generalization(): IEntity;
         set generalization(newValue: IEntity);
@@ -1800,7 +1824,6 @@ export declare namespace domainmodels {
     class HashedStringAttributeType extends AttributeType implements IHashedStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1846,12 +1869,11 @@ export declare namespace domainmodels {
         static create(model: IModel): HashedStringAttributeType;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/indexes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/indexes relevant section in reference guide}
      */
-    class Index extends internal.Element {
+    class Index extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get dataStorageGuid(): string;
         set dataStorageGuid(newValue: string);
@@ -1870,10 +1892,9 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): Index;
     }
-    class IndexedAttribute extends internal.Element {
+    class IndexedAttribute extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsIndex(): Index;
         get type(): IndexedAttributeType;
         set type(newValue: IndexedAttributeType);
@@ -1904,7 +1925,6 @@ export declare namespace domainmodels {
     class IndirectEntityRef extends EntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsMemberRef(): MemberRef;
@@ -2006,7 +2026,6 @@ export declare namespace domainmodels {
     class IntegerAttributeType extends IntegerAttributeTypeBase implements IIntegerAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2063,7 +2082,6 @@ export declare namespace domainmodels {
     class LongAttributeType extends IntegerAttributeTypeBase implements ILongAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2124,7 +2142,6 @@ export declare namespace domainmodels {
     abstract class MappedValue extends ValueType implements IMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -2144,7 +2161,6 @@ export declare namespace domainmodels {
     abstract class RemoteEntitySource extends EntitySource implements IRemoteEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -2164,14 +2180,12 @@ export declare namespace domainmodels {
     abstract class MaterializedRemoteEntitySource extends RemoteEntitySource implements IMaterializedRemoteEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MaxLengthRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get maxLength(): number;
         set maxLength(newValue: number);
@@ -2189,10 +2203,9 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): MaxLengthRuleInfo;
     }
-    class MemberAccess extends internal.Element {
+    class MemberAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAccessRule(): AccessRule;
         get attribute(): IAttribute | null;
         set attribute(newValue: IAttribute | null);
@@ -2243,7 +2256,6 @@ export declare namespace domainmodels {
     class NoGeneralization extends GeneralizationBase implements INoGeneralization {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         /**
          * In version 8.2.0: added public
@@ -2297,14 +2309,12 @@ export declare namespace domainmodels {
     abstract class QueryBasedRemoteEntitySource extends RemoteEntitySource implements IQueryBasedRemoteEntitySource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class RangeRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get typeOfRange(): RangeType;
         set typeOfRange(newValue: RangeType);
@@ -2339,7 +2349,6 @@ export declare namespace domainmodels {
     class RegExRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get regularExpression(): regularexpressions.IRegularExpression | null;
         set regularExpression(newValue: regularexpressions.IRegularExpression | null);
@@ -2374,14 +2383,13 @@ export declare namespace domainmodels {
     abstract class RemoteAssociationSource extends AssociationSource implements IRemoteAssociationSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationBase(): AssociationBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.2.0: introduced
+     * In version 7.18.0: introduced
      */
     interface IRemoteEntitySourceDocument extends projects.IDocument {
         readonly model: IModel;
@@ -2391,6 +2399,37 @@ export declare namespace domainmodels {
          * In version 8.10.0: introduced
          */
         readonly icon: string | null;
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        readonly serviceName: string;
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        readonly version: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly endpointId: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly minimumMxVersion: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly recommendedMxVersion: string;
+        /**
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
+         */
+        readonly applicationId: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly environmentType: EnvironmentType;
         asLoaded(): RemoteEntitySourceDocument;
         load(callback: (element: RemoteEntitySourceDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<RemoteEntitySourceDocument>;
@@ -2398,12 +2437,11 @@ export declare namespace domainmodels {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.2.0: introduced
+     * In version 7.18.0: introduced
      */
     abstract class RemoteEntitySourceDocument extends projects.Document implements IRemoteEntitySourceDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 8.10.0: introduced
@@ -2421,12 +2459,53 @@ export declare namespace domainmodels {
          */
         get icon(): string | null;
         set icon(newValue: string | null);
+        get metadata(): string;
+        set metadata(newValue: string);
+        get metadataUrl(): string;
+        set metadataUrl(newValue: string);
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get version(): string;
+        set version(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get endpointId(): string;
+        set endpointId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get minimumMxVersion(): string;
+        set minimumMxVersion(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get recommendedMxVersion(): string;
+        set recommendedMxVersion(newValue: string);
+        /**
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
+         */
+        get applicationId(): string;
+        set applicationId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get environmentType(): EnvironmentType;
+        set environmentType(newValue: EnvironmentType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2458,7 +2537,6 @@ export declare namespace domainmodels {
     class StoredValue extends ValueType implements IStoredValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get defaultValue(): string;
         set defaultValue(newValue: string);
@@ -2488,7 +2566,6 @@ export declare namespace domainmodels {
     class StringAttributeType extends AttributeType implements IStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2538,7 +2615,6 @@ export declare namespace domainmodels {
     class UniqueRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2555,12 +2631,11 @@ export declare namespace domainmodels {
         static create(model: IModel): UniqueRuleInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/validation-rules relevant section in reference guide}
      */
-    class ValidationRule extends internal.Element {
+    class ValidationRule extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get attribute(): IAttribute;
         set attribute(newValue: IAttribute);

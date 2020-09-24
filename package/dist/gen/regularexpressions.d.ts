@@ -6,7 +6,7 @@ export declare namespace regularexpressions {
      * Interfaces and instance classes for types from the Mendix sub meta model `RegularExpressions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/regular-expressions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/regular-expressions relevant section in reference guide}
      */
     interface IRegularExpression extends projects.IDocument {
         readonly model: IModel;
@@ -16,12 +16,11 @@ export declare namespace regularexpressions {
         load(forceRefresh?: boolean): Promise<RegularExpression>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/regular-expressions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/regular-expressions relevant section in reference guide}
      */
     class RegularExpression extends projects.Document implements IRegularExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get regEx(): string;
         set regEx(newValue: string);

@@ -6,26 +6,23 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 var services;
 (function (services) {
-    let HttpMethod = /** @class */ (() => {
-        class HttpMethod extends internal.AbstractEnum {
-            constructor() {
-                super(...arguments);
-                this.qualifiedTsTypeName = "services.HttpMethod";
-            }
+    class HttpMethod extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "services.HttpMethod";
         }
-        HttpMethod.Get = new HttpMethod("Get", {});
-        HttpMethod.Post = new HttpMethod("Post", {});
-        HttpMethod.Put = new HttpMethod("Put", {});
-        HttpMethod.Patch = new HttpMethod("Patch", {});
-        HttpMethod.Delete = new HttpMethod("Delete", {});
-        HttpMethod.Head = new HttpMethod("Head", {
-            introduced: "7.13.0"
-        });
-        HttpMethod.Options = new HttpMethod("Options", {
-            introduced: "7.13.0"
-        });
-        return HttpMethod;
-    })();
+    }
+    HttpMethod.Get = new HttpMethod("Get", {});
+    HttpMethod.Post = new HttpMethod("Post", {});
+    HttpMethod.Put = new HttpMethod("Put", {});
+    HttpMethod.Patch = new HttpMethod("Patch", {});
+    HttpMethod.Delete = new HttpMethod("Delete", {});
+    HttpMethod.Head = new HttpMethod("Head", {
+        introduced: "7.13.0"
+    });
+    HttpMethod.Options = new HttpMethod("Options", {
+        introduced: "7.13.0"
+    });
     services.HttpMethod = HttpMethod;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Services`.

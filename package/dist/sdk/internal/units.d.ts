@@ -1,5 +1,5 @@
 import * as transport from "./transportInterfaces";
-import { AbstractModel } from "./AbstractModel";
+import { AbstractModel, IAbstractModel } from "./AbstractModel";
 import { AbstractElement, IAbstractElement } from "./elements";
 import { Structure, IStructure } from "./structures";
 /**
@@ -40,8 +40,7 @@ export interface IAbstractUnitConstructor {
 /**
  * Base class for implementations of {@link IAbstractUnit}.
  */
-export declare abstract class AbstractUnit extends Structure implements IAbstractUnit {
-    readonly container: StructuralUnit;
+export declare abstract class AbstractUnit<TModel extends IAbstractModel = IAbstractModel> extends Structure<TModel, StructuralUnit> implements IAbstractUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit);
     /**
      * Checks whether all attributes are available at this instant;
@@ -58,7 +57,7 @@ export interface IStructuralUnit extends IAbstractUnit {
 /**
  * Implementation of {@link IStructuralUnit}.
  */
-export declare abstract class StructuralUnit extends AbstractUnit implements IStructuralUnit {
+export declare abstract class StructuralUnit<TModel extends IAbstractModel = IAbstractModel> extends AbstractUnit<TModel> implements IStructuralUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, _ignoredIsPartial: boolean, container: IStructuralUnit);
     get unit(): this;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
@@ -82,8 +81,7 @@ export interface IModelUnit extends IAbstractUnit, IAbstractElement {
 /**
  * Implementation of {@link IModelUnit}.
  */
-export declare abstract class ModelUnit extends AbstractElement implements IModelUnit {
-    readonly container: StructuralUnit;
+export declare abstract class ModelUnit<TModel extends IAbstractModel = IAbstractModel> extends AbstractElement<TModel, StructuralUnit> implements IModelUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit | null);
     get unit(): this;
     get isLoaded(): boolean;

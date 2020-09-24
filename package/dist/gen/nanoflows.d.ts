@@ -11,7 +11,6 @@ export declare namespace nanoflows {
     class NanoflowParameterValue extends microflows.CodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): microflows.JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): microflows.JavaScriptActionParameterMapping;
         get nanoflow(): microflows.INanoflow | null;

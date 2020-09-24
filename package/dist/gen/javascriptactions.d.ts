@@ -6,7 +6,7 @@ export declare namespace javascriptactions {
      * Interfaces and instance classes for types from the Mendix sub meta model `JavaScriptActions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/javascript-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/javascript-actions relevant section in reference guide}
      *
      * In version 8.0.0: removed experimental
      * In version 7.21.0: introduced
@@ -19,7 +19,7 @@ export declare namespace javascriptactions {
         load(forceRefresh?: boolean): Promise<JavaScriptAction>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/javascript-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/javascript-actions relevant section in reference guide}
      *
      * In version 8.0.0: removed experimental
      * In version 7.21.0: introduced
@@ -27,7 +27,6 @@ export declare namespace javascriptactions {
     class JavaScriptAction extends codeactions.CodeAction implements IJavaScriptAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
@@ -54,7 +53,6 @@ export declare namespace javascriptactions {
     class JavaScriptActionParameter extends codeactions.CodeActionParameter implements IJavaScriptActionParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeAction(): codeactions.CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -80,7 +78,6 @@ export declare namespace javascriptactions {
     class NanoflowJavaScriptActionParameterType extends codeactions.ParameterType implements INanoflowJavaScriptActionParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**

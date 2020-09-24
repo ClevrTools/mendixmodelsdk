@@ -21,7 +21,7 @@ export declare namespace scheduledevents {
      * Interfaces and instance classes for types from the Mendix sub meta model `ScheduledEvents`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/scheduled-events relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/scheduled-events relevant section in reference guide}
      */
     interface IScheduledEvent extends projects.IDocument {
         readonly model: IModel;
@@ -31,12 +31,11 @@ export declare namespace scheduledevents {
         load(forceRefresh?: boolean): Promise<ScheduledEvent>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/scheduled-events relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/scheduled-events relevant section in reference guide}
      */
     class ScheduledEvent extends projects.Document implements IScheduledEvent {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get startDateTime(): string;
         set startDateTime(newValue: string);

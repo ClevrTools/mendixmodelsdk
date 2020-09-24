@@ -18,7 +18,7 @@ To publish changes navigate to package and run `npm publish`
 "name": "@gajduk/mendixmodelsdk",
 ```
 
-* `/dist/sdk/internal/rest-transportation.js` - Line: **9**  
+* `/dist/sdk/internal/RestTransportation.js` - Line: **9**  
 
 
 ```javascript

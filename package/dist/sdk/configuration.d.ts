@@ -59,9 +59,9 @@ export declare namespace configuration {
          */
         teamServerBaseRevision?: number;
         /**
-         * If this working copy is created from a Git TeamServer checkout, the commit hash will be used for the clone operation.
+         * If this working copy is created from a Git TeamServer checkout, the commit id will be used for the clone operation.
          */
-        teamServerBaseCommitHash?: string;
+        teamServerBaseCommitId?: string;
         /**
          * If this working copy is created from an SVN TeamServer checkout, the BaseRevision / BaseBranch can be used by the Desktop Modeler during merge.
          */

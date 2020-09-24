@@ -5,10 +5,9 @@ export declare namespace enumerations {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Enumerations`.
      */
-    class Condition extends internal.Element {
+    class Condition extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConditionSettings(): documenttemplates.ConditionSettings;
         get containerAsConditionalSettings(): pages.ConditionalSettings;
         get attributeValue(): string;
@@ -36,7 +35,7 @@ export declare namespace enumerations {
         static create(model: IModel): Condition;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
     interface IEnumeration extends projects.IDocument {
         readonly model: IModel;
@@ -47,12 +46,11 @@ export declare namespace enumerations {
         load(forceRefresh?: boolean): Promise<Enumeration>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
     class Enumeration extends projects.Document implements IEnumeration {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get values(): internal.IList<EnumerationValue>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
@@ -63,7 +61,7 @@ export declare namespace enumerations {
         static createIn(container: projects.IFolderBase): Enumeration;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
     interface IEnumerationValue extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -74,12 +72,11 @@ export declare namespace enumerations {
         load(forceRefresh?: boolean): Promise<EnumerationValue>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
-    class EnumerationValue extends internal.Element implements IEnumerationValue {
+    class EnumerationValue extends internal.Element<IModel> implements IEnumerationValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEnumeration(): Enumeration;
         get name(): string;
         set name(newValue: string);
