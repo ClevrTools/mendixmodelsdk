@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.exportmappings = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const mappings_1 = require("./mappings");
@@ -10,7 +11,7 @@ var exportmappings;
      * Interfaces and instance classes for types from the Mendix sub meta model `ExportMappings`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportMapping extends mappings_1.mappings.MappingDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -91,7 +92,7 @@ var exportmappings;
     }, internal.StructureType.ModelUnit);
     exportmappings.ExportMapping = ExportMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportObjectMappingElement extends mappings_1.mappings.ObjectMappingElement {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -139,7 +140,7 @@ var exportmappings;
     ExportObjectMappingElement.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     exportmappings.ExportObjectMappingElement = ExportObjectMappingElement;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportValueMappingElement extends mappings_1.mappings.ValueMappingElement {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

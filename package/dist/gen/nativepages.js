@@ -1,9 +1,13 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.nativepages = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const pages_1 = require("./pages");
+/**
+ * @ignore
+ */
 var nativepages;
 (function (nativepages) {
     /**
@@ -11,6 +15,8 @@ var nativepages;
      */
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.0.0: introduced
      */
@@ -21,6 +27,8 @@ var nativepages;
             this.__caption = new internal.PartProperty(BottomBarItem, this, "caption", null, true);
             /** @internal */
             this.__icon = new internal.PartProperty(BottomBarItem, this, "icon", null, false);
+            /** @internal */
+            this.__page = new internal.ByNameReferenceProperty(BottomBarItem, this, "page", null, "Pages$Page");
             /** @internal */
             this.__action = new internal.PartProperty(BottomBarItem, this, "action", null, true);
             if (arguments.length < 4) {
@@ -42,6 +50,21 @@ var nativepages;
         set icon(newValue) {
             this.__icon.set(newValue);
         }
+        /**
+         * In version 8.15.0: introduced
+         */
+        get page() {
+            return this.__page.get();
+        }
+        set page(newValue) {
+            this.__page.set(newValue);
+        }
+        get pageQualifiedName() {
+            return this.__page.qualifiedName();
+        }
+        /**
+         * In version 8.15.0: deleted
+         */
         get action() {
             return this.__action.get();
         }
@@ -71,7 +94,9 @@ var nativepages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.action = pages_1.pages.NoClientAction.create(this.model);
+            if (this.__action.isAvailable) {
+                this.action = pages_1.pages.NoClientAction.create(this.model);
+            }
             this.caption = ((text) => {
                 text.translations.replace([
                     ((translation) => {
@@ -93,7 +118,12 @@ var nativepages;
                     currentValue: true
                 }
             },
+            page: {
+                introduced: "8.15.0"
+            },
             action: {
+                deleted: "8.15.0",
+                deletionMessage: null,
                 required: {
                     currentValue: true
                 }
@@ -106,6 +136,8 @@ var nativepages;
     nativepages.BottomBarItem = BottomBarItem;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
@@ -167,6 +199,8 @@ var nativepages;
     nativepages.NativeLayout = NativeLayout;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
@@ -242,6 +276,8 @@ var nativepages;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
      */
@@ -259,6 +295,8 @@ var nativepages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get layout() {
             return this.__layout.get();
@@ -271,6 +309,8 @@ var nativepages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.23.0: introduced
          */
@@ -315,6 +355,8 @@ var nativepages;
     nativepages.NativePage = NativePage;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
@@ -363,6 +405,8 @@ var nativepages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get page() {
             return this.__page.get();
@@ -554,6 +598,8 @@ var nativepages;
     nativepages.NativePageClientAction = NativePageClientAction;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced

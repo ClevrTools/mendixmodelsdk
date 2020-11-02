@@ -12,7 +12,6 @@ export declare namespace jsonstructures {
     class JsonElement extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): JsonStructure;
         get containerAsElement(): mappings.Element;
         get originalValue(): string;
@@ -44,7 +43,7 @@ export declare namespace jsonstructures {
         static create(model: IModel): JsonElement;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/json-structures relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/json-structures relevant section in reference guide}
      *
      * In version 6.6.0: removed experimental
      * In version 6.2.0: introduced
@@ -57,7 +56,7 @@ export declare namespace jsonstructures {
         load(forceRefresh?: boolean): Promise<JsonStructure>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/json-structures relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/json-structures relevant section in reference guide}
      *
      * In version 6.6.0: removed experimental
      * In version 6.2.0: introduced
@@ -65,7 +64,6 @@ export declare namespace jsonstructures {
     class JsonStructure extends xmlschemas.MxSchema implements IJsonStructure {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get jsonSnippet(): string;
         set jsonSnippet(newValue: string);

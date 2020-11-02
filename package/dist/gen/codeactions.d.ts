@@ -2,6 +2,11 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 export declare namespace codeactions {
+    class StringTemplateParameterGrammar extends internal.AbstractEnum {
+        static Text: StringTemplateParameterGrammar;
+        static Sql: StringTemplateParameterGrammar;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `CodeActions`.
      */
@@ -18,10 +23,9 @@ export declare namespace codeactions {
     /**
      * In version 7.21.0: introduced
      */
-    abstract class ParameterType extends internal.Element implements IParameterType {
+    abstract class ParameterType extends internal.Element<IModel> implements IParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): CodeActionParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -45,7 +49,6 @@ export declare namespace codeactions {
     class BasicParameterType extends ParameterType implements IBasicParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): CodeActionParameter;
         get type(): Type;
         set type(newValue: Type);
@@ -72,10 +75,9 @@ export declare namespace codeactions {
     /**
      * In version 7.21.0: introduced
      */
-    abstract class Type extends internal.Element implements IType {
+    abstract class Type extends internal.Element<IModel> implements IType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get containerAsListType(): ListType;
@@ -98,7 +100,6 @@ export declare namespace codeactions {
     abstract class PrimitiveType extends Type implements IPrimitiveType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -120,7 +121,6 @@ export declare namespace codeactions {
     class BooleanType extends PrimitiveType implements IBooleanType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -177,7 +177,6 @@ export declare namespace codeactions {
     abstract class CodeAction extends projects.Document implements ICodeAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.21.0: introduced
@@ -218,10 +217,9 @@ export declare namespace codeactions {
         load(callback: (element: CodeActionParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CodeActionParameter>;
     }
-    abstract class CodeActionParameter extends internal.Element implements ICodeActionParameter {
+    abstract class CodeActionParameter extends internal.Element<IModel> implements ICodeActionParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeAction(): CodeAction;
         get containerAsJavaAction(): javaactions.JavaAction;
         get name(): string;
@@ -262,7 +260,6 @@ export declare namespace codeactions {
     abstract class EntityType extends Type implements IEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get containerAsListType(): ListType;
@@ -291,7 +288,6 @@ export declare namespace codeactions {
     class ConcreteEntityType extends EntityType implements IConcreteEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get containerAsListType(): ListType;
@@ -350,7 +346,6 @@ export declare namespace codeactions {
     class DateTimeType extends PrimitiveType implements IDateTimeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -396,7 +391,6 @@ export declare namespace codeactions {
     class DecimalType extends PrimitiveType implements IDecimalType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -442,7 +436,6 @@ export declare namespace codeactions {
     class EntityTypeParameterType extends ParameterType implements IEntityTypeParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): CodeActionParameter;
         get typeParameter(): TypeParameter | null;
         set typeParameter(newValue: TypeParameter | null);
@@ -476,7 +469,6 @@ export declare namespace codeactions {
     class EnumerationType extends Type implements IEnumerationType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get enumeration(): enumerations.IEnumeration;
@@ -525,7 +517,6 @@ export declare namespace codeactions {
     class FloatType extends PrimitiveType implements IFloatType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -571,7 +562,6 @@ export declare namespace codeactions {
     class IntegerType extends PrimitiveType implements IIntegerType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -621,7 +611,6 @@ export declare namespace codeactions {
     class ListType extends Type implements IListType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get parameter(): EntityType;
@@ -670,10 +659,9 @@ export declare namespace codeactions {
     /**
      * In version 7.21.0: introduced
      */
-    class MicroflowActionInfo extends internal.Element implements IMicroflowActionInfo {
+    class MicroflowActionInfo extends internal.Element<IModel> implements IMicroflowActionInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeAction(): CodeAction;
         get containerAsMicroflow(): microflows.Microflow;
         get caption(): string;
@@ -740,7 +728,6 @@ export declare namespace codeactions {
     class ParameterizedEntityType extends EntityType implements IParameterizedEntityType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         get containerAsListType(): ListType;
@@ -788,6 +775,10 @@ export declare namespace codeactions {
     interface IStringTemplateParameterType extends IParameterType {
         readonly model: IModel;
         readonly containerAsCodeActionParameter: ICodeActionParameter;
+        /**
+         * In version 8.8.0: introduced
+         */
+        readonly grammar: StringTemplateParameterGrammar;
         asLoaded(): StringTemplateParameterType;
         load(callback: (element: StringTemplateParameterType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringTemplateParameterType>;
@@ -799,8 +790,12 @@ export declare namespace codeactions {
     class StringTemplateParameterType extends ParameterType implements IStringTemplateParameterType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeActionParameter(): CodeActionParameter;
+        /**
+         * In version 8.8.0: introduced
+         */
+        get grammar(): StringTemplateParameterGrammar;
+        set grammar(newValue: StringTemplateParameterGrammar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.
@@ -826,7 +821,6 @@ export declare namespace codeactions {
     class StringType extends PrimitiveType implements IStringType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -869,10 +863,9 @@ export declare namespace codeactions {
     /**
      * In version 7.21.0: introduced
      */
-    class TypeParameter extends internal.Element implements ITypeParameter {
+    class TypeParameter extends internal.Element<IModel> implements ITypeParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCodeAction(): CodeAction;
         get name(): string;
         set name(newValue: string);
@@ -902,7 +895,6 @@ export declare namespace codeactions {
     class VoidType extends PrimitiveType implements IVoidType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBasicParameterType(): BasicParameterType;
         get containerAsCodeAction(): CodeAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

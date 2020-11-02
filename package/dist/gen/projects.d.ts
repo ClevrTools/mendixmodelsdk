@@ -12,10 +12,9 @@ export declare namespace projects {
         load(callback: (element: ModuleDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ModuleDocument>;
     }
-    abstract class ModuleDocument extends internal.ModelUnit implements IModuleDocument {
+    abstract class ModuleDocument extends internal.ModelUnit<IModel> implements IModuleDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): FolderBase;
         get containerAsModule(): Module;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase | IModule);
@@ -31,7 +30,6 @@ export declare namespace projects {
     abstract class Document extends ModuleDocument implements IDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): FolderBase;
         get name(): string;
         set name(newValue: string);
@@ -49,10 +47,9 @@ export declare namespace projects {
         folders: internal.IList<IFolder>;
         documents: internal.IList<IDocument>;
     }
-    abstract class FolderBase extends internal.StructuralUnit implements IFolderBase {
+    abstract class FolderBase extends internal.StructuralUnit<IModel> implements IFolderBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): FolderBase;
         get containerAsProject(): Project;
         get folders(): internal.IList<IFolder>;
@@ -60,7 +57,7 @@ export declare namespace projects {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase | IProject);
     }
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/resources relevant section in reference guide}
      */
     interface IFolder extends IFolderBase {
         readonly model: IModel;
@@ -68,12 +65,11 @@ export declare namespace projects {
         name: string;
     }
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/resources relevant section in reference guide}
      */
     class Folder extends FolderBase implements IFolder {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): FolderBase;
         get name(): string;
         set name(newValue: string);
@@ -85,7 +81,7 @@ export declare namespace projects {
         static createIn(container: IFolderBase): Folder;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/modules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
      */
     interface IModule extends IFolderBase {
         readonly model: IModel;
@@ -114,14 +110,17 @@ export declare namespace projects {
         appStoreGuid: string;
         appStoreVersionGuid: string;
         appStoreVersion: string;
+        /**
+         * In version 8.13.0: introduced
+         */
+        appStorePackageId: number;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/modules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
      */
     class Module extends FolderBase implements IModule {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): Project;
         /**
          * The index of where this Module appears in the project.
@@ -150,6 +149,11 @@ export declare namespace projects {
         set appStoreVersionGuid(newValue: string);
         get appStoreVersion(): string;
         set appStoreVersion(newValue: string);
+        /**
+         * In version 8.13.0: introduced
+         */
+        get appStorePackageId(): number;
+        set appStorePackageId(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
         /**
          * Creates a new Module unit in the SDK and on the server.
@@ -157,10 +161,9 @@ export declare namespace projects {
          */
         static createIn(container: IProject): Module;
     }
-    class OneTimeConversionMarker extends internal.Element {
+    class OneTimeConversionMarker extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProjectConversion(): ProjectConversion;
         get name(): string;
         set name(newValue: string);
@@ -179,7 +182,7 @@ export declare namespace projects {
         static create(model: IModel): OneTimeConversionMarker;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
     interface IProject extends internal.IStructuralUnit {
         readonly model: IModel;
@@ -192,12 +195,11 @@ export declare namespace projects {
         isSystemProject: boolean;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
-    class Project extends internal.StructuralUnit implements IProject {
+    class Project extends internal.StructuralUnit<IModel> implements IProject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get projectDocuments(): internal.IList<IProjectDocument>;
         get modules(): internal.IList<IModule>;
         get projectConversion(): IProjectConversion;
@@ -213,10 +215,9 @@ export declare namespace projects {
         load(callback: (element: ProjectConversion) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ProjectConversion>;
     }
-    class ProjectConversion extends internal.ModelUnit implements IProjectConversion {
+    class ProjectConversion extends internal.ModelUnit<IModel> implements IProjectConversion {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): Project;
         get markers(): internal.IList<OneTimeConversionMarker>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
@@ -227,7 +228,7 @@ export declare namespace projects {
         static createIn(container: IProject): ProjectConversion;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
     interface IProjectDocument extends internal.IModelUnit {
         readonly model: IModel;
@@ -237,12 +238,11 @@ export declare namespace projects {
         load(forceRefresh?: boolean): Promise<ProjectDocument>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
-    abstract class ProjectDocument extends internal.ModelUnit implements IProjectDocument {
+    abstract class ProjectDocument extends internal.ModelUnit<IModel> implements IProjectDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): Project;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
     }

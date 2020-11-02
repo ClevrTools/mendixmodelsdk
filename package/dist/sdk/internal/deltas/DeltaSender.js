@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeltaSender = void 0;
 const deltaUtils_1 = require("./deltaUtils");
 class DeltaSender {
     constructor(model, flushCallback, errorCallback) {
@@ -50,13 +51,17 @@ class DeltaSender {
     processQueue() {
         return __awaiter(this, void 0, void 0, function* () {
             while (this.queue.length > 0 && !this.hasError) {
+                let lastEventId = undefined;
                 try {
-                    const lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
-                    this.model.setlastEventId(lastEventId);
+                    this.model.startPendingChange();
+                    lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
                 }
                 catch (error) {
                     this.hasError = true;
                     this.errorCallback(error);
+                }
+                finally {
+                    this.model.completePendingChange(lastEventId);
                 }
             }
             this.pending = false;

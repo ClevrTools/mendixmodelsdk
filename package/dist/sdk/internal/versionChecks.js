@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isAtLeast = exports.createInVersionCheck = exports.PropertyVersionInfo = exports.StructureVersionInfo = exports.VersionInfo = exports.StructureType = exports.ModifierValueHistory = exports.LifeCycle = exports.LifeCycleState = exports.parseAsNormalizedVersion = exports.Version = exports.contains = void 0;
 function contains(range, version) {
     if (range.start) {
         if (!Version.parse(range.start).isBeforeOrEqual(version)) {

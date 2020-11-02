@@ -1,8 +1,12 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.expressions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+/**
+ * @ignore
+ */
 var expressions;
 (function (expressions) {
     class BinaryOperator extends internal.AbstractEnum {
@@ -40,9 +44,11 @@ var expressions;
      * Interfaces and instance classes for types from the Mendix sub meta model `Expressions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflow-expressions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/expressions relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -171,6 +177,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BinaryExpression extends Expression {
@@ -296,6 +304,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get left() {
             return this.__left.get();
@@ -305,6 +315,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get right() {
             return this.__right.get();
@@ -915,6 +927,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class LiteralExpression extends Expression {
@@ -1041,6 +1055,8 @@ var expressions;
     expressions.LiteralExpression = LiteralExpression;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -1748,6 +1764,8 @@ var expressions;
     expressions.BooleanLiteral = BooleanLiteral;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -2466,6 +2484,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EmptyLiteral extends LiteralExpression {
@@ -3164,6 +3184,8 @@ var expressions;
     expressions.EmptyLiteral = EmptyLiteral;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -3885,6 +3907,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FloatLiteral extends LiteralExpression {
@@ -4592,6 +4616,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FunctionCallExpression extends Expression {
@@ -4715,6 +4741,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get arguments() {
             return this.__arguments.get();
@@ -5307,6 +5335,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRef extends internal.Element {
@@ -5334,6 +5364,8 @@ var expressions;
     expressions.VariableRef = VariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -5390,6 +5422,8 @@ var expressions;
     expressions.GlobalVariableRef = GlobalVariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -5510,6 +5544,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get condition() {
             return this.__condition.get();
@@ -5519,6 +5555,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifTrue() {
             return this.__ifTrue.get();
@@ -5528,6 +5566,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifFalse() {
             return this.__ifFalse.get();
@@ -6142,6 +6182,8 @@ var expressions;
     expressions.IfExpression = IfExpression;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -6850,6 +6892,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoExpression extends Expression {
@@ -7549,6 +7593,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoVariableRef extends VariableRef {
@@ -7596,6 +7642,8 @@ var expressions;
     expressions.NoVariableRef = NoVariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -7712,6 +7760,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression() {
             return this.__expression.get();
@@ -8314,6 +8364,8 @@ var expressions;
     expressions.ParenthesisExpression = ParenthesisExpression;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -9022,6 +9074,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnaryExpression extends Expression {
@@ -9145,6 +9199,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression() {
             return this.__expression.get();
@@ -9748,6 +9804,8 @@ var expressions;
     expressions.UnaryExpression = UnaryExpression;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -10456,6 +10514,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRefExpression extends Expression {
@@ -10573,6 +10633,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get variable() {
             return this.__variable.get();

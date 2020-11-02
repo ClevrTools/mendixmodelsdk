@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAuthInfo = void 0;
 function getAuthInfo(config) {
     let auth;
     const backendCredentials = config.credentials;

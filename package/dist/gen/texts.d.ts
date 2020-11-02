@@ -5,10 +5,9 @@ export declare namespace texts {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Texts`.
      */
-    class SystemText extends internal.Element {
+    class SystemText extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSystemTextCollection(): SystemTextCollection;
         get text(): Text;
         set text(newValue: Text);
@@ -29,7 +28,7 @@ export declare namespace texts {
         static create(model: IModel): SystemText;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/system-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/system-texts relevant section in reference guide}
      */
     interface ISystemTextCollection extends projects.IProjectDocument {
         readonly model: IModel;
@@ -39,12 +38,11 @@ export declare namespace texts {
         load(forceRefresh?: boolean): Promise<SystemTextCollection>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/system-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/system-texts relevant section in reference guide}
      */
     class SystemTextCollection extends projects.ProjectDocument implements ISystemTextCollection {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsProject(): projects.Project;
         get systemTexts(): internal.IList<SystemText>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
@@ -55,12 +53,11 @@ export declare namespace texts {
         static createIn(container: projects.IProject): SystemTextCollection;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/translatable-texts relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/translatable-texts relevant section in reference guide}
      */
-    class Text extends internal.Element {
+    class Text extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
         get containerAsStaticLabel(): documenttemplates.StaticLabel;
@@ -72,6 +69,7 @@ export declare namespace texts {
         get containerAsMicroflow(): microflows.Microflow;
         get containerAsTextTemplate(): microflows.TextTemplate;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsNavigationProfile(): navigation.NavigationProfile;
         get containerAsAttributeWidget(): pages.AttributeWidget;
         get containerAsAttributeWidgetWithPlaceholder(): pages.AttributeWidgetWithPlaceholder;
         get containerAsButton(): pages.Button;
@@ -155,6 +153,15 @@ export declare namespace texts {
         static createInEnumerationValueUnderCaption(container: enumerations.EnumerationValue): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
+         * The new Text will be automatically stored in the 'alternativeText' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInMenuItemUnderAlternativeText(container: menus.MenuItem): Text;
+        /**
+         * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent menus.MenuItem element passed as argument.
          */
@@ -180,6 +187,15 @@ export declare namespace texts {
          *  8.0.0 and higher
          */
         static createInBottomBarItemUnderCaption(container: nativepages.BottomBarItem): Text;
+        /**
+         * Creates and returns a new Text instance in the SDK and on the server.
+         * The new Text will be automatically stored in the 'appTitle' property
+         * of the parent navigation.NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInNavigationProfileUnderAppTitle(container: navigation.NavigationProfile): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'requiredMessage' property
@@ -340,6 +356,9 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'formTitle' property
          * of the parent pages.PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.11.0
          */
         static createInPageSettingsUnderFormTitle(container: pages.PageSettings): Text;
         /**
@@ -469,10 +488,9 @@ export declare namespace texts {
          */
         static create(model: IModel): Text;
     }
-    class Translation extends internal.Element {
+    class Translation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsText(): Text;
         get languageCode(): string;
         set languageCode(newValue: string);
@@ -500,6 +518,7 @@ import { enumerations } from "./enumerations";
 import { menus } from "./menus";
 import { microflows } from "./microflows";
 import { nativepages } from "./nativepages";
+import { navigation } from "./navigation";
 import { pages } from "./pages";
 import { reports } from "./reports";
 import { IModel } from "./base-model";

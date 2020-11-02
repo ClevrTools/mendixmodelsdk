@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.appservices = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -279,7 +280,7 @@ var appservices;
     }, internal.StructureType.Element);
     appservices.AppServiceActionParameter = AppServiceActionParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
      */
     class ConsumedAppService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

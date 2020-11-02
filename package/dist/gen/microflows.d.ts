@@ -122,6 +122,11 @@ export declare namespace microflows {
         static Descending: SortOrderEnum;
         protected qualifiedTsTypeName: string;
     }
+    class SynchronizationType extends internal.AbstractEnum {
+        static All: SynchronizationType;
+        static Specific: SynchronizationType;
+        protected qualifiedTsTypeName: string;
+    }
     class TargetDocumentType extends internal.AbstractEnum {
         static HTML: TargetDocumentType;
         static PDF: TargetDocumentType;
@@ -142,10 +147,9 @@ export declare namespace microflows {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Microflows`.
      */
-    abstract class MicroflowObject extends internal.Element {
+    abstract class MicroflowObject extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get relativeMiddlePoint(): common.IPoint;
         set relativeMiddlePoint(newValue: common.IPoint);
@@ -156,17 +160,15 @@ export declare namespace microflows {
     abstract class Activity extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/activities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/activities relevant section in reference guide}
      */
     class ActionActivity extends Activity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get action(): MicroflowAction | null;
         set action(newValue: MicroflowAction | null);
@@ -192,10 +194,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): ActionActivity;
     }
-    abstract class RequestHandling extends internal.Element {
+    abstract class RequestHandling extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExportXmlAction(): ExportXmlAction;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
@@ -204,7 +205,6 @@ export declare namespace microflows {
     class AdvancedRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get parameterMappings(): internal.IList<WebServiceOperationAdvancedParameterMapping>;
@@ -242,22 +242,20 @@ export declare namespace microflows {
          */
         static create(model: IModel): AdvancedRequestHandling;
     }
-    abstract class MicroflowAction extends internal.Element {
+    abstract class MicroflowAction extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get errorHandlingType(): ErrorHandlingType;
         set errorHandlingType(newValue: ErrorHandlingType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/aggregate-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/aggregate-list relevant section in reference guide}
      */
     class AggregateListAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get inputListVariableName(): string;
         set inputListVariableName(newValue: string);
@@ -283,12 +281,11 @@ export declare namespace microflows {
         static create(model: IModel): AggregateListAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotation relevant section in reference guide}
      */
     class Annotation extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get caption(): string;
         set caption(newValue: string);
@@ -306,10 +303,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): Annotation;
     }
-    abstract class Flow extends internal.Element {
+    abstract class Flow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowBase(): MicroflowBase;
         get origin(): MicroflowObject;
         set origin(newValue: MicroflowObject);
@@ -326,12 +322,11 @@ export declare namespace microflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotation relevant section in reference guide}
      */
     class AnnotationFlow extends Flow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowBase(): MicroflowBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -350,7 +345,6 @@ export declare namespace microflows {
     class AppServiceCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get appServiceAction(): appservices.IAppServiceAction | null;
         set appServiceAction(newValue: appservices.IAppServiceAction | null);
@@ -374,10 +368,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): AppServiceCallAction;
     }
-    class AppServiceCallParameterMapping extends internal.Element {
+    class AppServiceCallParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceCallAction(): AppServiceCallAction;
         get parameter(): appservices.IAppServiceActionParameter | null;
         set parameter(newValue: appservices.IAppServiceActionParameter | null);
@@ -389,6 +382,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -408,17 +403,15 @@ export declare namespace microflows {
          */
         static create(model: IModel): AppServiceCallParameterMapping;
     }
-    abstract class RetrieveSource extends internal.Element {
+    abstract class RetrieveSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRetrieveAction(): RetrieveAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class AssociationRetrieveSource extends RetrieveSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRetrieveAction(): RetrieveAction;
         get startVariableName(): string;
         set startVariableName(newValue: string);
@@ -442,10 +435,9 @@ export declare namespace microflows {
     /**
      * In version 7.21.0: introduced
      */
-    abstract class CodeActionParameterValue extends internal.Element {
+    abstract class CodeActionParameterValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -456,7 +448,6 @@ export declare namespace microflows {
     abstract class ExpressionBasedCodeActionParameterValue extends CodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -467,7 +458,6 @@ export declare namespace microflows {
     class BasicCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         /**
@@ -477,6 +467,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get argumentModel(): expressions.Expression;
         set argumentModel(newValue: expressions.Expression);
@@ -510,10 +502,9 @@ export declare namespace microflows {
      * In version 7.21.0: deleted
      * In version 6.7.0: introduced
      */
-    abstract class JavaActionParameterValue extends internal.Element {
+    abstract class JavaActionParameterValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -524,7 +515,6 @@ export declare namespace microflows {
     class BasicJavaActionParameterValue extends JavaActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -533,6 +523,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -555,10 +547,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): BasicJavaActionParameterValue;
     }
-    abstract class ListOperation extends internal.Element {
+    abstract class ListOperation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         get listVariableName(): string;
         set listVariableName(newValue: string);
@@ -567,7 +558,6 @@ export declare namespace microflows {
     abstract class BinaryListOperation extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         get secondListOrObjectVariableName(): string;
         set secondListOrObjectVariableName(newValue: string);
@@ -579,7 +569,6 @@ export declare namespace microflows {
     class BinaryRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         /**
@@ -589,6 +578,8 @@ export declare namespace microflows {
         set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -630,12 +621,11 @@ export declare namespace microflows {
         static create(model: IModel): BinaryRequestHandling;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/break-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/break-event relevant section in reference guide}
      */
     class BreakEvent extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -651,20 +641,18 @@ export declare namespace microflows {
          */
         static create(model: IModel): BreakEvent;
     }
-    abstract class CaseValue extends internal.Element {
+    abstract class CaseValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSequenceFlow(): SequenceFlow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cast-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cast-object relevant section in reference guide}
      */
     class CastAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
@@ -683,12 +671,11 @@ export declare namespace microflows {
         static create(model: IModel): CastAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-list relevant section in reference guide}
      */
     class ChangeListAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get changeVariableName(): string;
         set changeVariableName(newValue: string);
@@ -699,6 +686,8 @@ export declare namespace microflows {
         set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -723,7 +712,6 @@ export declare namespace microflows {
     abstract class ChangeMembersAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get items(): internal.IList<MemberChange>;
         get refreshInClient(): boolean;
@@ -733,12 +721,11 @@ export declare namespace microflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-object relevant section in reference guide}
      */
     class ChangeObjectAction extends ChangeMembersAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get changeVariableName(): string;
         set changeVariableName(newValue: string);
@@ -757,12 +744,11 @@ export declare namespace microflows {
         static create(model: IModel): ChangeObjectAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-variable relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-variable relevant section in reference guide}
      */
     class ChangeVariableAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get changeVariableName(): string;
         set changeVariableName(newValue: string);
@@ -773,6 +759,8 @@ export declare namespace microflows {
         set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -793,13 +781,25 @@ export declare namespace microflows {
         static create(model: IModel): ChangeVariableAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/close-form relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/close-page relevant section in reference guide}
      */
     class CloseFormAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 8.11.0: deleted
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages(): number;
+        set numberOfPages(newValue: number);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): string;
+        set numberOfPagesToClose(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -814,21 +814,19 @@ export declare namespace microflows {
          */
         static create(model: IModel): CloseFormAction;
     }
-    abstract class CodeActionParameterMapping extends internal.Element {
+    abstract class CodeActionParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionCallAction(): JavaActionCallAction;
         get containerAsJavaScriptActionCallAction(): JavaScriptActionCallAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/committing-objects relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/committing-objects relevant section in reference guide}
      */
     class CommitAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get withEvents(): boolean;
         set withEvents(newValue: boolean);
@@ -850,10 +848,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): CommitAction;
     }
-    abstract class Range extends internal.Element {
+    abstract class Range extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
         get containerAsImportMappingCall(): ImportMappingCall;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -861,7 +858,6 @@ export declare namespace microflows {
     class ConstantRange extends Range {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
         get containerAsImportMappingCall(): ImportMappingCall;
         get singleObject(): boolean;
@@ -889,7 +885,6 @@ export declare namespace microflows {
     class Contains extends BinaryListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -906,12 +901,11 @@ export declare namespace microflows {
         static create(model: IModel): Contains;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/continue-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/continue-event relevant section in reference guide}
      */
     class ContinueEvent extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -928,12 +922,11 @@ export declare namespace microflows {
         static create(model: IModel): ContinueEvent;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-list relevant section in reference guide}
      */
     class CreateListAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -955,12 +948,11 @@ export declare namespace microflows {
         static create(model: IModel): CreateListAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-object relevant section in reference guide}
      */
     class CreateObjectAction extends ChangeMembersAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -982,12 +974,11 @@ export declare namespace microflows {
         static create(model: IModel): CreateObjectAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-variable relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-variable relevant section in reference guide}
      */
     class CreateVariableAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get variableName(): string;
         set variableName(newValue: string);
@@ -1011,6 +1002,8 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get initialValueModel(): expressions.Expression;
@@ -1032,7 +1025,6 @@ export declare namespace microflows {
     class CustomRange extends Range {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
         get containerAsImportMappingCall(): ImportMappingCall;
         /**
@@ -1048,12 +1040,16 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get limitExpressionModel(): expressions.Expression;
         set limitExpressionModel(newValue: expressions.Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1082,7 +1078,6 @@ export declare namespace microflows {
     class CustomRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get template(): StringTemplate;
@@ -1119,7 +1114,6 @@ export declare namespace microflows {
     class DatabaseRetrieveSource extends RetrieveSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRetrieveAction(): RetrieveAction;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -1148,12 +1142,11 @@ export declare namespace microflows {
         static create(model: IModel): DatabaseRetrieveSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deleting-objects relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/deleting-objects relevant section in reference guide}
      */
     class DeleteAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get deleteVariableName(): string;
         set deleteVariableName(newValue: string);
@@ -1173,10 +1166,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): DeleteAction;
     }
-    class DocumentTemplateParameterMapping extends internal.Element {
+    class DocumentTemplateParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGenerateDocumentAction(): GenerateDocumentAction;
         get widgetName(): string;
         set widgetName(newValue: string);
@@ -1187,6 +1179,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1207,12 +1201,11 @@ export declare namespace microflows {
         static create(model: IModel): DocumentTemplateParameterMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/download-file relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/download-file relevant section in reference guide}
      */
     class DownloadFileAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get fileDocumentVariableName(): string;
         set fileDocumentVariableName(newValue: string);
@@ -1233,12 +1226,11 @@ export declare namespace microflows {
         static create(model: IModel): DownloadFileAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/end-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/end-event relevant section in reference guide}
      */
     class EndEvent extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -1247,6 +1239,8 @@ export declare namespace microflows {
         set returnValue(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1274,7 +1268,6 @@ export declare namespace microflows {
     class EntityTypeCodeActionParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         get entity(): domainmodels.IEntity | null;
@@ -1313,7 +1306,6 @@ export declare namespace microflows {
     class EntityTypeJavaActionParameterValue extends JavaActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -1338,7 +1330,6 @@ export declare namespace microflows {
     class EnumerationCase extends CaseValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSequenceFlow(): SequenceFlow;
         get value(): string;
         set value(newValue: string);
@@ -1357,12 +1348,11 @@ export declare namespace microflows {
         static create(model: IModel): EnumerationCase;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/error-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/error-event relevant section in reference guide}
      */
     class ErrorEvent extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1379,12 +1369,11 @@ export declare namespace microflows {
         static create(model: IModel): ErrorEvent;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/merge relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/merge relevant section in reference guide}
      */
     class ExclusiveMerge extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1401,12 +1390,11 @@ export declare namespace microflows {
         static create(model: IModel): ExclusiveMerge;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/exclusive-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/decisions relevant section in reference guide}
      */
     class ExclusiveSplit extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get splitCondition(): SplitCondition;
         set splitCondition(newValue: SplitCondition);
@@ -1437,7 +1425,6 @@ export declare namespace microflows {
     class ExportMappingJavaActionParameterValue extends JavaActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get exportMapping(): exportmappings.IExportMapping | null;
         set exportMapping(newValue: exportmappings.IExportMapping | null);
@@ -1465,7 +1452,6 @@ export declare namespace microflows {
     class ExportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         get exportMapping(): exportmappings.IExportMapping | null;
@@ -1498,12 +1484,11 @@ export declare namespace microflows {
         static create(model: IModel): ExportMappingParameterValue;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mapping-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mapping-action relevant section in reference guide}
      */
     class ExportXmlAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         /**
          * In version 7.6.0: deleted
@@ -1539,17 +1524,15 @@ export declare namespace microflows {
          */
         static create(model: IModel): ExportXmlAction;
     }
-    abstract class SplitCondition extends internal.Element {
+    abstract class SplitCondition extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExclusiveSplit(): ExclusiveSplit;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class ExpressionSplitCondition extends SplitCondition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExclusiveSplit(): ExclusiveSplit;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -1558,6 +1541,8 @@ export declare namespace microflows {
         set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1577,17 +1562,15 @@ export declare namespace microflows {
          */
         static create(model: IModel): ExpressionSplitCondition;
     }
-    abstract class OutputMethod extends internal.Element {
+    abstract class OutputMethod extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExportXmlAction(): ExportXmlAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class FileDocumentExport extends OutputMethod {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExportXmlAction(): ExportXmlAction;
         get targetDocumentVariableName(): string;
         set targetDocumentVariableName(newValue: string);
@@ -1608,7 +1591,6 @@ export declare namespace microflows {
     abstract class InspectAttribute extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -1617,6 +1599,8 @@ export declare namespace microflows {
         set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1636,7 +1620,6 @@ export declare namespace microflows {
     class Filter extends InspectAttribute {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1655,7 +1638,6 @@ export declare namespace microflows {
     class Find extends InspectAttribute {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1674,10 +1656,9 @@ export declare namespace microflows {
     /**
      * In version 8.0.0: introduced
      */
-    class FormDataPart extends internal.Element {
+    class FormDataPart extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFormDataRequestHandling(): FormDataRequestHandling;
         get key(): string;
         set key(newValue: string);
@@ -1688,6 +1669,8 @@ export declare namespace microflows {
         set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get valueModel(): expressions.Expression;
         set valueModel(newValue: expressions.Expression);
@@ -1714,7 +1697,6 @@ export declare namespace microflows {
     class FormDataRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get parts(): internal.IList<FormDataPart>;
@@ -1754,12 +1736,11 @@ export declare namespace microflows {
         static create(model: IModel): FormDataRequestHandling;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/generate-document relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/generate-document relevant section in reference guide}
      */
     class GenerateDocumentAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get fileVariableName(): string;
         set fileVariableName(newValue: string);
@@ -1789,6 +1770,8 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get marginLeftInInchModel(): expressions.Expression;
@@ -1800,6 +1783,8 @@ export declare namespace microflows {
         set marginRightInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1813,6 +1798,8 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get marginTopInInchModel(): expressions.Expression;
@@ -1824,6 +1811,8 @@ export declare namespace microflows {
         set marginBottomInInch(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1846,7 +1835,6 @@ export declare namespace microflows {
     class Head extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1862,10 +1850,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): Head;
     }
-    class HttpConfiguration extends internal.Element {
+    class HttpConfiguration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get containerAsConsumedODataService(): rest.ConsumedODataService;
@@ -1878,6 +1865,8 @@ export declare namespace microflows {
         set customLocation(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1898,6 +1887,8 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get username(): expressions.Expression;
@@ -1909,6 +1900,8 @@ export declare namespace microflows {
         set authenticationPassword(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1967,10 +1960,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): HttpConfiguration;
     }
-    class HttpHeaderEntry extends internal.Element {
+    class HttpHeaderEntry extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get key(): string;
         set key(newValue: string);
@@ -1981,6 +1973,8 @@ export declare namespace microflows {
         set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2000,10 +1994,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): HttpHeaderEntry;
     }
-    class ImportMappingCall extends internal.Element {
+    class ImportMappingCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsResultHandling(): ResultHandling;
         get mapping(): importmappings.IImportMapping | null;
         set mapping(newValue: importmappings.IImportMapping | null);
@@ -2053,7 +2046,6 @@ export declare namespace microflows {
     class ImportMappingJavaActionParameterValue extends JavaActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get importMapping(): importmappings.IImportMapping | null;
         set importMapping(newValue: importmappings.IImportMapping | null);
@@ -2081,7 +2073,6 @@ export declare namespace microflows {
     class ImportMappingParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         get importMapping(): importmappings.IImportMapping | null;
@@ -2114,12 +2105,11 @@ export declare namespace microflows {
         static create(model: IModel): ImportMappingParameterValue;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mapping-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mapping-action relevant section in reference guide}
      */
     class ImportXmlAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get xmlDocumentVariableName(): string;
         set xmlDocumentVariableName(newValue: string);
@@ -2144,7 +2134,6 @@ export declare namespace microflows {
     class InheritanceCase extends CaseValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSequenceFlow(): SequenceFlow;
         get value(): domainmodels.IEntity | null;
         set value(newValue: domainmodels.IEntity | null);
@@ -2164,12 +2153,11 @@ export declare namespace microflows {
         static create(model: IModel): InheritanceCase;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/inheritance-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/object-type-decision relevant section in reference guide}
      */
     class InheritanceSplit extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get splitVariableName(): string;
         set splitVariableName(newValue: string);
@@ -2194,7 +2182,6 @@ export declare namespace microflows {
     class Intersect extends BinaryListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2211,12 +2198,11 @@ export declare namespace microflows {
         static create(model: IModel): Intersect;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/java-action-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/java-action-call relevant section in reference guide}
      */
     class JavaActionCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get javaAction(): javaactions.IJavaAction | null;
         set javaAction(newValue: javaactions.IJavaAction | null);
@@ -2246,7 +2232,6 @@ export declare namespace microflows {
     class JavaActionParameterMapping extends CodeActionParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionCallAction(): JavaActionCallAction;
         get parameter(): javaactions.IJavaActionParameter;
         set parameter(newValue: javaactions.IJavaActionParameter);
@@ -2290,7 +2275,6 @@ export declare namespace microflows {
     class JavaScriptActionCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get javaScriptAction(): javascriptactions.IJavaScriptAction | null;
         set javaScriptAction(newValue: javascriptactions.IJavaScriptAction | null);
@@ -2324,7 +2308,6 @@ export declare namespace microflows {
     class JavaScriptActionParameterMapping extends CodeActionParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaScriptActionCallAction(): JavaScriptActionCallAction;
         get parameter(): javascriptactions.IJavaScriptActionParameter;
         set parameter(newValue: javascriptactions.IJavaScriptActionParameter);
@@ -2351,7 +2334,6 @@ export declare namespace microflows {
     class ListEquals extends BinaryListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2368,12 +2350,11 @@ export declare namespace microflows {
         static create(model: IModel): ListEquals;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/list-operation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/list-operation relevant section in reference guide}
      */
     class ListOperationAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get operation(): ListOperation | null;
         set operation(newValue: ListOperation | null);
@@ -2394,12 +2375,11 @@ export declare namespace microflows {
         static create(model: IModel): ListOperationAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/log-message relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/log-message relevant section in reference guide}
      */
     class LogMessageAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get level(): LogLevel;
         set level(newValue: LogLevel);
@@ -2410,6 +2390,8 @@ export declare namespace microflows {
         set node(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2434,12 +2416,11 @@ export declare namespace microflows {
         static create(model: IModel): LogMessageAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/loop relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/loop relevant section in reference guide}
      */
     class LoopedActivity extends Activity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get objectCollection(): MicroflowObjectCollection;
         set objectCollection(newValue: MicroflowObjectCollection);
@@ -2468,7 +2449,6 @@ export declare namespace microflows {
     class MappingRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExportXmlAction(): ExportXmlAction;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
@@ -2520,10 +2500,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): MappingRequestHandling;
     }
-    class MemberChange extends internal.Element {
+    class MemberChange extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsChangeMembersAction(): ChangeMembersAction;
         get attribute(): domainmodels.IAttribute | null;
         set attribute(newValue: domainmodels.IAttribute | null);
@@ -2540,6 +2519,8 @@ export declare namespace microflows {
         set value(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2581,7 +2562,6 @@ export declare namespace microflows {
     abstract class MicroflowBase extends projects.Document implements IMicroflowBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get objectCollection(): MicroflowObjectCollection;
         set objectCollection(newValue: MicroflowObjectCollection);
@@ -2612,14 +2592,13 @@ export declare namespace microflows {
     abstract class ServerSideMicroflow extends MicroflowBase implements IServerSideMicroflow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get applyEntityAccess(): boolean;
         set applyEntityAccess(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/microflows relevant section in reference guide}
      */
     interface IMicroflow extends IServerSideMicroflow {
         readonly model: IModel;
@@ -2638,12 +2617,11 @@ export declare namespace microflows {
         load(forceRefresh?: boolean): Promise<Microflow>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/microflows relevant section in reference guide}
      */
     class Microflow extends ServerSideMicroflow implements IMicroflow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.23.0: added public
@@ -2669,10 +2647,9 @@ export declare namespace microflows {
          */
         static createIn(container: projects.IFolderBase): Microflow;
     }
-    class MicroflowCall extends internal.Element {
+    class MicroflowCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowCallAction(): MicroflowCallAction;
         get microflow(): IMicroflow | null;
         set microflow(newValue: IMicroflow | null);
@@ -2693,12 +2670,11 @@ export declare namespace microflows {
         static create(model: IModel): MicroflowCall;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflow-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/microflow-call relevant section in reference guide}
      */
     class MicroflowCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get microflowCall(): MicroflowCall;
         set microflowCall(newValue: MicroflowCall);
@@ -2720,10 +2696,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): MicroflowCallAction;
     }
-    class MicroflowCallParameterMapping extends internal.Element {
+    class MicroflowCallParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowCall(): MicroflowCall;
         get parameter(): IMicroflowParameter;
         set parameter(newValue: IMicroflowParameter);
@@ -2735,6 +2710,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2761,7 +2738,6 @@ export declare namespace microflows {
     class MicroflowJavaActionParameterValue extends JavaActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get microflow(): IMicroflow | null;
         set microflow(newValue: IMicroflow | null);
@@ -2783,10 +2759,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): MicroflowJavaActionParameterValue;
     }
-    class MicroflowObjectCollection extends internal.Element {
+    class MicroflowObjectCollection extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLoopedActivity(): LoopedActivity;
         get containerAsMicroflowBase(): MicroflowBase;
         get objects(): internal.IList<MicroflowObject>;
@@ -2831,10 +2806,9 @@ export declare namespace microflows {
         load(callback: (element: MicroflowParameterBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<MicroflowParameterBase>;
     }
-    abstract class MicroflowParameterBase extends internal.Element implements IMicroflowParameterBase {
+    abstract class MicroflowParameterBase extends internal.Element<IModel> implements IMicroflowParameterBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflow(): Microflow;
         get containerAsRule(): Rule;
         get name(): string;
@@ -2855,7 +2829,7 @@ export declare namespace microflows {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     interface IMicroflowParameter extends IMicroflowParameterBase {
         readonly model: IModel;
@@ -2865,19 +2839,17 @@ export declare namespace microflows {
         load(forceRefresh?: boolean): Promise<MicroflowParameter>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     class MicroflowParameter extends MicroflowParameterBase implements IMicroflowParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflow(): Microflow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MicroflowParameterObject extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get name(): string;
         set name(newValue: string);
@@ -2915,7 +2887,6 @@ export declare namespace microflows {
     class MicroflowParameterValue extends ExpressionBasedCodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         get microflow(): IMicroflow | null;
@@ -2948,7 +2919,7 @@ export declare namespace microflows {
         static create(model: IModel): MicroflowParameterValue;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/nanoflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/nanoflows relevant section in reference guide}
      *
      * In version 7.12.0: removed experimental
      * In version 7.10.0: introduced
@@ -2966,7 +2937,7 @@ export declare namespace microflows {
         load(forceRefresh?: boolean): Promise<Nanoflow>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/nanoflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/nanoflows relevant section in reference guide}
      *
      * In version 7.12.0: removed experimental
      * In version 7.10.0: introduced
@@ -2974,7 +2945,6 @@ export declare namespace microflows {
     class Nanoflow extends MicroflowBase implements INanoflow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.23.0: added public
@@ -2991,10 +2961,9 @@ export declare namespace microflows {
     /**
      * In version 8.0.0: introduced
      */
-    class NanoflowCall extends internal.Element {
+    class NanoflowCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNanoflowCallAction(): NanoflowCallAction;
         get nanoflow(): INanoflow | null;
         set nanoflow(newValue: INanoflow | null);
@@ -3023,7 +2992,6 @@ export declare namespace microflows {
     class NanoflowCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get nanoflowCall(): NanoflowCall;
         set nanoflowCall(newValue: NanoflowCall);
@@ -3051,10 +3019,9 @@ export declare namespace microflows {
     /**
      * In version 8.0.0: introduced
      */
-    class NanoflowCallParameterMapping extends internal.Element {
+    class NanoflowCallParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNanoflowCall(): NanoflowCall;
         get parameter(): INanoflowParameter;
         set parameter(newValue: INanoflowParameter);
@@ -3066,6 +3033,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get argumentModel(): expressions.Expression;
         set argumentModel(newValue: expressions.Expression);
@@ -3101,7 +3070,6 @@ export declare namespace microflows {
     class NanoflowParameter extends MicroflowParameterBase implements INanoflowParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NanoflowParameter instance in the SDK and on the server.
@@ -3113,7 +3081,6 @@ export declare namespace microflows {
     class NoCase extends CaseValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSequenceFlow(): SequenceFlow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3130,12 +3097,41 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
-     * In version 8.6.0: introduced
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
      */
-    abstract class TypedTemplateArgument extends internal.Element {
+    class OpenUserTaskAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsActionActivity(): ActionActivity;
+        get userTaskVariable(): string;
+        set userTaskVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * The new OpenUserTaskAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container: ActionActivity): OpenUserTaskAction;
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenUserTaskAction;
+    }
+    /**
+     * In version 8.6.0: introduced
+     */
+    abstract class TypedTemplateArgument extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get containerAsTypedTemplate(): TypedTemplate;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -3145,7 +3141,6 @@ export declare namespace microflows {
     class PrimitiveTypedTemplateArgument extends TypedTemplateArgument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTypedTemplate(): TypedTemplate;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -3174,10 +3169,9 @@ export declare namespace microflows {
     /**
      * In version 7.15.0: introduced
      */
-    class ProxyConfiguration extends internal.Element {
+    class ProxyConfiguration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         /**
@@ -3187,6 +3181,8 @@ export declare namespace microflows {
         set usernameExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get usernameExpressionModel(): expressions.Expression | null;
         set usernameExpressionModel(newValue: expressions.Expression | null);
@@ -3197,6 +3193,8 @@ export declare namespace microflows {
         set passwordExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get passwordExpressionModel(): expressions.Expression | null;
         set passwordExpressionModel(newValue: expressions.Expression | null);
@@ -3207,6 +3205,8 @@ export declare namespace microflows {
         set hostExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get hostExpressionModel(): expressions.Expression | null;
         set hostExpressionModel(newValue: expressions.Expression | null);
@@ -3217,6 +3217,8 @@ export declare namespace microflows {
         set portExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get portExpressionModel(): expressions.Expression | null;
         set portExpressionModel(newValue: expressions.Expression | null);
@@ -3227,6 +3229,8 @@ export declare namespace microflows {
         set useConfigurationExpression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get useConfigurationExpressionModel(): expressions.Expression | null;
         set useConfigurationExpressionModel(newValue: expressions.Expression | null);
@@ -3262,7 +3266,6 @@ export declare namespace microflows {
     class PushToClientAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get dataVariableName(): string;
         set dataVariableName(newValue: string);
@@ -3284,14 +3287,13 @@ export declare namespace microflows {
         static create(model: IModel): PushToClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/call-rest-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/call-rest-action relevant section in reference guide}
      *
      * In version 6.6.0: introduced
      */
     class RestCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get httpConfiguration(): HttpConfiguration;
         set httpConfiguration(newValue: HttpConfiguration);
@@ -3327,6 +3329,8 @@ export declare namespace microflows {
         set timeOut(newValue: number);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.15.0: introduced
          */
@@ -3366,10 +3370,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): RestCallAction;
     }
-    class ResultHandling extends internal.Element {
+    class ResultHandling extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsImportXmlAction(): ImportXmlAction;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
@@ -3422,12 +3425,11 @@ export declare namespace microflows {
         static create(model: IModel): ResultHandling;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/retrieve relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/retrieve relevant section in reference guide}
      */
     class RetrieveAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get retrieveSource(): RetrieveSource;
         set retrieveSource(newValue: RetrieveSource);
@@ -3448,12 +3450,11 @@ export declare namespace microflows {
         static create(model: IModel): RetrieveAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/rollback-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/rollback-object relevant section in reference guide}
      */
     class RollbackAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get rollbackVariableName(): string;
         set rollbackVariableName(newValue: string);
@@ -3474,7 +3475,7 @@ export declare namespace microflows {
         static create(model: IModel): RollbackAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/rules relevant section in reference guide}
      */
     interface IRule extends IServerSideMicroflow {
         readonly model: IModel;
@@ -3484,12 +3485,11 @@ export declare namespace microflows {
         load(forceRefresh?: boolean): Promise<Rule>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/rules relevant section in reference guide}
      */
     class Rule extends ServerSideMicroflow implements IRule {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
@@ -3498,10 +3498,9 @@ export declare namespace microflows {
          */
         static createIn(container: projects.IFolderBase): Rule;
     }
-    class RuleCall extends internal.Element {
+    class RuleCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRuleSplitCondition(): RuleSplitCondition;
         get rule(): IRule | null;
         set rule(newValue: IRule | null);
@@ -3521,10 +3520,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): RuleCall;
     }
-    class RuleCallParameterMapping extends internal.Element {
+    class RuleCallParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRuleCall(): RuleCall;
         get parameter(): IRuleParameter;
         set parameter(newValue: IRuleParameter);
@@ -3536,6 +3534,8 @@ export declare namespace microflows {
         set argument(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -3556,7 +3556,7 @@ export declare namespace microflows {
         static create(model: IModel): RuleCallParameterMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     interface IRuleParameter extends IMicroflowParameterBase {
         readonly model: IModel;
@@ -3566,19 +3566,17 @@ export declare namespace microflows {
         load(forceRefresh?: boolean): Promise<RuleParameter>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     class RuleParameter extends MicroflowParameterBase implements IRuleParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRule(): Rule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class RuleSplitCondition extends SplitCondition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExclusiveSplit(): ExclusiveSplit;
         get ruleCall(): RuleCall;
         set ruleCall(newValue: RuleCall);
@@ -3597,12 +3595,11 @@ export declare namespace microflows {
         static create(model: IModel): RuleSplitCondition;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sequence-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sequence-flow relevant section in reference guide}
      */
     class SequenceFlow extends Flow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowBase(): MicroflowBase;
         get caseValue(): CaseValue;
         set caseValue(newValue: CaseValue);
@@ -3623,12 +3620,49 @@ export declare namespace microflows {
         static create(model: IModel): SequenceFlow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class SetTaskOutcomeAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowTaskVariable(): string;
+        set workflowTaskVariable(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get outcome(): workflows.IWorkflowTaskOutcome | null;
+        set outcome(newValue: workflows.IWorkflowTaskOutcome | null);
+        get outcomeQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container: ActionActivity): SetTaskOutcomeAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SetTaskOutcomeAction;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/show-home-page relevant section in reference guide}
      */
     class ShowHomePageAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3645,12 +3679,11 @@ export declare namespace microflows {
         static create(model: IModel): ShowHomePageAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-message relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/show-message relevant section in reference guide}
      */
     class ShowMessageAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get template(): TextTemplate;
         set template(newValue: TextTemplate);
@@ -3673,17 +3706,23 @@ export declare namespace microflows {
         static create(model: IModel): ShowMessageAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/show-page relevant section in reference guide}
      */
     class ShowPageAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get pageSettings(): pages.PageSettings;
         set pageSettings(newValue: pages.PageSettings);
         get passedObjectVariableName(): string;
         set passedObjectVariableName(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): string;
+        set numberOfPagesToClose(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ShowPageAction instance in the SDK and on the server.
@@ -3701,7 +3740,6 @@ export declare namespace microflows {
     class SimpleRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get parameterMappings(): internal.IList<WebServiceOperationSimpleParameterMapping>;
@@ -3742,7 +3780,6 @@ export declare namespace microflows {
     class Sort extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         get sortItemList(): SortItemList;
         set sortItemList(newValue: SortItemList);
@@ -3760,10 +3797,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): Sort;
     }
-    class SortItem extends internal.Element {
+    class SortItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSortItemList(): SortItemList;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -3793,10 +3829,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): SortItem;
     }
-    class SortItemList extends internal.Element {
+    class SortItemList extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDatabaseRetrieveSource(): DatabaseRetrieveSource;
         get containerAsSort(): Sort;
         get items(): internal.IList<SortItem>;
@@ -3821,12 +3856,11 @@ export declare namespace microflows {
         static create(model: IModel): SortItemList;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/start-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/start-event relevant section in reference guide}
      */
     class StartEvent extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3842,27 +3876,30 @@ export declare namespace microflows {
          */
         static create(model: IModel): StartEvent;
     }
-    abstract class Template extends internal.Element {
+    abstract class Template extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsShowMessageAction(): ShowMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get containerAsPageSettings(): pages.PageSettings;
+        get containerAsUserTask(): workflows.UserTask;
+        get containerAsWorkflow(): workflows.Workflow;
         get arguments(): internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class StringTemplate extends Template {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
+        get containerAsUserTask(): workflows.UserTask;
+        get containerAsWorkflow(): workflows.Workflow;
         get text(): string;
         set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3898,6 +3935,33 @@ export declare namespace microflows {
         static createInStringTemplateParameterValueUnderTemplate(container: StringTemplateParameterValue): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'description' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInUserTaskUnderDescription(container: workflows.UserTask): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInUserTaskUnderSubject(container: workflows.UserTask): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWorkflowUnderSubject(container: workflows.Workflow): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3910,7 +3974,6 @@ export declare namespace microflows {
     class StringTemplateParameterValue extends CodeActionParameterValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
         get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
         /**
@@ -3952,7 +4015,6 @@ export declare namespace microflows {
     class Subtract extends BinaryListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3969,15 +4031,23 @@ export declare namespace microflows {
         static create(model: IModel): Subtract;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/synchronize relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/synchronize relevant section in reference guide}
      *
      * In version 7.22.0: introduced
      */
     class SynchronizeAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get type(): SynchronizationType;
+        set type(newValue: SynchronizationType);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get variableNames(): internal.IList<string>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SynchronizeAction instance in the SDK and on the server.
@@ -3998,7 +4068,6 @@ export declare namespace microflows {
     class Tail extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -4014,10 +4083,9 @@ export declare namespace microflows {
          */
         static create(model: IModel): Tail;
     }
-    class TemplateArgument extends internal.Element {
+    class TemplateArgument extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTemplate(): Template;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -4026,6 +4094,8 @@ export declare namespace microflows {
         set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -4048,9 +4118,9 @@ export declare namespace microflows {
     class TextTemplate extends Template {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsShowMessageAction(): ShowMessageAction;
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
+        get containerAsPageSettings(): pages.PageSettings;
         get text(): texts.Text;
         set text(newValue: texts.Text);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -4068,6 +4138,15 @@ export declare namespace microflows {
         static createInValidationFeedbackActionUnderFeedbackTemplate(container: ValidationFeedbackAction): TextTemplate;
         /**
          * Creates and returns a new TextTemplate instance in the SDK and on the server.
+         * The new TextTemplate will be automatically stored in the 'titleOverride' property
+         * of the parent pages.PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInPageSettingsUnderTitleOverride(container: pages.PageSettings): TextTemplate;
+        /**
+         * Creates and returns a new TextTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4076,10 +4155,9 @@ export declare namespace microflows {
     /**
      * In version 8.6.0: introduced
      */
-    class TypedTemplate extends internal.Element {
+    class TypedTemplate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get text(): string;
         set text(newValue: string);
@@ -4104,7 +4182,6 @@ export declare namespace microflows {
     class Union extends BinaryListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListOperationAction(): ListOperationAction;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -4121,25 +4198,24 @@ export declare namespace microflows {
         static create(model: IModel): Union;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-feedback relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/validation-feedback relevant section in reference guide}
      */
     class ValidationFeedbackAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get feedbackTemplate(): TextTemplate;
         set feedbackTemplate(newValue: TextTemplate);
         get objectVariableName(): string;
         set objectVariableName(newValue: string);
         /**
-         * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
+         * See: {@link https://docs.mendix.com/refguide/validation-feedback See 'Member' section in reference guide}
          */
         get attribute(): domainmodels.IAttribute | null;
         set attribute(newValue: domainmodels.IAttribute | null);
         get attributeQualifiedName(): string | null;
         /**
-         * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
+         * See: {@link https://docs.mendix.com/refguide/validation-feedback See 'Member' section in reference guide}
          */
         get association(): domainmodels.IAssociationBase | null;
         set association(newValue: domainmodels.IAssociationBase | null);
@@ -4161,7 +4237,6 @@ export declare namespace microflows {
     class VariableExport extends OutputMethod {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsExportXmlAction(): ExportXmlAction;
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
@@ -4180,12 +4255,11 @@ export declare namespace microflows {
         static create(model: IModel): VariableExport;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/call-web-service-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/call-web-service-action relevant section in reference guide}
      */
     class WebServiceCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsActionActivity(): ActionActivity;
         get importedWebService(): webservices.IImportedWebService | null;
         set importedWebService(newValue: webservices.IImportedWebService | null);
@@ -4203,6 +4277,8 @@ export declare namespace microflows {
         set timeOut(newValue: number);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.15.0: introduced
          */
@@ -4257,10 +4333,9 @@ export declare namespace microflows {
     /**
      * In version 6.3.0: introduced
      */
-    abstract class WebServiceOperationParameterMapping extends internal.Element {
+    abstract class WebServiceOperationParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAdvancedRequestHandling(): AdvancedRequestHandling;
         get containerAsSimpleRequestHandling(): SimpleRequestHandling;
         get isChecked(): boolean;
@@ -4275,6 +4350,8 @@ export declare namespace microflows {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get argumentModel(): expressions.Expression;
@@ -4284,7 +4361,6 @@ export declare namespace microflows {
     class WebServiceOperationAdvancedParameterMapping extends WebServiceOperationParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAdvancedRequestHandling(): AdvancedRequestHandling;
         get mapping(): exportmappings.IExportMapping | null;
         set mapping(newValue: exportmappings.IExportMapping | null);
@@ -4308,7 +4384,6 @@ export declare namespace microflows {
     class WebServiceOperationSimpleParameterMapping extends WebServiceOperationParameterMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSimpleRequestHandling(): SimpleRequestHandling;
         /**
          * The value of this property is conceptually of type mappings.ElementPath.
@@ -4329,6 +4404,48 @@ export declare namespace microflows {
          */
         static create(model: IModel): WebServiceOperationSimpleParameterMapping;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class WorkflowCallAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get workflow(): workflows.IWorkflow | null;
+        set workflow(newValue: workflows.IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        get workflowContextVariable(): string;
+        set workflowContextVariable(newValue: string);
+        get useReturnVariable(): boolean;
+        set useReturnVariable(newValue: boolean);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * The new WorkflowCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container: ActionActivity): WorkflowCallAction;
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowCallAction;
+    }
 }
 import { appservices } from "./appservices";
 import { codeactions } from "./codeactions";
@@ -4347,4 +4464,5 @@ import { security } from "./security";
 import { services } from "./services";
 import { texts } from "./texts";
 import { webservices } from "./webservices";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

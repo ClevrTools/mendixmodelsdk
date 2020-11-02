@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.rest = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const domainmodels_1 = require("./domainmodels");
@@ -14,6 +15,9 @@ var rest;
             this.qualifiedTsTypeName = "rest.ODataVersion";
         }
     }
+    ODataVersion.OData2 = new ODataVersion("OData2", {
+        introduced: "8.15.0"
+    });
     ODataVersion.OData3 = new ODataVersion("OData3", {});
     ODataVersion.OData4 = new ODataVersion("OData4", {});
     rest.ODataVersion = ODataVersion;
@@ -57,9 +61,11 @@ var rest;
     });
     rest.RestOperationParameterType = RestOperationParameterType;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
@@ -67,19 +73,7 @@ var rest;
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
-            this.__metadataUrl = new internal.PrimitiveProperty(ConsumedODataService, this, "metadataUrl", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__metadata = new internal.PrimitiveProperty(ConsumedODataService, this, "metadata", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
             this.__metadataReferences = new internal.PartListProperty(ConsumedODataService, this, "metadataReferences", []);
-            /** @internal */
-            this.__serviceName = new internal.PrimitiveProperty(ConsumedODataService, this, "serviceName", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__version = new internal.PrimitiveProperty(ConsumedODataService, this, "version", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__serviceId = new internal.PrimitiveProperty(ConsumedODataService, this, "serviceId", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__entities = new internal.PartListProperty(ConsumedODataService, this, "entities", []);
             /** @internal */
             this.__proxyType = new internal.EnumProperty(ConsumedODataService, this, "proxyType", microflows_1.microflows.RequestProxyType.DefaultProxy, microflows_1.microflows.RequestProxyType);
             /** @internal */
@@ -100,61 +94,22 @@ var rest;
             this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__oDataVersion = new internal.EnumProperty(ConsumedODataService, this, "oDataVersion", ODataVersion.OData3, ODataVersion);
+            /** @internal */
+            this.__versionApiMockResults = new internal.PrimitiveProperty(ConsumedODataService, this, "versionApiMockResults", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__serviceId = new internal.PrimitiveProperty(ConsumedODataService, this, "serviceId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__lastUpdated = new internal.PrimitiveProperty(ConsumedODataService, this, "lastUpdated", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
-        }
-        get metadataUrl() {
-            return this.__metadataUrl.get();
-        }
-        set metadataUrl(newValue) {
-            this.__metadataUrl.set(newValue);
-        }
-        get metadata() {
-            return this.__metadata.get();
-        }
-        set metadata(newValue) {
-            this.__metadata.set(newValue);
         }
         /**
          * In version 8.6.0: introduced
          */
         get metadataReferences() {
             return this.__metadataReferences.get();
-        }
-        /**
-         * In version 8.0.0: introduced
-         */
-        get serviceName() {
-            return this.__serviceName.get();
-        }
-        set serviceName(newValue) {
-            this.__serviceName.set(newValue);
-        }
-        /**
-         * In version 8.0.0: introduced
-         */
-        get version() {
-            return this.__version.get();
-        }
-        set version(newValue) {
-            this.__version.set(newValue);
-        }
-        /**
-         * In version 8.0.0: introduced
-         */
-        get serviceId() {
-            return this.__serviceId.get();
-        }
-        set serviceId(newValue) {
-            this.__serviceId.set(newValue);
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get entities() {
-            return this.__entities.get();
         }
         get proxyType() {
             return this.__proxyType.get();
@@ -222,6 +177,8 @@ var rest;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.5.0: introduced
          */
         get timeoutModel() {
@@ -251,11 +208,44 @@ var rest;
             this.__oDataVersion.set(newValue);
         }
         /**
+         * In version 8.14.0: deleted
+         * In version 8.13.0: introduced
+         */
+        get versionApiMockResults() {
+            return this.__versionApiMockResults.get();
+        }
+        set versionApiMockResults(newValue) {
+            this.__versionApiMockResults.set(newValue);
+        }
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.0.0: introduced
+         */
+        get serviceId() {
+            return this.__serviceId.get();
+        }
+        set serviceId(newValue) {
+            this.__serviceId.set(newValue);
+        }
+        /**
+         * In version 8.14.0: introduced
+         */
+        get lastUpdated() {
+            return this.__lastUpdated.get();
+        }
+        set lastUpdated(newValue) {
+            this.__lastUpdated.set(newValue);
+        }
+        /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container) {
             return internal.instancehelpers.createUnit(container, ConsumedODataService);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return true;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -285,15 +275,6 @@ var rest;
             metadataReferences: {
                 introduced: "8.6.0"
             },
-            serviceName: {
-                introduced: "8.0.0"
-            },
-            version: {
-                introduced: "8.0.0"
-            },
-            serviceId: {
-                introduced: "8.0.0"
-            },
             httpConfiguration: {
                 introduced: "8.0.0",
                 required: {
@@ -314,6 +295,22 @@ var rest;
             },
             oDataVersion: {
                 introduced: "8.6.0"
+            },
+            versionApiMockResults: {
+                introduced: "8.13.0",
+                deleted: "8.14.0",
+                deletionMessage: "Use real payload from the Version API"
+            },
+            serviceId: {
+                introduced: "8.0.0",
+                deleted: "8.14.0",
+                deletionMessage: null
+            },
+            lastUpdated: {
+                introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
             }
         },
         experimental: {
@@ -322,7 +319,7 @@ var rest;
     }, internal.StructureType.ModelUnit);
     rest.ConsumedODataService = ConsumedODataService;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cors-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cors-settings relevant section in reference guide}
      *
      * In version 7.18.0: introduced
      */
@@ -407,12 +404,20 @@ var rest;
             this.__uri = new internal.PrimitiveProperty(MetadataReference, this, "uri", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__metadata = new internal.PrimitiveProperty(MetadataReference, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__metadataReferences = new internal.PartListProperty(MetadataReference, this, "metadataReferences", []);
             if (arguments.length < 4) {
                 throw new Error("new MetadataReference() cannot be invoked directly, please use 'model.rest.createMetadataReference()'");
             }
         }
+        get containerAsConsumedKafkaService() {
+            return super.getContainerAs(kafka_1.kafka.ConsumedKafkaService);
+        }
         get containerAsConsumedODataService() {
             return super.getContainerAs(ConsumedODataService);
+        }
+        get containerAsMetadataReference() {
+            return super.getContainerAs(MetadataReference);
         }
         get uri() {
             return this.__uri.get();
@@ -425,6 +430,60 @@ var rest;
         }
         set metadata(newValue) {
             this.__metadata.set(newValue);
+        }
+        /**
+         * In version 8.8.0: introduced
+         */
+        get metadataReferences() {
+            return this.__metadataReferences.get();
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 to 8.7.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.6.0", end: "8.7.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent kafka.ConsumedKafkaService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createInConsumedKafkaServiceUnderMetadataReferences(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.11.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInConsumedODataServiceUnderMetadataReferences(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
+        }
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent MetadataReference element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInMetadataReferenceUnderMetadataReferences(container) {
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
         }
         /**
          * Creates and returns a new MetadataReference instance in the SDK and on the server.
@@ -441,109 +500,106 @@ var rest;
     }
     MetadataReference.structureTypeName = "Rest$MetadataReference";
     MetadataReference.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.6.0"
+        introduced: "8.6.0",
+        properties: {
+            metadataReferences: {
+                introduced: "8.8.0"
+            }
+        }
     }, internal.StructureType.Element);
     rest.MetadataReference = MetadataReference;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.0.0: introduced
+     * @ignore
+     *
+     * In version 8.9.0: introduced
      */
-    class ODataAttribute extends internal.Element {
+    class ODataKey extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__name = new internal.PrimitiveProperty(ODataAttribute, this, "name", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__attribute = new internal.ByNameReferenceProperty(ODataAttribute, this, "attribute", null, "DomainModels$Attribute");
+            this.__parts = new internal.PartListProperty(ODataKey, this, "parts", []);
             if (arguments.length < 4) {
-                throw new Error("new ODataAttribute() cannot be invoked directly, please use 'model.rest.createODataAttribute()'");
+                throw new Error("new ODataKey() cannot be invoked directly, please use 'model.rest.createODataKey()'");
             }
         }
-        get containerAsODataEntity() {
-            return super.getContainerAs(ODataEntity);
-        }
-        get name() {
-            return this.__name.get();
-        }
-        set name(newValue) {
-            this.__name.set(newValue);
-        }
-        get attribute() {
-            return this.__attribute.get();
-        }
-        set attribute(newValue) {
-            this.__attribute.set(newValue);
-        }
-        get attributeQualifiedName() {
-            return this.__attribute.qualifiedName();
+        get containerAsODataRemoteEntitySource() {
+            return super.getContainerAs(ODataRemoteEntitySource);
         }
         /**
-         * Creates and returns a new ODataAttribute instance in the SDK and on the server.
-         * The new ODataAttribute will be automatically stored in the 'attributes' property
-         * of the parent ODataEntity element passed as argument.
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parts() {
+            return this.__parts.get();
+        }
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataRemoteEntitySource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.11.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, ODataAttribute.structureTypeName, { start: "8.0.0" });
-            return internal.instancehelpers.createElement(container, ODataAttribute, "attributes", true);
+            internal.createInVersionCheck(container.model, ODataKey.structureTypeName, { start: "8.11.0" });
+            return internal.instancehelpers.createElement(container, ODataKey, "key", false);
         }
         /**
-         * Creates and returns a new ODataAttribute instance in the SDK and on the server.
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, ODataAttribute);
+            return internal.instancehelpers.createElement(model, ODataKey);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
     }
-    ODataAttribute.structureTypeName = "Rest$ODataAttribute";
-    ODataAttribute.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.0.0",
+    ODataKey.structureTypeName = "Rest$ODataKey";
+    ODataKey.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
         properties: {
-            attribute: {
-                required: {
+            parts: {
+                public: {
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true
         },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.ODataAttribute = ODataAttribute;
+    rest.ODataKey = ODataKey;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 7.18.0: introduced
+     * @ignore
+     *
+     * In version 8.9.0: introduced
      */
-    class ODataEntity extends internal.Element {
+    class ODataKeyPart extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__name = new internal.PrimitiveProperty(ODataEntity, this, "name", "", internal.PrimitiveTypeEnum.String);
+            this.__name = new internal.PrimitiveProperty(ODataKeyPart, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__entity = new internal.ByNameReferenceProperty(ODataEntity, this, "entity", null, "DomainModels$Entity");
+            this.__entityKeyPartName = new internal.PrimitiveProperty(ODataKeyPart, this, "entityKeyPartName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__entitySet = new internal.PrimitiveProperty(ODataEntity, this, "entitySet", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__keyNames = new internal.PrimitiveListProperty(ODataEntity, this, "keyNames", [], internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__navigationProperties = new internal.PartListProperty(ODataEntity, this, "navigationProperties", []);
-            /** @internal */
-            this.__attributes = new internal.PartListProperty(ODataEntity, this, "attributes", []);
+            this.__type = new internal.PartProperty(ODataKeyPart, this, "type", null, true);
             if (arguments.length < 4) {
-                throw new Error("new ODataEntity() cannot be invoked directly, please use 'model.rest.createODataEntity()'");
+                throw new Error("new ODataKeyPart() cannot be invoked directly, please use 'model.rest.createODataKeyPart()'");
             }
         }
-        get containerAsConsumedODataService() {
-            return super.getContainerAs(ConsumedODataService);
+        get containerAsODataKey() {
+            return super.getContainerAs(ODataKey);
         }
         get name() {
             return this.__name.get();
@@ -551,17 +607,240 @@ var rest;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        get entity() {
-            return this.__entity.get();
+        get entityKeyPartName() {
+            return this.__entityKeyPartName.get();
         }
-        set entity(newValue) {
-            this.__entity.set(newValue);
+        set entityKeyPartName(newValue) {
+            this.__entityKeyPartName.set(newValue);
         }
-        get entityQualifiedName() {
-            return this.__entity.qualifiedName();
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
         }
         /**
-         * In version 7.19.0: introduced
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * The new ODataKeyPart will be automatically stored in the 'parts' property
+         * of the parent ODataKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataKeyPart.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, ODataKeyPart, "parts", true);
+        }
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataKeyPart);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = domainmodels_1.domainmodels.LongAttributeType.create(this.model);
+        }
+    }
+    ODataKeyPart.structureTypeName = "Rest$ODataKeyPart";
+    ODataKeyPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            type: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataKeyPart = ODataKeyPart;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataMappedValue extends domainmodels_1.domainmodels.MappedValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__remoteName = new internal.PrimitiveProperty(ODataMappedValue, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__remoteType = new internal.PrimitiveProperty(ODataMappedValue, this, "remoteType", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ODataMappedValue() cannot be invoked directly, please use 'model.rest.createODataMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(domainmodels_1.domainmodels.Attribute);
+        }
+        get remoteName() {
+            return this.__remoteName.get();
+        }
+        set remoteName(newValue) {
+            this.__remoteName.set(newValue);
+        }
+        /**
+         * In version 8.15.0: introduced
+         */
+        get remoteType() {
+            return this.__remoteType.get();
+        }
+        set remoteType(newValue) {
+            this.__remoteType.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
+         * The new ODataMappedValue will be automatically stored in the 'value' property
+         * of the parent domainmodels.Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataMappedValue.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, ODataMappedValue, "value", false);
+        }
+        /**
+         * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataMappedValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataMappedValue.structureTypeName = "Rest$ODataMappedValue";
+    ODataMappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        properties: {
+            remoteType: {
+                introduced: "8.15.0"
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataMappedValue = ODataMappedValue;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataRemoteAssociationSource extends domainmodels_1.domainmodels.RemoteAssociationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__remoteParentNavigationProperty = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "remoteParentNavigationProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__remoteChildNavigationProperty = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "remoteChildNavigationProperty", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ODataRemoteAssociationSource() cannot be invoked directly, please use 'model.rest.createODataRemoteAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(domainmodels_1.domainmodels.AssociationBase);
+        }
+        get remoteParentNavigationProperty() {
+            return this.__remoteParentNavigationProperty.get();
+        }
+        set remoteParentNavigationProperty(newValue) {
+            this.__remoteParentNavigationProperty.set(newValue);
+        }
+        get remoteChildNavigationProperty() {
+            return this.__remoteChildNavigationProperty.get();
+        }
+        set remoteChildNavigationProperty(newValue) {
+            this.__remoteChildNavigationProperty.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
+         * The new ODataRemoteAssociationSource will be automatically stored in the 'source' property
+         * of the parent domainmodels.AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataRemoteAssociationSource.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, ODataRemoteAssociationSource, "source", false);
+        }
+        /**
+         * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataRemoteAssociationSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataRemoteAssociationSource.structureTypeName = "Rest$ODataRemoteAssociationSource";
+    ODataRemoteAssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataRemoteAssociationSource = ODataRemoteAssociationSource;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataRemoteEntitySource extends domainmodels_1.domainmodels.QueryBasedRemoteEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__sourceDocument = new internal.ByNameReferenceProperty(ODataRemoteEntitySource, this, "sourceDocument", null, "Rest$ConsumedODataService");
+            /** @internal */
+            this.__remoteName = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__entitySet = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "entitySet", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__key = new internal.PartProperty(ODataRemoteEntitySource, this, "key", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new ODataRemoteEntitySource() cannot be invoked directly, please use 'model.rest.createODataRemoteEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(domainmodels_1.domainmodels.Entity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get sourceDocument() {
+            return this.__sourceDocument.get();
+        }
+        set sourceDocument(newValue) {
+            this.__sourceDocument.set(newValue);
+        }
+        get sourceDocumentQualifiedName() {
+            return this.__sourceDocument.qualifiedName();
+        }
+        get remoteName() {
+            return this.__remoteName.get();
+        }
+        set remoteName(newValue) {
+            this.__remoteName.set(newValue);
+        }
+        /**
+         * In version 8.11.0: introduced
          */
         get entitySet() {
             return this.__entitySet.get();
@@ -570,163 +849,64 @@ var rest;
             this.__entitySet.set(newValue);
         }
         /**
-         * In version 7.22.0: introduced
-         */
-        get keyNames() {
-            return this.__keyNames.get();
-        }
-        /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
-         * In version 7.22.0: introduced
-         */
-        get navigationProperties() {
-            return this.__navigationProperties.get();
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         * @ignore
          *
-         * In version 8.0.0: introduced
+         * In version 8.11.0: introduced
          */
-        get attributes() {
-            return this.__attributes.get();
+        get key() {
+            return this.__key.get();
+        }
+        set key(newValue) {
+            this.__key.set(newValue);
         }
         /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
-         * The new ODataEntity will be automatically stored in the 'entities' property
-         * of the parent ConsumedODataService element passed as argument.
+         * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
+         * The new ODataRemoteEntitySource will be automatically stored in the 'source' property
+         * of the parent domainmodels.Entity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.18.0 and higher
+         *  8.10.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, ODataEntity.structureTypeName, { start: "7.18.0" });
-            return internal.instancehelpers.createElement(container, ODataEntity, "entities", true);
+            internal.createInVersionCheck(container.model, ODataRemoteEntitySource.structureTypeName, { start: "8.10.0" });
+            return internal.instancehelpers.createElement(container, ODataRemoteEntitySource, "source", false);
         }
         /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
+         * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, ODataEntity);
+            return internal.instancehelpers.createElement(model, ODataRemoteEntitySource);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
     }
-    ODataEntity.structureTypeName = "Rest$ODataEntity";
-    ODataEntity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.18.0",
+    ODataRemoteEntitySource.structureTypeName = "Rest$ODataRemoteEntitySource";
+    ODataRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
         properties: {
-            entity: {
-                required: {
-                    currentValue: true
-                }
-            },
             entitySet: {
-                introduced: "7.19.0"
+                introduced: "8.11.0"
             },
-            keyNames: {
-                introduced: "7.22.0"
-            },
-            navigationProperties: {
-                introduced: "7.22.0"
-            },
-            attributes: {
-                introduced: "8.0.0"
-            }
-        },
-        experimental: {
-            currentValue: true
-        }
-    }, internal.StructureType.Element);
-    rest.ODataEntity = ODataEntity;
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 7.22.0: introduced
-     */
-    class ODataNavigationProperty extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            /** @internal */
-            this.__name = new internal.PrimitiveProperty(ODataNavigationProperty, this, "name", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__association = new internal.ByNameReferenceProperty(ODataNavigationProperty, this, "association", null, "DomainModels$AssociationBase");
-            /** @internal */
-            this.__thisSideIsParent = new internal.PrimitiveProperty(ODataNavigationProperty, this, "thisSideIsParent", false, internal.PrimitiveTypeEnum.Boolean);
-            if (arguments.length < 4) {
-                throw new Error("new ODataNavigationProperty() cannot be invoked directly, please use 'model.rest.createODataNavigationProperty()'");
-            }
-        }
-        get containerAsODataEntity() {
-            return super.getContainerAs(ODataEntity);
-        }
-        get name() {
-            return this.__name.get();
-        }
-        set name(newValue) {
-            this.__name.set(newValue);
-        }
-        get association() {
-            return this.__association.get();
-        }
-        set association(newValue) {
-            this.__association.set(newValue);
-        }
-        get associationQualifiedName() {
-            return this.__association.qualifiedName();
-        }
-        get thisSideIsParent() {
-            return this.__thisSideIsParent.get();
-        }
-        set thisSideIsParent(newValue) {
-            this.__thisSideIsParent.set(newValue);
-        }
-        /**
-         * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
-         * The new ODataNavigationProperty will be automatically stored in the 'navigationProperties' property
-         * of the parent ODataEntity element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.22.0 and higher
-         */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, ODataNavigationProperty.structureTypeName, { start: "7.22.0" });
-            return internal.instancehelpers.createElement(container, ODataNavigationProperty, "navigationProperties", true);
-        }
-        /**
-         * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model) {
-            return internal.instancehelpers.createElement(model, ODataNavigationProperty);
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    ODataNavigationProperty.structureTypeName = "Rest$ODataNavigationProperty";
-    ODataNavigationProperty.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.22.0",
-        properties: {
-            association: {
-                required: {
+            key: {
+                introduced: "8.11.0",
+                public: {
                     currentValue: true
                 }
             }
         },
-        experimental: {
+        public: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.ODataNavigationProperty = ODataNavigationProperty;
+    rest.ODataRemoteEntitySource = ODataRemoteEntitySource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     class PublishedODataService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -753,6 +933,8 @@ var rest;
             this.__summary = new internal.PrimitiveProperty(PublishedODataService, this, "summary", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedODataService, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__replaceIllegalChars = new internal.PrimitiveProperty(PublishedODataService, this, "replaceIllegalChars", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -843,6 +1025,15 @@ var rest;
             this.__description.set(newValue);
         }
         /**
+         * In version 8.12.0: introduced
+         */
+        get replaceIllegalChars() {
+            return this.__replaceIllegalChars.get();
+        }
+        set replaceIllegalChars(newValue) {
+            this.__replaceIllegalChars.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -858,6 +1049,9 @@ var rest;
             this.namespace = "DefaultNamespace";
             if (this.__publishAssociations.isAvailable) {
                 this.publishAssociations = true;
+            }
+            if (this.__replaceIllegalChars.isAvailable) {
+                this.replaceIllegalChars = false;
             }
             if (this.__version.isAvailable) {
                 this.version = "1.0.0";
@@ -887,12 +1081,15 @@ var rest;
             },
             description: {
                 introduced: "8.4.0"
+            },
+            replaceIllegalChars: {
+                introduced: "8.12.0"
             }
         }
     }, internal.StructureType.ModelUnit);
     rest.PublishedODataService = PublishedODataService;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-resource relevant section in reference guide}
      */
     class PublishedRestResource extends webservices_1.webservices.PublishedResource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -999,7 +1196,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedRestResource = PublishedRestResource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-services relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.6.0: introduced
@@ -1170,7 +1367,7 @@ var rest;
     }, internal.StructureType.ModelUnit);
     rest.PublishedRestService = PublishedRestService;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-operation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-operation relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
@@ -1362,7 +1559,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedRestServiceOperation = PublishedRestServiceOperation;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-resource relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
@@ -1591,6 +1788,7 @@ var rest;
 })(rest = exports.rest || (exports.rest = {}));
 const datatypes_1 = require("./datatypes");
 const expressions_1 = require("./expressions");
+const kafka_1 = require("./kafka");
 const mappings_1 = require("./mappings");
 const microflows_1 = require("./microflows");
 const services_1 = require("./services");

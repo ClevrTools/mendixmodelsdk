@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.domainmodels = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const utils_1 = require("../sdk/utils");
@@ -16,6 +17,16 @@ var domainmodels;
     ActionMoment.Before = new ActionMoment("Before", {});
     ActionMoment.After = new ActionMoment("After", {});
     domainmodels.ActionMoment = ActionMoment;
+    class AssociationNavigability extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "domainmodels.AssociationNavigability";
+        }
+    }
+    AssociationNavigability.BothDirections = new AssociationNavigability("BothDirections", {});
+    AssociationNavigability.ParentToChild = new AssociationNavigability("ParentToChild", {});
+    AssociationNavigability.ChildToParent = new AssociationNavigability("ChildToParent", {});
+    domainmodels.AssociationNavigability = AssociationNavigability;
     class AssociationOwner extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -44,6 +55,17 @@ var domainmodels;
     DeletingBehavior.DeleteMeButKeepReferences = new DeletingBehavior("DeleteMeButKeepReferences", {});
     DeletingBehavior.DeleteMeIfNoReferences = new DeletingBehavior("DeleteMeIfNoReferences", {});
     domainmodels.DeletingBehavior = DeletingBehavior;
+    class EnvironmentType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "domainmodels.EnvironmentType";
+        }
+    }
+    EnvironmentType.Production = new EnvironmentType("Production", {});
+    EnvironmentType.Sandbox = new EnvironmentType("Sandbox", {});
+    EnvironmentType.NonProduction = new EnvironmentType("NonProduction", {});
+    EnvironmentType.Unknown = new EnvironmentType("Unknown", {});
+    domainmodels.EnvironmentType = EnvironmentType;
     class EventType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -89,7 +111,7 @@ var domainmodels;
      * Interfaces and instance classes for types from the Mendix sub meta model `DomainModels`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/access-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/access-rules relevant section in reference guide}
      */
     class AccessRule extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -194,7 +216,7 @@ var domainmodels;
     AccessRule.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.AccessRule = AccessRule;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotations relevant section in reference guide}
      */
     class Annotation extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -260,7 +282,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Annotation = Annotation;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     class AssociationBase extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -281,6 +303,10 @@ var domainmodels;
             this.__documentation = new internal.PrimitiveProperty(AssociationBase, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__remoteSourceDocument = new internal.ByNameReferenceProperty(AssociationBase, this, "remoteSourceDocument", null, "DomainModels$RemoteEntitySourceDocument");
+            /** @internal */
+            this.__source = new internal.PartProperty(AssociationBase, this, "source", null, false);
+            /** @internal */
+            this.__capabilities = new internal.PartProperty(AssociationBase, this, "capabilities", null, true);
             if (arguments.length < 4) {
                 throw new Error("new AssociationBase() cannot be invoked directly, please use 'model.domainmodels.createAssociationBase()'");
             }
@@ -333,6 +359,9 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         get remoteSourceDocument() {
@@ -344,6 +373,24 @@ var domainmodels;
         get remoteSourceDocumentQualifiedName() {
             return this.__remoteSourceDocument.qualifiedName();
         }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source() {
+            return this.__source.get();
+        }
+        set source(newValue) {
+            this.__source.set(newValue);
+        }
+        /**
+         * In version 8.11.0: introduced
+         */
+        get capabilities() {
+            return this.__capabilities.get();
+        }
+        set capabilities(newValue) {
+            this.__capabilities.set(newValue);
+        }
         /** @internal */
         _isByNameReferrable() {
             return true;
@@ -354,6 +401,9 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__capabilities.isAvailable) {
+                this.capabilities = AssociationCapabilities.create(this.model);
+            }
             this.dataStorageGuid = utils_1.utils.randomUuid();
             this.deleteBehavior = AssociationDeleteBehavior.create(this.model);
             this.owner = AssociationOwner.Default;
@@ -393,7 +443,24 @@ var domainmodels;
             },
             remoteSourceDocument: {
                 introduced: "8.3.0",
+                deleted: "8.10.0",
+                deletionMessage: "The information is now stored in ODataRemoteAssociationSource",
                 public: {
+                    currentValue: true
+                }
+            },
+            source: {
+                introduced: "8.10.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            capabilities: {
+                introduced: "8.11.0",
+                public: {
+                    currentValue: true
+                },
+                required: {
                     currentValue: true
                 }
             }
@@ -404,7 +471,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.AssociationBase = AssociationBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     class Association extends AssociationBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -480,6 +547,61 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.Association = Association;
+    /**
+     * In version 8.11.0: introduced
+     */
+    class AssociationCapabilities extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__navigability = new internal.EnumProperty(AssociationCapabilities, this, "navigability", AssociationNavigability.BothDirections, AssociationNavigability);
+            if (arguments.length < 4) {
+                throw new Error("new AssociationCapabilities() cannot be invoked directly, please use 'model.domainmodels.createAssociationCapabilities()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        get navigability() {
+            return this.__navigability.get();
+        }
+        set navigability(newValue) {
+            this.__navigability.set(newValue);
+        }
+        /**
+         * Creates and returns a new AssociationCapabilities instance in the SDK and on the server.
+         * The new AssociationCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AssociationCapabilities.structureTypeName, { start: "8.11.0" });
+            return internal.instancehelpers.createElement(container, AssociationCapabilities, "capabilities", false);
+        }
+        /**
+         * Creates and returns a new AssociationCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AssociationCapabilities);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.navigability = AssociationNavigability.BothDirections;
+        }
+    }
+    AssociationCapabilities.structureTypeName = "DomainModels$AssociationCapabilities";
+    AssociationCapabilities.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.11.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.AssociationCapabilities = AssociationCapabilities;
     class AssociationDeleteBehavior extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -668,7 +790,33 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.AssociationRef = AssociationRef;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
+     * In version 8.10.0: introduced
+     */
+    class AssociationSource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new AssociationSource() cannot be invoked directly, please use 'model.domainmodels.createAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AssociationSource.structureTypeName = "DomainModels$AssociationSource";
+    AssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.AssociationSource = AssociationSource;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/attributes relevant section in reference guide}
      */
     class Attribute extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -683,6 +831,8 @@ var domainmodels;
             this.__documentation = new internal.PrimitiveProperty(Attribute, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__value = new internal.PartProperty(Attribute, this, "value", null, true);
+            /** @internal */
+            this.__capabilities = new internal.PartProperty(Attribute, this, "capabilities", null, true);
             if (arguments.length < 4) {
                 throw new Error("new Attribute() cannot be invoked directly, please use 'model.domainmodels.createAttribute()'");
             }
@@ -724,6 +874,15 @@ var domainmodels;
             this.__value.set(newValue);
         }
         /**
+         * In version 8.13.0: introduced
+         */
+        get capabilities() {
+            return this.__capabilities.get();
+        }
+        set capabilities(newValue) {
+            this.__capabilities.set(newValue);
+        }
+        /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
          * The new Attribute will be automatically stored in the 'attributes' property
          * of the parent Entity element passed as argument.
@@ -749,6 +908,9 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__capabilities.isAvailable) {
+                this.capabilities = AttributeCapabilities.create(this.model);
+            }
             this.dataStorageGuid = utils_1.utils.randomUuid();
             this.type = StringAttributeType.create(this.model);
             this.value = StoredValue.create(this.model);
@@ -778,6 +940,15 @@ var domainmodels;
                 required: {
                     currentValue: true
                 }
+            },
+            capabilities: {
+                introduced: "8.13.0",
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
             }
         },
         public: {
@@ -785,6 +956,102 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.Attribute = Attribute;
+    /**
+     * In version 8.13.0: introduced
+     */
+    class AttributeCapabilities extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__filterable = new internal.PrimitiveProperty(AttributeCapabilities, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sortable = new internal.PrimitiveProperty(AttributeCapabilities, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__canDeleteFromModel = new internal.PrimitiveProperty(AttributeCapabilities, this, "canDeleteFromModel", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new AttributeCapabilities() cannot be invoked directly, please use 'model.domainmodels.createAttributeCapabilities()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        get filterable() {
+            return this.__filterable.get();
+        }
+        set filterable(newValue) {
+            this.__filterable.set(newValue);
+        }
+        get sortable() {
+            return this.__sortable.get();
+        }
+        set sortable(newValue) {
+            this.__sortable.set(newValue);
+        }
+        /**
+         * In version 9.0.0: introduced
+         */
+        get canDeleteFromModel() {
+            return this.__canDeleteFromModel.get();
+        }
+        set canDeleteFromModel(newValue) {
+            this.__canDeleteFromModel.set(newValue);
+        }
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * The new AttributeCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AttributeCapabilities.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, AttributeCapabilities, "capabilities", false);
+        }
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AttributeCapabilities);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__canDeleteFromModel.isAvailable) {
+                this.canDeleteFromModel = true;
+            }
+            this.filterable = true;
+            this.sortable = true;
+        }
+    }
+    AttributeCapabilities.structureTypeName = "DomainModels$AttributeCapabilities";
+    AttributeCapabilities.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0",
+        properties: {
+            filterable: {
+                public: {
+                    currentValue: true
+                }
+            },
+            sortable: {
+                public: {
+                    currentValue: true
+                }
+            },
+            canDeleteFromModel: {
+                introduced: "9.0.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.AttributeCapabilities = AttributeCapabilities;
     /**
      * In version 7.11.0: introduced
      */
@@ -1063,6 +1330,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1084,6 +1357,12 @@ var domainmodels;
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -1107,6 +1386,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1129,12 +1414,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
         }
         /**
@@ -1167,12 +1494,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
         }
         /**
@@ -1205,12 +1574,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
         }
         /**
@@ -1390,6 +1801,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1411,6 +1828,12 @@ var domainmodels;
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -1437,12 +1860,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
         }
         /**
@@ -1477,6 +1942,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         get localizeDate() {
             return this.__localizeDate.get();
         }
@@ -1487,8 +1958,44 @@ var domainmodels;
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
         }
         /**
@@ -1522,12 +2029,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
         }
         /**
@@ -1746,7 +2295,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.DirectEntityRef = DirectEntityRef;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/domain-model relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/domain-model relevant section in reference guide}
      */
     class DomainModel extends projects_1.projects.ModuleDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -1818,7 +2367,7 @@ var domainmodels;
     }, internal.StructureType.ModelUnit);
     domainmodels.DomainModel = DomainModel;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/entities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/entities relevant section in reference guide}
      */
     class Entity extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1851,6 +2400,10 @@ var domainmodels;
             this.__remoteSource = new internal.PrimitiveProperty(Entity, this, "remoteSource", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__remoteSourceDocument = new internal.ByNameReferenceProperty(Entity, this, "remoteSourceDocument", null, "DomainModels$RemoteEntitySourceDocument");
+            /** @internal */
+            this.__source = new internal.PartProperty(Entity, this, "source", null, false);
+            /** @internal */
+            this.__capabilities = new internal.PartProperty(Entity, this, "capabilities", null, true);
             if (arguments.length < 4) {
                 throw new Error("new Entity() cannot be invoked directly, please use 'model.domainmodels.createEntity()'");
             }
@@ -1914,6 +2467,7 @@ var domainmodels;
             return this.__image.qualifiedName();
         }
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
@@ -1924,6 +2478,7 @@ var domainmodels;
             this.__isRemote.set(newValue);
         }
         /**
+         * In version 8.10.0: deleted
          * In version 7.17.0: introduced
          */
         get remoteSource() {
@@ -1935,6 +2490,9 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         get remoteSourceDocument() {
@@ -1945,6 +2503,24 @@ var domainmodels;
         }
         get remoteSourceDocumentQualifiedName() {
             return this.__remoteSourceDocument.qualifiedName();
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source() {
+            return this.__source.get();
+        }
+        set source(newValue) {
+            this.__source.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get capabilities() {
+            return this.__capabilities.get();
+        }
+        set capabilities(newValue) {
+            this.__capabilities.set(newValue);
         }
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1972,6 +2548,9 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__capabilities.isAvailable) {
+                this.capabilities = EntityCapabilities.create(this.model);
+            }
             this.dataStorageGuid = utils_1.utils.randomUuid();
             this.generalization = NoGeneralization.create(this.model);
         }
@@ -2000,17 +2579,38 @@ var domainmodels;
             },
             isRemote: {
                 introduced: "7.17.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead",
                 public: {
                     currentValue: true,
                     changedIn: ["8.2.0"]
                 }
             },
             remoteSource: {
-                introduced: "7.17.0"
+                introduced: "7.17.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead"
             },
             remoteSourceDocument: {
                 introduced: "8.2.0",
+                deleted: "8.10.0",
+                deletionMessage: "Use property 'source' instead",
                 public: {
+                    currentValue: true
+                }
+            },
+            source: {
+                introduced: "8.10.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            capabilities: {
+                introduced: "8.12.0",
+                public: {
+                    currentValue: true
+                },
+                required: {
                     currentValue: true
                 }
             }
@@ -2020,6 +2620,196 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.Entity = Entity;
+    /**
+     * In version 8.12.0: introduced
+     */
+    class EntityCapabilities extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__countable = new internal.PrimitiveProperty(EntityCapabilities, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new EntityCapabilities() cannot be invoked directly, please use 'model.domainmodels.createEntityCapabilities()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /**
+         * In version 8.14.0: added public
+         */
+        get countable() {
+            return this.__countable.get();
+        }
+        set countable(newValue) {
+            this.__countable.set(newValue);
+        }
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * The new EntityCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0" });
+            return internal.instancehelpers.createElement(container, EntityCapabilities, "capabilities", false);
+        }
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EntityCapabilities);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.countable = true;
+        }
+    }
+    EntityCapabilities.structureTypeName = "DomainModels$EntityCapabilities";
+    EntityCapabilities.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.12.0",
+        properties: {
+            countable: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.14.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntityCapabilities = EntityCapabilities;
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKey extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parts = new internal.PartListProperty(EntityKey, this, "parts", []);
+            if (arguments.length < 4) {
+                throw new Error("new EntityKey() cannot be invoked directly, please use 'model.domainmodels.createEntityKey()'");
+            }
+        }
+        get parts() {
+            return this.__parts.get();
+        }
+        /**
+         * Creates and returns a new EntityKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EntityKey);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EntityKey.structureTypeName = "DomainModels$EntityKey";
+    EntityKey.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            parts: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntityKey = EntityKey;
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKeyPart extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(EntityKeyPart, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.PartProperty(EntityKeyPart, this, "type", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new EntityKeyPart() cannot be invoked directly, please use 'model.domainmodels.createEntityKeyPart()'");
+            }
+        }
+        get containerAsEntityKey() {
+            return super.getContainerAs(EntityKey);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * The new EntityKeyPart will be automatically stored in the 'parts' property
+         * of the parent EntityKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EntityKeyPart.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, EntityKeyPart, "parts", true);
+        }
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EntityKeyPart);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = LongAttributeType.create(this.model);
+        }
+    }
+    EntityKeyPart.structureTypeName = "DomainModels$EntityKeyPart";
+    EntityKeyPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.9.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            type: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntityKeyPart = EntityKeyPart;
     /**
      * In version 7.11.0: introduced
      */
@@ -2097,6 +2887,32 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.EntityRefStep = EntityRefStep;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class EntitySource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EntitySource() cannot be invoked directly, please use 'model.domainmodels.createEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EntitySource.structureTypeName = "DomainModels$EntitySource";
+    EntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.EntitySource = EntitySource;
     class EnumerationAttributeType extends AttributeType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -2108,6 +2924,12 @@ var domainmodels;
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
         get enumeration() {
             return this.__enumeration.get();
@@ -2122,8 +2944,44 @@ var domainmodels;
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
         }
         /**
@@ -2237,7 +3095,7 @@ var domainmodels;
     EqualsToRuleInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.EqualsToRuleInfo = EqualsToRuleInfo;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/event-handlers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/event-handlers relevant section in reference guide}
      */
     class EventHandler extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2333,12 +3191,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
         }
         /**
@@ -2452,12 +3352,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
         }
         /**
@@ -2481,7 +3423,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.HashedStringAttributeType = HashedStringAttributeType;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/indexes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/indexes relevant section in reference guide}
      */
     class Index extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2765,12 +3707,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
         }
         /**
@@ -2803,12 +3787,54 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
          */
-        static createIn(container) {
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
         }
         /**
@@ -2831,6 +3857,84 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.LongAttributeType = LongAttributeType;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class MappedValue extends ValueType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappedValue.structureTypeName = "DomainModels$MappedValue";
+    MappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.MappedValue = MappedValue;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class RemoteEntitySource extends EntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RemoteEntitySource() cannot be invoked directly, please use 'model.domainmodels.createRemoteEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RemoteEntitySource.structureTypeName = "DomainModels$RemoteEntitySource";
+    RemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.RemoteEntitySource = RemoteEntitySource;
+    /**
+     * In version 8.11.0: introduced
+     */
+    class MaterializedRemoteEntitySource extends RemoteEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MaterializedRemoteEntitySource() cannot be invoked directly, please use 'model.domainmodels.createMaterializedRemoteEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MaterializedRemoteEntitySource.structureTypeName = "DomainModels$MaterializedRemoteEntitySource";
+    MaterializedRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.11.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.MaterializedRemoteEntitySource = MaterializedRemoteEntitySource;
     class MaxLengthRuleInfo extends RuleInfo {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3060,6 +4164,32 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.NoGeneralization = NoGeneralization;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class QueryBasedRemoteEntitySource extends RemoteEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new QueryBasedRemoteEntitySource() cannot be invoked directly, please use 'model.domainmodels.createQueryBasedRemoteEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    QueryBasedRemoteEntitySource.structureTypeName = "DomainModels$QueryBasedRemoteEntitySource";
+    QueryBasedRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.QueryBasedRemoteEntitySource = QueryBasedRemoteEntitySource;
     class RangeRuleInfo extends RuleInfo {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3205,16 +4335,174 @@ var domainmodels;
     RegExRuleInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.RegExRuleInfo = RegExRuleInfo;
     /**
+     * In version 8.10.0: introduced
+     */
+    class RemoteAssociationSource extends AssociationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RemoteAssociationSource() cannot be invoked directly, please use 'model.domainmodels.createRemoteAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RemoteAssociationSource.structureTypeName = "DomainModels$RemoteAssociationSource";
+    RemoteAssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.RemoteAssociationSource = RemoteAssociationSource;
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.2.0: introduced
+     * @ignore
+     *
+     * In version 7.18.0: introduced
      */
     class RemoteEntitySourceDocument extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__catalogUrl = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "catalogUrl", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__icon = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "icon", null, internal.PrimitiveTypeEnum.Blob);
+            /** @internal */
+            this.__metadata = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__metadataUrl = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "metadataUrl", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__serviceName = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "serviceName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__version = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "version", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__endpointId = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "endpointId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__minimumMxVersion = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "minimumMxVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__recommendedMxVersion = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "recommendedMxVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__applicationId = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "applicationId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__environmentType = new internal.EnumProperty(RemoteEntitySourceDocument, this, "environmentType", EnvironmentType.Unknown, EnvironmentType);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get catalogUrl() {
+            return this.__catalogUrl.get();
+        }
+        set catalogUrl(newValue) {
+            this.__catalogUrl.set(newValue);
+        }
+        /**
+         * In version 8.11.0: added public
+         * In version 8.10.0: introduced
+         */
+        get icon() {
+            return this.__icon.get();
+        }
+        set icon(newValue) {
+            this.__icon.set(newValue);
+        }
+        get metadata() {
+            return this.__metadata.get();
+        }
+        set metadata(newValue) {
+            this.__metadata.set(newValue);
+        }
+        get metadataUrl() {
+            return this.__metadataUrl.get();
+        }
+        set metadataUrl(newValue) {
+            this.__metadataUrl.set(newValue);
+        }
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get serviceName() {
+            return this.__serviceName.get();
+        }
+        set serviceName(newValue) {
+            this.__serviceName.set(newValue);
+        }
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get version() {
+            return this.__version.get();
+        }
+        set version(newValue) {
+            this.__version.set(newValue);
+        }
+        /**
+         * In version 8.14.0: introduced
+         */
+        get endpointId() {
+            return this.__endpointId.get();
+        }
+        set endpointId(newValue) {
+            this.__endpointId.set(newValue);
+        }
+        /**
+         * In version 8.14.0: introduced
+         */
+        get minimumMxVersion() {
+            return this.__minimumMxVersion.get();
+        }
+        set minimumMxVersion(newValue) {
+            this.__minimumMxVersion.set(newValue);
+        }
+        /**
+         * In version 8.14.0: introduced
+         */
+        get recommendedMxVersion() {
+            return this.__recommendedMxVersion.get();
+        }
+        set recommendedMxVersion(newValue) {
+            this.__recommendedMxVersion.set(newValue);
+        }
+        /**
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
+         */
+        get applicationId() {
+            return this.__applicationId.get();
+        }
+        set applicationId(newValue) {
+            this.__applicationId.set(newValue);
+        }
+        /**
+         * In version 8.14.0: introduced
+         */
+        get environmentType() {
+            return this.__environmentType.get();
+        }
+        set environmentType(newValue) {
+            this.__environmentType.set(newValue);
         }
         /** @internal */
         _isByNameReferrable() {
@@ -3223,11 +4511,74 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__environmentType.isAvailable) {
+                this.environmentType = EnvironmentType.Unknown;
+            }
         }
     }
     RemoteEntitySourceDocument.structureTypeName = "DomainModels$RemoteEntitySourceDocument";
     RemoteEntitySourceDocument.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.2.0",
+        introduced: "7.18.0",
+        properties: {
+            description: {
+                introduced: "8.10.0"
+            },
+            catalogUrl: {
+                introduced: "8.10.0"
+            },
+            icon: {
+                introduced: "8.10.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.11.0"]
+                }
+            },
+            serviceName: {
+                introduced: "8.0.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.10.0"]
+                }
+            },
+            version: {
+                introduced: "8.0.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.10.0"]
+                }
+            },
+            endpointId: {
+                introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            minimumMxVersion: {
+                introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            recommendedMxVersion: {
+                introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            applicationId: {
+                introduced: "8.11.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["8.12.0"]
+                }
+            },
+            environmentType: {
+                introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
         experimental: {
             currentValue: true
         }
@@ -3329,6 +4680,12 @@ var domainmodels;
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
+        get containerAsEntityKeyPart() {
+            return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsODataKeyPart() {
+            return super.getContainerAs(rest_1.rest.ODataKeyPart);
+        }
         get length() {
             return this.__length.get();
         }
@@ -3339,8 +4696,44 @@ var domainmodels;
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { end: "8.8.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container) {
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "8.9.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
         }
         /**
@@ -3399,7 +4792,7 @@ var domainmodels;
     UniqueRuleInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.UniqueRuleInfo = UniqueRuleInfo;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/validation-rules relevant section in reference guide}
      */
     class ValidationRule extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3488,6 +4881,7 @@ const documenttemplates_1 = require("./documenttemplates");
 const expressions_1 = require("./expressions");
 const microflows_1 = require("./microflows");
 const pages_1 = require("./pages");
+const rest_1 = require("./rest");
 const security_1 = require("./security");
 const texts_1 = require("./texts");
 //# sourceMappingURL=domainmodels.js.map

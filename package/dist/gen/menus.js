@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.menus = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -10,7 +11,7 @@ var menus;
      * Interfaces and instance classes for types from the Mendix sub meta model `Menus`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu relevant section in reference guide}
      */
     class MenuDocument extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -86,7 +87,7 @@ var menus;
     MenuItemContainer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     menus.MenuItemContainer = MenuItemContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-item relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu relevant section in reference guide}
      */
     class MenuItem extends MenuItemContainer {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -95,6 +96,8 @@ var menus;
             this.__caption = new internal.PartProperty(MenuItem, this, "caption", null, true);
             /** @internal */
             this.__icon = new internal.PartProperty(MenuItem, this, "icon", null, false);
+            /** @internal */
+            this.__alternativeText = new internal.PartProperty(MenuItem, this, "alternativeText", null, false);
             /** @internal */
             this.__action = new internal.PartProperty(MenuItem, this, "action", null, true);
             if (arguments.length < 4) {
@@ -115,6 +118,15 @@ var menus;
         }
         set icon(newValue) {
             this.__icon.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get alternativeText() {
+            return this.__alternativeText.get();
+        }
+        set alternativeText(newValue) {
+            this.__alternativeText.set(newValue);
         }
         get action() {
             return this.__action.get();
@@ -152,6 +164,9 @@ var menus;
                 required: {
                     currentValue: true
                 }
+            },
+            alternativeText: {
+                introduced: "8.12.0"
             },
             action: {
                 required: {

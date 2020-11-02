@@ -17,4 +17,5 @@ export declare class RestTransportation implements ITransportation {
     private url;
     private generateStandardOptions;
     private handleRequest;
+    private retryRequest;
 }

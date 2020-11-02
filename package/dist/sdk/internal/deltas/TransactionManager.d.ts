@@ -19,12 +19,15 @@ export declare class TransactionManager {
     constructor(model: AbstractModel, errorCallback: common.IErrorCallback);
     commit(): void;
     rollback(): void;
-    beginTransaction(): Transaction;
+    beginTransaction(commitCurrentImplicitTransaction?: boolean): Transaction;
     onCommitted(callback: () => void): void;
     onRollback(callback: () => void): void;
     deltaReceived(delta: Delta): void;
     private beginImplicitTransaction;
     private checkModel;
+}
+export interface ITransactionOptions {
+    commitCurrentImplicitTransaction: boolean;
 }
 /**
  * Begin an explicit transaction for the given model.
@@ -35,7 +38,7 @@ export declare class TransactionManager {
  *
  * When rolling back a deleted element/unit, a new element/unit instance will be created with the same id. Be sure not to use the old - deleted - instance.
  */
-export declare function beginTransaction(model: IAbstractModel): Transaction;
+export declare function beginTransaction(model: IAbstractModel, options?: ITransactionOptions): Transaction;
 /**
  * Run the specified action inside a transaction for the given model.
  * The transaction will be committed when the action is finished.
@@ -49,4 +52,6 @@ export declare function beginTransaction(model: IAbstractModel): Transaction;
  */
 export declare function runInTransaction<T>(model: IAbstractModel, action: () => T): T;
 export declare function runInTransaction<T>(model: IAbstractModel, action: () => Promise<T>): Promise<T>;
+export declare function runInTransaction<T>(model: IAbstractModel, options: ITransactionOptions, action: () => T): T;
+export declare function runInTransaction<T>(model: IAbstractModel, options: ITransactionOptions, action: () => Promise<T>): Promise<T>;
 export {};

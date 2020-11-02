@@ -20,10 +20,9 @@ export declare namespace appservices {
         load(callback: (element: AppServiceAction) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AppServiceAction>;
     }
-    class AppServiceAction extends internal.Element implements IAppServiceAction {
+    class AppServiceAction extends internal.Element<IModel> implements IAppServiceAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConsumedAppService(): ConsumedAppService;
         get name(): string;
         set name(newValue: string);
@@ -74,10 +73,9 @@ export declare namespace appservices {
         load(callback: (element: AppServiceActionParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AppServiceActionParameter>;
     }
-    class AppServiceActionParameter extends internal.Element implements IAppServiceActionParameter {
+    class AppServiceActionParameter extends internal.Element<IModel> implements IAppServiceActionParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppServiceAction(): AppServiceAction;
         get name(): string;
         set name(newValue: string);
@@ -111,7 +109,7 @@ export declare namespace appservices {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
      */
     interface IConsumedAppService extends projects.IDocument {
         readonly model: IModel;
@@ -122,12 +120,11 @@ export declare namespace appservices {
         load(forceRefresh?: boolean): Promise<ConsumedAppService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
      */
     class ConsumedAppService extends projects.Document implements IConsumedAppService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get actions(): internal.IList<AppServiceAction>;
         get msd(): Msd;
@@ -156,10 +153,9 @@ export declare namespace appservices {
          */
         static createIn(container: projects.IFolderBase): ConsumedAppService;
     }
-    class Msd extends internal.Element {
+    class Msd extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsConsumedAppService(): ConsumedAppService;
         get version(): MsdVersion;
         set version(newValue: MsdVersion);
@@ -187,10 +183,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): Msd;
     }
-    class MsdAssociation extends internal.Element {
+    class MsdAssociation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdDomainModel(): MsdDomainModel;
         get containerAsDataAssociation(): webservices.DataAssociation;
         get name(): string;
@@ -239,10 +234,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdAssociation;
     }
-    class MsdAttribute extends internal.Element {
+    class MsdAttribute extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdEntity(): MsdEntity;
         get containerAsDataAttribute(): webservices.DataAttribute;
         get name(): string;
@@ -277,10 +271,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdAttribute;
     }
-    class MsdDomainModel extends internal.Element {
+    class MsdDomainModel extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsd(): Msd;
         get entities(): internal.IList<MsdEntity>;
         get associations(): internal.IList<MsdAssociation>;
@@ -298,10 +291,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdDomainModel;
     }
-    class MsdEntity extends internal.Element {
+    class MsdEntity extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdDomainModel(): MsdDomainModel;
         get name(): string;
         set name(newValue: string);
@@ -330,10 +322,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEntity;
     }
-    class MsdEnumeration extends internal.Element {
+    class MsdEnumeration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdEnumerationContainer(): MsdEnumerationContainer;
         get name(): string;
         set name(newValue: string);
@@ -354,10 +345,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumeration;
     }
-    class MsdEnumerationContainer extends internal.Element {
+    class MsdEnumerationContainer extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsd(): Msd;
         get containerAsVersionedService(): webservices.VersionedService;
         get enumerations(): internal.IList<MsdEnumeration>;
@@ -381,10 +371,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumerationContainer;
     }
-    class MsdEnumerationValue extends internal.Element {
+    class MsdEnumerationValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdEnumeration(): MsdEnumeration;
         get name(): string;
         set name(newValue: string);
@@ -407,10 +396,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumerationValue;
     }
-    class MsdMetadata extends internal.Element {
+    class MsdMetadata extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsd(): Msd;
         get name(): string;
         set name(newValue: string);
@@ -450,10 +438,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMetadata;
     }
-    class MsdMicroflow extends internal.Element {
+    class MsdMicroflow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdMetadata(): MsdMetadata;
         get name(): string;
         set name(newValue: string);
@@ -489,10 +476,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMicroflow;
     }
-    class MsdMicroflowParameter extends internal.Element {
+    class MsdMicroflowParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdMicroflow(): MsdMicroflow;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         get name(): string;
@@ -528,10 +514,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMicroflowParameter;
     }
-    class MsdText extends internal.Element {
+    class MsdText extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsdEnumerationValue(): MsdEnumerationValue;
         get languageCode(): string;
         set languageCode(newValue: string);
@@ -551,10 +536,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdText;
     }
-    class MsdVersion extends internal.Element {
+    class MsdVersion extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsd(): Msd;
         get version(): number;
         set version(newValue: number);

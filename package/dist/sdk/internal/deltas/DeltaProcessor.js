@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeltaProcessor = void 0;
 const util = require("util");
 const units_1 = require("../units");
 const elements_1 = require("../elements");
@@ -10,36 +11,38 @@ class DeltaProcessor {
     constructor(model) {
         this.model = model;
     }
-    processDeltas(deltas) {
+    processDeltas(deltas, isReverting = false) {
         for (const delta of deltas) {
             switch (delta.deltaType) {
                 case "UPDATE_PROPERTY_VALUE":
-                    this.processUpdatePropertyValueDelta(delta);
+                    this.processUpdatePropertyValueDelta(delta, isReverting);
                     break;
                 case "CREATE_ELEMENT_TREE":
-                    this.processCreateElementTreeDelta(delta);
+                    this.processCreateElementTreeDelta(delta, isReverting);
                     break;
                 case "DELETE_ELEMENT":
-                    this.processDeleteElementDelta(delta);
+                    this.processDeleteElementDelta(delta, isReverting);
                     break;
                 case "ATTACH_ELEMENT":
-                    this.processAttachElementDelta(delta);
+                    this.processAttachElementDelta(delta, isReverting);
                     break;
                 case "DETACH_ELEMENT":
-                    this.processDetachElementDelta(delta);
+                    this.processDetachElementDelta(delta, isReverting);
                     break;
                 case "CREATE_UNIT_TREE":
                     this.processCreateUnitTreeDelta(delta);
                     break;
                 case "DELETE_UNIT":
-                    this.processDeleteUnitDelta(delta);
+                    this.processDeleteUnitDelta(delta, isReverting);
                     break;
             }
         }
     }
-    processUpdatePropertyValueDelta(delta) {
+    processUpdatePropertyValueDelta(delta, isReverting) {
         const unit = deltaUtils.getUnit(this.model, delta.unitId);
-        const structure = unit instanceof units_1.StructuralUnit ? unit : deltaUtils.findElement(this.model, deltaUtils.asModelUnit(unit), delta.elementId);
+        const structure = unit instanceof units_1.StructuralUnit
+            ? unit
+            : deltaUtils.findElement(this.model, deltaUtils.asModelUnit(unit, delta), delta.elementId);
         if (!structure) {
             return;
         }
@@ -54,7 +57,7 @@ class DeltaProcessor {
             throw new Error("Cannot apply UPDATE_PROPERTY_VALUE delta to structural child (list) properties");
         }
         deltaUtils.checkMutator(delta.mutator, property);
-        deltaUtils.updateStructure(structure, () => {
+        deltaUtils.updateStructure(structure, isReverting, () => {
             this.processMutator(structure, property, delta.mutator);
         });
     }
@@ -90,7 +93,7 @@ class DeltaProcessor {
                 throw new Error(`Invalid mutatorType: ${JSON.stringify(mutator)}`);
         }
     }
-    processCreateElementTreeDelta(delta) {
+    processCreateElementTreeDelta(delta, isReverting) {
         const unit = this.getUnit(delta);
         if (!delta.elementTree) {
             throw new Error("Missing elementTree");
@@ -110,7 +113,7 @@ class DeltaProcessor {
         }
         else if (parentProperty instanceof properties_1.PartListProperty) {
             newElement = instances_1.instancehelpers.modelElementJsonToInstance(this.model, unit, parentElement, delta.elementTree, false);
-            deltaUtils.updateStructure(parentElement, () => {
+            deltaUtils.updateStructure(parentElement, isReverting, () => {
                 if (delta.additionIndex !== undefined) {
                     deltaUtils.checkInsertionIndex(delta.additionIndex, parentProperty);
                     parentProperty.get().splice(delta.additionIndex, 0, newElement);
@@ -128,7 +131,7 @@ class DeltaProcessor {
         // This is needed because creating an element from JSON does not automatically resolve by-id references.
         unit.resolveByIdReferences();
     }
-    processDeleteElementDelta(delta) {
+    processDeleteElementDelta(delta, isReverting) {
         const unit = this.getUnit(delta);
         const element = deltaUtils.findElement(this.model, unit, delta.elementId);
         if (!element) {
@@ -137,7 +140,7 @@ class DeltaProcessor {
         if (element._isDetached) {
             throw new Error("Cannot delete a detached element");
         }
-        deltaUtils.updateStructure(element, () => {
+        deltaUtils.updateStructure(element, isReverting, () => {
             if (element.container) {
                 const handle = element.container._childHandle(element);
                 const property = handle.containingProperty;
@@ -151,7 +154,7 @@ class DeltaProcessor {
             element._deleteInternal();
         });
     }
-    processAttachElementDelta(delta) {
+    processAttachElementDelta(delta, isReverting) {
         const unit = this.getUnit(delta);
         const element = deltaUtils.findElement(this.model, unit, delta.elementId);
         if (!element) {
@@ -166,10 +169,10 @@ class DeltaProcessor {
             if (parentProperty.get()) {
                 throw new Error("Cannot attach element to PartProperty that already has a value");
             }
-            deltaUtils.updateStructure(element, () => parentProperty.set(element));
+            deltaUtils.updateStructure(element, isReverting, () => parentProperty.set(element));
         }
         else if (parentProperty instanceof properties_1.PartListProperty) {
-            deltaUtils.updateStructure(element, () => {
+            deltaUtils.updateStructure(element, isReverting, () => {
                 if (delta.newIndex !== undefined) {
                     deltaUtils.checkInsertionIndex(delta.newIndex, parentProperty);
                     parentProperty.get().splice(delta.newIndex, 0, element);
@@ -183,7 +186,7 @@ class DeltaProcessor {
             throw new Error("ATTACH_ELEMENT new parent property should be a PartProperty or PartListProperty");
         }
     }
-    processDetachElementDelta(delta) {
+    processDetachElementDelta(delta, isReverting) {
         const unit = this.getUnit(delta);
         const element = deltaUtils.findElement(this.model, unit, delta.elementId);
         if (!element) {
@@ -195,7 +198,7 @@ class DeltaProcessor {
         if (!element._isAttached) {
             throw new Error("Cannot detach an element that is already detached");
         }
-        deltaUtils.updateStructure(element, () => element.detach());
+        deltaUtils.updateStructure(element, isReverting, () => element.detach());
     }
     processCreateUnitTreeDelta(delta) {
         if (!delta.unitTree) {
@@ -209,12 +212,12 @@ class DeltaProcessor {
             containmentName: delta.containmentName
         });
     }
-    processDeleteUnitDelta(delta) {
-        const unit = this.getUnit(delta);
-        deltaUtils.updateStructure(unit, () => unit.delete());
+    processDeleteUnitDelta(delta, isReverting) {
+        const unit = deltaUtils.getUnit(this.model, delta.unitId);
+        deltaUtils.updateStructure(unit, isReverting, () => unit.delete());
     }
     getUnit(delta) {
-        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId));
+        return deltaUtils.asModelUnit(deltaUtils.getUnit(this.model, delta.unitId), delta);
     }
 }
 exports.DeltaProcessor = DeltaProcessor;

@@ -6,7 +6,7 @@ export declare namespace exportmappings {
      * Interfaces and instance classes for types from the Mendix sub meta model `ExportMappings`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     interface IExportMapping extends mappings.IMappingDocument {
         readonly model: IModel;
@@ -16,12 +16,11 @@ export declare namespace exportmappings {
         load(forceRefresh?: boolean): Promise<ExportMapping>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportMapping extends mappings.MappingDocument implements IExportMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get parameterName(): string;
         set parameterName(newValue: string);
@@ -45,12 +44,11 @@ export declare namespace exportmappings {
         static createIn(container: projects.IFolderBase): ExportMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportObjectMappingElement extends mappings.ObjectMappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMappingDocument(): mappings.MappingDocument;
         get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -74,12 +72,11 @@ export declare namespace exportmappings {
         static create(model: IModel): ExportObjectMappingElement;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mappings relevant section in reference guide}
      */
     class ExportValueMappingElement extends mappings.ValueMappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**

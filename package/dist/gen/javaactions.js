@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.javaactions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const codeactions_1 = require("./codeactions");
@@ -1058,7 +1059,7 @@ var javaactions;
     }, internal.StructureType.Element);
     javaactions.IntegerType = IntegerType;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/java-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/java-actions relevant section in reference guide}
      */
     class JavaAction extends codeactions_1.codeactions.CodeAction {
         constructor(model, structureTypeName, id, isPartial, container) {

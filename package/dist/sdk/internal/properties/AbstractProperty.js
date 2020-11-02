@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AbstractProperty = void 0;
 /**
  * Abstract base wrapper for property values/settings.
  * All values/settings of ModelElement-s are wrapped in the appropriate way.
@@ -35,7 +36,7 @@ class AbstractProperty {
     }
     /** @internal */
     assertWritable() {
-        if (this.parent.unit && this.parent.unit._isReadOnly) {
+        if (this.parent.unit && this.parent.unit.isReadOnly) {
             throw new Error("Cannot write properties within a readonly unit");
         }
         this.parent._assertLoaded(this);

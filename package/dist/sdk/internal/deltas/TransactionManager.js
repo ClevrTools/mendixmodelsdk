@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.runInTransaction = exports.beginTransaction = exports.TransactionManager = exports.Transaction = void 0;
 const EventEmitter_1 = require("../EventEmitter");
 const elements_1 = require("../elements");
 const deltaUtils_1 = require("./deltaUtils");
@@ -55,9 +56,14 @@ class TransactionManager {
         this.eventEmitter.emit("Rollback", undefined);
         this.currentTransaction = null;
     }
-    beginTransaction() {
+    beginTransaction(commitCurrentImplicitTransaction) {
         if (this.currentTransaction) {
-            throw new Error("Can't open a new transaction without closing the existing transaction first.");
+            if (commitCurrentImplicitTransaction && this.currentTransaction.transactionType === "implicit") {
+                this.commit();
+            }
+            else {
+                throw new Error("Can't open a new transaction without closing the existing transaction first.");
+            }
         }
         this.currentTransaction = new Transaction("explicit", this);
         return this.currentTransaction;
@@ -70,7 +76,7 @@ class TransactionManager {
     }
     deltaReceived(delta) {
         if (delta.deltaType === "DETACH_ELEMENT") {
-            const unit = deltaUtils_1.asModelUnit(deltaUtils_1.getUnit(this.model, delta.unitId));
+            const unit = deltaUtils_1.asModelUnit(deltaUtils_1.getUnit(this.model, delta.unitId), delta);
             const element = deltaUtils_1.getElement(this.model, unit, delta.elementId);
             const handle = element.container._childHandle(element);
             if (handle.containingProperty.isRequired && element.container instanceof elements_1.AbstractElement) {
@@ -110,12 +116,22 @@ exports.TransactionManager = TransactionManager;
  *
  * When rolling back a deleted element/unit, a new element/unit instance will be created with the same id. Be sure not to use the old - deleted - instance.
  */
-function beginTransaction(model) {
-    return model.deltaManager.beginTransaction();
+function beginTransaction(model, options) {
+    return model.deltaManager.beginTransaction(options === null || options === void 0 ? void 0 : options.commitCurrentImplicitTransaction);
 }
 exports.beginTransaction = beginTransaction;
-function runInTransaction(model, action) {
-    const transaction = model.deltaManager.beginTransaction();
+function runInTransaction(model, actionOrOptions, action) {
+    let options;
+    if (typeof actionOrOptions === "function") {
+        action = actionOrOptions;
+    }
+    else {
+        options = actionOrOptions;
+        if (!action) {
+            throw new Error("action is missing");
+        }
+    }
+    const transaction = model.deltaManager.beginTransaction(options === null || options === void 0 ? void 0 : options.commitCurrentImplicitTransaction);
     let result;
     try {
         result = action();

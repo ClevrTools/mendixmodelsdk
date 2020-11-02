@@ -54,16 +54,20 @@ export declare namespace configuration {
          */
         setAsDefault?: boolean;
         /**
-         * If this WC is created from a TeamServer checkout, the BaseRevision / BaseBranch can be used by the Desktop Modeler during merge.
+         * If this working copy is created from an SVN TeamServer checkout, the BaseRevision / BaseBranch can be used by the Desktop Modeler during merge.
          * @type {number}
          */
         teamServerBaseRevision?: number;
         /**
-         * If this WC is created from a TeamServer checkout, the BaseRevision / BaseBranch can be used by the Desktop Modeler during merge.
+         * If this working copy is created from a Git TeamServer checkout, the commit id will be used for the clone operation.
+         */
+        teamServerBaseCommitId?: string;
+        /**
+         * If this working copy is created from an SVN TeamServer checkout, the BaseRevision / BaseBranch can be used by the Desktop Modeler during merge.
          */
         teamServerBaseBranch?: string;
         /**
-         * Indicates whether this WC is created for the purpose of collaboration between the Desktop modeler and Webmodeler.
+         * Indicates whether this working copy is created for the purpose of collaboration between the Desktop modeler and Webmodeler.
          * By setting this, BiDi won't be available anymore for this project and thus requires a modeler with version 7.23.3 or higher.
          */
         isCollaboration?: boolean;
@@ -76,8 +80,8 @@ export declare namespace configuration {
     }
     export interface ICreateWorkingCopyFromTeamServerParameters extends ICreateWorkingCopyParametersBase {
         projectId: string;
-        teamServerBaseRevision: number;
         teamServerBaseBranch: string;
+        teamServerGitUrl?: string;
     }
     export {};
 }

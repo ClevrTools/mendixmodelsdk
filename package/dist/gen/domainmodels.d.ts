@@ -8,6 +8,12 @@ export declare namespace domainmodels {
         static After: ActionMoment;
         protected qualifiedTsTypeName: string;
     }
+    class AssociationNavigability extends internal.AbstractEnum {
+        static BothDirections: AssociationNavigability;
+        static ParentToChild: AssociationNavigability;
+        static ChildToParent: AssociationNavigability;
+        protected qualifiedTsTypeName: string;
+    }
     class AssociationOwner extends internal.AbstractEnum {
         static Default: AssociationOwner;
         static Both: AssociationOwner;
@@ -22,6 +28,13 @@ export declare namespace domainmodels {
         static DeleteMeAndReferences: DeletingBehavior;
         static DeleteMeButKeepReferences: DeletingBehavior;
         static DeleteMeIfNoReferences: DeletingBehavior;
+        protected qualifiedTsTypeName: string;
+    }
+    class EnvironmentType extends internal.AbstractEnum {
+        static Production: EnvironmentType;
+        static Sandbox: EnvironmentType;
+        static NonProduction: EnvironmentType;
+        static Unknown: EnvironmentType;
         protected qualifiedTsTypeName: string;
     }
     class EventType extends internal.AbstractEnum {
@@ -53,12 +66,11 @@ export declare namespace domainmodels {
      * Interfaces and instance classes for types from the Mendix sub meta model `DomainModels`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/access-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/access-rules relevant section in reference guide}
      */
-    class AccessRule extends internal.Element {
+    class AccessRule extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get containerAsAccessRuleContainerBase(): security.AccessRuleContainerBase;
         get memberAccesses(): internal.IList<MemberAccess>;
@@ -98,12 +110,11 @@ export declare namespace domainmodels {
         static create(model: IModel): AccessRule;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotations relevant section in reference guide}
      */
-    class Annotation extends internal.Element {
+    class Annotation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get caption(): string;
         set caption(newValue: string);
@@ -126,7 +137,7 @@ export declare namespace domainmodels {
         static create(model: IModel): Annotation;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     interface IAssociationBase extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -141,21 +152,33 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         readonly remoteSourceDocument: IRemoteEntitySourceDocument | null;
         readonly remoteSourceDocumentQualifiedName: string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        readonly source: IAssociationSource | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.11.0: introduced
+         */
+        readonly capabilities: IAssociationCapabilities;
         asLoaded(): AssociationBase;
         load(callback: (element: AssociationBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AssociationBase>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
-    abstract class AssociationBase extends internal.Element implements IAssociationBase {
+    abstract class AssociationBase extends internal.Element<IModel> implements IAssociationBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get name(): string;
         set name(newValue: string);
@@ -174,16 +197,29 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
         get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
         set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
         get remoteSourceDocumentQualifiedName(): string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source(): AssociationSource | null;
+        set source(newValue: AssociationSource | null);
+        /**
+         * In version 8.11.0: introduced
+         */
+        get capabilities(): AssociationCapabilities;
+        set capabilities(newValue: AssociationCapabilities);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     interface IAssociation extends IAssociationBase {
         readonly model: IModel;
@@ -197,12 +233,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<Association>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/associations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/associations relevant section in reference guide}
      */
     class Association extends AssociationBase implements IAssociation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get child(): Entity;
         set child(newValue: Entity);
@@ -224,10 +259,45 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): Association;
     }
-    class AssociationDeleteBehavior extends internal.Element {
+    /**
+     * In version 8.11.0: introduced
+     */
+    interface IAssociationCapabilities extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): AssociationCapabilities;
+        load(callback: (element: AssociationCapabilities) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AssociationCapabilities>;
+    }
+    /**
+     * In version 8.11.0: introduced
+     */
+    class AssociationCapabilities extends internal.Element<IModel> implements IAssociationCapabilities {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsAssociationBase(): AssociationBase;
+        get navigability(): AssociationNavigability;
+        set navigability(newValue: AssociationNavigability);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AssociationCapabilities instance in the SDK and on the server.
+         * The new AssociationCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createIn(container: AssociationBase): AssociationCapabilities;
+        /**
+         * Creates and returns a new AssociationCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AssociationCapabilities;
+    }
+    class AssociationDeleteBehavior extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get containerAsAssociationBase(): AssociationBase;
         get parentDeleteBehavior(): DeletingBehavior;
         set parentDeleteBehavior(newValue: DeletingBehavior);
@@ -254,10 +324,9 @@ export declare namespace domainmodels {
     /**
      * In version 7.11.0: introduced
      */
-    abstract class MemberRef extends internal.Element {
+    abstract class MemberRef extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
@@ -282,7 +351,6 @@ export declare namespace domainmodels {
     class AssociationRef extends MemberRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVariableRefExpression(): expressions.VariableRefExpression;
         get association(): IAssociationBase;
         set association(newValue: IAssociationBase);
@@ -296,7 +364,26 @@ export declare namespace domainmodels {
         static create(model: IModel): AssociationRef;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
+     * In version 8.10.0: introduced
+     */
+    interface IAssociationSource extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): AssociationSource;
+        load(callback: (element: AssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AssociationSource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class AssociationSource extends internal.Element<IModel> implements IAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAssociationBase(): AssociationBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/attributes relevant section in reference guide}
      */
     interface IAttribute extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -312,17 +399,22 @@ export declare namespace domainmodels {
          * In version 6.6.0: added public
          */
         readonly value: IValueType;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.13.0: introduced
+         */
+        readonly capabilities: IAttributeCapabilities;
         asLoaded(): Attribute;
         load(callback: (element: Attribute) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Attribute>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/attributes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/attributes relevant section in reference guide}
      */
-    class Attribute extends internal.Element implements IAttribute {
+    class Attribute extends internal.Element<IModel> implements IAttribute {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get name(): string;
         set name(newValue: string);
@@ -337,6 +429,11 @@ export declare namespace domainmodels {
          */
         get value(): ValueType;
         set value(newValue: ValueType);
+        /**
+         * In version 8.13.0: introduced
+         */
+        get capabilities(): AttributeCapabilities;
+        set capabilities(newValue: AttributeCapabilities);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
@@ -353,12 +450,60 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 8.13.0: introduced
+     */
+    interface IAttributeCapabilities extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        readonly filterable: boolean;
+        readonly sortable: boolean;
+        /**
+         * In version 9.0.0: introduced
+         */
+        readonly canDeleteFromModel: boolean;
+        asLoaded(): AttributeCapabilities;
+        load(callback: (element: AttributeCapabilities) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AttributeCapabilities>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class AttributeCapabilities extends internal.Element<IModel> implements IAttributeCapabilities {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
+        get sortable(): boolean;
+        set sortable(newValue: boolean);
+        /**
+         * In version 9.0.0: introduced
+         */
+        get canDeleteFromModel(): boolean;
+        set canDeleteFromModel(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * The new AttributeCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: Attribute): AttributeCapabilities;
+        /**
+         * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AttributeCapabilities;
+    }
+    /**
      * In version 7.11.0: introduced
      */
     class AttributeRef extends MemberRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsAttributeWidget(): documenttemplates.AttributeWidget;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
@@ -522,20 +667,25 @@ export declare namespace domainmodels {
     interface IAttributeType extends internal.IElement {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): AttributeType;
         load(callback: (element: AttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AttributeType>;
     }
-    abstract class AttributeType extends internal.Element implements IAttributeType {
+    abstract class AttributeType extends internal.Element<IModel> implements IAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface INumericAttributeTypeBase extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): NumericAttributeTypeBase;
         load(callback: (element: NumericAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<NumericAttributeTypeBase>;
@@ -543,13 +693,16 @@ export declare namespace domainmodels {
     abstract class NumericAttributeTypeBase extends AttributeType implements INumericAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IIntegerAttributeTypeBase extends INumericAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): IntegerAttributeTypeBase;
         load(callback: (element: IntegerAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerAttributeTypeBase>;
@@ -557,13 +710,16 @@ export declare namespace domainmodels {
     abstract class IntegerAttributeTypeBase extends NumericAttributeTypeBase implements IIntegerAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IAutoNumberAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): AutoNumberAttributeType;
         load(callback: (element: AutoNumberAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AutoNumberAttributeType>;
@@ -571,15 +727,43 @@ export declare namespace domainmodels {
     class AutoNumberAttributeType extends IntegerAttributeTypeBase implements IAutoNumberAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): AutoNumberAttributeType;
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -590,6 +774,8 @@ export declare namespace domainmodels {
     interface IBinaryAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): BinaryAttributeType;
         load(callback: (element: BinaryAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BinaryAttributeType>;
@@ -597,15 +783,43 @@ export declare namespace domainmodels {
     class BinaryAttributeType extends AttributeType implements IBinaryAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): BinaryAttributeType;
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -616,6 +830,8 @@ export declare namespace domainmodels {
     interface IBooleanAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): BooleanAttributeType;
         load(callback: (element: BooleanAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BooleanAttributeType>;
@@ -623,15 +839,43 @@ export declare namespace domainmodels {
     class BooleanAttributeType extends AttributeType implements IBooleanAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): BooleanAttributeType;
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -652,10 +896,9 @@ export declare namespace domainmodels {
     /**
      * In version 6.6.0: added public
      */
-    abstract class ValueType extends internal.Element implements IValueType {
+    abstract class ValueType extends internal.Element<IModel> implements IValueType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -675,7 +918,6 @@ export declare namespace domainmodels {
     class CalculatedValue extends ValueType implements ICalculatedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
@@ -711,7 +953,6 @@ export declare namespace domainmodels {
     class CrossAssociation extends AssociationBase implements ICrossAssociation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get child(): IEntity;
         set child(newValue: IEntity);
@@ -733,6 +974,8 @@ export declare namespace domainmodels {
     interface IDecimalAttributeTypeBase extends INumericAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DecimalAttributeTypeBase;
         load(callback: (element: DecimalAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalAttributeTypeBase>;
@@ -740,13 +983,16 @@ export declare namespace domainmodels {
     abstract class DecimalAttributeTypeBase extends NumericAttributeTypeBase implements IDecimalAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     interface IFloatAttributeTypeBase extends IDecimalAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): FloatAttributeTypeBase;
         load(callback: (element: FloatAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatAttributeTypeBase>;
@@ -754,8 +1000,9 @@ export declare namespace domainmodels {
     abstract class FloatAttributeTypeBase extends DecimalAttributeTypeBase implements IFloatAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -764,6 +1011,8 @@ export declare namespace domainmodels {
     interface ICurrencyAttributeType extends IFloatAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): CurrencyAttributeType;
         load(callback: (element: CurrencyAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CurrencyAttributeType>;
@@ -774,15 +1023,43 @@ export declare namespace domainmodels {
     class CurrencyAttributeType extends FloatAttributeTypeBase implements ICurrencyAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): CurrencyAttributeType;
+        /**
+         * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
+         * The new CurrencyAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): CurrencyAttributeType;
         /**
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -793,6 +1070,8 @@ export declare namespace domainmodels {
     interface IDateTimeAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DateTimeAttributeType;
         load(callback: (element: DateTimeAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DateTimeAttributeType>;
@@ -800,8 +1079,9 @@ export declare namespace domainmodels {
     class DateTimeAttributeType extends AttributeType implements IDateTimeAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get localizeDate(): boolean;
         set localizeDate(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -809,8 +1089,35 @@ export declare namespace domainmodels {
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): DateTimeAttributeType;
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -821,6 +1128,8 @@ export declare namespace domainmodels {
     interface IDecimalAttributeType extends IDecimalAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): DecimalAttributeType;
         load(callback: (element: DecimalAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalAttributeType>;
@@ -828,15 +1137,43 @@ export declare namespace domainmodels {
     class DecimalAttributeType extends DecimalAttributeTypeBase implements IDecimalAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): DecimalAttributeType;
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -847,10 +1184,9 @@ export declare namespace domainmodels {
     /**
      * In version 7.11.0: introduced
      */
-    abstract class EntityRef extends internal.Element {
+    abstract class EntityRef extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsMemberRef(): MemberRef;
@@ -867,7 +1203,6 @@ export declare namespace domainmodels {
     class DirectEntityRef extends EntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsCreateObjectClientAction(): pages.CreateObjectClientAction;
@@ -950,7 +1285,7 @@ export declare namespace domainmodels {
         static create(model: IModel): DirectEntityRef;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/domain-model relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/domain-model relevant section in reference guide}
      */
     interface IDomainModel extends projects.IModuleDocument {
         readonly model: IModel;
@@ -963,12 +1298,11 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<DomainModel>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/domain-model relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/domain-model relevant section in reference guide}
      */
     class DomainModel extends projects.ModuleDocument implements IDomainModel {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsModule(): projects.Module;
         get documentation(): string;
         set documentation(newValue: string);
@@ -984,7 +1318,7 @@ export declare namespace domainmodels {
         static createIn(container: projects.IModule): DomainModel;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/entities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/entities relevant section in reference guide}
      */
     interface IEntity extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
@@ -996,6 +1330,7 @@ export declare namespace domainmodels {
         readonly generalization: IGeneralizationBase;
         readonly attributes: internal.IList<IAttribute>;
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
@@ -1003,21 +1338,33 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         readonly remoteSourceDocument: IRemoteEntitySourceDocument | null;
         readonly remoteSourceDocumentQualifiedName: string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        readonly source: IEntitySource | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.12.0: introduced
+         */
+        readonly capabilities: IEntityCapabilities;
         asLoaded(): Entity;
         load(callback: (element: Entity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Entity>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/entities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/entities relevant section in reference guide}
      */
-    class Entity extends internal.Element implements IEntity {
+    class Entity extends internal.Element<IModel> implements IEntity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDomainModel(): DomainModel;
         get name(): string;
         set name(newValue: string);
@@ -1038,12 +1385,14 @@ export declare namespace domainmodels {
         set image(newValue: images.IImage | null);
         get imageQualifiedName(): string | null;
         /**
+         * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
          */
         get isRemote(): boolean;
         set isRemote(newValue: boolean);
         /**
+         * In version 8.10.0: deleted
          * In version 7.17.0: introduced
          */
         get remoteSource(): string;
@@ -1051,11 +1400,24 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
+         * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
         get remoteSourceDocument(): IRemoteEntitySourceDocument | null;
         set remoteSourceDocument(newValue: IRemoteEntitySourceDocument | null);
         get remoteSourceDocumentQualifiedName(): string | null;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get source(): EntitySource | null;
+        set source(newValue: EntitySource | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get capabilities(): EntityCapabilities;
+        set capabilities(newValue: EntityCapabilities);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1072,12 +1434,123 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
-     * In version 7.11.0: introduced
+     * In version 8.12.0: introduced
      */
-    class EntityRefStep extends internal.Element {
+    interface IEntityCapabilities extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        /**
+         * In version 8.14.0: added public
+         */
+        readonly countable: boolean;
+        asLoaded(): EntityCapabilities;
+        load(callback: (element: EntityCapabilities) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityCapabilities>;
+    }
+    /**
+     * In version 8.12.0: introduced
+     */
+    class EntityCapabilities extends internal.Element<IModel> implements IEntityCapabilities {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsEntity(): Entity;
+        /**
+         * In version 8.14.0: added public
+         */
+        get countable(): boolean;
+        set countable(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * The new EntityCapabilities will be automatically stored in the 'capabilities' property
+         * of the parent Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createIn(container: Entity): EntityCapabilities;
+        /**
+         * Creates and returns a new EntityCapabilities instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityCapabilities;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    interface IEntityKey extends internal.IElement {
+        readonly model: IModel;
+        readonly parts: internal.IList<IEntityKeyPart>;
+        asLoaded(): EntityKey;
+        load(callback: (element: EntityKey) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityKey>;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKey extends internal.Element<IModel> implements IEntityKey {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get parts(): internal.IList<EntityKeyPart>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityKey;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    interface IEntityKeyPart extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsEntityKey: IEntityKey;
+        readonly name: string;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly type: IAttributeType;
+        asLoaded(): EntityKeyPart;
+        load(callback: (element: EntityKeyPart) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityKeyPart>;
+    }
+    /**
+     * In version 8.9.0: introduced
+     */
+    class EntityKeyPart extends internal.Element<IModel> implements IEntityKeyPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntityKey(): EntityKey;
+        get name(): string;
+        set name(newValue: string);
+        get type(): AttributeType;
+        set type(newValue: AttributeType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * The new EntityKeyPart will be automatically stored in the 'parts' property
+         * of the parent EntityKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: EntityKey): EntityKeyPart;
+        /**
+         * Creates and returns a new EntityKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EntityKeyPart;
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 7.11.0: introduced
+     */
+    class EntityRefStep extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get containerAsIndirectEntityRef(): IndirectEntityRef;
         get association(): IAssociationBase;
         set association(newValue: IAssociationBase);
@@ -1102,9 +1575,30 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): EntityRefStep;
     }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IEntitySource extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): EntitySource;
+        load(callback: (element: EntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class EntitySource extends internal.Element<IModel> implements IEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     interface IEnumerationAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1117,8 +1611,9 @@ export declare namespace domainmodels {
     class EnumerationAttributeType extends AttributeType implements IEnumerationAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get enumeration(): enumerations.IEnumeration;
         set enumeration(newValue: enumerations.IEnumeration);
         get enumerationQualifiedName(): string;
@@ -1127,8 +1622,35 @@ export declare namespace domainmodels {
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): EnumerationAttributeType;
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1136,17 +1658,15 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): EnumerationAttributeType;
     }
-    abstract class RuleInfo extends internal.Element {
+    abstract class RuleInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class EqualsToRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get useValue(): boolean;
         set useValue(newValue: boolean);
@@ -1170,12 +1690,11 @@ export declare namespace domainmodels {
         static create(model: IModel): EqualsToRuleInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/event-handlers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/event-handlers relevant section in reference guide}
      */
-    class EventHandler extends internal.Element {
+    class EventHandler extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get moment(): ActionMoment;
         set moment(newValue: ActionMoment);
@@ -1208,6 +1727,8 @@ export declare namespace domainmodels {
     interface IFloatAttributeType extends IFloatAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): FloatAttributeType;
         load(callback: (element: FloatAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatAttributeType>;
@@ -1218,15 +1739,43 @@ export declare namespace domainmodels {
     class FloatAttributeType extends FloatAttributeTypeBase implements IFloatAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): FloatAttributeType;
+        /**
+         * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
+         * The new FloatAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): FloatAttributeType;
         /**
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1241,10 +1790,9 @@ export declare namespace domainmodels {
         load(callback: (element: GeneralizationBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<GeneralizationBase>;
     }
-    abstract class GeneralizationBase extends internal.Element implements IGeneralizationBase {
+    abstract class GeneralizationBase extends internal.Element<IModel> implements IGeneralizationBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -1263,7 +1811,6 @@ export declare namespace domainmodels {
     class Generalization extends GeneralizationBase implements IGeneralization {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get generalization(): IEntity;
         set generalization(newValue: IEntity);
@@ -1285,6 +1832,8 @@ export declare namespace domainmodels {
     interface IHashedStringAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): HashedStringAttributeType;
         load(callback: (element: HashedStringAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<HashedStringAttributeType>;
@@ -1292,15 +1841,43 @@ export declare namespace domainmodels {
     class HashedStringAttributeType extends AttributeType implements IHashedStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): HashedStringAttributeType;
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1309,12 +1886,11 @@ export declare namespace domainmodels {
         static create(model: IModel): HashedStringAttributeType;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/indexes relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/indexes relevant section in reference guide}
      */
-    class Index extends internal.Element {
+    class Index extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get dataStorageGuid(): string;
         set dataStorageGuid(newValue: string);
@@ -1333,10 +1909,9 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): Index;
     }
-    class IndexedAttribute extends internal.Element {
+    class IndexedAttribute extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsIndex(): Index;
         get type(): IndexedAttributeType;
         set type(newValue: IndexedAttributeType);
@@ -1367,7 +1942,6 @@ export declare namespace domainmodels {
     class IndirectEntityRef extends EntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): documenttemplates.EntityWidget;
         get containerAsMemberRef(): MemberRef;
@@ -1460,6 +2034,8 @@ export declare namespace domainmodels {
     interface IIntegerAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): IntegerAttributeType;
         load(callback: (element: IntegerAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerAttributeType>;
@@ -1467,15 +2043,43 @@ export declare namespace domainmodels {
     class IntegerAttributeType extends IntegerAttributeTypeBase implements IIntegerAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): IntegerAttributeType;
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1486,6 +2090,8 @@ export declare namespace domainmodels {
     interface ILongAttributeType extends IIntegerAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): LongAttributeType;
         load(callback: (element: LongAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<LongAttributeType>;
@@ -1493,15 +2099,43 @@ export declare namespace domainmodels {
     class LongAttributeType extends IntegerAttributeTypeBase implements ILongAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): LongAttributeType;
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1509,10 +2143,66 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): LongAttributeType;
     }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IMappedValue extends IValueType {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): MappedValue;
+        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappedValue>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class MappedValue extends ValueType implements IMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IRemoteEntitySource extends IEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): RemoteEntitySource;
+        load(callback: (element: RemoteEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RemoteEntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class RemoteEntitySource extends EntitySource implements IRemoteEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.11.0: introduced
+     */
+    interface IMaterializedRemoteEntitySource extends IRemoteEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): MaterializedRemoteEntitySource;
+        load(callback: (element: MaterializedRemoteEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MaterializedRemoteEntitySource>;
+    }
+    /**
+     * In version 8.11.0: introduced
+     */
+    abstract class MaterializedRemoteEntitySource extends RemoteEntitySource implements IMaterializedRemoteEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     class MaxLengthRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get maxLength(): number;
         set maxLength(newValue: number);
@@ -1530,10 +2220,9 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): MaxLengthRuleInfo;
     }
-    class MemberAccess extends internal.Element {
+    class MemberAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAccessRule(): AccessRule;
         get attribute(): IAttribute | null;
         set attribute(newValue: IAttribute | null);
@@ -1584,7 +2273,6 @@ export declare namespace domainmodels {
     class NoGeneralization extends GeneralizationBase implements INoGeneralization {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         /**
          * In version 8.2.0: added public
@@ -1622,10 +2310,28 @@ export declare namespace domainmodels {
          */
         static create(model: IModel): NoGeneralization;
     }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IQueryBasedRemoteEntitySource extends IRemoteEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): QueryBasedRemoteEntitySource;
+        load(callback: (element: QueryBasedRemoteEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<QueryBasedRemoteEntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class QueryBasedRemoteEntitySource extends RemoteEntitySource implements IQueryBasedRemoteEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     class RangeRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get typeOfRange(): RangeType;
         set typeOfRange(newValue: RangeType);
@@ -1660,7 +2366,6 @@ export declare namespace domainmodels {
     class RegExRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         get regularExpression(): regularexpressions.IRegularExpression | null;
         set regularExpression(newValue: regularexpressions.IRegularExpression | null);
@@ -1680,13 +2385,70 @@ export declare namespace domainmodels {
         static create(model: IModel): RegExRuleInfo;
     }
     /**
+     * In version 8.10.0: introduced
+     */
+    interface IRemoteAssociationSource extends IAssociationSource {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): RemoteAssociationSource;
+        load(callback: (element: RemoteAssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RemoteAssociationSource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class RemoteAssociationSource extends AssociationSource implements IRemoteAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAssociationBase(): AssociationBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.2.0: introduced
+     * @ignore
+     *
+     * In version 7.18.0: introduced
      */
     interface IRemoteEntitySourceDocument extends projects.IDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 8.11.0: added public
+         * In version 8.10.0: introduced
+         */
+        readonly icon: string | null;
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        readonly serviceName: string;
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        readonly version: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly endpointId: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly minimumMxVersion: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly recommendedMxVersion: string;
+        /**
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
+         */
+        readonly applicationId: string;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly environmentType: EnvironmentType;
         asLoaded(): RemoteEntitySourceDocument;
         load(callback: (element: RemoteEntitySourceDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<RemoteEntitySourceDocument>;
@@ -1694,19 +2456,77 @@ export declare namespace domainmodels {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.2.0: introduced
+     * @ignore
+     *
+     * In version 7.18.0: introduced
      */
     abstract class RemoteEntitySourceDocument extends projects.Document implements IRemoteEntitySourceDocument {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 8.10.0: introduced
+         */
+        get description(): string;
+        set description(newValue: string);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get catalogUrl(): string;
+        set catalogUrl(newValue: string);
+        /**
+         * In version 8.11.0: added public
+         * In version 8.10.0: introduced
+         */
+        get icon(): string | null;
+        set icon(newValue: string | null);
+        get metadata(): string;
+        set metadata(newValue: string);
+        get metadataUrl(): string;
+        set metadataUrl(newValue: string);
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        /**
+         * In version 8.10.0: added public
+         * In version 8.0.0: introduced
+         */
+        get version(): string;
+        set version(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get endpointId(): string;
+        set endpointId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get minimumMxVersion(): string;
+        set minimumMxVersion(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get recommendedMxVersion(): string;
+        set recommendedMxVersion(newValue: string);
+        /**
+         * In version 8.12.0: added public
+         * In version 8.11.0: introduced
+         */
+        get applicationId(): string;
+        set applicationId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get environmentType(): EnvironmentType;
+        set environmentType(newValue: EnvironmentType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1738,7 +2558,6 @@ export declare namespace domainmodels {
     class StoredValue extends ValueType implements IStoredValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
         get defaultValue(): string;
         set defaultValue(newValue: string);
@@ -1759,6 +2578,8 @@ export declare namespace domainmodels {
     interface IStringAttributeType extends IAttributeType {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
+        readonly containerAsEntityKeyPart: IEntityKeyPart;
+        readonly containerAsODataKeyPart: rest.IODataKeyPart;
         asLoaded(): StringAttributeType;
         load(callback: (element: StringAttributeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringAttributeType>;
@@ -1766,8 +2587,9 @@ export declare namespace domainmodels {
     class StringAttributeType extends AttributeType implements IStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttribute(): Attribute;
+        get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsODataKeyPart(): rest.ODataKeyPart;
         get length(): number;
         set length(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1775,8 +2597,35 @@ export declare namespace domainmodels {
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent Attribute element passed as argument.
+         */
+        static createInAttributeUnderType(container: Attribute): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent EntityKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInEntityKeyPartUnderType(container: EntityKeyPart): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'type' property
+         * of the parent rest.ODataKeyPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createInODataKeyPartUnderType(container: rest.ODataKeyPart): StringAttributeType;
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1787,7 +2636,6 @@ export declare namespace domainmodels {
     class UniqueRuleInfo extends RuleInfo {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsValidationRule(): ValidationRule;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1804,12 +2652,11 @@ export declare namespace domainmodels {
         static create(model: IModel): UniqueRuleInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/validation-rules relevant section in reference guide}
      */
-    class ValidationRule extends internal.Element {
+    class ValidationRule extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsEntity(): Entity;
         get attribute(): IAttribute;
         set attribute(newValue: IAttribute);
@@ -1841,6 +2688,7 @@ import { images } from "./images";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
 import { regularexpressions } from "./regularexpressions";
+import { rest } from "./rest";
 import { security } from "./security";
 import { texts } from "./texts";
 import { IModel } from "./base-model";

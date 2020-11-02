@@ -1,5 +1,5 @@
 import * as transport from "./transportInterfaces";
-import { AbstractModel } from "./AbstractModel";
+import { AbstractModel, IAbstractModel } from "./AbstractModel";
 import { AbstractElement, IAbstractElement } from "./elements";
 import { Structure, IStructure } from "./structures";
 /**
@@ -21,6 +21,18 @@ export interface IAbstractUnit extends IStructure {
      *  (which corresponds to the unit being partial).
      */
     isLoaded: boolean;
+    /**
+     * Whether this unit and all of its children (recursively) can be loaded.
+     */
+    readonly isLoadable: boolean;
+    /**
+     * Whether this unit and all of its children (recursively) are editable.
+     */
+    readonly isReadOnly: boolean;
+    /**
+     * Deletes the unit from the model
+     */
+    delete(): void;
 }
 export interface IAbstractUnitConstructor {
     new (...args: any[]): ModelUnit | StructuralUnit;
@@ -28,22 +40,24 @@ export interface IAbstractUnitConstructor {
 /**
  * Base class for implementations of {@link IAbstractUnit}.
  */
-export declare abstract class AbstractUnit extends Structure implements IAbstractUnit {
-    readonly container: StructuralUnit;
+export declare abstract class AbstractUnit<TModel extends IAbstractModel = IAbstractModel> extends Structure<TModel, StructuralUnit> implements IAbstractUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit);
     /**
      * Checks whether all attributes are available at this instant;
      * if false, a load is required to access these properties.
      */
     get isLoaded(): boolean;
+    get isLoadable(): boolean;
+    get isReadOnly(): boolean;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
 }
 export interface IStructuralUnit extends IAbstractUnit {
+    toJSON(): transport.IAbstractElementJson;
 }
 /**
  * Implementation of {@link IStructuralUnit}.
  */
-export declare abstract class StructuralUnit extends AbstractUnit implements IStructuralUnit {
+export declare abstract class StructuralUnit<TModel extends IAbstractModel = IAbstractModel> extends AbstractUnit<TModel> implements IStructuralUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, _ignoredIsPartial: boolean, container: IStructuralUnit);
     get unit(): this;
     deepCopyInto(newParent: IStructuralUnit): AbstractUnit;
@@ -63,16 +77,16 @@ export declare abstract class StructuralUnit extends AbstractUnit implements ISt
  */
 export interface IModelUnit extends IAbstractUnit, IAbstractElement {
     readonly container: IStructuralUnit;
-    delete(): void;
 }
 /**
  * Implementation of {@link IModelUnit}.
  */
-export declare abstract class ModelUnit extends AbstractElement implements IModelUnit {
-    readonly container: StructuralUnit;
+export declare abstract class ModelUnit<TModel extends IAbstractModel = IAbstractModel> extends AbstractElement<TModel, StructuralUnit> implements IModelUnit {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IStructuralUnit | null);
     get unit(): this;
     get isLoaded(): boolean;
+    get isLoadable(): boolean;
+    get isReadOnly(): boolean;
     /**
      * Deletes this element from the model.
      */

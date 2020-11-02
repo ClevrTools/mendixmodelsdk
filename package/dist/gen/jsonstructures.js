@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.jsonstructures = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const mappings_1 = require("./mappings");
@@ -77,7 +78,7 @@ var jsonstructures;
     }, internal.StructureType.Element);
     jsonstructures.JsonElement = JsonElement;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/json-structures relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/json-structures relevant section in reference guide}
      *
      * In version 6.6.0: removed experimental
      * In version 6.2.0: introduced

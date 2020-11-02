@@ -1,14 +1,21 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.codeactions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
 var codeactions;
 (function (codeactions) {
-    /**
-     * Interfaces and instance classes for types from the Mendix sub meta model `CodeActions`.
-     */
+    class StringTemplateParameterGrammar extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "codeactions.StringTemplateParameterGrammar";
+        }
+    }
+    StringTemplateParameterGrammar.Text = new StringTemplateParameterGrammar("Text", {});
+    StringTemplateParameterGrammar.Sql = new StringTemplateParameterGrammar("Sql", {});
+    codeactions.StringTemplateParameterGrammar = StringTemplateParameterGrammar;
     /**
      * In version 7.21.0: introduced
      */
@@ -1201,12 +1208,23 @@ var codeactions;
     class StringTemplateParameterType extends ParameterType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__grammar = new internal.EnumProperty(StringTemplateParameterType, this, "grammar", StringTemplateParameterGrammar.Text, StringTemplateParameterGrammar);
             if (arguments.length < 4) {
                 throw new Error("new StringTemplateParameterType() cannot be invoked directly, please use 'model.codeactions.createStringTemplateParameterType()'");
             }
         }
         get containerAsCodeActionParameter() {
             return super.getContainerAs(CodeActionParameter);
+        }
+        /**
+         * In version 8.8.0: introduced
+         */
+        get grammar() {
+            return this.__grammar.get();
+        }
+        set grammar(newValue) {
+            this.__grammar.set(newValue);
         }
         /**
          * Creates and returns a new StringTemplateParameterType instance in the SDK and on the server.
@@ -1219,11 +1237,22 @@ var codeactions;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__grammar.isAvailable) {
+                this.grammar = StringTemplateParameterGrammar.Text;
+            }
         }
     }
     StringTemplateParameterType.structureTypeName = "CodeActions$StringTemplateParameterType";
     StringTemplateParameterType.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.4.0",
+        properties: {
+            grammar: {
+                introduced: "8.8.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
         public: {
             currentValue: true
         },

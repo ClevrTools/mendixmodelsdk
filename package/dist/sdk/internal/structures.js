@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Structure = void 0;
 /* tslint:disable:no-circular-imports */
 const mobx_1 = require("mobx");
 class Structure {
@@ -21,6 +22,13 @@ class Structure {
          * @internal
          */
         this._isUpdating = true;
+        /**
+         * Indicates that the internal data of this element is being reverted to its previous value,
+         * so some validation check could be skipped
+         *
+         * @internal
+         */
+        this._isReverting = false;
         /**
          * The current state of the structure: (new|attached|detached|deleted).
          *
@@ -369,6 +377,7 @@ class Structure {
         for (const property of allProperties) {
             // Instanceof is expensive, Builtin: FunctionPrototypeHasInstance spends a lot of ticks as code is heavily used
             if (property.constructor === properties.PartProperty || property.constructor === properties.StructuralChildProperty) {
+                // tslint:disable-next-line: no-unnecessary-type-assertion
                 const value = property.get();
                 if (value) {
                     result = value._traverseInternal(visit, excludePrivate, returnSingleResult);
@@ -379,6 +388,7 @@ class Structure {
             }
             else if (property.constructor === properties.PartListProperty ||
                 property.constructor === properties.StructuralChildListProperty) {
+                // tslint:disable-next-line: no-unnecessary-type-assertion
                 const children = property.get();
                 for (const child of children) {
                     result = child._traverseInternal(visit, excludePrivate, returnSingleResult);

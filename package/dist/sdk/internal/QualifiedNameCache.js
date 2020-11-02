@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.QualifiedNameCache = void 0;
 const mobx_1 = require("mobx");
 const ByNameReferenceProperty_1 = require("./properties/ByNameReferenceProperty");
 const utils_1 = require("../utils");

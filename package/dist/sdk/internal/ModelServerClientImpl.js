@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelServerClientImpl = void 0;
 const fs = require("fs");
 const path = require("path");
 const EventSource = require("eventsource");
@@ -85,6 +86,9 @@ class ModelServerClientImpl {
     }
     revokeAccessByProject(projectId, memberOpenId, callback, errorCallback) {
         this.transportation.request({ method: "delete", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+    }
+    setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
+        this.transportation.request({ method: "put", url: `${apiEndPoint}project/${projectId}/members`, body: { memberOpenids } }, callback, errorCallback);
     }
     exportMpk(workingCopyId, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
@@ -272,14 +276,7 @@ class ModelServerClientImpl {
         this.transportation.request({
             method: "post",
             url: `${apiEndPoint}wc/${workingCopyId}/commit`,
-            body: {
-                targetBranch: options.targetBranch,
-                targetRevision: options.targetRevision,
-                commitMessage: options.commitMessage,
-                teamServerUsername: options.teamServerUsername,
-                teamServerPassword: options.teamServerPassword,
-                isWebModelerCommit: options.isWebModelerCommit
-            },
+            body: options,
             longTimeout: true
         }, callback, errorCallback);
     }
@@ -436,6 +433,7 @@ class ModelServerClientImpl {
             longLived: workingCopyInfo.longLived === true,
             teamServerBaseBranch: workingCopyInfo.teamServerBaseBranch || "",
             teamServerBaseRevision: workingCopyInfo.teamServerBaseRevision || -1,
+            teamServerBaseCommitId: workingCopyInfo.teamServerBaseCommitId || "",
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
             isCollaboration: workingCopyInfo.isCollaboration === true
@@ -451,6 +449,8 @@ class ModelServerClientImpl {
             longLived: workingCopyInfo.longLived === true,
             teamServerBaseBranch: workingCopyInfo.teamServerBaseBranch,
             teamServerBaseRevision: workingCopyInfo.teamServerBaseRevision,
+            teamServerBaseCommitId: workingCopyInfo.teamServerBaseCommitId,
+            teamServerGitUrl: workingCopyInfo.teamServerGitUrl,
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
             isCollaboration: workingCopyInfo.isCollaboration === true

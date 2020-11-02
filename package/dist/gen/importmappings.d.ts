@@ -6,7 +6,7 @@ export declare namespace importmappings {
      * Interfaces and instance classes for types from the Mendix sub meta model `ImportMappings`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mappings relevant section in reference guide}
      */
     interface IImportMapping extends mappings.IMappingDocument {
         readonly model: IModel;
@@ -16,12 +16,11 @@ export declare namespace importmappings {
         load(forceRefresh?: boolean): Promise<ImportMapping>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mappings relevant section in reference guide}
      */
     class ImportMapping extends mappings.MappingDocument implements IImportMapping {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.16.0: introduced
@@ -44,12 +43,11 @@ export declare namespace importmappings {
         static createIn(container: projects.IFolderBase): ImportMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mappings relevant section in reference guide}
      */
     class ImportObjectMappingElement extends mappings.ObjectMappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMappingDocument(): mappings.MappingDocument;
         get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -73,12 +71,11 @@ export declare namespace importmappings {
         static create(model: IModel): ImportObjectMappingElement;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mappings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mappings relevant section in reference guide}
      */
     class ImportValueMappingElement extends mappings.ValueMappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsObjectMappingElement(): mappings.ObjectMappingElement;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**

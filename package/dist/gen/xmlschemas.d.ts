@@ -31,7 +31,6 @@ export declare namespace xmlschemas {
     abstract class MxSchema extends projects.Document implements IMxSchema {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
@@ -41,7 +40,6 @@ export declare namespace xmlschemas {
     class XmlElement extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -71,7 +69,7 @@ export declare namespace xmlschemas {
         static create(model: IModel): XmlElement;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/xml-schemas relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/xml-schemas relevant section in reference guide}
      */
     interface IXmlSchema extends IMxSchema {
         readonly model: IModel;
@@ -81,12 +79,11 @@ export declare namespace xmlschemas {
         load(forceRefresh?: boolean): Promise<XmlSchema>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/xml-schemas relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/xml-schemas relevant section in reference guide}
      */
     class XmlSchema extends MxSchema implements IXmlSchema {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get entries(): internal.IList<XmlSchemaEntry>;
         get filePath(): string;
@@ -98,10 +95,9 @@ export declare namespace xmlschemas {
          */
         static createIn(container: projects.IFolderBase): XmlSchema;
     }
-    class XmlSchemaEntry extends internal.Element {
+    class XmlSchemaEntry extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWsdlDescription(): webservices.WsdlDescription;
         get containerAsXmlSchema(): XmlSchema;
         get targetNamespace(): string;

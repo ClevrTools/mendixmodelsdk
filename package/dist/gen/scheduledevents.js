@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.scheduledevents = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -30,7 +31,7 @@ var scheduledevents;
     TimeZoneEnum.Server = new TimeZoneEnum("Server", {});
     scheduledevents.TimeZoneEnum = TimeZoneEnum;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/scheduled-events relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/scheduled-events relevant section in reference guide}
      */
     class ScheduledEvent extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

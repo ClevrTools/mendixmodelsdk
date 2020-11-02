@@ -15,6 +15,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AbstractModel = void 0;
 /* tslint:disable:no-circular-imports */
 const mobx_1 = require("mobx");
 const units_1 = require("./units");
@@ -66,6 +67,10 @@ class AbstractModel {
         /** @internal */
         this.lastEventId = -1;
         /** @internal */
+        this.numberOfPendingChanges = 0;
+        /** @internal */
+        this.lastBuildResultEvent = null;
+        /** @internal */
         this.eventEmitter = new EventEmitter_1.EventEmitter();
         this._client = _client;
         this._errorHandler = _errorHandler;
@@ -80,7 +85,10 @@ class AbstractModel {
             const workingCopyPromise = new Promise((resolve, reject) => this._client.loadWorkingCopyMetaData(workingCopyId, resolve, reject));
             const unitInterfacesPromise = new Promise((resolve, reject) => this._client.loadUnitInterfaces(workingCopyId, resolve, reject));
             const [workingCopy, { units: unitInterfaces, eventId }] = yield Promise.all([workingCopyPromise, unitInterfacesPromise]);
-            this.setlastEventId(eventId);
+            this.numberOfPendingChanges = 0;
+            if (eventId > this.lastEventId) {
+                this.lastEventId = eventId;
+            }
             this.workingCopy = workingCopy;
             this.metaModelVersion = versionChecks_1.parseAsNormalizedVersion(workingCopy.metaData.metaModelVersion);
             this.mxVersionForModel = versionChecks_1.parseAsNormalizedVersion(workingCopy.mprMetaData._ProductVersion);
@@ -96,7 +104,7 @@ class AbstractModel {
         });
     }
     /** @internal */
-    processUnitInterfaces(unitInterfaces, readOnly = false) {
+    processUnitInterfaces(unitInterfaces, isLoadable = true, isReadOnly = false) {
         mobx_1.runInAction(() => {
             unitInterfaces.forEach(unitJson => instances_1.instancehelpers.abstractUnitJsonToInstance(this, unitJson, true));
             unitInterfaces.forEach(unitJson => {
@@ -104,9 +112,8 @@ class AbstractModel {
                 if (!!unitJson.containerId) {
                     this._resolveContainer(unit, unitJson.containerId);
                 }
-                if (readOnly) {
-                    unit._isReadOnly = true;
-                }
+                unit._isLoadable = isLoadable;
+                unit._isReadOnly = isReadOnly;
             });
             this._qualifiedNameCache.addStructureToCache(this.root);
             Object.keys(this._units).forEach(key => this._units[key].resolveByIdReferences());
@@ -210,8 +217,8 @@ class AbstractModel {
             if (!unit) {
                 this.handleError("Unknown unit ID: " + id, reject);
             }
-            else if (unit._isReadOnly) {
-                throw new Error("Unit cannot be loaded because it is read-only");
+            else if (!unit.isLoadable) {
+                throw new Error("Cannot load this unit");
             }
             else if (forceRefresh) {
                 // make sure we can load the unit again:
@@ -406,7 +413,7 @@ class AbstractModel {
         }
         // Set module container to the current project's root so it can resolve
         moduleStructure.containerId = this.root.id;
-        this.processUnitInterfaces(parsedStructures, true);
+        this.processUnitInterfaces(parsedStructures, false, true);
     }
     getFilePaths(callback, errorCallback) {
         return this.getFiles(callback, errorCallback);
@@ -442,19 +449,27 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
+        this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
-            this.setlastEventId(lastEventId);
+            this.completePendingChange(lastEventId);
             resolve();
-        }, reject), callback, errorCallback);
+        }, err => {
+            this.completePendingChange();
+            reject(err);
+        }), callback, errorCallback);
     }
     deleteFile(filePath, callback, errorCallback) {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
+        this.startPendingChange();
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
-            this.setlastEventId(lastEventId);
+            this.completePendingChange(lastEventId);
             resolve();
-        }, reject), callback, errorCallback);
+        }, err => {
+            this.completePendingChange();
+            reject(err);
+        }), callback, errorCallback);
     }
     getAppEnvironmentStatus(callback, errorCallback) {
         if (callback) {
@@ -510,6 +525,9 @@ class AbstractModel {
     stopReceivingModelEvents() {
         this.modelEventManager.stop();
     }
+    onModelChange(callback) {
+        this.eventEmitter.on("ModelChange", callback);
+    }
     onModelEventProcessed(callback) {
         this.modelEventManager.onEventProcessed(callback);
     }
@@ -524,20 +542,46 @@ class AbstractModel {
         this.workingCopyEventReceiver.onWorkingCopyDataEvent((workingCopyDataEvent) => {
             this.workingCopy = workingCopyDataEvent.data;
         });
+        this.workingCopyEventReceiver.onBuildResultEvent((buildResultEvent) => {
+            this.publishBuildResult(buildResultEvent);
+        });
     }
     stopReceivingWorkingCopyEvents() {
         this.workingCopyEventReceiver.stop();
     }
+    /** @internal */
+    startPendingChange() {
+        this.eventEmitter.emit("ModelChange", undefined);
+        this.numberOfPendingChanges += 1;
+    }
+    /** @internal */
+    completePendingChange(eventId) {
+        if (eventId && eventId > this.lastEventId) {
+            this.lastEventId = eventId;
+        }
+        if (this.numberOfPendingChanges > 0) {
+            this.numberOfPendingChanges -= 1;
+            if (this.numberOfPendingChanges === 0) {
+                this.publishBuildResult();
+            }
+        }
+        else {
+            throw new Error("Model SDK error: trying to complete a non existing model change");
+        }
+    }
     onBuildResultEventReceived(callback) {
-        this.workingCopyEventReceiver.onBuildResultEvent(callback);
+        this.eventEmitter.on("BuildResultEvent", callback);
     }
     onWorkingCopyDataEventReceived(callback) {
         this.workingCopyEventReceiver.onWorkingCopyDataEvent(callback);
     }
     /** @internal */
-    setlastEventId(eventId) {
-        if (eventId > this.lastEventId) {
-            this.lastEventId = eventId;
+    publishBuildResult(buildResultEvent) {
+        if (buildResultEvent && (!this.lastBuildResultEvent || buildResultEvent.data.eventId > this.lastBuildResultEvent.data.eventId)) {
+            this.lastBuildResultEvent = buildResultEvent;
+        }
+        if (this.numberOfPendingChanges === 0 && this.lastBuildResultEvent && this.lastEventId === this.lastBuildResultEvent.data.eventId) {
+            this.eventEmitter.emit("BuildResultEvent", this.lastBuildResultEvent);
         }
     }
 }

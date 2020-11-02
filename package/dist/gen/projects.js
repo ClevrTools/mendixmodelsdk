@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.projects = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 var projects;
@@ -106,7 +107,7 @@ var projects;
     FolderBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.StructuralUnit);
     projects.FolderBase = FolderBase;
     /**
-     * See: {@link https://world.mendix.com/display/howto50/Add+documents+to+a+module relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/resources relevant section in reference guide}
      */
     class Folder extends FolderBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -140,7 +141,7 @@ var projects;
     Folder.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.StructuralUnit);
     projects.Folder = Folder;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/modules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
      */
     class Module extends FolderBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -163,6 +164,8 @@ var projects;
             this.__appStoreVersionGuid = new internal.PrimitiveProperty(Module, this, "appStoreVersionGuid", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__appStoreVersion = new internal.PrimitiveProperty(Module, this, "appStoreVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__appStorePackageId = new internal.PrimitiveProperty(Module, this, "appStorePackageId", 0, internal.PrimitiveTypeEnum.Integer);
             this._declaredAsNamespace = true;
             this._containmentName = "modules";
         }
@@ -233,6 +236,15 @@ var projects;
             this.__appStoreVersion.set(newValue);
         }
         /**
+         * In version 8.13.0: introduced
+         */
+        get appStorePackageId() {
+            return this.__appStorePackageId.get();
+        }
+        set appStorePackageId(newValue) {
+            this.__appStorePackageId.set(newValue);
+        }
+        /**
          * Creates a new Module unit in the SDK and on the server.
          * Expects one argument, the IProject in which this unit is contained.
          */
@@ -259,6 +271,9 @@ var projects;
             },
             isReusableComponent: {
                 introduced: "8.5.0"
+            },
+            appStorePackageId: {
+                introduced: "8.13.0"
             }
         }
     }, internal.StructureType.StructuralUnit);
@@ -306,7 +321,7 @@ var projects;
     OneTimeConversionMarker.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     projects.OneTimeConversionMarker = OneTimeConversionMarker;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
     class Project extends internal.StructuralUnit {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -384,7 +399,7 @@ var projects;
     ProjectConversion.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
     projects.ProjectConversion = ProjectConversion;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
      */
     class ProjectDocument extends internal.ModelUnit {
         constructor(model, structureTypeName, id, isPartial, container) {

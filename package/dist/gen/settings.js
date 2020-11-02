@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.settings = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -249,7 +250,7 @@ var settings;
     CertificateSettings.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     settings.CertificateSettings = CertificateSettings;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/configuration relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/configuration relevant section in reference guide}
      */
     class Configuration extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -628,6 +629,8 @@ var settings;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 6.9.0: introduced
      */
@@ -869,7 +872,7 @@ var settings;
     }, internal.StructureType.Element);
     settings.ModelerSettings = ModelerSettings;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-settings relevant section in reference guide}
      */
     class ProjectSettings extends projects_1.projects.ProjectDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -1226,6 +1229,84 @@ var settings;
         }
     }, internal.StructureType.Element);
     settings.WebUIProjectSettingsPart = WebUIProjectSettingsPart;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.8.0: introduced
+     */
+    class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__userEntity = new internal.ByNameReferenceProperty(WorkflowsProjectSettingsPart, this, "userEntity", null, "DomainModels$Entity");
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowsProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWorkflowsProjectSettingsPart()'");
+            }
+        }
+        get containerAsProjectSettings() {
+            return super.getContainerAs(ProjectSettings);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        /**
+         * In version 8.11.0: introduced
+         */
+        get userEntity() {
+            return this.__userEntity.get();
+        }
+        set userEntity(newValue) {
+            this.__userEntity.set(newValue);
+        }
+        get userEntityQualifiedName() {
+            return this.__userEntity.qualifiedName();
+        }
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * The new WorkflowsProjectSettingsPart will be automatically stored in the 'settingsParts' property
+         * of the parent ProjectSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowsProjectSettingsPart.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, WorkflowsProjectSettingsPart, "settingsParts", true);
+        }
+        /**
+         * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowsProjectSettingsPart);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = false;
+        }
+    }
+    WorkflowsProjectSettingsPart.structureTypeName = "Settings$WorkflowsProjectSettingsPart";
+    WorkflowsProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.8.0",
+        properties: {
+            userEntity: {
+                introduced: "8.11.0"
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    settings.WorkflowsProjectSettingsPart = WorkflowsProjectSettingsPart;
 })(settings = exports.settings || (exports.settings = {}));
 const microflows_1 = require("./microflows");
 //# sourceMappingURL=settings.js.map

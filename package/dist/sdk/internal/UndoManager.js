@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UndoState = exports.UndoManager = void 0;
 const mobx_1 = require("mobx");
 const deepEqual = require("deep-equal");
 const units_1 = require("./units");

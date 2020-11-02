@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.enumerations = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -72,7 +73,7 @@ var enumerations;
     Condition.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     enumerations.Condition = Condition;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumerations relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
     class Enumeration extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -115,7 +116,7 @@ var enumerations;
     }, internal.StructureType.ModelUnit);
     enumerations.Enumeration = Enumeration;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/enumeration-values relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/enumerations relevant section in reference guide}
      */
     class EnumerationValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

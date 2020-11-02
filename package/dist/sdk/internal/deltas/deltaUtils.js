@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeUselessDeltas = exports.rawValue = exports.rawList = exports.getContainmentInfo = exports.checkMutator = exports.checkUpdateOrRemovalIndex = exports.checkInsertionIndex = exports.isListProperty = exports.getUnit = exports.updateStructure = exports.asModelUnit = exports.getElementNotFoundError = exports.findElement = exports.getElement = exports.getProperty = void 0;
 const util = require("util");
 const units_1 = require("../units");
 const properties_1 = require("../properties");
@@ -42,21 +43,24 @@ function findElementInStructures(structures, elementId) {
     }
     return null;
 }
-function asModelUnit(unit) {
+function asModelUnit(unit, delta) {
     if (!(unit instanceof units_1.ModelUnit)) {
-        throw new Error(`Cannot perform delta on non model unit`);
+        throw new Error(`Cannot process delta '${delta.deltaType}' on structural unit '${unit.structureTypeName}'`);
     }
     return unit;
 }
 exports.asModelUnit = asModelUnit;
-function updateStructure(structure, updateAction) {
+function updateStructure(structure, isReverting, updateAction) {
     const oldIsUpdating = structure._isUpdating;
+    const oldIsReverting = structure._isReverting;
     structure._isUpdating = true;
+    structure._isReverting = isReverting;
     try {
         updateAction();
     }
     finally {
         structure._isUpdating = oldIsUpdating;
+        structure._isReverting = oldIsReverting;
     }
 }
 exports.updateStructure = updateStructure;

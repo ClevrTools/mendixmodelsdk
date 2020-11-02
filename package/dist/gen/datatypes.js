@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.datatypes = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 var datatypes;
@@ -9,7 +10,7 @@ var datatypes;
      * Interfaces and instance classes for types from the Mendix sub meta model `DataTypes`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-types relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-types relevant section in reference guide}
      *
      * In version 7.9.0: introduced
      */

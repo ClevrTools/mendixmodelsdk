@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.microflows = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -201,6 +202,15 @@ var microflows;
     SortOrderEnum.Ascending = new SortOrderEnum("Ascending", {});
     SortOrderEnum.Descending = new SortOrderEnum("Descending", {});
     microflows.SortOrderEnum = SortOrderEnum;
+    class SynchronizationType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.SynchronizationType";
+        }
+    }
+    SynchronizationType.All = new SynchronizationType("All", {});
+    SynchronizationType.Specific = new SynchronizationType("Specific", {});
+    microflows.SynchronizationType = SynchronizationType;
     class TargetDocumentType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -287,7 +297,7 @@ var microflows;
     Activity.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Activity = Activity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/activities relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/activities relevant section in reference guide}
      */
     class ActionActivity extends Activity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -501,7 +511,7 @@ var microflows;
     MicroflowAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.MicroflowAction = MicroflowAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/aggregate-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/aggregate-list relevant section in reference guide}
      */
     class AggregateListAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -574,7 +584,7 @@ var microflows;
     AggregateListAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.AggregateListAction = AggregateListAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotation relevant section in reference guide}
      */
     class Annotation extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -719,7 +729,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.Flow = Flow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/annotation-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/annotation relevant section in reference guide}
      */
     class AnnotationFlow extends Flow {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -858,6 +868,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1057,6 +1069,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get argumentModel() {
             return this.__argumentModel.get();
@@ -1169,6 +1183,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1308,6 +1324,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel() {
@@ -1382,7 +1400,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.BinaryRequestHandling = BinaryRequestHandling;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/break-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/break-event relevant section in reference guide}
      */
     class BreakEvent extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1438,7 +1456,7 @@ var microflows;
     CaseValue.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CaseValue = CaseValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cast-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cast-object relevant section in reference guide}
      */
     class CastAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1483,7 +1501,7 @@ var microflows;
     CastAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CastAction = CastAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-list relevant section in reference guide}
      */
     class ChangeListAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1520,6 +1538,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1613,7 +1633,7 @@ var microflows;
     ChangeMembersAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ChangeMembersAction = ChangeMembersAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-object relevant section in reference guide}
      */
     class ChangeObjectAction extends ChangeMembersAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1658,7 +1678,7 @@ var microflows;
     ChangeObjectAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ChangeObjectAction = ChangeObjectAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/change-variable relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/change-variable relevant section in reference guide}
      */
     class ChangeVariableAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1693,6 +1713,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -1739,17 +1761,42 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ChangeVariableAction = ChangeVariableAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/close-form relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/close-page relevant section in reference guide}
      */
     class CloseFormAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__numberOfPages = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__numberOfPagesToClose = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPagesToClose", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new CloseFormAction() cannot be invoked directly, please use 'model.microflows.createCloseFormAction()'");
             }
         }
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * In version 8.11.0: deleted
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages() {
+            return this.__numberOfPages.get();
+        }
+        set numberOfPages(newValue) {
+            this.__numberOfPages.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose() {
+            return this.__numberOfPagesToClose.get();
+        }
+        set numberOfPagesToClose(newValue) {
+            this.__numberOfPagesToClose.set(newValue);
         }
         /**
          * Creates and returns a new CloseFormAction instance in the SDK and on the server.
@@ -1770,10 +1817,24 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__numberOfPages.isAvailable) {
+                this.numberOfPages = 1;
+            }
         }
     }
     CloseFormAction.structureTypeName = "Microflows$CloseFormAction";
-    CloseFormAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    CloseFormAction.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            numberOfPages: {
+                introduced: "8.9.0",
+                deleted: "8.11.0",
+                deletionMessage: null
+            },
+            numberOfPagesToClose: {
+                introduced: "8.11.0"
+            }
+        }
+    }, internal.StructureType.Element);
     microflows.CloseFormAction = CloseFormAction;
     class CodeActionParameterMapping extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1797,7 +1858,7 @@ var microflows;
     CodeActionParameterMapping.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CodeActionParameterMapping = CodeActionParameterMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/committing-objects relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/committing-objects relevant section in reference guide}
      */
     class CommitAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1967,7 +2028,7 @@ var microflows;
     Contains.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Contains = Contains;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/continue-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/continue-event relevant section in reference guide}
      */
     class ContinueEvent extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2005,7 +2066,7 @@ var microflows;
     ContinueEvent.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ContinueEvent = ContinueEvent;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-list relevant section in reference guide}
      */
     class CreateListAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2061,7 +2122,7 @@ var microflows;
     CreateListAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CreateListAction = CreateListAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-object relevant section in reference guide}
      */
     class CreateObjectAction extends ChangeMembersAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2117,7 +2178,7 @@ var microflows;
     CreateObjectAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.CreateObjectAction = CreateObjectAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/create-variable relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/create-variable relevant section in reference guide}
      */
     class CreateVariableAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2176,6 +2237,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2279,6 +2342,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get limitExpressionModel() {
@@ -2289,6 +2354,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2513,7 +2580,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.DatabaseRetrieveSource = DatabaseRetrieveSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deleting-objects relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/deleting-objects relevant section in reference guide}
      */
     class DeleteAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2599,6 +2666,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get argumentModel() {
@@ -2644,7 +2713,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.DocumentTemplateParameterMapping = DocumentTemplateParameterMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/download-file relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/download-file relevant section in reference guide}
      */
     class DownloadFileAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2697,7 +2766,7 @@ var microflows;
     DownloadFileAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.DownloadFileAction = DownloadFileAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/end-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/end-event relevant section in reference guide}
      */
     class EndEvent extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2726,6 +2795,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -2950,7 +3021,7 @@ var microflows;
     EnumerationCase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.EnumerationCase = EnumerationCase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/error-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/error-event relevant section in reference guide}
      */
     class ErrorEvent extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2988,7 +3059,7 @@ var microflows;
     ErrorEvent.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ErrorEvent = ErrorEvent;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/merge relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/merge relevant section in reference guide}
      */
     class ExclusiveMerge extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3032,7 +3103,7 @@ var microflows;
     ExclusiveMerge.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ExclusiveMerge = ExclusiveMerge;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/exclusive-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/decisions relevant section in reference guide}
      */
     class ExclusiveSplit extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3247,7 +3318,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ExportMappingParameterValue = ExportMappingParameterValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-mapping-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/export-mapping-action relevant section in reference guide}
      */
     class ExportXmlAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3405,6 +3476,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel() {
@@ -3538,6 +3611,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -3695,6 +3770,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get valueModel() {
             return this.__valueModel.get();
@@ -3816,7 +3893,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.FormDataRequestHandling = FormDataRequestHandling;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/generate-document relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/generate-document relevant section in reference guide}
      */
     class GenerateDocumentAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3936,6 +4013,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get marginLeftInInchModel() {
@@ -3955,6 +4034,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -3976,6 +4057,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get marginTopInInchModel() {
@@ -3995,6 +4078,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -4177,6 +4262,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get customLocationModel() {
@@ -4212,6 +4299,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get username() {
@@ -4231,6 +4320,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -4402,6 +4493,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -4715,7 +4808,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ImportMappingParameterValue = ImportMappingParameterValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/import-mapping-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/import-mapping-action relevant section in reference guide}
      */
     class ImportXmlAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -4830,7 +4923,7 @@ var microflows;
     InheritanceCase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.InheritanceCase = InheritanceCase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/inheritance-split relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/object-type-decision relevant section in reference guide}
      */
     class InheritanceSplit extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -4932,7 +5025,7 @@ var microflows;
     Intersect.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Intersect = Intersect;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/java-action-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/java-action-call relevant section in reference guide}
      */
     class JavaActionCallAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5321,7 +5414,7 @@ var microflows;
     ListEquals.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ListEquals = ListEquals;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/list-operation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/list-operation relevant section in reference guide}
      */
     class ListOperationAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5374,7 +5467,7 @@ var microflows;
     ListOperationAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ListOperationAction = ListOperationAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/log-message relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/log-message relevant section in reference guide}
      */
     class LogMessageAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5413,6 +5506,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -5478,7 +5573,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.LogMessageAction = LogMessageAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/loop relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/loop relevant section in reference guide}
      */
     class LoopedActivity extends Activity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5731,6 +5826,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get valueModel() {
@@ -5885,7 +5982,7 @@ var microflows;
     ServerSideMicroflow.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
     microflows.ServerSideMicroflow = ServerSideMicroflow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/microflows relevant section in reference guide}
      */
     class Microflow extends ServerSideMicroflow {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -6047,7 +6144,7 @@ var microflows;
     MicroflowCall.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.MicroflowCall = MicroflowCall;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflow-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/microflow-call relevant section in reference guide}
      */
     class MicroflowCallAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -6153,6 +6250,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -6403,7 +6502,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.MicroflowParameterBase = MicroflowParameterBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     class MicroflowParameter extends MicroflowParameterBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -6595,7 +6694,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.MicroflowParameterValue = MicroflowParameterValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/nanoflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/nanoflows relevant section in reference guide}
      *
      * In version 7.12.0: removed experimental
      * In version 7.10.0: introduced
@@ -6829,6 +6928,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get argumentModel() {
             return this.__argumentModel.get();
@@ -6948,6 +7049,64 @@ var microflows;
     NoCase.structureTypeName = "Microflows$NoCase";
     NoCase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.NoCase = NoCase;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class OpenUserTaskAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__userTaskVariable = new internal.PrimitiveProperty(OpenUserTaskAction, this, "userTaskVariable", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OpenUserTaskAction() cannot be invoked directly, please use 'model.microflows.createOpenUserTaskAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get userTaskVariable() {
+            return this.__userTaskVariable.get();
+        }
+        set userTaskVariable(newValue) {
+            this.__userTaskVariable.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * The new OpenUserTaskAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenUserTaskAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OpenUserTaskAction.structureTypeName = "Microflows$OpenUserTaskAction";
+    OpenUserTaskAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.OpenUserTaskAction = OpenUserTaskAction;
     /**
      * In version 8.6.0: introduced
      */
@@ -7081,6 +7240,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get usernameExpressionModel() {
             return this.__usernameExpressionModel.get();
@@ -7099,6 +7260,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get passwordExpressionModel() {
             return this.__passwordExpressionModel.get();
@@ -7117,6 +7280,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get hostExpressionModel() {
             return this.__hostExpressionModel.get();
@@ -7135,6 +7300,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get portExpressionModel() {
             return this.__portExpressionModel.get();
@@ -7153,6 +7320,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get useConfigurationExpressionModel() {
             return this.__useConfigurationExpressionModel.get();
@@ -7255,7 +7424,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.PushToClientAction = PushToClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/call-rest-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/call-rest-action relevant section in reference guide}
      *
      * In version 6.6.0: introduced
      */
@@ -7359,6 +7528,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.15.0: introduced
          */
@@ -7659,7 +7830,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ResultHandling = ResultHandling;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/retrieve relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/retrieve relevant section in reference guide}
      */
     class RetrieveAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -7721,7 +7892,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RetrieveAction = RetrieveAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/rollback-object relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/rollback-object relevant section in reference guide}
      */
     class RollbackAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -7774,7 +7945,7 @@ var microflows;
     RollbackAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.RollbackAction = RollbackAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/rules relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/rules relevant section in reference guide}
      */
     class Rule extends ServerSideMicroflow {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -7901,6 +8072,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get argumentModel() {
@@ -7951,7 +8124,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RuleCallParameterMapping = RuleCallParameterMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/parameter relevant section in reference guide}
      */
     class RuleParameter extends MicroflowParameterBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8031,7 +8204,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RuleSplitCondition = RuleSplitCondition;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sequence-flow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sequence-flow relevant section in reference guide}
      */
     class SequenceFlow extends Flow {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8093,7 +8266,81 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.SequenceFlow = SequenceFlow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-home-page relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class SetTaskOutcomeAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowTaskVariable = new internal.PrimitiveProperty(SetTaskOutcomeAction, this, "workflowTaskVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeAction, this, "outcome", null, "Workflows$WorkflowTaskOutcome");
+            if (arguments.length < 4) {
+                throw new Error("new SetTaskOutcomeAction() cannot be invoked directly, please use 'model.microflows.createSetTaskOutcomeAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowTaskVariable() {
+            return this.__workflowTaskVariable.get();
+        }
+        set workflowTaskVariable(newValue) {
+            this.__workflowTaskVariable.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get outcome() {
+            return this.__outcome.get();
+        }
+        set outcome(newValue) {
+            this.__outcome.set(newValue);
+        }
+        get outcomeQualifiedName() {
+            return this.__outcome.qualifiedName();
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SetTaskOutcomeAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SetTaskOutcomeAction.structureTypeName = "Microflows$SetTaskOutcomeAction";
+    SetTaskOutcomeAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.SetTaskOutcomeAction = SetTaskOutcomeAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/show-home-page relevant section in reference guide}
      */
     class ShowHomePageAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8130,7 +8377,7 @@ var microflows;
     ShowHomePageAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ShowHomePageAction = ShowHomePageAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-message relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/show-message relevant section in reference guide}
      */
     class ShowMessageAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8202,7 +8449,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ShowMessageAction = ShowMessageAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/show-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/show-page relevant section in reference guide}
      */
     class ShowPageAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8211,6 +8458,8 @@ var microflows;
             this.__pageSettings = new internal.PartProperty(ShowPageAction, this, "pageSettings", null, true);
             /** @internal */
             this.__passedObjectVariableName = new internal.PrimitiveProperty(ShowPageAction, this, "passedObjectVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__numberOfPagesToClose = new internal.PrimitiveProperty(ShowPageAction, this, "numberOfPagesToClose", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new ShowPageAction() cannot be invoked directly, please use 'model.microflows.createShowPageAction()'");
             }
@@ -8229,6 +8478,17 @@ var microflows;
         }
         set passedObjectVariableName(newValue) {
             this.__passedObjectVariableName.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose() {
+            return this.__numberOfPagesToClose.get();
+        }
+        set numberOfPagesToClose(newValue) {
+            this.__numberOfPagesToClose.set(newValue);
         }
         /**
          * Creates and returns a new ShowPageAction instance in the SDK and on the server.
@@ -8259,6 +8519,9 @@ var microflows;
                 required: {
                     currentValue: true
                 }
+            },
+            numberOfPagesToClose: {
+                introduced: "8.11.0"
             }
         }
     }, internal.StructureType.Element);
@@ -8536,7 +8799,7 @@ var microflows;
     SortItemList.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.SortItemList = SortItemList;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/start-event relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/start-event relevant section in reference guide}
      */
     class StartEvent extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8600,6 +8863,15 @@ var microflows;
         get containerAsValidationFeedbackAction() {
             return super.getContainerAs(ValidationFeedbackAction);
         }
+        get containerAsPageSettings() {
+            return super.getContainerAs(pages_1.pages.PageSettings);
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(workflows_1.workflows.UserTask);
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(workflows_1.workflows.Workflow);
+        }
         get arguments() {
             return this.__arguments.get();
         }
@@ -8631,6 +8903,12 @@ var microflows;
         }
         get containerAsStringTemplateParameterValue() {
             return super.getContainerAs(StringTemplateParameterValue);
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(workflows_1.workflows.UserTask);
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(workflows_1.workflows.Workflow);
         }
         get text() {
             return this.__text.get();
@@ -8677,6 +8955,42 @@ var microflows;
         static createInStringTemplateParameterValueUnderTemplate(container) {
             internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.4.0", end: "8.5.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "template", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'description' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInUserTaskUnderDescription(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "description", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInUserTaskUnderSubject(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "subject", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subject' property
+         * of the parent workflows.Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWorkflowUnderSubject(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "subject", false);
         }
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
@@ -8835,19 +9149,38 @@ var microflows;
     Subtract.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Subtract = Subtract;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/synchronize relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/synchronize relevant section in reference guide}
      *
      * In version 7.22.0: introduced
      */
     class SynchronizeAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__type = new internal.EnumProperty(SynchronizeAction, this, "type", SynchronizationType.All, SynchronizationType);
+            /** @internal */
+            this.__variableNames = new internal.PrimitiveListProperty(SynchronizeAction, this, "variableNames", [], internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new SynchronizeAction() cannot be invoked directly, please use 'model.microflows.createSynchronizeAction()'");
             }
         }
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get variableNames() {
+            return this.__variableNames.get();
         }
         /**
          * Creates and returns a new SynchronizeAction instance in the SDK and on the server.
@@ -8872,11 +9205,22 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__type.isAvailable) {
+                this.type = SynchronizationType.All;
+            }
         }
     }
     SynchronizeAction.structureTypeName = "Microflows$SynchronizeAction";
     SynchronizeAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.22.0"
+        introduced: "7.22.0",
+        properties: {
+            type: {
+                introduced: "8.10.0"
+            },
+            variableNames: {
+                introduced: "8.10.0"
+            }
+        }
     }, internal.StructureType.Element);
     microflows.SynchronizeAction = SynchronizeAction;
     class Tail extends ListOperation {
@@ -8939,6 +9283,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel() {
@@ -8998,6 +9344,9 @@ var microflows;
         get containerAsValidationFeedbackAction() {
             return super.getContainerAs(ValidationFeedbackAction);
         }
+        get containerAsPageSettings() {
+            return super.getContainerAs(pages_1.pages.PageSettings);
+        }
         get text() {
             return this.__text.get();
         }
@@ -9019,6 +9368,18 @@ var microflows;
          */
         static createInValidationFeedbackActionUnderFeedbackTemplate(container) {
             return internal.instancehelpers.createElement(container, TextTemplate, "feedbackTemplate", false);
+        }
+        /**
+         * Creates and returns a new TextTemplate instance in the SDK and on the server.
+         * The new TextTemplate will be automatically stored in the 'titleOverride' property
+         * of the parent pages.PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInPageSettingsUnderTitleOverride(container) {
+            internal.createInVersionCheck(container.model, TextTemplate.structureTypeName, { start: "8.12.0" });
+            return internal.instancehelpers.createElement(container, TextTemplate, "titleOverride", false);
         }
         /**
          * Creates and returns a new TextTemplate instance in the SDK and on the server.
@@ -9136,7 +9497,7 @@ var microflows;
     Union.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Union = Union;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-feedback relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/validation-feedback relevant section in reference guide}
      */
     class ValidationFeedbackAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -9169,7 +9530,7 @@ var microflows;
             this.__objectVariableName.set(newValue);
         }
         /**
-         * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
+         * See: {@link https://docs.mendix.com/refguide/validation-feedback See 'Member' section in reference guide}
          */
         get attribute() {
             return this.__attribute.get();
@@ -9181,7 +9542,7 @@ var microflows;
             return this.__attribute.qualifiedName();
         }
         /**
-         * See: {@link https://docs.mendix.com/refguide7/validation-feedback See 'Member' section in reference guide}
+         * See: {@link https://docs.mendix.com/refguide/validation-feedback See 'Member' section in reference guide}
          */
         get association() {
             return this.__association.get();
@@ -9268,7 +9629,7 @@ var microflows;
     VariableExport.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.VariableExport = VariableExport;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/call-web-service-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/call-web-service-action relevant section in reference guide}
      */
     class WebServiceCallAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -9348,6 +9709,8 @@ var microflows;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.15.0: introduced
          */
@@ -9587,6 +9950,8 @@ var microflows;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get argumentModel() {
@@ -9715,6 +10080,97 @@ var microflows;
     WebServiceOperationSimpleParameterMapping.structureTypeName = "Microflows$WebServiceOperationSimpleParameterMapping";
     WebServiceOperationSimpleParameterMapping.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.WebServiceOperationSimpleParameterMapping = WebServiceOperationSimpleParameterMapping;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class WorkflowCallAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(WorkflowCallAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__workflowContextVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "workflowContextVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__useReturnVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(WorkflowCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowCallAction() cannot be invoked directly, please use 'model.microflows.createWorkflowCallAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get workflowContextVariable() {
+            return this.__workflowContextVariable.get();
+        }
+        set workflowContextVariable(newValue) {
+            this.__workflowContextVariable.set(newValue);
+        }
+        get useReturnVariable() {
+            return this.__useReturnVariable.get();
+        }
+        set useReturnVariable(newValue) {
+            this.__useReturnVariable.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * The new WorkflowCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowCallAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, WorkflowCallAction, "action", false);
+        }
+        /**
+         * Creates and returns a new WorkflowCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowCallAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.useReturnVariable = true;
+        }
+    }
+    WorkflowCallAction.structureTypeName = "Microflows$WorkflowCallAction";
+    WorkflowCallAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.WorkflowCallAction = WorkflowCallAction;
 })(microflows = exports.microflows || (exports.microflows = {}));
 const datatypes_1 = require("./datatypes");
 const domainmodels_1 = require("./domainmodels");
@@ -9724,4 +10180,5 @@ const pages_1 = require("./pages");
 const rest_1 = require("./rest");
 const services_1 = require("./services");
 const texts_1 = require("./texts");
+const workflows_1 = require("./workflows");
 //# sourceMappingURL=microflows.js.map

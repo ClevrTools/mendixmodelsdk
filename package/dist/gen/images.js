@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.images = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -78,7 +79,7 @@ var images;
     }, internal.StructureType.Element);
     images.Image = Image;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/images relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/images relevant section in reference guide}
      */
     class ImageCollection extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

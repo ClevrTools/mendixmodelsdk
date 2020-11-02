@@ -15,7 +15,7 @@ export interface IDeltaManager {
     onNewDelta(callback: (delta: Delta) => void): void;
     onTransactionCommitted(callback: () => void): void;
     onTransactionRollback(callback: () => void): void;
-    beginTransaction(): Transaction;
+    beginTransaction(commitCurrentImplicitTransaction?: boolean): Transaction;
 }
 export declare class DeltaManager implements IDeltaManager {
     private model;
@@ -44,7 +44,7 @@ export declare class DeltaManager implements IDeltaManager {
     push(delta: Delta): void;
     processDeltas(deltas: Delta[]): void;
     reverseDelta(delta: Delta): Delta;
-    beginTransaction(): Transaction;
+    beginTransaction(commitCurrentImplicitTransaction?: boolean): Transaction;
     onNewDelta(callback: (delta: Delta) => void): void;
     onTransactionCommitted(callback: () => void): void;
     onTransactionRollback(callback: () => void): void;

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PrimitiveProperty = void 0;
 const mobx_1 = require("mobx");
 const AbstractProperty_1 = require("./AbstractProperty");
 const utils_1 = require("../../utils");
@@ -32,7 +33,15 @@ class PrimitiveProperty extends AbstractProperty_1.AbstractProperty {
         return value;
     }
     beforeChange(change) {
-        utils_1.utils.assertNotNull(change.newValue, this.name);
+        // skip check if reverting to a previous value since we assume the previous value is always valid
+        if (!this.parent._isReverting) {
+            if (this.primitiveType === PrimitiveTypeEnum_1.PrimitiveTypeEnum.String && (change.newValue === null || change.newValue === undefined)) {
+                change.newValue = "";
+            }
+            else {
+                utils_1.utils.assertNotNull(change.newValue, this.name);
+            }
+        }
         if (this.shouldHandleChange()) {
             this.parent._sendChangeDelta(this.name, this.getRawValue(change.newValue));
         }

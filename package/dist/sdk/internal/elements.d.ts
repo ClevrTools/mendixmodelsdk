@@ -26,8 +26,7 @@ export interface IByNameReferrable {
 /**
  * See {@link IAbstractElement}.
  */
-export declare abstract class AbstractElement extends structures.Structure implements IAbstractElement {
-    readonly container: structures.aliases.Container;
+export declare abstract class AbstractElement<TModel extends IAbstractModel = IAbstractModel, TContainer extends structures.aliases.Container = structures.aliases.Container> extends structures.Structure<TModel, TContainer> implements IAbstractElement {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: structures.aliases.IContainer | null);
     /**
      * Checks whether all properties are available at the moment
@@ -70,10 +69,9 @@ export interface IElement extends IAbstractElement {
 export interface IElementConstructor {
     new (...args: any[]): Element;
 }
-export declare abstract class Element extends AbstractElement implements IElement {
-    readonly container: AbstractElement;
+export declare abstract class Element<TModel extends IAbstractModel = IAbstractModel> extends AbstractElement<TModel, AbstractElement> implements IElement {
     constructor(model: AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: units.ModelUnit, container: AbstractElement);
-    get unit(): units.ModelUnit;
+    get unit(): units.ModelUnit<IAbstractModel>;
     /**
      * Checks whether all attributes are available ATM
      *  -  if false, a load is required to access these properties.

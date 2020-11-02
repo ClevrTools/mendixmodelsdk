@@ -1,5 +1,8 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
+/**
+ * @ignore
+ */
 export declare namespace expressions {
     class BinaryOperator extends internal.AbstractEnum {
         static None: BinaryOperator;
@@ -28,16 +31,17 @@ export declare namespace expressions {
      * Interfaces and instance classes for types from the Mendix sub meta model `Expressions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/microflow-expressions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/expressions relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
-    abstract class Expression extends internal.Element {
+    abstract class Expression extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -77,12 +81,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BinaryExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -121,11 +126,15 @@ export declare namespace expressions {
         set operator(newValue: BinaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get left(): Expression;
         set left(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get right(): Expression;
         set right(newValue: Expression);
@@ -563,12 +572,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     abstract class LiteralExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -608,12 +618,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BooleanLiteral extends LiteralExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -1084,12 +1095,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class ConstantRefExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -1561,12 +1573,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EmptyLiteral extends LiteralExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -2035,12 +2048,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EnumerationValueRefExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -2512,12 +2526,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FloatLiteral extends LiteralExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -2988,12 +3003,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FunctionCallExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -3032,6 +3048,8 @@ export declare namespace expressions {
         set functionName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get arguments(): internal.IList<Expression>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3468,24 +3486,26 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
-    abstract class VariableRef extends internal.Element {
+    abstract class VariableRef extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVariableRefExpression(): VariableRefExpression;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class GlobalVariableRef extends VariableRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVariableRefExpression(): VariableRefExpression;
         get referredName(): string;
         set referredName(newValue: string);
@@ -3509,12 +3529,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class IfExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -3551,16 +3572,22 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get condition(): Expression;
         set condition(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifTrue(): Expression;
         set ifTrue(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifFalse(): Expression;
         set ifFalse(newValue: Expression);
@@ -3998,12 +4025,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class IntegerLiteral extends LiteralExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -4474,12 +4502,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -4948,12 +4977,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoVariableRef extends VariableRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVariableRefExpression(): VariableRefExpression;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -4975,12 +5005,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class ParenthesisExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -5017,6 +5048,8 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression(): Expression;
         set expression(newValue: Expression);
@@ -5454,12 +5487,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class StringLiteral extends LiteralExpression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -5930,12 +5964,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnaryExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -5974,6 +6009,8 @@ export declare namespace expressions {
         set operator(newValue: UnaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression(): Expression;
         set expression(newValue: Expression);
@@ -6411,12 +6448,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnparsableExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -6887,12 +6925,13 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRefExpression extends Expression {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBinaryExpression(): BinaryExpression;
         get containerAsFunctionCallExpression(): FunctionCallExpression;
         get containerAsIfExpression(): IfExpression;
@@ -6929,6 +6968,8 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get variable(): VariableRef;
         set variable(newValue: VariableRef);

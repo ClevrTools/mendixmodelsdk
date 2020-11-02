@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelUnit = exports.StructuralUnit = exports.AbstractUnit = void 0;
 const elements_1 = require("./elements");
 const structures_1 = require("./structures");
 const instances_1 = require("./instances");
@@ -14,6 +15,8 @@ class AbstractUnit extends structures_1.Structure {
         /** @internal */
         this._isLoading = false;
         /** @internal */
+        this._isLoadable = true;
+        /** @internal */
         this._isReadOnly = false;
         /** @internal */
         this._afterLoadCallbacks = [];
@@ -24,6 +27,12 @@ class AbstractUnit extends structures_1.Structure {
      */
     get isLoaded() {
         return !this._isPartial;
+    }
+    get isLoadable() {
+        return this._isLoadable;
+    }
+    get isReadOnly() {
+        return this._isReadOnly;
     }
     /** @internal */
     _markNotLoaded() {
@@ -85,7 +94,9 @@ class AbstractUnit extends structures_1.Structure {
         this._sendDeleteDelta();
         this._container = null;
         this.traverse(element => {
-            element._state = "deleted";
+            const structure = element;
+            structure._state = "deleted";
+            structure._dispose();
         });
         this._dispose();
         this._isDoingDelete = false;
@@ -153,6 +164,8 @@ class ModelUnit extends elements_1.AbstractElement {
         /** @internal */
         this._isLoading = false;
         /** @internal */
+        this._isLoadable = true;
+        /** @internal */
         this._isReadOnly = false;
         /* mimics multiple inheritance */
         /** @internal */
@@ -203,6 +216,12 @@ class ModelUnit extends elements_1.AbstractElement {
     }
     get isLoaded() {
         return !this._isPartial;
+    }
+    get isLoadable() {
+        return this._isLoadable;
+    }
+    get isReadOnly() {
+        return this._isReadOnly;
     }
     /** @internal */
     _dispose() {

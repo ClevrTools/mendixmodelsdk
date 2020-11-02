@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Element = exports.AbstractElement = void 0;
 const promiseOrCallbacks_1 = require("./promiseOrCallbacks");
 /* tslint:disable:no-circular-imports */
 const structures = require("./structures");

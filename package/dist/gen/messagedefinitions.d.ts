@@ -12,7 +12,6 @@ export declare namespace messagedefinitions {
     class AssociationElement extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -47,7 +46,6 @@ export declare namespace messagedefinitions {
     class AttributeElement extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -82,7 +80,6 @@ export declare namespace messagedefinitions {
     class EntityElement extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -125,10 +122,9 @@ export declare namespace messagedefinitions {
     /**
      * In version 7.6.0: introduced
      */
-    abstract class MessageDefinition extends internal.Element implements IMessageDefinition {
+    abstract class MessageDefinition extends internal.Element<IModel> implements IMessageDefinition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMessageDefinitionCollection(): MessageDefinitionCollection;
         get name(): string;
         set name(newValue: string);
@@ -138,7 +134,7 @@ export declare namespace messagedefinitions {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */
@@ -150,14 +146,13 @@ export declare namespace messagedefinitions {
         load(forceRefresh?: boolean): Promise<EntityMessageDefinition>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */
     class EntityMessageDefinition extends MessageDefinition implements IEntityMessageDefinition {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMessageDefinitionCollection(): MessageDefinitionCollection;
         get exposedEntity(): ExposedEntity | null;
         set exposedEntity(newValue: ExposedEntity | null);
@@ -184,7 +179,6 @@ export declare namespace messagedefinitions {
     abstract class ExposedMember extends mappings.Element {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
@@ -208,7 +202,6 @@ export declare namespace messagedefinitions {
     abstract class ExposedEntityBase extends ExposedMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
@@ -223,7 +216,6 @@ export declare namespace messagedefinitions {
     class ExposedAssociation extends ExposedEntityBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get association(): domainmodels.IAssociationBase;
@@ -261,7 +253,6 @@ export declare namespace messagedefinitions {
     class ExposedAttribute extends ExposedMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get attribute(): domainmodels.IAttribute;
@@ -299,7 +290,6 @@ export declare namespace messagedefinitions {
     class ExposedEntity extends ExposedEntityBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
@@ -339,7 +329,7 @@ export declare namespace messagedefinitions {
         static create(model: IModel): ExposedEntity;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */
@@ -352,14 +342,13 @@ export declare namespace messagedefinitions {
         load(forceRefresh?: boolean): Promise<MessageDefinitionCollection>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */
     class MessageDefinitionCollection extends projects.Document implements IMessageDefinitionCollection {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get messageDefinitions(): internal.IList<MessageDefinition>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);

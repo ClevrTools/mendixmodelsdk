@@ -6,7 +6,7 @@ export declare namespace constants {
      * Interfaces and instance classes for types from the Mendix sub meta model `Constants`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/constants relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/constants relevant section in reference guide}
      */
     interface IConstant extends projects.IDocument {
         readonly model: IModel;
@@ -16,12 +16,11 @@ export declare namespace constants {
         load(forceRefresh?: boolean): Promise<Constant>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/constants relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/constants relevant section in reference guide}
      */
     class Constant extends projects.Document implements IConstant {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * The value of this property is conceptually of type dataTypes.LegacyDataType.

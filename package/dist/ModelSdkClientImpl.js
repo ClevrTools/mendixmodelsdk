@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelSdkClientImpl = void 0;
 const internal = require("./sdk/internal");
 const promiseOrCallbacks_1 = require("./sdk/internal/promiseOrCallbacks");
 /**
@@ -101,6 +102,15 @@ class ModelSdkClientImpl {
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.revokeAccessByProject(projectId, memberOpenId, resolve, reject);
+        }, callback, errorCallback);
+    }
+    setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
+        if (callback) {
+            checkCallbacks(callback, errorCallback);
+        }
+        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+            assertBackendAccess(this.connectionConfig);
+            this.client.setProjectMembers(projectId, memberOpenids, resolve, reject);
         }, callback, errorCallback);
     }
     checkAccess(workingCopyId, memberOpenId, callback, errorCallback) {

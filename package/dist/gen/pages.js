@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.pages = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const utils_1 = require("../sdk/utils");
@@ -30,6 +31,68 @@ var pages;
     AlignmentEnum.Center = new AlignmentEnum("Center", {});
     AlignmentEnum.Right = new AlignmentEnum("Right", {});
     pages.AlignmentEnum = AlignmentEnum;
+    class AutocompletePurposeType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.AutocompletePurposeType";
+        }
+    }
+    AutocompletePurposeType.On = new AutocompletePurposeType("On", {});
+    AutocompletePurposeType.Off = new AutocompletePurposeType("Off", {});
+    AutocompletePurposeType.FullName = new AutocompletePurposeType("FullName", {});
+    AutocompletePurposeType.HonorificPrefix = new AutocompletePurposeType("HonorificPrefix", {});
+    AutocompletePurposeType.GivenName = new AutocompletePurposeType("GivenName", {});
+    AutocompletePurposeType.AdditionalName = new AutocompletePurposeType("AdditionalName", {});
+    AutocompletePurposeType.FamilyName = new AutocompletePurposeType("FamilyName", {});
+    AutocompletePurposeType.HonorificSuffix = new AutocompletePurposeType("HonorificSuffix", {});
+    AutocompletePurposeType.Nickname = new AutocompletePurposeType("Nickname", {});
+    AutocompletePurposeType.JobTitle = new AutocompletePurposeType("JobTitle", {});
+    AutocompletePurposeType.Username = new AutocompletePurposeType("Username", {});
+    AutocompletePurposeType.NewPassword = new AutocompletePurposeType("NewPassword", {});
+    AutocompletePurposeType.CurrentPassword = new AutocompletePurposeType("CurrentPassword", {});
+    AutocompletePurposeType.CompanyName = new AutocompletePurposeType("CompanyName", {});
+    AutocompletePurposeType.StreetAddress = new AutocompletePurposeType("StreetAddress", {});
+    AutocompletePurposeType.StreetAddressLine1 = new AutocompletePurposeType("StreetAddressLine1", {});
+    AutocompletePurposeType.StreetAddressLine2 = new AutocompletePurposeType("StreetAddressLine2", {});
+    AutocompletePurposeType.StreetAddressLine3 = new AutocompletePurposeType("StreetAddressLine3", {});
+    AutocompletePurposeType.AddressLevel4 = new AutocompletePurposeType("AddressLevel4", {});
+    AutocompletePurposeType.AddressLevel3 = new AutocompletePurposeType("AddressLevel3", {});
+    AutocompletePurposeType.AddressLevel2 = new AutocompletePurposeType("AddressLevel2", {});
+    AutocompletePurposeType.AddressLevel1 = new AutocompletePurposeType("AddressLevel1", {});
+    AutocompletePurposeType.CountryCode = new AutocompletePurposeType("CountryCode", {});
+    AutocompletePurposeType.CountryName = new AutocompletePurposeType("CountryName", {});
+    AutocompletePurposeType.PostalCode = new AutocompletePurposeType("PostalCode", {});
+    AutocompletePurposeType.CreditCardFullName = new AutocompletePurposeType("CreditCardFullName", {});
+    AutocompletePurposeType.CreditCardGivenName = new AutocompletePurposeType("CreditCardGivenName", {});
+    AutocompletePurposeType.CreditCardAdditionalName = new AutocompletePurposeType("CreditCardAdditionalName", {});
+    AutocompletePurposeType.CreditCardFamilyName = new AutocompletePurposeType("CreditCardFamilyName", {});
+    AutocompletePurposeType.CreditCardNumber = new AutocompletePurposeType("CreditCardNumber", {});
+    AutocompletePurposeType.CreditCardExpiration = new AutocompletePurposeType("CreditCardExpiration", {});
+    AutocompletePurposeType.CreditCardExpirationMonth = new AutocompletePurposeType("CreditCardExpirationMonth", {});
+    AutocompletePurposeType.CreditCardExpirationYear = new AutocompletePurposeType("CreditCardExpirationYear", {});
+    AutocompletePurposeType.CreditCardSecurityCode = new AutocompletePurposeType("CreditCardSecurityCode", {});
+    AutocompletePurposeType.CreditCardType = new AutocompletePurposeType("CreditCardType", {});
+    AutocompletePurposeType.TransactionCurrency = new AutocompletePurposeType("TransactionCurrency", {});
+    AutocompletePurposeType.TransactionAmount = new AutocompletePurposeType("TransactionAmount", {});
+    AutocompletePurposeType.Language = new AutocompletePurposeType("Language", {});
+    AutocompletePurposeType.Birthday = new AutocompletePurposeType("Birthday", {});
+    AutocompletePurposeType.DayOfBirth = new AutocompletePurposeType("DayOfBirth", {});
+    AutocompletePurposeType.MonthOfBirth = new AutocompletePurposeType("MonthOfBirth", {});
+    AutocompletePurposeType.YearOfBirth = new AutocompletePurposeType("YearOfBirth", {});
+    AutocompletePurposeType.Sex = new AutocompletePurposeType("Sex", {});
+    AutocompletePurposeType.Url = new AutocompletePurposeType("Url", {});
+    AutocompletePurposeType.Photo = new AutocompletePurposeType("Photo", {});
+    AutocompletePurposeType.TelephoneNumber = new AutocompletePurposeType("TelephoneNumber", {});
+    AutocompletePurposeType.TelephoneCountryCode = new AutocompletePurposeType("TelephoneCountryCode", {});
+    AutocompletePurposeType.TelephoneWithoutCountryCode = new AutocompletePurposeType("TelephoneWithoutCountryCode", {});
+    AutocompletePurposeType.TelephoneAreaCode = new AutocompletePurposeType("TelephoneAreaCode", {});
+    AutocompletePurposeType.TelephoneLocal = new AutocompletePurposeType("TelephoneLocal", {});
+    AutocompletePurposeType.TelephoneLocalPrefix = new AutocompletePurposeType("TelephoneLocalPrefix", {});
+    AutocompletePurposeType.TelephoneLocalSuffix = new AutocompletePurposeType("TelephoneLocalSuffix", {});
+    AutocompletePurposeType.TelephoneExtension = new AutocompletePurposeType("TelephoneExtension", {});
+    AutocompletePurposeType.Email = new AutocompletePurposeType("Email", {});
+    AutocompletePurposeType.InstantMessageProtocol = new AutocompletePurposeType("InstantMessageProtocol", {});
+    pages.AutocompletePurposeType = AutocompletePurposeType;
     class ButtonStyle extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -194,6 +257,20 @@ var pages;
     GroupBoxCollapsible.YesInitiallyExpanded = new GroupBoxCollapsible("YesInitiallyExpanded", {});
     GroupBoxCollapsible.YesInitiallyCollapsed = new GroupBoxCollapsible("YesInitiallyCollapsed", {});
     pages.GroupBoxCollapsible = GroupBoxCollapsible;
+    class GroupBoxRenderMode extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.GroupBoxRenderMode";
+        }
+    }
+    GroupBoxRenderMode.Div = new GroupBoxRenderMode("Div", {});
+    GroupBoxRenderMode.H1 = new GroupBoxRenderMode("H1", {});
+    GroupBoxRenderMode.H2 = new GroupBoxRenderMode("H2", {});
+    GroupBoxRenderMode.H3 = new GroupBoxRenderMode("H3", {});
+    GroupBoxRenderMode.H4 = new GroupBoxRenderMode("H4", {});
+    GroupBoxRenderMode.H5 = new GroupBoxRenderMode("H5", {});
+    GroupBoxRenderMode.H6 = new GroupBoxRenderMode("H6", {});
+    pages.GroupBoxRenderMode = GroupBoxRenderMode;
     class ImageSizeUnit extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -291,7 +368,10 @@ var pages;
         }
     }
     NativeLayoutType.Default = new NativeLayoutType("Default", {});
-    NativeLayoutType.TopLevel = new NativeLayoutType("TopLevel", {});
+    NativeLayoutType.TopLevel = new NativeLayoutType("TopLevel", {
+        deleted: "8.13.0",
+        deletionMessage: null
+    });
     NativeLayoutType.Popup = new NativeLayoutType("Popup", {});
     pages.NativeLayoutType = NativeLayoutType;
     class NativeTextStyle extends internal.AbstractEnum {
@@ -429,6 +509,16 @@ var pages;
     SelectionType.SelectPage = new SelectionType("SelectPage", {});
     SelectionType.SelectAll = new SelectionType("SelectAll", {});
     pages.SelectionType = SelectionType;
+    class ShowPagingBarType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.ShowPagingBarType";
+        }
+    }
+    ShowPagingBarType.YesWithTotalCount = new ShowPagingBarType("YesWithTotalCount", {});
+    ShowPagingBarType.YesWithoutTotalCount = new ShowPagingBarType("YesWithoutTotalCount", {});
+    ShowPagingBarType.No = new ShowPagingBarType("No", {});
+    pages.ShowPagingBarType = ShowPagingBarType;
     class SidebarToggleMode extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -485,6 +575,15 @@ var pages;
     SortDirection.Ascending = new SortDirection("Ascending", {});
     SortDirection.Descending = new SortDirection("Descending", {});
     pages.SortDirection = SortDirection;
+    class SubmitBehaviourType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.SubmitBehaviourType";
+        }
+    }
+    SubmitBehaviourType.OnEndEditing = new SubmitBehaviourType("OnEndEditing", {});
+    SubmitBehaviourType.WhileEditing = new SubmitBehaviourType("WhileEditing", {});
+    pages.SubmitBehaviourType = SubmitBehaviourType;
     class TableCellRenderModeType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -535,7 +634,7 @@ var pages;
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     class Widget extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -795,7 +894,7 @@ var pages;
     ConditionallyVisibleWidget.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ConditionallyVisibleWidget = ConditionallyVisibleWidget;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     class Button extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -950,7 +1049,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.Button = Button;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     class ActionButton extends Button {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1044,6 +1143,9 @@ var pages;
         set action(newValue) {
             this.__action.set(newValue);
         }
+        /**
+         * In version 8.12.0: deleted
+         */
         get disabledDuringAction() {
             return this.__disabledDuringAction.get();
         }
@@ -1697,12 +1799,14 @@ var pages;
                     return clientTemplate;
                 })(ClientTemplate.create(this.model));
             })();
-            (() => {
-                if (internal.isAtLeast("7.16.0", this.model)) {
-                    this.disabledDuringAction = true;
-                    return;
-                }
-            })();
+            if (this.__disabledDuringAction.isAvailable) {
+                (() => {
+                    if (internal.isAtLeast("7.16.0", this.model)) {
+                        this.disabledDuringAction = true;
+                        return;
+                    }
+                })();
+            }
         }
     }
     ActionButton.structureTypeName = "Pages$ActionButton";
@@ -1713,7 +1817,10 @@ var pages;
                     currentValue: true
                 }
             },
-            disabledDuringAction: {}
+            disabledDuringAction: {
+                deleted: "8.12.0",
+                deletionMessage: null
+            }
         }
     }, internal.StructureType.Element);
     pages.ActionButton = ActionButton;
@@ -1767,6 +1874,8 @@ var pages;
             this.__style = new internal.PrimitiveProperty(Appearance, this, "style", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__designProperties = new internal.PartListProperty(Appearance, this, "designProperties", []);
+            /** @internal */
+            this.__dynamicClasses = new internal.PrimitiveProperty(Appearance, this, "dynamicClasses", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new Appearance() cannot be invoked directly, please use 'model.pages.createAppearance()'");
             }
@@ -1821,6 +1930,17 @@ var pages;
         }
         get designProperties() {
             return this.__designProperties.get();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.13.0: introduced
+         */
+        get dynamicClasses() {
+            return this.__dynamicClasses.get();
+        }
+        set dynamicClasses(newValue) {
+            this.__dynamicClasses.set(newValue);
         }
         /**
          * Creates and returns a new Appearance instance in the SDK and on the server.
@@ -1981,11 +2101,16 @@ var pages;
     }
     Appearance.structureTypeName = "Pages$Appearance";
     Appearance.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.0.0"
+        introduced: "8.0.0",
+        properties: {
+            dynamicClasses: {
+                introduced: "8.13.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.Appearance = Appearance;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-sources relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-sources relevant section in reference guide}
      */
     class DataSource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2238,6 +2363,8 @@ var pages;
             this.__label = new internal.PartProperty(InputWidget, this, "label", null, false);
             /** @internal */
             this.__labelTemplate = new internal.PartProperty(InputWidget, this, "labelTemplate", null, false);
+            /** @internal */
+            this.__screenReaderLabel = new internal.PartProperty(InputWidget, this, "screenReaderLabel", null, false);
             if (arguments.length < 4) {
                 throw new Error("new InputWidget() cannot be invoked directly, please use 'model.pages.createInputWidget()'");
             }
@@ -2335,6 +2462,15 @@ var pages;
         set labelTemplate(newValue) {
             this.__labelTemplate.set(newValue);
         }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderLabel() {
+            return this.__screenReaderLabel.get();
+        }
+        set screenReaderLabel(newValue) {
+            this.__screenReaderLabel.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2349,6 +2485,9 @@ var pages;
             },
             labelTemplate: {
                 introduced: "7.18.0"
+            },
+            screenReaderLabel: {
+                introduced: "8.12.0"
             }
         }
     }, internal.StructureType.Element);
@@ -2677,6 +2816,8 @@ var pages;
             this.__onEnterAction = new internal.PartProperty(AttributeWidget, this, "onEnterAction", null, true);
             /** @internal */
             this.__onLeaveAction = new internal.PartProperty(AttributeWidget, this, "onLeaveAction", null, true);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(AttributeWidget, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new AttributeWidget() cannot be invoked directly, please use 'model.pages.createAttributeWidget()'");
             }
@@ -2837,6 +2978,15 @@ var pages;
         set onLeaveAction(newValue) {
             this.__onLeaveAction.set(newValue);
         }
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2924,6 +3074,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            sourceVariable: {
+                introduced: "8.8.0"
             }
         }
     }, internal.StructureType.Element);
@@ -3036,7 +3189,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.AttributeWidgetWithPlaceholder = AttributeWidgetWithPlaceholder;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/close-page-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/close-page-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
@@ -3403,7 +3556,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.BackButton = BackButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     class FormBase extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -3503,7 +3656,7 @@ var pages;
     }, internal.StructureType.ModelUnit);
     pages.TemplateFormBase = TemplateFormBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/building-block relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/building-block relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -3585,6 +3738,8 @@ var pages;
     class ClientAction extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__disabledDuringExecution = new internal.PrimitiveProperty(ClientAction, this, "disabledDuringExecution", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ClientAction() cannot be invoked directly, please use 'model.pages.createClientAction()'");
             }
@@ -3634,13 +3789,31 @@ var pages;
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get disabledDuringExecution() {
+            return this.__disabledDuringExecution.get();
+        }
+        set disabledDuringExecution(newValue) {
+            this.__disabledDuringExecution.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__disabledDuringExecution.isAvailable) {
+                this.disabledDuringExecution = true;
+            }
         }
     }
     ClientAction.structureTypeName = "Pages$ClientAction";
-    ClientAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ClientAction.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            disabledDuringExecution: {
+                introduced: "8.12.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.ClientAction = ClientAction;
     /**
      * In version 7.12.0: removed experimental
@@ -3771,10 +3944,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallNanoflowClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, CallNanoflowClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, CallNanoflowClientAction, "action", false);
         }
         /**
@@ -3977,7 +4150,307 @@ var pages;
     }, internal.StructureType.Element);
     pages.CallNanoflowClientAction = CallNanoflowClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cancel-button relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class CallWorkflowClientAction extends ClientAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(CallWorkflowClientAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__closePage = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__commit = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "commit", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new CallWorkflowClientAction() cannot be invoked directly, please use 'model.pages.createCallWorkflowClientAction()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsActionItem() {
+            return super.getContainerAs(ActionItem);
+        }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsGridActionButton() {
+            return super.getContainerAs(GridActionButton);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsReferenceSetSelector() {
+            return super.getContainerAs(ReferenceSetSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get closePage() {
+            return this.__closePage.get();
+        }
+        set closePage(newValue) {
+            this.__closePage.set(newValue);
+        }
+        get commit() {
+            return this.__commit.get();
+        }
+        set commit(newValue) {
+            this.__commit.set(newValue);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onEnterAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onLeaveAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onClickAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "pullDownAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onEnterKeyPressAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CallWorkflowClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.closePage = true;
+            this.commit = true;
+        }
+    }
+    CallWorkflowClientAction.structureTypeName = "Pages$CallWorkflowClientAction";
+    CallWorkflowClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.CallWorkflowClientAction = CallWorkflowClientAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide6/cancel-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
@@ -4452,10 +4925,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, CancelChangesClientAction, "action", false);
         }
         /**
@@ -4646,7 +5119,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.CancelChangesClientAction = CancelChangesClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/check-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/check-box relevant section in reference guide}
      */
     class CheckBox extends AttributeWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5424,6 +5897,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabPage() {
+            return super.getContainerAs(TabPage);
+        }
         get template() {
             return this.__template.get();
         }
@@ -5548,6 +6024,18 @@ var pages;
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderLabel' property
+         * of the parent InputWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInInputWidgetUnderScreenReaderLabel(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.12.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "screenReaderLabel", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'alternativeText' property
          * of the parent StaticImageViewer element passed as argument.
          *
@@ -5557,6 +6045,18 @@ var pages;
         static createInStaticImageViewerUnderAlternativeText(container) {
             internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.6.0" });
             return internal.instancehelpers.createElement(container, ClientTemplate, "alternativeText", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'badge' property
+         * of the parent TabPage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTabPageUnderBadge(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "badge", false);
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
@@ -5686,6 +6186,10 @@ var pages;
     class ClosePageClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__numberOfPages = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__numberOfPagesToClose = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPagesToClose", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new ClosePageClientAction() cannot be invoked directly, please use 'model.pages.createClosePageClientAction()'");
             }
@@ -5733,6 +6237,27 @@ var pages;
             return super.getContainerAs(TextBox);
         }
         /**
+         * In version 8.14.0: deleted
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages() {
+            return this.__numberOfPages.get();
+        }
+        set numberOfPages(newValue) {
+            this.__numberOfPages.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose() {
+            return this.__numberOfPagesToClose.get();
+        }
+        set numberOfPagesToClose(newValue) {
+            this.__numberOfPagesToClose.set(newValue);
+        }
+        /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
          * The new ClosePageClientAction will be automatically stored in the 'action' property
          * of the parent customwidgets.WidgetValue element passed as argument.
@@ -5762,10 +6287,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, ClosePageClientAction, "action", false);
         }
         /**
@@ -5947,11 +6472,24 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__numberOfPages.isAvailable) {
+                this.numberOfPages = 1;
+            }
         }
     }
     ClosePageClientAction.structureTypeName = "Pages$ClosePageClientAction";
     ClosePageClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.0.2"
+        introduced: "7.0.2",
+        properties: {
+            numberOfPages: {
+                introduced: "8.9.0",
+                deleted: "8.14.0",
+                deletionMessage: "Use property 'numberOfPagesToClose' instead"
+            },
+            numberOfPagesToClose: {
+                introduced: "8.14.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.ClosePageClientAction = ClosePageClientAction;
     class EntityWidget extends ConditionallyVisibleWidget {
@@ -6158,6 +6696,8 @@ var pages;
             /** @internal */
             this.__isPagingEnabled = new internal.PrimitiveProperty(Grid, this, "isPagingEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__showPagingBar = new internal.EnumProperty(Grid, this, "showPagingBar", ShowPagingBarType.YesWithTotalCount, ShowPagingBarType);
+            /** @internal */
             this.__selectionMode = new internal.EnumProperty(Grid, this, "selectionMode", GridSelectionMode.Single, GridSelectionMode);
             /** @internal */
             this.__selectFirst = new internal.PrimitiveProperty(Grid, this, "selectFirst", false, internal.PrimitiveTypeEnum.Boolean);
@@ -6252,11 +6792,23 @@ var pages;
         set isControlBarVisible(newValue) {
             this.__isControlBarVisible.set(newValue);
         }
+        /**
+         * In version 8.13.0: deleted
+         */
         get isPagingEnabled() {
             return this.__isPagingEnabled.get();
         }
         set isPagingEnabled(newValue) {
             this.__isPagingEnabled.set(newValue);
+        }
+        /**
+         * In version 8.13.0: introduced
+         */
+        get showPagingBar() {
+            return this.__showPagingBar.get();
+        }
+        set showPagingBar(newValue) {
+            this.__showPagingBar.set(newValue);
         }
         get selectionMode() {
             return this.__selectionMode.get();
@@ -6301,13 +6853,25 @@ var pages;
             })();
             this.defaultButtonTrigger = ClickTypeType.Double;
             this.isControlBarVisible = true;
-            this.isPagingEnabled = true;
+            if (this.__isPagingEnabled.isAvailable) {
+                this.isPagingEnabled = true;
+            }
             this.selectionMode = GridSelectionMode.Single;
+            if (this.__showPagingBar.isAvailable) {
+                this.showPagingBar = ShowPagingBarType.YesWithTotalCount;
+            }
         }
     }
     Grid.structureTypeName = "Pages$Grid";
     Grid.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            isPagingEnabled: {
+                deleted: "8.13.0",
+                deletionMessage: "Use property 'showPagingBar' instead"
+            },
+            showPagingBar: {
+                introduced: "8.13.0"
+            },
             controlBar: {
                 required: {
                     currentValue: true
@@ -6639,7 +7203,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SingleSearchField = SingleSearchField;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/comparison-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class ComparisonSearchField extends SingleSearchField {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -6740,6 +7304,8 @@ var pages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -7275,6 +7841,10 @@ var pages;
             this.__entityRef = new internal.PartProperty(CreateObjectClientAction, this, "entityRef", null, false);
             /** @internal */
             this.__pageSettings = new internal.PartProperty(CreateObjectClientAction, this, "pageSettings", null, true);
+            /** @internal */
+            this.__numberOfPagesToClose = new internal.PrimitiveProperty(CreateObjectClientAction, this, "numberOfPagesToClose", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__numberOfPagesToClose2 = new internal.PrimitiveProperty(CreateObjectClientAction, this, "numberOfPagesToClose2", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new CreateObjectClientAction() cannot be invoked directly, please use 'model.pages.createCreateObjectClientAction()'");
             }
@@ -7334,6 +7904,27 @@ var pages;
             this.__pageSettings.set(newValue);
         }
         /**
+         * In version 8.14.0: deleted
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose() {
+            return this.__numberOfPagesToClose.get();
+        }
+        set numberOfPagesToClose(newValue) {
+            this.__numberOfPagesToClose.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose2() {
+            return this.__numberOfPagesToClose2.get();
+        }
+        set numberOfPagesToClose2(newValue) {
+            this.__numberOfPagesToClose2.set(newValue);
+        }
+        /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
          * The new CreateObjectClientAction will be automatically stored in the 'action' property
          * of the parent customwidgets.WidgetValue element passed as argument.
@@ -7363,10 +7954,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, CreateObjectClientAction, "action", false);
         }
         /**
@@ -7559,12 +8150,20 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            numberOfPagesToClose: {
+                introduced: "8.11.0",
+                deleted: "8.14.0",
+                deletionMessage: "Use property 'numberOfPagesToClose2' instead"
+            },
+            numberOfPagesToClose2: {
+                introduced: "8.14.0"
             }
         }
     }, internal.StructureType.Element);
     pages.CreateObjectClientAction = CreateObjectClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-grid relevant section in reference guide}
      */
     class DataGrid extends ColumnGrid {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8321,7 +8920,7 @@ var pages;
     GridControlBarButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.GridControlBarButton = GridControlBarButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/add-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridAddButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8398,7 +8997,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataGridAddButton = DataGridAddButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-csv-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridExportToCSVButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8510,7 +9109,7 @@ var pages;
     DataGridExportToCSVButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.DataGridExportToCSVButton = DataGridExportToCSVButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-excel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridExportToExcelButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8588,7 +9187,7 @@ var pages;
     DataGridExportToExcelButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.DataGridExportToExcelButton = DataGridExportToExcelButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/remove-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridRemoveButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -8648,7 +9247,7 @@ var pages;
     DataGridRemoveButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.DataGridRemoveButton = DataGridRemoveButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-view relevant section in reference guide}
      */
     class DataView extends EntityWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -9606,7 +10205,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataViewControlBarButton = DataViewControlBarButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-action-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
@@ -9686,7 +10285,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataViewActionButton = DataViewActionButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-cancel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-cancel-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
@@ -9750,7 +10349,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataViewCancelButton = DataViewCancelButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-close-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-close-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
@@ -9814,7 +10413,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataViewCloseButton = DataViewCloseButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-control-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-control-bar relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
@@ -9868,7 +10467,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DataViewControlBar = DataViewControlBar;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-save-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-save-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
@@ -10162,7 +10761,7 @@ var pages;
     DatabaseSourceBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.DatabaseSourceBase = DatabaseSourceBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/date-picker relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/date-picker relevant section in reference guide}
      */
     class DatePicker extends AttributeWidgetWithPlaceholder {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -10981,10 +11580,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, DeleteClientAction, "action", false);
         }
         /**
@@ -11251,7 +11850,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DesignPropertyValue = DesignPropertyValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/container relevant section in reference guide}
      */
     class DivContainer extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -11264,6 +11863,8 @@ var pages;
             this.__renderMode = new internal.EnumProperty(DivContainer, this, "renderMode", ContainerRenderMode.Div, ContainerRenderMode);
             /** @internal */
             this.__onClickAction = new internal.PartProperty(DivContainer, this, "onClickAction", null, true);
+            /** @internal */
+            this.__screenReaderHidden = new internal.PrimitiveProperty(DivContainer, this, "screenReaderHidden", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DivContainer() cannot be invoked directly, please use 'model.pages.createDivContainer()'");
             }
@@ -11375,6 +11976,15 @@ var pages;
         }
         set onClickAction(newValue) {
             this.__onClickAction.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderHidden() {
+            return this.__screenReaderHidden.get();
+        }
+        set screenReaderHidden(newValue) {
+            this.__screenReaderHidden.set(newValue);
         }
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -12005,6 +12615,9 @@ var pages;
             if (this.__renderMode.isAvailable) {
                 this.renderMode = ContainerRenderMode.Div;
             }
+            if (this.__screenReaderHidden.isAvailable) {
+                this.screenReaderHidden = false;
+            }
         }
     }
     DivContainer.structureTypeName = "Pages$DivContainer";
@@ -12025,12 +12638,15 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            screenReaderHidden: {
+                introduced: "8.12.0"
             }
         }
     }, internal.StructureType.Element);
     pages.DivContainer = DivContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-widget relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/drop-down relevant section in reference guide}
      */
     class DropDown extends AttributeWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -12766,7 +13382,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DropDown = DropDown;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     class DropDownButton extends Button {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -13578,7 +14194,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DropDownButtonItem = DropDownButtonItem;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class DropDownSearchField extends SingleSearchField {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -13652,7 +14268,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DropDownSearchField = DropDownSearchField;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-viewer relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image-viewer relevant section in reference guide}
      */
     class DynamicImageViewer extends EntityWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -14524,7 +15140,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.DynamicImageViewer = DynamicImageViewer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text relevant section in reference guide}
      */
     class DynamicText extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -15303,7 +15919,79 @@ var pages;
     }, internal.StructureType.Element);
     pages.DynamicText = DynamicText;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/file-manager relevant section in reference guide}
+     * In version 8.13.0: introduced
+     */
+    class TemplateType extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new TemplateType() cannot be invoked directly, please use 'model.pages.createTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TemplateType.structureTypeName = "Pages$TemplateType";
+    TemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.TemplateType = TemplateType;
+    /**
+     * In version 8.13.0: introduced
+     */
+    class EditPageTemplateType extends TemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EditPageTemplateType() cannot be invoked directly, please use 'model.pages.createEditPageTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new EditPageTemplateType instance in the SDK and on the server.
+         * The new EditPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EditPageTemplateType.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, EditPageTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new EditPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EditPageTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EditPageTemplateType.structureTypeName = "Pages$EditPageTemplateType";
+    EditPageTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.EditPageTemplateType = EditPageTemplateType;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/file-manager relevant section in reference guide}
      */
     class FileManager extends InputWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -16219,7 +16907,7 @@ var pages;
     FormattingInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.FormattingInfo = FormattingInfo;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-property relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
     class Icon extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -16347,7 +17035,7 @@ var pages;
     GlyphIcon.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.GlyphIcon = GlyphIcon;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridActionButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -16470,7 +17158,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridBaseSource = GridBaseSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns relevant section in reference guide}
      */
     class GridColumn extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -16723,7 +17411,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridColumn = GridColumn;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridControlBar extends ControlBar {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -16937,7 +17625,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridDeleteButton = GridDeleteButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deselect-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridDeselectAllButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17087,7 +17775,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridEditButton = GridEditButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-new-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridNewButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17200,7 +17888,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridNewButton = GridNewButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridSearchButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17287,7 +17975,7 @@ var pages;
     GridSearchButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.GridSearchButton = GridSearchButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridSelectAllButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17356,7 +18044,7 @@ var pages;
     GridSelectAllButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.GridSelectAllButton = GridSelectAllButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sort-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sort-bar relevant section in reference guide}
      */
     class GridSortBar extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17644,7 +18332,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GridXPathSource = GridXPathSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/group-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/group-box relevant section in reference guide}
      */
     class GroupBox extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -17653,6 +18341,8 @@ var pages;
             this.__caption = new internal.PartProperty(GroupBox, this, "caption", null, false);
             /** @internal */
             this.__collapsible = new internal.EnumProperty(GroupBox, this, "collapsible", GroupBoxCollapsible.YesInitiallyExpanded, GroupBoxCollapsible);
+            /** @internal */
+            this.__headerMode = new internal.EnumProperty(GroupBox, this, "headerMode", GroupBoxRenderMode.H2, GroupBoxRenderMode);
             /** @internal */
             this.__widget = new internal.PartProperty(GroupBox, this, "widget", null, false);
             /** @internal */
@@ -17747,6 +18437,15 @@ var pages;
         }
         set collapsible(newValue) {
             this.__collapsible.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get headerMode() {
+            return this.__headerMode.get();
+        }
+        set headerMode(newValue) {
+            this.__headerMode.set(newValue);
         }
         /**
          * In version 7.15.0: deleted
@@ -18410,12 +19109,18 @@ var pages;
                 })(ClientTemplate.create(this.model));
             })();
             this.collapsible = GroupBoxCollapsible.YesInitiallyExpanded;
+            if (this.__headerMode.isAvailable) {
+                this.headerMode = GroupBoxRenderMode.H2;
+            }
         }
     }
     GroupBox.structureTypeName = "Pages$GroupBox";
     GroupBox.versionInfo = new exports.StructureVersionInfo({
         properties: {
             caption: {},
+            headerMode: {
+                introduced: "8.10.0"
+            },
             widget: {
                 deleted: "7.15.0",
                 deletionMessage: "Use property 'widgets' instead"
@@ -18427,7 +19132,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.GroupBox = GroupBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/header relevant section in reference guide}
      */
     class Header extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -19361,7 +20066,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SplitPane = SplitPane;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/horizontal-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
@@ -20127,7 +20832,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.ImageIcon = ImageIcon;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-uploader relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image-uploader relevant section in reference guide}
      */
     class ImageUploader extends InputWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -20949,7 +21654,7 @@ var pages;
     ImageViewerSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ImageViewerSource = ImageViewerSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/input-reference-set-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/input-reference-set-selector relevant section in reference guide}
      */
     class InputReferenceSetSelector extends AssociationWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -21662,7 +22367,7 @@ var pages;
     InputReferenceSetSelector.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.InputReferenceSetSelector = InputReferenceSetSelector;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/label relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/label relevant section in reference guide}
      */
     class Label extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -22407,7 +23112,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.Label = Label;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/layout relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/layout relevant section in reference guide}
      */
     class Layout extends FormBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -22961,7 +23666,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.LayoutContent = LayoutContent;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/layout-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/layout-grid relevant section in reference guide}
      */
     class LayoutGrid extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -24078,7 +24783,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.LayoutParameter = LayoutParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/link-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.3.0: deleted
      */
@@ -24488,7 +25193,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.LinkButton = LinkButton;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/list-view relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/list-view relevant section in reference guide}
      */
     class ListView extends ListenTargetWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -25730,7 +26435,7 @@ var pages;
     ListenTargetSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ListenTargetSource = ListenTargetSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-in-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sign-in-button relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
@@ -26576,7 +27281,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.LoginTextBox = LoginTextBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/login-id-text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/login-id-text-box relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
@@ -27266,7 +27971,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.LoginIdTextBox = LoginIdTextBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-out-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.1.0: deleted
      */
@@ -27635,6 +28340,8 @@ var pages;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
@@ -27708,6 +28415,8 @@ var pages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get master() {
             return this.__master.get();
@@ -27717,6 +28426,8 @@ var pages;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get detail() {
             return this.__detail.get();
@@ -28028,6 +28739,8 @@ var pages;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
@@ -28082,6 +28795,8 @@ var pages;
     pages.MasterDetailRegion = MasterDetailRegion;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
@@ -28168,6 +28883,8 @@ var pages;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
@@ -28235,7 +28952,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.MasterDetailMasterRegion = MasterDetailMasterRegion;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu-widgets relevant section in reference guide}
      */
     class MenuWidget extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -28345,7 +29062,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.MenuWidget = MenuWidget;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu-bar relevant section in reference guide}
      */
     class MenuBar extends MenuWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -29206,10 +29923,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, MicroflowClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, MicroflowClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, MicroflowClientAction, "action", false);
         }
         /**
@@ -29512,7 +30229,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.MicroflowParameterMapping = MicroflowParameterMapping;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/starting-microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class MicroflowSettings extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -30164,7 +30881,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.NativeLayoutContent = NativeLayoutContent;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation-list relevant section in reference guide}
      */
     class NavigationList extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -31083,7 +31800,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.NavigationSource = NavigationSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation-tree relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation-tree relevant section in reference guide}
      */
     class NavigationTree extends MenuWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -32580,10 +33297,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, NoClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, NoClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, NoClientAction, "action", false);
         }
         /**
@@ -33130,10 +33847,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenLinkClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, OpenLinkClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, OpenLinkClientAction, "action", false);
         }
         /**
@@ -33332,7 +34049,539 @@ var pages;
     }, internal.StructureType.Element);
     pages.OpenLinkClientAction = OpenLinkClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class OpenUserTaskClientAction extends ClientAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new OpenUserTaskClientAction() cannot be invoked directly, please use 'model.pages.createOpenUserTaskClientAction()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsActionItem() {
+            return super.getContainerAs(ActionItem);
+        }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsGridActionButton() {
+            return super.getContainerAs(GridActionButton);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsReferenceSetSelector() {
+            return super.getContainerAs(ReferenceSetSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onEnterAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onLeaveAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onClickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "pullDownAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onEnterKeyPressAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenUserTaskClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OpenUserTaskClientAction.structureTypeName = "Pages$OpenUserTaskClientAction";
+    OpenUserTaskClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.OpenUserTaskClientAction = OpenUserTaskClientAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class OpenWorkflowClientAction extends ClientAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new OpenWorkflowClientAction() cannot be invoked directly, please use 'model.pages.createOpenWorkflowClientAction()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsActionItem() {
+            return super.getContainerAs(ActionItem);
+        }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsGridActionButton() {
+            return super.getContainerAs(GridActionButton);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsReferenceSetSelector() {
+            return super.getContainerAs(ReferenceSetSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onEnterAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onLeaveAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onClickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "pullDownAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onEnterKeyPressAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenWorkflowClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OpenWorkflowClientAction.structureTypeName = "Pages$OpenWorkflowClientAction";
+    OpenWorkflowClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.OpenWorkflowClientAction = OpenWorkflowClientAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     class Page extends FormBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -33543,6 +34792,10 @@ var pages;
             this.__pageSettings = new internal.PartProperty(PageClientAction, this, "pageSettings", null, true);
             /** @internal */
             this.__pagesForSpecializations = new internal.PartListProperty(PageClientAction, this, "pagesForSpecializations", []);
+            /** @internal */
+            this.__numberOfPagesToClose = new internal.PrimitiveProperty(PageClientAction, this, "numberOfPagesToClose", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__numberOfPagesToClose2 = new internal.PrimitiveProperty(PageClientAction, this, "numberOfPagesToClose2", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PageClientAction() cannot be invoked directly, please use 'model.pages.createPageClientAction()'");
             }
@@ -33605,6 +34858,27 @@ var pages;
             return this.__pagesForSpecializations.get();
         }
         /**
+         * In version 8.14.0: deleted
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose() {
+            return this.__numberOfPagesToClose.get();
+        }
+        set numberOfPagesToClose(newValue) {
+            this.__numberOfPagesToClose.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose2() {
+            return this.__numberOfPagesToClose2.get();
+        }
+        set numberOfPagesToClose2(newValue) {
+            this.__numberOfPagesToClose2.set(newValue);
+        }
+        /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
          * The new PageClientAction will be automatically stored in the 'action' property
          * of the parent customwidgets.WidgetValue element passed as argument.
@@ -33630,10 +34904,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, PageClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, PageClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, PageClientAction, "action", false);
         }
         /**
@@ -33820,6 +35094,14 @@ var pages;
             },
             pagesForSpecializations: {
                 introduced: "7.17.0"
+            },
+            numberOfPagesToClose: {
+                introduced: "8.11.0",
+                deleted: "8.14.0",
+                deletionMessage: "Use property 'numberOfPagesToClose2' instead"
+            },
+            numberOfPagesToClose2: {
+                introduced: "8.14.0"
             }
         }
     }, internal.StructureType.Element);
@@ -33911,7 +35193,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.PageForSpecialization = PageForSpecialization;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/opening-pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -33920,6 +35202,8 @@ var pages;
             this.__page = new internal.ByNameReferenceProperty(PageSettings, this, "page", null, "Pages$Page");
             /** @internal */
             this.__formTitle = new internal.PartProperty(PageSettings, this, "formTitle", null, false);
+            /** @internal */
+            this.__titleOverride = new internal.PartProperty(PageSettings, this, "titleOverride", null, false);
             /** @internal */
             this.__location = new internal.EnumProperty(PageSettings, this, "location", FormLocation.Popup, FormLocation);
             if (arguments.length < 4) {
@@ -33968,11 +35252,23 @@ var pages;
         get pageQualifiedName() {
             return this.__page.qualifiedName();
         }
+        /**
+         * In version 8.12.0: deleted
+         */
         get formTitle() {
             return this.__formTitle.get();
         }
         set formTitle(newValue) {
             this.__formTitle.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get titleOverride() {
+            return this.__titleOverride.get();
+        }
+        set titleOverride(newValue) {
+            this.__titleOverride.set(newValue);
         }
         /**
          * In version 8.0.0: deleted
@@ -34106,6 +35402,13 @@ var pages;
     PageSettings.structureTypeName = "Pages$PageSettings";
     PageSettings.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            formTitle: {
+                deleted: "8.12.0",
+                deletionMessage: null
+            },
+            titleOverride: {
+                introduced: "8.12.0"
+            },
             location: {
                 deleted: "8.0.0",
                 deletionMessage: null
@@ -34114,7 +35417,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.PageSettings = PageSettings;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -34131,12 +35434,15 @@ var pages;
             this.__style = new internal.PrimitiveProperty(PageTemplate, this, "style", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__appearance = new internal.PartProperty(PageTemplate, this, "appearance", null, true);
+            /** @internal */
+            this.__templateType = new internal.PartProperty(PageTemplate, this, "templateType", null, true);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
         /**
+         * In version 8.13.0: deleted
          * In version 7.17.0: added public
          */
         get type() {
@@ -34182,6 +35488,15 @@ var pages;
             this.__appearance.set(newValue);
         }
         /**
+         * In version 8.13.0: introduced
+         */
+        get templateType() {
+            return this.__templateType.get();
+        }
+        set templateType(newValue) {
+            this.__templateType.set(newValue);
+        }
+        /**
          * Creates a new PageTemplate unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -34195,7 +35510,12 @@ var pages;
                 this.appearance = Appearance.create(this.model);
             }
             this.layoutCall = LayoutCall.create(this.model);
-            this.type = PageTemplateType.Standard;
+            if (this.__templateType.isAvailable) {
+                this.templateType = RegularPageTemplateType.create(this.model);
+            }
+            if (this.__type.isAvailable) {
+                this.type = PageTemplateType.Standard;
+            }
         }
     }
     PageTemplate.structureTypeName = "Pages$PageTemplate";
@@ -34203,6 +35523,8 @@ var pages;
         introduced: "7.7.0",
         properties: {
             type: {
+                deleted: "8.13.0",
+                deletionMessage: "Use templateType instead",
                 public: {
                     currentValue: true,
                     changedIn: ["7.17.0"]
@@ -34230,6 +35552,15 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            templateType: {
+                introduced: "8.13.0",
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -34247,6 +35578,12 @@ var pages;
             if (arguments.length < 4) {
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
             }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
         }
         get containerAsMicroflowParameterMapping() {
             return super.getContainerAs(MicroflowParameterMapping);
@@ -34268,6 +35605,30 @@ var pages;
         }
         set useAllPages(newValue) {
             this.__useAllPages.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInWidgetValueUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInAttributeWidgetUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
@@ -34313,7 +35674,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.PageVariable = PageVariable;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/password-text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/password-text-box relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
@@ -35003,7 +36364,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.PasswordTextBox = PasswordTextBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/placeholder relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/placeholder relevant section in reference guide}
      */
     class Placeholder extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -35728,7 +37089,7 @@ var pages;
     Placeholder.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.Placeholder = Placeholder;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/radio-buttons relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/radio-buttons relevant section in reference guide}
      */
     class RadioButtonGroup extends AttributeWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -36450,7 +37811,7 @@ var pages;
     RadioButtonGroup.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.RadioButtonGroup = RadioButtonGroup;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/range-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class RangeSearchField extends SearchField {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -36568,7 +37929,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.RangeSearchField = RangeSearchField;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/reference-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/reference-selector relevant section in reference guide}
      */
     class ReferenceSelector extends AssociationWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -37397,7 +38758,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.ReferenceSelector = ReferenceSelector;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/reference-set-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/reference-set-selector relevant section in reference guide}
      */
     class ReferenceSetSelector extends ColumnGrid {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -38282,6 +39643,52 @@ var pages;
     ReferenceSetSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ReferenceSetSource = ReferenceSetSource;
     /**
+     * In version 8.13.0: introduced
+     */
+    class RegularPageTemplateType extends TemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RegularPageTemplateType() cannot be invoked directly, please use 'model.pages.createRegularPageTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new RegularPageTemplateType instance in the SDK and on the server.
+         * The new RegularPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RegularPageTemplateType.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, RegularPageTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new RegularPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RegularPageTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RegularPageTemplateType.structureTypeName = "Pages$RegularPageTemplateType";
+    RegularPageTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.RegularPageTemplateType = RegularPageTemplateType;
+    /**
      * In version 7.12.0: introduced
      */
     class RetrievalQuery extends internal.Element {
@@ -38303,6 +39710,8 @@ var pages;
             this.__widgetName = new internal.PrimitiveProperty(RetrievalQuery, this, "widgetName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__usedAssociations = new internal.PrimitiveListProperty(RetrievalQuery, this, "usedAssociations", [], internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__usedAttributes = new internal.PrimitiveListProperty(RetrievalQuery, this, "usedAttributes", [], internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__schemaId = new internal.PrimitiveProperty(RetrievalQuery, this, "schemaId", "", internal.PrimitiveTypeEnum.Guid);
             /** @internal */
@@ -38375,6 +39784,12 @@ var pages;
             return this.__usedAssociations.get();
         }
         /**
+         * In version 8.11.0: introduced
+         */
+        get usedAttributes() {
+            return this.__usedAttributes.get();
+        }
+        /**
          * In version 8.4.0: deleted
          */
         get schemaId() {
@@ -38423,6 +39838,9 @@ var pages;
             },
             usedAssociations: {
                 introduced: "8.4.0"
+            },
+            usedAttributes: {
+                introduced: "8.11.0"
             },
             schemaId: {
                 deleted: "8.4.0",
@@ -38579,7 +39997,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.RetrievalSchema = RetrievalSchema;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/save-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/save-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
@@ -39076,10 +40494,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, SaveChangesClientAction, "action", false);
         }
         /**
@@ -39270,7 +40688,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SaveChangesClientAction = SaveChangesClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/scroll-container relevant section in reference guide}
      */
     class ScrollContainer extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -40257,7 +41675,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.ScrollContainerRegion = ScrollContainerRegion;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class SearchBar extends ControlBar {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -40322,7 +41740,7 @@ var pages;
     SearchBar.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.SearchBar = SearchBar;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class SelectButton extends GridControlBarButton {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -40381,6 +41799,52 @@ var pages;
     SelectButton.structureTypeName = "Pages$SelectButton";
     SelectButton.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.SelectButton = SelectButton;
+    /**
+     * In version 8.13.0: introduced
+     */
+    class SelectPageTemplateType extends TemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new SelectPageTemplateType() cannot be invoked directly, please use 'model.pages.createSelectPageTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new SelectPageTemplateType instance in the SDK and on the server.
+         * The new SelectPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SelectPageTemplateType.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, SelectPageTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new SelectPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SelectPageTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SelectPageTemplateType.structureTypeName = "Pages$SelectPageTemplateType";
+    SelectPageTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.SelectPageTemplateType = SelectPageTemplateType;
     class SelectorSource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -40653,7 +42117,307 @@ var pages;
     }, internal.StructureType.Element);
     pages.SelectorXPathSource = SelectorXPathSource;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sidebar-toggle-button relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class SetTaskOutcomeClientAction extends ClientAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeClientAction, this, "outcome", null, "Workflows$WorkflowTaskOutcome");
+            /** @internal */
+            this.__closePage = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__commit = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "commit", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new SetTaskOutcomeClientAction() cannot be invoked directly, please use 'model.pages.createSetTaskOutcomeClientAction()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsActionItem() {
+            return super.getContainerAs(ActionItem);
+        }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsGridActionButton() {
+            return super.getContainerAs(GridActionButton);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsReferenceSetSelector() {
+            return super.getContainerAs(ReferenceSetSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get outcome() {
+            return this.__outcome.get();
+        }
+        set outcome(newValue) {
+            this.__outcome.set(newValue);
+        }
+        get outcomeQualifiedName() {
+            return this.__outcome.qualifiedName();
+        }
+        get closePage() {
+            return this.__closePage.get();
+        }
+        set closePage(newValue) {
+            this.__closePage.set(newValue);
+        }
+        get commit() {
+            return this.__commit.get();
+        }
+        set commit(newValue) {
+            this.__commit.set(newValue);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onEnterAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onLeaveAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onClickAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "pullDownAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onEnterKeyPressAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SetTaskOutcomeClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.closePage = true;
+            this.commit = true;
+        }
+    }
+    SetTaskOutcomeClientAction.structureTypeName = "Pages$SetTaskOutcomeClientAction";
+    SetTaskOutcomeClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.SetTaskOutcomeClientAction = SetTaskOutcomeClientAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/sidebar-toggle-button relevant section in reference guide}
      */
     class SidebarToggleButton extends Button {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -41524,10 +43288,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, SignOutClientAction, "action", false);
         }
         /**
@@ -41717,7 +43481,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SignOutClientAction = SignOutClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/simple-menu-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/simple-menu-bar relevant section in reference guide}
      */
     class SimpleMenuBar extends MenuWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -42439,7 +44203,7 @@ var pages;
     SimpleMenuBar.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.SimpleMenuBar = SimpleMenuBar;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/snippet relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/snippet relevant section in reference guide}
      */
     class Snippet extends FormBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -42581,7 +44345,7 @@ var pages;
     SnippetCall.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.SnippetCall = SnippetCall;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/snippet-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/snippet-call relevant section in reference guide}
      */
     class SnippetCallWidget extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -43311,7 +45075,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SnippetCallWidget = SnippetCallWidget;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
     class StaticImageViewer extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -44664,10 +46428,10 @@ var pages;
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, SyncClientAction.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, SyncClientAction.structureTypeName, { start: "8.0.0", end: "8.14.0" });
             return internal.instancehelpers.createElement(container, SyncClientAction, "action", false);
         }
         /**
@@ -44857,7 +46621,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.SyncClientAction = SyncClientAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/tab-container relevant section in reference guide}
      */
     class TabContainer extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -45583,7 +47347,7 @@ var pages;
     TabContainer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.TabContainer = TabContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/tab-container relevant section in reference guide}
      */
     class TabPage extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -45600,6 +47364,8 @@ var pages;
             this.__widget = new internal.PartProperty(TabPage, this, "widget", null, false);
             /** @internal */
             this.__widgets = new internal.PartListProperty(TabPage, this, "widgets", []);
+            /** @internal */
+            this.__badge = new internal.PartProperty(TabPage, this, "badge", null, false);
             if (arguments.length < 4) {
                 throw new Error("new TabPage() cannot be invoked directly, please use 'model.pages.createTabPage()'");
             }
@@ -45647,6 +47413,15 @@ var pages;
             return this.__widgets.get();
         }
         /**
+         * In version 8.13.0: introduced
+         */
+        get badge() {
+            return this.__badge.get();
+        }
+        set badge(newValue) {
+            this.__badge.set(newValue);
+        }
+        /**
          * Creates and returns a new TabPage instance in the SDK and on the server.
          * The new TabPage will be automatically stored in the 'tabPages' property
          * of the parent TabContainer element passed as argument.
@@ -45691,12 +47466,15 @@ var pages;
             },
             widgets: {
                 introduced: "7.15.0"
+            },
+            badge: {
+                introduced: "8.13.0"
             }
         }
     }, internal.StructureType.Element);
     pages.TabPage = TabPage;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/table relevant section in reference guide}
      */
     class Table extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -46766,7 +48544,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.TableRow = TableRow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/template-grid relevant section in reference guide}
      */
     class TemplateGrid extends Grid {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -47576,6 +49354,348 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.TemplateGridContents = TemplateGridContents;
+    /**
+     * In version 8.13.0: introduced
+     */
+    class TemplatePlaceholder extends Widget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__type = new internal.PrimitiveProperty(TemplatePlaceholder, this, "type", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new TemplatePlaceholder() cannot be invoked directly, please use 'model.pages.createTemplatePlaceholder()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsBuildingBlock() {
+            return super.getContainerAs(BuildingBlock);
+        }
+        get containerAsDataView() {
+            return super.getContainerAs(DataView);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsGroupBox() {
+            return super.getContainerAs(GroupBox);
+        }
+        get containerAsHeader() {
+            return super.getContainerAs(Header);
+        }
+        get containerAsLayoutCallArgument() {
+            return super.getContainerAs(LayoutCallArgument);
+        }
+        get containerAsLayoutGridColumn() {
+            return super.getContainerAs(LayoutGridColumn);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsListViewTemplate() {
+            return super.getContainerAs(ListViewTemplate);
+        }
+        get containerAsNativeLayoutContent() {
+            return super.getContainerAs(NativeLayoutContent);
+        }
+        get containerAsNavigationListItem() {
+            return super.getContainerAs(NavigationListItem);
+        }
+        get containerAsScrollContainerRegion() {
+            return super.getContainerAs(ScrollContainerRegion);
+        }
+        get containerAsSnippet() {
+            return super.getContainerAs(Snippet);
+        }
+        get containerAsTabPage() {
+            return super.getContainerAs(TabPage);
+        }
+        get containerAsTableCell() {
+            return super.getContainerAs(TableCell);
+        }
+        get containerAsTemplateGridContents() {
+            return super.getContainerAs(TemplateGridContents);
+        }
+        get containerAsWebLayoutContent() {
+            return super.getContainerAs(WebLayoutContent);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInWidgetValueUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent BuildingBlock element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInBuildingBlockUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'footerWidgets' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDataViewUnderFooterWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "footerWidgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDataViewUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDivContainerUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent GroupBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInGroupBoxUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'leftWidgets' property
+         * of the parent Header element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInHeaderUnderLeftWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "leftWidgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'rightWidgets' property
+         * of the parent Header element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInHeaderUnderRightWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "rightWidgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent LayoutCallArgument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInLayoutCallArgumentUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent LayoutGridColumn element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInLayoutGridColumnUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInListViewUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ListViewTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInListViewTemplateUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "sidebarWidgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNativeLayoutContentUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent NavigationListItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNavigationListItemUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ScrollContainerRegion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInScrollContainerRegionUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInSnippetUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TabPage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTabPageUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TableCell element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTableCellUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TemplateGridContents element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTemplateGridContentsUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent WebLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInWebLayoutContentUnderWidgets(container) {
+            internal.createInVersionCheck(container.model, TemplatePlaceholder.structureTypeName, { start: "8.13.0" });
+            return internal.instancehelpers.createElement(container, TemplatePlaceholder, "widgets", true);
+        }
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TemplatePlaceholder);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TemplatePlaceholder.structureTypeName = "Pages$TemplatePlaceholder";
+    TemplatePlaceholder.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.13.0"
+    }, internal.StructureType.Element);
+    pages.TemplatePlaceholder = TemplatePlaceholder;
     class TextWidget extends AttributeWidgetWithPlaceholder {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -47676,7 +49796,7 @@ var pages;
     TextWidget.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.TextWidget = TextWidget;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text-area relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text-area relevant section in reference guide}
      */
     class TextArea extends TextWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -47687,6 +49807,8 @@ var pages;
             this.__counterMessage = new internal.PartProperty(TextArea, this, "counterMessage", null, true);
             /** @internal */
             this.__textTooLongMessage = new internal.PartProperty(TextArea, this, "textTooLongMessage", null, true);
+            /** @internal */
+            this.__autocomplete = new internal.PrimitiveProperty(TextArea, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new TextArea() cannot be invoked directly, please use 'model.pages.createTextArea()'");
             }
@@ -47783,6 +49905,15 @@ var pages;
         }
         set textTooLongMessage(newValue) {
             this.__textTooLongMessage.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete() {
+            return this.__autocomplete.get();
+        }
+        set autocomplete(newValue) {
+            this.__autocomplete.set(newValue);
         }
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -48407,6 +50538,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__autocomplete.isAvailable) {
+                this.autocomplete = true;
+            }
             this.counterMessage = texts_1.texts.Text.create(this.model);
             this.numberOfLines = 5;
             this.textTooLongMessage = texts_1.texts.Text.create(this.model);
@@ -48424,12 +50558,15 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            autocomplete: {
+                introduced: "8.10.0"
             }
         }
     }, internal.StructureType.Element);
     pages.TextArea = TextArea;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text-box relevant section in reference guide}
      */
     class TextBox extends TextWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -48444,6 +50581,14 @@ var pages;
             this.__keyboardType = new internal.EnumProperty(TextBox, this, "keyboardType", KeyboardType.Default, KeyboardType);
             /** @internal */
             this.__onEnterKeyPressAction = new internal.PartProperty(TextBox, this, "onEnterKeyPressAction", null, true);
+            /** @internal */
+            this.__autocomplete = new internal.PrimitiveProperty(TextBox, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__autocompletePurpose = new internal.EnumProperty(TextBox, this, "autocompletePurpose", AutocompletePurposeType.On, AutocompletePurposeType);
+            /** @internal */
+            this.__submitBehaviour = new internal.EnumProperty(TextBox, this, "submitBehaviour", SubmitBehaviourType.OnEndEditing, SubmitBehaviourType);
+            /** @internal */
+            this.__submitOnInputDelay = new internal.PrimitiveProperty(TextBox, this, "submitOnInputDelay", 0, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
             }
@@ -48558,6 +50703,42 @@ var pages;
         }
         set onEnterKeyPressAction(newValue) {
             this.__onEnterKeyPressAction.set(newValue);
+        }
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete() {
+            return this.__autocomplete.get();
+        }
+        set autocomplete(newValue) {
+            this.__autocomplete.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get autocompletePurpose() {
+            return this.__autocompletePurpose.get();
+        }
+        set autocompletePurpose(newValue) {
+            this.__autocompletePurpose.set(newValue);
+        }
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitBehaviour() {
+            return this.__submitBehaviour.get();
+        }
+        set submitBehaviour(newValue) {
+            this.__submitBehaviour.set(newValue);
+        }
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitOnInputDelay() {
+            return this.__submitOnInputDelay.get();
+        }
+        set submitOnInputDelay(newValue) {
+            this.__submitOnInputDelay.set(newValue);
         }
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -49182,12 +51363,24 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__autocomplete.isAvailable) {
+                this.autocomplete = true;
+            }
+            if (this.__autocompletePurpose.isAvailable) {
+                this.autocompletePurpose = AutocompletePurposeType.On;
+            }
             this.formattingInfo = FormattingInfo.create(this.model);
             if (this.__keyboardType.isAvailable) {
                 this.keyboardType = KeyboardType.Default;
             }
             if (this.__onEnterKeyPressAction.isAvailable) {
                 this.onEnterKeyPressAction = NoClientAction.create(this.model);
+            }
+            if (this.__submitBehaviour.isAvailable) {
+                this.submitBehaviour = SubmitBehaviourType.OnEndEditing;
+            }
+            if (this.__submitOnInputDelay.isAvailable) {
+                this.submitOnInputDelay = 300;
             }
         }
     }
@@ -49207,12 +51400,24 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            autocomplete: {
+                introduced: "8.10.0"
+            },
+            autocompletePurpose: {
+                introduced: "8.12.0"
+            },
+            submitBehaviour: {
+                introduced: "8.15.0"
+            },
+            submitOnInputDelay: {
+                introduced: "8.15.0"
             }
         }
     }, internal.StructureType.Element);
     pages.TextBox = TextBox;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-title relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-title relevant section in reference guide}
      */
     class Title extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -49925,7 +52130,79 @@ var pages;
     Title.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.Title = Title;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-message relevant section in reference guide}
+     * In version 8.15.0: introduced
+     */
+    class WorkflowTemplateType extends TemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowTemplateType() cannot be invoked directly, please use 'model.pages.createWorkflowTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowTemplateType.structureTypeName = "Pages$WorkflowTemplateType";
+    WorkflowTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.WorkflowTemplateType = WorkflowTemplateType;
+    /**
+     * In version 8.15.0: introduced
+     */
+    class UserTaskTemplateType extends WorkflowTemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UserTaskTemplateType() cannot be invoked directly, please use 'model.pages.createUserTaskTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new UserTaskTemplateType instance in the SDK and on the server.
+         * The new UserTaskTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, UserTaskTemplateType.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, UserTaskTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new UserTaskTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, UserTaskTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UserTaskTemplateType.structureTypeName = "Pages$UserTaskTemplateType";
+    UserTaskTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.UserTaskTemplateType = UserTaskTemplateType;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/validation-message relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
@@ -50997,7 +53274,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.VerticalFlow = VerticalFlow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/vertical-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
@@ -51771,6 +54048,8 @@ var pages;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel() {
@@ -51844,6 +54123,52 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.WidgetValidation = WidgetValidation;
+    /**
+     * In version 8.15.0: introduced
+     */
+    class WorkflowOverviewTemplateType extends WorkflowTemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowOverviewTemplateType() cannot be invoked directly, please use 'model.pages.createWorkflowOverviewTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new WorkflowOverviewTemplateType instance in the SDK and on the server.
+         * The new WorkflowOverviewTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowOverviewTemplateType.structureTypeName, { start: "8.15.0" });
+            return internal.instancehelpers.createElement(container, WorkflowOverviewTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new WorkflowOverviewTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowOverviewTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowOverviewTemplateType.structureTypeName = "Pages$WorkflowOverviewTemplateType";
+    WorkflowOverviewTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.15.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.WorkflowOverviewTemplateType = WorkflowOverviewTemplateType;
 })(pages = exports.pages || (exports.pages = {}));
 const customwidgets_1 = require("./customwidgets");
 const documenttemplates_1 = require("./documenttemplates");

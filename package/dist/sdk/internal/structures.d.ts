@@ -55,12 +55,12 @@ export interface IChildHandle {
     detach(): void;
 }
 export declare type StructureState = "new" | "attached" | "detached" | "deleted";
-export declare abstract class Structure implements IStructure {
+export declare abstract class Structure<TModel extends IAbstractModel = IAbstractModel, TContainer extends aliases.IContainer | null = aliases.IContainer | null> implements IStructure {
     structureTypeName: string;
     id: string;
     constructor(_model: AbstractModel, structureTypeName: string, id: string, _isPartial?: boolean, container?: aliases.IContainer | null);
-    get container(): aliases.IContainer | null;
-    get model(): IAbstractModel;
+    get container(): TContainer;
+    get model(): TModel;
     abstract get unit(): units.IAbstractUnit;
     abstract get isLoaded(): boolean;
     /**

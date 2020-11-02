@@ -18,6 +18,64 @@ export declare namespace pages {
         static Right: AlignmentEnum;
         protected qualifiedTsTypeName: string;
     }
+    class AutocompletePurposeType extends internal.AbstractEnum {
+        static On: AutocompletePurposeType;
+        static Off: AutocompletePurposeType;
+        static FullName: AutocompletePurposeType;
+        static HonorificPrefix: AutocompletePurposeType;
+        static GivenName: AutocompletePurposeType;
+        static AdditionalName: AutocompletePurposeType;
+        static FamilyName: AutocompletePurposeType;
+        static HonorificSuffix: AutocompletePurposeType;
+        static Nickname: AutocompletePurposeType;
+        static JobTitle: AutocompletePurposeType;
+        static Username: AutocompletePurposeType;
+        static NewPassword: AutocompletePurposeType;
+        static CurrentPassword: AutocompletePurposeType;
+        static CompanyName: AutocompletePurposeType;
+        static StreetAddress: AutocompletePurposeType;
+        static StreetAddressLine1: AutocompletePurposeType;
+        static StreetAddressLine2: AutocompletePurposeType;
+        static StreetAddressLine3: AutocompletePurposeType;
+        static AddressLevel4: AutocompletePurposeType;
+        static AddressLevel3: AutocompletePurposeType;
+        static AddressLevel2: AutocompletePurposeType;
+        static AddressLevel1: AutocompletePurposeType;
+        static CountryCode: AutocompletePurposeType;
+        static CountryName: AutocompletePurposeType;
+        static PostalCode: AutocompletePurposeType;
+        static CreditCardFullName: AutocompletePurposeType;
+        static CreditCardGivenName: AutocompletePurposeType;
+        static CreditCardAdditionalName: AutocompletePurposeType;
+        static CreditCardFamilyName: AutocompletePurposeType;
+        static CreditCardNumber: AutocompletePurposeType;
+        static CreditCardExpiration: AutocompletePurposeType;
+        static CreditCardExpirationMonth: AutocompletePurposeType;
+        static CreditCardExpirationYear: AutocompletePurposeType;
+        static CreditCardSecurityCode: AutocompletePurposeType;
+        static CreditCardType: AutocompletePurposeType;
+        static TransactionCurrency: AutocompletePurposeType;
+        static TransactionAmount: AutocompletePurposeType;
+        static Language: AutocompletePurposeType;
+        static Birthday: AutocompletePurposeType;
+        static DayOfBirth: AutocompletePurposeType;
+        static MonthOfBirth: AutocompletePurposeType;
+        static YearOfBirth: AutocompletePurposeType;
+        static Sex: AutocompletePurposeType;
+        static Url: AutocompletePurposeType;
+        static Photo: AutocompletePurposeType;
+        static TelephoneNumber: AutocompletePurposeType;
+        static TelephoneCountryCode: AutocompletePurposeType;
+        static TelephoneWithoutCountryCode: AutocompletePurposeType;
+        static TelephoneAreaCode: AutocompletePurposeType;
+        static TelephoneLocal: AutocompletePurposeType;
+        static TelephoneLocalPrefix: AutocompletePurposeType;
+        static TelephoneLocalSuffix: AutocompletePurposeType;
+        static TelephoneExtension: AutocompletePurposeType;
+        static Email: AutocompletePurposeType;
+        static InstantMessageProtocol: AutocompletePurposeType;
+        protected qualifiedTsTypeName: string;
+    }
     class ButtonStyle extends internal.AbstractEnum {
         static Default: ButtonStyle;
         static Inverse: ButtonStyle;
@@ -120,6 +178,16 @@ export declare namespace pages {
         static No: GroupBoxCollapsible;
         static YesInitiallyExpanded: GroupBoxCollapsible;
         static YesInitiallyCollapsed: GroupBoxCollapsible;
+        protected qualifiedTsTypeName: string;
+    }
+    class GroupBoxRenderMode extends internal.AbstractEnum {
+        static Div: GroupBoxRenderMode;
+        static H1: GroupBoxRenderMode;
+        static H2: GroupBoxRenderMode;
+        static H3: GroupBoxRenderMode;
+        static H4: GroupBoxRenderMode;
+        static H5: GroupBoxRenderMode;
+        static H6: GroupBoxRenderMode;
         protected qualifiedTsTypeName: string;
     }
     class ImageSizeUnit extends internal.AbstractEnum {
@@ -266,6 +334,12 @@ export declare namespace pages {
         static SelectAll: SelectionType;
         protected qualifiedTsTypeName: string;
     }
+    class ShowPagingBarType extends internal.AbstractEnum {
+        static YesWithTotalCount: ShowPagingBarType;
+        static YesWithoutTotalCount: ShowPagingBarType;
+        static No: ShowPagingBarType;
+        protected qualifiedTsTypeName: string;
+    }
     class SidebarToggleMode extends internal.AbstractEnum {
         static PushContentAside: SidebarToggleMode;
         static SlideOverContent: SidebarToggleMode;
@@ -296,6 +370,11 @@ export declare namespace pages {
     class SortDirection extends internal.AbstractEnum {
         static Ascending: SortDirection;
         static Descending: SortDirection;
+        protected qualifiedTsTypeName: string;
+    }
+    class SubmitBehaviourType extends internal.AbstractEnum {
+        static OnEndEditing: SubmitBehaviourType;
+        static WhileEditing: SubmitBehaviourType;
         protected qualifiedTsTypeName: string;
     }
     class TableCellRenderModeType extends internal.AbstractEnum {
@@ -332,12 +411,11 @@ export declare namespace pages {
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
-    abstract class Widget extends internal.Element {
+    abstract class Widget extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -387,7 +465,6 @@ export declare namespace pages {
     abstract class ConditionallyVisibleWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -418,12 +495,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     abstract class Button extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -462,12 +538,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     class ActionButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -495,6 +570,9 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get action(): ClientAction;
         set action(newValue: ClientAction);
+        /**
+         * In version 8.12.0: deleted
+         */
         get disabledDuringAction(): boolean;
         set disabledDuringAction(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -964,10 +1042,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ActionButton;
     }
-    abstract class ActionItem extends internal.Element {
+    abstract class ActionItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDropDownButton(): DropDownButton;
         get containerAsNavigationList(): NavigationList;
         get action(): ClientAction;
@@ -977,10 +1054,9 @@ export declare namespace pages {
     /**
      * In version 8.0.0: introduced
      */
-    class Appearance extends internal.Element {
+    class Appearance extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBarButton(): ControlBarButton;
         get containerAsGridColumn(): GridColumn;
         get containerAsLayout(): Layout;
@@ -998,6 +1074,13 @@ export declare namespace pages {
         get style(): string;
         set style(newValue: string);
         get designProperties(): internal.IList<DesignPropertyValue>;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.13.0: introduced
+         */
+        get dynamicClasses(): string;
+        set dynamicClasses(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Appearance instance in the SDK and on the server.
@@ -1115,12 +1198,11 @@ export declare namespace pages {
         static create(model: IModel): Appearance;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-sources relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-sources relevant section in reference guide}
      */
-    abstract class DataSource extends internal.Element {
+    abstract class DataSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1128,7 +1210,6 @@ export declare namespace pages {
     abstract class EntityPathSource extends DataSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         /**
@@ -1148,7 +1229,6 @@ export declare namespace pages {
     class AssociationSource extends EntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1186,7 +1266,6 @@ export declare namespace pages {
     abstract class ConditionallyEditableWidget extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1221,7 +1300,6 @@ export declare namespace pages {
     abstract class InputWidget extends ConditionallyEditableWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1257,12 +1335,16 @@ export declare namespace pages {
          */
         get labelTemplate(): ClientTemplate | null;
         set labelTemplate(newValue: ClientTemplate | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderLabel(): ClientTemplate | null;
+        set screenReaderLabel(newValue: ClientTemplate | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class MemberWidget extends InputWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1310,7 +1392,6 @@ export declare namespace pages {
     abstract class AssociationWidget extends MemberWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1355,7 +1436,6 @@ export declare namespace pages {
     abstract class AttributeWidget extends MemberWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1426,12 +1506,16 @@ export declare namespace pages {
          */
         get onLeaveAction(): ClientAction;
         set onLeaveAction(newValue: ClientAction);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidgetWithPlaceholder extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -1462,14 +1546,13 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/close-page-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/close-page-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
     class BackButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -1695,7 +1778,7 @@ export declare namespace pages {
         static create(model: IModel): BackButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     interface IFormBase extends projects.IDocument {
         readonly model: IModel;
@@ -1705,12 +1788,11 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<FormBase>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     abstract class FormBase extends projects.Document implements IFormBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get canvasWidth(): number;
         set canvasWidth(newValue: number);
@@ -1742,7 +1824,6 @@ export declare namespace pages {
     abstract class TemplateFormBase extends FormBase implements ITemplateFormBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.17.0: added public
@@ -1759,7 +1840,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/building-block relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/building-block relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -1776,14 +1857,13 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<BuildingBlock>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/building-block relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/building-block relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
     class BuildingBlock extends TemplateFormBase implements IBuildingBlock {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.15.0: deleted
@@ -1807,10 +1887,9 @@ export declare namespace pages {
          */
         static createIn(container: projects.IFolderBase): BuildingBlock;
     }
-    abstract class ClientAction extends internal.Element {
+    abstract class ClientAction extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -1826,6 +1905,11 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 8.12.0: introduced
+         */
+        get disabledDuringExecution(): boolean;
+        set disabledDuringExecution(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1835,7 +1919,6 @@ export declare namespace pages {
     class CallNanoflowClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -1891,7 +1974,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CallNanoflowClientAction;
         /**
@@ -2028,14 +2111,200 @@ export declare namespace pages {
         static create(model: IModel): CallNanoflowClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cancel-button relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class CallWorkflowClientAction extends ClientAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get workflow(): workflows.IWorkflow | null;
+        set workflow(newValue: workflows.IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
+        get commit(): boolean;
+        set commit(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container: menus.MenuItem): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container: ActionButton): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container: ActionItem): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container: DivContainer): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container: GridActionButton): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container: ListView): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container: ListView): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallWorkflowClientAction;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide6/cancel-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
     class CancelButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -2271,7 +2540,6 @@ export declare namespace pages {
     class CancelChangesClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -2313,7 +2581,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CancelChangesClientAction;
         /**
@@ -2450,12 +2718,11 @@ export declare namespace pages {
         static create(model: IModel): CancelChangesClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/check-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/check-box relevant section in reference guide}
      */
     class CheckBox extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -2953,10 +3220,9 @@ export declare namespace pages {
          */
         static create(model: IModel): CheckBox;
     }
-    class ClientTemplate extends internal.Element {
+    class ClientTemplate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsWidgetObject(): customwidgets.WidgetObject;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -2968,6 +3234,7 @@ export declare namespace pages {
         get containerAsGroupBox(): GroupBox;
         get containerAsInputWidget(): InputWidget;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabPage(): TabPage;
         get template(): texts.Text;
         set template(newValue: texts.Text);
         get parameters(): internal.IList<ClientTemplateParameter>;
@@ -3057,6 +3324,15 @@ export declare namespace pages {
         static createInInputWidgetUnderLabelTemplate(container: InputWidget): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderLabel' property
+         * of the parent InputWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.12.0 and higher
+         */
+        static createInInputWidgetUnderScreenReaderLabel(container: InputWidget): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'alternativeText' property
          * of the parent StaticImageViewer element passed as argument.
          *
@@ -3066,15 +3342,23 @@ export declare namespace pages {
         static createInStaticImageViewerUnderAlternativeText(container: StaticImageViewer): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'badge' property
+         * of the parent TabPage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTabPageUnderBadge(container: TabPage): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ClientTemplate;
     }
-    class ClientTemplateParameter extends internal.Element {
+    class ClientTemplateParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsClientTemplate(): ClientTemplate;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -3113,7 +3397,6 @@ export declare namespace pages {
     class ClosePageClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -3128,6 +3411,19 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.9.0: introduced
+         */
+        get numberOfPages(): number;
+        set numberOfPages(newValue: number);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose(): string;
+        set numberOfPagesToClose(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -3153,7 +3449,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): ClosePageClientAction;
         /**
@@ -3292,7 +3588,6 @@ export declare namespace pages {
     abstract class EntityWidget extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -3325,7 +3620,6 @@ export declare namespace pages {
     abstract class ListenTargetWidget extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -3356,7 +3650,6 @@ export declare namespace pages {
     abstract class Grid extends ListenTargetWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -3384,8 +3677,16 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get isControlBarVisible(): boolean;
         set isControlBarVisible(newValue: boolean);
+        /**
+         * In version 8.13.0: deleted
+         */
         get isPagingEnabled(): boolean;
         set isPagingEnabled(newValue: boolean);
+        /**
+         * In version 8.13.0: introduced
+         */
+        get showPagingBar(): ShowPagingBarType;
+        set showPagingBar(newValue: ShowPagingBarType);
         get selectionMode(): GridSelectionMode;
         set selectionMode(newValue: GridSelectionMode);
         get selectFirst(): boolean;
@@ -3401,7 +3702,6 @@ export declare namespace pages {
     abstract class ColumnGrid extends Grid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -3439,10 +3739,9 @@ export declare namespace pages {
         get tooltipPageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
-    abstract class ControlBarItem extends internal.Element {
+    abstract class ControlBarItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get containerAsGridControlBar(): GridControlBar;
         get name(): string;
@@ -3452,7 +3751,6 @@ export declare namespace pages {
     abstract class SearchField extends ControlBarItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -3475,7 +3773,6 @@ export declare namespace pages {
     abstract class SingleSearchField extends SearchField {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -3494,12 +3791,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/comparison-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class ComparisonSearchField extends SingleSearchField {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3515,10 +3811,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ComparisonSearchField;
     }
-    abstract class ConditionalSettings extends internal.Element {
+    abstract class ConditionalSettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
         get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
@@ -3541,6 +3836,8 @@ export declare namespace pages {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel(): expressions.Expression;
@@ -3550,7 +3847,6 @@ export declare namespace pages {
     class ConditionalEditabilitySettings extends ConditionalSettings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3588,7 +3884,6 @@ export declare namespace pages {
     class ConditionalVisibilitySettings extends ConditionalSettings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
         get containerAsControlBarButton(): ControlBarButton;
@@ -3653,10 +3948,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ConditionalVisibilitySettings;
     }
-    class ConfirmationInfo extends internal.Element {
+    class ConfirmationInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
         get containerAsMicroflowSettings(): MicroflowSettings;
         get question(): texts.Text;
@@ -3697,10 +3991,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ConfirmationInfo;
     }
-    abstract class ControlBar extends internal.Element {
+    abstract class ControlBar extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsGrid(): Grid;
         get containerAsGridBaseSource(): GridBaseSource;
@@ -3711,7 +4004,6 @@ export declare namespace pages {
     abstract class ControlBarButton extends ControlBarItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get containerAsGridControlBar(): GridControlBar;
         get caption(): ClientTemplate;
@@ -3747,7 +4039,6 @@ export declare namespace pages {
     class CreateObjectClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -3766,6 +4057,19 @@ export declare namespace pages {
         set entityRef(newValue: domainmodels.EntityRef | null);
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): number;
+        set numberOfPagesToClose(newValue: number);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose2(): string;
+        set numberOfPagesToClose2(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
@@ -3791,7 +4095,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CreateObjectClientAction;
         /**
@@ -3928,12 +4232,11 @@ export declare namespace pages {
         static create(model: IModel): CreateObjectClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-grid relevant section in reference guide}
      */
     class DataGrid extends ColumnGrid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -4434,18 +4737,16 @@ export declare namespace pages {
     abstract class GridControlBarButton extends ControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get containerAsGridControlBar(): GridControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/add-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridAddButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
@@ -4464,12 +4765,11 @@ export declare namespace pages {
         static create(model: IModel): DataGridAddButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-csv-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridExportToCSVButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get maxNumberOfRows(): number;
         set maxNumberOfRows(newValue: number);
@@ -4498,12 +4798,11 @@ export declare namespace pages {
         static create(model: IModel): DataGridExportToCSVButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/export-to-excel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridExportToExcelButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get maxNumberOfRows(): number;
         set maxNumberOfRows(newValue: number);
@@ -4524,12 +4823,11 @@ export declare namespace pages {
         static create(model: IModel): DataGridExportToExcelButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/remove-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class DataGridRemoveButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -4546,12 +4844,11 @@ export declare namespace pages {
         static create(model: IModel): DataGridRemoveButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-view relevant section in reference guide}
      */
     class DataView extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -5106,21 +5403,19 @@ export declare namespace pages {
     abstract class DataViewControlBarButton extends ControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get tabIndex(): number;
         set tabIndex(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-action-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
     class DataViewActionButton extends DataViewControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get action(): ClientAction;
         set action(newValue: ClientAction);
@@ -5142,14 +5437,13 @@ export declare namespace pages {
         static create(model: IModel): DataViewActionButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-cancel-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-cancel-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
     class DataViewCancelButton extends DataViewControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -5169,14 +5463,13 @@ export declare namespace pages {
         static create(model: IModel): DataViewCancelButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-close-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-close-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
     class DataViewCloseButton extends DataViewControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -5196,14 +5489,13 @@ export declare namespace pages {
         static create(model: IModel): DataViewCloseButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-control-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-control-bar relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
     class DataViewControlBar extends ControlBar {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get closeButton(): ControlBarItem | null;
         set closeButton(newValue: ControlBarItem | null);
@@ -5225,14 +5517,13 @@ export declare namespace pages {
         static create(model: IModel): DataViewControlBar;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-save-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/data-view-save-button relevant section in reference guide}
      *
      * In version 6.7.0: deleted
      */
     class DataViewSaveButton extends DataViewControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         /**
          * In version 6.6.0: introduced
@@ -5259,7 +5550,6 @@ export declare namespace pages {
     class DataViewSource extends EntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -5294,10 +5584,9 @@ export declare namespace pages {
          */
         static create(model: IModel): DataViewSource;
     }
-    class DatabaseConstraint extends internal.Element {
+    class DatabaseConstraint extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDatabaseSourceBase(): DatabaseSourceBase;
         get containerAsSelectorDatabaseSource(): SelectorDatabaseSource;
         get attribute(): domainmodels.IAttribute | null;
@@ -5342,7 +5631,6 @@ export declare namespace pages {
     abstract class SortableEntityPathSource extends EntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get sortBar(): GridSortBar;
@@ -5352,19 +5640,17 @@ export declare namespace pages {
     abstract class DatabaseSourceBase extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get databaseConstraints(): internal.IList<DatabaseConstraint>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/date-picker relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/date-picker relevant section in reference guide}
      */
     class DatePicker extends AttributeWidgetWithPlaceholder {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -5865,7 +6151,6 @@ export declare namespace pages {
     class DeleteClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -5907,7 +6192,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): DeleteClientAction;
         /**
@@ -6046,10 +6331,9 @@ export declare namespace pages {
     /**
      * In version 8.0.0: introduced
      */
-    class DesignPropertyValue extends internal.Element {
+    class DesignPropertyValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAppearance(): Appearance;
         get key(): string;
         set key(newValue: string);
@@ -6077,12 +6361,11 @@ export declare namespace pages {
         static create(model: IModel): DesignPropertyValue;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/container relevant section in reference guide}
      */
     class DivContainer extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -6127,6 +6410,11 @@ export declare namespace pages {
          */
         get onClickAction(): ClientAction;
         set onClickAction(newValue: ClientAction);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get screenReaderHidden(): boolean;
+        set screenReaderHidden(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -6595,12 +6883,11 @@ export declare namespace pages {
         static create(model: IModel): DivContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-widget relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/drop-down relevant section in reference guide}
      */
     class DropDown extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -7099,12 +7386,11 @@ export declare namespace pages {
         static create(model: IModel): DropDown;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
      */
     class DropDownButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -7601,7 +7887,6 @@ export declare namespace pages {
     class DropDownButtonItem extends ActionItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDropDownButton(): DropDownButton;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
@@ -7623,12 +7908,11 @@ export declare namespace pages {
         static create(model: IModel): DropDownButtonItem;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/drop-down-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class DropDownSearchField extends SingleSearchField {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get sortBar(): GridSortBar;
         set sortBar(newValue: GridSortBar);
@@ -7654,12 +7938,11 @@ export declare namespace pages {
         static create(model: IModel): DropDownSearchField;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-viewer relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image-viewer relevant section in reference guide}
      */
     class DynamicImageViewer extends EntityWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -8188,12 +8471,11 @@ export declare namespace pages {
         static create(model: IModel): DynamicImageViewer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text relevant section in reference guide}
      */
     class DynamicText extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -8696,12 +8978,64 @@ export declare namespace pages {
         static create(model: IModel): DynamicText;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/file-manager relevant section in reference guide}
+     * In version 8.13.0: introduced
+     */
+    interface ITemplateType extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): TemplateType;
+        load(callback: (element: TemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<TemplateType>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    abstract class TemplateType extends internal.Element<IModel> implements ITemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    interface IEditPageTemplateType extends ITemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): EditPageTemplateType;
+        load(callback: (element: EditPageTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EditPageTemplateType>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class EditPageTemplateType extends TemplateType implements IEditPageTemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EditPageTemplateType instance in the SDK and on the server.
+         * The new EditPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: PageTemplate): EditPageTemplateType;
+        /**
+         * Creates and returns a new EditPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EditPageTemplateType;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/file-manager relevant section in reference guide}
      */
     class FileManager extends InputWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -9202,10 +9536,9 @@ export declare namespace pages {
          */
         static create(model: IModel): FileManager;
     }
-    class FormattingInfo extends internal.Element {
+    class FormattingInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataGridColumn(): documenttemplates.DataGridColumn;
         get containerAsDynamicLabel(): documenttemplates.DynamicLabel;
         get containerAsClientTemplateParameter(): ClientTemplateParameter;
@@ -9277,12 +9610,11 @@ export declare namespace pages {
         static create(model: IModel): FormattingInfo;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-property relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
-    abstract class Icon extends internal.Element {
+    abstract class Icon extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -9293,7 +9625,6 @@ export declare namespace pages {
     class GlyphIcon extends Icon {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -9346,12 +9677,11 @@ export declare namespace pages {
         static create(model: IModel): GlyphIcon;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-action-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridActionButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get action(): ClientAction;
         set action(newValue: ClientAction);
@@ -9374,7 +9704,6 @@ export declare namespace pages {
     abstract class GridBaseSource extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get searchBar(): SearchBar;
@@ -9382,12 +9711,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns relevant section in reference guide}
      */
-    class GridColumn extends internal.Element {
+    class GridColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsColumnGrid(): ColumnGrid;
         get name(): string;
         set name(newValue: string);
@@ -9447,12 +9775,11 @@ export declare namespace pages {
         static create(model: IModel): GridColumn;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/control-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridControlBar extends ControlBar {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGrid(): Grid;
         /**
          * In version 7.13.0: deleted
@@ -9478,7 +9805,6 @@ export declare namespace pages {
     class GridDatabaseSource extends DatabaseSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get searchBar(): SearchBar;
@@ -9521,7 +9847,6 @@ export declare namespace pages {
     class GridDeleteButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -9541,12 +9866,11 @@ export declare namespace pages {
         static create(model: IModel): GridDeleteButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/deselect-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridDeselectAllButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -9570,7 +9894,6 @@ export declare namespace pages {
     class GridEditButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
@@ -9593,12 +9916,11 @@ export declare namespace pages {
         static create(model: IModel): GridEditButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/grid-new-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridNewButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -9628,12 +9950,11 @@ export declare namespace pages {
         static create(model: IModel): GridNewButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridSearchButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get containerAsGridControlBar(): GridControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -9669,12 +9990,11 @@ export declare namespace pages {
         static create(model: IModel): GridSearchButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-all-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class GridSelectAllButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         get selectionType(): SelectionType;
         set selectionType(newValue: SelectionType);
@@ -9693,12 +10013,11 @@ export declare namespace pages {
         static create(model: IModel): GridSelectAllButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sort-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sort-bar relevant section in reference guide}
      */
-    class GridSortBar extends internal.Element {
+    class GridSortBar extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDropDownSearchField(): DropDownSearchField;
         get containerAsSelectorDatabaseSource(): SelectorDatabaseSource;
         get containerAsSelectorXPathSource(): SelectorXPathSource;
@@ -9739,10 +10058,9 @@ export declare namespace pages {
          */
         static create(model: IModel): GridSortBar;
     }
-    class GridSortItem extends internal.Element {
+    class GridSortItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGridSortBar(): GridSortBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -9775,7 +10093,6 @@ export declare namespace pages {
     class GridXPathSource extends GridBaseSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         /**
@@ -9831,12 +10148,11 @@ export declare namespace pages {
         static create(model: IModel): GridXPathSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/group-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/group-box relevant section in reference guide}
      */
     class GroupBox extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -9866,6 +10182,11 @@ export declare namespace pages {
         set caption(newValue: ClientTemplate | null);
         get collapsible(): GroupBoxCollapsible;
         set collapsible(newValue: GroupBoxCollapsible);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get headerMode(): GroupBoxRenderMode;
+        set headerMode(newValue: GroupBoxRenderMode);
         /**
          * In version 7.15.0: deleted
          */
@@ -10343,12 +10664,11 @@ export declare namespace pages {
         static create(model: IModel): GroupBox;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/header relevant section in reference guide}
      */
     class Header extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -10865,7 +11185,6 @@ export declare namespace pages {
     abstract class SplitPane extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
         get containerAsBuildingBlock(): BuildingBlock;
@@ -10915,14 +11234,13 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/horizontal-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
     class HorizontalSplitPane extends SplitPane {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
         get containerAsBuildingBlock(): BuildingBlock;
@@ -11379,7 +11697,6 @@ export declare namespace pages {
     class ImageIcon extends Icon {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -11433,12 +11750,11 @@ export declare namespace pages {
         static create(model: IModel): ImageIcon;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image-uploader relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image-uploader relevant section in reference guide}
      */
     class ImageUploader extends InputWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -11940,7 +12256,6 @@ export declare namespace pages {
     class ImageViewerSource extends EntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -11976,12 +12291,11 @@ export declare namespace pages {
         static create(model: IModel): ImageViewerSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/input-reference-set-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/input-reference-set-selector relevant section in reference guide}
      */
     class InputReferenceSetSelector extends AssociationWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -12475,12 +12789,11 @@ export declare namespace pages {
         static create(model: IModel): InputReferenceSetSelector;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/label relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/label relevant section in reference guide}
      */
     class Label extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -12976,7 +13289,7 @@ export declare namespace pages {
         static create(model: IModel): Label;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/layout relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/layout relevant section in reference guide}
      */
     interface ILayout extends IFormBase {
         readonly model: IModel;
@@ -13003,12 +13316,11 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<Layout>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/layout relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/layout relevant section in reference guide}
      */
     class Layout extends FormBase implements ILayout {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 8.0.0: introduced
@@ -13125,10 +13437,9 @@ export declare namespace pages {
     /**
      * In version 7.17.0: added public
      */
-    class LayoutCall extends internal.Element implements ILayoutCall {
+    class LayoutCall extends internal.Element<IModel> implements ILayoutCall {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayout(): Layout;
         get containerAsPage(): Page;
         get containerAsPageTemplate(): PageTemplate;
@@ -13182,10 +13493,9 @@ export declare namespace pages {
          */
         static create(model: IModel): LayoutCall;
     }
-    class LayoutCallArgument extends internal.Element {
+    class LayoutCallArgument extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayoutCall(): LayoutCall;
         /**
          * In version 6.8.0: deleted
@@ -13234,20 +13544,18 @@ export declare namespace pages {
     /**
      * In version 8.0.0: introduced
      */
-    abstract class LayoutContent extends internal.Element implements ILayoutContent {
+    abstract class LayoutContent extends internal.Element<IModel> implements ILayoutContent {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayout(): Layout;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/layout-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/layout-grid relevant section in reference guide}
      */
     class LayoutGrid extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -13743,10 +14051,9 @@ export declare namespace pages {
          */
         static create(model: IModel): LayoutGrid;
     }
-    class LayoutGridColumn extends internal.Element {
+    class LayoutGridColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayoutGridRow(): LayoutGridRow;
         get weight(): number;
         set weight(newValue: number);
@@ -13803,10 +14110,9 @@ export declare namespace pages {
          */
         static create(model: IModel): LayoutGridColumn;
     }
-    class LayoutGridRow extends internal.Element {
+    class LayoutGridRow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayoutGrid(): LayoutGrid;
         get columns(): internal.IList<LayoutGridColumn>;
         get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
@@ -13863,10 +14169,9 @@ export declare namespace pages {
         load(callback: (element: LayoutParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<LayoutParameter>;
     }
-    class LayoutParameter extends internal.Element implements ILayoutParameter {
+    class LayoutParameter extends internal.Element<IModel> implements ILayoutParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayout(): Layout;
         get name(): string;
         set name(newValue: string);
@@ -13874,14 +14179,13 @@ export declare namespace pages {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/link-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.3.0: deleted
      */
     class LinkButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -14121,12 +14425,11 @@ export declare namespace pages {
         static create(model: IModel): LinkButton;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/list-view relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/list-view relevant section in reference guide}
      */
     class ListView extends ListenTargetWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -14653,7 +14956,6 @@ export declare namespace pages {
     class ListViewDatabaseSource extends DatabaseSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get search(): ListViewSearch;
@@ -14690,10 +14992,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ListViewDatabaseSource;
     }
-    class ListViewSearch extends internal.Element {
+    class ListViewSearch extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListViewDatabaseSource(): ListViewDatabaseSource;
         get containerAsListViewXPathSource(): ListViewXPathSource;
         /**
@@ -14726,10 +15027,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ListViewSearch;
     }
-    class ListViewTemplate extends internal.Element {
+    class ListViewTemplate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsListView(): ListView;
         get specialization(): domainmodels.IEntity;
         set specialization(newValue: domainmodels.IEntity);
@@ -14760,7 +15060,6 @@ export declare namespace pages {
     abstract class XPathSourceBase extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         /**
@@ -14773,7 +15072,6 @@ export declare namespace pages {
     class ListViewXPathSource extends XPathSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get search(): ListViewSearch;
@@ -14813,7 +15111,6 @@ export declare namespace pages {
     class ListenTargetSource extends DataSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get listenTarget(): string;
@@ -14851,14 +15148,13 @@ export declare namespace pages {
         static create(model: IModel): ListenTargetSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-in-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sign-in-button relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
     class LoginButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -15340,7 +15636,6 @@ export declare namespace pages {
     abstract class LoginTextBox extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -15374,14 +15669,13 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/login-id-text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/login-id-text-box relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
     class LoginIdTextBox extends LoginTextBox {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -15856,14 +16150,13 @@ export declare namespace pages {
         static create(model: IModel): LoginIdTextBox;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sign-out-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/button-widgets relevant section in reference guide}
      *
      * In version 7.1.0: deleted
      */
     class LogoutButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -16091,13 +16384,14 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
     class MasterDetail extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBuildingBlock(): BuildingBlock;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
@@ -16119,11 +16413,15 @@ export declare namespace pages {
         get containerAsVerticalFlow(): VerticalFlow;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get master(): MasterDetailMasterRegion;
         set master(newValue: MasterDetailMasterRegion);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get detail(): MasterDetailDetailRegion;
         set detail(newValue: MasterDetailDetailRegion);
@@ -16336,13 +16634,14 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
-    abstract class MasterDetailRegion extends internal.Element {
+    abstract class MasterDetailRegion extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMasterDetail(): MasterDetail;
         get widget(): Widget | null;
         set widget(newValue: Widget | null);
@@ -16355,13 +16654,14 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
     class MasterDetailDetailRegion extends MasterDetailRegion {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMasterDetail(): MasterDetail;
         get responsiveWeight(): number;
         set responsiveWeight(newValue: number);
@@ -16389,13 +16689,14 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
     class MasterDetailMasterRegion extends MasterDetailRegion {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMasterDetail(): MasterDetail;
         get responsiveWeight(): number;
         set responsiveWeight(newValue: number);
@@ -16419,12 +16720,11 @@ export declare namespace pages {
         static create(model: IModel): MasterDetailMasterRegion;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu-widgets relevant section in reference guide}
      */
     abstract class MenuWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -16455,12 +16755,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/menu-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/menu-bar relevant section in reference guide}
      */
     class MenuBar extends MenuWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -16953,17 +17252,15 @@ export declare namespace pages {
          */
         static create(model: IModel): MenuBar;
     }
-    abstract class MenuSource extends internal.Element {
+    abstract class MenuSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMenuWidget(): MenuWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class MenuDocumentSource extends MenuSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMenuWidget(): MenuWidget;
         get menu(): menus.IMenuDocument | null;
         set menu(newValue: menus.IMenuDocument | null);
@@ -16985,7 +17282,6 @@ export declare namespace pages {
     class MicroflowClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -17025,7 +17321,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): MicroflowClientAction;
         /**
@@ -17158,10 +17454,9 @@ export declare namespace pages {
     /**
      * In version 7.19.0: introduced
      */
-    class MicroflowParameterMapping extends internal.Element {
+    class MicroflowParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMicroflowSettings(): MicroflowSettings;
         get parameter(): microflows.IMicroflowParameter;
         set parameter(newValue: microflows.IMicroflowParameter);
@@ -17200,12 +17495,11 @@ export declare namespace pages {
         static create(model: IModel): MicroflowParameterMapping;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/starting-microflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
-    class MicroflowSettings extends internal.Element {
+    class MicroflowSettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationWidget(): AssociationWidget;
         get containerAsAttributeWidget(): AttributeWidget;
         get containerAsMicroflowClientAction(): MicroflowClientAction;
@@ -17318,7 +17612,6 @@ export declare namespace pages {
     class MicroflowSource extends DataSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get microflowSettings(): MicroflowSettings;
@@ -17358,10 +17651,9 @@ export declare namespace pages {
     /**
      * In version 7.19.0: introduced
      */
-    class NanoflowParameterMapping extends internal.Element {
+    class NanoflowParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
         get containerAsNanoflowSource(): NanoflowSource;
         get parameter(): microflows.INanoflowParameter;
@@ -17415,7 +17707,6 @@ export declare namespace pages {
     class NanoflowSource extends DataSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         get nanoflow(): microflows.INanoflow | null;
@@ -17480,7 +17771,6 @@ export declare namespace pages {
     class NativeLayoutContent extends LayoutContent implements INativeLayoutContent {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayout(): Layout;
         /**
          * In version 8.5.0: introduced
@@ -17522,12 +17812,11 @@ export declare namespace pages {
         static create(model: IModel): NativeLayoutContent;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation-list relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation-list relevant section in reference guide}
      */
     class NavigationList extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -18024,7 +18313,6 @@ export declare namespace pages {
     class NavigationListItem extends ActionItem {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNavigationList(): NavigationList;
         /**
          * In version 7.15.0: deleted
@@ -18069,7 +18357,6 @@ export declare namespace pages {
     class NavigationSource extends MenuSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMenuWidget(): MenuWidget;
         /**
          * In version 7.2.0: deleted
@@ -18097,12 +18384,11 @@ export declare namespace pages {
         static create(model: IModel): NavigationSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation-tree relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation-tree relevant section in reference guide}
      */
     class NavigationTree extends MenuWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -18601,7 +18887,6 @@ export declare namespace pages {
     class NewButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBuildingBlock(): BuildingBlock;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
@@ -19050,7 +19335,6 @@ export declare namespace pages {
     class NoClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -19088,7 +19372,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): NoClientAction;
         /**
@@ -19221,10 +19505,9 @@ export declare namespace pages {
     /**
      * In version 7.22.0: deleted
      */
-    class OfflineSchema extends internal.Element {
+    class OfflineSchema extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get role(): security.IUserRole | null;
         set role(newValue: security.IUserRole | null);
         get roleQualifiedName(): string | null;
@@ -19243,10 +19526,9 @@ export declare namespace pages {
     /**
      * In version 7.22.0: deleted
      */
-    class OfflineSchemaFetchInstruction extends internal.Element {
+    class OfflineSchemaFetchInstruction extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get tableName(): string;
         set tableName(newValue: string);
         get xPath(): string;
@@ -19262,10 +19544,9 @@ export declare namespace pages {
     /**
      * In version 7.18.0: deleted
      */
-    abstract class OnClickBehavior extends internal.Element {
+    abstract class OnClickBehavior extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -19275,7 +19556,6 @@ export declare namespace pages {
     class OnClickEnlarge extends OnClickBehavior {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -19300,7 +19580,6 @@ export declare namespace pages {
     class OnClickMicroflow extends OnClickBehavior {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDynamicImageViewer(): DynamicImageViewer;
         get microflowSettings(): MicroflowSettings;
         set microflowSettings(newValue: MicroflowSettings);
@@ -19327,7 +19606,6 @@ export declare namespace pages {
     class OnClickNothing extends OnClickBehavior {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDynamicImageViewer(): DynamicImageViewer;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -19352,7 +19630,6 @@ export declare namespace pages {
     class OpenLinkClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -19396,7 +19673,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): OpenLinkClientAction;
         /**
@@ -19533,7 +19810,357 @@ export declare namespace pages {
         static create(model: IModel): OpenLinkClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class OpenUserTaskClientAction extends ClientAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container: menus.MenuItem): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container: ActionButton): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container: ActionItem): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container: DivContainer): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container: GridActionButton): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container: ListView): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container: ListView): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenUserTaskClientAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class OpenWorkflowClientAction extends ClientAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container: menus.MenuItem): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container: ActionButton): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container: ActionItem): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container: DivContainer): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container: GridActionButton): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container: ListView): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container: ListView): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenWorkflowClientAction;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     interface IPage extends IFormBase {
         readonly model: IModel;
@@ -19554,12 +20181,11 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<Page>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     class Page extends FormBase implements IPage {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * In version 7.17.0: added public
@@ -19616,7 +20242,6 @@ export declare namespace pages {
     class PageClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -19638,6 +20263,19 @@ export declare namespace pages {
          * In version 7.17.0: introduced
          */
         get pagesForSpecializations(): internal.IList<PageForSpecialization>;
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.11.0: introduced
+         */
+        get numberOfPagesToClose(): number;
+        set numberOfPagesToClose(newValue: number);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 8.14.0: introduced
+         */
+        get numberOfPagesToClose2(): string;
+        set numberOfPagesToClose2(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
@@ -19660,7 +20298,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): PageClientAction;
         /**
@@ -19790,10 +20428,9 @@ export declare namespace pages {
          */
         static create(model: IModel): PageClientAction;
     }
-    class PageForSpecialization extends internal.Element {
+    class PageForSpecialization extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGridEditButton(): GridEditButton;
         get containerAsPageClientAction(): PageClientAction;
         get entity(): domainmodels.IEntity;
@@ -19828,12 +20465,11 @@ export declare namespace pages {
         static create(model: IModel): PageForSpecialization;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/opening-pages relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
-    class PageSettings extends internal.Element {
+    class PageSettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsShowPageAction(): microflows.ShowPageAction;
         get containerAsNavigationProfile(): navigation.NavigationProfile;
         get containerAsAssociationWidget(): AssociationWidget;
@@ -19848,8 +20484,16 @@ export declare namespace pages {
         get page(): IPage | null;
         set page(newValue: IPage | null);
         get pageQualifiedName(): string | null;
+        /**
+         * In version 8.12.0: deleted
+         */
         get formTitle(): texts.Text | null;
         set formTitle(newValue: texts.Text | null);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get titleOverride(): microflows.TextTemplate | null;
+        set titleOverride(newValue: microflows.TextTemplate | null);
         /**
          * In version 8.0.0: deleted
          */
@@ -19942,7 +20586,7 @@ export declare namespace pages {
         static create(model: IModel): PageSettings;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
@@ -19950,6 +20594,7 @@ export declare namespace pages {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         /**
+         * In version 8.13.0: deleted
          * In version 7.17.0: added public
          */
         readonly type: PageTemplateType;
@@ -19959,21 +20604,27 @@ export declare namespace pages {
          * In version 7.17.0: added public
          */
         readonly layoutCall: ILayoutCall;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 8.13.0: introduced
+         */
+        readonly templateType: ITemplateType;
         asLoaded(): PageTemplate;
         load(callback: (element: PageTemplate) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<PageTemplate>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-template relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-templates relevant section in reference guide}
      *
      * In version 7.7.0: introduced
      */
     class PageTemplate extends TemplateFormBase implements IPageTemplate {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
+         * In version 8.13.0: deleted
          * In version 7.17.0: added public
          */
         get type(): PageTemplateType;
@@ -19998,6 +20649,11 @@ export declare namespace pages {
          */
         get appearance(): Appearance;
         set appearance(newValue: Appearance);
+        /**
+         * In version 8.13.0: introduced
+         */
+        get templateType(): TemplateType;
+        set templateType(newValue: TemplateType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PageTemplate unit in the SDK and on the server.
@@ -20008,10 +20664,11 @@ export declare namespace pages {
     /**
      * In version 8.4.0: introduced
      */
-    class PageVariable extends internal.Element {
+    class PageVariable extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAttributeWidget(): AttributeWidget;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
         get widget(): Widget | null;
@@ -20020,6 +20677,24 @@ export declare namespace pages {
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInWidgetValueUnderSourceVariable(container: customwidgets.WidgetValue): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInAttributeWidgetUnderSourceVariable(container: AttributeWidget): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property
@@ -20046,14 +20721,13 @@ export declare namespace pages {
         static create(model: IModel): PageVariable;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/password-text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/password-text-box relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
     class PasswordTextBox extends LoginTextBox {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -20528,12 +21202,11 @@ export declare namespace pages {
         static create(model: IModel): PasswordTextBox;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/placeholder relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/placeholder relevant section in reference guide}
      */
     class Placeholder extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -21036,12 +21709,11 @@ export declare namespace pages {
         static create(model: IModel): Placeholder;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/radio-buttons relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/radio-buttons relevant section in reference guide}
      */
     class RadioButtonGroup extends AttributeWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -21537,12 +22209,11 @@ export declare namespace pages {
         static create(model: IModel): RadioButtonGroup;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/range-search-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class RangeSearchField extends SearchField {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         /**
          * The value of this property is conceptually of type paths.LegacyAttributePath.
@@ -21587,12 +22258,11 @@ export declare namespace pages {
         static create(model: IModel): RangeSearchField;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/reference-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/reference-selector relevant section in reference guide}
      */
     class ReferenceSelector extends AssociationWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -22112,12 +22782,11 @@ export declare namespace pages {
         static create(model: IModel): ReferenceSelector;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/reference-set-selector relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/reference-set-selector relevant section in reference guide}
      */
     class ReferenceSetSelector extends ColumnGrid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -22648,7 +23317,6 @@ export declare namespace pages {
     class ReferenceSetSource extends GridBaseSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -22684,12 +23352,45 @@ export declare namespace pages {
         static create(model: IModel): ReferenceSetSource;
     }
     /**
-     * In version 7.12.0: introduced
+     * In version 8.13.0: introduced
      */
-    class RetrievalQuery extends internal.Element {
+    interface IRegularPageTemplateType extends ITemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): RegularPageTemplateType;
+        load(callback: (element: RegularPageTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RegularPageTemplateType>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class RegularPageTemplateType extends TemplateType implements IRegularPageTemplateType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RegularPageTemplateType instance in the SDK and on the server.
+         * The new RegularPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: PageTemplate): RegularPageTemplateType;
+        /**
+         * Creates and returns a new RegularPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RegularPageTemplateType;
+    }
+    /**
+     * In version 7.12.0: introduced
+     */
+    class RetrievalQuery extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get queryId(): string;
         set queryId(newValue: string);
         get allowedUserRoles(): internal.IList<security.IUserRole>;
@@ -22722,6 +23423,10 @@ export declare namespace pages {
          */
         get usedAssociations(): internal.IList<string>;
         /**
+         * In version 8.11.0: introduced
+         */
+        get usedAttributes(): internal.IList<string>;
+        /**
          * In version 8.4.0: deleted
          */
         get schemaId(): string;
@@ -22741,10 +23446,9 @@ export declare namespace pages {
     /**
      * In version 8.6.0: introduced
      */
-    class RetrievalQueryParameter extends internal.Element {
+    class RetrievalQueryParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRetrievalQuery(): RetrievalQuery;
         get name(): string;
         set name(newValue: string);
@@ -22771,10 +23475,9 @@ export declare namespace pages {
      * In version 8.4.0: deleted
      * In version 6.2.0: introduced
      */
-    class RetrievalSchema extends internal.Element {
+    class RetrievalSchema extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         /**
          * In version 7.2.0: deleted
          */
@@ -22802,14 +23505,13 @@ export declare namespace pages {
         static create(model: IModel): RetrievalSchema;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/save-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide6/save-button relevant section in reference guide}
      *
      * In version 7.0.2: deleted
      */
     class SaveButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -23050,7 +23752,6 @@ export declare namespace pages {
     class SaveChangesClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -23094,7 +23795,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SaveChangesClientAction;
         /**
@@ -23231,12 +23932,11 @@ export declare namespace pages {
         static create(model: IModel): SaveChangesClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/scroll-container relevant section in reference guide}
      */
     class ScrollContainer extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -23749,10 +24449,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ScrollContainer;
     }
-    class ScrollContainerRegion extends internal.Element {
+    class ScrollContainerRegion extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsScrollContainer(): ScrollContainer;
         /**
          * In version 7.15.0: deleted
@@ -23826,12 +24525,11 @@ export declare namespace pages {
         static create(model: IModel): ScrollContainerRegion;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/search-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/search-bar relevant section in reference guide}
      */
     class SearchBar extends ControlBar {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsGridBaseSource(): GridBaseSource;
         get containerAsGridDatabaseSource(): GridDatabaseSource;
         get type(): SearchBarTypeEnum;
@@ -23859,12 +24557,11 @@ export declare namespace pages {
         static create(model: IModel): SearchBar;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/select-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/control-bar relevant section in reference guide}
      */
     class SelectButton extends GridControlBarButton {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsControlBar(): ControlBar;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -23880,10 +24577,43 @@ export declare namespace pages {
          */
         static create(model: IModel): SelectButton;
     }
-    abstract class SelectorSource extends internal.Element {
+    /**
+     * In version 8.13.0: introduced
+     */
+    interface ISelectPageTemplateType extends ITemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): SelectPageTemplateType;
+        load(callback: (element: SelectPageTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<SelectPageTemplateType>;
+    }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class SelectPageTemplateType extends TemplateType implements ISelectPageTemplateType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SelectPageTemplateType instance in the SDK and on the server.
+         * The new SelectPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createIn(container: PageTemplate): SelectPageTemplateType;
+        /**
+         * Creates and returns a new SelectPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SelectPageTemplateType;
+    }
+    abstract class SelectorSource extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
         get containerAsAssociationWidget(): AssociationWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -23893,7 +24623,6 @@ export declare namespace pages {
     class SelectorDatabaseSource extends SelectorSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationWidget(): AssociationWidget;
         get databaseConstraints(): internal.IList<DatabaseConstraint>;
         /**
@@ -23921,7 +24650,6 @@ export declare namespace pages {
     class SelectorMicroflowSource extends SelectorSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationWidget(): AssociationWidget;
         get dataSourceMicroflowSettings(): MicroflowSettings;
         set dataSourceMicroflowSettings(newValue: MicroflowSettings);
@@ -23942,7 +24670,6 @@ export declare namespace pages {
     class SelectorXPathSource extends SelectorSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAssociationWidget(): AssociationWidget;
         get sortBar(): GridSortBar;
         set sortBar(newValue: GridSortBar);
@@ -23991,12 +24718,198 @@ export declare namespace pages {
         static create(model: IModel): SelectorXPathSource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sidebar-toggle-button relevant section in reference guide}
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.15.0: introduced
+     */
+    class SetTaskOutcomeClientAction extends ClientAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextBox(): TextBox;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get outcome(): workflows.IWorkflowTaskOutcome | null;
+        set outcome(newValue: workflows.IWorkflowTaskOutcome | null);
+        get outcomeQualifiedName(): string | null;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
+        get commit(): boolean;
+        set commit(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInMenuItemUnderAction(container: menus.MenuItem): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionButtonUnderAction(container: ActionButton): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInActionItemUnderAction(container: ActionItem): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container: DivContainer): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container: GridActionButton): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderClickAction(container: ListView): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container: ListView): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SetTaskOutcomeClientAction;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/sidebar-toggle-button relevant section in reference guide}
      */
     class SidebarToggleButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -24510,7 +25423,6 @@ export declare namespace pages {
     class SignOutClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -24550,7 +25462,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SignOutClientAction;
         /**
@@ -24687,12 +25599,11 @@ export declare namespace pages {
         static create(model: IModel): SignOutClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/simple-menu-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/simple-menu-bar relevant section in reference guide}
      */
     class SimpleMenuBar extends MenuWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -25188,7 +26099,7 @@ export declare namespace pages {
         static create(model: IModel): SimpleMenuBar;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/snippet relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/snippet relevant section in reference guide}
      */
     interface ISnippet extends IFormBase {
         readonly model: IModel;
@@ -25205,12 +26116,11 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<Snippet>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/snippet relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/snippet relevant section in reference guide}
      */
     class Snippet extends FormBase implements ISnippet {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -25237,10 +26147,9 @@ export declare namespace pages {
          */
         static createIn(container: projects.IFolderBase): Snippet;
     }
-    class SnippetCall extends internal.Element {
+    class SnippetCall extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsSnippetCallWidget(): SnippetCallWidget;
         get snippet(): ISnippet | null;
         set snippet(newValue: ISnippet | null);
@@ -25260,12 +26169,11 @@ export declare namespace pages {
         static create(model: IModel): SnippetCall;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/snippet-call relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/snippet-call relevant section in reference guide}
      */
     class SnippetCallWidget extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -25761,12 +26669,11 @@ export declare namespace pages {
         static create(model: IModel): SnippetCallWidget;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/image relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
     class StaticImageViewer extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -26279,10 +27186,9 @@ export declare namespace pages {
          */
         static create(model: IModel): StaticImageViewer;
     }
-    class StaticOrDynamicString extends internal.Element {
+    class StaticOrDynamicString extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLinkButton(): LinkButton;
         get containerAsOpenLinkClientAction(): OpenLinkClientAction;
         get isDynamic(): boolean;
@@ -26333,7 +27239,6 @@ export declare namespace pages {
     class SyncButton extends Button {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
         get containerAsGroupBox(): GroupBox;
@@ -26564,7 +27469,6 @@ export declare namespace pages {
     class SyncClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsBottomBarItem(): nativepages.BottomBarItem;
@@ -26604,7 +27508,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SyncClientAction;
         /**
@@ -26741,12 +27645,11 @@ export declare namespace pages {
         static create(model: IModel): SyncClientAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-container relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/tab-container relevant section in reference guide}
      */
     class TabContainer extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -27243,12 +28146,11 @@ export declare namespace pages {
         static create(model: IModel): TabContainer;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/tab-page relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/tab-container relevant section in reference guide}
      */
-    class TabPage extends internal.Element {
+    class TabPage extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTabContainer(): TabContainer;
         get name(): string;
         set name(newValue: string);
@@ -27267,6 +28169,11 @@ export declare namespace pages {
          * In version 7.15.0: introduced
          */
         get widgets(): internal.IList<Widget>;
+        /**
+         * In version 8.13.0: introduced
+         */
+        get badge(): ClientTemplate | null;
+        set badge(newValue: ClientTemplate | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TabPage instance in the SDK and on the server.
@@ -27282,12 +28189,11 @@ export declare namespace pages {
         static create(model: IModel): TabPage;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/table relevant section in reference guide}
      */
     class Table extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -27785,10 +28691,9 @@ export declare namespace pages {
          */
         static create(model: IModel): Table;
     }
-    class TableCell extends internal.Element {
+    class TableCell extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTable(): Table;
         /**
          * In version 8.0.0: deleted
@@ -27838,10 +28743,9 @@ export declare namespace pages {
          */
         static create(model: IModel): TableCell;
     }
-    class TableColumn extends internal.Element {
+    class TableColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTable(): Table;
         get width(): number;
         set width(newValue: number);
@@ -27859,10 +28763,9 @@ export declare namespace pages {
          */
         static create(model: IModel): TableColumn;
     }
-    class TableRow extends internal.Element {
+    class TableRow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTable(): Table;
         /**
          * In version 8.0.0: deleted
@@ -27896,12 +28799,11 @@ export declare namespace pages {
         static create(model: IModel): TableRow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/template-grid relevant section in reference guide}
      */
     class TemplateGrid extends Grid {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -28400,10 +29302,9 @@ export declare namespace pages {
          */
         static create(model: IModel): TemplateGrid;
     }
-    class TemplateGridContents extends internal.Element {
+    class TemplateGridContents extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsTemplateGrid(): TemplateGrid;
         /**
          * In version 7.15.0: deleted
@@ -28428,10 +29329,232 @@ export declare namespace pages {
          */
         static create(model: IModel): TemplateGridContents;
     }
+    /**
+     * In version 8.13.0: introduced
+     */
+    class TemplatePlaceholder extends Widget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsBuildingBlock(): BuildingBlock;
+        get containerAsDataView(): DataView;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsGroupBox(): GroupBox;
+        get containerAsHeader(): Header;
+        get containerAsLayoutCallArgument(): LayoutCallArgument;
+        get containerAsLayoutGridColumn(): LayoutGridColumn;
+        get containerAsListView(): ListView;
+        get containerAsListViewTemplate(): ListViewTemplate;
+        get containerAsNativeLayoutContent(): NativeLayoutContent;
+        get containerAsNavigationListItem(): NavigationListItem;
+        get containerAsScrollContainerRegion(): ScrollContainerRegion;
+        get containerAsSnippet(): Snippet;
+        get containerAsTabPage(): TabPage;
+        get containerAsTableCell(): TableCell;
+        get containerAsTemplateGridContents(): TemplateGridContents;
+        get containerAsWebLayoutContent(): WebLayoutContent;
+        get type(): string;
+        set type(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInWidgetValueUnderWidgets(container: customwidgets.WidgetValue): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent BuildingBlock element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInBuildingBlockUnderWidgets(container: BuildingBlock): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'footerWidgets' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDataViewUnderFooterWidgets(container: DataView): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDataViewUnderWidgets(container: DataView): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInDivContainerUnderWidgets(container: DivContainer): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent GroupBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInGroupBoxUnderWidgets(container: GroupBox): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'leftWidgets' property
+         * of the parent Header element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInHeaderUnderLeftWidgets(container: Header): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'rightWidgets' property
+         * of the parent Header element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInHeaderUnderRightWidgets(container: Header): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent LayoutCallArgument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInLayoutCallArgumentUnderWidgets(container: LayoutCallArgument): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent LayoutGridColumn element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInLayoutGridColumnUnderWidgets(container: LayoutGridColumn): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInListViewUnderWidgets(container: ListView): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ListViewTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInListViewTemplateUnderWidgets(container: ListViewTemplate): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'sidebarWidgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNativeLayoutContentUnderSidebarWidgets(container: NativeLayoutContent): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent NativeLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNativeLayoutContentUnderWidgets(container: NativeLayoutContent): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent NavigationListItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInNavigationListItemUnderWidgets(container: NavigationListItem): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent ScrollContainerRegion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInScrollContainerRegionUnderWidgets(container: ScrollContainerRegion): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInSnippetUnderWidgets(container: Snippet): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TabPage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTabPageUnderWidgets(container: TabPage): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TableCell element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTableCellUnderWidgets(container: TableCell): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent TemplateGridContents element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInTemplateGridContentsUnderWidgets(container: TemplateGridContents): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * The new TemplatePlaceholder will be automatically stored in the 'widgets' property
+         * of the parent WebLayoutContent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.13.0 and higher
+         */
+        static createInWebLayoutContentUnderWidgets(container: WebLayoutContent): TemplatePlaceholder;
+        /**
+         * Creates and returns a new TemplatePlaceholder instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): TemplatePlaceholder;
+    }
     abstract class TextWidget extends AttributeWidgetWithPlaceholder {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -28462,12 +29585,11 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text-area relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text-area relevant section in reference guide}
      */
     class TextArea extends TextWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -28499,6 +29621,11 @@ export declare namespace pages {
         set counterMessage(newValue: texts.Text);
         get textTooLongMessage(): texts.Text;
         set textTooLongMessage(newValue: texts.Text);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete(): boolean;
+        set autocomplete(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -28967,12 +30094,11 @@ export declare namespace pages {
         static create(model: IModel): TextArea;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/text-box relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/text-box relevant section in reference guide}
      */
     class TextBox extends TextWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -29014,6 +30140,26 @@ export declare namespace pages {
          */
         get onEnterKeyPressAction(): ClientAction;
         set onEnterKeyPressAction(newValue: ClientAction);
+        /**
+         * In version 8.10.0: introduced
+         */
+        get autocomplete(): boolean;
+        set autocomplete(newValue: boolean);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get autocompletePurpose(): AutocompletePurposeType;
+        set autocompletePurpose(newValue: AutocompletePurposeType);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitBehaviour(): SubmitBehaviourType;
+        set submitBehaviour(newValue: SubmitBehaviourType);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitOnInputDelay(): number;
+        set submitOnInputDelay(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -29482,12 +30628,11 @@ export declare namespace pages {
         static create(model: IModel): TextBox;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-title relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-title relevant section in reference guide}
      */
     class Title extends ConditionallyVisibleWidget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -29981,14 +31126,66 @@ export declare namespace pages {
         static create(model: IModel): Title;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/validation-message relevant section in reference guide}
+     * In version 8.15.0: introduced
+     */
+    interface IWorkflowTemplateType extends ITemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): WorkflowTemplateType;
+        load(callback: (element: WorkflowTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WorkflowTemplateType>;
+    }
+    /**
+     * In version 8.15.0: introduced
+     */
+    abstract class WorkflowTemplateType extends TemplateType implements IWorkflowTemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.15.0: introduced
+     */
+    interface IUserTaskTemplateType extends IWorkflowTemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): UserTaskTemplateType;
+        load(callback: (element: UserTaskTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<UserTaskTemplateType>;
+    }
+    /**
+     * In version 8.15.0: introduced
+     */
+    class UserTaskTemplateType extends WorkflowTemplateType implements IUserTaskTemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UserTaskTemplateType instance in the SDK and on the server.
+         * The new UserTaskTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container: PageTemplate): UserTaskTemplateType;
+        /**
+         * Creates and returns a new UserTaskTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UserTaskTemplateType;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/validation-message relevant section in reference guide}
      *
      * In version 7.0.2: introduced
      */
     class ValidationMessage extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -30468,7 +31665,6 @@ export declare namespace pages {
     class VerticalFlow extends Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsBuildingBlock(): BuildingBlock;
         get containerAsDataView(): DataView;
         get containerAsDivContainer(): DivContainer;
@@ -30715,14 +31911,13 @@ export declare namespace pages {
         static create(model: IModel): VerticalFlow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/vertical-split-pane relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide7/scroll-container relevant section in reference guide}
      *
      * In version 8.0.0: deleted
      */
     class VerticalSplitPane extends SplitPane {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
         get containerAsBuildingBlock(): BuildingBlock;
@@ -31194,7 +32389,6 @@ export declare namespace pages {
     class WebLayoutContent extends LayoutContent implements IWebLayoutContent {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsLayout(): Layout;
         get layoutType(): LayoutType;
         set layoutType(newValue: LayoutType);
@@ -31221,10 +32415,9 @@ export declare namespace pages {
     /**
      * In version 7.6.0: introduced
      */
-    class WidgetValidation extends internal.Element {
+    class WidgetValidation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsAttributeWidget(): AttributeWidget;
         get containerAsReferenceSelector(): ReferenceSelector;
         /**
@@ -31234,6 +32427,8 @@ export declare namespace pages {
         set expression(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.9.0: introduced
          */
@@ -31267,6 +32462,40 @@ export declare namespace pages {
          */
         static create(model: IModel): WidgetValidation;
     }
+    /**
+     * In version 8.15.0: introduced
+     */
+    interface IWorkflowOverviewTemplateType extends IWorkflowTemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): WorkflowOverviewTemplateType;
+        load(callback: (element: WorkflowOverviewTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WorkflowOverviewTemplateType>;
+    }
+    /**
+     * In version 8.15.0: introduced
+     */
+    class WorkflowOverviewTemplateType extends WorkflowTemplateType implements IWorkflowOverviewTemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowOverviewTemplateType instance in the SDK and on the server.
+         * The new WorkflowOverviewTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.15.0 and higher
+         */
+        static createIn(container: PageTemplate): WorkflowOverviewTemplateType;
+        /**
+         * Creates and returns a new WorkflowOverviewTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowOverviewTemplateType;
+    }
 }
 import { customwidgets } from "./customwidgets";
 import { documenttemplates } from "./documenttemplates";
@@ -31281,4 +32510,5 @@ import { navigation } from "./navigation";
 import { reports } from "./reports";
 import { security } from "./security";
 import { texts } from "./texts";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

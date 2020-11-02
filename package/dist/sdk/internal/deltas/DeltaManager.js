@@ -1,5 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeltaManager = void 0;
+const mobx_1 = require("mobx");
 const DeltaSender_1 = require("./DeltaSender");
 const DeltaReverser_1 = require("./DeltaReverser");
 const DeltaProcessor_1 = require("./DeltaProcessor");
@@ -67,8 +75,8 @@ class DeltaManager {
     reverseDelta(delta) {
         return this.deltaReverser.reverse(delta);
     }
-    beginTransaction() {
-        return this.transactionManager.beginTransaction();
+    beginTransaction(commitCurrentImplicitTransaction) {
+        return this.transactionManager.beginTransaction(commitCurrentImplicitTransaction);
     }
     onNewDelta(callback) {
         this.eventEmitter.on("NewDelta", callback);
@@ -90,7 +98,7 @@ class DeltaManager {
         if (error) {
             throw error;
         }
-        this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(reverseDeltas));
+        this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(reverseDeltas), true);
         this.queue.splice(0, this.queue.length);
         this.eventEmitter.emit("TransactionRollback", undefined);
     }
@@ -124,5 +132,8 @@ class DeltaManager {
         }
     }
 }
+__decorate([
+    mobx_1.action
+], DeltaManager.prototype, "handleTransactionRollback", null);
 exports.DeltaManager = DeltaManager;
 //# sourceMappingURL=DeltaManager.js.map

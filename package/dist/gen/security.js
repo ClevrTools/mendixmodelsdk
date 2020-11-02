@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.security = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const utils_1 = require("../sdk/utils");
@@ -44,7 +45,7 @@ var security;
     AccessRuleContainerBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     security.AccessRuleContainerBase = AccessRuleContainerBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/demo-users relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/demo-users relevant section in reference guide}
      */
     class DemoUser extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -184,7 +185,7 @@ var security;
     ImageAccessRuleContainer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     security.ImageAccessRuleContainer = ImageAccessRuleContainer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
     class ModuleRole extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -255,7 +256,7 @@ var security;
     }, internal.StructureType.Element);
     security.ModuleRole = ModuleRole;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/module-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/module-security relevant section in reference guide}
      */
     class ModuleSecurity extends internal.ModelUnit {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -294,7 +295,7 @@ var security;
     }, internal.StructureType.ModelUnit);
     security.ModuleSecurity = ModuleSecurity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/password-policy relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/password-policy relevant section in reference guide}
      */
     class PasswordPolicySettings extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -364,7 +365,7 @@ var security;
     PasswordPolicySettings.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     security.PasswordPolicySettings = PasswordPolicySettings;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/project-security relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/project-security relevant section in reference guide}
      */
     class ProjectSecurity extends projects_1.projects.ProjectDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -541,7 +542,7 @@ var security;
     }, internal.StructureType.ModelUnit);
     security.ProjectSecurity = ProjectSecurity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/user-role relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/user-roles relevant section in reference guide}
      */
     class UserRole extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

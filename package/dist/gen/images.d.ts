@@ -13,10 +13,9 @@ export declare namespace images {
         load(callback: (element: Image) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Image>;
     }
-    class Image extends internal.Element implements IImage {
+    class Image extends internal.Element<IModel> implements IImage {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsImageCollection(): ImageCollection;
         get name(): string;
         set name(newValue: string);
@@ -38,7 +37,7 @@ export declare namespace images {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/images relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/images relevant section in reference guide}
      */
     interface IImageCollection extends projects.IDocument {
         readonly model: IModel;
@@ -49,12 +48,11 @@ export declare namespace images {
         load(forceRefresh?: boolean): Promise<ImageCollection>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/images relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/images relevant section in reference guide}
      */
     class ImageCollection extends projects.Document implements IImageCollection {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get images(): internal.IList<Image>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);

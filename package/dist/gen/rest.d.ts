@@ -5,6 +5,7 @@ import { projects } from "./projects";
 import { webservices } from "./webservices";
 export declare namespace rest {
     class ODataVersion extends internal.AbstractEnum {
+        static OData2: ODataVersion;
         static OData3: ODataVersion;
         static OData4: ODataVersion;
         protected qualifiedTsTypeName: string;
@@ -29,58 +30,42 @@ export declare namespace rest {
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
     interface IConsumedODataService extends domainmodels.IRemoteEntitySourceDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 8.14.0: introduced
+         */
+        readonly lastUpdated: string;
         asLoaded(): ConsumedODataService;
         load(callback: (element: ConsumedODataService) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ConsumedODataService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
     class ConsumedODataService extends domainmodels.RemoteEntitySourceDocument implements IConsumedODataService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
-        get metadataUrl(): string;
-        set metadataUrl(newValue: string);
-        get metadata(): string;
-        set metadata(newValue: string);
         /**
          * In version 8.6.0: introduced
          */
         get metadataReferences(): internal.IList<MetadataReference>;
-        /**
-         * In version 8.0.0: introduced
-         */
-        get serviceName(): string;
-        set serviceName(newValue: string);
-        /**
-         * In version 8.0.0: introduced
-         */
-        get version(): string;
-        set version(newValue: string);
-        /**
-         * In version 8.0.0: introduced
-         */
-        get serviceId(): string;
-        set serviceId(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get entities(): internal.IList<ODataEntity>;
         get proxyType(): microflows.RequestProxyType;
         set proxyType(newValue: microflows.RequestProxyType);
         get proxyHost(): constants.IConstant | null;
@@ -109,6 +94,8 @@ export declare namespace rest {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.5.0: introduced
          */
         get timeoutModel(): expressions.Expression;
@@ -125,6 +112,23 @@ export declare namespace rest {
          */
         get oDataVersion(): ODataVersion;
         set oDataVersion(newValue: ODataVersion);
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.13.0: introduced
+         */
+        get versionApiMockResults(): string;
+        set versionApiMockResults(newValue: string);
+        /**
+         * In version 8.14.0: deleted
+         * In version 8.0.0: introduced
+         */
+        get serviceId(): string;
+        set serviceId(newValue: string);
+        /**
+         * In version 8.14.0: introduced
+         */
+        get lastUpdated(): string;
+        set lastUpdated(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -133,14 +137,13 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): ConsumedODataService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cors-settings relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cors-settings relevant section in reference guide}
      *
      * In version 7.18.0: introduced
      */
-    class CorsConfiguration extends internal.Element {
+    class CorsConfiguration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get allowedOrigins(): constants.IConstant | null;
         set allowedOrigins(newValue: constants.IConstant | null);
@@ -170,16 +173,57 @@ export declare namespace rest {
     /**
      * In version 8.6.0: introduced
      */
-    class MetadataReference extends internal.Element {
+    class MetadataReference extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
+        get containerAsConsumedKafkaService(): kafka.ConsumedKafkaService;
         get containerAsConsumedODataService(): ConsumedODataService;
+        get containerAsMetadataReference(): MetadataReference;
         get uri(): string;
         set uri(newValue: string);
         get metadata(): string;
         set metadata(newValue: string);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get metadataReferences(): internal.IList<MetadataReference>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 to 8.7.0
+         */
+        static createIn(container: ConsumedODataService): MetadataReference;
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent kafka.ConsumedKafkaService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createInConsumedKafkaServiceUnderMetadataReferences(container: kafka.ConsumedKafkaService): MetadataReference;
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent ConsumedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInConsumedODataServiceUnderMetadataReferences(container: ConsumedODataService): MetadataReference;
+        /**
+         * Creates and returns a new MetadataReference instance in the SDK and on the server.
+         * The new MetadataReference will be automatically stored in the 'metadataReferences' property
+         * of the parent MetadataReference element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.8.0 and higher
+         */
+        static createInMetadataReferenceUnderMetadataReferences(container: MetadataReference): MetadataReference;
         /**
          * Creates and returns a new MetadataReference instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -190,124 +234,256 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 8.0.0: introduced
+     * @ignore
+     *
+     * In version 8.9.0: introduced
      */
-    class ODataAttribute extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsODataEntity(): ODataEntity;
-        get name(): string;
-        set name(newValue: string);
-        get attribute(): domainmodels.IAttribute;
-        set attribute(newValue: domainmodels.IAttribute);
-        get attributeQualifiedName(): string;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    interface IODataKey extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsODataRemoteEntitySource: IODataRemoteEntitySource;
         /**
-         * Creates and returns a new ODataAttribute instance in the SDK and on the server.
-         * The new ODataAttribute will be automatically stored in the 'attributes' property
-         * of the parent ODataEntity element passed as argument.
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         * @ignore
          */
-        static createIn(container: ODataEntity): ODataAttribute;
-        /**
-         * Creates and returns a new ODataAttribute instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ODataAttribute;
+        readonly parts: internal.IList<IODataKeyPart>;
+        asLoaded(): ODataKey;
+        load(callback: (element: ODataKey) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataKey>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
-     * In version 7.18.0: introduced
+     * @ignore
+     *
+     * In version 8.9.0: introduced
      */
-    class ODataEntity extends internal.Element {
+    class ODataKey extends internal.Element<IModel> implements IODataKey {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsConsumedODataService(): ConsumedODataService;
+        get containerAsODataRemoteEntitySource(): ODataRemoteEntitySource;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parts(): internal.IList<ODataKeyPart>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataRemoteEntitySource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createIn(container: ODataRemoteEntitySource): ODataKey;
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataKey;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.9.0: introduced
+     */
+    interface IODataKeyPart extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsODataKey: IODataKey;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly type: domainmodels.IAttributeType;
+        asLoaded(): ODataKeyPart;
+        load(callback: (element: ODataKeyPart) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataKeyPart>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 8.9.0: introduced
+     */
+    class ODataKeyPart extends internal.Element<IModel> implements IODataKeyPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsODataKey(): ODataKey;
         get name(): string;
         set name(newValue: string);
-        get entity(): domainmodels.IEntity;
-        set entity(newValue: domainmodels.IEntity);
-        get entityQualifiedName(): string;
+        get entityKeyPartName(): string;
+        set entityKeyPartName(newValue: string);
+        get type(): domainmodels.AttributeType;
+        set type(newValue: domainmodels.AttributeType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * In version 7.19.0: introduced
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * The new ODataKeyPart will be automatically stored in the 'parts' property
+         * of the parent ODataKey element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.9.0 and higher
+         */
+        static createIn(container: ODataKey): ODataKeyPart;
+        /**
+         * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataKeyPart;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IODataMappedValue extends domainmodels.IMappedValue {
+        readonly model: IModel;
+        readonly containerAsAttribute: domainmodels.IAttribute;
+        asLoaded(): ODataMappedValue;
+        load(callback: (element: ODataMappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataMappedValue>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataMappedValue extends domainmodels.MappedValue implements IODataMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): domainmodels.Attribute;
+        get remoteName(): string;
+        set remoteName(newValue: string);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get remoteType(): string;
+        set remoteType(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
+         * The new ODataMappedValue will be automatically stored in the 'value' property
+         * of the parent domainmodels.Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container: domainmodels.Attribute): ODataMappedValue;
+        /**
+         * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataMappedValue;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IODataRemoteAssociationSource extends domainmodels.IRemoteAssociationSource {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: domainmodels.IAssociationBase;
+        asLoaded(): ODataRemoteAssociationSource;
+        load(callback: (element: ODataRemoteAssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataRemoteAssociationSource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataRemoteAssociationSource extends domainmodels.RemoteAssociationSource implements IODataRemoteAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAssociationBase(): domainmodels.AssociationBase;
+        get remoteParentNavigationProperty(): string;
+        set remoteParentNavigationProperty(newValue: string);
+        get remoteChildNavigationProperty(): string;
+        set remoteChildNavigationProperty(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
+         * The new ODataRemoteAssociationSource will be automatically stored in the 'source' property
+         * of the parent domainmodels.AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.10.0 and higher
+         */
+        static createIn(container: domainmodels.AssociationBase): ODataRemoteAssociationSource;
+        /**
+         * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataRemoteAssociationSource;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IODataRemoteEntitySource extends domainmodels.IQueryBasedRemoteEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: domainmodels.IEntity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 8.11.0: introduced
+         */
+        readonly key: IODataKey | null;
+        asLoaded(): ODataRemoteEntitySource;
+        load(callback: (element: ODataRemoteEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataRemoteEntitySource>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    class ODataRemoteEntitySource extends domainmodels.QueryBasedRemoteEntitySource implements IODataRemoteEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): domainmodels.Entity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get sourceDocument(): IConsumedODataService | null;
+        set sourceDocument(newValue: IConsumedODataService | null);
+        get sourceDocumentQualifiedName(): string | null;
+        get remoteName(): string;
+        set remoteName(newValue: string);
+        /**
+         * In version 8.11.0: introduced
          */
         get entitySet(): string;
         set entitySet(newValue: string);
         /**
-         * In version 7.22.0: introduced
-         */
-        get keyNames(): internal.IList<string>;
-        /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
-         * In version 7.22.0: introduced
-         */
-        get navigationProperties(): internal.IList<ODataNavigationProperty>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         * @ignore
          *
-         * In version 8.0.0: introduced
+         * In version 8.11.0: introduced
          */
-        get attributes(): internal.IList<ODataAttribute>;
+        get key(): ODataKey | null;
+        set key(newValue: ODataKey | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
-         * The new ODataEntity will be automatically stored in the 'entities' property
-         * of the parent ConsumedODataService element passed as argument.
+         * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
+         * The new ODataRemoteEntitySource will be automatically stored in the 'source' property
+         * of the parent domainmodels.Entity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.18.0 and higher
+         *  8.10.0 and higher
          */
-        static createIn(container: ConsumedODataService): ODataEntity;
+        static createIn(container: domainmodels.Entity): ODataRemoteEntitySource;
         /**
-         * Creates and returns a new ODataEntity instance in the SDK and on the server.
+         * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): ODataEntity;
+        static create(model: IModel): ODataRemoteEntitySource;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 7.22.0: introduced
-     */
-    class ODataNavigationProperty extends internal.Element {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        model: IModel;
-        get containerAsODataEntity(): ODataEntity;
-        get name(): string;
-        set name(newValue: string);
-        get association(): domainmodels.IAssociationBase;
-        set association(newValue: domainmodels.IAssociationBase);
-        get associationQualifiedName(): string;
-        get thisSideIsParent(): boolean;
-        set thisSideIsParent(newValue: boolean);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
-         * The new ODataNavigationProperty will be automatically stored in the 'navigationProperties' property
-         * of the parent ODataEntity element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.22.0 and higher
-         */
-        static createIn(container: ODataEntity): ODataNavigationProperty;
-        /**
-         * Creates and returns a new ODataNavigationProperty instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ODataNavigationProperty;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     interface IPublishedODataService extends projects.IDocument {
         readonly model: IModel;
@@ -317,12 +493,11 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<PublishedODataService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     class PublishedODataService extends projects.Document implements IPublishedODataService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get namespace(): string;
         set namespace(newValue: string);
@@ -366,6 +541,11 @@ export declare namespace rest {
          */
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 8.12.0: introduced
+         */
+        get replaceIllegalChars(): boolean;
+        set replaceIllegalChars(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
@@ -374,12 +554,11 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): PublishedODataService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-odata-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-resource relevant section in reference guide}
      */
     class PublishedRestResource extends webservices.PublishedResource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedODataService(): PublishedODataService;
         get path(): string;
         set path(newValue: string);
@@ -417,7 +596,7 @@ export declare namespace rest {
         static create(model: IModel): PublishedRestResource;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-services relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.6.0: introduced
@@ -430,7 +609,7 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<PublishedRestService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-services relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.6.0: introduced
@@ -438,7 +617,6 @@ export declare namespace rest {
     class PublishedRestService extends projects.Document implements IPublishedRestService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get path(): string;
         set path(newValue: string);
@@ -491,15 +669,14 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): PublishedRestService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-operation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-operation relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
      */
-    class PublishedRestServiceOperation extends internal.Element {
+    class PublishedRestServiceOperation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestServiceResource(): PublishedRestServiceResource;
         get summary(): string;
         set summary(newValue: string);
@@ -561,15 +738,14 @@ export declare namespace rest {
         static create(model: IModel): PublishedRestServiceOperation;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-rest-resource relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-rest-resource relevant section in reference guide}
      *
      * In version 7.11.0: removed experimental
      * In version 7.7.0: introduced
      */
-    class PublishedRestServiceResource extends internal.Element {
+    class PublishedRestServiceResource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get name(): string;
         set name(newValue: string);
@@ -597,10 +773,9 @@ export declare namespace rest {
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
      */
-    class RestOperationParameter extends internal.Element {
+    class RestOperationParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedRestService(): PublishedRestService;
         get containerAsPublishedRestServiceOperation(): PublishedRestServiceOperation;
         get name(): string;
@@ -662,6 +837,7 @@ import { datatypes } from "./datatypes";
 import { exportmappings } from "./exportmappings";
 import { expressions } from "./expressions";
 import { importmappings } from "./importmappings";
+import { kafka } from "./kafka";
 import { mappings } from "./mappings";
 import { microflows } from "./microflows";
 import { security } from "./security";

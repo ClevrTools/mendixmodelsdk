@@ -24,7 +24,7 @@ export declare namespace datasets {
      * Interfaces and instance classes for types from the Mendix sub meta model `DataSets`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-sets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-sets relevant section in reference guide}
      */
     interface IDataSet extends projects.IDocument {
         readonly model: IModel;
@@ -35,12 +35,11 @@ export declare namespace datasets {
         load(forceRefresh?: boolean): Promise<DataSet>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-sets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-sets relevant section in reference guide}
      */
     class DataSet extends projects.Document implements IDataSet {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get source(): DataSetSource;
         set source(newValue: DataSetSource);
@@ -54,10 +53,9 @@ export declare namespace datasets {
          */
         static createIn(container: projects.IFolderBase): DataSet;
     }
-    class DataSetAccess extends internal.Element {
+    class DataSetAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSet(): DataSet;
         get moduleRoleAccessList(): internal.IList<DataSetModuleRoleAccess>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -74,10 +72,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetAccess;
     }
-    class DataSetColumn extends internal.Element {
+    class DataSetColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsJavaDataSetSource(): JavaDataSetSource;
         get name(): string;
         set name(newValue: string);
@@ -107,10 +104,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetColumn;
     }
-    class DataSetConstraintAccess extends internal.Element {
+    class DataSetConstraintAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetParameterAccess(): DataSetParameterAccess;
         get constraintText(): string;
         set constraintText(newValue: string);
@@ -130,17 +126,15 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetConstraintAccess;
     }
-    abstract class DataSetParameterConstraint extends internal.Element {
+    abstract class DataSetParameterConstraint extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetParameter(): DataSetParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class DataSetDateTimeConstraint extends DataSetParameterConstraint {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetParameter(): DataSetParameter;
         get modifier(): DateTimeIntervalModifier;
         set modifier(newValue: DateTimeIntervalModifier);
@@ -160,10 +154,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetDateTimeConstraint;
     }
-    class DataSetModuleRoleAccess extends internal.Element {
+    class DataSetModuleRoleAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetAccess(): DataSetAccess;
         get parameterAccessList(): internal.IList<DataSetParameterAccess>;
         get moduleRole(): security.IModuleRole | null;
@@ -186,7 +179,6 @@ export declare namespace datasets {
     class DataSetNumericConstraint extends DataSetParameterConstraint {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetParameter(): DataSetParameter;
         get begin(): string;
         set begin(newValue: string);
@@ -213,7 +205,6 @@ export declare namespace datasets {
     class DataSetObjectConstraint extends DataSetParameterConstraint {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetParameter(): DataSetParameter;
         get name(): string;
         set name(newValue: string);
@@ -244,10 +235,9 @@ export declare namespace datasets {
         load(callback: (element: DataSetParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DataSetParameter>;
     }
-    class DataSetParameter extends internal.Element implements IDataSetParameter {
+    class DataSetParameter extends internal.Element<IModel> implements IDataSetParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSet(): DataSet;
         get name(): string;
         set name(newValue: string);
@@ -284,10 +274,9 @@ export declare namespace datasets {
         static create(model: IModel): DataSetParameter;
         get qualifiedName(): string | null;
     }
-    class DataSetParameterAccess extends internal.Element {
+    class DataSetParameterAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSetModuleRoleAccess(): DataSetModuleRoleAccess;
         get parameterName(): string;
         set parameterName(newValue: string);
@@ -306,17 +295,15 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetParameterAccess;
     }
-    abstract class DataSetSource extends internal.Element {
+    abstract class DataSetSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSet(): DataSet;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class JavaDataSetSource extends DataSetSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSet(): DataSet;
         get columns(): internal.IList<DataSetColumn>;
         /**
@@ -341,7 +328,6 @@ export declare namespace datasets {
     class OqlDataSetSource extends DataSetSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataSet(): DataSet;
         /**
          * The value of this property is conceptually of type oql.OqlQuery.

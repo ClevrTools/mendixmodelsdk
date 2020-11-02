@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ByIdReferenceProperty = void 0;
 const AbstractProperty_1 = require("./AbstractProperty");
 const ByIdReference_1 = require("../ByIdReference");
 /**

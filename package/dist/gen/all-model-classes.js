@@ -1,45 +1,54 @@
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Convenience to be able to export everything at once.
  */
-__export(require("./appservices"));
-__export(require("./client"));
-__export(require("./codeactions"));
-__export(require("./constants"));
-__export(require("./customwidgets"));
-__export(require("./datasets"));
-__export(require("./datatypes"));
-__export(require("./documenttemplates"));
-__export(require("./domainmodels"));
-__export(require("./enumerations"));
-__export(require("./exportmappings"));
-__export(require("./expressions"));
-__export(require("./images"));
-__export(require("./importmappings"));
-__export(require("./javaactions"));
-__export(require("./javascriptactions"));
-__export(require("./jsonstructures"));
-__export(require("./mappings"));
-__export(require("./menus"));
-__export(require("./messagedefinitions"));
-__export(require("./microflows"));
-__export(require("./nanoflows"));
-__export(require("./nativepages"));
-__export(require("./navigation"));
-__export(require("./pages"));
-__export(require("./projects"));
-__export(require("./regularexpressions"));
-__export(require("./reports"));
-__export(require("./rest"));
-__export(require("./scheduledevents"));
-__export(require("./security"));
-__export(require("./services"));
-__export(require("./settings"));
-__export(require("./texts"));
-__export(require("./webservices"));
-__export(require("./xmlschemas"));
+__exportStar(require("./appservices"), exports);
+__exportStar(require("./client"), exports);
+__exportStar(require("./codeactions"), exports);
+__exportStar(require("./constants"), exports);
+__exportStar(require("./customwidgets"), exports);
+__exportStar(require("./datasets"), exports);
+__exportStar(require("./datatypes"), exports);
+__exportStar(require("./documenttemplates"), exports);
+__exportStar(require("./domainmodels"), exports);
+__exportStar(require("./enumerations"), exports);
+__exportStar(require("./exportmappings"), exports);
+__exportStar(require("./expressions"), exports);
+__exportStar(require("./images"), exports);
+__exportStar(require("./importmappings"), exports);
+__exportStar(require("./javaactions"), exports);
+__exportStar(require("./javascriptactions"), exports);
+__exportStar(require("./jsonstructures"), exports);
+__exportStar(require("./kafka"), exports);
+__exportStar(require("./mappings"), exports);
+__exportStar(require("./menus"), exports);
+__exportStar(require("./messagedefinitions"), exports);
+__exportStar(require("./microflows"), exports);
+__exportStar(require("./nanoflows"), exports);
+__exportStar(require("./nativepages"), exports);
+__exportStar(require("./navigation"), exports);
+__exportStar(require("./pages"), exports);
+__exportStar(require("./projects"), exports);
+__exportStar(require("./regularexpressions"), exports);
+__exportStar(require("./reports"), exports);
+__exportStar(require("./rest"), exports);
+__exportStar(require("./scheduledevents"), exports);
+__exportStar(require("./security"), exports);
+__exportStar(require("./services"), exports);
+__exportStar(require("./settings"), exports);
+__exportStar(require("./texts"), exports);
+__exportStar(require("./webservices"), exports);
+__exportStar(require("./workflows"), exports);
+__exportStar(require("./xmlschemas"), exports);
 //# sourceMappingURL=all-model-classes.js.map

@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.navigation = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -16,6 +17,17 @@ var navigation;
     DeviceType.Tablet = new DeviceType("Tablet", {});
     DeviceType.Phone = new DeviceType("Phone", {});
     navigation.DeviceType = DeviceType;
+    class OfflineEntitySyncDownloadMode extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "navigation.OfflineEntitySyncDownloadMode";
+        }
+    }
+    OfflineEntitySyncDownloadMode.All = new OfflineEntitySyncDownloadMode("All", {});
+    OfflineEntitySyncDownloadMode.Constrained = new OfflineEntitySyncDownloadMode("Constrained", {});
+    OfflineEntitySyncDownloadMode.None = new OfflineEntitySyncDownloadMode("None", {});
+    OfflineEntitySyncDownloadMode.NoneAndPreserveData = new OfflineEntitySyncDownloadMode("NoneAndPreserveData", {});
+    navigation.OfflineEntitySyncDownloadMode = OfflineEntitySyncDownloadMode;
     class ProfileKind extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -23,8 +35,17 @@ var navigation;
         }
     }
     ProfileKind.Responsive = new ProfileKind("Responsive", {});
+    ProfileKind.ResponsiveOffline = new ProfileKind("ResponsiveOffline", {
+        introduced: "8.14.0"
+    });
     ProfileKind.Tablet = new ProfileKind("Tablet", {});
+    ProfileKind.TabletOffline = new ProfileKind("TabletOffline", {
+        introduced: "8.14.0"
+    });
     ProfileKind.Phone = new ProfileKind("Phone", {});
+    ProfileKind.PhoneOffline = new ProfileKind("PhoneOffline", {
+        introduced: "8.14.0"
+    });
     ProfileKind.NativePhone = new ProfileKind("NativePhone", {
         introduced: "7.20.0",
         deleted: "7.23.0",
@@ -184,6 +205,8 @@ var navigation;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.22.0: introduced
          */
         get offlineEntityConfigs() {
@@ -252,6 +275,8 @@ var navigation;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.0.0: introduced
          */
         get bottomBarItems() {
@@ -299,7 +324,7 @@ var navigation;
     }, internal.StructureType.Element);
     navigation.NativeNavigationProfile = NativeNavigationProfile;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/navigation relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/navigation relevant section in reference guide}
      */
     class NavigationDocument extends projects_1.projects.ProjectDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -545,6 +570,10 @@ var navigation;
             /** @internal */
             this.__applicationTitle = new internal.PrimitiveProperty(NavigationProfile, this, "applicationTitle", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__appTitle = new internal.PartProperty(NavigationProfile, this, "appTitle", null, true);
+            /** @internal */
+            this.__appIcon = new internal.ByNameReferenceProperty(NavigationProfile, this, "appIcon", null, "Images$Image");
+            /** @internal */
             this.__loginPageSettings = new internal.PartProperty(NavigationProfile, this, "loginPageSettings", null, true);
             /** @internal */
             this.__menuItemCollection = new internal.PartProperty(NavigationProfile, this, "menuItemCollection", null, true);
@@ -594,11 +623,35 @@ var navigation;
         get roleBasedHomePages() {
             return this.__roleBasedHomePages.get();
         }
+        /**
+         * In version 8.12.0: deleted
+         */
         get applicationTitle() {
             return this.__applicationTitle.get();
         }
         set applicationTitle(newValue) {
             this.__applicationTitle.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get appTitle() {
+            return this.__appTitle.get();
+        }
+        set appTitle(newValue) {
+            this.__appTitle.set(newValue);
+        }
+        /**
+         * In version 8.12.0: introduced
+         */
+        get appIcon() {
+            return this.__appIcon.get();
+        }
+        set appIcon(newValue) {
+            this.__appIcon.set(newValue);
+        }
+        get appIconQualifiedName() {
+            return this.__appIcon.qualifiedName();
         }
         /**
          * In version 7.0.2: introduced
@@ -760,13 +813,27 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            (() => {
-                if (internal.isAtLeast("6.9.0", this.model)) {
-                    this.applicationTitle = "Mendix";
-                    return;
-                }
-                this.applicationTitle = "Mendix 5";
-            })();
+            if (this.__appTitle.isAvailable) {
+                this.appTitle = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Mendix";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            }
+            if (this.__applicationTitle.isAvailable) {
+                (() => {
+                    if (internal.isAtLeast("6.9.0", this.model)) {
+                        this.applicationTitle = "Mendix";
+                        return;
+                    }
+                    this.applicationTitle = "Mendix 5";
+                })();
+            }
             if (this.__enabled.isAvailable) {
                 (() => {
                     if (internal.isAtLeast("6.9.0", this.model)) {
@@ -812,7 +879,19 @@ var navigation;
                     currentValue: true
                 }
             },
-            applicationTitle: {},
+            applicationTitle: {
+                deleted: "8.12.0",
+                deletionMessage: "Use property 'appTitle' instead"
+            },
+            appTitle: {
+                introduced: "8.12.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            appIcon: {
+                introduced: "8.12.0"
+            },
             loginPageSettings: {
                 introduced: "7.0.2",
                 required: {
@@ -839,6 +918,8 @@ var navigation;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.22.0: introduced
      */
     class OfflineEntityConfig extends internal.Element {
@@ -846,6 +927,8 @@ var navigation;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__entity = new internal.ByNameReferenceProperty(OfflineEntityConfig, this, "entity", null, "DomainModels$Entity");
+            /** @internal */
+            this.__downloadMode = new internal.EnumProperty(OfflineEntityConfig, this, "downloadMode", OfflineEntitySyncDownloadMode.All, OfflineEntitySyncDownloadMode);
             /** @internal */
             this.__shouldDownload = new internal.PrimitiveProperty(OfflineEntityConfig, this, "shouldDownload", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -866,6 +949,18 @@ var navigation;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
+        /**
+         * In version 8.9.0: introduced
+         */
+        get downloadMode() {
+            return this.__downloadMode.get();
+        }
+        set downloadMode(newValue) {
+            this.__downloadMode.set(newValue);
+        }
+        /**
+         * In version 8.9.0: deleted
+         */
         get shouldDownload() {
             return this.__shouldDownload.get();
         }
@@ -904,7 +999,12 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.shouldDownload = true;
+            if (this.__downloadMode.isAvailable) {
+                this.downloadMode = OfflineEntitySyncDownloadMode.All;
+            }
+            if (this.__shouldDownload.isAvailable) {
+                this.shouldDownload = true;
+            }
         }
     }
     OfflineEntityConfig.structureTypeName = "Navigation$OfflineEntityConfig";
@@ -915,6 +1015,13 @@ var navigation;
                 required: {
                     currentValue: true
                 }
+            },
+            downloadMode: {
+                introduced: "8.9.0"
+            },
+            shouldDownload: {
+                deleted: "8.9.0",
+                deletionMessage: null
             }
         },
         experimental: {
@@ -1035,4 +1142,5 @@ var navigation;
 })(navigation = exports.navigation || (exports.navigation = {}));
 const menus_1 = require("./menus");
 const pages_1 = require("./pages");
+const texts_1 = require("./texts");
 //# sourceMappingURL=navigation.js.map

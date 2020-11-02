@@ -79,7 +79,6 @@ export declare namespace customwidgets {
     class CustomWidget extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): WidgetValue;
         get containerAsNativeLayout(): nativepages.NativeLayout;
         get containerAsNativeLayoutCallArgument(): nativepages.NativeLayoutCallArgument;
@@ -602,7 +601,6 @@ export declare namespace customwidgets {
     class CustomWidgetDatabaseSource extends pages.DatabaseSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): WidgetValue;
         get containerAsEntityWidget(): pages.EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -631,10 +629,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): CustomWidgetDatabaseSource;
     }
-    class CustomWidgetType extends internal.Element {
+    class CustomWidgetType extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): CustomWidget;
         get widgetId(): string;
         set widgetId(newValue: string);
@@ -697,7 +694,6 @@ export declare namespace customwidgets {
     class CustomWidgetXPathSource extends pages.XPathSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): WidgetValue;
         get containerAsEntityWidget(): pages.EntityWidget;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -726,10 +722,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): CustomWidgetXPathSource;
     }
-    class WidgetEnumerationValue extends internal.Element {
+    class WidgetEnumerationValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValueType(): WidgetValueType;
         get key(): string;
         set key(newValue: string);
@@ -749,10 +744,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetEnumerationValue;
     }
-    class WidgetObject extends internal.Element {
+    class WidgetObject extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidget(): CustomWidget;
         get containerAsWidgetValue(): WidgetValue;
         /**
@@ -787,10 +781,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetObject;
     }
-    class WidgetObjectType extends internal.Element {
+    class WidgetObjectType extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsCustomWidgetType(): CustomWidgetType;
         get containerAsWidgetValueType(): WidgetValueType;
         get propertyTypes(): internal.IList<WidgetPropertyType>;
@@ -814,10 +807,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetObjectType;
     }
-    class WidgetProperty extends internal.Element {
+    class WidgetProperty extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetObject(): WidgetObject;
         /**
          * In version 7.13.0: added optional
@@ -843,10 +835,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetProperty;
     }
-    class WidgetPropertyType extends internal.Element {
+    class WidgetPropertyType extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetObjectType(): WidgetObjectType;
         get key(): string;
         set key(newValue: string);
@@ -877,10 +868,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetPropertyType;
     }
-    class WidgetReturnType extends internal.Element {
+    class WidgetReturnType extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValueType(): WidgetValueType;
         get type(): WidgetReturnTypeEnum;
         set type(newValue: WidgetReturnTypeEnum);
@@ -902,10 +892,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetReturnType;
     }
-    class WidgetTranslation extends internal.Element {
+    class WidgetTranslation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValueType(): WidgetValueType;
         get languageCode(): string;
         set languageCode(newValue: string);
@@ -925,10 +914,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetTranslation;
     }
-    class WidgetValue extends internal.Element {
+    class WidgetValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetProperty(): WidgetProperty;
         get type(): WidgetValueType;
         set type(newValue: WidgetValueType);
@@ -1012,6 +1000,11 @@ export declare namespace customwidgets {
          */
         get dataSource(): pages.DataSource | null;
         set dataSource(newValue: pages.DataSource | null);
+        /**
+         * In version 8.8.0: introduced
+         */
+        get sourceVariable(): pages.PageVariable | null;
+        set sourceVariable(newValue: pages.PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValue instance in the SDK and on the server.
@@ -1026,10 +1019,9 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): WidgetValue;
     }
-    class WidgetValueType extends internal.Element {
+    class WidgetValueType extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetPropertyType(): WidgetPropertyType;
         get type(): WidgetValueTypeEnum;
         set type(newValue: WidgetValueTypeEnum);

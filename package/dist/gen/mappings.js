@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mappings = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -223,7 +224,7 @@ var mappings;
     }, internal.StructureType.Element);
     mappings.Element = Element;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/mapping-documents relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/mapping-documents relevant section in reference guide}
      */
     class MappingDocument extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

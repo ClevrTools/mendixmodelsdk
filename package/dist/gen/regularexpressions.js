@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.regularexpressions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -10,7 +11,7 @@ var regularexpressions;
      * Interfaces and instance classes for types from the Mendix sub meta model `RegularExpressions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/regular-expressions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/regular-expressions relevant section in reference guide}
      */
     class RegularExpression extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

@@ -1,6 +1,9 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { pages } from "./pages";
+/**
+ * @ignore
+ */
 export declare namespace nativepages {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `NativePages`.
@@ -8,17 +11,27 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: introduced
      */
-    class BottomBarItem extends internal.Element {
+    class BottomBarItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeNavigationProfile(): navigation.NativeNavigationProfile;
         get caption(): texts.Text;
         set caption(newValue: texts.Text);
         get icon(): pages.Icon | null;
         set icon(newValue: pages.Icon | null);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get page(): pages.IPage | null;
+        set page(newValue: pages.IPage | null);
+        get pageQualifiedName(): string | null;
+        /**
+         * In version 8.15.0: deleted
+         */
         get action(): pages.ClientAction;
         set action(newValue: pages.ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -41,6 +54,8 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
      */
@@ -54,13 +69,14 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
      */
     class NativeLayout extends pages.FormBase implements INativeLayout {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get widgets(): internal.IList<pages.Widget>;
         /**
@@ -78,13 +94,14 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
      */
-    class NativeLayoutCallArgument extends internal.Element {
+    class NativeLayoutCallArgument extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativePage(): NativePage;
         get parameter(): pages.ILayoutParameter;
         set parameter(newValue: pages.ILayoutParameter);
@@ -110,6 +127,8 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
      */
@@ -123,22 +142,27 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.21.0: introduced
      */
     class NativePage extends pages.FormBase implements INativePage {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get layout(): INativeLayout;
         set layout(newValue: INativeLayout);
         get layoutQualifiedName(): string;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 7.23.0: introduced
          */
@@ -153,13 +177,14 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
      */
     class NativePageClientAction extends pages.ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
         get containerAsActionButton(): pages.ActionButton;
@@ -173,6 +198,8 @@ export declare namespace nativepages {
         get containerAsStaticImageViewer(): pages.StaticImageViewer;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get page(): INativePage | null;
         set page(newValue: INativePage | null);
@@ -305,13 +332,14 @@ export declare namespace nativepages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 7.23.0: introduced
      */
     class NativePlaceholder extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsNativeLayout(): NativeLayout;
         get containerAsNativeLayoutCallArgument(): NativeLayoutCallArgument;
         get containerAsBuildingBlock(): pages.BuildingBlock;

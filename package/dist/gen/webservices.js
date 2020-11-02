@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.webservices = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -405,7 +406,7 @@ var webservices;
     DataEntity.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     webservices.DataEntity = DataEntity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-web-services relevant section in reference guide}
      */
     class ImportedWebService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -720,7 +721,7 @@ var webservices;
     PublishedServiceBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
     webservices.PublishedServiceBase = PublishedServiceBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
      */
     class PublishedAppService extends PublishedServiceBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -1142,7 +1143,7 @@ var webservices;
     }, internal.StructureType.Element);
     webservices.PublishedParameter = PublishedParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-web-services relevant section in reference guide}
      */
     class PublishedWebService extends PublishedServiceBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -1464,7 +1465,7 @@ var webservices;
     }, internal.StructureType.Element);
     webservices.SystemIdDataAttribute = SystemIdDataAttribute;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-web-services relevant section in reference guide}
      */
     class VersionedService extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.datasets = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -33,7 +34,7 @@ var datasets;
     DateTimeIntervalModifier.Always = new DateTimeIntervalModifier("Always", {});
     datasets.DateTimeIntervalModifier = DateTimeIntervalModifier;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-sets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-sets relevant section in reference guide}
      */
     class DataSet extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {

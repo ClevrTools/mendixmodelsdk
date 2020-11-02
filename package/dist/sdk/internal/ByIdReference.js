@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ByIdReference = void 0;
 const mobx_1 = require("mobx");
 const elements = require("./elements");
 class ByIdReference {

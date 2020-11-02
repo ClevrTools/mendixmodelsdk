@@ -22,10 +22,9 @@ export declare namespace webservices {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `WebServices`.
      */
-    abstract class DataMember extends internal.Element {
+    abstract class DataMember extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get containerAsPublishedParameter(): PublishedParameter;
         get containerAsPublishedResource(): PublishedResource;
@@ -48,7 +47,6 @@ export declare namespace webservices {
     abstract class DataEntityBase extends DataMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get containerAsPublishedParameter(): PublishedParameter;
         get containerAsPublishedResource(): PublishedResource;
@@ -63,7 +61,6 @@ export declare namespace webservices {
     class DataAssociation extends DataEntityBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get associationByContract(): appservices.MsdAssociation | null;
         set associationByContract(newValue: appservices.MsdAssociation | null);
@@ -102,7 +99,6 @@ export declare namespace webservices {
     class DataAttribute extends DataMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get attributeByContract(): appservices.MsdAttribute | null;
         set attributeByContract(newValue: appservices.MsdAttribute | null);
@@ -136,7 +132,6 @@ export declare namespace webservices {
     class DataEntity extends DataEntityBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get containerAsPublishedParameter(): PublishedParameter;
         get containerAsPublishedResource(): PublishedResource;
@@ -167,7 +162,7 @@ export declare namespace webservices {
         static create(model: IModel): DataEntity;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-web-services relevant section in reference guide}
      */
     interface IImportedWebService extends projects.IDocument {
         readonly model: IModel;
@@ -177,12 +172,11 @@ export declare namespace webservices {
         load(forceRefresh?: boolean): Promise<ImportedWebService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/consumed-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-web-services relevant section in reference guide}
      */
     class ImportedWebService extends projects.Document implements IImportedWebService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get wsdlDescription(): WsdlDescription | null;
         set wsdlDescription(newValue: WsdlDescription | null);
@@ -200,10 +194,9 @@ export declare namespace webservices {
          */
         static createIn(container: projects.IFolderBase): ImportedWebService;
     }
-    class OperationInfo extends internal.Element {
+    class OperationInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsServiceInfo(): ServiceInfo;
         get name(): string;
         set name(newValue: string);
@@ -249,10 +242,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): OperationInfo;
     }
-    class PartEncoding extends internal.Element {
+    class PartEncoding extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsOperationInfo(): OperationInfo;
         get partName(): string;
         set partName(newValue: string);
@@ -288,13 +280,12 @@ export declare namespace webservices {
     abstract class PublishedServiceBase extends projects.Document implements IPublishedServiceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         get versionedServices(): internal.IList<VersionedService>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
      */
     interface IPublishedAppService extends IPublishedServiceBase {
         readonly model: IModel;
@@ -304,12 +295,11 @@ export declare namespace webservices {
         load(forceRefresh?: boolean): Promise<PublishedAppService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
      */
     class PublishedAppService extends PublishedServiceBase implements IPublishedAppService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
@@ -318,10 +308,9 @@ export declare namespace webservices {
          */
         static createIn(container: projects.IFolderBase): PublishedAppService;
     }
-    abstract class PublishedResource extends internal.Element {
+    abstract class PublishedResource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedODataService(): rest.PublishedODataService;
         get containerAsVersionedService(): VersionedService;
         get dataEntity(): DataEntity;
@@ -331,7 +320,6 @@ export declare namespace webservices {
     class PublishedOperation extends PublishedResource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsVersionedService(): VersionedService;
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
@@ -386,10 +374,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): PublishedOperation;
     }
-    class PublishedParameter extends internal.Element {
+    class PublishedParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedOperation(): PublishedOperation;
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
@@ -439,7 +426,7 @@ export declare namespace webservices {
         static create(model: IModel): PublishedParameter;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-web-services relevant section in reference guide}
      */
     interface IPublishedWebService extends IPublishedServiceBase {
         readonly model: IModel;
@@ -449,12 +436,11 @@ export declare namespace webservices {
         load(forceRefresh?: boolean): Promise<PublishedWebService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-web-services relevant section in reference guide}
      */
     class PublishedWebService extends PublishedServiceBase implements IPublishedWebService {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsFolderBase(): projects.FolderBase;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
@@ -463,10 +449,9 @@ export declare namespace webservices {
          */
         static createIn(container: projects.IFolderBase): PublishedWebService;
     }
-    class RpcMessagePartElement extends internal.Element {
+    class RpcMessagePartElement extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsRpcOperationElement(): RpcOperationElement;
         get partName(): string;
         set partName(newValue: string);
@@ -488,10 +473,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): RpcMessagePartElement;
     }
-    class RpcOperationElement extends internal.Element {
+    class RpcOperationElement extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsOperationInfo(): OperationInfo;
         get name(): string;
         set name(newValue: string);
@@ -522,10 +506,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): RpcOperationElement;
     }
-    class ServiceInfo extends internal.Element {
+    class ServiceInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWsdlDescription(): WsdlDescription;
         get name(): string;
         set name(newValue: string);
@@ -561,7 +544,6 @@ export declare namespace webservices {
     class SystemIdDataAttribute extends DataMember {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsDataEntityBase(): DataEntityBase;
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
@@ -594,12 +576,11 @@ export declare namespace webservices {
         static create(model: IModel): SystemIdDataAttribute;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide7/published-web-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-web-services relevant section in reference guide}
      */
-    class VersionedService extends internal.Element {
+    class VersionedService extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsPublishedServiceBase(): PublishedServiceBase;
         get documentation(): string;
         set documentation(newValue: string);
@@ -655,10 +636,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): VersionedService;
     }
-    class WsdlDescription extends internal.Element {
+    class WsdlDescription extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsMsd(): appservices.Msd;
         get containerAsImportedWebService(): ImportedWebService;
         get wsdlEntries(): internal.IList<WsdlEntry>;
@@ -688,10 +668,9 @@ export declare namespace webservices {
          */
         static create(model: IModel): WsdlDescription;
     }
-    class WsdlEntry extends internal.Element {
+    class WsdlEntry extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        model: IModel;
         get containerAsWsdlDescription(): WsdlDescription;
         get location(): string;
         set location(newValue: string);

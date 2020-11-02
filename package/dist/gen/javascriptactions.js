@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.javascriptactions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const codeactions_1 = require("./codeactions");
@@ -10,7 +11,7 @@ var javascriptactions;
      * Interfaces and instance classes for types from the Mendix sub meta model `JavaScriptActions`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide7/javascript-actions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/javascript-actions relevant section in reference guide}
      *
      * In version 8.0.0: removed experimental
      * In version 7.21.0: introduced

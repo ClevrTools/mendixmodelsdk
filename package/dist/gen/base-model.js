@@ -1,11 +1,24 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseModel = void 0;
+const internal_1 = require("../sdk/internal");
 const AbstractModel_1 = require("../sdk/internal/AbstractModel");
+const elements = require("../sdk/internal/elements");
 /**
  * Class to find generated model units.
  */
 class BaseModel extends AbstractModel_1.AbstractModel {
+    createElement(typeName) {
+        const elementClass = internal_1.instancehelpers.lookupClass(typeName, this._allModelClasses());
+        if (!elements.Element.isPrototypeOf(elementClass)) {
+            throw new Error(`'${typeName}' is not an element type`);
+        }
+        if (typeof elementClass.create !== "function") {
+            throw new Error(`Cannot create an element for an abstract type '${typeName}'`);
+        }
+        return internal_1.instancehelpers.createElement(this, elementClass);
+    }
     allBuildingBlocks() {
         return super._allOfTypes(["Pages$BuildingBlock"]);
     }
@@ -17,6 +30,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allConsumedAppServices() {
         return super._allOfTypes(["AppServices$ConsumedAppService"]);
+    }
+    allConsumedKafkaServices() {
+        return super._allOfTypes(["Kafka$ConsumedKafkaService"]);
     }
     allConsumedODataServices() {
         return super._allOfTypes(["Rest$ConsumedODataService"]);
@@ -37,6 +53,8 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaActions$JavaAction",
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
+            "Kafka$ConsumedKafkaService",
+            "Kafka$PublishedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -57,6 +75,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "WebServices$ImportedWebService",
             "WebServices$PublishedAppService",
             "WebServices$PublishedWebService",
+            "Workflows$Workflow",
             "XmlSchemas$XmlSchema"
         ]);
     }
@@ -142,6 +161,8 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JavaActions$JavaAction",
             "JavaScriptActions$JavaScriptAction",
             "JsonStructures$JsonStructure",
+            "Kafka$ConsumedKafkaService",
+            "Kafka$PublishedKafkaService",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -162,6 +183,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "WebServices$ImportedWebService",
             "WebServices$PublishedAppService",
             "WebServices$PublishedWebService",
+            "Workflows$Workflow",
             "XmlSchemas$XmlSchema"
         ]);
     }
@@ -212,6 +234,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allPublishedAppServices() {
         return super._allOfTypes(["WebServices$PublishedAppService"]);
     }
+    allPublishedKafkaServices() {
+        return super._allOfTypes(["Kafka$PublishedKafkaService"]);
+    }
     allPublishedODataServices() {
         return super._allOfTypes(["Rest$PublishedODataService"]);
     }
@@ -228,7 +253,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         return super._allOfTypes(["RegularExpressions$RegularExpression"]);
     }
     allRemoteEntitySourceDocuments() {
-        return super._allOfTypes(["Rest$ConsumedODataService"]);
+        return super._allOfTypes(["Kafka$ConsumedKafkaService", "Rest$ConsumedODataService"]);
     }
     allRules() {
         return super._allOfTypes(["Microflows$Rule"]);
@@ -247,6 +272,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allTemplateFormBases() {
         return super._allOfTypes(["Pages$BuildingBlock", "Pages$PageTemplate"]);
+    }
+    allWorkflows() {
+        return super._allOfTypes(["Workflows$Workflow"]);
     }
     allXmlSchemas() {
         return super._allOfTypes(["XmlSchemas$XmlSchema"]);
@@ -311,6 +339,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findJsonStructureByQualifiedName(qname) {
         return this._resolveName("JsonStructures$JsonStructure", qname);
     }
+    findConsumedKafkaServiceByQualifiedName(qname) {
+        return this._resolveName("Kafka$ConsumedKafkaService", qname);
+    }
     findMenuDocumentByQualifiedName(qname) {
         return this._resolveName("Menus$MenuDocument", qname);
     }
@@ -359,6 +390,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findRegularExpressionByQualifiedName(qname) {
         return this._resolveName("RegularExpressions$RegularExpression", qname);
     }
+    findConsumedODataServiceByQualifiedName(qname) {
+        return this._resolveName("Rest$ConsumedODataService", qname);
+    }
     findModuleRoleByQualifiedName(qname) {
         return this._resolveName("Security$ModuleRole", qname);
     }
@@ -367,6 +401,12 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findImportedWebServiceByQualifiedName(qname) {
         return this._resolveName("WebServices$ImportedWebService", qname);
+    }
+    findWorkflowByQualifiedName(qname) {
+        return this._resolveName("Workflows$Workflow", qname);
+    }
+    findWorkflowTaskOutcomeByQualifiedName(qname) {
+        return this._resolveName("Workflows$WorkflowTaskOutcome", qname);
     }
     findXmlSchemaByQualifiedName(qname) {
         return this._resolveName("XmlSchemas$XmlSchema", qname);

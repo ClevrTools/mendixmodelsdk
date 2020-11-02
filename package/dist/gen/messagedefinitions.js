@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.messagedefinitions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const mappings_1 = require("./mappings");
@@ -241,7 +242,7 @@ var messagedefinitions;
     }, internal.StructureType.Element);
     messagedefinitions.MessageDefinition = MessageDefinition;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */
@@ -636,7 +637,7 @@ var messagedefinitions;
     }, internal.StructureType.Element);
     messagedefinitions.ExposedEntity = ExposedEntity;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/message-definitions relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *
      * In version 7.6.0: introduced
      */

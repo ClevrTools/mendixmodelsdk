@@ -1,6 +1,7 @@
 "use strict";
 /* tslint:disable */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.documenttemplates = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
@@ -317,7 +318,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.Grid = Grid;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-grid-document-template relevant section in reference guide}
      */
     class DataGrid extends Grid {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -377,7 +378,7 @@ var documenttemplates;
     DataGrid.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.DataGrid = DataGrid;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns-document-template relevant section in reference guide}
      */
     class DataGridCell extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -439,7 +440,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.DataGridCell = DataGridCell;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/columns-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/columns-document-template relevant section in reference guide}
      */
     class DataGridColumn extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -583,7 +584,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.DataGridColumn = DataGridColumn;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/data-view-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/data-view-document-template relevant section in reference guide}
      */
     class DataView extends EntityWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -728,7 +729,7 @@ var documenttemplates;
     DataViewContents.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.DataViewContents = DataViewContents;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/document-templates relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/document-templates relevant section in reference guide}
      */
     class DocumentTemplate extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -971,7 +972,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.DocumentTemplateParameter = DocumentTemplateParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/dynamic-image-document-template relevant section in reference guide}
      */
     class DynamicImageViewer extends EntityWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1054,7 +1055,7 @@ var documenttemplates;
     DynamicImageViewer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.DynamicImageViewer = DynamicImageViewer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/dynamic-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/dynamic-label-document-template relevant section in reference guide}
      */
     class DynamicLabel extends AttributeWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1141,7 +1142,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.DynamicLabel = DynamicLabel;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/footer-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/footer-document-template relevant section in reference guide}
      */
     class Footer extends DropZone {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1186,7 +1187,7 @@ var documenttemplates;
     Footer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.Footer = Footer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/sort-bar relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/sort-bar relevant section in reference guide}
      */
     class GridSortBar extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1311,7 +1312,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.GridSortItem = GridSortItem;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/header-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/header-document-template relevant section in reference guide}
      */
     class Header extends DropZone {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1356,7 +1357,7 @@ var documenttemplates;
     Header.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.Header = Header;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/line-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/line-break-document-template relevant section in reference guide}
      */
     class LineBreak extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1404,7 +1405,7 @@ var documenttemplates;
     LineBreak.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.LineBreak = LineBreak;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/page-break-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/page-break-document-template relevant section in reference guide}
      */
     class PageBreak extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1452,7 +1453,7 @@ var documenttemplates;
     PageBreak.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.PageBreak = PageBreak;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-image-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/static-image-document-template relevant section in reference guide}
      */
     class StaticImageViewer extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1527,7 +1528,7 @@ var documenttemplates;
     StaticImageViewer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.StaticImageViewer = StaticImageViewer;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/static-label-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/static-label-document-template relevant section in reference guide}
      */
     class StaticLabel extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1615,7 +1616,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.StaticLabel = StaticLabel;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/style relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/style relevant section in reference guide}
      */
     class Style extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1975,7 +1976,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.Style = Style;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/table-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/table-document-template relevant section in reference guide}
      */
     class Table extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2068,7 +2069,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.Table = Table;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/cell-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/cell-document-template relevant section in reference guide}
      */
     class TableCell extends DropZone {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2148,7 +2149,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.TableCell = TableCell;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/row-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/row-document-template relevant section in reference guide}
      */
     class TableRow extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2208,7 +2209,7 @@ var documenttemplates;
     }, internal.StructureType.Element);
     documenttemplates.TableRow = TableRow;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/template-grid-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/template-grid-document-template relevant section in reference guide}
      */
     class TemplateGrid extends Grid {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2332,7 +2333,7 @@ var documenttemplates;
     TemplateGridContents.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     documenttemplates.TemplateGridContents = TemplateGridContents;
     /**
-     * See: {@link https://docs.mendix.com/refguide7/title-(document-template) relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/title-document-template relevant section in reference guide}
      */
     class Title extends Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

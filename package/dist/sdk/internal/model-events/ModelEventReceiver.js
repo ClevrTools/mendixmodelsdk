@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ModelEventReceiver = void 0;
+const EventSource = require("eventsource");
 const EventEmitter_1 = require("../EventEmitter");
 class ModelEventReceiver {
     constructor(workingCopyId, client, errorHandler) {
@@ -21,7 +23,16 @@ class ModelEventReceiver {
             return;
         }
         this.eventSource = this.client.getModelEventSource(this.workingCopyId, lastEventId);
-        this.eventSource.onerror = (e) => this.errorHandler.handleError(`We received an error event from the EventSource: ${JSON.stringify(e)}`, undefined);
+        const localEventSource = this.eventSource;
+        this.eventSource.onerror = event => {
+            // We need to know whether the error resulted in a failed connection, or a temporarily interrupted one.
+            // If it is a temporary interruption — as can occur if the computer was asleep, or the server closes the connection — the browser will try again.
+            // Reference: https://www.sitepoint.com/server-sent-events/
+            if (this.eventSource !== localEventSource || localEventSource.readyState === EventSource.CONNECTING) {
+                return;
+            }
+            this.errorHandler.handleError(`ModelEventReceiver received an error event from the EventSource: ${JSON.stringify(event)}`, undefined);
+        };
         this.eventSource.addEventListener("deltas", (event) => {
             try {
                 const deltaEvent = JSON.parse(event.data);
