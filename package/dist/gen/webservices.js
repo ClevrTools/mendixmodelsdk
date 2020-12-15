@@ -1306,6 +1306,8 @@ var webservices;
             this.__locationConstant = new internal.ByNameReferenceProperty(ServiceInfo, this, "locationConstant", null, "Constants$Constant");
             /** @internal */
             this.__operations = new internal.PartListProperty(ServiceInfo, this, "operations", []);
+            /** @internal */
+            this.__usingAddressing = new internal.PrimitiveProperty(ServiceInfo, this, "usingAddressing", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ServiceInfo() cannot be invoked directly, please use 'model.webservices.createServiceInfo()'");
             }
@@ -1356,6 +1358,15 @@ var webservices;
             return this.__operations.get();
         }
         /**
+         * In version 8.16.0: introduced
+         */
+        get usingAddressing() {
+            return this.__usingAddressing.get();
+        }
+        set usingAddressing(newValue) {
+            this.__usingAddressing.set(newValue);
+        }
+        /**
          * Creates and returns a new ServiceInfo instance in the SDK and on the server.
          * The new ServiceInfo will be automatically stored in the 'services' property
          * of the parent WsdlDescription element passed as argument.
@@ -1378,7 +1389,13 @@ var webservices;
         }
     }
     ServiceInfo.structureTypeName = "WebServices$ServiceInfo";
-    ServiceInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ServiceInfo.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            usingAddressing: {
+                introduced: "8.16.0"
+            }
+        }
+    }, internal.StructureType.Element);
     webservices.ServiceInfo = ServiceInfo;
     /**
      * In version 6.7.0: introduced

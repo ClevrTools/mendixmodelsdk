@@ -1171,6 +1171,7 @@ var settings;
             this.__enableMicroflowReachabilityAnalysis.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.0.0: introduced
          */
         get themeConversionStatus() {
@@ -1224,7 +1225,9 @@ var settings;
                 introduced: "7.0.2"
             },
             themeConversionStatus: {
-                introduced: "8.0.0"
+                introduced: "8.0.0",
+                deleted: "9.0.1",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);

@@ -6099,6 +6099,8 @@ var microflows;
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(MicroflowCall, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
+            this.__queue = new internal.ByNameReferenceProperty(MicroflowCall, this, "queue", null, "Queues$Queue");
+            /** @internal */
             this.__parameterMappings = new internal.PartListProperty(MicroflowCall, this, "parameterMappings", []);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowCall() cannot be invoked directly, please use 'model.microflows.createMicroflowCall()'");
@@ -6115,6 +6117,22 @@ var microflows;
         }
         get microflowQualifiedName() {
             return this.__microflow.qualifiedName();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 8.16.0: introduced
+         */
+        get queue() {
+            return this.__queue.get();
+        }
+        set queue(newValue) {
+            this.__queue.set(newValue);
+        }
+        get queueQualifiedName() {
+            return this.__queue.qualifiedName();
         }
         get parameterMappings() {
             return this.__parameterMappings.get();
@@ -6141,7 +6159,13 @@ var microflows;
         }
     }
     MicroflowCall.structureTypeName = "Microflows$MicroflowCall";
-    MicroflowCall.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MicroflowCall.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            queue: {
+                introduced: "8.16.0"
+            }
+        }
+    }, internal.StructureType.Element);
     microflows.MicroflowCall = MicroflowCall;
     /**
      * See: {@link https://docs.mendix.com/refguide/microflow-call relevant section in reference guide}
@@ -8991,6 +9015,18 @@ var microflows;
         static createInWorkflowUnderSubject(container) {
             internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "8.15.0" });
             return internal.instancehelpers.createElement(container, StringTemplate, "subject", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'workflowDescription' property
+         * of the parent workflows.Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.1 and higher
+         */
+        static createInWorkflowUnderWorkflowDescription(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "9.0.1" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "workflowDescription", false);
         }
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.

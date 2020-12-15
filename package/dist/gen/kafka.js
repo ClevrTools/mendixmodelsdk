@@ -283,6 +283,8 @@ var kafka;
             /** @internal */
             this.__topicName = new internal.PrimitiveProperty(PublishedKafkaResource, this, "topicName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__attributes = new internal.PartListProperty(PublishedKafkaResource, this, "attributes", []);
+            /** @internal */
             this.__summary = new internal.PrimitiveProperty(PublishedKafkaResource, this, "summary", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedKafkaResource, this, "description", "", internal.PrimitiveTypeEnum.String);
@@ -313,6 +315,16 @@ var kafka;
         }
         set topicName(newValue) {
             this.__topicName.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.0.1: introduced
+         */
+        get attributes() {
+            return this.__attributes.get();
         }
         get summary() {
             return this.__summary.get();
@@ -359,6 +371,9 @@ var kafka;
                 required: {
                     currentValue: true
                 }
+            },
+            attributes: {
+                introduced: "9.0.1"
             }
         },
         experimental: {
@@ -366,6 +381,90 @@ var kafka;
         }
     }, internal.StructureType.Element);
     kafka.PublishedKafkaResource = PublishedKafkaResource;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.1: introduced
+     */
+    class PublishedKafkaResourceAttribute extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__attribute = new internal.ByNameReferenceProperty(PublishedKafkaResourceAttribute, this, "attribute", null, "DomainModels$Attribute");
+            /** @internal */
+            this.__summary = new internal.PrimitiveProperty(PublishedKafkaResourceAttribute, this, "summary", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(PublishedKafkaResourceAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new PublishedKafkaResourceAttribute() cannot be invoked directly, please use 'model.kafka.createPublishedKafkaResourceAttribute()'");
+            }
+        }
+        get containerAsPublishedKafkaResource() {
+            return super.getContainerAs(PublishedKafkaResource);
+        }
+        get attribute() {
+            return this.__attribute.get();
+        }
+        set attribute(newValue) {
+            this.__attribute.set(newValue);
+        }
+        get attributeQualifiedName() {
+            return this.__attribute.qualifiedName();
+        }
+        get summary() {
+            return this.__summary.get();
+        }
+        set summary(newValue) {
+            this.__summary.set(newValue);
+        }
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * The new PublishedKafkaResourceAttribute will be automatically stored in the 'attributes' property
+         * of the parent PublishedKafkaResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.1 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, PublishedKafkaResourceAttribute.structureTypeName, { start: "9.0.1" });
+            return internal.instancehelpers.createElement(container, PublishedKafkaResourceAttribute, "attributes", true);
+        }
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PublishedKafkaResourceAttribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PublishedKafkaResourceAttribute.structureTypeName = "Kafka$PublishedKafkaResourceAttribute";
+    PublishedKafkaResourceAttribute.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.1",
+        properties: {
+            attribute: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    kafka.PublishedKafkaResourceAttribute = PublishedKafkaResourceAttribute;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -453,6 +552,9 @@ var kafka;
         set description(newValue) {
             this.__description.set(newValue);
         }
+        /**
+         * In version 9.0.1: added optional
+         */
         get brokerUrl() {
             return this.__brokerUrl.get();
         }
@@ -500,7 +602,8 @@ var kafka;
         properties: {
             brokerUrl: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["9.0.1"]
                 }
             }
         },

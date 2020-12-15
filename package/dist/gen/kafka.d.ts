@@ -169,6 +169,14 @@ export declare namespace kafka {
         set exposedName(newValue: string);
         get topicName(): string;
         set topicName(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.0.1: introduced
+         */
+        get attributes(): internal.IList<PublishedKafkaResourceAttribute>;
         get summary(): string;
         set summary(newValue: string);
         get description(): string;
@@ -189,6 +197,41 @@ export declare namespace kafka {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): PublishedKafkaResource;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.1: introduced
+     */
+    class PublishedKafkaResourceAttribute extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedKafkaResource(): PublishedKafkaResource;
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
+        get summary(): string;
+        set summary(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * The new PublishedKafkaResourceAttribute will be automatically stored in the 'attributes' property
+         * of the parent PublishedKafkaResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.1 and higher
+         */
+        static createIn(container: PublishedKafkaResource): PublishedKafkaResourceAttribute;
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PublishedKafkaResourceAttribute;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
@@ -235,9 +278,12 @@ export declare namespace kafka {
         set summary(newValue: string);
         get description(): string;
         set description(newValue: string);
-        get brokerUrl(): constants.IConstant;
-        set brokerUrl(newValue: constants.IConstant);
-        get brokerUrlQualifiedName(): string;
+        /**
+         * In version 9.0.1: added optional
+         */
+        get brokerUrl(): constants.IConstant | null;
+        set brokerUrl(newValue: constants.IConstant | null);
+        get brokerUrlQualifiedName(): string | null;
         get brokerUsername(): constants.IConstant | null;
         set brokerUsername(newValue: constants.IConstant | null);
         get brokerUsernameQualifiedName(): string | null;

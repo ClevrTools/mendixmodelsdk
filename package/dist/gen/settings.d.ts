@@ -482,6 +482,7 @@ export declare namespace settings {
         get enableMicroflowReachabilityAnalysis(): boolean;
         set enableMicroflowReachabilityAnalysis(newValue: boolean);
         /**
+         * In version 9.0.1: deleted
          * In version 8.0.0: introduced
          */
         get themeConversionStatus(): ThemeConversionStatusEnum;

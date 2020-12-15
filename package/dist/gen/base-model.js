@@ -67,6 +67,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Pages$Page",
             "Pages$PageTemplate",
             "Pages$Snippet",
+            "Queues$Queue",
             "RegularExpressions$RegularExpression",
             "Rest$ConsumedODataService",
             "Rest$PublishedODataService",
@@ -175,6 +176,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Pages$Page",
             "Pages$PageTemplate",
             "Pages$Snippet",
+            "Queues$Queue",
             "RegularExpressions$RegularExpression",
             "Rest$ConsumedODataService",
             "Rest$PublishedODataService",
@@ -248,6 +250,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allPublishedWebServices() {
         return super._allOfTypes(["WebServices$PublishedWebService"]);
+    }
+    allQueues() {
+        return super._allOfTypes(["Queues$Queue"]);
     }
     allRegularExpressions() {
         return super._allOfTypes(["RegularExpressions$RegularExpression"]);
@@ -386,6 +391,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findSnippetByQualifiedName(qname) {
         return this._resolveName("Pages$Snippet", qname);
+    }
+    findQueueByQualifiedName(qname) {
+        return this._resolveName("Queues$Queue", qname);
     }
     findRegularExpressionByQualifiedName(qname) {
         return this._resolveName("RegularExpressions$RegularExpression", qname);

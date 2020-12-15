@@ -1,2 +1,2 @@
 npm pack mendixmodelsdk
-tar xzvf mendixmodelsdk-4.43.0.tgz
+tar xzvf mendixmodelsdk-4.44.0.tgz

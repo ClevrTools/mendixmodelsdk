@@ -1020,6 +1020,8 @@ var workflows;
             /** @internal */
             this.__description = new internal.PrimitiveProperty(Workflow, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__workflowDescription = new internal.PartProperty(Workflow, this, "workflowDescription", null, true);
+            /** @internal */
             this.__dueDate = new internal.PrimitiveProperty(Workflow, this, "dueDate", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
@@ -1067,11 +1069,23 @@ var workflows;
         set subject(newValue) {
             this.__subject.set(newValue);
         }
+        /**
+         * In version 9.0.1: deleted
+         */
         get description() {
             return this.__description.get();
         }
         set description(newValue) {
             this.__description.set(newValue);
+        }
+        /**
+         * In version 9.0.1: introduced
+         */
+        get workflowDescription() {
+            return this.__workflowDescription.get();
+        }
+        set workflowDescription(newValue) {
+            this.__workflowDescription.set(newValue);
         }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
@@ -1098,6 +1112,9 @@ var workflows;
             super._initializeDefaultProperties();
             this.flow = Flow.create(this.model);
             this.subject = microflows_1.microflows.StringTemplate.create(this.model);
+            if (this.__workflowDescription.isAvailable) {
+                this.workflowDescription = microflows_1.microflows.StringTemplate.create(this.model);
+            }
         }
     }
     Workflow.structureTypeName = "Workflows$Workflow";
@@ -1128,6 +1145,16 @@ var workflows;
                 }
             },
             subject: {
+                required: {
+                    currentValue: true
+                }
+            },
+            description: {
+                deleted: "9.0.1",
+                deletionMessage: null
+            },
+            workflowDescription: {
+                introduced: "9.0.1",
                 required: {
                     currentValue: true
                 }

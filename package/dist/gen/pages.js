@@ -93,6 +93,24 @@ var pages;
     AutocompletePurposeType.Email = new AutocompletePurposeType("Email", {});
     AutocompletePurposeType.InstantMessageProtocol = new AutocompletePurposeType("InstantMessageProtocol", {});
     pages.AutocompletePurposeType = AutocompletePurposeType;
+    class ButtonAriaRoleType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.ButtonAriaRoleType";
+        }
+    }
+    ButtonAriaRoleType.Button = new ButtonAriaRoleType("Button", {});
+    ButtonAriaRoleType.Link = new ButtonAriaRoleType("Link", {});
+    ButtonAriaRoleType.Checkbox = new ButtonAriaRoleType("Checkbox", {});
+    ButtonAriaRoleType.Radio = new ButtonAriaRoleType("Radio", {});
+    ButtonAriaRoleType.Tab = new ButtonAriaRoleType("Tab", {});
+    ButtonAriaRoleType.MenuItem = new ButtonAriaRoleType("MenuItem", {});
+    ButtonAriaRoleType.MenuItemCheckbox = new ButtonAriaRoleType("MenuItemCheckbox", {});
+    ButtonAriaRoleType.MenuItemRadio = new ButtonAriaRoleType("MenuItemRadio", {});
+    ButtonAriaRoleType.Option = new ButtonAriaRoleType("Option", {});
+    ButtonAriaRoleType.Switch = new ButtonAriaRoleType("Switch", {});
+    ButtonAriaRoleType.TreeItem = new ButtonAriaRoleType("TreeItem", {});
+    pages.ButtonAriaRoleType = ButtonAriaRoleType;
     class ButtonStyle extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -1057,6 +1075,8 @@ var pages;
             /** @internal */
             this.__action = new internal.PartProperty(ActionButton, this, "action", null, true);
             /** @internal */
+            this.__ariaRole = new internal.EnumProperty(ActionButton, this, "ariaRole", ButtonAriaRoleType.Button, ButtonAriaRoleType);
+            /** @internal */
             this.__disabledDuringAction = new internal.PrimitiveProperty(ActionButton, this, "disabledDuringAction", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ActionButton() cannot be invoked directly, please use 'model.pages.createActionButton()'");
@@ -1142,6 +1162,15 @@ var pages;
         }
         set action(newValue) {
             this.__action.set(newValue);
+        }
+        /**
+         * In version 9.0.1: introduced
+         */
+        get ariaRole() {
+            return this.__ariaRole.get();
+        }
+        set ariaRole(newValue) {
+            this.__ariaRole.set(newValue);
         }
         /**
          * In version 8.12.0: deleted
@@ -1776,6 +1805,9 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.action = NoClientAction.create(this.model);
+            if (this.__ariaRole.isAvailable) {
+                this.ariaRole = ButtonAriaRoleType.Button;
+            }
             (() => {
                 if (internal.isAtLeast("7.13.0", this.model)) {
                     return;
@@ -1816,6 +1848,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            ariaRole: {
+                introduced: "9.0.1"
             },
             disabledDuringAction: {
                 deleted: "8.12.0",
@@ -6100,6 +6135,8 @@ var pages;
             /** @internal */
             this.__attributeRef = new internal.PartProperty(ClientTemplateParameter, this, "attributeRef", null, false);
             /** @internal */
+            this.__expression = new internal.PrimitiveProperty(ClientTemplateParameter, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__formattingInfo = new internal.PartProperty(ClientTemplateParameter, this, "formattingInfo", null, true);
             if (arguments.length < 4) {
                 throw new Error("new ClientTemplateParameter() cannot be invoked directly, please use 'model.pages.createClientTemplateParameter()'");
@@ -6127,6 +6164,17 @@ var pages;
         }
         set attributeRef(newValue) {
             this.__attributeRef.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.0.1: introduced
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
         }
         /**
          * In version 7.15.0: introduced
@@ -6170,6 +6218,9 @@ var pages;
             },
             attributeRef: {
                 introduced: "7.11.0"
+            },
+            expression: {
+                introduced: "9.0.1"
             },
             formattingInfo: {
                 introduced: "7.15.0",

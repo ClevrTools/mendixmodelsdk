@@ -46,7 +46,16 @@ class DeltaProcessor {
         if (!structure) {
             return;
         }
-        const property = deltaUtils.getProperty(structure, delta.propertyName);
+        let property;
+        try {
+            property = deltaUtils.getProperty(structure, delta.propertyName);
+        }
+        catch (error) {
+            if (error instanceof deltaUtils.UnknownPropertyError) {
+                return;
+            }
+            throw error;
+        }
         if (!unit.isLoaded && !property.isPublic) {
             return;
         }

@@ -383,6 +383,7 @@ var domainmodels;
             this.__source.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.11.0: introduced
          */
         get capabilities() {
@@ -457,6 +458,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.11.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -548,6 +551,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Association = Association;
     /**
+     * In version 9.0.1: deleted
      * In version 8.11.0: introduced
      */
     class AssociationCapabilities extends internal.Element {
@@ -574,10 +578,10 @@ var domainmodels;
          * of the parent AssociationBase element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  8.11.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, AssociationCapabilities.structureTypeName, { start: "8.11.0" });
+            internal.createInVersionCheck(container.model, AssociationCapabilities.structureTypeName, { start: "8.11.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, AssociationCapabilities, "capabilities", false);
         }
         /**
@@ -597,6 +601,8 @@ var domainmodels;
     AssociationCapabilities.structureTypeName = "DomainModels$AssociationCapabilities";
     AssociationCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.11.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
@@ -874,6 +880,7 @@ var domainmodels;
             this.__value.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.13.0: introduced
          */
         get capabilities() {
@@ -943,6 +950,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.13.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -957,6 +966,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Attribute = Attribute;
     /**
+     * In version 9.0.1: deleted
      * In version 8.13.0: introduced
      */
     class AttributeCapabilities extends internal.Element {
@@ -966,8 +976,6 @@ var domainmodels;
             this.__filterable = new internal.PrimitiveProperty(AttributeCapabilities, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sortable = new internal.PrimitiveProperty(AttributeCapabilities, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
-            /** @internal */
-            this.__canDeleteFromModel = new internal.PrimitiveProperty(AttributeCapabilities, this, "canDeleteFromModel", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new AttributeCapabilities() cannot be invoked directly, please use 'model.domainmodels.createAttributeCapabilities()'");
             }
@@ -988,24 +996,15 @@ var domainmodels;
             this.__sortable.set(newValue);
         }
         /**
-         * In version 9.0.0: introduced
-         */
-        get canDeleteFromModel() {
-            return this.__canDeleteFromModel.get();
-        }
-        set canDeleteFromModel(newValue) {
-            this.__canDeleteFromModel.set(newValue);
-        }
-        /**
          * Creates and returns a new AttributeCapabilities instance in the SDK and on the server.
          * The new AttributeCapabilities will be automatically stored in the 'capabilities' property
          * of the parent Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  8.13.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, AttributeCapabilities.structureTypeName, { start: "8.13.0" });
+            internal.createInVersionCheck(container.model, AttributeCapabilities.structureTypeName, { start: "8.13.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, AttributeCapabilities, "capabilities", false);
         }
         /**
@@ -1019,9 +1018,6 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            if (this.__canDeleteFromModel.isAvailable) {
-                this.canDeleteFromModel = true;
-            }
             this.filterable = true;
             this.sortable = true;
         }
@@ -1029,6 +1025,8 @@ var domainmodels;
     AttributeCapabilities.structureTypeName = "DomainModels$AttributeCapabilities";
     AttributeCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.13.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             filterable: {
                 public: {
@@ -1036,12 +1034,6 @@ var domainmodels;
                 }
             },
             sortable: {
-                public: {
-                    currentValue: true
-                }
-            },
-            canDeleteFromModel: {
-                introduced: "9.0.0",
                 public: {
                     currentValue: true
                 }
@@ -2514,6 +2506,7 @@ var domainmodels;
             this.__source.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.12.0: introduced
          */
         get capabilities() {
@@ -2607,6 +2600,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.12.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -2621,6 +2616,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Entity = Entity;
     /**
+     * In version 9.0.1: deleted
      * In version 8.12.0: introduced
      */
     class EntityCapabilities extends internal.Element {
@@ -2650,10 +2646,10 @@ var domainmodels;
          * of the parent Entity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.12.0 and higher
+         *  8.12.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0" });
+            internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, EntityCapabilities, "capabilities", false);
         }
         /**
@@ -2673,6 +2669,8 @@ var domainmodels;
     EntityCapabilities.structureTypeName = "DomainModels$EntityCapabilities";
     EntityCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.12.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             countable: {
                 public: {
@@ -4394,6 +4392,8 @@ var domainmodels;
             this.__applicationId = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "applicationId", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__environmentType = new internal.EnumProperty(RemoteEntitySourceDocument, this, "environmentType", EnvironmentType.Unknown, EnvironmentType);
+            /** @internal */
+            this.__metadataHash = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "metadataHash", "", internal.PrimitiveTypeEnum.String);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
@@ -4504,6 +4504,15 @@ var domainmodels;
         set environmentType(newValue) {
             this.__environmentType.set(newValue);
         }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get metadataHash() {
+            return this.__metadataHash.get();
+        }
+        set metadataHash(newValue) {
+            this.__metadataHash.set(newValue);
+        }
         /** @internal */
         _isByNameReferrable() {
             return true;
@@ -4574,6 +4583,12 @@ var domainmodels;
             },
             environmentType: {
                 introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            metadataHash: {
+                introduced: "8.16.0",
                 public: {
                     currentValue: true
                 }

@@ -524,6 +524,11 @@ export declare namespace webservices {
         set locationConstant(newValue: constants.IConstant | null);
         get locationConstantQualifiedName(): string | null;
         get operations(): internal.IList<OperationInfo>;
+        /**
+         * In version 8.16.0: introduced
+         */
+        get usingAddressing(): boolean;
+        set usingAddressing(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ServiceInfo instance in the SDK and on the server.

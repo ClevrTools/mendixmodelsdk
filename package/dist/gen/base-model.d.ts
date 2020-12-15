@@ -25,6 +25,7 @@ import { nativepages } from "./nativepages";
 import { navigation } from "./navigation";
 import { pages } from "./pages";
 import { projects } from "./projects";
+import { queues } from "./queues";
 import { regularexpressions } from "./regularexpressions";
 import { reports } from "./reports";
 import { rest } from "./rest";
@@ -90,6 +91,7 @@ export interface IBaseModel extends IAbstractModel {
     allPublishedRestServices(): rest.IPublishedRestService[];
     allPublishedServiceBases(): webservices.IPublishedServiceBase[];
     allPublishedWebServices(): webservices.IPublishedWebService[];
+    allQueues(): queues.IQueue[];
     allRegularExpressions(): regularexpressions.IRegularExpression[];
     allRemoteEntitySourceDocuments(): domainmodels.IRemoteEntitySourceDocument[];
     allRules(): microflows.IRule[];
@@ -136,6 +138,7 @@ export interface IBaseModel extends IAbstractModel {
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
+    findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
@@ -198,6 +201,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allPublishedRestServices(): rest.IPublishedRestService[];
     allPublishedServiceBases(): webservices.IPublishedServiceBase[];
     allPublishedWebServices(): webservices.IPublishedWebService[];
+    allQueues(): queues.IQueue[];
     allRegularExpressions(): regularexpressions.IRegularExpression[];
     allRemoteEntitySourceDocuments(): domainmodels.IRemoteEntitySourceDocument[];
     allRules(): microflows.IRule[];
@@ -244,6 +248,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
+    findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
@@ -455,6 +460,7 @@ export declare type ConcreteModelElements = {
     Kafka$KafkaMappedValue: kafka.KafkaMappedValue;
     Kafka$KafkaRemoteEntitySource: kafka.KafkaRemoteEntitySource;
     Kafka$PublishedKafkaResource: kafka.PublishedKafkaResource;
+    Kafka$PublishedKafkaResourceAttribute: kafka.PublishedKafkaResourceAttribute;
     Mappings$MappingMicroflowCall: mappings.MappingMicroflowCall;
     Mappings$MappingMicroflowParameter: mappings.MappingMicroflowParameter;
     Menus$MenuItem: menus.MenuItem;
@@ -756,6 +762,7 @@ export declare type ConcreteModelElements = {
     Pages$WidgetValidation: pages.WidgetValidation;
     Pages$WorkflowOverviewTemplateType: pages.WorkflowOverviewTemplateType;
     Projects$OneTimeConversionMarker: projects.OneTimeConversionMarker;
+    Queues$BasicQueueConfig: queues.BasicQueueConfig;
     Reports$BasicReport: reports.BasicReport;
     Reports$BasicReportAggregate: reports.BasicReportAggregate;
     Reports$BasicReportColumn: reports.BasicReportColumn;

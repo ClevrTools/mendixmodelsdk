@@ -4,6 +4,12 @@ import { domainmodels } from "./domainmodels";
 import { projects } from "./projects";
 import { webservices } from "./webservices";
 export declare namespace rest {
+    class AssociationNavigability extends internal.AbstractEnum {
+        static BothDirections: AssociationNavigability;
+        static ParentToChild: AssociationNavigability;
+        static ChildToParent: AssociationNavigability;
+        protected qualifiedTsTypeName: string;
+    }
     class ODataVersion extends internal.AbstractEnum {
         static OData2: ODataVersion;
         static OData3: ODataVersion;
@@ -343,6 +349,14 @@ export declare namespace rest {
     interface IODataMappedValue extends domainmodels.IMappedValue {
         readonly model: IModel;
         readonly containerAsAttribute: domainmodels.IAttribute;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly filterable: boolean;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly sortable: boolean;
         asLoaded(): ODataMappedValue;
         load(callback: (element: ODataMappedValue) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ODataMappedValue>;
@@ -361,6 +375,16 @@ export declare namespace rest {
          */
         get remoteType(): string;
         set remoteType(newValue: string);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get sortable(): boolean;
+        set sortable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -399,6 +423,11 @@ export declare namespace rest {
         set remoteParentNavigationProperty(newValue: string);
         get remoteChildNavigationProperty(): string;
         set remoteChildNavigationProperty(newValue: string);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get navigability(): AssociationNavigability;
+        set navigability(newValue: AssociationNavigability);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
@@ -430,6 +459,10 @@ export declare namespace rest {
          * In version 8.11.0: introduced
          */
         readonly key: IODataKey | null;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly countable: boolean;
         asLoaded(): ODataRemoteEntitySource;
         load(callback: (element: ODataRemoteEntitySource) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ODataRemoteEntitySource>;
@@ -465,6 +498,11 @@ export declare namespace rest {
          */
         get key(): ODataKey | null;
         set key(newValue: ODataKey | null);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get countable(): boolean;
+        set countable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.

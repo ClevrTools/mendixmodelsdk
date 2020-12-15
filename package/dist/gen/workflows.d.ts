@@ -742,8 +742,16 @@ export declare namespace workflows {
         set flow(newValue: Flow);
         get subject(): microflows.StringTemplate;
         set subject(newValue: microflows.StringTemplate);
+        /**
+         * In version 9.0.1: deleted
+         */
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 9.0.1: introduced
+         */
+        get workflowDescription(): microflows.StringTemplate;
+        set workflowDescription(newValue: microflows.StringTemplate);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */

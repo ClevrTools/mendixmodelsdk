@@ -1905,6 +1905,8 @@ var reports;
     reports.ReportButton = ReportButton;
     /**
      * See: {@link https://docs.mendix.com/refguide7/report-chart relevant document}
+     *
+     * In version 9.0.1: deleted
      */
     class ReportChart extends ReportWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2079,10 +2081,10 @@ var reports;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 9.0.0
          */
         static createInWidgetValueUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.2.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.2.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2139,10 +2141,10 @@ var reports;
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInBuildingBlockUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2163,10 +2165,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInDataViewUnderFooterWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "footerWidgets", true);
         }
         /**
@@ -2187,10 +2189,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInDataViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2211,10 +2213,10 @@ var reports;
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInDivContainerUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2235,10 +2237,10 @@ var reports;
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInGroupBoxUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2259,10 +2261,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInHeaderUnderLeftWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "leftWidgets", true);
         }
         /**
@@ -2283,10 +2285,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInHeaderUnderRightWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "rightWidgets", true);
         }
         /**
@@ -2331,10 +2333,10 @@ var reports;
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInLayoutCallArgumentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2355,10 +2357,10 @@ var reports;
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInLayoutGridColumnUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2379,10 +2381,10 @@ var reports;
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInListViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2403,10 +2405,10 @@ var reports;
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInListViewTemplateUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2427,10 +2429,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 9.0.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.5.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.5.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "sidebarWidgets", true);
         }
         /**
@@ -2439,10 +2441,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 9.0.0
          */
         static createInNativeLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.0.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2463,10 +2465,10 @@ var reports;
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInNavigationListItemUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2487,10 +2489,10 @@ var reports;
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInScrollContainerRegionUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2511,10 +2513,10 @@ var reports;
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInSnippetUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2583,10 +2585,10 @@ var reports;
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInTabPageUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2607,10 +2609,10 @@ var reports;
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInTableCellUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2631,10 +2633,10 @@ var reports;
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 9.0.0
          */
         static createInTemplateGridContentsUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "7.15.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2655,10 +2657,10 @@ var reports;
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 9.0.0
          */
         static createInWebLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportChart.structureTypeName, { start: "8.0.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChart, "widgets", true);
         }
         /**
@@ -2736,6 +2738,8 @@ var reports;
     }
     ReportChart.structureTypeName = "Reports$ReportChart";
     ReportChart.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             xAxisCaption: {
                 required: {
@@ -2750,6 +2754,9 @@ var reports;
         }
     }, internal.StructureType.Element);
     reports.ReportChart = ReportChart;
+    /**
+     * In version 9.0.1: deleted
+     */
     class ReportChartSeries extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -2780,8 +2787,12 @@ var reports;
          * Creates and returns a new ReportChartSeries instance in the SDK and on the server.
          * The new ReportChartSeries will be automatically stored in the 'seriess' property
          * of the parent ReportChart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ReportChartSeries.structureTypeName, { end: "9.0.0" });
             return internal.instancehelpers.createElement(container, ReportChartSeries, "seriess", true);
         }
         /**
@@ -2800,6 +2811,8 @@ var reports;
     }
     ReportChartSeries.structureTypeName = "Reports$ReportChartSeries";
     ReportChartSeries.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             caption: {
                 required: {

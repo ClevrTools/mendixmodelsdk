@@ -76,6 +76,20 @@ export declare namespace pages {
         static InstantMessageProtocol: AutocompletePurposeType;
         protected qualifiedTsTypeName: string;
     }
+    class ButtonAriaRoleType extends internal.AbstractEnum {
+        static Button: ButtonAriaRoleType;
+        static Link: ButtonAriaRoleType;
+        static Checkbox: ButtonAriaRoleType;
+        static Radio: ButtonAriaRoleType;
+        static Tab: ButtonAriaRoleType;
+        static MenuItem: ButtonAriaRoleType;
+        static MenuItemCheckbox: ButtonAriaRoleType;
+        static MenuItemRadio: ButtonAriaRoleType;
+        static Option: ButtonAriaRoleType;
+        static Switch: ButtonAriaRoleType;
+        static TreeItem: ButtonAriaRoleType;
+        protected qualifiedTsTypeName: string;
+    }
     class ButtonStyle extends internal.AbstractEnum {
         static Default: ButtonStyle;
         static Inverse: ButtonStyle;
@@ -570,6 +584,11 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get action(): ClientAction;
         set action(newValue: ClientAction);
+        /**
+         * In version 9.0.1: introduced
+         */
+        get ariaRole(): ButtonAriaRoleType;
+        set ariaRole(newValue: ButtonAriaRoleType);
         /**
          * In version 8.12.0: deleted
          */
@@ -3372,6 +3391,13 @@ export declare namespace pages {
          */
         get attributeRef(): domainmodels.AttributeRef | null;
         set attributeRef(newValue: domainmodels.AttributeRef | null);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.0.1: introduced
+         */
+        get expression(): string;
+        set expression(newValue: string);
         /**
          * In version 7.15.0: introduced
          */

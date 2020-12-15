@@ -50,10 +50,9 @@ class QualifiedNameCache {
         this.listeners.push(listener);
     }
     size() {
-        return (mobx_1.keys(this._cache)
-            // tslint:disable-next-line:no-unnecessary-type-assertion
+        return mobx_1.keys(this._cache)
             .map(key => this._cache.get(key).length)
-            .reduce((prev, curr) => prev + curr, 0));
+            .reduce((prev, curr) => prev + curr, 0);
     }
     keys() {
         return mobx_1.keys(this._cache);

@@ -2654,6 +2654,16 @@ export declare namespace microflows {
         get microflow(): IMicroflow | null;
         set microflow(newValue: IMicroflow | null);
         get microflowQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 8.16.0: introduced
+         */
+        get queue(): queues.IQueue | null;
+        set queue(newValue: queues.IQueue | null);
+        get queueQualifiedName(): string | null;
         get parameterMappings(): internal.IList<MicroflowCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -3962,6 +3972,15 @@ export declare namespace microflows {
         static createInWorkflowUnderSubject(container: workflows.Workflow): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'workflowDescription' property
+         * of the parent workflows.Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.1 and higher
+         */
+        static createInWorkflowUnderWorkflowDescription(container: workflows.Workflow): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4459,6 +4478,7 @@ import { javaactions } from "./javaactions";
 import { javascriptactions } from "./javascriptactions";
 import { mappings } from "./mappings";
 import { pages } from "./pages";
+import { queues } from "./queues";
 import { rest } from "./rest";
 import { security } from "./security";
 import { services } from "./services";
