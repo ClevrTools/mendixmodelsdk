@@ -296,6 +296,15 @@ export declare namespace navigation {
          */
         get offlineEnabled6(): boolean;
         set offlineEnabled6(newValue: boolean);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.0.3: introduced
+         */
+        get progressiveWebAppSettings(): ProgressiveWebAppSettings | null;
+        set progressiveWebAppSettings(newValue: ProgressiveWebAppSettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationProfile instance in the SDK and on the server.
@@ -439,6 +448,40 @@ export declare namespace navigation {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): OfflineEntityConfig;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/progressive-web-app relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.3: introduced
+     */
+    class ProgressiveWebAppSettings extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNavigationProfile(): NavigationProfile;
+        get precaching(): boolean;
+        set precaching(newValue: boolean);
+        get installPrompt(): boolean;
+        set installPrompt(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ProgressiveWebAppSettings instance in the SDK and on the server.
+         * The new ProgressiveWebAppSettings will be automatically stored in the 'progressiveWebAppSettings' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createIn(container: NavigationProfile): ProgressiveWebAppSettings;
+        /**
+         * Creates and returns a new ProgressiveWebAppSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ProgressiveWebAppSettings;
     }
     class RoleBasedHomePage extends HomePageBase {
         static structureTypeName: string;

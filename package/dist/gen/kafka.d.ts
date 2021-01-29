@@ -61,7 +61,7 @@ export declare namespace kafka {
     /**
      * In version 8.11.0: introduced
      */
-    interface IKafkaMappedValue extends domainmodels.IMappedValue {
+    interface IKafkaMappedValue extends domainmodels.ICachedMappedValue {
         readonly model: IModel;
         readonly containerAsAttribute: domainmodels.IAttribute;
         asLoaded(): KafkaMappedValue;
@@ -71,7 +71,7 @@ export declare namespace kafka {
     /**
      * In version 8.11.0: introduced
      */
-    class KafkaMappedValue extends domainmodels.MappedValue implements IKafkaMappedValue {
+    class KafkaMappedValue extends domainmodels.CachedMappedValue implements IKafkaMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAttribute(): domainmodels.Attribute;
@@ -84,7 +84,7 @@ export declare namespace kafka {
          * of the parent domainmodels.Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: domainmodels.Attribute): KafkaMappedValue;
         /**
@@ -167,6 +167,9 @@ export declare namespace kafka {
         get entityQualifiedName(): string;
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 9.0.3: deleted
+         */
         get topicName(): string;
         set topicName(newValue: string);
         /**
@@ -212,6 +215,11 @@ export declare namespace kafka {
         get attribute(): domainmodels.IAttribute;
         set attribute(newValue: domainmodels.IAttribute);
         get attributeQualifiedName(): string;
+        /**
+         * In version 9.0.2: introduced
+         */
+        get exposedName(): string;
+        set exposedName(newValue: string);
         get summary(): string;
         set summary(newValue: string);
         get description(): string;

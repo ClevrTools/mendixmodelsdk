@@ -902,6 +902,44 @@ export declare namespace domainmodels {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 8.10.0: introduced
+     */
+    interface IMappedValue extends IValueType {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): MappedValue;
+        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappedValue>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class MappedValue extends ValueType implements IMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.0.2: introduced
+     */
+    interface ICachedMappedValue extends IMappedValue {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): CachedMappedValue;
+        load(callback: (element: CachedMappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CachedMappedValue>;
+    }
+    /**
+     * In version 9.0.2: introduced
+     */
+    abstract class CachedMappedValue extends MappedValue implements ICachedMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
      * In version 6.6.0: added public
      */
     interface ICalculatedValue extends IValueType {
@@ -2145,25 +2183,6 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): LongAttributeType;
-    }
-    /**
-     * In version 8.10.0: introduced
-     */
-    interface IMappedValue extends IValueType {
-        readonly model: IModel;
-        readonly containerAsAttribute: IAttribute;
-        asLoaded(): MappedValue;
-        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<MappedValue>;
-    }
-    /**
-     * In version 8.10.0: introduced
-     */
-    abstract class MappedValue extends ValueType implements IMappedValue {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsAttribute(): Attribute;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * In version 8.10.0: introduced

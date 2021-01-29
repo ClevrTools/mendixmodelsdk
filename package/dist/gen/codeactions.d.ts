@@ -701,6 +701,15 @@ export declare namespace codeactions {
         static createInMicroflowUnderMicroflowActionInfo(container: microflows.Microflow): MicroflowActionInfo;
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
+         * The new MicroflowActionInfo will be automatically stored in the 'workflowActionInfo' property
+         * of the parent microflows.Microflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInMicroflowUnderWorkflowActionInfo(container: microflows.Microflow): MicroflowActionInfo;
+        /**
+         * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */

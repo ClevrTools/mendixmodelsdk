@@ -1663,6 +1663,58 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.ValueType = ValueType;
     /**
+     * In version 8.10.0: introduced
+     */
+    class MappedValue extends ValueType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappedValue.structureTypeName = "DomainModels$MappedValue";
+    MappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.MappedValue = MappedValue;
+    /**
+     * In version 9.0.2: introduced
+     */
+    class CachedMappedValue extends MappedValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CachedMappedValue() cannot be invoked directly, please use 'model.domainmodels.createCachedMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CachedMappedValue.structureTypeName = "DomainModels$CachedMappedValue";
+    CachedMappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.2",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.CachedMappedValue = CachedMappedValue;
+    /**
      * In version 6.6.0: added public
      */
     class CalculatedValue extends ValueType {
@@ -3855,32 +3907,6 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.LongAttributeType = LongAttributeType;
-    /**
-     * In version 8.10.0: introduced
-     */
-    class MappedValue extends ValueType {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            if (arguments.length < 4) {
-                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
-            }
-        }
-        get containerAsAttribute() {
-            return super.getContainerAs(Attribute);
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    MappedValue.structureTypeName = "DomainModels$MappedValue";
-    MappedValue.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.10.0",
-        public: {
-            currentValue: true
-        }
-    }, internal.StructureType.Element);
-    domainmodels.MappedValue = MappedValue;
     /**
      * In version 8.10.0: introduced
      */

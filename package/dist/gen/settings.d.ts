@@ -418,6 +418,7 @@ export declare namespace settings {
         get allowUserMultipleSessions(): boolean;
         set allowUserMultipleSessions(newValue: boolean);
         /**
+         * In version 9.0.2: deleted
          * In version 7.1.0: introduced
          */
         get enforceDataStorageUniqueness(): boolean;

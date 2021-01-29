@@ -307,6 +307,7 @@ export declare namespace datasets {
         get containerAsDataSet(): DataSet;
         get columns(): internal.IList<DataSetColumn>;
         /**
+         * In version 9.0.3: deleted
          * In version 8.0.0: introduced
          */
         get useLegacyCodeGeneration(): boolean;

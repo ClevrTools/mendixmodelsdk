@@ -584,6 +584,11 @@ export declare namespace rest {
          */
         get replaceIllegalChars(): boolean;
         set replaceIllegalChars(newValue: boolean);
+        /**
+         * In version 8.18.0: introduced
+         */
+        get useGeneralization(): boolean;
+        set useGeneralization(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.

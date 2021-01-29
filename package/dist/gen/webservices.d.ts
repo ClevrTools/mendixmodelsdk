@@ -28,14 +28,23 @@ export declare namespace webservices {
         get containerAsDataEntityBase(): DataEntityBase;
         get containerAsPublishedParameter(): PublishedParameter;
         get containerAsPublishedResource(): PublishedResource;
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 9.0.2: deleted
+         */
         get isOptionalByContract(): boolean;
         set isOptionalByContract(newValue: boolean);
         get isOptional(): boolean;
         set isOptional(newValue: boolean);
+        /**
+         * In version 9.0.2: deleted
+         */
         get isNillableByContract(): boolean;
         set isNillableByContract(newValue: boolean);
         get isNillable(): boolean;
@@ -62,6 +71,9 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDataEntityBase(): DataEntityBase;
+        /**
+         * In version 9.0.2: deleted
+         */
         get associationByContract(): appservices.MsdAssociation | null;
         set associationByContract(newValue: appservices.MsdAssociation | null);
         get association(): domainmodels.IAssociationBase | null;
@@ -100,6 +112,9 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDataEntityBase(): DataEntityBase;
+        /**
+         * In version 9.0.2: deleted
+         */
         get attributeByContract(): appservices.MsdAttribute | null;
         set attributeByContract(newValue: appservices.MsdAttribute | null);
         get attribute(): domainmodels.IAttribute | null;
@@ -285,7 +300,9 @@ export declare namespace webservices {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/published-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     interface IPublishedAppService extends IPublishedServiceBase {
         readonly model: IModel;
@@ -295,7 +312,9 @@ export declare namespace webservices {
         load(forceRefresh?: boolean): Promise<PublishedAppService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/published-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     class PublishedAppService extends PublishedServiceBase implements IPublishedAppService {
         static structureTypeName: string;
@@ -321,6 +340,9 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsVersionedService(): VersionedService;
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
         get name(): string;
@@ -336,10 +358,19 @@ export declare namespace webservices {
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
         get parameters(): internal.IList<PublishedParameter>;
+        /**
+         * In version 9.0.2: deleted
+         */
         get returnTypeNameByContract(): string;
         set returnTypeNameByContract(newValue: string);
+        /**
+         * In version 9.0.2: deleted
+         */
         get returnTypeSpecificationByContract(): string;
         set returnTypeSpecificationByContract(newValue: string);
+        /**
+         * In version 9.0.2: deleted
+         */
         get entityExposedNameByContract(): string;
         set entityExposedNameByContract(newValue: string);
         get entityExposedName(): string;
@@ -378,21 +409,33 @@ export declare namespace webservices {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsPublishedOperation(): PublishedOperation;
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
         get parameter(): microflows.IMicroflowParameter | null;
         set parameter(newValue: microflows.IMicroflowParameter | null);
         get parameterQualifiedName(): string | null;
+        /**
+         * In version 9.0.2: deleted
+         */
         get parameterByContract(): appservices.MsdMicroflowParameter;
         set parameterByContract(newValue: appservices.MsdMicroflowParameter);
         get entityExposedName(): string;
         set entityExposedName(newValue: string);
+        /**
+         * In version 9.0.2: deleted
+         */
         get isOptionalByContract(): boolean;
         set isOptionalByContract(newValue: boolean);
         get isOptional(): boolean;
         set isOptional(newValue: boolean);
         get isNillable(): boolean;
         set isNillable(newValue: boolean);
+        /**
+         * In version 9.0.2: deleted
+         */
         get entityExposedItemNameByContract(): string;
         set entityExposedItemNameByContract(newValue: string);
         get entityExposedItemName(): string;
@@ -594,8 +637,14 @@ export declare namespace webservices {
         get headerAuthentication(): HeaderAuthentication;
         set headerAuthentication(newValue: HeaderAuthentication);
         get operations(): internal.IList<PublishedOperation>;
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract(): boolean;
         set isLockedByContract(newValue: boolean);
+        /**
+         * In version 9.0.2: deleted
+         */
         get enumerationsByContract(): appservices.MsdEnumerationContainer | null;
         set enumerationsByContract(newValue: appservices.MsdEnumerationContainer | null);
         /**
@@ -620,6 +669,9 @@ export declare namespace webservices {
         set caption(newValue: string);
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 9.0.2: deleted
+         */
         get appServiceState(): AppServiceState;
         set appServiceState(newValue: AppServiceState);
         get image(): images.IImage | null;
@@ -657,7 +709,19 @@ export declare namespace webservices {
         /**
          * Creates and returns a new WsdlDescription instance in the SDK and on the server.
          * The new WsdlDescription will be automatically stored in the 'wsdlDescription' property
+         * of the parent ImportedWebService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container: ImportedWebService): WsdlDescription;
+        /**
+         * Creates and returns a new WsdlDescription instance in the SDK and on the server.
+         * The new WsdlDescription will be automatically stored in the 'wsdlDescription' property
          * of the parent appservices.Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdUnderWsdlDescription(container: appservices.Msd): WsdlDescription;
         /**

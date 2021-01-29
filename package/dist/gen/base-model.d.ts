@@ -144,8 +144,8 @@ export interface IBaseModel extends IAbstractModel {
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -254,8 +254,8 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -515,7 +515,9 @@ export declare type ConcreteModelElements = {
     Microflows$ExpressionSplitCondition: microflows.ExpressionSplitCondition;
     Microflows$FileDocumentExport: microflows.FileDocumentExport;
     Microflows$Filter: microflows.Filter;
+    Microflows$FilterByExpression: microflows.FilterByExpression;
     Microflows$Find: microflows.Find;
+    Microflows$FindByExpression: microflows.FindByExpression;
     Microflows$FormDataPart: microflows.FormDataPart;
     Microflows$FormDataRequestHandling: microflows.FormDataRequestHandling;
     Microflows$GenerateDocumentAction: microflows.GenerateDocumentAction;
@@ -553,6 +555,7 @@ export declare type ConcreteModelElements = {
     Microflows$NanoflowParameter: microflows.NanoflowParameter;
     Microflows$NoCase: microflows.NoCase;
     Microflows$OpenUserTaskAction: microflows.OpenUserTaskAction;
+    Microflows$OpenWorkflowAction: microflows.OpenWorkflowAction;
     Microflows$PrimitiveTypedTemplateArgument: microflows.PrimitiveTypedTemplateArgument;
     Microflows$ProxyConfiguration: microflows.ProxyConfiguration;
     Microflows$PushToClientAction: microflows.PushToClientAction;
@@ -598,6 +601,7 @@ export declare type ConcreteModelElements = {
     Navigation$NativeNavigationProfile: navigation.NativeNavigationProfile;
     Navigation$NavigationProfile: navigation.NavigationProfile;
     Navigation$OfflineEntityConfig: navigation.OfflineEntityConfig;
+    Navigation$ProgressiveWebAppSettings: navigation.ProgressiveWebAppSettings;
     Navigation$RoleBasedHomePage: navigation.RoleBasedHomePage;
     Navigation$RoleBasedNativeHomePage: navigation.RoleBasedNativeHomePage;
     Pages$ActionButton: pages.ActionButton;
@@ -824,17 +828,21 @@ export declare type ConcreteModelElements = {
     WebServices$VersionedService: webservices.VersionedService;
     WebServices$WsdlDescription: webservices.WsdlDescription;
     WebServices$WsdlEntry: webservices.WsdlEntry;
-    Workflows$BooleanSplitOutcome: workflows.BooleanSplitOutcome;
+    Workflows$BooleanConditionOutcome: workflows.BooleanConditionOutcome;
     Workflows$CallMicroflowTask: workflows.CallMicroflowTask;
     Workflows$CallWorkflowActivity: workflows.CallWorkflowActivity;
     Workflows$EndWorkflowActivity: workflows.EndWorkflowActivity;
-    Workflows$EnumerationValueSplitOutcome: workflows.EnumerationValueSplitOutcome;
+    Workflows$EnumerationValueConditionOutcome: workflows.EnumerationValueConditionOutcome;
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
     Workflows$Flow: workflows.Flow;
+    Workflows$JumpToActivity: workflows.JumpToActivity;
+    Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
+    Workflows$MicroflowCallParameterMapping: workflows.MicroflowCallParameterMapping;
     Workflows$ParallelSplitActivity: workflows.ParallelSplitActivity;
     Workflows$ParallelSplitOutcome: workflows.ParallelSplitOutcome;
     Workflows$UserTask: workflows.UserTask;
-    Workflows$WorkflowTaskOutcome: workflows.WorkflowTaskOutcome;
+    Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
+    Workflows$VoidConditionOutcome: workflows.VoidConditionOutcome;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;
     XmlSchemas$XmlSchemaEntry: xmlschemas.XmlSchemaEntry;

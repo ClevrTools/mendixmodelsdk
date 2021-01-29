@@ -3637,6 +3637,10 @@ var pages;
             /** @internal */
             this.__documentationUrl = new internal.PrimitiveProperty(TemplateFormBase, this, "documentationUrl", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__templateCategory = new internal.PrimitiveProperty(TemplateFormBase, this, "templateCategory", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__templateCategoryWeight = new internal.PrimitiveProperty(TemplateFormBase, this, "templateCategoryWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
             this.__imageData = new internal.PrimitiveProperty(TemplateFormBase, this, "imageData", null, internal.PrimitiveTypeEnum.Blob);
         }
         get containerAsFolderBase() {
@@ -3659,6 +3663,24 @@ var pages;
         }
         set documentationUrl(newValue) {
             this.__documentationUrl.set(newValue);
+        }
+        /**
+         * In version 9.0.2: introduced
+         */
+        get templateCategory() {
+            return this.__templateCategory.get();
+        }
+        set templateCategory(newValue) {
+            this.__templateCategory.set(newValue);
+        }
+        /**
+         * In version 9.0.2: introduced
+         */
+        get templateCategoryWeight() {
+            return this.__templateCategoryWeight.get();
+        }
+        set templateCategoryWeight(newValue) {
+            this.__templateCategoryWeight.set(newValue);
         }
         get imageData() {
             return this.__imageData.get();
@@ -3683,6 +3705,18 @@ var pages;
             },
             documentationUrl: {
                 introduced: "7.17.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            templateCategory: {
+                introduced: "9.0.2",
+                public: {
+                    currentValue: true
+                }
+            },
+            templateCategoryWeight: {
+                introduced: "9.0.2",
                 public: {
                     currentValue: true
                 }
@@ -4189,7 +4223,7 @@ var pages;
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class CallWorkflowClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -4275,10 +4309,10 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
         }
         /**
@@ -4287,10 +4321,10 @@ var pages;
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
         }
         /**
@@ -4299,10 +4333,10 @@ var pages;
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
         }
         /**
@@ -4311,10 +4345,10 @@ var pages;
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
         }
         /**
@@ -4323,10 +4357,10 @@ var pages;
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -4335,10 +4369,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -4347,10 +4381,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onEnterAction", false);
         }
         /**
@@ -4359,10 +4393,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onLeaveAction", false);
         }
         /**
@@ -4371,10 +4405,10 @@ var pages;
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onClickAction", false);
         }
         /**
@@ -4383,10 +4417,10 @@ var pages;
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -4395,10 +4429,10 @@ var pages;
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "action", false);
         }
         /**
@@ -4407,10 +4441,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -4419,10 +4453,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "pullDownAction", false);
         }
         /**
@@ -4431,10 +4465,10 @@ var pages;
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -4443,10 +4477,10 @@ var pages;
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -4455,10 +4489,10 @@ var pages;
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container) {
-            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "onEnterKeyPressAction", false);
         }
         /**
@@ -4478,7 +4512,7 @@ var pages;
     }
     CallWorkflowClientAction.structureTypeName = "Pages$CallWorkflowClientAction";
     CallWorkflowClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         experimental: {
             currentValue: true
         }
@@ -34104,7 +34138,7 @@ var pages;
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class OpenUserTaskClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -34158,10 +34192,10 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
         }
         /**
@@ -34170,10 +34204,10 @@ var pages;
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
         }
         /**
@@ -34182,10 +34216,10 @@ var pages;
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
         }
         /**
@@ -34194,10 +34228,10 @@ var pages;
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
         }
         /**
@@ -34206,10 +34240,10 @@ var pages;
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
         }
         /**
@@ -34218,10 +34252,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
         }
         /**
@@ -34230,10 +34264,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onEnterAction", false);
         }
         /**
@@ -34242,10 +34276,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onLeaveAction", false);
         }
         /**
@@ -34254,10 +34288,10 @@ var pages;
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onClickAction", false);
         }
         /**
@@ -34266,10 +34300,10 @@ var pages;
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
         }
         /**
@@ -34278,10 +34312,10 @@ var pages;
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "action", false);
         }
         /**
@@ -34290,10 +34324,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
         }
         /**
@@ -34302,10 +34336,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "pullDownAction", false);
         }
         /**
@@ -34314,10 +34348,10 @@ var pages;
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onChangeAction", false);
         }
         /**
@@ -34326,10 +34360,10 @@ var pages;
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "clickAction", false);
         }
         /**
@@ -34338,10 +34372,10 @@ var pages;
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container) {
-            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "onEnterKeyPressAction", false);
         }
         /**
@@ -34359,7 +34393,7 @@ var pages;
     }
     OpenUserTaskClientAction.structureTypeName = "Pages$OpenUserTaskClientAction";
     OpenUserTaskClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         experimental: {
             currentValue: true
         }
@@ -34370,7 +34404,7 @@ var pages;
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class OpenWorkflowClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -34424,10 +34458,10 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
         }
         /**
@@ -34436,10 +34470,10 @@ var pages;
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
         }
         /**
@@ -34448,10 +34482,10 @@ var pages;
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
         }
         /**
@@ -34460,10 +34494,10 @@ var pages;
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
         }
         /**
@@ -34472,10 +34506,10 @@ var pages;
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -34484,10 +34518,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -34496,10 +34530,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onEnterAction", false);
         }
         /**
@@ -34508,10 +34542,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onLeaveAction", false);
         }
         /**
@@ -34520,10 +34554,10 @@ var pages;
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onClickAction", false);
         }
         /**
@@ -34532,10 +34566,10 @@ var pages;
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -34544,10 +34578,10 @@ var pages;
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "action", false);
         }
         /**
@@ -34556,10 +34590,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -34568,10 +34602,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "pullDownAction", false);
         }
         /**
@@ -34580,10 +34614,10 @@ var pages;
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onChangeAction", false);
         }
         /**
@@ -34592,10 +34626,10 @@ var pages;
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
         }
         /**
@@ -34604,10 +34638,10 @@ var pages;
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container) {
-            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "onEnterKeyPressAction", false);
         }
         /**
@@ -34625,7 +34659,7 @@ var pages;
     }
     OpenWorkflowClientAction.structureTypeName = "Pages$OpenWorkflowClientAction";
     OpenWorkflowClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         experimental: {
             currentValue: true
         }
@@ -42172,13 +42206,13 @@ var pages;
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class SetTaskOutcomeClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeClientAction, this, "outcome", null, "Workflows$WorkflowTaskOutcome");
+            this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeClientAction, this, "outcome", null, "Workflows$UserTaskOutcome");
             /** @internal */
             this.__closePage = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -42258,10 +42292,10 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
         }
         /**
@@ -42270,10 +42304,10 @@ var pages;
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
         }
         /**
@@ -42282,10 +42316,10 @@ var pages;
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
         }
         /**
@@ -42294,10 +42328,10 @@ var pages;
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
         }
         /**
@@ -42306,10 +42340,10 @@ var pages;
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
         }
         /**
@@ -42318,10 +42352,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
         }
         /**
@@ -42330,10 +42364,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onEnterAction", false);
         }
         /**
@@ -42342,10 +42376,10 @@ var pages;
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onLeaveAction", false);
         }
         /**
@@ -42354,10 +42388,10 @@ var pages;
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onClickAction", false);
         }
         /**
@@ -42366,10 +42400,10 @@ var pages;
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
         }
         /**
@@ -42378,10 +42412,10 @@ var pages;
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "action", false);
         }
         /**
@@ -42390,10 +42424,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
         }
         /**
@@ -42402,10 +42436,10 @@ var pages;
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "pullDownAction", false);
         }
         /**
@@ -42414,10 +42448,10 @@ var pages;
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onChangeAction", false);
         }
         /**
@@ -42426,10 +42460,10 @@ var pages;
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
         }
         /**
@@ -42438,10 +42472,10 @@ var pages;
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container) {
-            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "onEnterKeyPressAction", false);
         }
         /**
@@ -42461,7 +42495,7 @@ var pages;
     }
     SetTaskOutcomeClientAction.structureTypeName = "Pages$SetTaskOutcomeClientAction";
     SetTaskOutcomeClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         experimental: {
             currentValue: true
         }
@@ -52181,7 +52215,7 @@ var pages;
     Title.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.Title = Title;
     /**
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class WorkflowTemplateType extends TemplateType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -52200,14 +52234,14 @@ var pages;
     }
     WorkflowTemplateType.structureTypeName = "Pages$WorkflowTemplateType";
     WorkflowTemplateType.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         public: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     pages.WorkflowTemplateType = WorkflowTemplateType;
     /**
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class UserTaskTemplateType extends WorkflowTemplateType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -52225,10 +52259,10 @@ var pages;
          * of the parent PageTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, UserTaskTemplateType.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, UserTaskTemplateType.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, UserTaskTemplateType, "templateType", false);
         }
         /**
@@ -52246,7 +52280,7 @@ var pages;
     }
     UserTaskTemplateType.structureTypeName = "Pages$UserTaskTemplateType";
     UserTaskTemplateType.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         public: {
             currentValue: true
         }
@@ -54175,7 +54209,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.WidgetValidation = WidgetValidation;
     /**
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class WorkflowOverviewTemplateType extends WorkflowTemplateType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -54193,10 +54227,10 @@ var pages;
          * of the parent PageTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, WorkflowOverviewTemplateType.structureTypeName, { start: "8.15.0" });
+            internal.createInVersionCheck(container.model, WorkflowOverviewTemplateType.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, WorkflowOverviewTemplateType, "templateType", false);
         }
         /**
@@ -54214,7 +54248,7 @@ var pages;
     }
     WorkflowOverviewTemplateType.structureTypeName = "Pages$WorkflowOverviewTemplateType";
     WorkflowOverviewTemplateType.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.15.0",
+        introduced: "9.0.2",
         public: {
             currentValue: true
         }

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,7 +19,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
@@ -32,12 +32,12 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestTransportation = void 0;
-const fs = require('fs');
-const version_1 = require('../../version');
-const utils_1 = require('../utils');
-const getAuthInfo_1 = require('./getAuthInfo');
+const fs = require("fs");
+const version_1 = require("../../version");
+const utils_1 = require("../utils");
+const getAuthInfo_1 = require("./getAuthInfo");
 // Postpone requiring the 'request' module to prevent errors when using the Model SDK in the browser.
 let requestImpl;
 const SHORT_TIMEOUT = 5 * 60 * 1000;
@@ -49,7 +49,7 @@ const LONG_TIMEOUT = 45 * 60 * 1000;
 class RestTransportation {
   constructor(config) {
     this.config = config;
-    requestImpl = require('request');
+    requestImpl = require("request");
   }
   prepareRequestOptions(opts) {
     const options = this.generateStandardOptions(opts.method, opts.url, true);
@@ -85,7 +85,7 @@ class RestTransportation {
     const options = this.generateStandardOptions(opts.method, opts.url, true);
     options.timeout = LONG_TIMEOUT; // 15 minutes: uploading mpk's takes some time, and can be quite large.
     if (!opts.fileName) {
-      throw new Error('File to upload is missing.');
+      throw new Error("File to upload is missing.");
     }
     if (opts.headers) {
       options.headers = Object.assign(
@@ -99,7 +99,7 @@ class RestTransportation {
     for (const key in options.formData) {
       if (
         options.formData.hasOwnProperty(key) &&
-        typeof options.formData[key] === 'boolean'
+        typeof options.formData[key] === "boolean"
       ) {
         options.formData[key] = options.formData[key].toString();
       }
@@ -119,8 +119,8 @@ class RestTransportation {
     return method.toUpperCase();
   }
   url(urlEndpoint) {
-    const subUrl = urlEndpoint.substring('/api'.length);
-    return utils_1.utils.combineUrl(this.config.endPoint || '', subUrl);
+    const subUrl = urlEndpoint.substring("/api".length);
+    return utils_1.utils.combineUrl(this.config.endPoint || "", subUrl);
   }
   generateStandardOptions(method, url, acceptJson) {
     const options = {
@@ -129,7 +129,7 @@ class RestTransportation {
       timeout: SHORT_TIMEOUT,
       pool: { maxSockets: 20 },
       headers: {
-        'User-Agent': `mendixmodelsdk/${version_1.SDK_VERSION} ${process.platform} ${process.arch} node${process.versions.node}`
+        "User-Agent": `mendixmodelsdk/${version_1.SDK_VERSION} ${process.platform} ${process.arch} node${process.versions.node}`
       }
     };
     if (acceptJson) {
@@ -148,21 +148,21 @@ class RestTransportation {
     this.retryRequest(options).then(({ error, response, body }) => {
       if (error) {
         const errorCode = error.code;
-        if (errorCode === 'ECONNRESET') {
+        if (errorCode === "ECONNRESET") {
           failure({
-            error: 'Not available',
+            error: "Not available",
             description:
-              'The Mendix Model API Server is not available. Please try again later.',
+              "The Mendix Model API Server is not available. Please try again later.",
             url: options.url
           });
-        } else if (errorCode === 'EPIPE') {
+        } else if (errorCode === "EPIPE") {
           console.warn(
-            'Encountered EPIPE - ' +
-              'assuming failure callback is already called for this request with status code 413 (Request Entity Too Large).'
+            "Encountered EPIPE - " +
+              "assuming failure callback is already called for this request with status code 413 (Request Entity Too Large)."
           );
         } else {
           failure({
-            error: 'No response',
+            error: "No response",
             description: `The Mendix Model API Server failed to respond. Result code: ${errorCode}`,
             url: options.url
           });
@@ -206,14 +206,14 @@ class RestTransportation {
 }
 exports.RestTransportation = RestTransportation;
 const NETWORK_ERRORS = [
-  'ECONNRESET',
-  'ENOTFOUND',
-  'ESOCKETTIMEDOUT',
-  'ETIMEDOUT',
-  'ECONNREFUSED',
-  'EHOSTUNREACH',
-  'EPIPE',
-  'EAI_AGAIN'
+  "ECONNRESET",
+  "ENOTFOUND",
+  "ESOCKETTIMEDOUT",
+  "ETIMEDOUT",
+  "ECONNREFUSED",
+  "EHOSTUNREACH",
+  "EPIPE",
+  "EAI_AGAIN"
 ];
 function isNetworkError(error) {
   return error && NETWORK_ERRORS.includes(error.code);

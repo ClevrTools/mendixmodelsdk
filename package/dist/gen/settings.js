@@ -1002,6 +1002,7 @@ var settings;
             this.__allowUserMultipleSessions.set(newValue);
         }
         /**
+         * In version 9.0.2: deleted
          * In version 7.1.0: introduced
          */
         get enforceDataStorageUniqueness() {
@@ -1080,7 +1081,9 @@ var settings;
     RuntimeSettings.versionInfo = new exports.StructureVersionInfo({
         properties: {
             enforceDataStorageUniqueness: {
-                introduced: "7.1.0"
+                introduced: "7.1.0",
+                deleted: "9.0.2",
+                deletionMessage: null
             },
             enableDataStorageOptimisticLocking: {
                 introduced: "7.5.0"

@@ -69,6 +69,9 @@ var webservices;
         get containerAsPublishedResource() {
             return super.getContainerAs(PublishedResource);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract() {
             return this.__isLockedByContract.get();
         }
@@ -81,6 +84,9 @@ var webservices;
         set exposedName(newValue) {
             this.__exposedName.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isOptionalByContract() {
             return this.__isOptionalByContract.get();
         }
@@ -93,6 +99,9 @@ var webservices;
         set isOptional(newValue) {
             this.__isOptional.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isNillableByContract() {
             return this.__isNillableByContract.get();
         }
@@ -117,7 +126,22 @@ var webservices;
         }
     }
     DataMember.structureTypeName = "WebServices$DataMember";
-    DataMember.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataMember.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            isLockedByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            isOptionalByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            isNillableByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            }
+        }
+    }, internal.StructureType.Element);
     webservices.DataMember = DataMember;
     class DataEntityBase extends DataMember {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -187,6 +211,9 @@ var webservices;
         get containerAsDataEntityBase() {
             return super.getContainerAs(DataEntityBase);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get associationByContract() {
             return this.__associationByContract.get();
         }
@@ -253,6 +280,10 @@ var webservices;
     DataAssociation.structureTypeName = "WebServices$DataAssociation";
     DataAssociation.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            associationByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
             exposedAssociationName: {
                 introduced: "8.0.0"
             },
@@ -283,6 +314,9 @@ var webservices;
         get containerAsDataEntityBase() {
             return super.getContainerAs(DataEntityBase);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get attributeByContract() {
             return this.__attributeByContract.get();
         }
@@ -340,6 +374,10 @@ var webservices;
     DataAttribute.structureTypeName = "WebServices$DataAttribute";
     DataAttribute.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            attributeByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
             summary: {
                 introduced: "8.5.0"
             },
@@ -721,7 +759,9 @@ var webservices;
     PublishedServiceBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
     webservices.PublishedServiceBase = PublishedServiceBase;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/published-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     class PublishedAppService extends PublishedServiceBase {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -744,7 +784,10 @@ var webservices;
         }
     }
     PublishedAppService.structureTypeName = "WebServices$PublishedAppService";
-    PublishedAppService.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
+    PublishedAppService.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.ModelUnit);
     webservices.PublishedAppService = PublishedAppService;
     class PublishedResource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -824,6 +867,9 @@ var webservices;
         get containerAsVersionedService() {
             return super.getContainerAs(VersionedService);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract() {
             return this.__isLockedByContract.get();
         }
@@ -869,18 +915,27 @@ var webservices;
         get parameters() {
             return this.__parameters.get();
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get returnTypeNameByContract() {
             return this.__returnTypeNameByContract.get();
         }
         set returnTypeNameByContract(newValue) {
             this.__returnTypeNameByContract.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get returnTypeSpecificationByContract() {
             return this.__returnTypeSpecificationByContract.get();
         }
         set returnTypeSpecificationByContract(newValue) {
             this.__returnTypeSpecificationByContract.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get entityExposedNameByContract() {
             return this.__entityExposedNameByContract.get();
         }
@@ -951,12 +1006,30 @@ var webservices;
             if (this.__returnType.isAvailable) {
                 this.returnType = "Void";
             }
-            this.returnTypeNameByContract = "Nothing";
+            if (this.__returnTypeNameByContract.isAvailable) {
+                this.returnTypeNameByContract = "Nothing";
+            }
         }
     }
     PublishedOperation.structureTypeName = "WebServices$PublishedOperation";
     PublishedOperation.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            isLockedByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            returnTypeNameByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            returnTypeSpecificationByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            entityExposedNameByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
             returnType: {
                 deleted: "7.9.0",
                 deletionMessage: "Use property 'operationReturnType' instead"
@@ -1004,6 +1077,9 @@ var webservices;
         get containerAsPublishedOperation() {
             return super.getContainerAs(PublishedOperation);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract() {
             return this.__isLockedByContract.get();
         }
@@ -1019,6 +1095,9 @@ var webservices;
         get parameterQualifiedName() {
             return this.__parameter.qualifiedName();
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get parameterByContract() {
             return this.__parameterByContract.get();
         }
@@ -1031,6 +1110,9 @@ var webservices;
         set entityExposedName(newValue) {
             this.__entityExposedName.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isOptionalByContract() {
             return this.__isOptionalByContract.get();
         }
@@ -1049,6 +1131,9 @@ var webservices;
         set isNillable(newValue) {
             this.__isNillable.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get entityExposedItemNameByContract() {
             return this.__entityExposedItemNameByContract.get();
         }
@@ -1107,7 +1192,9 @@ var webservices;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.dataEntity = DataEntity.create(this.model);
-            this.parameterByContract = appservices_1.appservices.MsdMicroflowParameter.create(this.model);
+            if (this.__parameterByContract.isAvailable) {
+                this.parameterByContract = appservices_1.appservices.MsdMicroflowParameter.create(this.model);
+            }
             if (this.__parameterType.isAvailable) {
                 this.parameterType = datatypes_1.datatypes.VoidType.create(this.model);
             }
@@ -1119,10 +1206,24 @@ var webservices;
     PublishedParameter.structureTypeName = "WebServices$PublishedParameter";
     PublishedParameter.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            isLockedByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
             parameterByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null,
                 required: {
                     currentValue: true
                 }
+            },
+            isOptionalByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            entityExposedItemNameByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
             },
             type: {
                 deleted: "7.9.0",
@@ -1547,12 +1648,18 @@ var webservices;
         get operations() {
             return this.__operations.get();
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get isLockedByContract() {
             return this.__isLockedByContract.get();
         }
         set isLockedByContract(newValue) {
             this.__isLockedByContract.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get enumerationsByContract() {
             return this.__enumerationsByContract.get();
         }
@@ -1613,6 +1720,9 @@ var webservices;
         set description(newValue) {
             this.__description.set(newValue);
         }
+        /**
+         * In version 9.0.2: deleted
+         */
         get appServiceState() {
             return this.__appServiceState.get();
         }
@@ -1653,7 +1763,9 @@ var webservices;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.appServiceState = AppServiceState.Draft;
+            if (this.__appServiceState.isAvailable) {
+                this.appServiceState = AppServiceState.Draft;
+            }
             this.headerAuthentication = HeaderAuthentication.None;
             if (this.__objectHandlingBackup.isAvailable) {
                 this.objectHandlingBackup = mappings_1.mappings.ObjectHandlingBackupEnum.Create;
@@ -1667,11 +1779,23 @@ var webservices;
     VersionedService.structureTypeName = "WebServices$VersionedService";
     VersionedService.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            isLockedByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
+            enumerationsByContract: {
+                deleted: "9.0.2",
+                deletionMessage: null
+            },
             optimizedXml: {
                 introduced: "7.13.0"
             },
             objectHandlingBackup: {
                 introduced: "7.17.0"
+            },
+            appServiceState: {
+                deleted: "9.0.2",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);
@@ -1723,9 +1847,25 @@ var webservices;
         /**
          * Creates and returns a new WsdlDescription instance in the SDK and on the server.
          * The new WsdlDescription will be automatically stored in the 'wsdlDescription' property
+         * of the parent ImportedWebService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WsdlDescription.structureTypeName, { start: "9.0.2" });
+            return internal.instancehelpers.createElement(container, WsdlDescription, "wsdlDescription", false);
+        }
+        /**
+         * Creates and returns a new WsdlDescription instance in the SDK and on the server.
+         * The new WsdlDescription will be automatically stored in the 'wsdlDescription' property
          * of the parent appservices.Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdUnderWsdlDescription(container) {
+            internal.createInVersionCheck(container.model, WsdlDescription.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, WsdlDescription, "wsdlDescription", false);
         }
         /**

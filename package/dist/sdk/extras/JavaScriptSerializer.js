@@ -5,11 +5,12 @@ const properties = require("../internal/properties");
 const units = require("../internal/units");
 var PropertyKind;
 (function (PropertyKind) {
-    PropertyKind[PropertyKind["primitive"] = 0] = "primitive";
-    PropertyKind[PropertyKind["enumeration"] = 1] = "enumeration";
-    PropertyKind[PropertyKind["byIdReference"] = 2] = "byIdReference";
-    PropertyKind[PropertyKind["byNameReference"] = 3] = "byNameReference";
-    PropertyKind[PropertyKind["part"] = 4] = "part";
+    PropertyKind[PropertyKind["Primitive"] = 0] = "Primitive";
+    PropertyKind[PropertyKind["Enumeration"] = 1] = "Enumeration";
+    PropertyKind[PropertyKind["ByIdReference"] = 2] = "ByIdReference";
+    PropertyKind[PropertyKind["ByNameReference"] = 3] = "ByNameReference";
+    PropertyKind[PropertyKind["LocalByNameReference"] = 4] = "LocalByNameReference";
+    PropertyKind[PropertyKind["Part"] = 5] = "Part";
 })(PropertyKind || (PropertyKind = {}));
 function toFirstLowerCase(str) {
     return str.charAt(0).toLowerCase() + str.slice(1);
@@ -55,14 +56,14 @@ class JavaScriptSerializer {
         for (const creation of this._creations) {
             this._computeVarName(creation);
         }
-        // 2. build source for everything but assignments of by-id references:
+        // 2. build source for everything but assignments of by-id references and local by-name reference:
         const phase1 = this._creations.map(creation => this._creationAsSource(creation)).join("\n");
-        // 3. add source for assignments of by-id references:
-        const creationsWithByIdRefencesAssigments = this._creations.filter(creation => creation.settings.some(setting => setting.kind === PropertyKind.byIdReference));
-        const phase2 = creationsWithByIdRefencesAssigments
+        // 3. add source for assignments of by-id references and local by-name reference:
+        const phase2Creations = this._creations.filter(creation => creation.settings.some(setting => setting.kind === PropertyKind.ByIdReference || setting.kind === PropertyKind.LocalByNameReference));
+        const phase2 = phase2Creations
             .map(creation => "\n" +
             creation.settings
-                .filter(setting => setting.kind === PropertyKind.byIdReference)
+                .filter(setting => setting.kind === PropertyKind.ByIdReference || setting.kind === PropertyKind.LocalByNameReference)
                 .map(setting => "\t" + this._settingAsSource(this._varNamesById[creation.id], setting) + "\n")
                 .join(""))
             .join("");
@@ -87,18 +88,15 @@ class JavaScriptSerializer {
         let addUnderscore = false;
         if (creation.name) {
             preName = this._sanitizeName(creation.name);
-            name = preName;
             addUnderscore = /\d$/.test(preName);
         }
         else {
             preName = toFirstLowerCase(creation.unqualifiedTypeName);
-            name = preName + "1";
-            uniqueIndex = 1;
         }
-        while (this._varNames[name]) {
+        do {
             uniqueIndex++;
             name = preName + (addUnderscore ? "_" : "") + uniqueIndex;
-        }
+        } while (this._varNames[name]);
         this._varNamesById[creation.id] = name;
         this._varNames[name] = true;
     }
@@ -106,7 +104,8 @@ class JavaScriptSerializer {
     _sanitizeName(name) {
         name = name.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, "");
         name = name.replace(/^\d+/, "");
-        name = name.charAt(0).toLowerCase() + name.substring(1); // == toFirstLowerCase
+        name = name.replace(/\s/g, ""); // Remove white spaces
+        name = toFirstLowerCase(name);
         return name;
     }
     /** @internal */
@@ -115,13 +114,19 @@ class JavaScriptSerializer {
         const varName = this._varNamesById[creation.id];
         lines.push(`var ${varName} = ${creation.subMetaModel.toLowerCase()}.${creation.unqualifiedTypeName}.create${creation.unit ? "In(unit" : "(model"});`);
         creation.settings
-            .filter(setting => setting.kind !== PropertyKind.byIdReference)
+            .filter(setting => setting.kind !== PropertyKind.ByIdReference && setting.kind !== PropertyKind.LocalByNameReference)
             .forEach(setting => lines.push(...this._settingAsSource(varName, setting)));
         return lines.map(line => "\t" + line + "\n").join("");
     }
     /** @internal */
     _settingAsSource(varName, setting) {
         const commentsPostfix = setting.couldBeDefaultValue ? "   // Note: for this property a default value is defined." : "";
+        if (setting.updateWithRawValue) {
+            return [
+                "// Note: this is an unsupported internal property of the Model SDK which is subject to change.",
+                `${varName}.__${setting.propertyName}.updateWithRawValue("${setting.value}");${commentsPostfix}`
+            ];
+        }
         return setting.listy
             ? setting.value.map(singleValue => `${varName}.${setting.propertyName}.push(${this._singleValueAsTsExpr(varName, setting, singleValue)});${commentsPostfix}`)
             : [`${varName}.${setting.propertyName} = ${this._singleValueAsTsExpr(varName, setting, setting.value)};${commentsPostfix}`];
@@ -129,16 +134,18 @@ class JavaScriptSerializer {
     /** @internal */
     _singleValueAsTsExpr(varName, setting, singleValue) {
         switch (setting.kind) {
-            case PropertyKind.primitive:
+            case PropertyKind.Primitive:
                 return JSON.stringify(singleValue);
-            case PropertyKind.enumeration:
+            case PropertyKind.Enumeration:
                 return singleValue.qualifiedTsLiteralName();
-            case PropertyKind.byIdReference:
+            case PropertyKind.ByIdReference:
                 return this._varNamesById[singleValue];
-            case PropertyKind.byNameReference:
+            case PropertyKind.ByNameReference:
                 const $index = setting.targetType.indexOf("$");
                 return `model.find${setting.targetType.substring($index + 1)}ByQualifiedName("${singleValue}")`;
-            case PropertyKind.part:
+            case PropertyKind.LocalByNameReference:
+                return this._varNamesById[singleValue];
+            case PropertyKind.Part:
                 return !singleValue ? null : this._varNamesById[singleValue.id];
             default:
                 throw new Error(`unmapped property kind (${setting.kind}) for setting of ${setting.propertyName} in ${varName}`);
@@ -167,7 +174,7 @@ class JavaScriptSerializer {
                 if (value !== property.defaultValue) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.enumeration,
+                        kind: PropertyKind.Enumeration,
                         value: value
                     });
                 }
@@ -178,7 +185,7 @@ class JavaScriptSerializer {
                 if (value.length > 0) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.enumeration,
+                        kind: PropertyKind.Enumeration,
                         value: value,
                         listy: true
                     });
@@ -194,7 +201,7 @@ class JavaScriptSerializer {
                 if (value !== property.defaultValue) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.primitive,
+                        kind: PropertyKind.Primitive,
                         value: value
                     });
                 }
@@ -205,7 +212,7 @@ class JavaScriptSerializer {
                 if (value.length > 0) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.primitive,
+                        kind: PropertyKind.Primitive,
                         value: value,
                         listy: true
                     });
@@ -220,7 +227,7 @@ class JavaScriptSerializer {
                 if (property.hasDefaultValue || value) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.part,
+                        kind: PropertyKind.Part,
                         value: value,
                         couldBeDefaultValue: property.hasDefaultValue
                     });
@@ -233,7 +240,7 @@ class JavaScriptSerializer {
                     value.forEach(item => this.schedule(item));
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.part,
+                        kind: PropertyKind.Part,
                         value: value,
                         listy: true
                     });
@@ -242,12 +249,24 @@ class JavaScriptSerializer {
             }
             if (property instanceof properties.ByNameReferenceProperty) {
                 const value = property.get();
+                if (value || property.qualifiedName()) {
+                    creation.settings.push({
+                        propertyName: property["name"],
+                        kind: PropertyKind.ByNameReference,
+                        value: property.qualifiedName(),
+                        targetType: property.targetType,
+                        updateWithRawValue: !value
+                    });
+                }
+                return;
+            }
+            if (property instanceof properties.LocalByNameReferenceProperty) {
+                const value = property.get();
                 if (value) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.byNameReference,
-                        value: property.qualifiedName(),
-                        targetType: property.targetType
+                        kind: PropertyKind.LocalByNameReference,
+                        value: value.id
                     });
                 }
                 return;
@@ -257,7 +276,7 @@ class JavaScriptSerializer {
                 if (value.length > 0) {
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.byNameReference,
+                        kind: PropertyKind.ByNameReference,
                         value: property.qualifiedNames(),
                         targetType: property.targetType,
                         listy: true
@@ -271,13 +290,13 @@ class JavaScriptSerializer {
                     this.schedule(value);
                     creation.settings.push({
                         propertyName: property["name"],
-                        kind: PropertyKind.byIdReference,
+                        kind: PropertyKind.ByIdReference,
                         value: value.id
                     });
                 }
                 return;
             }
-            throw new Error(`cannot serialize property: ${property}`);
+            throw new Error(`cannot serialize property: ${property.name} in object of type ${structure.structureTypeName}`);
         });
         return creation;
     }

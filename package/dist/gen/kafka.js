@@ -122,7 +122,7 @@ var kafka;
     /**
      * In version 8.11.0: introduced
      */
-    class KafkaMappedValue extends domainmodels_1.domainmodels.MappedValue {
+    class KafkaMappedValue extends domainmodels_1.domainmodels.CachedMappedValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -146,10 +146,10 @@ var kafka;
          * of the parent domainmodels.Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, KafkaMappedValue.structureTypeName, { start: "8.11.0" });
+            internal.createInVersionCheck(container.model, KafkaMappedValue.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, KafkaMappedValue, "value", false);
         }
         /**
@@ -310,6 +310,9 @@ var kafka;
         set exposedName(newValue) {
             this.__exposedName.set(newValue);
         }
+        /**
+         * In version 9.0.3: deleted
+         */
         get topicName() {
             return this.__topicName.get();
         }
@@ -372,6 +375,10 @@ var kafka;
                     currentValue: true
                 }
             },
+            topicName: {
+                deleted: "9.0.3",
+                deletionMessage: null
+            },
             attributes: {
                 introduced: "9.0.1"
             }
@@ -394,6 +401,8 @@ var kafka;
             /** @internal */
             this.__attribute = new internal.ByNameReferenceProperty(PublishedKafkaResourceAttribute, this, "attribute", null, "DomainModels$Attribute");
             /** @internal */
+            this.__exposedName = new internal.PrimitiveProperty(PublishedKafkaResourceAttribute, this, "exposedName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__summary = new internal.PrimitiveProperty(PublishedKafkaResourceAttribute, this, "summary", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedKafkaResourceAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
@@ -412,6 +421,15 @@ var kafka;
         }
         get attributeQualifiedName() {
             return this.__attribute.qualifiedName();
+        }
+        /**
+         * In version 9.0.2: introduced
+         */
+        get exposedName() {
+            return this.__exposedName.get();
+        }
+        set exposedName(newValue) {
+            this.__exposedName.set(newValue);
         }
         get summary() {
             return this.__summary.get();
@@ -458,6 +476,9 @@ var kafka;
                 required: {
                     currentValue: true
                 }
+            },
+            exposedName: {
+                introduced: "9.0.2"
             }
         },
         experimental: {

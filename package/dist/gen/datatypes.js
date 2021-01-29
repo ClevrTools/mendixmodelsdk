@@ -146,10 +146,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BinaryType, "actionReturnType", false);
         }
         /**
@@ -158,10 +158,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BinaryType, "parameterType", false);
         }
         /**
@@ -417,10 +417,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BooleanType, "actionReturnType", false);
         }
         /**
@@ -429,10 +429,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BooleanType, "parameterType", false);
         }
         /**
@@ -688,10 +688,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DateTimeType, "actionReturnType", false);
         }
         /**
@@ -700,10 +700,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DateTimeType, "parameterType", false);
         }
         /**
@@ -959,10 +959,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DecimalType, "actionReturnType", false);
         }
         /**
@@ -971,10 +971,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DecimalType, "parameterType", false);
         }
         /**
@@ -1230,10 +1230,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EmptyType, "actionReturnType", false);
         }
         /**
@@ -1242,10 +1242,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EmptyType, "parameterType", false);
         }
         /**
@@ -1604,10 +1604,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EnumerationType, "actionReturnType", false);
         }
         /**
@@ -1616,10 +1616,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EnumerationType, "parameterType", false);
         }
         /**
@@ -1885,10 +1885,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, FloatType, "actionReturnType", false);
         }
         /**
@@ -1897,10 +1897,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, FloatType, "parameterType", false);
         }
         /**
@@ -2156,10 +2156,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, IntegerType, "actionReturnType", false);
         }
         /**
@@ -2168,10 +2168,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, IntegerType, "parameterType", false);
         }
         /**
@@ -2427,10 +2427,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ListType, "actionReturnType", false);
         }
         /**
@@ -2439,10 +2439,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ListType, "parameterType", false);
         }
         /**
@@ -2698,10 +2698,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ObjectType, "actionReturnType", false);
         }
         /**
@@ -2710,10 +2710,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ObjectType, "parameterType", false);
         }
         /**
@@ -2969,10 +2969,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, StringType, "actionReturnType", false);
         }
         /**
@@ -2981,10 +2981,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, StringType, "parameterType", false);
         }
         /**
@@ -3240,10 +3240,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, UnknownType, "actionReturnType", false);
         }
         /**
@@ -3252,10 +3252,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, UnknownType, "parameterType", false);
         }
         /**
@@ -3511,10 +3511,10 @@ var datatypes;
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container) {
-            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, VoidType, "actionReturnType", false);
         }
         /**
@@ -3523,10 +3523,10 @@ var datatypes;
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, VoidType, "parameterType", false);
         }
         /**

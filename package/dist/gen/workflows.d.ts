@@ -13,13 +13,13 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IOutcome extends internal.IElement {
         readonly model: IModel;
-        readonly containerAsExclusiveSplitActivity: IExclusiveSplitActivity;
+        readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
         readonly containerAsParallelSplitActivity: IParallelSplitActivity;
-        readonly containerAsWorkflowTask: IWorkflowTask;
+        readonly containerAsUserTask: IUserTask;
         /**
          * This property is required and cannot be set to null.
          *
@@ -37,14 +37,14 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     abstract class Outcome extends internal.Element<IModel> implements IOutcome {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsExclusiveSplitActivity(): ExclusiveSplitActivity;
+        get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
         get containerAsParallelSplitActivity(): ParallelSplitActivity;
-        get containerAsWorkflowTask(): WorkflowTask;
+        get containerAsUserTask(): UserTask;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -59,26 +59,26 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface IExclusiveSplitOutcome extends IOutcome {
+    interface IConditionOutcome extends IOutcome {
         readonly model: IModel;
-        readonly containerAsExclusiveSplitActivity: IExclusiveSplitActivity;
-        asLoaded(): ExclusiveSplitOutcome;
-        load(callback: (element: ExclusiveSplitOutcome) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<ExclusiveSplitOutcome>;
+        readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
+        asLoaded(): ConditionOutcome;
+        load(callback: (element: ConditionOutcome) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ConditionOutcome>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    abstract class ExclusiveSplitOutcome extends Outcome implements IExclusiveSplitOutcome {
+    abstract class ConditionOutcome extends Outcome implements IConditionOutcome {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsExclusiveSplitActivity(): ExclusiveSplitActivity;
+        get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -86,52 +86,52 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface IBooleanSplitOutcome extends IExclusiveSplitOutcome {
+    interface IBooleanConditionOutcome extends IConditionOutcome {
         readonly model: IModel;
-        readonly containerAsExclusiveSplitActivity: IExclusiveSplitActivity;
+        readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
         readonly value: boolean;
-        asLoaded(): BooleanSplitOutcome;
-        load(callback: (element: BooleanSplitOutcome) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<BooleanSplitOutcome>;
+        asLoaded(): BooleanConditionOutcome;
+        load(callback: (element: BooleanConditionOutcome) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<BooleanConditionOutcome>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    class BooleanSplitOutcome extends ExclusiveSplitOutcome implements IBooleanSplitOutcome {
+    class BooleanConditionOutcome extends ConditionOutcome implements IBooleanConditionOutcome {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsExclusiveSplitActivity(): ExclusiveSplitActivity;
+        get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
         get value(): boolean;
         set value(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new BooleanSplitOutcome instance in the SDK and on the server.
-         * The new BooleanSplitOutcome will be automatically stored in the 'outcomes' property
-         * of the parent ExclusiveSplitActivity element passed as argument.
+         * Creates and returns a new BooleanConditionOutcome instance in the SDK and on the server.
+         * The new BooleanConditionOutcome will be automatically stored in the 'outcomes' property
+         * of the parent ConditionOutcomeActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
-        static createIn(container: ExclusiveSplitActivity): BooleanSplitOutcome;
+        static createIn(container: ConditionOutcomeActivity): BooleanConditionOutcome;
         /**
-         * Creates and returns a new BooleanSplitOutcome instance in the SDK and on the server.
+         * Creates and returns a new BooleanConditionOutcome instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): BooleanSplitOutcome;
+        static create(model: IModel): BooleanConditionOutcome;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IWorkflowActivity extends internal.IElement {
         readonly model: IModel;
@@ -146,7 +146,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     abstract class WorkflowActivity extends internal.Element<IModel> implements IWorkflowActivity {
         static structureTypeName: string;
@@ -161,9 +161,9 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface IWorkflowTask extends IWorkflowActivity {
+    interface IConditionOutcomeActivity extends IWorkflowActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
         /**
@@ -171,19 +171,19 @@ export declare namespace workflows {
          *
          * @ignore
          */
-        readonly outcomes: internal.IList<IWorkflowTaskOutcome>;
-        asLoaded(): WorkflowTask;
-        load(callback: (element: WorkflowTask) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<WorkflowTask>;
+        readonly outcomes: internal.IList<IConditionOutcome>;
+        asLoaded(): ConditionOutcomeActivity;
+        load(callback: (element: ConditionOutcomeActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ConditionOutcomeActivity>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    abstract class WorkflowTask extends WorkflowActivity implements IWorkflowTask {
+    abstract class ConditionOutcomeActivity extends WorkflowActivity implements IConditionOutcomeActivity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
@@ -192,7 +192,7 @@ export declare namespace workflows {
          *
          * @ignore
          */
-        get outcomes(): internal.IList<WorkflowTaskOutcome>;
+        get outcomes(): internal.IList<ConditionOutcome>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -200,9 +200,9 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface ICallMicroflowTask extends IWorkflowTask {
+    interface ICallMicroflowTask extends IConditionOutcomeActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
         readonly microflow: microflows.IMicroflow | null;
@@ -216,15 +216,21 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    class CallMicroflowTask extends WorkflowTask implements ICallMicroflowTask {
+    class CallMicroflowTask extends ConditionOutcomeActivity implements ICallMicroflowTask {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parameterMappings(): internal.IList<MicroflowCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
@@ -232,7 +238,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): CallMicroflowTask;
         /**
@@ -247,7 +253,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     interface ICallWorkflowActivity extends IWorkflowActivity {
         readonly model: IModel;
@@ -268,7 +274,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class CallWorkflowActivity extends WorkflowActivity implements ICallWorkflowActivity {
         static structureTypeName: string;
@@ -289,7 +295,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): CallWorkflowActivity;
         /**
@@ -304,7 +310,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IEndWorkflowActivity extends IWorkflowActivity {
         readonly model: IModel;
@@ -318,7 +324,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class EndWorkflowActivity extends WorkflowActivity implements IEndWorkflowActivity {
         static structureTypeName: string;
@@ -331,7 +337,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): EndWorkflowActivity;
         /**
@@ -346,67 +352,58 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface IEnumerationValueSplitOutcome extends IExclusiveSplitOutcome {
+    interface IEnumerationValueConditionOutcome extends IConditionOutcome {
         readonly model: IModel;
-        readonly containerAsExclusiveSplitActivity: IExclusiveSplitActivity;
-        /**
-         * This property is required and cannot be set to null.
-         */
-        readonly value: enumerations.IEnumerationValue;
-        readonly valueQualifiedName: string;
-        asLoaded(): EnumerationValueSplitOutcome;
-        load(callback: (element: EnumerationValueSplitOutcome) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<EnumerationValueSplitOutcome>;
+        readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
+        readonly value: enumerations.IEnumerationValue | null;
+        readonly valueQualifiedName: string | null;
+        asLoaded(): EnumerationValueConditionOutcome;
+        load(callback: (element: EnumerationValueConditionOutcome) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EnumerationValueConditionOutcome>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    class EnumerationValueSplitOutcome extends ExclusiveSplitOutcome implements IEnumerationValueSplitOutcome {
+    class EnumerationValueConditionOutcome extends ConditionOutcome implements IEnumerationValueConditionOutcome {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsExclusiveSplitActivity(): ExclusiveSplitActivity;
-        get value(): enumerations.IEnumerationValue;
-        set value(newValue: enumerations.IEnumerationValue);
-        get valueQualifiedName(): string;
+        get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
+        get value(): enumerations.IEnumerationValue | null;
+        set value(newValue: enumerations.IEnumerationValue | null);
+        get valueQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new EnumerationValueSplitOutcome instance in the SDK and on the server.
-         * The new EnumerationValueSplitOutcome will be automatically stored in the 'outcomes' property
-         * of the parent ExclusiveSplitActivity element passed as argument.
+         * Creates and returns a new EnumerationValueConditionOutcome instance in the SDK and on the server.
+         * The new EnumerationValueConditionOutcome will be automatically stored in the 'outcomes' property
+         * of the parent ConditionOutcomeActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
-        static createIn(container: ExclusiveSplitActivity): EnumerationValueSplitOutcome;
+        static createIn(container: ConditionOutcomeActivity): EnumerationValueConditionOutcome;
         /**
-         * Creates and returns a new EnumerationValueSplitOutcome instance in the SDK and on the server.
+         * Creates and returns a new EnumerationValueConditionOutcome instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): EnumerationValueSplitOutcome;
+        static create(model: IModel): EnumerationValueConditionOutcome;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    interface IExclusiveSplitActivity extends IWorkflowActivity {
+    interface IExclusiveSplitActivity extends IConditionOutcomeActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        readonly outcomes: internal.IList<IExclusiveSplitOutcome>;
         asLoaded(): ExclusiveSplitActivity;
         load(callback: (element: ExclusiveSplitActivity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ExclusiveSplitActivity>;
@@ -416,9 +413,9 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    class ExclusiveSplitActivity extends WorkflowActivity implements IExclusiveSplitActivity {
+    class ExclusiveSplitActivity extends ConditionOutcomeActivity implements IExclusiveSplitActivity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
@@ -427,12 +424,6 @@ export declare namespace workflows {
          */
         get expression(): string;
         set expression(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get outcomes(): internal.IList<ExclusiveSplitOutcome>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
@@ -440,7 +431,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): ExclusiveSplitActivity;
         /**
@@ -455,7 +446,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IFlow extends internal.IElement {
         readonly model: IModel;
@@ -476,7 +467,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class Flow extends internal.Element<IModel> implements IFlow {
         static structureTypeName: string;
@@ -496,7 +487,7 @@ export declare namespace workflows {
          * of the parent Outcome element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInOutcomeUnderFlow(container: Outcome): Flow;
         /**
@@ -505,7 +496,7 @@ export declare namespace workflows {
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createInWorkflowUnderFlow(container: Workflow): Flow;
         /**
@@ -520,7 +511,136 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 9.0.0: introduced
+     * In version 9.0.3: introduced
+     */
+    interface IJumpToActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): JumpToActivity;
+        load(callback: (element: JumpToActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<JumpToActivity>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.3: introduced
+     */
+    class JumpToActivity extends WorkflowActivity implements IJumpToActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get targetActivity(): WorkflowActivity | null;
+        set targetActivity(newValue: WorkflowActivity | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * The new JumpToActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createIn(container: Flow): JumpToActivity;
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): JumpToActivity;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    abstract class UserSource extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTask(): UserTask;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    class MicroflowBasedUserSource extends UserSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTask(): UserTask;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowBasedUserSource instance in the SDK and on the server.
+         * The new MicroflowBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container: UserTask): MicroflowBasedUserSource;
+        /**
+         * Creates and returns a new MicroflowBasedUserSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowBasedUserSource;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    class MicroflowCallParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get parameter(): microflows.IMicroflowParameter;
+        set parameter(newValue: microflows.IMicroflowParameter);
+        get parameterQualifiedName(): string;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * The new MicroflowCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container: CallMicroflowTask): MicroflowCallParameterMapping;
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowCallParameterMapping;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
      */
     interface IParallelSplitActivity extends IWorkflowActivity {
         readonly model: IModel;
@@ -540,7 +660,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 9.0.0: introduced
+     * In version 9.0.2: introduced
      */
     class ParallelSplitActivity extends WorkflowActivity implements IParallelSplitActivity {
         static structureTypeName: string;
@@ -559,7 +679,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): ParallelSplitActivity;
         /**
@@ -574,7 +694,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 9.0.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IParallelSplitOutcome extends IOutcome {
         readonly model: IModel;
@@ -588,7 +708,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 9.0.0: introduced
+     * In version 9.0.2: introduced
      */
     class ParallelSplitOutcome extends Outcome implements IParallelSplitOutcome {
         static structureTypeName: string;
@@ -601,7 +721,7 @@ export declare namespace workflows {
          * of the parent ParallelSplitActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: ParallelSplitActivity): ParallelSplitOutcome;
         /**
@@ -616,26 +736,24 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    abstract class UserSource extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsUserTask(): UserTask;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 8.15.0: introduced
-     */
-    interface IUserTask extends IWorkflowTask {
+    interface IUserTask extends IWorkflowActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
         readonly page: pages.IPage | null;
         readonly pageQualifiedName: string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        readonly outcomes: internal.IList<IUserTaskOutcome>;
+        /**
+         * In version 9.0.3: introduced
+         */
+        readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
+        readonly allowedModuleRolesQualifiedNames: string[];
         asLoaded(): UserTask;
         load(callback: (element: UserTask) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<UserTask>;
@@ -645,19 +763,19 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
-    class UserTask extends WorkflowTask implements IUserTask {
+    class UserTask extends WorkflowActivity implements IUserTask {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
         get pageQualifiedName(): string | null;
-        get subject(): microflows.StringTemplate;
-        set subject(newValue: microflows.StringTemplate);
-        get description(): microflows.StringTemplate;
-        set description(newValue: microflows.StringTemplate);
+        get taskName(): microflows.StringTemplate;
+        set taskName(newValue: microflows.StringTemplate);
+        get taskDescription(): microflows.StringTemplate;
+        set taskDescription(newValue: microflows.StringTemplate);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -670,6 +788,17 @@ export declare namespace workflows {
          */
         get userSource(): UserSource;
         set userSource(newValue: UserSource);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get outcomes(): internal.IList<UserTaskOutcome>;
+        /**
+         * In version 9.0.3: introduced
+         */
+        get allowedModuleRoles(): internal.IList<security.IModuleRole>;
+        get allowedModuleRolesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
@@ -677,7 +806,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: Flow): UserTask;
         /**
@@ -692,7 +821,98 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
+     */
+    interface IUserTaskOutcome extends IOutcome, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsUserTask: IUserTask;
+        readonly name: string;
+        readonly caption: string;
+        asLoaded(): UserTaskOutcome;
+        load(callback: (element: UserTaskOutcome) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<UserTaskOutcome>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    class UserTaskOutcome extends Outcome implements IUserTaskOutcome {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTask(): UserTask;
+        get name(): string;
+        set name(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UserTaskOutcome instance in the SDK and on the server.
+         * The new UserTaskOutcome will be automatically stored in the 'outcomes' property
+         * of the parent UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container: UserTask): UserTaskOutcome;
+        /**
+         * Creates and returns a new UserTaskOutcome instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UserTaskOutcome;
+        get qualifiedName(): string | null;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    interface IVoidConditionOutcome extends IConditionOutcome {
+        readonly model: IModel;
+        readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
+        asLoaded(): VoidConditionOutcome;
+        load(callback: (element: VoidConditionOutcome) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<VoidConditionOutcome>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
+     */
+    class VoidConditionOutcome extends ConditionOutcome implements IVoidConditionOutcome {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new VoidConditionOutcome instance in the SDK and on the server.
+         * The new VoidConditionOutcome will be automatically stored in the 'outcomes' property
+         * of the parent ConditionOutcomeActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createIn(container: ConditionOutcomeActivity): VoidConditionOutcome;
+        /**
+         * Creates and returns a new VoidConditionOutcome instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): VoidConditionOutcome;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.2: introduced
      */
     interface IWorkflow extends projects.IDocument {
         readonly model: IModel;
@@ -710,6 +930,8 @@ export declare namespace workflows {
          * @ignore
          */
         readonly flow: IFlow;
+        readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
+        readonly allowedModuleRolesQualifiedNames: string[];
         asLoaded(): Workflow;
         load(callback: (element: Workflow) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Workflow>;
@@ -719,7 +941,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class Workflow extends projects.Document implements IWorkflow {
         static structureTypeName: string;
@@ -740,16 +962,8 @@ export declare namespace workflows {
          */
         get flow(): Flow;
         set flow(newValue: Flow);
-        get subject(): microflows.StringTemplate;
-        set subject(newValue: microflows.StringTemplate);
-        /**
-         * In version 9.0.1: deleted
-         */
-        get description(): string;
-        set description(newValue: string);
-        /**
-         * In version 9.0.1: introduced
-         */
+        get workflowName(): microflows.StringTemplate;
+        set workflowName(newValue: microflows.StringTemplate);
         get workflowDescription(): microflows.StringTemplate;
         set workflowDescription(newValue: microflows.StringTemplate);
         /**
@@ -757,6 +971,8 @@ export declare namespace workflows {
          */
         get dueDate(): string;
         set dueDate(newValue: string);
+        get allowedModuleRoles(): internal.IList<security.IModuleRole>;
+        get allowedModuleRolesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Workflow unit in the SDK and on the server.
@@ -769,56 +985,7 @@ export declare namespace workflows {
      *
      * @ignore
      *
-     * In version 8.15.0: introduced
-     */
-    interface IWorkflowTaskOutcome extends IOutcome, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsWorkflowTask: IWorkflowTask;
-        readonly name: string;
-        readonly caption: string;
-        asLoaded(): WorkflowTaskOutcome;
-        load(callback: (element: WorkflowTaskOutcome) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<WorkflowTaskOutcome>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 8.15.0: introduced
-     */
-    class WorkflowTaskOutcome extends Outcome implements IWorkflowTaskOutcome {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsWorkflowTask(): WorkflowTask;
-        get name(): string;
-        set name(newValue: string);
-        get caption(): string;
-        set caption(newValue: string);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new WorkflowTaskOutcome instance in the SDK and on the server.
-         * The new WorkflowTaskOutcome will be automatically stored in the 'outcomes' property
-         * of the parent WorkflowTask element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
-         */
-        static createIn(container: WorkflowTask): WorkflowTaskOutcome;
-        /**
-         * Creates and returns a new WorkflowTaskOutcome instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): WorkflowTaskOutcome;
-        get qualifiedName(): string | null;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 8.15.0: introduced
+     * In version 9.0.2: introduced
      */
     class XPathBasedUserSource extends UserSource {
         static structureTypeName: string;
@@ -836,7 +1003,7 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.15.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: UserTask): XPathBasedUserSource;
         /**
@@ -851,4 +1018,5 @@ import { domainmodels } from "./domainmodels";
 import { enumerations } from "./enumerations";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
+import { security } from "./security";
 import { IModel } from "./base-model";

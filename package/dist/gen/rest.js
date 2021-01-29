@@ -1024,6 +1024,8 @@ var rest;
             this.__description = new internal.PrimitiveProperty(PublishedODataService, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__replaceIllegalChars = new internal.PrimitiveProperty(PublishedODataService, this, "replaceIllegalChars", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__useGeneralization = new internal.PrimitiveProperty(PublishedODataService, this, "useGeneralization", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1123,6 +1125,15 @@ var rest;
             this.__replaceIllegalChars.set(newValue);
         }
         /**
+         * In version 8.18.0: introduced
+         */
+        get useGeneralization() {
+            return this.__useGeneralization.get();
+        }
+        set useGeneralization(newValue) {
+            this.__useGeneralization.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -1141,6 +1152,9 @@ var rest;
             }
             if (this.__replaceIllegalChars.isAvailable) {
                 this.replaceIllegalChars = false;
+            }
+            if (this.__useGeneralization.isAvailable) {
+                this.useGeneralization = false;
             }
             if (this.__version.isAvailable) {
                 this.version = "1.0.0";
@@ -1173,6 +1187,9 @@ var rest;
             },
             replaceIllegalChars: {
                 introduced: "8.12.0"
+            },
+            useGeneralization: {
+                introduced: "8.18.0"
             }
         }
     }, internal.StructureType.ModelUnit);
