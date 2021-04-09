@@ -76,6 +76,20 @@ export declare namespace pages {
         static InstantMessageProtocol: AutocompletePurposeType;
         protected qualifiedTsTypeName: string;
     }
+    class ButtonAriaRoleType extends internal.AbstractEnum {
+        static Button: ButtonAriaRoleType;
+        static Link: ButtonAriaRoleType;
+        static Checkbox: ButtonAriaRoleType;
+        static Radio: ButtonAriaRoleType;
+        static Tab: ButtonAriaRoleType;
+        static MenuItem: ButtonAriaRoleType;
+        static MenuItemCheckbox: ButtonAriaRoleType;
+        static MenuItemRadio: ButtonAriaRoleType;
+        static Option: ButtonAriaRoleType;
+        static Switch: ButtonAriaRoleType;
+        static TreeItem: ButtonAriaRoleType;
+        protected qualifiedTsTypeName: string;
+    }
     class ButtonStyle extends internal.AbstractEnum {
         static Default: ButtonStyle;
         static Inverse: ButtonStyle;
@@ -372,6 +386,11 @@ export declare namespace pages {
         static Descending: SortDirection;
         protected qualifiedTsTypeName: string;
     }
+    class SubmitBehaviourType extends internal.AbstractEnum {
+        static OnEndEditing: SubmitBehaviourType;
+        static WhileEditing: SubmitBehaviourType;
+        protected qualifiedTsTypeName: string;
+    }
     class TableCellRenderModeType extends internal.AbstractEnum {
         static Default: TableCellRenderModeType;
         static Header: TableCellRenderModeType;
@@ -565,6 +584,11 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get action(): ClientAction;
         set action(newValue: ClientAction);
+        /**
+         * In version 9.0.1: introduced
+         */
+        get ariaRole(): ButtonAriaRoleType;
+        set ariaRole(newValue: ButtonAriaRoleType);
         /**
          * In version 8.12.0: deleted
          */
@@ -1809,6 +1833,14 @@ export declare namespace pages {
          * In version 7.17.0: introduced
          */
         readonly documentationUrl: string;
+        /**
+         * In version 9.0.2: introduced
+         */
+        readonly templateCategory: string;
+        /**
+         * In version 9.0.2: introduced
+         */
+        readonly templateCategoryWeight: number;
         asLoaded(): TemplateFormBase;
         load(callback: (element: TemplateFormBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<TemplateFormBase>;
@@ -1830,6 +1862,16 @@ export declare namespace pages {
          */
         get documentationUrl(): string;
         set documentationUrl(newValue: string);
+        /**
+         * In version 9.0.2: introduced
+         */
+        get templateCategory(): string;
+        set templateCategory(newValue: string);
+        /**
+         * In version 9.0.2: introduced
+         */
+        get templateCategoryWeight(): number;
+        set templateCategoryWeight(newValue: number);
         get imageData(): string | null;
         set imageData(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
@@ -1969,7 +2011,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CallNanoflowClientAction;
         /**
@@ -2106,16 +2148,14 @@ export declare namespace pages {
         static create(model: IModel): CallNanoflowClientAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.13.0: introduced
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
      */
     class CallWorkflowClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
-        get containerAsBottomBarItem(): nativepages.BottomBarItem;
         get containerAsActionButton(): ActionButton;
         get containerAsActionItem(): ActionItem;
         get containerAsAssociationWidget(): AssociationWidget;
@@ -2127,12 +2167,13 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
         get workflow(): workflows.IWorkflow | null;
         set workflow(newValue: workflows.IWorkflow | null);
         get workflowQualifiedName(): string | null;
+        get closePage(): boolean;
+        set closePage(newValue: boolean);
+        get commit(): boolean;
+        set commit(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
@@ -2140,7 +2181,7 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): CallWorkflowClientAction;
         /**
@@ -2149,25 +2190,16 @@ export declare namespace pages {
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container: menus.MenuItem): CallWorkflowClientAction;
-        /**
-         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
-         * The new CallWorkflowClientAction will be automatically stored in the 'action' property
-         * of the parent nativepages.BottomBarItem element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
-         */
-        static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CallWorkflowClientAction;
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
          * The new CallWorkflowClientAction will be automatically stored in the 'action' property
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container: ActionButton): CallWorkflowClientAction;
         /**
@@ -2176,7 +2208,7 @@ export declare namespace pages {
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container: ActionItem): CallWorkflowClientAction;
         /**
@@ -2185,7 +2217,7 @@ export declare namespace pages {
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): CallWorkflowClientAction;
         /**
@@ -2194,7 +2226,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): CallWorkflowClientAction;
         /**
@@ -2203,7 +2235,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): CallWorkflowClientAction;
         /**
@@ -2212,7 +2244,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): CallWorkflowClientAction;
         /**
@@ -2221,7 +2253,7 @@ export declare namespace pages {
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container: DivContainer): CallWorkflowClientAction;
         /**
@@ -2230,7 +2262,7 @@ export declare namespace pages {
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): CallWorkflowClientAction;
         /**
@@ -2239,7 +2271,7 @@ export declare namespace pages {
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container: GridActionButton): CallWorkflowClientAction;
         /**
@@ -2248,7 +2280,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container: ListView): CallWorkflowClientAction;
         /**
@@ -2257,7 +2289,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container: ListView): CallWorkflowClientAction;
         /**
@@ -2266,7 +2298,7 @@ export declare namespace pages {
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): CallWorkflowClientAction;
         /**
@@ -2275,7 +2307,7 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CallWorkflowClientAction;
         /**
@@ -2284,7 +2316,7 @@ export declare namespace pages {
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CallWorkflowClientAction;
         /**
@@ -2578,7 +2610,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CancelChangesClientAction;
         /**
@@ -3370,6 +3402,13 @@ export declare namespace pages {
         get attributeRef(): domainmodels.AttributeRef | null;
         set attributeRef(newValue: domainmodels.AttributeRef | null);
         /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.0.1: introduced
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        /**
          * In version 7.15.0: introduced
          */
         get formattingInfo(): FormattingInfo;
@@ -3446,7 +3485,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): ClosePageClientAction;
         /**
@@ -3833,6 +3872,8 @@ export declare namespace pages {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel(): expressions.Expression;
@@ -4090,7 +4131,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): CreateObjectClientAction;
         /**
@@ -6187,7 +6228,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): DeleteClientAction;
         /**
@@ -16379,6 +16420,8 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
@@ -16406,11 +16449,15 @@ export declare namespace pages {
         get containerAsVerticalFlow(): VerticalFlow;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get master(): MasterDetailMasterRegion;
         set master(newValue: MasterDetailMasterRegion);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get detail(): MasterDetailDetailRegion;
         set detail(newValue: MasterDetailDetailRegion);
@@ -16623,6 +16670,8 @@ export declare namespace pages {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
      */
@@ -16640,6 +16689,8 @@ export declare namespace pages {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
@@ -16673,6 +16724,8 @@ export declare namespace pages {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.15.0: deleted
      * In version 7.1.0: introduced
@@ -17304,7 +17357,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): MicroflowClientAction;
         /**
@@ -19355,7 +19408,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): NoClientAction;
         /**
@@ -19656,7 +19709,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): OpenLinkClientAction;
         /**
@@ -19793,16 +19846,14 @@ export declare namespace pages {
         static create(model: IModel): OpenLinkClientAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.13.0: introduced
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
      */
     class OpenUserTaskClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
-        get containerAsBottomBarItem(): nativepages.BottomBarItem;
         get containerAsActionButton(): ActionButton;
         get containerAsActionItem(): ActionItem;
         get containerAsAssociationWidget(): AssociationWidget;
@@ -19821,7 +19872,7 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): OpenUserTaskClientAction;
         /**
@@ -19830,25 +19881,16 @@ export declare namespace pages {
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container: menus.MenuItem): OpenUserTaskClientAction;
-        /**
-         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
-         * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
-         * of the parent nativepages.BottomBarItem element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
-         */
-        static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): OpenUserTaskClientAction;
         /**
          * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
          * The new OpenUserTaskClientAction will be automatically stored in the 'action' property
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container: ActionButton): OpenUserTaskClientAction;
         /**
@@ -19857,7 +19899,7 @@ export declare namespace pages {
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container: ActionItem): OpenUserTaskClientAction;
         /**
@@ -19866,7 +19908,7 @@ export declare namespace pages {
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): OpenUserTaskClientAction;
         /**
@@ -19875,7 +19917,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): OpenUserTaskClientAction;
         /**
@@ -19884,7 +19926,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): OpenUserTaskClientAction;
         /**
@@ -19893,7 +19935,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): OpenUserTaskClientAction;
         /**
@@ -19902,7 +19944,7 @@ export declare namespace pages {
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container: DivContainer): OpenUserTaskClientAction;
         /**
@@ -19911,7 +19953,7 @@ export declare namespace pages {
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): OpenUserTaskClientAction;
         /**
@@ -19920,7 +19962,7 @@ export declare namespace pages {
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container: GridActionButton): OpenUserTaskClientAction;
         /**
@@ -19929,7 +19971,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container: ListView): OpenUserTaskClientAction;
         /**
@@ -19938,7 +19980,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container: ListView): OpenUserTaskClientAction;
         /**
@@ -19947,7 +19989,7 @@ export declare namespace pages {
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): OpenUserTaskClientAction;
         /**
@@ -19956,7 +19998,7 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenUserTaskClientAction;
         /**
@@ -19965,7 +20007,7 @@ export declare namespace pages {
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): OpenUserTaskClientAction;
         /**
@@ -19976,16 +20018,14 @@ export declare namespace pages {
         static create(model: IModel): OpenUserTaskClientAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.13.0: introduced
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
      */
     class OpenWorkflowClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
-        get containerAsBottomBarItem(): nativepages.BottomBarItem;
         get containerAsActionButton(): ActionButton;
         get containerAsActionItem(): ActionItem;
         get containerAsAssociationWidget(): AssociationWidget;
@@ -19997,6 +20037,12 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 9.0.5: introduced
+         */
+        get defaultPage(): IPage | null;
+        set defaultPage(newValue: IPage | null);
+        get defaultPageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
@@ -20004,7 +20050,7 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): OpenWorkflowClientAction;
         /**
@@ -20013,25 +20059,16 @@ export declare namespace pages {
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container: menus.MenuItem): OpenWorkflowClientAction;
-        /**
-         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
-         * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
-         * of the parent nativepages.BottomBarItem element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
-         */
-        static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): OpenWorkflowClientAction;
         /**
          * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
          * The new OpenWorkflowClientAction will be automatically stored in the 'action' property
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container: ActionButton): OpenWorkflowClientAction;
         /**
@@ -20040,7 +20077,7 @@ export declare namespace pages {
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container: ActionItem): OpenWorkflowClientAction;
         /**
@@ -20049,7 +20086,7 @@ export declare namespace pages {
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): OpenWorkflowClientAction;
         /**
@@ -20058,7 +20095,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): OpenWorkflowClientAction;
         /**
@@ -20067,7 +20104,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): OpenWorkflowClientAction;
         /**
@@ -20076,7 +20113,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): OpenWorkflowClientAction;
         /**
@@ -20085,7 +20122,7 @@ export declare namespace pages {
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container: DivContainer): OpenWorkflowClientAction;
         /**
@@ -20094,7 +20131,7 @@ export declare namespace pages {
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): OpenWorkflowClientAction;
         /**
@@ -20103,7 +20140,7 @@ export declare namespace pages {
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container: GridActionButton): OpenWorkflowClientAction;
         /**
@@ -20112,7 +20149,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container: ListView): OpenWorkflowClientAction;
         /**
@@ -20121,7 +20158,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container: ListView): OpenWorkflowClientAction;
         /**
@@ -20130,7 +20167,7 @@ export declare namespace pages {
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): OpenWorkflowClientAction;
         /**
@@ -20139,7 +20176,7 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenWorkflowClientAction;
         /**
@@ -20148,7 +20185,7 @@ export declare namespace pages {
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): OpenWorkflowClientAction;
         /**
@@ -20297,7 +20334,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): PageClientAction;
         /**
@@ -23794,7 +23831,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SaveChangesClientAction;
         /**
@@ -24717,16 +24754,14 @@ export declare namespace pages {
         static create(model: IModel): SelectorXPathSource;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * In version 8.13.0: introduced
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
      */
     class SetTaskOutcomeClientAction extends ClientAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsMenuItem(): menus.MenuItem;
-        get containerAsBottomBarItem(): nativepages.BottomBarItem;
         get containerAsActionButton(): ActionButton;
         get containerAsActionItem(): ActionItem;
         get containerAsAssociationWidget(): AssociationWidget;
@@ -24738,11 +24773,8 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         */
-        get outcome(): workflows.IWorkflowTaskOutcome | null;
-        set outcome(newValue: workflows.IWorkflowTaskOutcome | null);
+        get outcome(): workflows.IUserTaskOutcome | null;
+        set outcome(newValue: workflows.IUserTaskOutcome | null);
         get outcomeQualifiedName(): string | null;
         get closePage(): boolean;
         set closePage(newValue: boolean);
@@ -24755,7 +24787,7 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): SetTaskOutcomeClientAction;
         /**
@@ -24764,25 +24796,16 @@ export declare namespace pages {
          * of the parent menus.MenuItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInMenuItemUnderAction(container: menus.MenuItem): SetTaskOutcomeClientAction;
-        /**
-         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
-         * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
-         * of the parent nativepages.BottomBarItem element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
-         */
-        static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SetTaskOutcomeClientAction;
         /**
          * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
          * The new SetTaskOutcomeClientAction will be automatically stored in the 'action' property
          * of the parent ActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionButtonUnderAction(container: ActionButton): SetTaskOutcomeClientAction;
         /**
@@ -24791,7 +24814,7 @@ export declare namespace pages {
          * of the parent ActionItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInActionItemUnderAction(container: ActionItem): SetTaskOutcomeClientAction;
         /**
@@ -24800,7 +24823,7 @@ export declare namespace pages {
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): SetTaskOutcomeClientAction;
         /**
@@ -24809,7 +24832,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): SetTaskOutcomeClientAction;
         /**
@@ -24818,7 +24841,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): SetTaskOutcomeClientAction;
         /**
@@ -24827,7 +24850,7 @@ export declare namespace pages {
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): SetTaskOutcomeClientAction;
         /**
@@ -24836,7 +24859,7 @@ export declare namespace pages {
          * of the parent DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDivContainerUnderOnClickAction(container: DivContainer): SetTaskOutcomeClientAction;
         /**
@@ -24845,7 +24868,7 @@ export declare namespace pages {
          * of the parent DynamicImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): SetTaskOutcomeClientAction;
         /**
@@ -24854,7 +24877,7 @@ export declare namespace pages {
          * of the parent GridActionButton element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInGridActionButtonUnderAction(container: GridActionButton): SetTaskOutcomeClientAction;
         /**
@@ -24863,7 +24886,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderClickAction(container: ListView): SetTaskOutcomeClientAction;
         /**
@@ -24872,7 +24895,7 @@ export declare namespace pages {
          * of the parent ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInListViewUnderPullDownAction(container: ListView): SetTaskOutcomeClientAction;
         /**
@@ -24881,7 +24904,7 @@ export declare namespace pages {
          * of the parent ReferenceSetSelector element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): SetTaskOutcomeClientAction;
         /**
@@ -24890,7 +24913,7 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SetTaskOutcomeClientAction;
         /**
@@ -24899,7 +24922,7 @@ export declare namespace pages {
          * of the parent TextBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): SetTaskOutcomeClientAction;
         /**
@@ -25467,7 +25490,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SignOutClientAction;
         /**
@@ -27513,7 +27536,7 @@ export declare namespace pages {
          * of the parent nativepages.BottomBarItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 8.14.0
          */
         static createInBottomBarItemUnderAction(container: nativepages.BottomBarItem): SyncClientAction;
         /**
@@ -30155,6 +30178,16 @@ export declare namespace pages {
          */
         get autocompletePurpose(): AutocompletePurposeType;
         set autocompletePurpose(newValue: AutocompletePurposeType);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitBehaviour(): SubmitBehaviourType;
+        set submitBehaviour(newValue: SubmitBehaviourType);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get submitOnInputDelay(): number;
+        set submitOnInputDelay(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -31121,7 +31154,7 @@ export declare namespace pages {
         static create(model: IModel): Title;
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IWorkflowTemplateType extends ITemplateType {
         readonly model: IModel;
@@ -31131,7 +31164,7 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<WorkflowTemplateType>;
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     abstract class WorkflowTemplateType extends TemplateType implements IWorkflowTemplateType {
         static structureTypeName: string;
@@ -31140,7 +31173,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IUserTaskTemplateType extends IWorkflowTemplateType {
         readonly model: IModel;
@@ -31150,7 +31183,7 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<UserTaskTemplateType>;
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     class UserTaskTemplateType extends WorkflowTemplateType implements IUserTaskTemplateType {
         static structureTypeName: string;
@@ -31163,7 +31196,7 @@ export declare namespace pages {
          * of the parent PageTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: PageTemplate): UserTaskTemplateType;
         /**
@@ -32423,6 +32456,8 @@ export declare namespace pages {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.9.0: introduced
          */
         get expressionModel(): expressions.Expression;
@@ -32456,7 +32491,7 @@ export declare namespace pages {
         static create(model: IModel): WidgetValidation;
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     interface IWorkflowOverviewTemplateType extends IWorkflowTemplateType {
         readonly model: IModel;
@@ -32466,7 +32501,7 @@ export declare namespace pages {
         load(forceRefresh?: boolean): Promise<WorkflowOverviewTemplateType>;
     }
     /**
-     * In version 8.13.0: introduced
+     * In version 9.0.2: introduced
      */
     class WorkflowOverviewTemplateType extends WorkflowTemplateType implements IWorkflowOverviewTemplateType {
         static structureTypeName: string;
@@ -32479,7 +32514,7 @@ export declare namespace pages {
          * of the parent PageTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: PageTemplate): WorkflowOverviewTemplateType;
         /**

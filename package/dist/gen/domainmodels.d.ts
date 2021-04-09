@@ -152,6 +152,8 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
@@ -164,6 +166,7 @@ export declare namespace domainmodels {
         /**
          * This property is required and cannot be set to null.
          *
+         * In version 9.0.1: deleted
          * In version 8.11.0: introduced
          */
         readonly capabilities: IAssociationCapabilities;
@@ -195,6 +198,8 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
@@ -207,6 +212,7 @@ export declare namespace domainmodels {
         get source(): AssociationSource | null;
         set source(newValue: AssociationSource | null);
         /**
+         * In version 9.0.1: deleted
          * In version 8.11.0: introduced
          */
         get capabilities(): AssociationCapabilities;
@@ -256,6 +262,7 @@ export declare namespace domainmodels {
         static create(model: IModel): Association;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.11.0: introduced
      */
     interface IAssociationCapabilities extends internal.IElement {
@@ -266,6 +273,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<AssociationCapabilities>;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.11.0: introduced
      */
     class AssociationCapabilities extends internal.Element<IModel> implements IAssociationCapabilities {
@@ -281,7 +289,7 @@ export declare namespace domainmodels {
          * of the parent AssociationBase element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  8.11.0 to 9.0.0
          */
         static createIn(container: AssociationBase): AssociationCapabilities;
         /**
@@ -398,6 +406,7 @@ export declare namespace domainmodels {
         /**
          * This property is required and cannot be set to null.
          *
+         * In version 9.0.1: deleted
          * In version 8.13.0: introduced
          */
         readonly capabilities: IAttributeCapabilities;
@@ -426,6 +435,7 @@ export declare namespace domainmodels {
         get value(): ValueType;
         set value(newValue: ValueType);
         /**
+         * In version 9.0.1: deleted
          * In version 8.13.0: introduced
          */
         get capabilities(): AttributeCapabilities;
@@ -446,6 +456,7 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.13.0: introduced
      */
     interface IAttributeCapabilities extends internal.IElement {
@@ -458,6 +469,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<AttributeCapabilities>;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.13.0: introduced
      */
     class AttributeCapabilities extends internal.Element<IModel> implements IAttributeCapabilities {
@@ -475,7 +487,7 @@ export declare namespace domainmodels {
          * of the parent Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  8.13.0 to 9.0.0
          */
         static createIn(container: Attribute): AttributeCapabilities;
         /**
@@ -884,6 +896,44 @@ export declare namespace domainmodels {
      * In version 6.6.0: added public
      */
     abstract class ValueType extends internal.Element<IModel> implements IValueType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    interface IMappedValue extends IValueType {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): MappedValue;
+        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappedValue>;
+    }
+    /**
+     * In version 8.10.0: introduced
+     */
+    abstract class MappedValue extends ValueType implements IMappedValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.0.2: introduced
+     */
+    interface ICachedMappedValue extends IMappedValue {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): CachedMappedValue;
+        load(callback: (element: CachedMappedValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CachedMappedValue>;
+    }
+    /**
+     * In version 9.0.2: introduced
+     */
+    abstract class CachedMappedValue extends MappedValue implements ICachedMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAttribute(): Attribute;
@@ -1325,6 +1375,8 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
@@ -1337,6 +1389,7 @@ export declare namespace domainmodels {
         /**
          * This property is required and cannot be set to null.
          *
+         * In version 9.0.1: deleted
          * In version 8.12.0: introduced
          */
         readonly capabilities: IEntityCapabilities;
@@ -1385,6 +1438,8 @@ export declare namespace domainmodels {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
@@ -1397,6 +1452,7 @@ export declare namespace domainmodels {
         get source(): EntitySource | null;
         set source(newValue: EntitySource | null);
         /**
+         * In version 9.0.1: deleted
          * In version 8.12.0: introduced
          */
         get capabilities(): EntityCapabilities;
@@ -1417,6 +1473,7 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.12.0: introduced
      */
     interface IEntityCapabilities extends internal.IElement {
@@ -1431,6 +1488,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<EntityCapabilities>;
     }
     /**
+     * In version 9.0.1: deleted
      * In version 8.12.0: introduced
      */
     class EntityCapabilities extends internal.Element<IModel> implements IEntityCapabilities {
@@ -1449,7 +1507,7 @@ export declare namespace domainmodels {
          * of the parent Entity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.12.0 and higher
+         *  8.12.0 to 9.0.0
          */
         static createIn(container: Entity): EntityCapabilities;
         /**
@@ -2129,25 +2187,6 @@ export declare namespace domainmodels {
     /**
      * In version 8.10.0: introduced
      */
-    interface IMappedValue extends IValueType {
-        readonly model: IModel;
-        readonly containerAsAttribute: IAttribute;
-        asLoaded(): MappedValue;
-        load(callback: (element: MappedValue) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<MappedValue>;
-    }
-    /**
-     * In version 8.10.0: introduced
-     */
-    abstract class MappedValue extends ValueType implements IMappedValue {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsAttribute(): Attribute;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-    }
-    /**
-     * In version 8.10.0: introduced
-     */
     interface IRemoteEntitySource extends IEntitySource {
         readonly model: IModel;
         readonly containerAsEntity: IEntity;
@@ -2389,6 +2428,8 @@ export declare namespace domainmodels {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.18.0: introduced
      */
     interface IRemoteEntitySourceDocument extends projects.IDocument {
@@ -2430,12 +2471,18 @@ export declare namespace domainmodels {
          * In version 8.14.0: introduced
          */
         readonly environmentType: EnvironmentType;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly metadataHash: string;
         asLoaded(): RemoteEntitySourceDocument;
         load(callback: (element: RemoteEntitySourceDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<RemoteEntitySourceDocument>;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
@@ -2501,6 +2548,11 @@ export declare namespace domainmodels {
          */
         get environmentType(): EnvironmentType;
         set environmentType(newValue: EnvironmentType);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get metadataHash(): string;
+        set metadataHash(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {

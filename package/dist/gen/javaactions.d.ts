@@ -775,6 +775,7 @@ export declare namespace javaactions {
          */
         readonly microflowActionInfo: IMicroflowActionInfo | null;
         /**
+         * In version 9.0.3: deleted
          * In version 8.0.0: introduced
          */
         readonly useLegacyCodeGeneration: boolean;
@@ -818,6 +819,7 @@ export declare namespace javaactions {
         get microflowActionInfo(): MicroflowActionInfo | null;
         set microflowActionInfo(newValue: MicroflowActionInfo | null);
         /**
+         * In version 9.0.3: deleted
          * In version 8.0.0: introduced
          */
         get useLegacyCodeGeneration(): boolean;

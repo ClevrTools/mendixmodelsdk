@@ -40,6 +40,7 @@ __exportStar(require("./nativepages"), exports);
 __exportStar(require("./navigation"), exports);
 __exportStar(require("./pages"), exports);
 __exportStar(require("./projects"), exports);
+__exportStar(require("./queues"), exports);
 __exportStar(require("./regularexpressions"), exports);
 __exportStar(require("./reports"), exports);
 __exportStar(require("./rest"), exports);

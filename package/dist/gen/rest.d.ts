@@ -4,7 +4,14 @@ import { domainmodels } from "./domainmodels";
 import { projects } from "./projects";
 import { webservices } from "./webservices";
 export declare namespace rest {
+    class AssociationNavigability extends internal.AbstractEnum {
+        static BothDirections: AssociationNavigability;
+        static ParentToChild: AssociationNavigability;
+        static ChildToParent: AssociationNavigability;
+        protected qualifiedTsTypeName: string;
+    }
     class ODataVersion extends internal.AbstractEnum {
+        static OData2: ODataVersion;
         static OData3: ODataVersion;
         static OData4: ODataVersion;
         protected qualifiedTsTypeName: string;
@@ -33,6 +40,8 @@ export declare namespace rest {
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.18.0: introduced
      */
     interface IConsumedODataService extends domainmodels.IRemoteEntitySourceDocument {
@@ -50,6 +59,8 @@ export declare namespace rest {
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
@@ -88,6 +99,8 @@ export declare namespace rest {
         get headersMicroflowQualifiedName(): string | null;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 8.5.0: introduced
          */
@@ -227,6 +240,8 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.9.0: introduced
      */
     interface IODataKey extends internal.IElement {
@@ -234,6 +249,8 @@ export declare namespace rest {
         readonly containerAsODataRemoteEntitySource: IODataRemoteEntitySource;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         readonly parts: internal.IList<IODataKeyPart>;
         asLoaded(): ODataKey;
@@ -243,6 +260,8 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.9.0: introduced
      */
     class ODataKey extends internal.Element<IModel> implements IODataKey {
@@ -251,6 +270,8 @@ export declare namespace rest {
         get containerAsODataRemoteEntitySource(): ODataRemoteEntitySource;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get parts(): internal.IList<ODataKeyPart>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -273,6 +294,8 @@ export declare namespace rest {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.9.0: introduced
      */
     interface IODataKeyPart extends internal.IElement {
@@ -288,6 +311,8 @@ export declare namespace rest {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.9.0: introduced
      */
@@ -324,6 +349,14 @@ export declare namespace rest {
     interface IODataMappedValue extends domainmodels.IMappedValue {
         readonly model: IModel;
         readonly containerAsAttribute: domainmodels.IAttribute;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly filterable: boolean;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly sortable: boolean;
         asLoaded(): ODataMappedValue;
         load(callback: (element: ODataMappedValue) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ODataMappedValue>;
@@ -337,6 +370,21 @@ export declare namespace rest {
         get containerAsAttribute(): domainmodels.Attribute;
         get remoteName(): string;
         set remoteName(newValue: string);
+        /**
+         * In version 8.15.0: introduced
+         */
+        get remoteType(): string;
+        set remoteType(newValue: string);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get sortable(): boolean;
+        set sortable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -375,6 +423,11 @@ export declare namespace rest {
         set remoteParentNavigationProperty(newValue: string);
         get remoteChildNavigationProperty(): string;
         set remoteChildNavigationProperty(newValue: string);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get navigability(): AssociationNavigability;
+        set navigability(newValue: AssociationNavigability);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
@@ -401,9 +454,15 @@ export declare namespace rest {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.11.0: introduced
          */
         readonly key: IODataKey | null;
+        /**
+         * In version 8.16.0: introduced
+         */
+        readonly countable: boolean;
         asLoaded(): ODataRemoteEntitySource;
         load(callback: (element: ODataRemoteEntitySource) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ODataRemoteEntitySource>;
@@ -417,6 +476,8 @@ export declare namespace rest {
         get containerAsEntity(): domainmodels.Entity;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get sourceDocument(): IConsumedODataService | null;
         set sourceDocument(newValue: IConsumedODataService | null);
@@ -431,10 +492,17 @@ export declare namespace rest {
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.11.0: introduced
          */
         get key(): ODataKey | null;
         set key(newValue: ODataKey | null);
+        /**
+         * In version 8.16.0: introduced
+         */
+        get countable(): boolean;
+        set countable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
@@ -516,6 +584,11 @@ export declare namespace rest {
          */
         get replaceIllegalChars(): boolean;
         set replaceIllegalChars(newValue: boolean);
+        /**
+         * In version 8.18.0: introduced
+         */
+        get useGeneralization(): boolean;
+        set useGeneralization(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.

@@ -46,7 +46,16 @@ class DeltaProcessor {
         if (!structure) {
             return;
         }
-        const property = deltaUtils.getProperty(structure, delta.propertyName);
+        let property;
+        try {
+            property = deltaUtils.getProperty(structure, delta.propertyName);
+        }
+        catch (error) {
+            if (error instanceof deltaUtils.UnknownPropertyError) {
+                return;
+            }
+            throw error;
+        }
         if (!unit.isLoaded && !property.isPublic) {
             return;
         }
@@ -142,14 +151,16 @@ class DeltaProcessor {
         }
         deltaUtils.updateStructure(element, isReverting, () => {
             if (element.container) {
-                const handle = element.container._childHandle(element);
-                const property = handle.containingProperty;
-                if (property instanceof properties_1.PartListProperty) {
-                    property.detachChild(element);
-                }
-                else if (property instanceof properties_1.PartProperty) {
-                    property.detachValue();
-                }
+                deltaUtils.updateStructure(element.container, isReverting, () => {
+                    const handle = element.container._childHandle(element);
+                    const property = handle.containingProperty;
+                    if (property instanceof properties_1.PartListProperty) {
+                        property.detachChild(element);
+                    }
+                    else if (property instanceof properties_1.PartProperty) {
+                        property.detachValue();
+                    }
+                });
             }
             element._deleteInternal();
         });

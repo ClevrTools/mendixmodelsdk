@@ -266,6 +266,8 @@ export declare namespace settings {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 6.9.0: introduced
      */
@@ -416,6 +418,7 @@ export declare namespace settings {
         get allowUserMultipleSessions(): boolean;
         set allowUserMultipleSessions(newValue: boolean);
         /**
+         * In version 9.0.2: deleted
          * In version 7.1.0: introduced
          */
         get enforceDataStorageUniqueness(): boolean;
@@ -480,6 +483,7 @@ export declare namespace settings {
         get enableMicroflowReachabilityAnalysis(): boolean;
         set enableMicroflowReachabilityAnalysis(newValue: boolean);
         /**
+         * In version 9.0.1: deleted
          * In version 8.0.0: introduced
          */
         get themeConversionStatus(): ThemeConversionStatusEnum;
@@ -499,14 +503,16 @@ export declare namespace settings {
         static create(model: IModel): WebUIProjectSettingsPart;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 9.0.5: removed experimental
      * In version 8.8.0: introduced
      */
     class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsProjectSettings(): ProjectSettings;
+        /**
+         * In version 9.0.5: deleted
+         */
         get enabled(): boolean;
         set enabled(newValue: boolean);
         /**
@@ -515,6 +521,16 @@ export declare namespace settings {
         get userEntity(): domainmodels.IEntity | null;
         set userEntity(newValue: domainmodels.IEntity | null);
         get userEntityQualifiedName(): string | null;
+        /**
+         * In version 9.0.5: introduced
+         */
+        get workflowEngineParallelism(): number;
+        set workflowEngineParallelism(newValue: number);
+        /**
+         * In version 9.0.5: introduced
+         */
+        get defaultTaskParallelism(): number;
+        set defaultTaskParallelism(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.

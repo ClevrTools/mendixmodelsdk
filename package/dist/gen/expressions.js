@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.expressions = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+/**
+ * @ignore
+ */
 var expressions;
 (function (expressions) {
     class BinaryOperator extends internal.AbstractEnum {
@@ -44,6 +47,8 @@ var expressions;
      * See: {@link https://docs.mendix.com/refguide/expressions relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -98,6 +103,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -172,6 +180,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BinaryExpression extends Expression {
@@ -231,6 +241,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -297,6 +310,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get left() {
             return this.__left.get();
@@ -306,6 +321,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get right() {
             return this.__right.get();
@@ -415,10 +432,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, BinaryExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BinaryExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BinaryExpression, "argumentModel", false);
         }
         /**
@@ -540,6 +557,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, BinaryExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, BinaryExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new BinaryExpression instance in the SDK and on the server.
+         * The new BinaryExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, BinaryExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, BinaryExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new BinaryExpression instance in the SDK and on the server.
@@ -916,6 +945,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class LiteralExpression extends Expression {
@@ -969,6 +1000,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -1043,6 +1077,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BooleanLiteral extends LiteralExpression {
@@ -1098,6 +1134,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -1264,10 +1303,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, BooleanLiteral.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, BooleanLiteral.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BooleanLiteral, "argumentModel", false);
         }
         /**
@@ -1389,6 +1428,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, BooleanLiteral.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, BooleanLiteral, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
+         * The new BooleanLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, BooleanLiteral.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, BooleanLiteral, "expressionModel", false);
         }
         /**
          * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
@@ -1750,6 +1801,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class ConstantRefExpression extends Expression {
@@ -1805,6 +1858,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -1974,10 +2030,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, ConstantRefExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ConstantRefExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ConstantRefExpression, "argumentModel", false);
         }
         /**
@@ -2099,6 +2155,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, ConstantRefExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, ConstantRefExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
+         * The new ConstantRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, ConstantRefExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, ConstantRefExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
@@ -2467,6 +2535,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EmptyLiteral extends LiteralExpression {
@@ -2520,6 +2590,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -2680,10 +2753,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, EmptyLiteral.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EmptyLiteral.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EmptyLiteral, "argumentModel", false);
         }
         /**
@@ -2805,6 +2878,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, EmptyLiteral.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, EmptyLiteral, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
+         * The new EmptyLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, EmptyLiteral.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, EmptyLiteral, "expressionModel", false);
         }
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
@@ -3166,6 +3251,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EnumerationValueRefExpression extends Expression {
@@ -3221,6 +3308,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -3390,10 +3480,13 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, EnumerationValueRefExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, EnumerationValueRefExpression.structureTypeName, {
+                start: "7.9.0",
+                end: "9.0.1"
+            });
             return internal.instancehelpers.createElement(container, EnumerationValueRefExpression, "argumentModel", false);
         }
         /**
@@ -3518,6 +3611,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, EnumerationValueRefExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, EnumerationValueRefExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
+         * The new EnumerationValueRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, EnumerationValueRefExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, EnumerationValueRefExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
@@ -3886,6 +3991,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FloatLiteral extends LiteralExpression {
@@ -3941,6 +4048,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -4107,10 +4217,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, FloatLiteral.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, FloatLiteral.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, FloatLiteral, "argumentModel", false);
         }
         /**
@@ -4232,6 +4342,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, FloatLiteral.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, FloatLiteral, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new FloatLiteral instance in the SDK and on the server.
+         * The new FloatLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, FloatLiteral.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, FloatLiteral, "expressionModel", false);
         }
         /**
          * Creates and returns a new FloatLiteral instance in the SDK and on the server.
@@ -4593,6 +4715,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FunctionCallExpression extends Expression {
@@ -4650,6 +4774,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -4716,6 +4843,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get arguments() {
             return this.__arguments.get();
@@ -4822,10 +4951,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, FunctionCallExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, FunctionCallExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, FunctionCallExpression, "argumentModel", false);
         }
         /**
@@ -4947,6 +5076,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, FunctionCallExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, FunctionCallExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
+         * The new FunctionCallExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, FunctionCallExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, FunctionCallExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
@@ -5308,6 +5449,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRef extends internal.Element {
@@ -5335,6 +5478,8 @@ var expressions;
     expressions.VariableRef = VariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -5391,6 +5536,8 @@ var expressions;
     expressions.GlobalVariableRef = GlobalVariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -5452,6 +5599,9 @@ var expressions;
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
         }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
+        }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
         }
@@ -5511,6 +5661,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get condition() {
             return this.__condition.get();
@@ -5520,6 +5672,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifTrue() {
             return this.__ifTrue.get();
@@ -5529,6 +5683,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifFalse() {
             return this.__ifFalse.get();
@@ -5638,10 +5794,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, IfExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, IfExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, IfExpression, "argumentModel", false);
         }
         /**
@@ -5763,6 +5919,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, IfExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, IfExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new IfExpression instance in the SDK and on the server.
+         * The new IfExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, IfExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, IfExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new IfExpression instance in the SDK and on the server.
@@ -6144,6 +6312,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class IntegerLiteral extends LiteralExpression {
@@ -6199,6 +6369,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -6365,10 +6538,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, IntegerLiteral.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, IntegerLiteral.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, IntegerLiteral, "argumentModel", false);
         }
         /**
@@ -6490,6 +6663,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, IntegerLiteral.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, IntegerLiteral, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
+         * The new IntegerLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, IntegerLiteral.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, IntegerLiteral, "expressionModel", false);
         }
         /**
          * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
@@ -6851,6 +7036,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoExpression extends Expression {
@@ -6904,6 +7091,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -7064,10 +7254,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, NoExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, NoExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, NoExpression, "argumentModel", false);
         }
         /**
@@ -7189,6 +7379,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, NoExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, NoExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new NoExpression instance in the SDK and on the server.
+         * The new NoExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, NoExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, NoExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
@@ -7550,6 +7752,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoVariableRef extends VariableRef {
@@ -7597,6 +7801,8 @@ var expressions;
     expressions.NoVariableRef = NoVariableRef;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -7653,6 +7859,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -7713,6 +7922,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression() {
             return this.__expression.get();
@@ -7822,10 +8033,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, ParenthesisExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, ParenthesisExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ParenthesisExpression, "argumentModel", false);
         }
         /**
@@ -7947,6 +8158,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, ParenthesisExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, ParenthesisExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
+         * The new ParenthesisExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, ParenthesisExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, ParenthesisExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
@@ -8316,6 +8539,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class StringLiteral extends LiteralExpression {
@@ -8371,6 +8596,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -8537,10 +8765,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, StringLiteral.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, StringLiteral.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, StringLiteral, "argumentModel", false);
         }
         /**
@@ -8662,6 +8890,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, StringLiteral.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, StringLiteral, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new StringLiteral instance in the SDK and on the server.
+         * The new StringLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, StringLiteral.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, StringLiteral, "expressionModel", false);
         }
         /**
          * Creates and returns a new StringLiteral instance in the SDK and on the server.
@@ -9023,6 +9263,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnaryExpression extends Expression {
@@ -9080,6 +9322,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -9146,6 +9391,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression() {
             return this.__expression.get();
@@ -9255,10 +9502,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, UnaryExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, UnaryExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, UnaryExpression, "argumentModel", false);
         }
         /**
@@ -9380,6 +9627,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, UnaryExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, UnaryExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new UnaryExpression instance in the SDK and on the server.
+         * The new UnaryExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, UnaryExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, UnaryExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new UnaryExpression instance in the SDK and on the server.
@@ -9750,6 +10009,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnparsableExpression extends Expression {
@@ -9805,6 +10066,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -9971,10 +10235,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, UnparsableExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, UnparsableExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, UnparsableExpression, "argumentModel", false);
         }
         /**
@@ -10096,6 +10360,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, UnparsableExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, UnparsableExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
+         * The new UnparsableExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, UnparsableExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, UnparsableExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
@@ -10457,6 +10733,8 @@ var expressions;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRefExpression extends Expression {
@@ -10514,6 +10792,9 @@ var expressions;
         }
         get containerAsEndEvent() {
             return super.getContainerAs(microflows_1.microflows.EndEvent);
+        }
+        get containerAsExpressionListOperation() {
+            return super.getContainerAs(microflows_1.microflows.ExpressionListOperation);
         }
         get containerAsExpressionSplitCondition() {
             return super.getContainerAs(microflows_1.microflows.ExpressionSplitCondition);
@@ -10574,6 +10855,8 @@ var expressions;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get variable() {
             return this.__variable.get();
@@ -10692,10 +10975,10 @@ var expressions;
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container) {
-            internal.createInVersionCheck(container.model, VariableRefExpression.structureTypeName, { start: "7.9.0" });
+            internal.createInVersionCheck(container.model, VariableRefExpression.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, VariableRefExpression, "argumentModel", false);
         }
         /**
@@ -10817,6 +11100,18 @@ var expressions;
         static createInEndEventUnderReturnValueModel(container) {
             internal.createInVersionCheck(container.model, VariableRefExpression.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, VariableRefExpression, "returnValueModel", false);
+        }
+        /**
+         * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
+         * The new VariableRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container) {
+            internal.createInVersionCheck(container.model, VariableRefExpression.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, VariableRefExpression, "expressionModel", false);
         }
         /**
          * Creates and returns a new VariableRefExpression instance in the SDK and on the server.

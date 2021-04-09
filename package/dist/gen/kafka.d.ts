@@ -9,6 +9,8 @@ export declare namespace kafka {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.11.0: introduced
      */
     interface IConsumedKafkaService extends domainmodels.IRemoteEntitySourceDocument {
@@ -20,6 +22,8 @@ export declare namespace kafka {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.11.0: introduced
      */
@@ -57,7 +61,7 @@ export declare namespace kafka {
     /**
      * In version 8.11.0: introduced
      */
-    interface IKafkaMappedValue extends domainmodels.IMappedValue {
+    interface IKafkaMappedValue extends domainmodels.ICachedMappedValue {
         readonly model: IModel;
         readonly containerAsAttribute: domainmodels.IAttribute;
         asLoaded(): KafkaMappedValue;
@@ -67,7 +71,7 @@ export declare namespace kafka {
     /**
      * In version 8.11.0: introduced
      */
-    class KafkaMappedValue extends domainmodels.MappedValue implements IKafkaMappedValue {
+    class KafkaMappedValue extends domainmodels.CachedMappedValue implements IKafkaMappedValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAttribute(): domainmodels.Attribute;
@@ -80,7 +84,7 @@ export declare namespace kafka {
          * of the parent domainmodels.Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  9.0.2 and higher
          */
         static createIn(container: domainmodels.Attribute): KafkaMappedValue;
         /**
@@ -92,6 +96,8 @@ export declare namespace kafka {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.11.0: introduced
      */
@@ -105,6 +111,8 @@ export declare namespace kafka {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.11.0: introduced
      */
     class KafkaRemoteEntitySource extends domainmodels.MaterializedRemoteEntitySource implements IKafkaRemoteEntitySource {
@@ -113,6 +121,8 @@ export declare namespace kafka {
         get containerAsEntity(): domainmodels.Entity;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get sourceDocument(): IConsumedKafkaService | null;
         set sourceDocument(newValue: IConsumedKafkaService | null);
@@ -144,6 +154,8 @@ export declare namespace kafka {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.14.0: introduced
      */
     class PublishedKafkaResource extends internal.Element<IModel> {
@@ -155,8 +167,19 @@ export declare namespace kafka {
         get entityQualifiedName(): string;
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 9.0.3: deleted
+         */
         get topicName(): string;
         set topicName(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.0.1: introduced
+         */
+        get attributes(): internal.IList<PublishedKafkaResourceAttribute>;
         get summary(): string;
         set summary(newValue: string);
         get description(): string;
@@ -181,6 +204,48 @@ export declare namespace kafka {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
+     * In version 9.0.1: introduced
+     */
+    class PublishedKafkaResourceAttribute extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedKafkaResource(): PublishedKafkaResource;
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
+        /**
+         * In version 9.0.2: introduced
+         */
+        get exposedName(): string;
+        set exposedName(newValue: string);
+        get summary(): string;
+        set summary(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * The new PublishedKafkaResourceAttribute will be automatically stored in the 'attributes' property
+         * of the parent PublishedKafkaResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.1 and higher
+         */
+        static createIn(container: PublishedKafkaResource): PublishedKafkaResourceAttribute;
+        /**
+         * Creates and returns a new PublishedKafkaResourceAttribute instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PublishedKafkaResourceAttribute;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
      * In version 8.14.0: introduced
      */
     interface IPublishedKafkaService extends projects.IDocument {
@@ -192,6 +257,8 @@ export declare namespace kafka {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.14.0: introduced
      */
@@ -209,6 +276,8 @@ export declare namespace kafka {
         set serviceName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get resources(): internal.IList<PublishedKafkaResource>;
         get version(): string;
@@ -217,9 +286,12 @@ export declare namespace kafka {
         set summary(newValue: string);
         get description(): string;
         set description(newValue: string);
-        get brokerUrl(): constants.IConstant;
-        set brokerUrl(newValue: constants.IConstant);
-        get brokerUrlQualifiedName(): string;
+        /**
+         * In version 9.0.1: added optional
+         */
+        get brokerUrl(): constants.IConstant | null;
+        set brokerUrl(newValue: constants.IConstant | null);
+        get brokerUrlQualifiedName(): string | null;
         get brokerUsername(): constants.IConstant | null;
         set brokerUsername(newValue: constants.IConstant | null);
         get brokerUsernameQualifiedName(): string | null;

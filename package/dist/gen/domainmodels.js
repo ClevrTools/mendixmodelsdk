@@ -359,6 +359,8 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.3.0: introduced
          */
@@ -381,6 +383,7 @@ var domainmodels;
             this.__source.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.11.0: introduced
          */
         get capabilities() {
@@ -455,6 +458,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.11.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -546,6 +551,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Association = Association;
     /**
+     * In version 9.0.1: deleted
      * In version 8.11.0: introduced
      */
     class AssociationCapabilities extends internal.Element {
@@ -572,10 +578,10 @@ var domainmodels;
          * of the parent AssociationBase element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  8.11.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, AssociationCapabilities.structureTypeName, { start: "8.11.0" });
+            internal.createInVersionCheck(container.model, AssociationCapabilities.structureTypeName, { start: "8.11.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, AssociationCapabilities, "capabilities", false);
         }
         /**
@@ -595,6 +601,8 @@ var domainmodels;
     AssociationCapabilities.structureTypeName = "DomainModels$AssociationCapabilities";
     AssociationCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.11.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
@@ -872,6 +880,7 @@ var domainmodels;
             this.__value.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.13.0: introduced
          */
         get capabilities() {
@@ -941,6 +950,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.13.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -955,6 +966,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Attribute = Attribute;
     /**
+     * In version 9.0.1: deleted
      * In version 8.13.0: introduced
      */
     class AttributeCapabilities extends internal.Element {
@@ -989,10 +1001,10 @@ var domainmodels;
          * of the parent Attribute element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.13.0 and higher
+         *  8.13.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, AttributeCapabilities.structureTypeName, { start: "8.13.0" });
+            internal.createInVersionCheck(container.model, AttributeCapabilities.structureTypeName, { start: "8.13.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, AttributeCapabilities, "capabilities", false);
         }
         /**
@@ -1013,6 +1025,8 @@ var domainmodels;
     AttributeCapabilities.structureTypeName = "DomainModels$AttributeCapabilities";
     AttributeCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.13.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             filterable: {
                 public: {
@@ -1648,6 +1662,58 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.ValueType = ValueType;
+    /**
+     * In version 8.10.0: introduced
+     */
+    class MappedValue extends ValueType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappedValue.structureTypeName = "DomainModels$MappedValue";
+    MappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "8.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.MappedValue = MappedValue;
+    /**
+     * In version 9.0.2: introduced
+     */
+    class CachedMappedValue extends MappedValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CachedMappedValue() cannot be invoked directly, please use 'model.domainmodels.createCachedMappedValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CachedMappedValue.structureTypeName = "DomainModels$CachedMappedValue";
+    CachedMappedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.2",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.CachedMappedValue = CachedMappedValue;
     /**
      * In version 6.6.0: added public
      */
@@ -2468,6 +2534,8 @@ var domainmodels;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.10.0: deleted
          * In version 8.2.0: introduced
          */
@@ -2490,6 +2558,7 @@ var domainmodels;
             this.__source.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.12.0: introduced
          */
         get capabilities() {
@@ -2583,6 +2652,8 @@ var domainmodels;
             },
             capabilities: {
                 introduced: "8.12.0",
+                deleted: "9.0.1",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -2597,6 +2668,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.Entity = Entity;
     /**
+     * In version 9.0.1: deleted
      * In version 8.12.0: introduced
      */
     class EntityCapabilities extends internal.Element {
@@ -2626,10 +2698,10 @@ var domainmodels;
          * of the parent Entity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.12.0 and higher
+         *  8.12.0 to 9.0.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0" });
+            internal.createInVersionCheck(container.model, EntityCapabilities.structureTypeName, { start: "8.12.0", end: "9.0.0" });
             return internal.instancehelpers.createElement(container, EntityCapabilities, "capabilities", false);
         }
         /**
@@ -2649,6 +2721,8 @@ var domainmodels;
     EntityCapabilities.structureTypeName = "DomainModels$EntityCapabilities";
     EntityCapabilities.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.12.0",
+        deleted: "9.0.1",
+        deletionMessage: null,
         properties: {
             countable: {
                 public: {
@@ -3836,32 +3910,6 @@ var domainmodels;
     /**
      * In version 8.10.0: introduced
      */
-    class MappedValue extends ValueType {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            if (arguments.length < 4) {
-                throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
-            }
-        }
-        get containerAsAttribute() {
-            return super.getContainerAs(Attribute);
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    MappedValue.structureTypeName = "DomainModels$MappedValue";
-    MappedValue.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.10.0",
-        public: {
-            currentValue: true
-        }
-    }, internal.StructureType.Element);
-    domainmodels.MappedValue = MappedValue;
-    /**
-     * In version 8.10.0: introduced
-     */
     class RemoteEntitySource extends EntitySource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -4339,6 +4387,8 @@ var domainmodels;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.18.0: introduced
      */
     class RemoteEntitySourceDocument extends projects_1.projects.Document {
@@ -4368,6 +4418,8 @@ var domainmodels;
             this.__applicationId = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "applicationId", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__environmentType = new internal.EnumProperty(RemoteEntitySourceDocument, this, "environmentType", EnvironmentType.Unknown, EnvironmentType);
+            /** @internal */
+            this.__metadataHash = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "metadataHash", "", internal.PrimitiveTypeEnum.String);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
@@ -4478,6 +4530,15 @@ var domainmodels;
         set environmentType(newValue) {
             this.__environmentType.set(newValue);
         }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get metadataHash() {
+            return this.__metadataHash.get();
+        }
+        set metadataHash(newValue) {
+            this.__metadataHash.set(newValue);
+        }
         /** @internal */
         _isByNameReferrable() {
             return true;
@@ -4548,6 +4609,12 @@ var domainmodels;
             },
             environmentType: {
                 introduced: "8.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            metadataHash: {
+                introduced: "8.16.0",
                 public: {
                     currentValue: true
                 }

@@ -1,7 +1,7 @@
 import * as EventSource from "eventsource";
 import { configuration } from "../configuration";
 import { common } from "../../common";
-import { ILockWorkingCopyResponse, IWorkingCopy, IEnvironmentStatus, IDeployJobStatus, IGetFilesOptions, ILockWorkingCopyOptions, LockType, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./transportInterfaces";
+import { ILockWorkingCopyResponse, IWorkingCopy, IGetFilesOptions, ILockWorkingCopyOptions, LockType, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./transportInterfaces";
 import { Delta } from "./deltas";
 /**
  * The IModelServerClient interface is used for forwarding calls to the underlying Mendix Model API.
@@ -34,16 +34,6 @@ export interface IModelServerClient {
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatus(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatusV2(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    /**
-     * Start async deploy flow, creates new app job and returns it
-     */
-    startAppUpdate(workingCopyId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    /**
-     * Retrieves App Job by jobId
-     */
-    getAppUpdateStatus(workingCopyId: string, jobId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
     getMyWorkingCopies(callback: common.ICallback<IWorkingCopy[]>, errorCallback: common.IErrorCallback): void;
     exportMpk(workingCopyId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;

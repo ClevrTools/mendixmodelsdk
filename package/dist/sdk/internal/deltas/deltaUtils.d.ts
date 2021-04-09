@@ -10,6 +10,9 @@ export interface IContainmentInfo {
     parentPropertyName: string;
     index?: number;
 }
+export declare class UnknownPropertyError extends Error {
+    constructor(message: string);
+}
 export declare function getProperty(structure: IStructure, propertyName: string): AbstractProperty<any, any>;
 export declare function getElement(model: AbstractModel, unit: ModelUnit, elementId: string): AbstractElement;
 export declare function findElement(model: AbstractModel, unit: ModelUnit, elementId: string): AbstractElement | null;

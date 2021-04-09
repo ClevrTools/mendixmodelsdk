@@ -106,7 +106,7 @@ var instancehelpers;
         if (!json) {
             return null;
         }
-        return createStructureFromJson(lookupClass(json.$Type, model._allModelClasses()), id => unit.findElementById(id), (initializer) => new initializer(model, json.$Type, json.$ID, isPartial, unit, container), json);
+        return createStructureFromJson(lookupClass(json.$Type, model._allModelClasses()), id => unit.findElementById(id), (initializer) => new initializer(model, json.$Type, json.$ID, isPartial, unit, container), json, container);
     }
     instancehelpers.modelElementJsonToInstance = modelElementJsonToInstance;
     function createNewElementInstanceFromJSON(model, json) {
@@ -228,11 +228,14 @@ function _createInstanceWithInitializer(initializer, callback, json) {
 /**
  * Creates (deserializes) a structure based on incoming JSON.
  */
-function createStructureFromJson(initializer, findInstance, callback, json) {
+function createStructureFromJson(initializer, findInstance, callback, json, container) {
+    var _a;
     const structure = findInstance(json.$ID);
     if (structure) {
         structure._updateWithJson(json);
-        // TODO: what if container was changed?
+        if (container && container.id !== ((_a = structure.container) === null || _a === void 0 ? void 0 : _a.id)) {
+            structure._container = container;
+        }
         return structure;
     }
     return _createInstanceWithInitializer(initializer, callback, json);

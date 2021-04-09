@@ -350,9 +350,7 @@ class AbstractModel {
      * @internal
      */
     _processNameChange(structure) {
-        if (instances_1.instancehelpers.structureAffectsQualifiedNames(structure)) {
-            this._qualifiedNameCache.addStructureToCache(structure);
-        }
+        this._qualifiedNameCache.addStructureToCache(structure);
     }
     /** @internal */
     _addDetachedStructure(structure) {
@@ -470,30 +468,6 @@ class AbstractModel {
             this.completePendingChange();
             reject(err);
         }), callback, errorCallback);
-    }
-    getAppEnvironmentStatus(callback, errorCallback) {
-        if (callback) {
-            checkErrorCallback(errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.getAppEnvironmentStatus(this.id, resolve, reject), callback, errorCallback);
-    }
-    getAppEnvironmentStatusV2(callback, errorCallback) {
-        if (callback) {
-            checkErrorCallback(errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.getAppEnvironmentStatusV2(this.id, resolve, reject), callback, errorCallback);
-    }
-    getAppUpdateStatus(jobId, callback, errorCallback) {
-        if (callback) {
-            checkErrorCallback(errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.getAppUpdateStatus(this.id, jobId, resolve, reject), callback, errorCallback);
-    }
-    startAppUpdate(callback, errorCallback) {
-        if (callback) {
-            checkErrorCallback(errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.startAppUpdate(this.id, resolve, reject), callback, errorCallback);
     }
     /**
      * Given an object type name and a qualified name, finds the corresponding element (or null if the reference is broken).

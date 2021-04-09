@@ -41,6 +41,7 @@ var constants;
             this.__dataType.set(newValue);
         }
         /**
+         * In version 9.0.5: added public
          * In version 7.9.0: introduced
          */
         get type() {
@@ -98,6 +99,10 @@ var constants;
             },
             type: {
                 introduced: "7.9.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.0.5"]
+                },
                 required: {
                     currentValue: true
                 }

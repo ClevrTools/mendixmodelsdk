@@ -1126,6 +1126,7 @@ var javaactions;
             this.__microflowActionInfo.set(newValue);
         }
         /**
+         * In version 9.0.3: deleted
          * In version 8.0.0: introduced
          */
         get useLegacyCodeGeneration() {
@@ -1205,6 +1206,8 @@ var javaactions;
             },
             useLegacyCodeGeneration: {
                 introduced: "8.0.0",
+                deleted: "9.0.3",
+                deletionMessage: "The option to make Java action parameter names unique in generated code is no longer supported",
                 public: {
                     currentValue: true
                 }

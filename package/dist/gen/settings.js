@@ -629,6 +629,8 @@ var settings;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.0.0: deleted
      * In version 6.9.0: introduced
      */
@@ -1000,6 +1002,7 @@ var settings;
             this.__allowUserMultipleSessions.set(newValue);
         }
         /**
+         * In version 9.0.2: deleted
          * In version 7.1.0: introduced
          */
         get enforceDataStorageUniqueness() {
@@ -1078,7 +1081,9 @@ var settings;
     RuntimeSettings.versionInfo = new exports.StructureVersionInfo({
         properties: {
             enforceDataStorageUniqueness: {
-                introduced: "7.1.0"
+                introduced: "7.1.0",
+                deleted: "9.0.2",
+                deletionMessage: null
             },
             enableDataStorageOptimisticLocking: {
                 introduced: "7.5.0"
@@ -1169,6 +1174,7 @@ var settings;
             this.__enableMicroflowReachabilityAnalysis.set(newValue);
         }
         /**
+         * In version 9.0.1: deleted
          * In version 8.0.0: introduced
          */
         get themeConversionStatus() {
@@ -1222,14 +1228,15 @@ var settings;
                 introduced: "7.0.2"
             },
             themeConversionStatus: {
-                introduced: "8.0.0"
+                introduced: "8.0.0",
+                deleted: "9.0.1",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);
     settings.WebUIProjectSettingsPart = WebUIProjectSettingsPart;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
+     * In version 9.0.5: removed experimental
      * In version 8.8.0: introduced
      */
     class WorkflowsProjectSettingsPart extends ProjectSettingsPart {
@@ -1239,6 +1246,10 @@ var settings;
             this.__enabled = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__userEntity = new internal.ByNameReferenceProperty(WorkflowsProjectSettingsPart, this, "userEntity", null, "DomainModels$Entity");
+            /** @internal */
+            this.__workflowEngineParallelism = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "workflowEngineParallelism", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__defaultTaskParallelism = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "defaultTaskParallelism", 0, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new WorkflowsProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWorkflowsProjectSettingsPart()'");
             }
@@ -1246,6 +1257,9 @@ var settings;
         get containerAsProjectSettings() {
             return super.getContainerAs(ProjectSettings);
         }
+        /**
+         * In version 9.0.5: deleted
+         */
         get enabled() {
             return this.__enabled.get();
         }
@@ -1263,6 +1277,24 @@ var settings;
         }
         get userEntityQualifiedName() {
             return this.__userEntity.qualifiedName();
+        }
+        /**
+         * In version 9.0.5: introduced
+         */
+        get workflowEngineParallelism() {
+            return this.__workflowEngineParallelism.get();
+        }
+        set workflowEngineParallelism(newValue) {
+            this.__workflowEngineParallelism.set(newValue);
+        }
+        /**
+         * In version 9.0.5: introduced
+         */
+        get defaultTaskParallelism() {
+            return this.__defaultTaskParallelism.get();
+        }
+        set defaultTaskParallelism(newValue) {
+            this.__defaultTaskParallelism.set(newValue);
         }
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
@@ -1287,19 +1319,38 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.enabled = false;
+            if (this.__defaultTaskParallelism.isAvailable) {
+                this.defaultTaskParallelism = 3;
+            }
+            if (this.__enabled.isAvailable) {
+                this.enabled = false;
+            }
+            if (this.__workflowEngineParallelism.isAvailable) {
+                this.workflowEngineParallelism = 5;
+            }
         }
     }
     WorkflowsProjectSettingsPart.structureTypeName = "Settings$WorkflowsProjectSettingsPart";
     WorkflowsProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.8.0",
         properties: {
+            enabled: {
+                deleted: "9.0.5",
+                deletionMessage: null
+            },
             userEntity: {
                 introduced: "8.11.0"
+            },
+            workflowEngineParallelism: {
+                introduced: "9.0.5"
+            },
+            defaultTaskParallelism: {
+                introduced: "9.0.5"
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.0.5"]
         }
     }, internal.StructureType.Element);
     settings.WorkflowsProjectSettingsPart = WorkflowsProjectSettingsPart;

@@ -443,18 +443,27 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'xAxisCaption' property
          * of the parent reports.ReportChart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartUnderXAxisCaption(container: reports.ReportChart): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'yAxisCaption' property
          * of the parent reports.ReportChart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartUnderYAxisCaption(container: reports.ReportChart): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportChartSeries element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartSeriesUnderCaption(container: reports.ReportChartSeries): Text;
         /**

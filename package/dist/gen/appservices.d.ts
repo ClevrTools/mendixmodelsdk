@@ -11,6 +11,9 @@ export declare namespace appservices {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `AppServices`.
      */
+    /**
+     * In version 9.0.2: deleted
+     */
     interface IAppServiceAction extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
         readonly containerAsConsumedAppService: IConsumedAppService;
@@ -20,6 +23,9 @@ export declare namespace appservices {
         load(callback: (element: AppServiceAction) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AppServiceAction>;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class AppServiceAction extends internal.Element<IModel> implements IAppServiceAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -55,6 +61,9 @@ export declare namespace appservices {
          * Creates and returns a new AppServiceAction instance in the SDK and on the server.
          * The new AppServiceAction will be automatically stored in the 'actions' property
          * of the parent ConsumedAppService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: ConsumedAppService): AppServiceAction;
         /**
@@ -65,6 +74,9 @@ export declare namespace appservices {
         static create(model: IModel): AppServiceAction;
         get qualifiedName(): string | null;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     interface IAppServiceActionParameter extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
         readonly containerAsAppServiceAction: IAppServiceAction;
@@ -73,6 +85,9 @@ export declare namespace appservices {
         load(callback: (element: AppServiceActionParameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<AppServiceActionParameter>;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class AppServiceActionParameter extends internal.Element<IModel> implements IAppServiceActionParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -98,6 +113,9 @@ export declare namespace appservices {
          * Creates and returns a new AppServiceActionParameter instance in the SDK and on the server.
          * The new AppServiceActionParameter will be automatically stored in the 'parameters' property
          * of the parent AppServiceAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: AppServiceAction): AppServiceActionParameter;
         /**
@@ -109,7 +127,9 @@ export declare namespace appservices {
         get qualifiedName(): string | null;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/consumed-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     interface IConsumedAppService extends projects.IDocument {
         readonly model: IModel;
@@ -120,7 +140,9 @@ export declare namespace appservices {
         load(forceRefresh?: boolean): Promise<ConsumedAppService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/consumed-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     class ConsumedAppService extends projects.Document implements IConsumedAppService {
         static structureTypeName: string;
@@ -153,6 +175,9 @@ export declare namespace appservices {
          */
         static createIn(container: projects.IFolderBase): ConsumedAppService;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class Msd extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -174,6 +199,9 @@ export declare namespace appservices {
          * Creates and returns a new Msd instance in the SDK and on the server.
          * The new Msd will be automatically stored in the 'msd' property
          * of the parent ConsumedAppService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: ConsumedAppService): Msd;
         /**
@@ -183,6 +211,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): Msd;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdAssociation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -219,12 +250,18 @@ export declare namespace appservices {
          * Creates and returns a new MsdAssociation instance in the SDK and on the server.
          * The new MsdAssociation will be automatically stored in the 'associations' property
          * of the parent MsdDomainModel element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdDomainModelUnderAssociations(container: MsdDomainModel): MsdAssociation;
         /**
          * Creates and returns a new MsdAssociation instance in the SDK and on the server.
          * The new MsdAssociation will be automatically stored in the 'associationByContract' property
          * of the parent webservices.DataAssociation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInDataAssociationUnderAssociationByContract(container: webservices.DataAssociation): MsdAssociation;
         /**
@@ -234,6 +271,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdAssociation;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdAttribute extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -256,12 +296,18 @@ export declare namespace appservices {
          * Creates and returns a new MsdAttribute instance in the SDK and on the server.
          * The new MsdAttribute will be automatically stored in the 'attributes' property
          * of the parent MsdEntity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdEntityUnderAttributes(container: MsdEntity): MsdAttribute;
         /**
          * Creates and returns a new MsdAttribute instance in the SDK and on the server.
          * The new MsdAttribute will be automatically stored in the 'attributeByContract' property
          * of the parent webservices.DataAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInDataAttributeUnderAttributeByContract(container: webservices.DataAttribute): MsdAttribute;
         /**
@@ -271,6 +317,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdAttribute;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdDomainModel extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -282,6 +331,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdDomainModel instance in the SDK and on the server.
          * The new MsdDomainModel will be automatically stored in the 'domainModel' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: Msd): MsdDomainModel;
         /**
@@ -291,6 +343,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdDomainModel;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEntity extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -313,6 +368,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdEntity instance in the SDK and on the server.
          * The new MsdEntity will be automatically stored in the 'entities' property
          * of the parent MsdDomainModel element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: MsdDomainModel): MsdEntity;
         /**
@@ -322,6 +380,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEntity;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumeration extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -336,6 +397,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdEnumeration instance in the SDK and on the server.
          * The new MsdEnumeration will be automatically stored in the 'enumerations' property
          * of the parent MsdEnumerationContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: MsdEnumerationContainer): MsdEnumeration;
         /**
@@ -345,6 +409,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumeration;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumerationContainer extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -356,12 +423,18 @@ export declare namespace appservices {
          * Creates and returns a new MsdEnumerationContainer instance in the SDK and on the server.
          * The new MsdEnumerationContainer will be automatically stored in the 'enumerations' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdUnderEnumerations(container: Msd): MsdEnumerationContainer;
         /**
          * Creates and returns a new MsdEnumerationContainer instance in the SDK and on the server.
          * The new MsdEnumerationContainer will be automatically stored in the 'enumerationsByContract' property
          * of the parent webservices.VersionedService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInVersionedServiceUnderEnumerationsByContract(container: webservices.VersionedService): MsdEnumerationContainer;
         /**
@@ -371,6 +444,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumerationContainer;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumerationValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -387,6 +463,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdEnumerationValue instance in the SDK and on the server.
          * The new MsdEnumerationValue will be automatically stored in the 'values' property
          * of the parent MsdEnumeration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: MsdEnumeration): MsdEnumerationValue;
         /**
@@ -396,6 +475,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdEnumerationValue;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMetadata extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -429,6 +511,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdMetadata instance in the SDK and on the server.
          * The new MsdMetadata will be automatically stored in the 'metadata' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: Msd): MsdMetadata;
         /**
@@ -438,6 +523,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMetadata;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMicroflow extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -467,6 +555,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdMicroflow instance in the SDK and on the server.
          * The new MsdMicroflow will be automatically stored in the 'microflows' property
          * of the parent MsdMetadata element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: MsdMetadata): MsdMicroflow;
         /**
@@ -476,6 +567,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMicroflow;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMicroflowParameter extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -499,12 +593,18 @@ export declare namespace appservices {
          * Creates and returns a new MsdMicroflowParameter instance in the SDK and on the server.
          * The new MsdMicroflowParameter will be automatically stored in the 'parameters' property
          * of the parent MsdMicroflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdMicroflowUnderParameters(container: MsdMicroflow): MsdMicroflowParameter;
         /**
          * Creates and returns a new MsdMicroflowParameter instance in the SDK and on the server.
          * The new MsdMicroflowParameter will be automatically stored in the 'parameterByContract' property
          * of the parent webservices.PublishedParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInPublishedParameterUnderParameterByContract(container: webservices.PublishedParameter): MsdMicroflowParameter;
         /**
@@ -514,6 +614,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdMicroflowParameter;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdText extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -527,6 +630,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdText instance in the SDK and on the server.
          * The new MsdText will be automatically stored in the 'translations' property
          * of the parent MsdEnumerationValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: MsdEnumerationValue): MsdText;
         /**
@@ -536,6 +642,9 @@ export declare namespace appservices {
          */
         static create(model: IModel): MsdText;
     }
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdVersion extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -547,6 +656,9 @@ export declare namespace appservices {
          * Creates and returns a new MsdVersion instance in the SDK and on the server.
          * The new MsdVersion will be automatically stored in the 'version' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container: Msd): MsdVersion;
         /**

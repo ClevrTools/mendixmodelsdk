@@ -95,7 +95,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): BinaryType;
         /**
@@ -104,7 +104,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): BinaryType;
         /**
@@ -286,7 +286,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): BooleanType;
         /**
@@ -295,7 +295,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): BooleanType;
         /**
@@ -477,7 +477,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): DateTimeType;
         /**
@@ -486,7 +486,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): DateTimeType;
         /**
@@ -668,7 +668,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): DecimalType;
         /**
@@ -677,7 +677,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): DecimalType;
         /**
@@ -859,7 +859,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): EmptyType;
         /**
@@ -868,7 +868,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): EmptyType;
         /**
@@ -1107,7 +1107,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): EnumerationType;
         /**
@@ -1116,7 +1116,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): EnumerationType;
         /**
@@ -1298,7 +1298,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): FloatType;
         /**
@@ -1307,7 +1307,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): FloatType;
         /**
@@ -1489,7 +1489,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): IntegerType;
         /**
@@ -1498,7 +1498,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): IntegerType;
         /**
@@ -1680,7 +1680,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): ListType;
         /**
@@ -1689,7 +1689,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): ListType;
         /**
@@ -1871,7 +1871,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): ObjectType;
         /**
@@ -1880,7 +1880,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): ObjectType;
         /**
@@ -2062,7 +2062,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): StringType;
         /**
@@ -2071,7 +2071,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): StringType;
         /**
@@ -2253,7 +2253,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): UnknownType;
         /**
@@ -2262,7 +2262,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): UnknownType;
         /**
@@ -2444,7 +2444,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionUnderActionReturnType(container: appservices.AppServiceAction): VoidType;
         /**
@@ -2453,7 +2453,7 @@ export declare namespace datatypes {
          * of the parent appservices.AppServiceActionParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): VoidType;
         /**

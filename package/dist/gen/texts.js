@@ -696,24 +696,36 @@ var texts;
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'xAxisCaption' property
          * of the parent reports.ReportChart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartUnderXAxisCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "9.0.0" });
             return internal.instancehelpers.createElement(container, Text, "xAxisCaption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'yAxisCaption' property
          * of the parent reports.ReportChart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartUnderYAxisCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "9.0.0" });
             return internal.instancehelpers.createElement(container, Text, "yAxisCaption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportChartSeries element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.0
          */
         static createInReportChartSeriesUnderCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "9.0.0" });
             return internal.instancehelpers.createElement(container, Text, "caption", false);
         }
         /**

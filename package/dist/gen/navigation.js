@@ -205,6 +205,8 @@ var navigation;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 7.22.0: introduced
          */
         get offlineEntityConfigs() {
@@ -272,6 +274,8 @@ var navigation;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 8.0.0: introduced
          */
@@ -575,6 +579,8 @@ var navigation;
             this.__menuItemCollection = new internal.PartProperty(NavigationProfile, this, "menuItemCollection", null, true);
             /** @internal */
             this.__offlineEnabled6 = new internal.PrimitiveProperty(NavigationProfile, this, "offlineEnabled6", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__progressiveWebAppSettings = new internal.PartProperty(NavigationProfile, this, "progressiveWebAppSettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new NavigationProfile() cannot be invoked directly, please use 'model.navigation.createNavigationProfile()'");
             }
@@ -673,6 +679,19 @@ var navigation;
         }
         set offlineEnabled6(newValue) {
             this.__offlineEnabled6.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.0.3: introduced
+         */
+        get progressiveWebAppSettings() {
+            return this.__progressiveWebAppSettings.get();
+        }
+        set progressiveWebAppSettings(newValue) {
+            this.__progressiveWebAppSettings.set(newValue);
         }
         /**
          * Creates and returns a new NavigationProfile instance in the SDK and on the server.
@@ -903,6 +922,9 @@ var navigation;
                 introduced: "6.10.4",
                 deleted: "7.0.0",
                 deletionMessage: null
+            },
+            progressiveWebAppSettings: {
+                introduced: "9.0.3"
             }
         },
         public: {
@@ -913,6 +935,8 @@ var navigation;
     navigation.NavigationProfile = NavigationProfile;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.22.0: introduced
      */
@@ -1023,6 +1047,76 @@ var navigation;
         }
     }, internal.StructureType.Element);
     navigation.OfflineEntityConfig = OfflineEntityConfig;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/progressive-web-app relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.0.3: introduced
+     */
+    class ProgressiveWebAppSettings extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__precaching = new internal.PrimitiveProperty(ProgressiveWebAppSettings, this, "precaching", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__installPrompt = new internal.PrimitiveProperty(ProgressiveWebAppSettings, this, "installPrompt", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new ProgressiveWebAppSettings() cannot be invoked directly, please use 'model.navigation.createProgressiveWebAppSettings()'");
+            }
+        }
+        get containerAsNavigationProfile() {
+            return super.getContainerAs(NavigationProfile);
+        }
+        get precaching() {
+            return this.__precaching.get();
+        }
+        set precaching(newValue) {
+            this.__precaching.set(newValue);
+        }
+        get installPrompt() {
+            return this.__installPrompt.get();
+        }
+        set installPrompt(newValue) {
+            this.__installPrompt.set(newValue);
+        }
+        /**
+         * Creates and returns a new ProgressiveWebAppSettings instance in the SDK and on the server.
+         * The new ProgressiveWebAppSettings will be automatically stored in the 'progressiveWebAppSettings' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ProgressiveWebAppSettings.structureTypeName, { start: "9.0.3" });
+            return internal.instancehelpers.createElement(container, ProgressiveWebAppSettings, "progressiveWebAppSettings", false);
+        }
+        /**
+         * Creates and returns a new ProgressiveWebAppSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ProgressiveWebAppSettings);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.installPrompt = true;
+            this.precaching = false;
+        }
+    }
+    ProgressiveWebAppSettings.structureTypeName = "Navigation$ProgressiveWebAppSettings";
+    ProgressiveWebAppSettings.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.3",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    navigation.ProgressiveWebAppSettings = ProgressiveWebAppSettings;
     class RoleBasedHomePage extends HomePageBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);

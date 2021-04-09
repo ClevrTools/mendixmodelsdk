@@ -3,7 +3,7 @@ import { IAbstractUnit, IStructuralUnit } from "./units";
 import { IModelServerClient } from "./IModelServerClient";
 import { IStructure } from "./structures";
 import { Version } from "./versionChecks";
-import { IWorkingCopy, IAbstractUnitJson, IGetFilesOptions, IEnvironmentStatus, IDeployJobStatus } from "./transportInterfaces";
+import { IWorkingCopy, IAbstractUnitJson, IGetFilesOptions } from "./transportInterfaces";
 import { IBuildResultEvent, IWorkingCopyDataEvent } from "./working-copy-events/IWorkingCopyEvent";
 /**
  * This interface exposes a single Mendix Model.
@@ -88,43 +88,6 @@ export interface IAbstractModel {
      * - The module package is not compatible with the same metamodel version as the project
      */
     addModuleUnitInterfaces(moduleJson: string | IAbstractUnitJson[]): void;
-    /**
-     * Get the deployment status of the working copy. Can be STAGING, STARTED, STARTING, UPDATING, STOPPED,
-     * FAILED_STAGING, FAILED and APP_NOT_FOUND.
-     * Contains other deployment info as well.
-     */
-    getAppEnvironmentStatus(callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatus(): Promise<IEnvironmentStatus>;
-    /**
-     * Get the deployment status of the working copy. Can be STAGING, STARTED, STARTING, UPDATING, STOPPED,
-     * FAILED_STAGING, FAILED, APP_NOT_FOUND, INVALID_PROJECTID, INVALID_OPENID, UNKNOWN_DEPLOYER, UNKNOWN_PROJECT,
-     * UNKNOWN_ACCOUNT, BUSY_PROVISIONIN, UNLINKED, NO_WEBMODELER_TARGET_SELECTED.
-     * Contains other deployment info as well.
-     */
-    getAppEnvironmentStatusV2(callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatusV2(): Promise<IEnvironmentStatus>;
-    /**
-     * Start async deploy flow, creates new app job and returns it.
-     * This call immediately returns after successfully initiating the deployment job, and it's progress
-     * can be tracked using `getAppUpdateStates.
-     *
-     * A start update packs the mpk and sends it to the cloud environment to update the application,
-     * a new application will be provisioned if needed.
-     *
-     * The update job will always converge to a stable state (one of "started" | "failed" | "consistencyerrors").
-     * Use the returned job id to poll for this.
-     */
-    startAppUpdate(callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    startAppUpdate(): Promise<IDeployJobStatus>;
-    /**
-     * Retrieves App Job by jobId. See also `startAppUpdate`.
-     * In the response the most important field is status.
-     *
-     * Polling for job status should stop once it has reeached "started" | "failed" | "consistencyerrors".
-     * Jobs will be cleaned up 10 minutes after the have reached one of this states.
-     */
-    getAppUpdateStatus(jobId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    getAppUpdateStatus(jobId: string): Promise<IDeployJobStatus>;
     /**
      * Given an id, fetches a complete unit. The result might be returned from the cache.
      * Use this method if you have just a unit Id, otherwise, unit.fetch() is a simpler alternative.
@@ -241,14 +204,6 @@ export declare abstract class AbstractModel implements IAbstractModel {
     putFile(inFilePath: string | Blob, filePath: string): Promise<void>;
     deleteFile(filePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     deleteFile(filePath: string): Promise<void>;
-    getAppEnvironmentStatus(callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatus(): Promise<IEnvironmentStatus>;
-    getAppEnvironmentStatusV2(callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatusV2(): Promise<IEnvironmentStatus>;
-    getAppUpdateStatus(jobId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    getAppUpdateStatus(jobId: string): Promise<IDeployJobStatus>;
-    startAppUpdate(callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    startAppUpdate(): Promise<IDeployJobStatus>;
     /**
      * Before calling this API, ensure that all handlers (i.e. onModelEventProcessed()), have been registered
      */

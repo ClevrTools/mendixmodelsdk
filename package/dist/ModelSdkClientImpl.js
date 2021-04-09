@@ -134,30 +134,6 @@ class ModelSdkClientImpl {
         }
         return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.exportModuleMpk(workingCopyId, moduleId, outFilePath, resolve, reject), callback, errorCallback);
     }
-    startAppUpdate(workingCopyId, callback, errorCallback) {
-        if (callback) {
-            checkCallbacks(callback, errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.startAppUpdate(workingCopyId, resolve, reject), callback, errorCallback);
-    }
-    getAppUpdateStatus(workingCopyId, jobId, callback, errorCallback) {
-        if (callback) {
-            checkCallbacks(callback, errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.getAppUpdateStatus(workingCopyId, jobId, resolve, reject), callback, errorCallback);
-    }
-    getAppEnvironmentStatus(workingCopyId, callback, errorCallback) {
-        if (callback) {
-            checkCallbacks(callback, errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.getAppEnvironmentStatus(workingCopyId, resolve, reject), callback, errorCallback);
-    }
-    getAppEnvironmentStatusV2(workingCopyId, callback, errorCallback) {
-        if (callback) {
-            checkCallbacks(callback, errorCallback);
-        }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.getAppEnvironmentStatusV2(workingCopyId, resolve, reject), callback, errorCallback);
-    }
     getMyWorkingCopies(callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);

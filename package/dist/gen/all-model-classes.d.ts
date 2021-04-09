@@ -28,6 +28,7 @@ export * from "./nativepages";
 export * from "./navigation";
 export * from "./pages";
 export * from "./projects";
+export * from "./queues";
 export * from "./regularexpressions";
 export * from "./reports";
 export * from "./rest";

@@ -1,13 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeUselessDeltas = exports.rawValue = exports.rawList = exports.getContainmentInfo = exports.checkMutator = exports.checkUpdateOrRemovalIndex = exports.checkInsertionIndex = exports.isListProperty = exports.getUnit = exports.updateStructure = exports.asModelUnit = exports.getElementNotFoundError = exports.findElement = exports.getElement = exports.getProperty = void 0;
+exports.removeUselessDeltas = exports.rawValue = exports.rawList = exports.getContainmentInfo = exports.checkMutator = exports.checkUpdateOrRemovalIndex = exports.checkInsertionIndex = exports.isListProperty = exports.getUnit = exports.updateStructure = exports.asModelUnit = exports.getElementNotFoundError = exports.findElement = exports.getElement = exports.getProperty = exports.UnknownPropertyError = void 0;
 const util = require("util");
 const units_1 = require("../units");
 const properties_1 = require("../properties");
+class UnknownPropertyError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+exports.UnknownPropertyError = UnknownPropertyError;
 function getProperty(structure, propertyName) {
     const property = structure["__" + propertyName];
     if (!property) {
-        throw new Error(`Cannot find property '${propertyName}' in element with ID '${structure.id}'`);
+        throw new UnknownPropertyError(`Cannot find property '${propertyName}' in element with ID '${structure.id}'`);
     }
     return property;
 }

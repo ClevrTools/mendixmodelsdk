@@ -9,12 +9,25 @@ const projects_1 = require("./projects");
 const webservices_1 = require("./webservices");
 var rest;
 (function (rest) {
+    class AssociationNavigability extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "rest.AssociationNavigability";
+        }
+    }
+    AssociationNavigability.BothDirections = new AssociationNavigability("BothDirections", {});
+    AssociationNavigability.ParentToChild = new AssociationNavigability("ParentToChild", {});
+    AssociationNavigability.ChildToParent = new AssociationNavigability("ChildToParent", {});
+    rest.AssociationNavigability = AssociationNavigability;
     class ODataVersion extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
             this.qualifiedTsTypeName = "rest.ODataVersion";
         }
     }
+    ODataVersion.OData2 = new ODataVersion("OData2", {
+        introduced: "8.15.0"
+    });
     ODataVersion.OData3 = new ODataVersion("OData3", {});
     ODataVersion.OData4 = new ODataVersion("OData4", {});
     rest.ODataVersion = ODataVersion;
@@ -61,6 +74,8 @@ var rest;
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.18.0: introduced
      */
@@ -171,6 +186,8 @@ var rest;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          *
          * In version 8.5.0: introduced
          */
@@ -504,6 +521,8 @@ var rest;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 8.9.0: introduced
      */
     class ODataKey extends internal.Element {
@@ -520,6 +539,8 @@ var rest;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get parts() {
             return this.__parts.get();
@@ -569,6 +590,8 @@ var rest;
     rest.ODataKey = ODataKey;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 8.9.0: introduced
      */
@@ -661,6 +684,12 @@ var rest;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__remoteName = new internal.PrimitiveProperty(ODataMappedValue, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__remoteType = new internal.PrimitiveProperty(ODataMappedValue, this, "remoteType", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__filterable = new internal.PrimitiveProperty(ODataMappedValue, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sortable = new internal.PrimitiveProperty(ODataMappedValue, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataMappedValue() cannot be invoked directly, please use 'model.rest.createODataMappedValue()'");
             }
@@ -673,6 +702,33 @@ var rest;
         }
         set remoteName(newValue) {
             this.__remoteName.set(newValue);
+        }
+        /**
+         * In version 8.15.0: introduced
+         */
+        get remoteType() {
+            return this.__remoteType.get();
+        }
+        set remoteType(newValue) {
+            this.__remoteType.set(newValue);
+        }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get filterable() {
+            return this.__filterable.get();
+        }
+        set filterable(newValue) {
+            this.__filterable.set(newValue);
+        }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get sortable() {
+            return this.__sortable.get();
+        }
+        set sortable(newValue) {
+            this.__sortable.set(newValue);
         }
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -697,11 +753,34 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__filterable.isAvailable) {
+                this.filterable = true;
+            }
+            if (this.__sortable.isAvailable) {
+                this.sortable = true;
+            }
         }
     }
     ODataMappedValue.structureTypeName = "Rest$ODataMappedValue";
     ODataMappedValue.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.10.0",
+        properties: {
+            remoteType: {
+                introduced: "8.15.0"
+            },
+            filterable: {
+                introduced: "8.16.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            sortable: {
+                introduced: "8.16.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
         public: {
             currentValue: true
         }
@@ -717,6 +796,8 @@ var rest;
             this.__remoteParentNavigationProperty = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "remoteParentNavigationProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__remoteChildNavigationProperty = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "remoteChildNavigationProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__navigability = new internal.EnumProperty(ODataRemoteAssociationSource, this, "navigability", AssociationNavigability.BothDirections, AssociationNavigability);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteAssociationSource() cannot be invoked directly, please use 'model.rest.createODataRemoteAssociationSource()'");
             }
@@ -735,6 +816,15 @@ var rest;
         }
         set remoteChildNavigationProperty(newValue) {
             this.__remoteChildNavigationProperty.set(newValue);
+        }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get navigability() {
+            return this.__navigability.get();
+        }
+        set navigability(newValue) {
+            this.__navigability.set(newValue);
         }
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
@@ -759,11 +849,19 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__navigability.isAvailable) {
+                this.navigability = AssociationNavigability.BothDirections;
+            }
         }
     }
     ODataRemoteAssociationSource.structureTypeName = "Rest$ODataRemoteAssociationSource";
     ODataRemoteAssociationSource.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.10.0",
+        properties: {
+            navigability: {
+                introduced: "8.16.0"
+            }
+        },
         public: {
             currentValue: true
         }
@@ -783,6 +881,8 @@ var rest;
             this.__entitySet = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "entitySet", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__key = new internal.PartProperty(ODataRemoteEntitySource, this, "key", null, false);
+            /** @internal */
+            this.__countable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteEntitySource() cannot be invoked directly, please use 'model.rest.createODataRemoteEntitySource()'");
             }
@@ -792,6 +892,8 @@ var rest;
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get sourceDocument() {
             return this.__sourceDocument.get();
@@ -820,6 +922,8 @@ var rest;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
+         * @ignore
+         *
          * In version 8.11.0: introduced
          */
         get key() {
@@ -827,6 +931,15 @@ var rest;
         }
         set key(newValue) {
             this.__key.set(newValue);
+        }
+        /**
+         * In version 8.16.0: introduced
+         */
+        get countable() {
+            return this.__countable.get();
+        }
+        set countable(newValue) {
+            this.__countable.set(newValue);
         }
         /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
@@ -851,6 +964,9 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__countable.isAvailable) {
+                this.countable = true;
+            }
         }
     }
     ODataRemoteEntitySource.structureTypeName = "Rest$ODataRemoteEntitySource";
@@ -862,6 +978,12 @@ var rest;
             },
             key: {
                 introduced: "8.11.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            countable: {
+                introduced: "8.16.0",
                 public: {
                     currentValue: true
                 }
@@ -902,6 +1024,8 @@ var rest;
             this.__description = new internal.PrimitiveProperty(PublishedODataService, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__replaceIllegalChars = new internal.PrimitiveProperty(PublishedODataService, this, "replaceIllegalChars", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__useGeneralization = new internal.PrimitiveProperty(PublishedODataService, this, "useGeneralization", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1001,6 +1125,15 @@ var rest;
             this.__replaceIllegalChars.set(newValue);
         }
         /**
+         * In version 8.18.0: introduced
+         */
+        get useGeneralization() {
+            return this.__useGeneralization.get();
+        }
+        set useGeneralization(newValue) {
+            this.__useGeneralization.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -1019,6 +1152,9 @@ var rest;
             }
             if (this.__replaceIllegalChars.isAvailable) {
                 this.replaceIllegalChars = false;
+            }
+            if (this.__useGeneralization.isAvailable) {
+                this.useGeneralization = false;
             }
             if (this.__version.isAvailable) {
                 this.version = "1.0.0";
@@ -1051,6 +1187,9 @@ var rest;
             },
             replaceIllegalChars: {
                 introduced: "8.12.0"
+            },
+            useGeneralization: {
+                introduced: "8.18.0"
             }
         }
     }, internal.StructureType.ModelUnit);

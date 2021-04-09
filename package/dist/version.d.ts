@@ -1,2 +1,2 @@
-/** Current SDK version: 4.41.0 */
+/** Current SDK version: 4.49.0 */
 export declare const SDK_VERSION: string;

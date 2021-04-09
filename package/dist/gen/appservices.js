@@ -17,6 +17,9 @@ var appservices;
     AppServiceLocationEnum.Constant = new AppServiceLocationEnum("Constant", {});
     AppServiceLocationEnum.Parameter = new AppServiceLocationEnum("Parameter", {});
     appservices.AppServiceLocationEnum = AppServiceLocationEnum;
+    /**
+     * In version 9.0.2: deleted
+     */
     class AppServiceAction extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -112,8 +115,12 @@ var appservices;
          * Creates and returns a new AppServiceAction instance in the SDK and on the server.
          * The new AppServiceAction will be automatically stored in the 'actions' property
          * of the parent ConsumedAppService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, AppServiceAction.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, AppServiceAction, "actions", true);
         }
         /**
@@ -144,6 +151,8 @@ var appservices;
     }
     AppServiceAction.structureTypeName = "AppServices$AppServiceAction";
     AppServiceAction.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             name: {
                 public: {
@@ -171,6 +180,9 @@ var appservices;
         }
     }, internal.StructureType.Element);
     appservices.AppServiceAction = AppServiceAction;
+    /**
+     * In version 9.0.2: deleted
+     */
     class AppServiceActionParameter extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -225,8 +237,12 @@ var appservices;
          * Creates and returns a new AppServiceActionParameter instance in the SDK and on the server.
          * The new AppServiceActionParameter will be automatically stored in the 'parameters' property
          * of the parent AppServiceAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, AppServiceActionParameter.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, AppServiceActionParameter, "parameters", true);
         }
         /**
@@ -257,6 +273,8 @@ var appservices;
     }
     AppServiceActionParameter.structureTypeName = "AppServices$AppServiceActionParameter";
     AppServiceActionParameter.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             name: {
                 public: {
@@ -280,7 +298,9 @@ var appservices;
     }, internal.StructureType.Element);
     appservices.AppServiceActionParameter = AppServiceActionParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-app-services relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide8/consumed-app-services relevant section in reference guide}
+     *
+     * In version 9.0.2: deleted
      */
     class ConsumedAppService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -387,6 +407,8 @@ var appservices;
     }
     ConsumedAppService.structureTypeName = "AppServices$ConsumedAppService";
     ConsumedAppService.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             actions: {
                 public: {
@@ -401,6 +423,9 @@ var appservices;
         }
     }, internal.StructureType.ModelUnit);
     appservices.ConsumedAppService = ConsumedAppService;
+    /**
+     * In version 9.0.2: deleted
+     */
     class Msd extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -463,8 +488,12 @@ var appservices;
          * Creates and returns a new Msd instance in the SDK and on the server.
          * The new Msd will be automatically stored in the 'msd' property
          * of the parent ConsumedAppService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, Msd.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, Msd, "msd", false);
         }
         /**
@@ -487,6 +516,8 @@ var appservices;
     }
     Msd.structureTypeName = "AppServices$Msd";
     Msd.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             version: {
                 required: {
@@ -516,6 +547,9 @@ var appservices;
         }
     }, internal.StructureType.Element);
     appservices.Msd = Msd;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdAssociation extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -637,16 +671,24 @@ var appservices;
          * Creates and returns a new MsdAssociation instance in the SDK and on the server.
          * The new MsdAssociation will be automatically stored in the 'associations' property
          * of the parent MsdDomainModel element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdDomainModelUnderAssociations(container) {
+            internal.createInVersionCheck(container.model, MsdAssociation.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdAssociation, "associations", true);
         }
         /**
          * Creates and returns a new MsdAssociation instance in the SDK and on the server.
          * The new MsdAssociation will be automatically stored in the 'associationByContract' property
          * of the parent webservices.DataAssociation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInDataAssociationUnderAssociationByContract(container) {
+            internal.createInVersionCheck(container.model, MsdAssociation.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdAssociation, "associationByContract", false);
         }
         /**
@@ -663,8 +705,14 @@ var appservices;
         }
     }
     MsdAssociation.structureTypeName = "AppServices$MsdAssociation";
-    MsdAssociation.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdAssociation.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdAssociation = MsdAssociation;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdAttribute extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -730,16 +778,24 @@ var appservices;
          * Creates and returns a new MsdAttribute instance in the SDK and on the server.
          * The new MsdAttribute will be automatically stored in the 'attributes' property
          * of the parent MsdEntity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdEntityUnderAttributes(container) {
+            internal.createInVersionCheck(container.model, MsdAttribute.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdAttribute, "attributes", true);
         }
         /**
          * Creates and returns a new MsdAttribute instance in the SDK and on the server.
          * The new MsdAttribute will be automatically stored in the 'attributeByContract' property
          * of the parent webservices.DataAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInDataAttributeUnderAttributeByContract(container) {
+            internal.createInVersionCheck(container.model, MsdAttribute.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdAttribute, "attributeByContract", false);
         }
         /**
@@ -756,8 +812,14 @@ var appservices;
         }
     }
     MsdAttribute.structureTypeName = "AppServices$MsdAttribute";
-    MsdAttribute.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdAttribute.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdAttribute = MsdAttribute;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdDomainModel extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -782,8 +844,12 @@ var appservices;
          * Creates and returns a new MsdDomainModel instance in the SDK and on the server.
          * The new MsdDomainModel will be automatically stored in the 'domainModel' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdDomainModel.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdDomainModel, "domainModel", false);
         }
         /**
@@ -800,8 +866,14 @@ var appservices;
         }
     }
     MsdDomainModel.structureTypeName = "AppServices$MsdDomainModel";
-    MsdDomainModel.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdDomainModel.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdDomainModel = MsdDomainModel;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEntity extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -869,8 +941,12 @@ var appservices;
          * Creates and returns a new MsdEntity instance in the SDK and on the server.
          * The new MsdEntity will be automatically stored in the 'entities' property
          * of the parent MsdDomainModel element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdEntity.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdEntity, "entities", true);
         }
         /**
@@ -887,8 +963,14 @@ var appservices;
         }
     }
     MsdEntity.structureTypeName = "AppServices$MsdEntity";
-    MsdEntity.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdEntity.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdEntity = MsdEntity;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumeration extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -924,8 +1006,12 @@ var appservices;
          * Creates and returns a new MsdEnumeration instance in the SDK and on the server.
          * The new MsdEnumeration will be automatically stored in the 'enumerations' property
          * of the parent MsdEnumerationContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdEnumeration.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdEnumeration, "enumerations", true);
         }
         /**
@@ -942,8 +1028,14 @@ var appservices;
         }
     }
     MsdEnumeration.structureTypeName = "AppServices$MsdEnumeration";
-    MsdEnumeration.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdEnumeration.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdEnumeration = MsdEnumeration;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumerationContainer extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -966,16 +1058,24 @@ var appservices;
          * Creates and returns a new MsdEnumerationContainer instance in the SDK and on the server.
          * The new MsdEnumerationContainer will be automatically stored in the 'enumerations' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdUnderEnumerations(container) {
+            internal.createInVersionCheck(container.model, MsdEnumerationContainer.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdEnumerationContainer, "enumerations", false);
         }
         /**
          * Creates and returns a new MsdEnumerationContainer instance in the SDK and on the server.
          * The new MsdEnumerationContainer will be automatically stored in the 'enumerationsByContract' property
          * of the parent webservices.VersionedService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInVersionedServiceUnderEnumerationsByContract(container) {
+            internal.createInVersionCheck(container.model, MsdEnumerationContainer.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdEnumerationContainer, "enumerationsByContract", false);
         }
         /**
@@ -992,8 +1092,14 @@ var appservices;
         }
     }
     MsdEnumerationContainer.structureTypeName = "AppServices$MsdEnumerationContainer";
-    MsdEnumerationContainer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdEnumerationContainer.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdEnumerationContainer = MsdEnumerationContainer;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdEnumerationValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1037,8 +1143,12 @@ var appservices;
          * Creates and returns a new MsdEnumerationValue instance in the SDK and on the server.
          * The new MsdEnumerationValue will be automatically stored in the 'values' property
          * of the parent MsdEnumeration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdEnumerationValue.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdEnumerationValue, "values", true);
         }
         /**
@@ -1055,8 +1165,14 @@ var appservices;
         }
     }
     MsdEnumerationValue.structureTypeName = "AppServices$MsdEnumerationValue";
-    MsdEnumerationValue.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdEnumerationValue.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdEnumerationValue = MsdEnumerationValue;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMetadata extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1169,8 +1285,12 @@ var appservices;
          * Creates and returns a new MsdMetadata instance in the SDK and on the server.
          * The new MsdMetadata will be automatically stored in the 'metadata' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdMetadata.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdMetadata, "metadata", false);
         }
         /**
@@ -1187,8 +1307,14 @@ var appservices;
         }
     }
     MsdMetadata.structureTypeName = "AppServices$MsdMetadata";
-    MsdMetadata.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdMetadata.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdMetadata = MsdMetadata;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMicroflow extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1275,8 +1401,12 @@ var appservices;
          * Creates and returns a new MsdMicroflow instance in the SDK and on the server.
          * The new MsdMicroflow will be automatically stored in the 'microflows' property
          * of the parent MsdMetadata element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdMicroflow.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdMicroflow, "microflows", true);
         }
         /**
@@ -1294,6 +1424,8 @@ var appservices;
     }
     MsdMicroflow.structureTypeName = "AppServices$MsdMicroflow";
     MsdMicroflow.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             systemEntityType: {
                 deleted: "6.1.0",
@@ -1302,6 +1434,9 @@ var appservices;
         }
     }, internal.StructureType.Element);
     appservices.MsdMicroflow = MsdMicroflow;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdMicroflowParameter extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1362,16 +1497,24 @@ var appservices;
          * Creates and returns a new MsdMicroflowParameter instance in the SDK and on the server.
          * The new MsdMicroflowParameter will be automatically stored in the 'parameters' property
          * of the parent MsdMicroflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInMsdMicroflowUnderParameters(container) {
+            internal.createInVersionCheck(container.model, MsdMicroflowParameter.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdMicroflowParameter, "parameters", true);
         }
         /**
          * Creates and returns a new MsdMicroflowParameter instance in the SDK and on the server.
          * The new MsdMicroflowParameter will be automatically stored in the 'parameterByContract' property
          * of the parent webservices.PublishedParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createInPublishedParameterUnderParameterByContract(container) {
+            internal.createInVersionCheck(container.model, MsdMicroflowParameter.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdMicroflowParameter, "parameterByContract", false);
         }
         /**
@@ -1389,6 +1532,8 @@ var appservices;
     }
     MsdMicroflowParameter.structureTypeName = "AppServices$MsdMicroflowParameter";
     MsdMicroflowParameter.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null,
         properties: {
             systemEntityType: {
                 deleted: "6.1.0",
@@ -1397,6 +1542,9 @@ var appservices;
         }
     }, internal.StructureType.Element);
     appservices.MsdMicroflowParameter = MsdMicroflowParameter;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdText extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1427,8 +1575,12 @@ var appservices;
          * Creates and returns a new MsdText instance in the SDK and on the server.
          * The new MsdText will be automatically stored in the 'translations' property
          * of the parent MsdEnumerationValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdText.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdText, "translations", true);
         }
         /**
@@ -1445,8 +1597,14 @@ var appservices;
         }
     }
     MsdText.structureTypeName = "AppServices$MsdText";
-    MsdText.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdText.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdText = MsdText;
+    /**
+     * In version 9.0.2: deleted
+     */
     class MsdVersion extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1469,8 +1627,12 @@ var appservices;
          * Creates and returns a new MsdVersion instance in the SDK and on the server.
          * The new MsdVersion will be automatically stored in the 'version' property
          * of the parent Msd element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.1
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MsdVersion.structureTypeName, { end: "9.0.1" });
             return internal.instancehelpers.createElement(container, MsdVersion, "version", false);
         }
         /**
@@ -1487,7 +1649,10 @@ var appservices;
         }
     }
     MsdVersion.structureTypeName = "AppServices$MsdVersion";
-    MsdVersion.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    MsdVersion.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.0.2",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     appservices.MsdVersion = MsdVersion;
 })(appservices = exports.appservices || (exports.appservices = {}));
 const datatypes_1 = require("./datatypes");

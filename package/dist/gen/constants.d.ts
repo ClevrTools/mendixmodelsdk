@@ -11,6 +11,13 @@ export declare namespace constants {
     interface IConstant extends projects.IDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 9.0.5: added public
+         * In version 7.9.0: introduced
+         */
+        readonly type: datatypes.IDataType;
         asLoaded(): Constant;
         load(callback: (element: Constant) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Constant>;
@@ -30,6 +37,7 @@ export declare namespace constants {
         get dataType(): string;
         set dataType(newValue: string);
         /**
+         * In version 9.0.5: added public
          * In version 7.9.0: introduced
          */
         get type(): datatypes.DataType;

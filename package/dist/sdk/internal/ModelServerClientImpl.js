@@ -11,7 +11,6 @@ const utils_1 = require("../utils");
  * Default implementation of {@link IModelServerClient}.
  */
 const apiEndPoint = "/api/v1/";
-const apiEndPointV2 = "/api/v2/";
 class ModelServerClientImpl {
     constructor(config) {
         this.config = config;
@@ -111,24 +110,6 @@ class ModelServerClientImpl {
             fileName: mpkPath
         }, callback, errorCallback);
     }
-    startAppUpdate(workingCopyId, callback, errorCallback) {
-        this.transportation.request({
-            method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/updateapp`
-        }, (status) => {
-            this.parseAppUpdateStatus(status);
-            callback(status);
-        }, errorCallback);
-    }
-    getAppUpdateStatus(workingCopyId, jobId, callback, errorCallback) {
-        this.transportation.retryableRequest({
-            method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/updateapp-status?jobid=${jobId}`
-        }, (status) => {
-            this.parseAppUpdateStatus(status);
-            callback(status);
-        }, errorCallback);
-    }
     loadUnitById(workingCopyId, unitId, callback, errorCallback) {
         this.loadUnitByIdBatched({ workingCopyId, unitId, callback, errorCallback });
     }
@@ -196,20 +177,6 @@ class ModelServerClientImpl {
         }, (data, response) => {
             callback(Number(response.headers["last-event-id"]));
         }, errorCallback);
-    }
-    getAppEnvironmentStatus(workingCopyId, callback, errorCallback) {
-        this.transportation.retryableRequest({
-            method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/app-environment-status`,
-            longTimeout: true
-        }, this.handleRawDeploymentResult.bind(this, callback, errorCallback), errorCallback);
-    }
-    getAppEnvironmentStatusV2(workingCopyId, callback, errorCallback) {
-        this.transportation.retryableRequest({
-            method: "get",
-            url: `${apiEndPointV2}wc/${workingCopyId}/app-environment-status`,
-            longTimeout: true
-        }, this.handleRawDeploymentResult.bind(this, callback, errorCallback), errorCallback);
     }
     getMyWorkingCopies(callback, errorCallback) {
         this.transportation.retryableRequest({ method: "get", url: `${apiEndPoint}wc/` }, callback, errorCallback);
@@ -311,9 +278,6 @@ class ModelServerClientImpl {
             });
         }
     }
-    parseAppUpdateStatus(status) {
-        Object.assign(status, this.parseBuildStatus(status.buildstatus));
-    }
     sendGetUnitRequest(info) {
         this.runningRequests += 1;
         this.transportation.retryableRequest({
@@ -347,44 +311,6 @@ class ModelServerClientImpl {
                 callback(data, response);
             }
         };
-    }
-    handleRawDeploymentResult(callback, _errorCallback, deploymentResult) {
-        if (deploymentResult.type === "success") {
-            callback(Object.assign(Object.assign({}, deploymentResult), this.parseBuildStatus(deploymentResult.buildstatus)));
-        }
-        else {
-            callback(deploymentResult);
-        }
-    }
-    parseBuildStatus(buildstatus) {
-        // EPO: JSON to object conversion done here, and not earlier in the chain (like in platform-services or in the model-server)
-        // because we will skip platform-services and model-server in a later story.
-        try {
-            if (!buildstatus) {
-                return { buildErrors: [], consistencyErrors: [] };
-            }
-            const parsedBuildstatus = JSON.parse(buildstatus);
-            parsedBuildstatus.errors.forEach((error) => {
-                error.severity = "Error";
-            });
-            return {
-                buildErrors: parsedBuildstatus.errors,
-                consistencyErrors: parsedBuildstatus.problems
-            };
-        }
-        catch (e) {
-            console.error("Failed to parse deployment result: " + buildstatus);
-            return {
-                buildErrors: [
-                    {
-                        severity: "Error",
-                        message: "Failed to build.",
-                        details: buildstatus
-                    }
-                ],
-                consistencyErrors: []
-            };
-        }
     }
     storeResponseAsFile(response, outFilePath, callback, errorCallback) {
         const dirPath = path.dirname(outFilePath);
@@ -433,6 +359,7 @@ class ModelServerClientImpl {
             longLived: workingCopyInfo.longLived === true,
             teamServerBaseBranch: workingCopyInfo.teamServerBaseBranch || "",
             teamServerBaseRevision: workingCopyInfo.teamServerBaseRevision || -1,
+            teamServerBaseCommitId: workingCopyInfo.teamServerBaseCommitId || "",
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
             isCollaboration: workingCopyInfo.isCollaboration === true

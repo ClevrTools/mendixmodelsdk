@@ -25,6 +25,7 @@ import { nativepages } from "./nativepages";
 import { navigation } from "./navigation";
 import { pages } from "./pages";
 import { projects } from "./projects";
+import { queues } from "./queues";
 import { regularexpressions } from "./regularexpressions";
 import { reports } from "./reports";
 import { rest } from "./rest";
@@ -90,6 +91,7 @@ export interface IBaseModel extends IAbstractModel {
     allPublishedRestServices(): rest.IPublishedRestService[];
     allPublishedServiceBases(): webservices.IPublishedServiceBase[];
     allPublishedWebServices(): webservices.IPublishedWebService[];
+    allQueues(): queues.IQueue[];
     allRegularExpressions(): regularexpressions.IRegularExpression[];
     allRemoteEntitySourceDocuments(): domainmodels.IRemoteEntitySourceDocument[];
     allRules(): microflows.IRule[];
@@ -136,13 +138,14 @@ export interface IBaseModel extends IAbstractModel {
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
+    findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -198,6 +201,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allPublishedRestServices(): rest.IPublishedRestService[];
     allPublishedServiceBases(): webservices.IPublishedServiceBase[];
     allPublishedWebServices(): webservices.IPublishedWebService[];
+    allQueues(): queues.IQueue[];
     allRegularExpressions(): regularexpressions.IRegularExpression[];
     allRemoteEntitySourceDocuments(): domainmodels.IRemoteEntitySourceDocument[];
     allRules(): microflows.IRule[];
@@ -244,13 +248,14 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
+    findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
-    findWorkflowTaskOutcomeByQualifiedName(qname: string): workflows.IWorkflowTaskOutcome | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
 /**
@@ -455,6 +460,7 @@ export declare type ConcreteModelElements = {
     Kafka$KafkaMappedValue: kafka.KafkaMappedValue;
     Kafka$KafkaRemoteEntitySource: kafka.KafkaRemoteEntitySource;
     Kafka$PublishedKafkaResource: kafka.PublishedKafkaResource;
+    Kafka$PublishedKafkaResourceAttribute: kafka.PublishedKafkaResourceAttribute;
     Mappings$MappingMicroflowCall: mappings.MappingMicroflowCall;
     Mappings$MappingMicroflowParameter: mappings.MappingMicroflowParameter;
     Menus$MenuItem: menus.MenuItem;
@@ -509,7 +515,9 @@ export declare type ConcreteModelElements = {
     Microflows$ExpressionSplitCondition: microflows.ExpressionSplitCondition;
     Microflows$FileDocumentExport: microflows.FileDocumentExport;
     Microflows$Filter: microflows.Filter;
+    Microflows$FilterByExpression: microflows.FilterByExpression;
     Microflows$Find: microflows.Find;
+    Microflows$FindByExpression: microflows.FindByExpression;
     Microflows$FormDataPart: microflows.FormDataPart;
     Microflows$FormDataRequestHandling: microflows.FormDataRequestHandling;
     Microflows$GenerateDocumentAction: microflows.GenerateDocumentAction;
@@ -523,6 +531,7 @@ export declare type ConcreteModelElements = {
     Microflows$InheritanceCase: microflows.InheritanceCase;
     Microflows$InheritanceSplit: microflows.InheritanceSplit;
     Microflows$Intersect: microflows.Intersect;
+    Microflows$IterableList: microflows.IterableList;
     Microflows$JavaActionCallAction: microflows.JavaActionCallAction;
     Microflows$JavaActionParameterMapping: microflows.JavaActionParameterMapping;
     Microflows$JavaScriptActionCallAction: microflows.JavaScriptActionCallAction;
@@ -547,6 +556,7 @@ export declare type ConcreteModelElements = {
     Microflows$NanoflowParameter: microflows.NanoflowParameter;
     Microflows$NoCase: microflows.NoCase;
     Microflows$OpenUserTaskAction: microflows.OpenUserTaskAction;
+    Microflows$OpenWorkflowAction: microflows.OpenWorkflowAction;
     Microflows$PrimitiveTypedTemplateArgument: microflows.PrimitiveTypedTemplateArgument;
     Microflows$ProxyConfiguration: microflows.ProxyConfiguration;
     Microflows$PushToClientAction: microflows.PushToClientAction;
@@ -582,6 +592,7 @@ export declare type ConcreteModelElements = {
     Microflows$WebServiceCallAction: microflows.WebServiceCallAction;
     Microflows$WebServiceOperationAdvancedParameterMapping: microflows.WebServiceOperationAdvancedParameterMapping;
     Microflows$WebServiceOperationSimpleParameterMapping: microflows.WebServiceOperationSimpleParameterMapping;
+    Microflows$WhileLoopCondition: microflows.WhileLoopCondition;
     Microflows$WorkflowCallAction: microflows.WorkflowCallAction;
     Nanoflows$NanoflowParameterValue: nanoflows.NanoflowParameterValue;
     NativePages$BottomBarItem: nativepages.BottomBarItem;
@@ -592,6 +603,7 @@ export declare type ConcreteModelElements = {
     Navigation$NativeNavigationProfile: navigation.NativeNavigationProfile;
     Navigation$NavigationProfile: navigation.NavigationProfile;
     Navigation$OfflineEntityConfig: navigation.OfflineEntityConfig;
+    Navigation$ProgressiveWebAppSettings: navigation.ProgressiveWebAppSettings;
     Navigation$RoleBasedHomePage: navigation.RoleBasedHomePage;
     Navigation$RoleBasedNativeHomePage: navigation.RoleBasedNativeHomePage;
     Pages$ActionButton: pages.ActionButton;
@@ -756,6 +768,7 @@ export declare type ConcreteModelElements = {
     Pages$WidgetValidation: pages.WidgetValidation;
     Pages$WorkflowOverviewTemplateType: pages.WorkflowOverviewTemplateType;
     Projects$OneTimeConversionMarker: projects.OneTimeConversionMarker;
+    Queues$BasicQueueConfig: queues.BasicQueueConfig;
     Reports$BasicReport: reports.BasicReport;
     Reports$BasicReportAggregate: reports.BasicReportAggregate;
     Reports$BasicReportColumn: reports.BasicReportColumn;
@@ -817,18 +830,23 @@ export declare type ConcreteModelElements = {
     WebServices$VersionedService: webservices.VersionedService;
     WebServices$WsdlDescription: webservices.WsdlDescription;
     WebServices$WsdlEntry: webservices.WsdlEntry;
-    Workflows$BooleanOutcomeValue: workflows.BooleanOutcomeValue;
+    Workflows$BooleanConditionOutcome: workflows.BooleanConditionOutcome;
     Workflows$CallMicroflowTask: workflows.CallMicroflowTask;
     Workflows$CallWorkflowActivity: workflows.CallWorkflowActivity;
     Workflows$EndWorkflowActivity: workflows.EndWorkflowActivity;
-    Workflows$EnumerationValueOutcomeValue: workflows.EnumerationValueOutcomeValue;
+    Workflows$EnumerationValueConditionOutcome: workflows.EnumerationValueConditionOutcome;
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
     Workflows$Flow: workflows.Flow;
-    Workflows$NoValue: workflows.NoValue;
-    Workflows$StartWorkflowActivity: workflows.StartWorkflowActivity;
-    Workflows$TaskOutcomeValue: workflows.TaskOutcomeValue;
+    Workflows$JumpToActivity: workflows.JumpToActivity;
+    Workflows$MicroflowBasedEvent: workflows.MicroflowBasedEvent;
+    Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
+    Workflows$MicroflowCallParameterMapping: workflows.MicroflowCallParameterMapping;
+    Workflows$NoEvent: workflows.NoEvent;
+    Workflows$ParallelSplitActivity: workflows.ParallelSplitActivity;
+    Workflows$ParallelSplitOutcome: workflows.ParallelSplitOutcome;
     Workflows$UserTask: workflows.UserTask;
-    Workflows$WorkflowTaskOutcome: workflows.WorkflowTaskOutcome;
+    Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
+    Workflows$VoidConditionOutcome: workflows.VoidConditionOutcome;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;
     XmlSchemas$XmlSchemaEntry: xmlschemas.XmlSchemaEntry;

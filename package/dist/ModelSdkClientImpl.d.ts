@@ -1,7 +1,7 @@
 import * as internal from "./sdk/internal";
 import { configuration } from "./sdk/configuration";
 import { common } from "./common";
-import { IDeployJobStatus, IEnvironmentStatus, IWorkingCopy, LockType, ILockWorkingCopyOptions, ILockWorkingCopyResponse, ICommitToTeamServerOptions } from "./sdk/internal/transportInterfaces";
+import { IWorkingCopy, LockType, ILockWorkingCopyOptions, ILockWorkingCopyResponse, ICommitToTeamServerOptions } from "./sdk/internal/transportInterfaces";
 import { IModelServerClient } from "./sdk/internal/IModelServerClient";
 /**
  * Client class of the Mendix Model SDK.
@@ -84,20 +84,6 @@ export declare class ModelSdkClientImpl<IT extends internal.IAbstractModel, CT e
      */
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string): Promise<void>;
-    /**
-     * Start deploy this working copy and create new job.
-     */
-    startAppUpdate(workingCopyId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    startAppUpdate(workingCopyId: string): Promise<IDeployJobStatus>;
-    /**
-     * Start deploy this working copy and create new job.
-     */
-    getAppUpdateStatus(workingCopyId: string, jobId: string, callback: common.ICallback<IDeployJobStatus>, errorCallback: common.IErrorCallback): void;
-    getAppUpdateStatus(workingCopyId: string, jobId: string): Promise<IDeployJobStatus>;
-    getAppEnvironmentStatus(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatus(workingCopyId: string): Promise<IEnvironmentStatus>;
-    getAppEnvironmentStatusV2(workingCopyId: string, callback: common.ICallback<IEnvironmentStatus>, errorCallback: common.IErrorCallback): void;
-    getAppEnvironmentStatusV2(workingCopyId: string): Promise<IEnvironmentStatus>;
     /**
      * Retrieves an array of all working copies you are a member of.
      */

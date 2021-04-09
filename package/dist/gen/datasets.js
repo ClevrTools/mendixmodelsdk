@@ -724,6 +724,7 @@ var datasets;
             return this.__columns.get();
         }
         /**
+         * In version 9.0.3: deleted
          * In version 8.0.0: introduced
          */
         get useLegacyCodeGeneration() {
@@ -760,7 +761,9 @@ var datasets;
     JavaDataSetSource.versionInfo = new exports.StructureVersionInfo({
         properties: {
             useLegacyCodeGeneration: {
-                introduced: "8.0.0"
+                introduced: "8.0.0",
+                deleted: "9.0.3",
+                deletionMessage: "The option to make Java action parameter names unique in generated code is no longer supported"
             }
         }
     }, internal.StructureType.Element);

@@ -1,7 +1,7 @@
 {
   "name": "@gajduk/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.41.0",
+  "version": "4.49.0",
   "author": "Mendix",
   "license": "MIT",
   "main": "dist/index.js",
@@ -25,43 +25,43 @@
     "test-no-compilation": "CI=true mocha --colors --recursive --timeout 10s --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
     "test-watch": "mocha --colors --watch --timeout 5s --recursive --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
     "unit-test": "yarn run test",
-    "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test"
+    "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test",
+    "snyk": "../node_modules/.bin/snyk test --org=appdev --project-name=mendixmodelsdk --severity-threshold=high --json --print-deps | ../node_modules/.bin/snyk-delta",
+    "snyk:update-base-line": "../node_modules/.bin/snyk monitor --org=appdev --project-name=mendixmodelsdk"
   },
   "dependencies": {
     "@types/eventsource": "^1.1.3",
     "deep-equal": "^1.0.1",
     "eventsource": "^1.0.7",
     "mobx": "^5.0.0",
-    "request": "^2.81.0",
-    "requestretry": "^4.0.2",
+    "request": "^2.88.2",
     "uuid": "^3.0.1",
     "wolfy87-eventemitter": "^5.2.1"
   },
   "devDependencies": {
-    "@mendix/tslint-rules": "^0.6.0",
+    "@mendix/tslint-rules": "^0.7.0",
     "@types/chai": "^4.2.7",
     "@types/chai-as-promised": "^7.1.2",
     "@types/chai-jest-snapshot": "^1.3.5",
     "@types/deep-equal": "^1.0.1",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.6",
+    "@types/node": "^14.14.6",
     "@types/proxyquire": "^1.3.28",
-    "@types/request": "^2.48.3",
-    "@types/requestretry": "^1.12.5",
+    "@types/request": "^2.48.5",
     "@types/uuid": "^3.4.6",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-jest-snapshot": "^2.0.0",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "nyc": "^14.1.1",
     "proxyquire": "^2.1.3",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.5.4",
-    "tslint": "^5.20.1",
+    "tslint": "^6.1.3",
     "tslint-microsoft-contrib": "^6.2.0",
     "tslint-no-circular-imports": "^0.7.0",
     "typedoc": "^0.16.4",
-    "typescript": "~4.0.2"
+    "typescript": "~4.1.2"
   },
   "nyc": {
     "include": [

@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestTransportation = void 0;
 const fs = require("fs");
@@ -16,7 +25,7 @@ const LONG_TIMEOUT = 45 * 60 * 1000;
 class RestTransportation {
     constructor(config) {
         this.config = config;
-        requestImpl = require("requestretry");
+        requestImpl = require("request");
     }
     prepareRequestOptions(opts) {
         const options = this.generateStandardOptions(opts.method, opts.url, true);
@@ -36,8 +45,7 @@ class RestTransportation {
         this.handleRequest(this.prepareRequestOptions(opts), success, failure);
     }
     retryableRequest(opts, success, failure) {
-        const requestOptions = Object.assign(Object.assign({}, this.prepareRequestOptions(opts)), { maxAttempts: 3, retryDelay: 200, retryStrategy: requestImpl.RetryStrategies.NetworkError });
-        this.handleRequest(requestOptions, success, failure);
+        this.handleRequest(Object.assign(Object.assign({}, this.prepareRequestOptions(opts)), { maxAttempts: 3, retryDelay: 200 }), success, failure);
     }
     requestMultipartBinaryFileUpload(opts, success, failure) {
         const options = this.generateStandardOptions(opts.method, opts.url, true);
@@ -77,13 +85,8 @@ class RestTransportation {
             method: this.sanitizedMethod(method),
             url: this.url(url),
             timeout: SHORT_TIMEOUT,
-            maxAttempts: 1,
-            pool: {
-                maxSockets: 20
-            },
-            headers: {
-                "User-Agent": `mendixmodelsdk/${version_1.SDK_VERSION} ${process.platform} ${process.arch} node${process.versions.node}`
-            }
+            pool: { maxSockets: 20 },
+            headers: { "User-Agent": `mendixmodelsdk/${version_1.SDK_VERSION} ${process.platform} ${process.arch} node${process.versions.node}` }
         };
         if (acceptJson) {
             options.json = true;
@@ -97,8 +100,8 @@ class RestTransportation {
         return options;
     }
     handleRequest(options, success, failure) {
-        // We can't specify the type properly here as requestretry refers to http.IncomingMessage directly
-        requestImpl(options, (error, response, body) => {
+        // tslint:disable-next-line: no-floating-promises
+        this.retryRequest(options).then(({ error, response, body }) => {
             if (error) {
                 const errorCode = error.code;
                 if (errorCode === "ECONNRESET") {
@@ -132,6 +135,31 @@ class RestTransportation {
             }
         });
     }
+    retryRequest(options) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const retryDelay = options.retryDelay;
+            const maxAttempts = (_a = options.maxAttempts) !== null && _a !== void 0 ? _a : 1;
+            const filteredOptions = Object.assign({}, options);
+            delete filteredOptions.retryDelay;
+            delete filteredOptions.maxAttempts;
+            let lastResult;
+            for (let i = 0; i < maxAttempts; i++) {
+                lastResult = yield new Promise(resolve => requestImpl(filteredOptions, (error, response, body) => resolve({ error, response, body })));
+                if (!lastResult.error || !isNetworkError(lastResult.error)) {
+                    break;
+                }
+                else if (retryDelay && maxAttempts > i + 1) {
+                    yield new Promise(resolve => setTimeout(resolve, retryDelay));
+                }
+            }
+            return lastResult;
+        });
+    }
 }
 exports.RestTransportation = RestTransportation;
+const NETWORK_ERRORS = ["ECONNRESET", "ENOTFOUND", "ESOCKETTIMEDOUT", "ETIMEDOUT", "ECONNREFUSED", "EHOSTUNREACH", "EPIPE", "EAI_AGAIN"];
+function isNetworkError(error) {
+    return error && NETWORK_ERRORS.includes(error.code);
+}
 //# sourceMappingURL=RestTransportation.js.map

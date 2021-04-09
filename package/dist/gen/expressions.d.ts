@@ -1,5 +1,8 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
+/**
+ * @ignore
+ */
 export declare namespace expressions {
     class BinaryOperator extends internal.AbstractEnum {
         static None: BinaryOperator;
@@ -32,6 +35,8 @@ export declare namespace expressions {
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     abstract class Expression extends internal.Element<IModel> {
@@ -52,6 +57,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -76,6 +82,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BinaryExpression extends Expression {
@@ -96,6 +104,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -119,11 +128,15 @@ export declare namespace expressions {
         set operator(newValue: BinaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get left(): Expression;
         set left(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get right(): Expression;
         set right(newValue: Expression);
@@ -206,7 +219,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): BinaryExpression;
         /**
@@ -299,6 +312,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): BinaryExpression;
+        /**
+         * Creates and returns a new BinaryExpression instance in the SDK and on the server.
+         * The new BinaryExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): BinaryExpression;
         /**
          * Creates and returns a new BinaryExpression instance in the SDK and on the server.
          * The new BinaryExpression will be automatically stored in the 'expressionModel' property
@@ -561,6 +583,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     abstract class LiteralExpression extends Expression {
@@ -581,6 +605,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -605,6 +630,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class BooleanLiteral extends LiteralExpression {
@@ -625,6 +652,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -725,7 +753,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): BooleanLiteral;
         /**
@@ -818,6 +846,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): BooleanLiteral;
+        /**
+         * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
+         * The new BooleanLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): BooleanLiteral;
         /**
          * Creates and returns a new BooleanLiteral instance in the SDK and on the server.
          * The new BooleanLiteral will be automatically stored in the 'expressionModel' property
@@ -1080,6 +1117,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class ConstantRefExpression extends Expression {
@@ -1100,6 +1139,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -1201,7 +1241,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): ConstantRefExpression;
         /**
@@ -1294,6 +1334,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): ConstantRefExpression;
+        /**
+         * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
+         * The new ConstantRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): ConstantRefExpression;
         /**
          * Creates and returns a new ConstantRefExpression instance in the SDK and on the server.
          * The new ConstantRefExpression will be automatically stored in the 'expressionModel' property
@@ -1556,6 +1605,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EmptyLiteral extends LiteralExpression {
@@ -1576,6 +1627,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -1674,7 +1726,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): EmptyLiteral;
         /**
@@ -1767,6 +1819,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): EmptyLiteral;
+        /**
+         * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
+         * The new EmptyLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): EmptyLiteral;
         /**
          * Creates and returns a new EmptyLiteral instance in the SDK and on the server.
          * The new EmptyLiteral will be automatically stored in the 'expressionModel' property
@@ -2029,6 +2090,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class EnumerationValueRefExpression extends Expression {
@@ -2049,6 +2112,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -2150,7 +2214,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): EnumerationValueRefExpression;
         /**
@@ -2243,6 +2307,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): EnumerationValueRefExpression;
+        /**
+         * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
+         * The new EnumerationValueRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): EnumerationValueRefExpression;
         /**
          * Creates and returns a new EnumerationValueRefExpression instance in the SDK and on the server.
          * The new EnumerationValueRefExpression will be automatically stored in the 'expressionModel' property
@@ -2505,6 +2578,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FloatLiteral extends LiteralExpression {
@@ -2525,6 +2600,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -2625,7 +2701,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): FloatLiteral;
         /**
@@ -2718,6 +2794,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): FloatLiteral;
+        /**
+         * Creates and returns a new FloatLiteral instance in the SDK and on the server.
+         * The new FloatLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): FloatLiteral;
         /**
          * Creates and returns a new FloatLiteral instance in the SDK and on the server.
          * The new FloatLiteral will be automatically stored in the 'expressionModel' property
@@ -2980,6 +3065,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class FunctionCallExpression extends Expression {
@@ -3000,6 +3087,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -3023,6 +3111,8 @@ export declare namespace expressions {
         set functionName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get arguments(): internal.IList<Expression>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3104,7 +3194,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): FunctionCallExpression;
         /**
@@ -3197,6 +3287,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): FunctionCallExpression;
+        /**
+         * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
+         * The new FunctionCallExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): FunctionCallExpression;
         /**
          * Creates and returns a new FunctionCallExpression instance in the SDK and on the server.
          * The new FunctionCallExpression will be automatically stored in the 'expressionModel' property
@@ -3459,6 +3558,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     abstract class VariableRef extends internal.Element<IModel> {
@@ -3469,6 +3570,8 @@ export declare namespace expressions {
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
      *
      * In version 7.9.0: introduced
      */
@@ -3498,6 +3601,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class IfExpression extends Expression {
@@ -3518,6 +3623,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -3539,16 +3645,22 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get condition(): Expression;
         set condition(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifTrue(): Expression;
         set ifTrue(newValue: Expression);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get ifFalse(): Expression;
         set ifFalse(newValue: Expression);
@@ -3631,7 +3743,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): IfExpression;
         /**
@@ -3724,6 +3836,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): IfExpression;
+        /**
+         * Creates and returns a new IfExpression instance in the SDK and on the server.
+         * The new IfExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): IfExpression;
         /**
          * Creates and returns a new IfExpression instance in the SDK and on the server.
          * The new IfExpression will be automatically stored in the 'expressionModel' property
@@ -3986,6 +4107,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class IntegerLiteral extends LiteralExpression {
@@ -4006,6 +4129,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -4106,7 +4230,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): IntegerLiteral;
         /**
@@ -4199,6 +4323,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): IntegerLiteral;
+        /**
+         * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
+         * The new IntegerLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): IntegerLiteral;
         /**
          * Creates and returns a new IntegerLiteral instance in the SDK and on the server.
          * The new IntegerLiteral will be automatically stored in the 'expressionModel' property
@@ -4461,6 +4594,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoExpression extends Expression {
@@ -4481,6 +4616,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -4579,7 +4715,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): NoExpression;
         /**
@@ -4672,6 +4808,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): NoExpression;
+        /**
+         * Creates and returns a new NoExpression instance in the SDK and on the server.
+         * The new NoExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): NoExpression;
         /**
          * Creates and returns a new NoExpression instance in the SDK and on the server.
          * The new NoExpression will be automatically stored in the 'expressionModel' property
@@ -4934,6 +5079,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class NoVariableRef extends VariableRef {
@@ -4960,6 +5107,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class ParenthesisExpression extends Expression {
@@ -4980,6 +5129,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -5001,6 +5151,8 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression(): Expression;
         set expression(newValue: Expression);
@@ -5083,7 +5235,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): ParenthesisExpression;
         /**
@@ -5176,6 +5328,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): ParenthesisExpression;
+        /**
+         * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
+         * The new ParenthesisExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): ParenthesisExpression;
         /**
          * Creates and returns a new ParenthesisExpression instance in the SDK and on the server.
          * The new ParenthesisExpression will be automatically stored in the 'expressionModel' property
@@ -5438,6 +5599,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class StringLiteral extends LiteralExpression {
@@ -5458,6 +5621,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -5558,7 +5722,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): StringLiteral;
         /**
@@ -5651,6 +5815,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): StringLiteral;
+        /**
+         * Creates and returns a new StringLiteral instance in the SDK and on the server.
+         * The new StringLiteral will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): StringLiteral;
         /**
          * Creates and returns a new StringLiteral instance in the SDK and on the server.
          * The new StringLiteral will be automatically stored in the 'expressionModel' property
@@ -5913,6 +6086,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnaryExpression extends Expression {
@@ -5933,6 +6108,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -5956,6 +6132,8 @@ export declare namespace expressions {
         set operator(newValue: UnaryOperator);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get expression(): Expression;
         set expression(newValue: Expression);
@@ -6038,7 +6216,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): UnaryExpression;
         /**
@@ -6131,6 +6309,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): UnaryExpression;
+        /**
+         * Creates and returns a new UnaryExpression instance in the SDK and on the server.
+         * The new UnaryExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): UnaryExpression;
         /**
          * Creates and returns a new UnaryExpression instance in the SDK and on the server.
          * The new UnaryExpression will be automatically stored in the 'expressionModel' property
@@ -6393,6 +6580,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class UnparsableExpression extends Expression {
@@ -6413,6 +6602,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -6513,7 +6703,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): UnparsableExpression;
         /**
@@ -6606,6 +6796,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): UnparsableExpression;
+        /**
+         * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
+         * The new UnparsableExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): UnparsableExpression;
         /**
          * Creates and returns a new UnparsableExpression instance in the SDK and on the server.
          * The new UnparsableExpression will be automatically stored in the 'expressionModel' property
@@ -6868,6 +7067,8 @@ export declare namespace expressions {
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
+     * @ignore
+     *
      * In version 7.9.0: introduced
      */
     class VariableRefExpression extends Expression {
@@ -6888,6 +7089,7 @@ export declare namespace expressions {
         get containerAsCustomRange(): microflows.CustomRange;
         get containerAsDocumentTemplateParameterMapping(): microflows.DocumentTemplateParameterMapping;
         get containerAsEndEvent(): microflows.EndEvent;
+        get containerAsExpressionListOperation(): microflows.ExpressionListOperation;
         get containerAsExpressionSplitCondition(): microflows.ExpressionSplitCondition;
         get containerAsFormDataPart(): microflows.FormDataPart;
         get containerAsGenerateDocumentAction(): microflows.GenerateDocumentAction;
@@ -6909,6 +7111,8 @@ export declare namespace expressions {
         get containerAsConsumedODataService(): rest.ConsumedODataService;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get variable(): VariableRef;
         set variable(newValue: VariableRef);
@@ -6996,7 +7200,7 @@ export declare namespace expressions {
          * of the parent microflows.AppServiceCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.9.0 and higher
+         *  7.9.0 to 9.0.1
          */
         static createInAppServiceCallParameterMappingUnderArgumentModel(container: microflows.AppServiceCallParameterMapping): VariableRefExpression;
         /**
@@ -7089,6 +7293,15 @@ export declare namespace expressions {
          *  7.9.0 and higher
          */
         static createInEndEventUnderReturnValueModel(container: microflows.EndEvent): VariableRefExpression;
+        /**
+         * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
+         * The new VariableRefExpression will be automatically stored in the 'expressionModel' property
+         * of the parent microflows.ExpressionListOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.3 and higher
+         */
+        static createInExpressionListOperationUnderExpressionModel(container: microflows.ExpressionListOperation): VariableRefExpression;
         /**
          * Creates and returns a new VariableRefExpression instance in the SDK and on the server.
          * The new VariableRefExpression will be automatically stored in the 'expressionModel' property
