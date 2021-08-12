@@ -19,6 +19,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): DataType;
         load(callback: (element: DataType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DataType>;
@@ -44,6 +45,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -62,6 +64,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): BinaryType;
         load(callback: (element: BinaryType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BinaryType>;
@@ -85,6 +88,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -208,6 +212,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -253,6 +266,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): BooleanType;
         load(callback: (element: BooleanType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BooleanType>;
@@ -276,6 +290,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -399,6 +414,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -444,6 +468,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): DateTimeType;
         load(callback: (element: DateTimeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DateTimeType>;
@@ -467,6 +492,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -590,6 +616,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -635,6 +670,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): DecimalType;
         load(callback: (element: DecimalType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalType>;
@@ -658,6 +694,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -781,6 +818,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -826,6 +872,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): EmptyType;
         load(callback: (element: EmptyType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EmptyType>;
@@ -849,6 +896,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -972,6 +1020,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1017,6 +1074,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1045,6 +1103,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1066,6 +1125,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1094,6 +1154,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1220,6 +1281,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1265,6 +1335,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): FloatType;
         load(callback: (element: FloatType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatType>;
@@ -1288,6 +1359,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1411,6 +1483,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1456,6 +1537,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): IntegerType;
         load(callback: (element: IntegerType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerType>;
@@ -1479,6 +1561,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1602,6 +1685,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1647,6 +1739,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): ListType;
         load(callback: (element: ListType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ListType>;
@@ -1670,6 +1763,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1793,6 +1887,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1838,6 +1941,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): ObjectType;
         load(callback: (element: ObjectType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ObjectType>;
@@ -1861,6 +1965,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1984,6 +2089,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2029,6 +2143,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): StringType;
         load(callback: (element: StringType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringType>;
@@ -2052,6 +2167,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2175,6 +2291,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2220,6 +2345,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): UnknownType;
         load(callback: (element: UnknownType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<UnknownType>;
@@ -2243,6 +2369,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2366,6 +2493,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2411,6 +2547,7 @@ export declare namespace datatypes {
         readonly containerAsImportMapping: importmappings.IImportMapping;
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
+        readonly containerAsPageParameter: pages.IPageParameter;
         asLoaded(): VoidType;
         load(callback: (element: VoidType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<VoidType>;
@@ -2434,6 +2571,7 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
+        get containerAsPageParameter(): pages.PageParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2557,6 +2695,15 @@ export declare namespace datatypes {
         static createInResultHandlingUnderVariableType(container: microflows.ResultHandling): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'parameterType' property
+         * of the parent pages.PageParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createInPageParameterUnderParameterType(container: pages.PageParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2599,6 +2746,7 @@ import { enumerations } from "./enumerations";
 import { importmappings } from "./importmappings";
 import { mappings } from "./mappings";
 import { microflows } from "./microflows";
+import { pages } from "./pages";
 import { rest } from "./rest";
 import { webservices } from "./webservices";
 import { IModel } from "./base-model";

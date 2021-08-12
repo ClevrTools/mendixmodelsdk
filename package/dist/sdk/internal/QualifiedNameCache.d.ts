@@ -15,7 +15,7 @@ export declare class QualifiedNameCache {
      * @returns The element found, or `null` when no element is found.
      */
     resolve(structureTypeName: string, qualifiedName: string | null): IAbstractElement | null;
-    observe(listener: () => void): void;
+    observe(listener: (names: string[]) => void): () => void;
     size(): number;
     keys(): ReadonlyArray<string>;
     /**

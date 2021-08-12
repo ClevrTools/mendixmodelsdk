@@ -5,19 +5,13 @@ exports.queues = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
-/**
- * @ignore
- */
 var queues;
 (function (queues) {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Queues`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     class QueueConfig extends internal.Element {
@@ -39,15 +33,13 @@ var queues;
     QueueConfig.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.16.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.3.0"]
         }
     }, internal.StructureType.Element);
     queues.QueueConfig = QueueConfig;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     class BasicQueueConfig extends QueueConfig {
@@ -98,17 +90,15 @@ var queues;
     BasicQueueConfig.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.16.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.3.0"]
         }
     }, internal.StructureType.Element);
     queues.BasicQueueConfig = BasicQueueConfig;
     /**
      * See: {@link https://docs.mendix.com/refguide/task-queue relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     class Queue extends projects_1.projects.Document {
@@ -121,11 +111,6 @@ var queues;
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get config() {
             return this.__config.get();
         }
@@ -160,7 +145,8 @@ var queues;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.3.0"]
         }
     }, internal.StructureType.ModelUnit);
     queues.Queue = Queue;

@@ -377,7 +377,6 @@ class Structure {
         for (const property of allProperties) {
             // Instanceof is expensive, Builtin: FunctionPrototypeHasInstance spends a lot of ticks as code is heavily used
             if (property.constructor === properties.PartProperty || property.constructor === properties.StructuralChildProperty) {
-                // tslint:disable-next-line: no-unnecessary-type-assertion
                 const value = property.get();
                 if (value) {
                     result = value._traverseInternal(visit, excludePrivate, returnSingleResult);
@@ -388,7 +387,6 @@ class Structure {
             }
             else if (property.constructor === properties.PartListProperty ||
                 property.constructor === properties.StructuralChildListProperty) {
-                // tslint:disable-next-line: no-unnecessary-type-assertion
                 const children = property.get();
                 for (const child of children) {
                     result = child._traverseInternal(visit, excludePrivate, returnSingleResult);

@@ -16,6 +16,11 @@ export declare namespace rest {
         static OData4: ODataVersion;
         protected qualifiedTsTypeName: string;
     }
+    class PublishedODataVersion extends internal.AbstractEnum {
+        static OData4: PublishedODataVersion;
+        static OData3: PublishedODataVersion;
+        protected qualifiedTsTypeName: string;
+    }
     class RestAuthenticationType extends internal.AbstractEnum {
         static Basic: RestAuthenticationType;
         static None: RestAuthenticationType;
@@ -589,6 +594,11 @@ export declare namespace rest {
          */
         get useGeneralization(): boolean;
         set useGeneralization(newValue: boolean);
+        /**
+         * In version 9.1.0: introduced
+         */
+        get oDataVersion(): PublishedODataVersion;
+        set oDataVersion(newValue: PublishedODataVersion);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
@@ -624,6 +634,11 @@ export declare namespace rest {
         set usePaging(newValue: boolean);
         get pageSize(): number;
         set pageSize(newValue: number);
+        /**
+         * In version 9.4.0: introduced
+         */
+        get updatable(): boolean;
+        set updatable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedRestResource instance in the SDK and on the server.

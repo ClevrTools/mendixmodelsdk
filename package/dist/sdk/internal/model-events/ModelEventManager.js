@@ -15,6 +15,7 @@ class ModelEventManager {
         this.currentEventId = currentEventId;
         this.eventReceiver = new ModelEventReceiver_1.ModelEventReceiver(workingCopyId, model._client, model);
         this.eventReceiver.onDeltaEvent(deltaEvent => this.scheduleEvent(deltaEvent));
+        this.eventReceiver.onFileEvent(fileEvent => this.scheduleEvent(fileEvent));
         deltaManager.onNewDelta(this.onNewDelta.bind(this));
     }
     start() {
@@ -55,8 +56,8 @@ class ModelEventManager {
     onFileChangesReceived(callback) {
         this.eventReceiver.onFileEvent(fileEvent => callback(fileEvent.files));
     }
-    scheduleEvent(deltaEvent) {
-        this.eventQueue.push(deltaEvent);
+    scheduleEvent(modelEvent) {
+        this.eventQueue.push(modelEvent);
         this.processEventsQueue();
     }
     onNewDelta() {
@@ -71,18 +72,20 @@ class ModelEventManager {
         }
         while (true) {
             this.processLoadedUnits();
-            const deltaEvent = this.eventQueue.shift();
-            if (deltaEvent) {
-                if (deltaEvent.id <= this.currentEventId) {
+            const modelEvent = this.eventQueue.shift();
+            if (modelEvent) {
+                if (modelEvent.id <= this.currentEventId) {
                     // Ignore this event as we have already processed it.
                     continue;
                 }
                 // Process deltas inside a MobX action, as there might be inconsistent states in between processing the individual deltas.
                 mobx_1.runInAction(() => {
-                    this.deltaProcessor.processDeltas(deltaEvent.deltas);
+                    if (modelEvent.type === "deltas") {
+                        this.deltaProcessor.processDeltas(modelEvent.deltas);
+                    }
                     this.eventEmitter.emit("ModelEventProcessed", undefined);
                 });
-                this.currentEventId = deltaEvent.id;
+                this.currentEventId = modelEvent.id;
             }
             else {
                 break;

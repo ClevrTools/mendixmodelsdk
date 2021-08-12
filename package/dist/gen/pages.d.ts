@@ -1530,6 +1530,11 @@ export declare namespace pages {
          */
         get sourceVariable(): PageVariable | null;
         set sourceVariable(newValue: PageVariable | null);
+        /**
+         * In version 9.2.0: introduced
+         */
+        get ariaRequired(): boolean;
+        set ariaRequired(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidgetWithPlaceholder extends AttributeWidget {
@@ -20202,6 +20207,10 @@ export declare namespace pages {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         /**
+         * In version 9.4.0: introduced
+         */
+        readonly parameters: internal.IList<IPageParameter>;
+        /**
          * This property is required and cannot be set to null.
          *
          * In version 7.17.0: added public
@@ -20223,6 +20232,10 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 9.4.0: introduced
+         */
+        get parameters(): internal.IList<PageParameter>;
         /**
          * In version 7.17.0: added public
          */
@@ -20499,6 +20512,50 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): PageForSpecialization;
+    }
+    /**
+     * In version 9.4.0: introduced
+     */
+    interface IPageParameter extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsPage: IPage;
+        readonly name: string;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly parameterType: datatypes.IDataType;
+        asLoaded(): PageParameter;
+        load(callback: (element: PageParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<PageParameter>;
+    }
+    /**
+     * In version 9.4.0: introduced
+     */
+    class PageParameter extends internal.Element<IModel> implements IPageParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPage(): Page;
+        get name(): string;
+        set name(newValue: string);
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PageParameter instance in the SDK and on the server.
+         * The new PageParameter will be automatically stored in the 'parameters' property
+         * of the parent Page element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createIn(container: Page): PageParameter;
+        /**
+         * Creates and returns a new PageParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PageParameter;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
@@ -32526,6 +32583,7 @@ export declare namespace pages {
     }
 }
 import { customwidgets } from "./customwidgets";
+import { datatypes } from "./datatypes";
 import { documenttemplates } from "./documenttemplates";
 import { domainmodels } from "./domainmodels";
 import { enumerations } from "./enumerations";

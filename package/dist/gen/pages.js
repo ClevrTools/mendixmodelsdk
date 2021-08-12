@@ -2853,6 +2853,8 @@ var pages;
             this.__onLeaveAction = new internal.PartProperty(AttributeWidget, this, "onLeaveAction", null, true);
             /** @internal */
             this.__sourceVariable = new internal.PartProperty(AttributeWidget, this, "sourceVariable", null, false);
+            /** @internal */
+            this.__ariaRequired = new internal.PrimitiveProperty(AttributeWidget, this, "ariaRequired", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new AttributeWidget() cannot be invoked directly, please use 'model.pages.createAttributeWidget()'");
             }
@@ -3022,6 +3024,15 @@ var pages;
         set sourceVariable(newValue) {
             this.__sourceVariable.set(newValue);
         }
+        /**
+         * In version 9.2.0: introduced
+         */
+        get ariaRequired() {
+            return this.__ariaRequired.get();
+        }
+        set ariaRequired(newValue) {
+            this.__ariaRequired.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -3112,6 +3123,9 @@ var pages;
             },
             sourceVariable: {
                 introduced: "8.8.0"
+            },
+            ariaRequired: {
+                introduced: "9.2.0"
             }
         }
     }, internal.StructureType.Element);
@@ -34680,6 +34694,8 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
+            this.__parameters = new internal.PartListProperty(Page, this, "parameters", []);
+            /** @internal */
             this.__layoutCall = new internal.PartProperty(Page, this, "layoutCall", null, true);
             /** @internal */
             this.__title = new internal.PartProperty(Page, this, "title", null, true);
@@ -34707,6 +34723,12 @@ var pages;
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 9.4.0: introduced
+         */
+        get parameters() {
+            return this.__parameters.get();
         }
         /**
          * In version 7.17.0: added public
@@ -34835,6 +34857,12 @@ var pages;
     Page.structureTypeName = "Pages$Page";
     Page.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            parameters: {
+                introduced: "9.4.0",
+                public: {
+                    currentValue: true
+                }
+            },
             layoutCall: {
                 public: {
                     currentValue: true,
@@ -35285,6 +35313,87 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.PageForSpecialization = PageForSpecialization;
+    /**
+     * In version 9.4.0: introduced
+     */
+    class PageParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(PageParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterType = new internal.PartProperty(PageParameter, this, "parameterType", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new PageParameter() cannot be invoked directly, please use 'model.pages.createPageParameter()'");
+            }
+        }
+        get containerAsPage() {
+            return super.getContainerAs(Page);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get parameterType() {
+            return this.__parameterType.get();
+        }
+        set parameterType(newValue) {
+            this.__parameterType.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageParameter instance in the SDK and on the server.
+         * The new PageParameter will be automatically stored in the 'parameters' property
+         * of the parent Page element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, PageParameter.structureTypeName, { start: "9.4.0" });
+            return internal.instancehelpers.createElement(container, PageParameter, "parameters", true);
+        }
+        /**
+         * Creates and returns a new PageParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PageParameter);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.parameterType = datatypes_1.datatypes.UnknownType.create(this.model);
+        }
+    }
+    PageParameter.structureTypeName = "Pages$PageParameter";
+    PageParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.4.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            parameterType: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.PageParameter = PageParameter;
     /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
@@ -54257,6 +54366,7 @@ var pages;
     pages.WorkflowOverviewTemplateType = WorkflowOverviewTemplateType;
 })(pages = exports.pages || (exports.pages = {}));
 const customwidgets_1 = require("./customwidgets");
+const datatypes_1 = require("./datatypes");
 const documenttemplates_1 = require("./documenttemplates");
 const domainmodels_1 = require("./domainmodels");
 const expressions_1 = require("./expressions");

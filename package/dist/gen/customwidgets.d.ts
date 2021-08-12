@@ -647,6 +647,16 @@ export declare namespace customwidgets {
         get description(): string;
         set description(newValue: string);
         /**
+         * In version 9.4.0: introduced
+         */
+        get studioProCategory(): string;
+        set studioProCategory(newValue: string);
+        /**
+         * In version 9.4.0: introduced
+         */
+        get studioCategory(): string;
+        set studioCategory(newValue: string);
+        /**
          * In version 8.0.0: introduced
          */
         get supportedPlatform(): client.SupportedPlatform;

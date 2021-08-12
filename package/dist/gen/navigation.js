@@ -179,6 +179,94 @@ var navigation;
     HomePage.structureTypeName = "Navigation$HomePage";
     HomePage.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     navigation.HomePage = HomePage;
+    /**
+     * In version 9.4.0: introduced
+     */
+    class NativeHomePageBase extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__homePagePage = new internal.ByNameReferenceProperty(NativeHomePageBase, this, "homePagePage", null, "Pages$Page");
+            /** @internal */
+            this.__homePageNanoflow = new internal.ByNameReferenceProperty(NativeHomePageBase, this, "homePageNanoflow", null, "Microflows$Nanoflow");
+            if (arguments.length < 4) {
+                throw new Error("new NativeHomePageBase() cannot be invoked directly, please use 'model.navigation.createNativeHomePageBase()'");
+            }
+        }
+        get containerAsNativeNavigationProfile() {
+            return super.getContainerAs(NativeNavigationProfile);
+        }
+        get homePagePage() {
+            return this.__homePagePage.get();
+        }
+        set homePagePage(newValue) {
+            this.__homePagePage.set(newValue);
+        }
+        get homePagePageQualifiedName() {
+            return this.__homePagePage.qualifiedName();
+        }
+        get homePageNanoflow() {
+            return this.__homePageNanoflow.get();
+        }
+        set homePageNanoflow(newValue) {
+            this.__homePageNanoflow.set(newValue);
+        }
+        get homePageNanoflowQualifiedName() {
+            return this.__homePageNanoflow.qualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NativeHomePageBase.structureTypeName = "Navigation$NativeHomePageBase";
+    NativeHomePageBase.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.4.0"
+    }, internal.StructureType.Element);
+    navigation.NativeHomePageBase = NativeHomePageBase;
+    /**
+     * In version 9.4.0: introduced
+     */
+    class NativeHomePage extends NativeHomePageBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NativeHomePage() cannot be invoked directly, please use 'model.navigation.createNativeHomePage()'");
+            }
+        }
+        get containerAsNativeNavigationProfile() {
+            return super.getContainerAs(NativeNavigationProfile);
+        }
+        /**
+         * Creates and returns a new NativeHomePage instance in the SDK and on the server.
+         * The new NativeHomePage will be automatically stored in the 'nativeHomePage' property
+         * of the parent NativeNavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, NativeHomePage.structureTypeName, { start: "9.4.0" });
+            return internal.instancehelpers.createElement(container, NativeHomePage, "nativeHomePage", false);
+        }
+        /**
+         * Creates and returns a new NativeHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NativeHomePage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NativeHomePage.structureTypeName = "Navigation$NativeHomePage";
+    NativeHomePage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.4.0"
+    }, internal.StructureType.Element);
+    navigation.NativeHomePage = NativeHomePage;
     class NavigationProfileBase extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -245,11 +333,15 @@ var navigation;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__nativeHomePage = new internal.PartProperty(NativeNavigationProfile, this, "nativeHomePage", null, true);
+            /** @internal */
             this.__homePage = new internal.ByNameReferenceProperty(NativeNavigationProfile, this, "homePage", null, "Pages$Page");
             /** @internal */
             this.__roleBasedNativeHomePages = new internal.PartListProperty(NativeNavigationProfile, this, "roleBasedNativeHomePages", []);
             /** @internal */
             this.__bottomBarItems = new internal.PartListProperty(NativeNavigationProfile, this, "bottomBarItems", []);
+            /** @internal */
+            this.__otaEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "otaEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -257,6 +349,18 @@ var navigation;
         get containerAsNavigationDocument() {
             return super.getContainerAs(NavigationDocument);
         }
+        /**
+         * In version 9.4.0: introduced
+         */
+        get nativeHomePage() {
+            return this.__nativeHomePage.get();
+        }
+        set nativeHomePage(newValue) {
+            this.__nativeHomePage.set(newValue);
+        }
+        /**
+         * In version 9.4.0: deleted
+         */
         get homePage() {
             return this.__homePage.get();
         }
@@ -283,6 +387,15 @@ var navigation;
             return this.__bottomBarItems.get();
         }
         /**
+         * In version 9.4.0: introduced
+         */
+        get otaEnabled() {
+            return this.__otaEnabled.get();
+        }
+        set otaEnabled(newValue) {
+            this.__otaEnabled.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -305,17 +418,36 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__nativeHomePage.isAvailable) {
+                this.nativeHomePage = NativeHomePage.create(this.model);
+            }
+            if (this.__otaEnabled.isAvailable) {
+                this.otaEnabled = false;
+            }
         }
     }
     NativeNavigationProfile.structureTypeName = "Navigation$NativeNavigationProfile";
     NativeNavigationProfile.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.22.0",
         properties: {
+            nativeHomePage: {
+                introduced: "9.4.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            homePage: {
+                deleted: "9.4.0",
+                deletionMessage: null
+            },
             roleBasedNativeHomePages: {
                 introduced: "8.0.0"
             },
             bottomBarItems: {
                 introduced: "8.0.0"
+            },
+            otaEnabled: {
+                introduced: "9.4.0"
             }
         },
         public: {
@@ -1165,28 +1297,19 @@ var navigation;
     /**
      * In version 8.0.0: introduced
      */
-    class RoleBasedNativeHomePage extends internal.Element {
+    class RoleBasedNativeHomePage extends NativeHomePageBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__page = new internal.ByNameReferenceProperty(RoleBasedNativeHomePage, this, "page", null, "Pages$Page");
-            /** @internal */
             this.__userRole = new internal.ByNameReferenceProperty(RoleBasedNativeHomePage, this, "userRole", null, "Security$UserRole");
+            /** @internal */
+            this.__page = new internal.ByNameReferenceProperty(RoleBasedNativeHomePage, this, "page", null, "Pages$Page");
             if (arguments.length < 4) {
                 throw new Error("new RoleBasedNativeHomePage() cannot be invoked directly, please use 'model.navigation.createRoleBasedNativeHomePage()'");
             }
         }
         get containerAsNativeNavigationProfile() {
             return super.getContainerAs(NativeNavigationProfile);
-        }
-        get page() {
-            return this.__page.get();
-        }
-        set page(newValue) {
-            this.__page.set(newValue);
-        }
-        get pageQualifiedName() {
-            return this.__page.qualifiedName();
         }
         get userRole() {
             return this.__userRole.get();
@@ -1196,6 +1319,18 @@ var navigation;
         }
         get userRoleQualifiedName() {
             return this.__userRole.qualifiedName();
+        }
+        /**
+         * In version 9.4.0: deleted
+         */
+        get page() {
+            return this.__page.get();
+        }
+        set page(newValue) {
+            this.__page.set(newValue);
+        }
+        get pageQualifiedName() {
+            return this.__page.qualifiedName();
         }
         /**
          * Creates and returns a new RoleBasedNativeHomePage instance in the SDK and on the server.
@@ -1224,7 +1359,13 @@ var navigation;
     }
     RoleBasedNativeHomePage.structureTypeName = "Navigation$RoleBasedNativeHomePage";
     RoleBasedNativeHomePage.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.0.0"
+        introduced: "8.0.0",
+        properties: {
+            page: {
+                deleted: "9.4.0",
+                deletionMessage: null
+            }
+        }
     }, internal.StructureType.Element);
     navigation.RoleBasedNativeHomePage = RoleBasedNativeHomePage;
 })(navigation = exports.navigation || (exports.navigation = {}));

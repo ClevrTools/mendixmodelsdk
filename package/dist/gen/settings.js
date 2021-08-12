@@ -1101,6 +1101,45 @@ var settings;
         }
     }, internal.StructureType.Element);
     settings.RuntimeSettings = RuntimeSettings;
+    /**
+     * In version 9.3.0: introduced
+     */
+    class ThemeModuleEntry extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__moduleName = new internal.PrimitiveProperty(ThemeModuleEntry, this, "moduleName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ThemeModuleEntry() cannot be invoked directly, please use 'model.settings.createThemeModuleEntry()'");
+            }
+        }
+        get containerAsWebUIProjectSettingsPart() {
+            return super.getContainerAs(WebUIProjectSettingsPart);
+        }
+        get moduleName() {
+            return this.__moduleName.get();
+        }
+        set moduleName(newValue) {
+            this.__moduleName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ThemeModuleEntry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ThemeModuleEntry);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ThemeModuleEntry.structureTypeName = "Settings$ThemeModuleEntry";
+    ThemeModuleEntry.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.3.0"
+    }, internal.StructureType.Element);
+    settings.ThemeModuleEntry = ThemeModuleEntry;
     class WebUIProjectSettingsPart extends ProjectSettingsPart {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1118,6 +1157,8 @@ var settings;
             this.__enableMicroflowReachabilityAnalysis = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableMicroflowReachabilityAnalysis", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__themeConversionStatus = new internal.EnumProperty(WebUIProjectSettingsPart, this, "themeConversionStatus", ThemeConversionStatusEnum.Done, ThemeConversionStatusEnum);
+            /** @internal */
+            this.__themeModuleOrder = new internal.PartListProperty(WebUIProjectSettingsPart, this, "themeModuleOrder", []);
             if (arguments.length < 4) {
                 throw new Error("new WebUIProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWebUIProjectSettingsPart()'");
             }
@@ -1125,6 +1166,9 @@ var settings;
         get containerAsProjectSettings() {
             return super.getContainerAs(ProjectSettings);
         }
+        /**
+         * In version 9.2.0: deleted
+         */
         get theme() {
             return this.__theme.get();
         }
@@ -1132,6 +1176,7 @@ var settings;
             this.__theme.set(newValue);
         }
         /**
+         * In version 9.2.0: deleted
          * In version 7.9.0: introduced
          */
         get themeModuleName() {
@@ -1184,6 +1229,12 @@ var settings;
             this.__themeConversionStatus.set(newValue);
         }
         /**
+         * In version 9.3.0: introduced
+         */
+        get themeModuleOrder() {
+            return this.__themeModuleOrder.get();
+        }
+        /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.
          * The new WebUIProjectSettingsPart will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1205,7 +1256,9 @@ var settings;
             if (this.__enableMicroflowReachabilityAnalysis.isAvailable) {
                 this.enableMicroflowReachabilityAnalysis = true;
             }
-            this.theme = "(Default)";
+            if (this.__theme.isAvailable) {
+                this.theme = "(Default)";
+            }
             if (this.__themeConversionStatus.isAvailable) {
                 this.themeConversionStatus = ThemeConversionStatusEnum.Done;
             }
@@ -1214,8 +1267,14 @@ var settings;
     WebUIProjectSettingsPart.structureTypeName = "Settings$WebUIProjectSettingsPart";
     WebUIProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            theme: {
+                deleted: "9.2.0",
+                deletionMessage: null
+            },
             themeModuleName: {
-                introduced: "7.9.0"
+                introduced: "7.9.0",
+                deleted: "9.2.0",
+                deletionMessage: null
             },
             feedbackWidgetUpdated: {
                 deleted: "6.2.0",
@@ -1231,6 +1290,9 @@ var settings;
                 introduced: "8.0.0",
                 deleted: "9.0.1",
                 deletionMessage: null
+            },
+            themeModuleOrder: {
+                introduced: "9.3.0"
             }
         }
     }, internal.StructureType.Element);

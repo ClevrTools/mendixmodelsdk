@@ -454,13 +454,34 @@ export declare namespace settings {
          */
         static create(model: IModel): RuntimeSettings;
     }
+    /**
+     * In version 9.3.0: introduced
+     */
+    class ThemeModuleEntry extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWebUIProjectSettingsPart(): WebUIProjectSettingsPart;
+        get moduleName(): string;
+        set moduleName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ThemeModuleEntry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ThemeModuleEntry;
+    }
     class WebUIProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsProjectSettings(): ProjectSettings;
+        /**
+         * In version 9.2.0: deleted
+         */
         get theme(): string;
         set theme(newValue: string);
         /**
+         * In version 9.2.0: deleted
          * In version 7.9.0: introduced
          */
         get themeModuleName(): string;
@@ -488,6 +509,10 @@ export declare namespace settings {
          */
         get themeConversionStatus(): ThemeConversionStatusEnum;
         set themeConversionStatus(newValue: ThemeConversionStatusEnum);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get themeModuleOrder(): internal.IList<ThemeModuleEntry>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.

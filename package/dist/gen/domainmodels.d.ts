@@ -217,6 +217,11 @@ export declare namespace domainmodels {
          */
         get capabilities(): AssociationCapabilities;
         set capabilities(newValue: AssociationCapabilities);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel(): projects.ExportLevel;
+        set exportLevel(newValue: projects.ExportLevel);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         get qualifiedName(): string | null;
     }
@@ -440,6 +445,11 @@ export declare namespace domainmodels {
          */
         get capabilities(): AttributeCapabilities;
         set capabilities(newValue: AttributeCapabilities);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel(): projects.ExportLevel;
+        set exportLevel(newValue: projects.ExportLevel);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
@@ -1025,6 +1035,9 @@ export declare namespace domainmodels {
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
+    /**
+     * In version 9.1.0: deleted
+     */
     interface IFloatAttributeTypeBase extends IDecimalAttributeTypeBase {
         readonly model: IModel;
         readonly containerAsAttribute: IAttribute;
@@ -1034,6 +1047,9 @@ export declare namespace domainmodels {
         load(callback: (element: FloatAttributeTypeBase) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatAttributeTypeBase>;
     }
+    /**
+     * In version 9.1.0: deleted
+     */
     abstract class FloatAttributeTypeBase extends DecimalAttributeTypeBase implements IFloatAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -1043,6 +1059,7 @@ export declare namespace domainmodels {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     interface ICurrencyAttributeType extends IFloatAttributeTypeBase {
@@ -1055,6 +1072,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<CurrencyAttributeType>;
     }
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     class CurrencyAttributeType extends FloatAttributeTypeBase implements ICurrencyAttributeType {
@@ -1077,6 +1095,9 @@ export declare namespace domainmodels {
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.5
          */
         static createInAttributeUnderType(container: Attribute): CurrencyAttributeType;
         /**
@@ -1085,7 +1106,7 @@ export declare namespace domainmodels {
          * of the parent EntityKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): CurrencyAttributeType;
         /**
@@ -1094,7 +1115,7 @@ export declare namespace domainmodels {
          * of the parent rest.ODataKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInODataKeyPartUnderType(container: rest.ODataKeyPart): CurrencyAttributeType;
         /**
@@ -1457,6 +1478,11 @@ export declare namespace domainmodels {
          */
         get capabilities(): EntityCapabilities;
         set capabilities(newValue: EntityCapabilities);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel(): projects.ExportLevel;
+        set exportLevel(newValue: projects.ExportLevel);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Entity instance in the SDK and on the server.
@@ -1763,6 +1789,7 @@ export declare namespace domainmodels {
         static create(model: IModel): EventHandler;
     }
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     interface IFloatAttributeType extends IFloatAttributeTypeBase {
@@ -1775,6 +1802,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<FloatAttributeType>;
     }
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     class FloatAttributeType extends FloatAttributeTypeBase implements IFloatAttributeType {
@@ -1797,6 +1825,9 @@ export declare namespace domainmodels {
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.5
          */
         static createInAttributeUnderType(container: Attribute): FloatAttributeType;
         /**
@@ -1805,7 +1836,7 @@ export declare namespace domainmodels {
          * of the parent EntityKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): FloatAttributeType;
         /**
@@ -1814,7 +1845,7 @@ export declare namespace domainmodels {
          * of the parent rest.ODataKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInODataKeyPartUnderType(container: rest.ODataKeyPart): FloatAttributeType;
         /**

@@ -48,6 +48,13 @@ class QualifiedNameCache {
     }
     observe(listener) {
         this.listeners.push(listener);
+        const disposer = () => {
+            const listenerIndex = this.listeners.indexOf(listener);
+            if (listenerIndex !== -1) {
+                this.listeners.splice(listenerIndex, 1);
+            }
+        };
+        return disposer;
     }
     size() {
         return mobx_1.keys(this._cache)
@@ -62,19 +69,30 @@ class QualifiedNameCache {
      * Child entries are updated automatically as well.
      */
     addStructureToCache(structure) {
-        structure.traversePublicParts(s => this._addElementToCache(s));
-        this._callListeners();
+        const qualifiedNames = [];
+        structure.traversePublicParts(s => qualifiedNames.push(...this._addElementToCache(s)));
+        if (qualifiedNames.length) {
+            this._callListeners(qualifiedNames);
+        }
     }
     /**
      * Removes the structure and its children from the cache.
      */
     removeStructureFromCache(structure) {
-        structure.traversePublicParts(s => this._removeElementFromCache(s));
-        this._callListeners();
+        const qualifiedNames = [];
+        structure.traversePublicParts(s => {
+            const qualifiedName = this._removeElementFromCache(s);
+            if (qualifiedName) {
+                qualifiedNames.push(qualifiedName);
+            }
+        });
+        if (qualifiedNames.length) {
+            this._callListeners(qualifiedNames);
+        }
     }
     /** @internal */
-    _callListeners() {
-        this.listeners.forEach(listener => listener());
+    _callListeners(names) {
+        this.listeners.forEach(listener => listener(names));
     }
     /** @internal */
     _addElementToCache(structure) {
@@ -82,7 +100,7 @@ class QualifiedNameCache {
             const oldName = structure._registeredQualifiedName;
             const newName = structure._getQualifiedName();
             if (oldName === newName) {
-                return;
+                return [];
             }
             structure._registeredQualifiedName = newName;
             if (oldName !== null) {
@@ -91,14 +109,15 @@ class QualifiedNameCache {
                     utils_1.utils.removeFromArray(cachedElementsForOldName, structure);
                 }
             }
-            if (newName === null) {
-                return;
+            if (newName !== null) {
+                this._getOrCreateEntry(newName).push(structure);
+                if (oldName !== null) {
+                    this._updateByNameReferences(structure, oldName, newName);
+                }
             }
-            this._getOrCreateEntry(newName).push(structure);
-            if (oldName !== null) {
-                this._updateByNameReferences(structure, oldName, newName);
-            }
+            return [oldName, newName].filter(name => name !== null);
         }
+        return [];
     }
     /** @internal */
     _removeElementFromCache(structure) {
@@ -107,7 +126,9 @@ class QualifiedNameCache {
             if (cachedElements) {
                 utils_1.utils.removeFromArray(cachedElements, structure);
             }
+            return structure._registeredQualifiedName;
         }
+        return null;
     }
     /** @internal */
     _updateByNameReferences(namedStructure, oldName, newName) {
@@ -121,10 +142,10 @@ class QualifiedNameCache {
                         prop.updateQualifiedNameForRename(newName);
                     }
                 }
-                else if (prop instanceof ByNameReferenceProperty_1.ByNameReferenceListProperty) {
+                else if (prop instanceof ByNameReferenceProperty_1.ByNameReferenceListProperty && prop.observableValue.includes(oldName)) {
                     const propTargetInitializer = instances_1.instancehelpers.lookupClass(prop.targetType, this._model._allModelClasses());
                     if (propTargetInitializer === structureInitializer || propTargetInitializer.isPrototypeOf(structureInitializer)) {
-                        prop.updateQualifiedNamesForRename(prop.qualifiedNames().map(name => (name === oldName ? newName : name)));
+                        prop.updateQualifiedNamesForRename(prop.observableValue.map(name => (name === oldName ? newName : name)));
                     }
                 }
             });
