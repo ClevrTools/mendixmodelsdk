@@ -1,5 +1,5 @@
-import { AbstractModel } from "../AbstractModel";
 import { Delta } from "./deltas";
+import { AbstractModel } from "../AbstractModel";
 export declare class DeltaProcessor {
     model: AbstractModel;
     constructor(model: AbstractModel);

@@ -277,6 +277,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ConditionOutcomeActivity = ConditionOutcomeActivity;
     /**
+     * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -540,6 +542,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.EnumerationValueConditionOutcome = EnumerationValueConditionOutcome;
     /**
+     * See: {@link https://docs.mendix.com/refguide/decision-in-workflows relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -680,6 +684,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.Flow = Flow;
     /**
+     * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
+     *
      * In version 9.0.5: introduced
      */
     class JumpToActivity extends WorkflowActivity {
@@ -1009,6 +1015,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.NoEvent = NoEvent;
     /**
+     * See: {@link https://docs.mendix.com/refguide/parallel-split relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1123,6 +1131,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ParallelSplitOutcome = ParallelSplitOutcome;
     /**
+     * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */

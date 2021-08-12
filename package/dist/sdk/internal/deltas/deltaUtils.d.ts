@@ -1,8 +1,8 @@
-import { IAbstractUnit, ModelUnit } from "../units";
-import { Structure, IStructure } from "../structures";
-import { AbstractElement } from "../elements";
 import { AbstractProperty } from "../properties";
 import { Delta, Mutator } from "./deltas";
+import { IAbstractUnit, ModelUnit } from "../units";
+import { IStructure, Structure } from "../structures";
+import { AbstractElement } from "../elements";
 import { AbstractModel } from "../AbstractModel";
 export interface IContainmentInfo {
     element: AbstractElement;

@@ -6,9 +6,24 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 var projects;
 (function (projects) {
-    /**
-     * Interfaces and instance classes for types from the Mendix sub meta model `Projects`.
-     */
+    class ExportLevel extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "projects.ExportLevel";
+        }
+    }
+    ExportLevel.Hidden = new ExportLevel("Hidden", {});
+    ExportLevel.API = new ExportLevel("API", {});
+    projects.ExportLevel = ExportLevel;
+    class ModuleExportLevel extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "projects.ModuleExportLevel";
+        }
+    }
+    ModuleExportLevel.Source = new ModuleExportLevel("Source", {});
+    ModuleExportLevel.Protected = new ModuleExportLevel("Protected", {});
+    projects.ModuleExportLevel = ModuleExportLevel;
     class ModuleDocument extends internal.ModelUnit {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
@@ -36,6 +51,8 @@ var projects;
             this.__documentation = new internal.PrimitiveProperty(Document, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__excluded = new internal.PrimitiveProperty(Document, this, "excluded", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(Document, this, "exportLevel", ExportLevel.Hidden, ExportLevel);
             this._declaredAsNamespace = true;
         }
         get containerAsFolderBase() {
@@ -59,12 +76,24 @@ var projects;
         set excluded(newValue) {
             this.__excluded.set(newValue);
         }
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
         get qualifiedName() {
             return this._getQualifiedName();
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = ExportLevel.Hidden;
+            }
         }
     }
     Document.structureTypeName = "Projects$Document";
@@ -74,6 +103,9 @@ var projects;
                 public: {
                     currentValue: true
                 }
+            },
+            exportLevel: {
+                introduced: "9.3.0"
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -166,6 +198,10 @@ var projects;
             this.__appStoreVersion = new internal.PrimitiveProperty(Module, this, "appStoreVersion", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__appStorePackageId = new internal.PrimitiveProperty(Module, this, "appStorePackageId", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(Module, this, "exportLevel", ModuleExportLevel.Source, ModuleExportLevel);
+            /** @internal */
+            this.__isThemeModule = new internal.PrimitiveProperty(Module, this, "isThemeModule", false, internal.PrimitiveTypeEnum.Boolean);
             this._declaredAsNamespace = true;
             this._containmentName = "modules";
         }
@@ -209,6 +245,7 @@ var projects;
             this.__fromAppStore.set(newValue);
         }
         /**
+         * In version 9.1.0: deleted
          * In version 8.5.0: introduced
          */
         get isReusableComponent() {
@@ -245,6 +282,24 @@ var projects;
             this.__appStorePackageId.set(newValue);
         }
         /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
+        /**
+         * In version 9.3.0: introduced
+         */
+        get isThemeModule() {
+            return this.__isThemeModule.get();
+        }
+        set isThemeModule(newValue) {
+            this.__isThemeModule.set(newValue);
+        }
+        /**
          * Creates a new Module unit in the SDK and on the server.
          * Expects one argument, the IProject in which this unit is contained.
          */
@@ -254,6 +309,9 @@ var projects;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = ModuleExportLevel.Source;
+            }
         }
     }
     Module.structureTypeName = "Projects$Module";
@@ -270,10 +328,18 @@ var projects;
                 }
             },
             isReusableComponent: {
-                introduced: "8.5.0"
+                introduced: "8.5.0",
+                deleted: "9.1.0",
+                deletionMessage: null
             },
             appStorePackageId: {
                 introduced: "8.13.0"
+            },
+            exportLevel: {
+                introduced: "9.3.0"
+            },
+            isThemeModule: {
+                introduced: "9.3.0"
             }
         }
     }, internal.StructureType.StructuralUnit);

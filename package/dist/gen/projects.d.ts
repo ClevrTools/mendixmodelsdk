@@ -1,6 +1,16 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 export declare namespace projects {
+    class ExportLevel extends internal.AbstractEnum {
+        static Hidden: ExportLevel;
+        static API: ExportLevel;
+        protected qualifiedTsTypeName: string;
+    }
+    class ModuleExportLevel extends internal.AbstractEnum {
+        static Source: ModuleExportLevel;
+        static Protected: ModuleExportLevel;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Projects`.
      */
@@ -37,6 +47,11 @@ export declare namespace projects {
         set documentation(newValue: string);
         get excluded(): boolean;
         set excluded(newValue: boolean);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel(): ExportLevel;
+        set exportLevel(newValue: ExportLevel);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IFolderBase);
         get qualifiedName(): string | null;
     }
@@ -104,6 +119,7 @@ export declare namespace projects {
         moduleSecurity: security.IModuleSecurity;
         fromAppStore: boolean;
         /**
+         * In version 9.1.0: deleted
          * In version 8.5.0: introduced
          */
         isReusableComponent: boolean;
@@ -114,6 +130,14 @@ export declare namespace projects {
          * In version 8.13.0: introduced
          */
         appStorePackageId: number;
+        /**
+         * In version 9.3.0: introduced
+         */
+        exportLevel: ModuleExportLevel;
+        /**
+         * In version 9.3.0: introduced
+         */
+        isThemeModule: boolean;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
@@ -139,6 +163,7 @@ export declare namespace projects {
         get fromAppStore(): boolean;
         set fromAppStore(newValue: boolean);
         /**
+         * In version 9.1.0: deleted
          * In version 8.5.0: introduced
          */
         get isReusableComponent(): boolean;
@@ -154,6 +179,16 @@ export declare namespace projects {
          */
         get appStorePackageId(): number;
         set appStorePackageId(newValue: number);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel(): ModuleExportLevel;
+        set exportLevel(newValue: ModuleExportLevel);
+        /**
+         * In version 9.3.0: introduced
+         */
+        get isThemeModule(): boolean;
+        set isThemeModule(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
         /**
          * Creates a new Module unit in the SDK and on the server.

@@ -138,7 +138,11 @@ class ByNameReferenceListProperty extends AbstractProperty_1.AbstractProperty {
                     break;
             }
         });
-        this.parent._model._qualifiedNameCache.observe(() => this.updateViewList());
+        this._qualifiedNameCacheObserverDisposer = this.parent._model._qualifiedNameCache.observe(names => {
+            if (this.observableValue.filter(qualifiedName => names.includes(qualifiedName)).length) {
+                this.updateViewList();
+            }
+        });
     }
     /** @internal */
     initialize(value) {
@@ -174,6 +178,7 @@ class ByNameReferenceListProperty extends AbstractProperty_1.AbstractProperty {
     dispose() {
         super.dispose();
         this._viewListObserverDisposer();
+        this._qualifiedNameCacheObserverDisposer();
     }
     /** @internal */
     beforeChange(change) {
@@ -185,7 +190,7 @@ class ByNameReferenceListProperty extends AbstractProperty_1.AbstractProperty {
     }
     /** @internal */
     updateViewList() {
-        const newViewList = this.qualifiedNames().map(qualifiedName => this.parent._model._resolveName(this._targetType, qualifiedName));
+        const newViewList = this.observableValue.map(qualifiedName => this.parent._model._resolveName(this._targetType, qualifiedName));
         if (!utils_1.utils.shallowEquals(this._viewList, newViewList)) {
             this._suppressViewEvents = true;
             this._viewList.replace(newViewList);

@@ -75,6 +75,45 @@ export declare namespace navigation {
          */
         static create(model: IModel): HomePage;
     }
+    /**
+     * In version 9.4.0: introduced
+     */
+    abstract class NativeHomePageBase extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNativeNavigationProfile(): NativeNavigationProfile;
+        get homePagePage(): pages.IPage | null;
+        set homePagePage(newValue: pages.IPage | null);
+        get homePagePageQualifiedName(): string | null;
+        get homePageNanoflow(): microflows.INanoflow | null;
+        set homePageNanoflow(newValue: microflows.INanoflow | null);
+        get homePageNanoflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.4.0: introduced
+     */
+    class NativeHomePage extends NativeHomePageBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNativeNavigationProfile(): NativeNavigationProfile;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NativeHomePage instance in the SDK and on the server.
+         * The new NativeHomePage will be automatically stored in the 'nativeHomePage' property
+         * of the parent NativeNavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.4.0 and higher
+         */
+        static createIn(container: NativeNavigationProfile): NativeHomePage;
+        /**
+         * Creates and returns a new NativeHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NativeHomePage;
+    }
     interface INavigationProfileBase extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
         readonly containerAsNavigationDocument: INavigationDocument;
@@ -123,6 +162,14 @@ export declare namespace navigation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsNavigationDocument(): NavigationDocument;
+        /**
+         * In version 9.4.0: introduced
+         */
+        get nativeHomePage(): NativeHomePage;
+        set nativeHomePage(newValue: NativeHomePage);
+        /**
+         * In version 9.4.0: deleted
+         */
         get homePage(): pages.IPage | null;
         set homePage(newValue: pages.IPage | null);
         get homePageQualifiedName(): string | null;
@@ -138,6 +185,11 @@ export declare namespace navigation {
          * In version 8.0.0: introduced
          */
         get bottomBarItems(): internal.IList<nativepages.BottomBarItem>;
+        /**
+         * In version 9.4.0: introduced
+         */
+        get otaEnabled(): boolean;
+        set otaEnabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
@@ -507,16 +559,19 @@ export declare namespace navigation {
     /**
      * In version 8.0.0: introduced
      */
-    class RoleBasedNativeHomePage extends internal.Element<IModel> {
+    class RoleBasedNativeHomePage extends NativeHomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsNativeNavigationProfile(): NativeNavigationProfile;
-        get page(): pages.IPage | null;
-        set page(newValue: pages.IPage | null);
-        get pageQualifiedName(): string | null;
         get userRole(): security.IUserRole | null;
         set userRole(newValue: security.IUserRole | null);
         get userRoleQualifiedName(): string | null;
+        /**
+         * In version 9.4.0: deleted
+         */
+        get page(): pages.IPage | null;
+        set page(newValue: pages.IPage | null);
+        get pageQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RoleBasedNativeHomePage instance in the SDK and on the server.

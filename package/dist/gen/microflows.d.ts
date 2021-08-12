@@ -124,6 +124,7 @@ export declare namespace microflows {
     }
     class SynchronizationType extends internal.AbstractEnum {
         static All: SynchronizationType;
+        static Unsynchronized: SynchronizationType;
         static Specific: SynchronizationType;
         protected qualifiedTsTypeName: string;
     }
@@ -147,6 +148,51 @@ export declare namespace microflows {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Microflows`.
      */
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.2.0: introduced
+     */
+    abstract class WorkflowOperation extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.2.0: introduced
+     */
+    class AbortOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        get reason(): StringTemplate;
+        set reason(newValue: StringTemplate);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AbortOperation instance in the SDK and on the server.
+         * The new AbortOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.2.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): AbortOperation;
+        /**
+         * Creates and returns a new AbortOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AbortOperation;
+    }
     abstract class MicroflowObject extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -932,6 +978,36 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ContinueEvent;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.3.0: introduced
+     */
+    class ContinueOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ContinueOperation instance in the SDK and on the server.
+         * The new ContinueOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.3.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): ContinueOperation;
+        /**
+         * Creates and returns a new ContinueOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ContinueOperation;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/create-list relevant section in reference guide}
@@ -1755,6 +1831,10 @@ export declare namespace microflows {
          */
         get valueModel(): expressions.Expression;
         set valueModel(newValue: expressions.Expression);
+        /**
+         * In version 9.2.0: introduced
+         */
+        get headerEntries(): internal.IList<HttpHeaderEntry>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new FormDataPart instance in the SDK and on the server.
@@ -2051,6 +2131,7 @@ export declare namespace microflows {
     class HttpHeaderEntry extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsFormDataPart(): FormDataPart;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get key(): string;
         set key(newValue: string);
@@ -2073,8 +2154,26 @@ export declare namespace microflows {
          * Creates and returns a new HttpHeaderEntry instance in the SDK and on the server.
          * The new HttpHeaderEntry will be automatically stored in the 'headerEntries' property
          * of the parent HttpConfiguration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.1.0
          */
         static createIn(container: HttpConfiguration): HttpHeaderEntry;
+        /**
+         * Creates and returns a new HttpHeaderEntry instance in the SDK and on the server.
+         * The new HttpHeaderEntry will be automatically stored in the 'headerEntries' property
+         * of the parent FormDataPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.2.0 and higher
+         */
+        static createInFormDataPartUnderHeaderEntries(container: FormDataPart): HttpHeaderEntry;
+        /**
+         * Creates and returns a new HttpHeaderEntry instance in the SDK and on the server.
+         * The new HttpHeaderEntry will be automatically stored in the 'headerEntries' property
+         * of the parent HttpConfiguration element passed as argument.
+         */
+        static createInHttpConfigurationUnderHeaderEntries(container: HttpConfiguration): HttpHeaderEntry;
         /**
          * Creates and returns a new HttpHeaderEntry instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2333,10 +2432,6 @@ export declare namespace microflows {
         set javaAction(newValue: javaactions.IJavaAction | null);
         get javaActionQualifiedName(): string | null;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 9.0.5: introduced
          */
         get queue(): queues.IQueue | null;
@@ -2810,10 +2905,6 @@ export declare namespace microflows {
         set microflow(newValue: IMicroflow | null);
         get microflowQualifiedName(): string | null;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 8.16.0: introduced
          */
         get queue(): queues.IQueue | null;
@@ -3262,6 +3353,8 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/show-task-page relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -3289,6 +3382,8 @@ export declare namespace microflows {
         static create(model: IModel): OpenUserTaskAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/show-workflow-page relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -3314,6 +3409,36 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): OpenWorkflowAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.3.0: introduced
+     */
+    class PauseOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PauseOperation instance in the SDK and on the server.
+         * The new PauseOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.3.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): PauseOperation;
+        /**
+         * Creates and returns a new PauseOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PauseOperation;
     }
     /**
      * In version 8.6.0: introduced
@@ -3559,6 +3684,36 @@ export declare namespace microflows {
          */
         static create(model: IModel): RestCallAction;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.2.0: introduced
+     */
+    class RestartOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestartOperation instance in the SDK and on the server.
+         * The new RestartOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.2.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): RestartOperation;
+        /**
+         * Creates and returns a new RestartOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestartOperation;
+    }
     class ResultHandling extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -3612,6 +3767,36 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ResultHandling;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.3.0: introduced
+     */
+    class ResumeOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ResumeOperation instance in the SDK and on the server.
+         * The new ResumeOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.3.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): ResumeOperation;
+        /**
+         * Creates and returns a new ResumeOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ResumeOperation;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/retrieve relevant section in reference guide}
@@ -3809,6 +3994,8 @@ export declare namespace microflows {
         static create(model: IModel): SequenceFlow;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/complete-task relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -4060,6 +4247,7 @@ export declare namespace microflows {
     abstract class Template extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsAbortOperation(): AbortOperation;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
@@ -4075,6 +4263,7 @@ export declare namespace microflows {
     class StringTemplate extends Template {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsAbortOperation(): AbortOperation;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
@@ -4084,6 +4273,15 @@ export declare namespace microflows {
         get text(): string;
         set text(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'reason' property
+         * of the parent AbortOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.2.0 and higher
+         */
+        static createInAbortOperationUnderReason(container: AbortOperation): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * The new StringTemplate will be automatically stored in the 'template' property
@@ -4626,6 +4824,8 @@ export declare namespace microflows {
         static create(model: IModel): WhileLoopCondition;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-call relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -4658,6 +4858,41 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): WorkflowCallAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.2.0: introduced
+     */
+    class WorkflowOperationAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get operation(): WorkflowOperation;
+        set operation(newValue: WorkflowOperation);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowOperationAction instance in the SDK and on the server.
+         * The new WorkflowOperationAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.2.0 and higher
+         */
+        static createIn(container: ActionActivity): WorkflowOperationAction;
+        /**
+         * Creates and returns a new WorkflowOperationAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowOperationAction;
     }
 }
 import { appservices } from "./appservices";

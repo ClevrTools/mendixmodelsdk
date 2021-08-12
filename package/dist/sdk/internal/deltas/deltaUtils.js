@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeUselessDeltas = exports.rawValue = exports.rawList = exports.getContainmentInfo = exports.checkMutator = exports.checkUpdateOrRemovalIndex = exports.checkInsertionIndex = exports.isListProperty = exports.getUnit = exports.updateStructure = exports.asModelUnit = exports.getElementNotFoundError = exports.findElement = exports.getElement = exports.getProperty = exports.UnknownPropertyError = void 0;
-const util = require("util");
-const units_1 = require("../units");
 const properties_1 = require("../properties");
+const units_1 = require("../units");
 class UnknownPropertyError extends Error {
     constructor(message) {
         super(message);
@@ -106,7 +105,7 @@ function checkMutator(mutator, property) {
     switch (mutator.mutatorType) {
         case "CHANGE":
             if (isListProperty(property)) {
-                if (!util.isNumber(mutator.updateIndex)) {
+                if (typeof mutator.updateIndex !== "number") {
                     throw new Error(`Invalid mutator.updateIndex '${mutator.updateIndex}' for property '${property.name}'`);
                 }
                 checkUpdateOrRemovalIndex(mutator.updateIndex, property);
@@ -119,7 +118,7 @@ function checkMutator(mutator, property) {
             if (!isListProperty(property)) {
                 throw new Error(`Mutator type '${mutator.mutatorType}' is only supported for lists`);
             }
-            if (util.isNumber(mutator.insertionIndex)) {
+            if (typeof mutator.insertionIndex === "number") {
                 checkInsertionIndex(mutator.insertionIndex, property);
             }
             if (mutator.value === null) {
@@ -130,7 +129,7 @@ function checkMutator(mutator, property) {
             if (!isListProperty(property)) {
                 throw new Error(`Mutator type '${mutator.mutatorType}' is only supported for lists`);
             }
-            if (!util.isNumber(mutator.removalIndex)) {
+            if (typeof mutator.removalIndex !== "number") {
                 throw new Error(`Invalid mutator.removalIndex '${mutator.removalIndex}' for property '${property.name}'`);
             }
             checkUpdateOrRemovalIndex(mutator.removalIndex, property);

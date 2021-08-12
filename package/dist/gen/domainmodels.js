@@ -277,7 +277,8 @@ var domainmodels;
     Annotation.structureTypeName = "DomainModels$Annotation";
     Annotation.versionInfo = new exports.StructureVersionInfo({
         properties: {
-            location: {}
+            location: {},
+            width: {}
         }
     }, internal.StructureType.Element);
     domainmodels.Annotation = Annotation;
@@ -307,6 +308,8 @@ var domainmodels;
             this.__source = new internal.PartProperty(AssociationBase, this, "source", null, false);
             /** @internal */
             this.__capabilities = new internal.PartProperty(AssociationBase, this, "capabilities", null, true);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(AssociationBase, this, "exportLevel", projects_1.projects.ExportLevel.Hidden, projects_1.projects.ExportLevel);
             if (arguments.length < 4) {
                 throw new Error("new AssociationBase() cannot be invoked directly, please use 'model.domainmodels.createAssociationBase()'");
             }
@@ -392,6 +395,15 @@ var domainmodels;
         set capabilities(newValue) {
             this.__capabilities.set(newValue);
         }
+        /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
         /** @internal */
         _isByNameReferrable() {
             return true;
@@ -407,6 +419,9 @@ var domainmodels;
             }
             this.dataStorageGuid = utils_1.utils.randomUuid();
             this.deleteBehavior = AssociationDeleteBehavior.create(this.model);
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = projects_1.projects.ExportLevel.Hidden;
+            }
             this.owner = AssociationOwner.Default;
             this.type = AssociationType.Reference;
         }
@@ -466,6 +481,9 @@ var domainmodels;
                 required: {
                     currentValue: true
                 }
+            },
+            exportLevel: {
+                introduced: "9.3.0"
             }
         },
         public: {
@@ -839,6 +857,8 @@ var domainmodels;
             this.__value = new internal.PartProperty(Attribute, this, "value", null, true);
             /** @internal */
             this.__capabilities = new internal.PartProperty(Attribute, this, "capabilities", null, true);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(Attribute, this, "exportLevel", projects_1.projects.ExportLevel.Hidden, projects_1.projects.ExportLevel);
             if (arguments.length < 4) {
                 throw new Error("new Attribute() cannot be invoked directly, please use 'model.domainmodels.createAttribute()'");
             }
@@ -890,6 +910,15 @@ var domainmodels;
             this.__capabilities.set(newValue);
         }
         /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
+        /**
          * Creates and returns a new Attribute instance in the SDK and on the server.
          * The new Attribute will be automatically stored in the 'attributes' property
          * of the parent Entity element passed as argument.
@@ -919,6 +948,9 @@ var domainmodels;
                 this.capabilities = AttributeCapabilities.create(this.model);
             }
             this.dataStorageGuid = utils_1.utils.randomUuid();
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = projects_1.projects.ExportLevel.Hidden;
+            }
             this.type = StringAttributeType.create(this.model);
             this.value = StoredValue.create(this.model);
         }
@@ -958,6 +990,9 @@ var domainmodels;
                 required: {
                     currentValue: true
                 }
+            },
+            exportLevel: {
+                introduced: "9.3.0"
             }
         },
         public: {
@@ -1863,6 +1898,9 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.DecimalAttributeTypeBase = DecimalAttributeTypeBase;
+    /**
+     * In version 9.1.0: deleted
+     */
     class FloatAttributeTypeBase extends DecimalAttributeTypeBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1886,12 +1924,15 @@ var domainmodels;
     }
     FloatAttributeTypeBase.structureTypeName = "DomainModels$FloatAttributeTypeBase";
     FloatAttributeTypeBase.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.1.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     domainmodels.FloatAttributeTypeBase = FloatAttributeTypeBase;
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     class CurrencyAttributeType extends FloatAttributeTypeBase {
@@ -1926,8 +1967,12 @@ var domainmodels;
          * Creates and returns a new CurrencyAttributeType instance in the SDK and on the server.
          * The new CurrencyAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.5
          */
         static createInAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { end: "9.0.5" });
             return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
         }
         /**
@@ -1936,10 +1981,10 @@ var domainmodels;
          * of the parent EntityKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInEntityKeyPartUnderType(container) {
-            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0", end: "9.0.5" });
             return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
         }
         /**
@@ -1948,10 +1993,10 @@ var domainmodels;
          * of the parent rest.ODataKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInODataKeyPartUnderType(container) {
-            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, CurrencyAttributeType.structureTypeName, { start: "8.9.0", end: "9.0.5" });
             return internal.instancehelpers.createElement(container, CurrencyAttributeType, "type", false);
         }
         /**
@@ -1969,6 +2014,8 @@ var domainmodels;
     }
     CurrencyAttributeType.structureTypeName = "DomainModels$CurrencyAttributeType";
     CurrencyAttributeType.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.1.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
@@ -2448,6 +2495,8 @@ var domainmodels;
             this.__source = new internal.PartProperty(Entity, this, "source", null, false);
             /** @internal */
             this.__capabilities = new internal.PartProperty(Entity, this, "capabilities", null, true);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(Entity, this, "exportLevel", projects_1.projects.ExportLevel.Hidden, projects_1.projects.ExportLevel);
             if (arguments.length < 4) {
                 throw new Error("new Entity() cannot be invoked directly, please use 'model.domainmodels.createEntity()'");
             }
@@ -2568,6 +2617,15 @@ var domainmodels;
             this.__capabilities.set(newValue);
         }
         /**
+         * In version 9.3.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
+        /**
          * Creates and returns a new Entity instance in the SDK and on the server.
          * The new Entity will be automatically stored in the 'entities' property
          * of the parent DomainModel element passed as argument.
@@ -2597,6 +2655,9 @@ var domainmodels;
                 this.capabilities = EntityCapabilities.create(this.model);
             }
             this.dataStorageGuid = utils_1.utils.randomUuid();
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = projects_1.projects.ExportLevel.Hidden;
+            }
             this.generalization = NoGeneralization.create(this.model);
         }
     }
@@ -2660,6 +2721,9 @@ var domainmodels;
                 required: {
                     currentValue: true
                 }
+            },
+            exportLevel: {
+                introduced: "9.3.0"
             }
         },
         public: {
@@ -3229,6 +3293,7 @@ var domainmodels;
     EventHandler.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.EventHandler = EventHandler;
     /**
+     * In version 9.1.0: deleted
      * In version 6.0.0: deprecated
      */
     class FloatAttributeType extends FloatAttributeTypeBase {
@@ -3263,8 +3328,12 @@ var domainmodels;
          * Creates and returns a new FloatAttributeType instance in the SDK and on the server.
          * The new FloatAttributeType will be automatically stored in the 'type' property
          * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 9.0.5
          */
         static createInAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { end: "9.0.5" });
             return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
         }
         /**
@@ -3273,10 +3342,10 @@ var domainmodels;
          * of the parent EntityKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInEntityKeyPartUnderType(container) {
-            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0", end: "9.0.5" });
             return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
         }
         /**
@@ -3285,10 +3354,10 @@ var domainmodels;
          * of the parent rest.ODataKeyPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.9.0 and higher
+         *  8.9.0 to 9.0.5
          */
         static createInODataKeyPartUnderType(container) {
-            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0" });
+            internal.createInVersionCheck(container.model, FloatAttributeType.structureTypeName, { start: "8.9.0", end: "9.0.5" });
             return internal.instancehelpers.createElement(container, FloatAttributeType, "type", false);
         }
         /**
@@ -3306,6 +3375,8 @@ var domainmodels;
     }
     FloatAttributeType.structureTypeName = "DomainModels$FloatAttributeType";
     FloatAttributeType.versionInfo = new exports.StructureVersionInfo({
+        deleted: "9.1.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }

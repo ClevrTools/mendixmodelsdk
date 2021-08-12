@@ -1,18 +1,12 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
-/**
- * @ignore
- */
 export declare namespace queues {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Queues`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     abstract class QueueConfig extends internal.Element<IModel> {
@@ -22,10 +16,7 @@ export declare namespace queues {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     class BasicQueueConfig extends QueueConfig {
@@ -54,10 +45,7 @@ export declare namespace queues {
     /**
      * See: {@link https://docs.mendix.com/refguide/task-queue relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     interface IQueue extends projects.IDocument {
@@ -70,21 +58,13 @@ export declare namespace queues {
     /**
      * See: {@link https://docs.mendix.com/refguide/task-queue relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.3.0: removed experimental
      * In version 8.16.0: introduced
      */
     class Queue extends projects.Document implements IQueue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get config(): QueueConfig;
         set config(newValue: QueueConfig);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);

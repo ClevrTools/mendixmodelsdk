@@ -121,7 +121,7 @@ export interface IAbstractModel {
     getFiles(options: IGetFilesOptions): Promise<string[] | any>;
     /**
      * Downloads the file specified by the supplied filepath.
-     * If filePath is empty, the raw response body will be provided in the callback
+     * If outFilePath is empty, the raw response body will be provided in the callback
      */
     getFile(filePath: string, outFilePath: string, callback: (response?: any) => void, errorCallback: common.IErrorCallback): void;
     getFile(filePath: string, outFilePath: string): Promise<any>;

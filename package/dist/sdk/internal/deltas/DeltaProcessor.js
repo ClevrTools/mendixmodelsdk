@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeltaProcessor = void 0;
-const util = require("util");
+const deltaUtils = require("./deltaUtils");
+const properties_1 = require("../properties");
 const units_1 = require("../units");
 const elements_1 = require("../elements");
-const properties_1 = require("../properties");
 const instances_1 = require("../instances");
-const deltaUtils = require("./deltaUtils");
 class DeltaProcessor {
     constructor(model) {
         this.model = model;
@@ -90,7 +89,7 @@ class DeltaProcessor {
                 }
                 break;
             case "ADD":
-                const index = util.isNumber(mutator.insertionIndex) ? mutator.insertionIndex : property.get().length;
+                const index = typeof mutator.insertionIndex === "number" ? mutator.insertionIndex : property.get().length;
                 const rawList = deltaUtils.rawList(property);
                 rawList.splice(index, 0, mutator.value);
                 property.updateWithRawValue(rawList);

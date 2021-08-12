@@ -162,6 +162,8 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -175,6 +177,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<CallMicroflowTask>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -322,6 +326,8 @@ export declare namespace workflows {
         static create(model: IModel): EnumerationValueConditionOutcome;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/decision-in-workflows relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -333,6 +339,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<ExclusiveSplitActivity>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/decision-in-workflows relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -412,6 +420,8 @@ export declare namespace workflows {
         static create(model: IModel): Flow;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
+     *
      * In version 9.0.5: introduced
      */
     interface IJumpToActivity extends IWorkflowActivity {
@@ -422,6 +432,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<JumpToActivity>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
+     *
      * In version 9.0.5: introduced
      */
     class JumpToActivity extends WorkflowActivity implements IJumpToActivity {
@@ -571,6 +583,8 @@ export declare namespace workflows {
         static create(model: IModel): NoEvent;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/parallel-split relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -583,6 +597,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<ParallelSplitActivity>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/parallel-split relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -645,6 +661,8 @@ export declare namespace workflows {
         static create(model: IModel): ParallelSplitOutcome;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -664,6 +682,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<UserTask>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
+     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */

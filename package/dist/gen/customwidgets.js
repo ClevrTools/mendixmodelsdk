@@ -989,6 +989,10 @@ var customwidgets;
             /** @internal */
             this.__description = new internal.PrimitiveProperty(CustomWidgetType, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__studioProCategory = new internal.PrimitiveProperty(CustomWidgetType, this, "studioProCategory", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__studioCategory = new internal.PrimitiveProperty(CustomWidgetType, this, "studioCategory", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__supportedPlatform = new internal.EnumProperty(CustomWidgetType, this, "supportedPlatform", client_1.client.SupportedPlatform.Web, client_1.client.SupportedPlatform);
             /** @internal */
             this.__phoneGapEnabled = new internal.PrimitiveProperty(CustomWidgetType, this, "phoneGapEnabled", false, internal.PrimitiveTypeEnum.Boolean);
@@ -1041,6 +1045,24 @@ var customwidgets;
         }
         set description(newValue) {
             this.__description.set(newValue);
+        }
+        /**
+         * In version 9.4.0: introduced
+         */
+        get studioProCategory() {
+            return this.__studioProCategory.get();
+        }
+        set studioProCategory(newValue) {
+            this.__studioProCategory.set(newValue);
+        }
+        /**
+         * In version 9.4.0: introduced
+         */
+        get studioCategory() {
+            return this.__studioCategory.get();
+        }
+        set studioCategory(newValue) {
+            this.__studioCategory.set(newValue);
         }
         /**
          * In version 8.0.0: introduced
@@ -1128,6 +1150,12 @@ var customwidgets;
         properties: {
             pluginWidget: {
                 introduced: "7.19.0"
+            },
+            studioProCategory: {
+                introduced: "9.4.0"
+            },
+            studioCategory: {
+                introduced: "9.4.0"
             },
             supportedPlatform: {
                 introduced: "8.0.0"

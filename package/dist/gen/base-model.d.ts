@@ -472,6 +472,7 @@ export declare type ConcreteModelElements = {
     MessageDefinitions$ExposedAssociation: messagedefinitions.ExposedAssociation;
     MessageDefinitions$ExposedAttribute: messagedefinitions.ExposedAttribute;
     MessageDefinitions$ExposedEntity: messagedefinitions.ExposedEntity;
+    Microflows$AbortOperation: microflows.AbortOperation;
     Microflows$ActionActivity: microflows.ActionActivity;
     Microflows$AdvancedRequestHandling: microflows.AdvancedRequestHandling;
     Microflows$AggregateListAction: microflows.AggregateListAction;
@@ -493,6 +494,7 @@ export declare type ConcreteModelElements = {
     Microflows$ConstantRange: microflows.ConstantRange;
     Microflows$Contains: microflows.Contains;
     Microflows$ContinueEvent: microflows.ContinueEvent;
+    Microflows$ContinueOperation: microflows.ContinueOperation;
     Microflows$CreateListAction: microflows.CreateListAction;
     Microflows$CreateObjectAction: microflows.CreateObjectAction;
     Microflows$CreateVariableAction: microflows.CreateVariableAction;
@@ -557,11 +559,14 @@ export declare type ConcreteModelElements = {
     Microflows$NoCase: microflows.NoCase;
     Microflows$OpenUserTaskAction: microflows.OpenUserTaskAction;
     Microflows$OpenWorkflowAction: microflows.OpenWorkflowAction;
+    Microflows$PauseOperation: microflows.PauseOperation;
     Microflows$PrimitiveTypedTemplateArgument: microflows.PrimitiveTypedTemplateArgument;
     Microflows$ProxyConfiguration: microflows.ProxyConfiguration;
     Microflows$PushToClientAction: microflows.PushToClientAction;
     Microflows$RestCallAction: microflows.RestCallAction;
+    Microflows$RestartOperation: microflows.RestartOperation;
     Microflows$ResultHandling: microflows.ResultHandling;
+    Microflows$ResumeOperation: microflows.ResumeOperation;
     Microflows$RetrieveAction: microflows.RetrieveAction;
     Microflows$RollbackAction: microflows.RollbackAction;
     Microflows$RuleCall: microflows.RuleCall;
@@ -594,12 +599,14 @@ export declare type ConcreteModelElements = {
     Microflows$WebServiceOperationSimpleParameterMapping: microflows.WebServiceOperationSimpleParameterMapping;
     Microflows$WhileLoopCondition: microflows.WhileLoopCondition;
     Microflows$WorkflowCallAction: microflows.WorkflowCallAction;
+    Microflows$WorkflowOperationAction: microflows.WorkflowOperationAction;
     Nanoflows$NanoflowParameterValue: nanoflows.NanoflowParameterValue;
     NativePages$BottomBarItem: nativepages.BottomBarItem;
     NativePages$NativeLayoutCallArgument: nativepages.NativeLayoutCallArgument;
     NativePages$NativePageClientAction: nativepages.NativePageClientAction;
     NativePages$NativePlaceholder: nativepages.NativePlaceholder;
     Navigation$HomePage: navigation.HomePage;
+    Navigation$NativeHomePage: navigation.NativeHomePage;
     Navigation$NativeNavigationProfile: navigation.NativeNavigationProfile;
     Navigation$NavigationProfile: navigation.NavigationProfile;
     Navigation$OfflineEntityConfig: navigation.OfflineEntityConfig;
@@ -715,6 +722,7 @@ export declare type ConcreteModelElements = {
     Pages$OpenWorkflowClientAction: pages.OpenWorkflowClientAction;
     Pages$PageClientAction: pages.PageClientAction;
     Pages$PageForSpecialization: pages.PageForSpecialization;
+    Pages$PageParameter: pages.PageParameter;
     Pages$PageSettings: pages.PageSettings;
     Pages$PageVariable: pages.PageVariable;
     Pages$PasswordTextBox: pages.PasswordTextBox;
@@ -811,6 +819,7 @@ export declare type ConcreteModelElements = {
     Settings$LanguageSettings: settings.LanguageSettings;
     Settings$ModelerSettings: settings.ModelerSettings;
     Settings$RuntimeSettings: settings.RuntimeSettings;
+    Settings$ThemeModuleEntry: settings.ThemeModuleEntry;
     Settings$WebUIProjectSettingsPart: settings.WebUIProjectSettingsPart;
     Settings$WorkflowsProjectSettingsPart: settings.WorkflowsProjectSettingsPart;
     Texts$SystemText: texts.SystemText;

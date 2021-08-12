@@ -31,6 +31,15 @@ var rest;
     ODataVersion.OData3 = new ODataVersion("OData3", {});
     ODataVersion.OData4 = new ODataVersion("OData4", {});
     rest.ODataVersion = ODataVersion;
+    class PublishedODataVersion extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "rest.PublishedODataVersion";
+        }
+    }
+    PublishedODataVersion.OData4 = new PublishedODataVersion("OData4", {});
+    PublishedODataVersion.OData3 = new PublishedODataVersion("OData3", {});
+    rest.PublishedODataVersion = PublishedODataVersion;
     class RestAuthenticationType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -1026,6 +1035,8 @@ var rest;
             this.__replaceIllegalChars = new internal.PrimitiveProperty(PublishedODataService, this, "replaceIllegalChars", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__useGeneralization = new internal.PrimitiveProperty(PublishedODataService, this, "useGeneralization", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__oDataVersion = new internal.EnumProperty(PublishedODataService, this, "oDataVersion", PublishedODataVersion.OData4, PublishedODataVersion);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1134,6 +1145,15 @@ var rest;
             this.__useGeneralization.set(newValue);
         }
         /**
+         * In version 9.1.0: introduced
+         */
+        get oDataVersion() {
+            return this.__oDataVersion.get();
+        }
+        set oDataVersion(newValue) {
+            this.__oDataVersion.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -1147,6 +1167,9 @@ var rest;
                 this.authenticationTypes.replace([RestAuthenticationType.Basic]);
             }
             this.namespace = "DefaultNamespace";
+            if (this.__oDataVersion.isAvailable) {
+                this.oDataVersion = PublishedODataVersion.OData4;
+            }
             if (this.__publishAssociations.isAvailable) {
                 this.publishAssociations = true;
             }
@@ -1190,6 +1213,9 @@ var rest;
             },
             useGeneralization: {
                 introduced: "8.18.0"
+            },
+            oDataVersion: {
+                introduced: "9.1.0"
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -1212,6 +1238,8 @@ var rest;
             this.__usePaging = new internal.PrimitiveProperty(PublishedRestResource, this, "usePaging", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__pageSize = new internal.PrimitiveProperty(PublishedRestResource, this, "pageSize", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__updatable = new internal.PrimitiveProperty(PublishedRestResource, this, "updatable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PublishedRestResource() cannot be invoked directly, please use 'model.rest.createPublishedRestResource()'");
             }
@@ -1265,6 +1293,15 @@ var rest;
             this.__pageSize.set(newValue);
         }
         /**
+         * In version 9.4.0: introduced
+         */
+        get updatable() {
+            return this.__updatable.get();
+        }
+        set updatable(newValue) {
+            this.__updatable.set(newValue);
+        }
+        /**
          * Creates and returns a new PublishedRestResource instance in the SDK and on the server.
          * The new PublishedRestResource will be automatically stored in the 'resources' property
          * of the parent PublishedODataService element passed as argument.
@@ -1284,6 +1321,9 @@ var rest;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.pageSize = 10000;
+            if (this.__updatable.isAvailable) {
+                this.updatable = false;
+            }
         }
     }
     PublishedRestResource.structureTypeName = "Rest$PublishedRestResource";
@@ -1297,6 +1337,9 @@ var rest;
             },
             description: {
                 introduced: "8.0.0"
+            },
+            updatable: {
+                introduced: "9.4.0"
             }
         }
     }, internal.StructureType.Element);
