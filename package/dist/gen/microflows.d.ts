@@ -1010,6 +1010,68 @@ export declare namespace microflows {
         static create(model: IModel): ContinueOperation;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    abstract class MeterAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get name(): string;
+        set name(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get description(): string;
+        set description(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get tags(): internal.IList<MeterTagMapping>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class CounterMeterAction extends MeterAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CounterMeterAction instance in the SDK and on the server.
+         * The new CounterMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container: ActionActivity): CounterMeterAction;
+        /**
+         * Creates and returns a new CounterMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CounterMeterAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/create-list relevant section in reference guide}
      */
     class CreateListAction extends MicroflowAction {
@@ -1897,6 +1959,39 @@ export declare namespace microflows {
         static create(model: IModel): FormDataRequestHandling;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class GaugeMeterAction extends MeterAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GaugeMeterAction instance in the SDK and on the server.
+         * The new GaugeMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container: ActionActivity): GaugeMeterAction;
+        /**
+         * Creates and returns a new GaugeMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GaugeMeterAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/generate-document relevant section in reference guide}
      */
     class GenerateDocumentAction extends MicroflowAction {
@@ -2317,6 +2412,34 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ImportXmlAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class IncrementCounterMeterAction extends MeterAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new IncrementCounterMeterAction instance in the SDK and on the server.
+         * The new IncrementCounterMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container: ActionActivity): IncrementCounterMeterAction;
+        /**
+         * Creates and returns a new IncrementCounterMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): IncrementCounterMeterAction;
     }
     class InheritanceCase extends CaseValue {
         static structureTypeName: string;
@@ -2780,6 +2903,44 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): MemberChange;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class MeterTagMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMeterAction(): MeterAction;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get key(): string;
+        set key(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MeterTagMapping instance in the SDK and on the server.
+         * The new MeterTagMapping will be automatically stored in the 'tags' property
+         * of the parent MeterAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container: MeterAction): MeterTagMapping;
+        /**
+         * Creates and returns a new MeterTagMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MeterTagMapping;
     }
     interface IMicroflowBase extends projects.IDocument {
         readonly model: IModel;

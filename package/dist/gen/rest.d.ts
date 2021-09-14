@@ -487,13 +487,27 @@ export declare namespace rest {
         get sourceDocument(): IConsumedODataService | null;
         set sourceDocument(newValue: IConsumedODataService | null);
         get sourceDocumentQualifiedName(): string | null;
+        /**
+         * In version 9.5.0: deleted
+         */
         get remoteName(): string;
         set remoteName(newValue: string);
         /**
+         * In version 9.5.0: introduced
+         */
+        get entityTypeName(): string;
+        set entityTypeName(newValue: string);
+        /**
+         * In version 9.5.0: deleted
          * In version 8.11.0: introduced
          */
         get entitySet(): string;
         set entitySet(newValue: string);
+        /**
+         * In version 9.5.0: introduced
+         */
+        get entitySetName(): string;
+        set entitySetName(newValue: string);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *

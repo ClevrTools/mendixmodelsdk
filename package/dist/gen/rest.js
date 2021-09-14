@@ -887,7 +887,11 @@ var rest;
             /** @internal */
             this.__remoteName = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__entityTypeName = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "entityTypeName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__entitySet = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "entitySet", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__entitySetName = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "entitySetName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__key = new internal.PartProperty(ODataRemoteEntitySource, this, "key", null, false);
             /** @internal */
@@ -913,6 +917,9 @@ var rest;
         get sourceDocumentQualifiedName() {
             return this.__sourceDocument.qualifiedName();
         }
+        /**
+         * In version 9.5.0: deleted
+         */
         get remoteName() {
             return this.__remoteName.get();
         }
@@ -920,6 +927,16 @@ var rest;
             this.__remoteName.set(newValue);
         }
         /**
+         * In version 9.5.0: introduced
+         */
+        get entityTypeName() {
+            return this.__entityTypeName.get();
+        }
+        set entityTypeName(newValue) {
+            this.__entityTypeName.set(newValue);
+        }
+        /**
+         * In version 9.5.0: deleted
          * In version 8.11.0: introduced
          */
         get entitySet() {
@@ -927,6 +944,15 @@ var rest;
         }
         set entitySet(newValue) {
             this.__entitySet.set(newValue);
+        }
+        /**
+         * In version 9.5.0: introduced
+         */
+        get entitySetName() {
+            return this.__entitySetName.get();
+        }
+        set entitySetName(newValue) {
+            this.__entitySetName.set(newValue);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -982,8 +1008,20 @@ var rest;
     ODataRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.10.0",
         properties: {
+            remoteName: {
+                deleted: "9.5.0",
+                deletionMessage: "The remote name is replaced by entity type name"
+            },
+            entityTypeName: {
+                introduced: "9.5.0"
+            },
             entitySet: {
-                introduced: "8.11.0"
+                introduced: "8.11.0",
+                deleted: "9.5.0",
+                deletionMessage: "The entity set is replaced by entity set name"
+            },
+            entitySetName: {
+                introduced: "9.5.0"
             },
             key: {
                 introduced: "8.11.0",

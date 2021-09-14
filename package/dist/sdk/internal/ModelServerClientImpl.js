@@ -66,13 +66,22 @@ class ModelServerClientImpl {
         }, errorCallback);
     }
     deleteWorkingCopy(workingCopyId, callback, errorCallback) {
-        this.transportation.request({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}` }, callback, errorCallback);
+        // A 404 error thrown when the working copy doesn't exist should not be considered as an error
+        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}` }, callback, (error) => {
+            var _a;
+            if (((_a = error === null || error === void 0 ? void 0 : error.error) === null || _a === void 0 ? void 0 : _a.code) === 404) {
+                callback();
+            }
+            else {
+                errorCallback(error);
+            }
+        });
     }
     grantAccess(workingCopyId, memberOpenId, callback, errorCallback) {
-        this.transportation.request({ method: "put", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
     }
     revokeAccess(workingCopyId, memberOpenId, callback, errorCallback) {
-        this.transportation.request({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
     }
     checkAccess(workingCopyId, memberOpenId, callback, errorCallback) {
         this.transportation.retryableRequest({
@@ -81,13 +90,13 @@ class ModelServerClientImpl {
         }, (response) => callback(response.hasAccess), errorCallback);
     }
     grantAccessByProject(projectId, memberOpenId, callback, errorCallback) {
-        this.transportation.request({ method: "put", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
     }
     revokeAccessByProject(projectId, memberOpenId, callback, errorCallback) {
-        this.transportation.request({ method: "delete", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
     }
     setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
-        this.transportation.request({ method: "put", url: `${apiEndPoint}project/${projectId}/members`, body: { memberOpenids } }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}project/${projectId}/members`, body: { memberOpenids } }, callback, errorCallback);
     }
     exportMpk(workingCopyId, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
@@ -191,7 +200,7 @@ class ModelServerClientImpl {
      * Update the project-to-working copy mapping with the given data.
      */
     updateWorkingCopyByProject(projectId, workingCopyId, callback, errorCallback) {
-        this.transportation.request({
+        this.transportation.retryableRequest({
             method: "put",
             url: `${apiEndPoint}project/${projectId}`,
             body: {
@@ -204,7 +213,7 @@ class ModelServerClientImpl {
      * Deletes the project-to-working copy mapping for given project ID.
      */
     deleteWorkingCopyByProject(projectId, callback, errorCallback) {
-        this.transportation.request({ method: "delete", url: `${apiEndPoint}project/${projectId}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}project/${projectId}` }, callback, errorCallback);
     }
     lockWorkingCopy(workingCopyId, lockOptionsOrCallback, callbackOrErrorCallback, errorCallback) {
         let callback;
@@ -225,7 +234,7 @@ class ModelServerClientImpl {
         if (lockOptions.lockType === "edit") {
             this.editLockId = lockOptions.lockId;
         }
-        this.transportation.request({
+        this.transportation.retryableRequest({
             method: "post",
             url: `${apiEndPoint}wc/${workingCopyId}/lock`,
             body: lockOptions
@@ -233,7 +242,7 @@ class ModelServerClientImpl {
     }
     unlockWorkingCopy(workingCopyId, lockType, callback, errorCallback) {
         this.editLockId = undefined;
-        this.transportation.request({
+        this.transportation.retryableRequest({
             method: "post",
             url: `${apiEndPoint}wc/${workingCopyId}/unlock`,
             body: lockType && { lockType }

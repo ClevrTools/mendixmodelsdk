@@ -10641,6 +10641,8 @@ var pages;
     class DataViewSource extends EntityPathSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__pageParameter = new internal.LocalByNameReferenceProperty(DataViewSource, this, "pageParameter", null, "Pages$PageParameter");
             if (arguments.length < 4) {
                 throw new Error("new DataViewSource() cannot be invoked directly, please use 'model.pages.createDataViewSource()'");
             }
@@ -10650,6 +10652,18 @@ var pages;
         }
         get containerAsEntityWidget() {
             return super.getContainerAs(EntityWidget);
+        }
+        /**
+         * In version 9.5.0: introduced
+         */
+        get pageParameter() {
+            return this.__pageParameter.get();
+        }
+        set pageParameter(newValue) {
+            this.__pageParameter.set(newValue);
+        }
+        get pageParameterLocalName() {
+            return this.__pageParameter.localName();
         }
         /**
          * Creates and returns a new DataViewSource instance in the SDK and on the server.
@@ -10697,7 +10711,13 @@ var pages;
         }
     }
     DataViewSource.structureTypeName = "Pages$DataViewSource";
-    DataViewSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataViewSource.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            pageParameter: {
+                introduced: "9.5.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.DataViewSource = DataViewSource;
     class DatabaseConstraint extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -15185,7 +15205,13 @@ var pages;
                 this.onClickEnlarge = false;
             }
             this.responsive = true;
-            this.showAsThumbnail = true;
+            (() => {
+                if (internal.isAtLeast("9.5.0", this.model)) {
+                    this.showAsThumbnail = false;
+                    return;
+                }
+                this.showAsThumbnail = true;
+            })();
             (() => {
                 if (internal.isAtLeast("8.0.0", this.model)) {
                     return;
@@ -15206,6 +15232,7 @@ var pages;
         properties: {
             widthUnit: {},
             width: {},
+            showAsThumbnail: {},
             onClickBehavior: {
                 deleted: "7.18.0",
                 deletionMessage: "Use property 'clickAction' instead",
@@ -35776,6 +35803,8 @@ var pages;
             /** @internal */
             this.__widget = new internal.LocalByNameReferenceProperty(PageVariable, this, "widget", null, "Pages$Widget");
             /** @internal */
+            this.__pageParameter = new internal.LocalByNameReferenceProperty(PageVariable, this, "pageParameter", null, "Pages$PageParameter");
+            /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(PageVariable, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
@@ -35801,6 +35830,18 @@ var pages;
         }
         get widgetLocalName() {
             return this.__widget.localName();
+        }
+        /**
+         * In version 9.5.0: introduced
+         */
+        get pageParameter() {
+            return this.__pageParameter.get();
+        }
+        set pageParameter(newValue) {
+            this.__pageParameter.set(newValue);
+        }
+        get pageParameterLocalName() {
+            return this.__pageParameter.localName();
         }
         get useAllPages() {
             return this.__useAllPages.get();
@@ -35872,7 +35913,12 @@ var pages;
     }
     PageVariable.structureTypeName = "Pages$PageVariable";
     PageVariable.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.4.0"
+        introduced: "8.4.0",
+        properties: {
+            pageParameter: {
+                introduced: "9.5.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.PageVariable = PageVariable;
     /**

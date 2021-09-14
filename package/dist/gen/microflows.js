@@ -2250,6 +2250,129 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ContinueOperation = ContinueOperation;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class MeterAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(MeterAction, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(MeterAction, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__tags = new internal.PartListProperty(MeterAction, this, "tags", []);
+            if (arguments.length < 4) {
+                throw new Error("new MeterAction() cannot be invoked directly, please use 'model.microflows.createMeterAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get tags() {
+            return this.__tags.get();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MeterAction.structureTypeName = "Microflows$MeterAction";
+    MeterAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.MeterAction = MeterAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class CounterMeterAction extends MeterAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(CounterMeterAction, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new CounterMeterAction() cannot be invoked directly, please use 'model.microflows.createCounterMeterAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new CounterMeterAction instance in the SDK and on the server.
+         * The new CounterMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CounterMeterAction.structureTypeName, { start: "9.5.0" });
+            return internal.instancehelpers.createElement(container, CounterMeterAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CounterMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CounterMeterAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CounterMeterAction.structureTypeName = "Microflows$CounterMeterAction";
+    CounterMeterAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.CounterMeterAction = CounterMeterAction;
+    /**
      * See: {@link https://docs.mendix.com/refguide/create-list relevant section in reference guide}
      */
     class CreateListAction extends MicroflowAction {
@@ -4229,6 +4352,67 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.FormDataRequestHandling = FormDataRequestHandling;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class GaugeMeterAction extends MeterAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(GaugeMeterAction, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GaugeMeterAction() cannot be invoked directly, please use 'model.microflows.createGaugeMeterAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new GaugeMeterAction instance in the SDK and on the server.
+         * The new GaugeMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GaugeMeterAction.structureTypeName, { start: "9.5.0" });
+            return internal.instancehelpers.createElement(container, GaugeMeterAction, "action", false);
+        }
+        /**
+         * Creates and returns a new GaugeMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GaugeMeterAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GaugeMeterAction.structureTypeName = "Microflows$GaugeMeterAction";
+    GaugeMeterAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.GaugeMeterAction = GaugeMeterAction;
+    /**
      * See: {@link https://docs.mendix.com/refguide/generate-document relevant section in reference guide}
      */
     class GenerateDocumentAction extends MicroflowAction {
@@ -5256,6 +5440,56 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.ImportXmlAction = ImportXmlAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class IncrementCounterMeterAction extends MeterAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new IncrementCounterMeterAction() cannot be invoked directly, please use 'model.microflows.createIncrementCounterMeterAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * Creates and returns a new IncrementCounterMeterAction instance in the SDK and on the server.
+         * The new IncrementCounterMeterAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, IncrementCounterMeterAction.structureTypeName, { start: "9.5.0" });
+            return internal.instancehelpers.createElement(container, IncrementCounterMeterAction, "action", false);
+        }
+        /**
+         * Creates and returns a new IncrementCounterMeterAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, IncrementCounterMeterAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    IncrementCounterMeterAction.structureTypeName = "Microflows$IncrementCounterMeterAction";
+    IncrementCounterMeterAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.IncrementCounterMeterAction = IncrementCounterMeterAction;
     class InheritanceCase extends CaseValue {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -6385,6 +6619,78 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.MemberChange = MemberChange;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.5.0: introduced
+     */
+    class MeterTagMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__key = new internal.PrimitiveProperty(MeterTagMapping, this, "key", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(MeterTagMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MeterTagMapping() cannot be invoked directly, please use 'model.microflows.createMeterTagMapping()'");
+            }
+        }
+        get containerAsMeterAction() {
+            return super.getContainerAs(MeterAction);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get key() {
+            return this.__key.get();
+        }
+        set key(newValue) {
+            this.__key.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new MeterTagMapping instance in the SDK and on the server.
+         * The new MeterTagMapping will be automatically stored in the 'tags' property
+         * of the parent MeterAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MeterTagMapping.structureTypeName, { start: "9.5.0" });
+            return internal.instancehelpers.createElement(container, MeterTagMapping, "tags", true);
+        }
+        /**
+         * Creates and returns a new MeterTagMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MeterTagMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MeterTagMapping.structureTypeName = "Microflows$MeterTagMapping";
+    MeterTagMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.MeterTagMapping = MeterTagMapping;
     class MicroflowBase extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);

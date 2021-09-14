@@ -5593,6 +5593,12 @@ export declare namespace pages {
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
+        /**
+         * In version 9.5.0: introduced
+         */
+        get pageParameter(): PageParameter | null;
+        set pageParameter(newValue: PageParameter | null);
+        get pageParameterLocalName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewSource instance in the SDK and on the server.
@@ -20767,6 +20773,12 @@ export declare namespace pages {
         get widget(): Widget | null;
         set widget(newValue: Widget | null);
         get widgetLocalName(): string | null;
+        /**
+         * In version 9.5.0: introduced
+         */
+        get pageParameter(): PageParameter | null;
+        set pageParameter(newValue: PageParameter | null);
+        get pageParameterLocalName(): string | null;
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

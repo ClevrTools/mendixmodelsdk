@@ -495,6 +495,7 @@ export declare type ConcreteModelElements = {
     Microflows$Contains: microflows.Contains;
     Microflows$ContinueEvent: microflows.ContinueEvent;
     Microflows$ContinueOperation: microflows.ContinueOperation;
+    Microflows$CounterMeterAction: microflows.CounterMeterAction;
     Microflows$CreateListAction: microflows.CreateListAction;
     Microflows$CreateObjectAction: microflows.CreateObjectAction;
     Microflows$CreateVariableAction: microflows.CreateVariableAction;
@@ -522,6 +523,7 @@ export declare type ConcreteModelElements = {
     Microflows$FindByExpression: microflows.FindByExpression;
     Microflows$FormDataPart: microflows.FormDataPart;
     Microflows$FormDataRequestHandling: microflows.FormDataRequestHandling;
+    Microflows$GaugeMeterAction: microflows.GaugeMeterAction;
     Microflows$GenerateDocumentAction: microflows.GenerateDocumentAction;
     Microflows$Head: microflows.Head;
     Microflows$HttpConfiguration: microflows.HttpConfiguration;
@@ -530,6 +532,7 @@ export declare type ConcreteModelElements = {
     Microflows$ImportMappingJavaActionParameterValue: microflows.ImportMappingJavaActionParameterValue;
     Microflows$ImportMappingParameterValue: microflows.ImportMappingParameterValue;
     Microflows$ImportXmlAction: microflows.ImportXmlAction;
+    Microflows$IncrementCounterMeterAction: microflows.IncrementCounterMeterAction;
     Microflows$InheritanceCase: microflows.InheritanceCase;
     Microflows$InheritanceSplit: microflows.InheritanceSplit;
     Microflows$Intersect: microflows.Intersect;
@@ -544,6 +547,7 @@ export declare type ConcreteModelElements = {
     Microflows$LoopedActivity: microflows.LoopedActivity;
     Microflows$MappingRequestHandling: microflows.MappingRequestHandling;
     Microflows$MemberChange: microflows.MemberChange;
+    Microflows$MeterTagMapping: microflows.MeterTagMapping;
     Microflows$MicroflowCall: microflows.MicroflowCall;
     Microflows$MicroflowCallAction: microflows.MicroflowCallAction;
     Microflows$MicroflowCallParameterMapping: microflows.MicroflowCallParameterMapping;
