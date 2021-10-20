@@ -63,7 +63,7 @@ class DeltaReverser {
             default:
                 throw new Error(`Invalid mutatorType: ${JSON.stringify(mutator)}`);
         }
-        return Object.assign(Object.assign({}, delta), { mutator: reversedMutator });
+        return { ...delta, mutator: reversedMutator };
     }
     reverseCreateElementTreeDelta(delta) {
         return {

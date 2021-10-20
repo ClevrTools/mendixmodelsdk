@@ -241,7 +241,7 @@ class ModelUnit extends elements_1.AbstractElement {
         const elementType = instances_1.instancehelpers.lookupClass(elementTypeName, this._model._allModelClasses());
         const matchingElements = [];
         this.traverse((abstractElement) => {
-            if (abstractElement instanceof elementType && properties_1.isNamedElement(abstractElement) && abstractElement.name === name) {
+            if (abstractElement instanceof elementType && (0, properties_1.isNamedElement)(abstractElement) && abstractElement.name === name) {
                 matchingElements.push(abstractElement);
             }
         });

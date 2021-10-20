@@ -58,7 +58,7 @@ class AbstractElement extends structures.Structure {
         else {
             forceRefresh = arg1;
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.unit._model.loadUnitById(this.unit.id, forceRefresh, () => {
                 // this element should be loaded now!
                 this._assertLoaded();

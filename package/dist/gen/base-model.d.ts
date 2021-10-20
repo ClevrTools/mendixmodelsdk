@@ -137,6 +137,7 @@ export interface IBaseModel extends IAbstractModel {
     findLayoutByQualifiedName(qname: string): pages.ILayout | null;
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
+    findPageParameterByQualifiedName(qname: string): pages.IPageParameter | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
     findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
@@ -247,6 +248,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findLayoutByQualifiedName(qname: string): pages.ILayout | null;
     findLayoutParameterByQualifiedName(qname: string): pages.ILayoutParameter | null;
     findPageByQualifiedName(qname: string): pages.IPage | null;
+    findPageParameterByQualifiedName(qname: string): pages.IPageParameter | null;
     findSnippetByQualifiedName(qname: string): pages.ISnippet | null;
     findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
@@ -577,6 +579,7 @@ export declare type ConcreteModelElements = {
     Microflows$RuleCallParameterMapping: microflows.RuleCallParameterMapping;
     Microflows$RuleParameter: microflows.RuleParameter;
     Microflows$RuleSplitCondition: microflows.RuleSplitCondition;
+    Microflows$SendExternalObject: microflows.SendExternalObject;
     Microflows$SequenceFlow: microflows.SequenceFlow;
     Microflows$SetTaskOutcomeAction: microflows.SetTaskOutcomeAction;
     Microflows$ShowHomePageAction: microflows.ShowHomePageAction;
@@ -727,6 +730,7 @@ export declare type ConcreteModelElements = {
     Pages$PageClientAction: pages.PageClientAction;
     Pages$PageForSpecialization: pages.PageForSpecialization;
     Pages$PageParameter: pages.PageParameter;
+    Pages$PageParameterMapping: pages.PageParameterMapping;
     Pages$PageSettings: pages.PageSettings;
     Pages$PageVariable: pages.PageVariable;
     Pages$PasswordTextBox: pages.PasswordTextBox;
@@ -857,9 +861,11 @@ export declare type ConcreteModelElements = {
     Workflows$NoEvent: workflows.NoEvent;
     Workflows$ParallelSplitActivity: workflows.ParallelSplitActivity;
     Workflows$ParallelSplitOutcome: workflows.ParallelSplitOutcome;
+    Workflows$Parameter: workflows.Parameter;
     Workflows$UserTask: workflows.UserTask;
     Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
     Workflows$VoidConditionOutcome: workflows.VoidConditionOutcome;
+    Workflows$WorkflowType: workflows.WorkflowType;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;
     XmlSchemas$XmlSchemaEntry: xmlschemas.XmlSchemaEntry;

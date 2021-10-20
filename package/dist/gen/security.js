@@ -358,11 +358,21 @@ var security;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.minimumLength = 8;
+            (() => {
+                if (internal.isAtLeast("9.7.0", this.model)) {
+                    this.minimumLength = 12;
+                    return;
+                }
+                this.minimumLength = 8;
+            })();
         }
     }
     PasswordPolicySettings.structureTypeName = "Security$PasswordPolicySettings";
-    PasswordPolicySettings.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    PasswordPolicySettings.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            minimumLength: {}
+        }
+    }, internal.StructureType.Element);
     security.PasswordPolicySettings = PasswordPolicySettings;
     /**
      * See: {@link https://docs.mendix.com/refguide/project-security relevant section in reference guide}

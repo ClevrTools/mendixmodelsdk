@@ -5,15 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AbstractModel = void 0;
 /* tslint:disable:no-circular-imports */
@@ -76,36 +67,34 @@ class AbstractModel {
         this._errorHandler = _errorHandler;
     }
     /** @internal */
-    initializeFromModelServer(workingCopyId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this._isInitialized) {
-                throw new Error("Illegal state: model already initialized");
-            }
-            // Load the working copy metadata and the unit interfaces in parallel.
-            const workingCopyPromise = new Promise((resolve, reject) => this._client.loadWorkingCopyMetaData(workingCopyId, resolve, reject));
-            const unitInterfacesPromise = new Promise((resolve, reject) => this._client.loadUnitInterfaces(workingCopyId, resolve, reject));
-            const [workingCopy, { units: unitInterfaces, eventId }] = yield Promise.all([workingCopyPromise, unitInterfacesPromise]);
-            this.numberOfPendingChanges = 0;
-            if (eventId > this.lastEventId) {
-                this.lastEventId = eventId;
-            }
-            this.workingCopy = workingCopy;
-            this.metaModelVersion = versionChecks_1.parseAsNormalizedVersion(workingCopy.metaData.metaModelVersion);
-            this.mxVersionForModel = versionChecks_1.parseAsNormalizedVersion(workingCopy.mprMetaData._ProductVersion);
-            const maxMetamodelVersion = versionChecks_1.Version.parse(metamodelversion_1.MAX_METAMODEL_VERSION);
-            if (this.metaModelVersion.isAfter(maxMetamodelVersion)) {
-                throw new Error(`The Model SDK you are using does not support opening a working copy with metamodel version '${workingCopy.metaData.metaModelVersion}'. Please update to the latest Model SDK.`);
-            }
-            this.deltaManager = new deltas_1.DeltaManager(this);
-            this.modelEventManager = new ModelEventManager_1.ModelEventManager(this, this.deltaManager, new deltas_1.DeltaProcessor(this), workingCopyId, eventId);
-            this.workingCopyEventReceiver = new WorkingCopyEventReceiver_1.WorkingCopyEventReceiver(workingCopyId, this._client, this);
-            this.processUnitInterfaces(unitInterfaces);
-            this._isInitialized = true;
-        });
+    async initializeFromModelServer(workingCopyId) {
+        if (this._isInitialized) {
+            throw new Error("Illegal state: model already initialized");
+        }
+        // Load the working copy metadata and the unit interfaces in parallel.
+        const workingCopyPromise = new Promise((resolve, reject) => this._client.loadWorkingCopyMetaData(workingCopyId, resolve, reject));
+        const unitInterfacesPromise = new Promise((resolve, reject) => this._client.loadUnitInterfaces(workingCopyId, resolve, reject));
+        const [workingCopy, { units: unitInterfaces, eventId }] = await Promise.all([workingCopyPromise, unitInterfacesPromise]);
+        this.numberOfPendingChanges = 0;
+        if (eventId > this.lastEventId) {
+            this.lastEventId = eventId;
+        }
+        this.workingCopy = workingCopy;
+        this.metaModelVersion = (0, versionChecks_1.parseAsNormalizedVersion)(workingCopy.metaData.metaModelVersion);
+        this.mxVersionForModel = (0, versionChecks_1.parseAsNormalizedVersion)(workingCopy.mprMetaData._ProductVersion);
+        const maxMetamodelVersion = versionChecks_1.Version.parse(metamodelversion_1.MAX_METAMODEL_VERSION);
+        if (this.metaModelVersion.isAfter(maxMetamodelVersion)) {
+            throw new Error(`The Model SDK you are using does not support opening a working copy with metamodel version '${workingCopy.metaData.metaModelVersion}'. Please update to the latest Model SDK.`);
+        }
+        this.deltaManager = new deltas_1.DeltaManager(this);
+        this.modelEventManager = new ModelEventManager_1.ModelEventManager(this, this.deltaManager, new deltas_1.DeltaProcessor(this), workingCopyId, eventId);
+        this.workingCopyEventReceiver = new WorkingCopyEventReceiver_1.WorkingCopyEventReceiver(workingCopyId, this._client, this);
+        this.processUnitInterfaces(unitInterfaces);
+        this._isInitialized = true;
     }
     /** @internal */
     processUnitInterfaces(unitInterfaces, isLoadable = true, isReadOnly = false) {
-        mobx_1.runInAction(() => {
+        (0, mobx_1.runInAction)(() => {
             unitInterfaces.forEach(unitJson => instances_1.instancehelpers.abstractUnitJsonToInstance(this, unitJson, true));
             unitInterfaces.forEach(unitJson => {
                 const unit = this._units[unitJson.$ID];
@@ -123,18 +112,18 @@ class AbstractModel {
         this._errorHandler = callback;
     }
     closeConnection(callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.modelEventManager.stop();
             this.deltaManager.closeConnection(resolve, reject);
         }, callback, errorCallback || this._errorHandler);
     }
     flushChanges(callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.deltaManager.flushChanges(resolve, reject);
         }, callback, errorCallback || this._errorHandler);
     }
     getLastEventId(callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.flushChanges(() => {
                 resolve(this.lastEventId);
             }, reject);
@@ -208,7 +197,7 @@ class AbstractModel {
         }
     }
     loadUnitById(id, forceRefresh, callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             if (id === null) {
                 this.handleError("Unit ID is null", reject);
                 return;
@@ -250,7 +239,7 @@ class AbstractModel {
         this.modelEventManager.loadUnitStarted();
         this._client.loadUnitById(this.workingCopy.id, unit.id, (response) => {
             this.modelEventManager.loadUnitCompleted(response.eventId, () => {
-                mobx_1.runInAction(() => {
+                (0, mobx_1.runInAction)(() => {
                     // Enable elements cache while updating unit contents from JSON.
                     // This dramatically speeds up loading certain document types.
                     if (unit instanceof units_1.ModelUnit) {
@@ -272,7 +261,7 @@ class AbstractModel {
         }, errorCallback || this._errorHandler);
     }
     filterUnitsByCustomWidgetId(workingCopyId, widgetId, callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.filterUnitsByCustomWidgetId(workingCopyId, widgetId, resolve, reject), callback, errorCallback || this._errorHandler);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this._client.filterUnitsByCustomWidgetId(workingCopyId, widgetId, resolve, reject), callback, errorCallback || this._errorHandler);
     }
     /** @internal */
     _resolveContainer(unit, containerId) {
@@ -366,22 +355,22 @@ class AbstractModel {
         }
     }
     deleteWorkingCopy(callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.flushChanges(() => this._client.deleteWorkingCopy(this.id, resolve, reject), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     exportMpk(outFilePath, callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.flushChanges(() => this._client.exportMpk(this.id, outFilePath, resolve, reject), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     exportModuleMpk(moduleId, outFilePath, callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this.flushChanges(() => this._client.exportModuleMpk(this.id, moduleId, outFilePath, resolve, reject), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     importModuleMpk(mpkPath, callback, errorCallback) {
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             this._client.importModuleMpk(this.id, mpkPath, rootUnitId => {
                 this._client.loadUnitInterfaces(this.id, (data) => {
                     this.processUnitInterfaces(data.units);
@@ -435,20 +424,20 @@ class AbstractModel {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.getFiles(this.id, options, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this._client.getFiles(this.id, options, resolve, reject), callback, errorCallback);
     }
     getFile(filePath, outFilePath, callback, errorCallback) {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.getFile(this.id, filePath, outFilePath, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this._client.getFile(this.id, filePath, outFilePath, resolve, reject), callback, errorCallback);
     }
     putFile(inFilePath, filePath, callback, errorCallback) {
         if (callback) {
             checkErrorCallback(errorCallback);
         }
         this.startPendingChange();
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this._client.putFile(this.id, inFilePath, filePath, lastEventId => {
             this.completePendingChange(lastEventId);
             resolve();
         }, err => {
@@ -461,7 +450,7 @@ class AbstractModel {
             checkErrorCallback(errorCallback);
         }
         this.startPendingChange();
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this._client.deleteFile(this.id, filePath, lastEventId => {
             this.completePendingChange(lastEventId);
             resolve();
         }, err => {

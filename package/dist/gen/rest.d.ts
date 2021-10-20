@@ -140,6 +140,17 @@ export declare namespace rest {
          */
         get lastUpdated(): string;
         set lastUpdated(newValue: string);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get useQuerySegment(): boolean;
+        set useQuerySegment(newValue: boolean);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get errorHandlingMicroflow(): microflows.IMicroflow | null;
+        set errorHandlingMicroflow(newValue: microflows.IMicroflow | null);
+        get errorHandlingMicroflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
@@ -390,6 +401,11 @@ export declare namespace rest {
          */
         get sortable(): boolean;
         set sortable(newValue: boolean);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get updatable(): boolean;
+        set updatable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -433,6 +449,16 @@ export declare namespace rest {
          */
         get navigability(): AssociationNavigability;
         set navigability(newValue: AssociationNavigability);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get updatableFromChild(): boolean;
+        set updatableFromChild(newValue: boolean);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get updatableFromParent(): boolean;
+        set updatableFromParent(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.

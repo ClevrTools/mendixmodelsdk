@@ -35389,6 +35389,10 @@ var pages;
         static create(model) {
             return internal.instancehelpers.createElement(model, PageParameter);
         }
+        /** @internal */
+        _isByNameReferrable() {
+            return true;
+        }
         get qualifiedName() {
             return this._getQualifiedName();
         }
@@ -35422,6 +35426,92 @@ var pages;
     }, internal.StructureType.Element);
     pages.PageParameter = PageParameter;
     /**
+     * In version 9.7.0: introduced
+     */
+    class PageParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(PageParameterMapping, this, "parameter", null, "Pages$PageParameter");
+            /** @internal */
+            this.__variable = new internal.PartProperty(PageParameterMapping, this, "variable", null, true);
+            /** @internal */
+            this.__argument = new internal.PrimitiveProperty(PageParameterMapping, this, "argument", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new PageParameterMapping() cannot be invoked directly, please use 'model.pages.createPageParameterMapping()'");
+            }
+        }
+        get containerAsPageSettings() {
+            return super.getContainerAs(PageSettings);
+        }
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        get variable() {
+            return this.__variable.get();
+        }
+        set variable(newValue) {
+            this.__variable.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get argument() {
+            return this.__argument.get();
+        }
+        set argument(newValue) {
+            this.__argument.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageParameterMapping instance in the SDK and on the server.
+         * The new PageParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.7.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, PageParameterMapping.structureTypeName, { start: "9.7.0" });
+            return internal.instancehelpers.createElement(container, PageParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new PageParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PageParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.variable = PageVariable.create(this.model);
+        }
+    }
+    PageParameterMapping.structureTypeName = "Pages$PageParameterMapping";
+    PageParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.7.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            },
+            variable: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.PageParameterMapping = PageParameterMapping;
+    /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element {
@@ -35435,6 +35525,8 @@ var pages;
             this.__titleOverride = new internal.PartProperty(PageSettings, this, "titleOverride", null, false);
             /** @internal */
             this.__location = new internal.EnumProperty(PageSettings, this, "location", FormLocation.Popup, FormLocation);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(PageSettings, this, "parameterMappings", []);
             if (arguments.length < 4) {
                 throw new Error("new PageSettings() cannot be invoked directly, please use 'model.pages.createPageSettings()'");
             }
@@ -35507,6 +35599,12 @@ var pages;
         }
         set location(newValue) {
             this.__location.set(newValue);
+        }
+        /**
+         * In version 9.7.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
         }
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
@@ -35641,6 +35739,9 @@ var pages;
             location: {
                 deleted: "8.0.0",
                 deletionMessage: null
+            },
+            parameterMappings: {
+                introduced: "9.7.0"
             }
         }
     }, internal.StructureType.Element);
@@ -35822,6 +35923,9 @@ var pages;
         get containerAsNanoflowParameterMapping() {
             return super.getContainerAs(NanoflowParameterMapping);
         }
+        get containerAsPageParameterMapping() {
+            return super.getContainerAs(PageParameterMapping);
+        }
         get widget() {
             return this.__widget.get();
         }
@@ -35895,6 +35999,18 @@ var pages;
          */
         static createInNanoflowParameterMappingUnderVariable(container) {
             internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.4.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent PageParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.7.0 and higher
+         */
+        static createInPageParameterMappingUnderVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.7.0" });
             return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
         }
         /**

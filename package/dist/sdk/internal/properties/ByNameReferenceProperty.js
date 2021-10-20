@@ -184,7 +184,7 @@ class ByNameReferenceListProperty extends AbstractProperty_1.AbstractProperty {
     beforeChange(change) {
         if (this.shouldHandleChange()) {
             this.assertWritable();
-            sendListChangeDeltas_1.sendListChangeDeltas(this, change);
+            (0, sendListChangeDeltas_1.sendListChangeDeltas)(this, change);
         }
         return change;
     }

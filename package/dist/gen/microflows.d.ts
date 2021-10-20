@@ -1010,10 +1010,7 @@ export declare namespace microflows {
         static create(model: IModel): ContinueOperation;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     abstract class MeterAction extends MicroflowAction {
@@ -1030,19 +1027,13 @@ export declare namespace microflows {
          */
         get description(): string;
         set description(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get tags(): internal.IList<MeterTagMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-counter relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class CounterMeterAction extends MeterAction {
@@ -1959,10 +1950,9 @@ export declare namespace microflows {
         static create(model: IModel): FormDataRequestHandling;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-gauge relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class GaugeMeterAction extends MeterAction {
@@ -2414,10 +2404,9 @@ export declare namespace microflows {
         static create(model: IModel): ImportXmlAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-increment-counter relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class IncrementCounterMeterAction extends MeterAction {
@@ -2905,10 +2894,7 @@ export declare namespace microflows {
         static create(model: IModel): MemberChange;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class MeterTagMapping extends internal.Element<IModel> {
@@ -4128,6 +4114,37 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RuleSplitCondition;
+    }
+    /**
+     * In version 9.6.0: introduced
+     */
+    class SendExternalObject extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get variableNameToBeSent(): string;
+        set variableNameToBeSent(newValue: string);
+        /**
+         * In version 9.7.0: introduced
+         */
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SendExternalObject instance in the SDK and on the server.
+         * The new SendExternalObject will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.6.0 and higher
+         */
+        static createIn(container: ActionActivity): SendExternalObject;
+        /**
+         * Creates and returns a new SendExternalObject instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SendExternalObject;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/sequence-flow relevant section in reference guide}

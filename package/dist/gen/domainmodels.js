@@ -695,6 +695,7 @@ var domainmodels;
     AssociationDeleteBehavior.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     domainmodels.AssociationDeleteBehavior = AssociationDeleteBehavior;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class MemberRef extends internal.Element {
@@ -748,6 +749,9 @@ var domainmodels;
         get containerAsStaticOrDynamicString() {
             return super.getContainerAs(pages_1.pages.StaticOrDynamicString);
         }
+        /**
+         * In version 9.6.0: added public
+         */
         get entityRef() {
             return this.__entityRef.get();
         }
@@ -761,10 +765,23 @@ var domainmodels;
     }
     MemberRef.structureTypeName = "DomainModels$MemberRef";
     MemberRef.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.11.0"
+        introduced: "7.11.0",
+        properties: {
+            entityRef: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.6.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
+        }
     }, internal.StructureType.Element);
     domainmodels.MemberRef = MemberRef;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class AssociationRef extends MemberRef {
@@ -810,6 +827,10 @@ var domainmodels;
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
         }
     }, internal.StructureType.Element);
     domainmodels.AssociationRef = AssociationRef;
@@ -1080,6 +1101,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.AttributeCapabilities = AttributeCapabilities;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class AttributeRef extends MemberRef {
@@ -1344,6 +1366,10 @@ var domainmodels;
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
         }
     }, internal.StructureType.Element);
     domainmodels.AttributeRef = AttributeRef;
@@ -2191,6 +2217,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.DecimalAttributeType = DecimalAttributeType;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class EntityRef extends internal.Element {
@@ -2224,6 +2251,9 @@ var domainmodels;
         get containerAsSelectorXPathSource() {
             return super.getContainerAs(pages_1.pages.SelectorXPathSource);
         }
+        get containerAsParameter() {
+            return super.getContainerAs(workflows_1.workflows.Parameter);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2231,10 +2261,15 @@ var domainmodels;
     }
     EntityRef.structureTypeName = "DomainModels$EntityRef";
     EntityRef.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.11.0"
+        introduced: "7.11.0",
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
+        }
     }, internal.StructureType.Element);
     domainmodels.EntityRef = EntityRef;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class DirectEntityRef extends EntityRef {
@@ -2382,6 +2417,10 @@ var domainmodels;
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
         }
     }, internal.StructureType.Element);
     domainmodels.DirectEntityRef = DirectEntityRef;
@@ -2925,6 +2964,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.EntityKeyPart = EntityKeyPart;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class EntityRefStep extends internal.Element {
@@ -2998,6 +3038,10 @@ var domainmodels;
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
         }
     }, internal.StructureType.Element);
     domainmodels.EntityRefStep = EntityRefStep;
@@ -3666,6 +3710,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.IndexedAttribute = IndexedAttribute;
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
     class IndirectEntityRef extends EntityRef {
@@ -3701,6 +3746,12 @@ var domainmodels;
         get containerAsSelectorXPathSource() {
             return super.getContainerAs(pages_1.pages.SelectorXPathSource);
         }
+        get containerAsParameter() {
+            return super.getContainerAs(workflows_1.workflows.Parameter);
+        }
+        /**
+         * In version 9.6.0: added public
+         */
         get steps() {
             return this.__steps.get();
         }
@@ -3802,6 +3853,18 @@ var domainmodels;
         }
         /**
          * Creates and returns a new IndirectEntityRef instance in the SDK and on the server.
+         * The new IndirectEntityRef will be automatically stored in the 'entityRef' property
+         * of the parent workflows.Parameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.6.0 and higher
+         */
+        static createInParameterUnderEntityRef(container) {
+            internal.createInVersionCheck(container.model, IndirectEntityRef.structureTypeName, { start: "9.6.0" });
+            return internal.instancehelpers.createElement(container, IndirectEntityRef, "entityRef", false);
+        }
+        /**
+         * Creates and returns a new IndirectEntityRef instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -3815,7 +3878,19 @@ var domainmodels;
     }
     IndirectEntityRef.structureTypeName = "DomainModels$IndirectEntityRef";
     IndirectEntityRef.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.11.0"
+        introduced: "7.11.0",
+        properties: {
+            steps: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.6.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.6.0"]
+        }
     }, internal.StructureType.Element);
     domainmodels.IndirectEntityRef = IndirectEntityRef;
     class IntegerAttributeType extends IntegerAttributeTypeBase {
@@ -4491,6 +4566,8 @@ var domainmodels;
             this.__environmentType = new internal.EnumProperty(RemoteEntitySourceDocument, this, "environmentType", EnvironmentType.Unknown, EnvironmentType);
             /** @internal */
             this.__metadataHash = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "metadataHash", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__validated = new internal.PrimitiveProperty(RemoteEntitySourceDocument, this, "validated", false, internal.PrimitiveTypeEnum.Boolean);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
@@ -4610,6 +4687,15 @@ var domainmodels;
         set metadataHash(newValue) {
             this.__metadataHash.set(newValue);
         }
+        /**
+         * In version 9.6.0: introduced
+         */
+        get validated() {
+            return this.__validated.get();
+        }
+        set validated(newValue) {
+            this.__validated.set(newValue);
+        }
         /** @internal */
         _isByNameReferrable() {
             return true;
@@ -4686,6 +4772,12 @@ var domainmodels;
             },
             metadataHash: {
                 introduced: "8.16.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            validated: {
+                introduced: "9.6.0",
                 public: {
                     currentValue: true
                 }
@@ -4996,4 +5088,5 @@ const pages_1 = require("./pages");
 const rest_1 = require("./rest");
 const security_1 = require("./security");
 const texts_1 = require("./texts");
+const workflows_1 = require("./workflows");
 //# sourceMappingURL=domainmodels.js.map

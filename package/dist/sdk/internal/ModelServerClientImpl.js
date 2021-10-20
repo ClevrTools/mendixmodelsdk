@@ -68,8 +68,7 @@ class ModelServerClientImpl {
     deleteWorkingCopy(workingCopyId, callback, errorCallback) {
         // A 404 error thrown when the working copy doesn't exist should not be considered as an error
         this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}` }, callback, (error) => {
-            var _a;
-            if (((_a = error === null || error === void 0 ? void 0 : error.error) === null || _a === void 0 ? void 0 : _a.code) === 404) {
+            if (error?.error?.code === 404) {
                 callback();
             }
             else {
@@ -135,9 +134,8 @@ class ModelServerClientImpl {
             headers: this.getHeadersForModificationRequest(),
             body: { deltas: deltas }
         }, (data, response) => {
-            var _a;
             callback({
-                firstError: (_a = data) === null || _a === void 0 ? void 0 : _a.firstError,
+                firstError: data?.firstError,
                 eventId: Number(response.headers["last-event-id"])
             });
         }, errorCallback);
@@ -265,10 +263,9 @@ class ModelServerClientImpl {
             });
         }
         else {
-            const authInfo = getAuthInfo_1.getAuthInfo(this.config);
             return new EventSource(`${this.config.endPoint}/v1/wc/${workingCopyId}/events`, {
                 headers: {
-                    Authorization: `Basic ${Buffer.from(authInfo.username + ":" + authInfo.password).toString("base64")}`,
+                    Authorization: this.getAuthorizationHeader(),
                     "Last-Event-ID": lastEventId
                 }
             });
@@ -279,10 +276,9 @@ class ModelServerClientImpl {
             return new EventSource(`${location.protocol}//${location.host}/api/v1/wc/${workingCopyId}/wc-events`);
         }
         else {
-            const authInfo = getAuthInfo_1.getAuthInfo(this.config);
             return new EventSource(`${this.config.endPoint}/v1/wc/${workingCopyId}/wc-events`, {
                 headers: {
-                    Authorization: `Basic ${Buffer.from(authInfo.username + ":" + authInfo.password).toString("base64")}`
+                    Authorization: this.getAuthorizationHeader()
                 }
             });
         }
@@ -391,6 +387,16 @@ class ModelServerClientImpl {
             isCollaboration: workingCopyInfo.isCollaboration === true
         };
         return workingCopyData;
+    }
+    getAuthorizationHeader() {
+        const authInfo = (0, getAuthInfo_1.getAuthInfo)(this.config);
+        if (authInfo.auth === "basic") {
+            return `Basic ${Buffer.from(authInfo.username + ":" + authInfo.password).toString("base64")}`;
+        }
+        if (authInfo.auth === "pat") {
+            return `MxToken ${authInfo.personalAccessToken}`;
+        }
+        throw new Error("No credentials provided");
     }
 }
 exports.ModelServerClientImpl = ModelServerClientImpl;

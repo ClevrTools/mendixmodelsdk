@@ -652,6 +652,10 @@ export declare namespace codeactions {
         readonly category: string;
         readonly icon: images.IImage | null;
         readonly iconQualifiedName: string | null;
+        /**
+         * In version 9.6.0: introduced
+         */
+        readonly imageData: string | null;
         asLoaded(): MicroflowActionInfo;
         load(callback: (element: MicroflowActionInfo) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<MicroflowActionInfo>;
@@ -671,6 +675,11 @@ export declare namespace codeactions {
         get icon(): images.IImage | null;
         set icon(newValue: images.IImage | null);
         get iconQualifiedName(): string | null;
+        /**
+         * In version 9.6.0: introduced
+         */
+        get imageData(): string | null;
+        set imageData(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.

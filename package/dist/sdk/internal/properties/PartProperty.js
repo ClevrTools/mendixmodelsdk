@@ -61,7 +61,7 @@ class PartProperty extends AbstractProperty_1.AbstractProperty {
         this.observableValue.set(newValue || null);
     }
     updateWithRawValue(value) {
-        const newChild = instantiateChildElement_1.instantiateChildElement(this.parent, value);
+        const newChild = (0, instantiateChildElement_1.instantiateChildElement)(this.parent, value);
         if (newChild) {
             newChild._container = this.parent;
         }
@@ -88,7 +88,7 @@ class PartProperty extends AbstractProperty_1.AbstractProperty {
     dispose() {
         super.dispose();
         const element = this.observableValue.get();
-        if (element) {
+        if (element && element.container.id === this.parent.id) {
             element._dispose();
         }
     }

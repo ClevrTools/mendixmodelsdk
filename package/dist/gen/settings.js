@@ -931,6 +931,8 @@ var settings;
             this.__enableDataStorageNewQueryHandling = new internal.PrimitiveProperty(RuntimeSettings, this, "enableDataStorageNewQueryHandling", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__useDeprecatedClientForWebServiceCalls = new internal.PrimitiveProperty(RuntimeSettings, this, "useDeprecatedClientForWebServiceCalls", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__useSystemContextForBackgroundTasks = new internal.PrimitiveProperty(RuntimeSettings, this, "useSystemContextForBackgroundTasks", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new RuntimeSettings() cannot be invoked directly, please use 'model.settings.createRuntimeSettings()'");
             }
@@ -1041,6 +1043,15 @@ var settings;
             this.__useDeprecatedClientForWebServiceCalls.set(newValue);
         }
         /**
+         * In version 9.6.0: introduced
+         */
+        get useSystemContextForBackgroundTasks() {
+            return this.__useSystemContextForBackgroundTasks.get();
+        }
+        set useSystemContextForBackgroundTasks(newValue) {
+            this.__useSystemContextForBackgroundTasks.set(newValue);
+        }
+        /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
          * The new RuntimeSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1075,6 +1086,9 @@ var settings;
             if (this.__useDeprecatedClientForWebServiceCalls.isAvailable) {
                 this.useDeprecatedClientForWebServiceCalls = false;
             }
+            if (this.__useSystemContextForBackgroundTasks.isAvailable) {
+                this.useSystemContextForBackgroundTasks = false;
+            }
         }
     }
     RuntimeSettings.structureTypeName = "Settings$RuntimeSettings";
@@ -1097,6 +1111,9 @@ var settings;
                 introduced: "7.15.0",
                 deleted: "8.0.0",
                 deletionMessage: null
+            },
+            useSystemContextForBackgroundTasks: {
+                introduced: "9.6.0"
             }
         }
     }, internal.StructureType.Element);

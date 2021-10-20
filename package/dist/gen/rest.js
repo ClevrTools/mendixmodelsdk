@@ -119,6 +119,10 @@ var rest;
             this.__serviceId = new internal.PrimitiveProperty(ConsumedODataService, this, "serviceId", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__lastUpdated = new internal.PrimitiveProperty(ConsumedODataService, this, "lastUpdated", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__useQuerySegment = new internal.PrimitiveProperty(ConsumedODataService, this, "useQuerySegment", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__errorHandlingMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "errorHandlingMicroflow", null, "Microflows$Microflow");
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -256,6 +260,27 @@ var rest;
             this.__lastUpdated.set(newValue);
         }
         /**
+         * In version 9.6.0: introduced
+         */
+        get useQuerySegment() {
+            return this.__useQuerySegment.get();
+        }
+        set useQuerySegment(newValue) {
+            this.__useQuerySegment.set(newValue);
+        }
+        /**
+         * In version 9.6.0: introduced
+         */
+        get errorHandlingMicroflow() {
+            return this.__errorHandlingMicroflow.get();
+        }
+        set errorHandlingMicroflow(newValue) {
+            this.__errorHandlingMicroflow.set(newValue);
+        }
+        get errorHandlingMicroflowQualifiedName() {
+            return this.__errorHandlingMicroflow.qualifiedName();
+        }
+        /**
          * Creates a new ConsumedODataService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -330,6 +355,12 @@ var rest;
                 public: {
                     currentValue: true
                 }
+            },
+            useQuerySegment: {
+                introduced: "9.6.0"
+            },
+            errorHandlingMicroflow: {
+                introduced: "9.6.0"
             }
         },
         experimental: {
@@ -699,6 +730,8 @@ var rest;
             this.__filterable = new internal.PrimitiveProperty(ODataMappedValue, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sortable = new internal.PrimitiveProperty(ODataMappedValue, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__updatable = new internal.PrimitiveProperty(ODataMappedValue, this, "updatable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataMappedValue() cannot be invoked directly, please use 'model.rest.createODataMappedValue()'");
             }
@@ -740,6 +773,15 @@ var rest;
             this.__sortable.set(newValue);
         }
         /**
+         * In version 9.6.0: introduced
+         */
+        get updatable() {
+            return this.__updatable.get();
+        }
+        set updatable(newValue) {
+            this.__updatable.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
          * The new ODataMappedValue will be automatically stored in the 'value' property
          * of the parent domainmodels.Attribute element passed as argument.
@@ -768,6 +810,9 @@ var rest;
             if (this.__sortable.isAvailable) {
                 this.sortable = true;
             }
+            if (this.__updatable.isAvailable) {
+                this.updatable = false;
+            }
         }
     }
     ODataMappedValue.structureTypeName = "Rest$ODataMappedValue";
@@ -788,6 +833,9 @@ var rest;
                 public: {
                     currentValue: true
                 }
+            },
+            updatable: {
+                introduced: "9.6.0"
             }
         },
         public: {
@@ -807,6 +855,10 @@ var rest;
             this.__remoteChildNavigationProperty = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "remoteChildNavigationProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__navigability = new internal.EnumProperty(ODataRemoteAssociationSource, this, "navigability", AssociationNavigability.BothDirections, AssociationNavigability);
+            /** @internal */
+            this.__updatableFromChild = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromChild", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__updatableFromParent = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromParent", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteAssociationSource() cannot be invoked directly, please use 'model.rest.createODataRemoteAssociationSource()'");
             }
@@ -834,6 +886,24 @@ var rest;
         }
         set navigability(newValue) {
             this.__navigability.set(newValue);
+        }
+        /**
+         * In version 9.6.0: introduced
+         */
+        get updatableFromChild() {
+            return this.__updatableFromChild.get();
+        }
+        set updatableFromChild(newValue) {
+            this.__updatableFromChild.set(newValue);
+        }
+        /**
+         * In version 9.6.0: introduced
+         */
+        get updatableFromParent() {
+            return this.__updatableFromParent.get();
+        }
+        set updatableFromParent(newValue) {
+            this.__updatableFromParent.set(newValue);
         }
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
@@ -869,6 +939,12 @@ var rest;
         properties: {
             navigability: {
                 introduced: "8.16.0"
+            },
+            updatableFromChild: {
+                introduced: "9.6.0"
+            },
+            updatableFromParent: {
+                introduced: "9.6.0"
             }
         },
         public: {

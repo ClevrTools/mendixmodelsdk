@@ -9,7 +9,7 @@ export declare namespace configuration {
      * All the details of the connection that's been set up to the Model API Server.
      */
     export interface ISdkConfig {
-        credentials?: IBackendCredentials | ISdkCredentials;
+        credentials?: IBackendCredentials | ISdkCredentials | IPATCredentials;
         endPoint?: string;
         transportation?: internal.ITransportation;
         client?: internal.IModelServerClient;
@@ -26,6 +26,9 @@ export declare namespace configuration {
     export interface ISdkCredentials {
         username: string;
         apikey: string;
+    }
+    export interface IPATCredentials {
+        personalAccessToken: string;
     }
     interface ICreateWorkingCopyParametersBase {
         name: string;

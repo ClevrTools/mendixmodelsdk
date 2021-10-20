@@ -57,12 +57,12 @@ class QualifiedNameCache {
         return disposer;
     }
     size() {
-        return mobx_1.keys(this._cache)
+        return (0, mobx_1.keys)(this._cache)
             .map(key => this._cache.get(key).length)
             .reduce((prev, curr) => prev + curr, 0);
     }
     keys() {
-        return mobx_1.keys(this._cache);
+        return (0, mobx_1.keys)(this._cache);
     }
     /**
      * Updates the cache as far as it is affected by the addition or rename of this element.

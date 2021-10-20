@@ -57,4 +57,5 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     private completeGetUnitRequest;
     private getCreateWorkingCopyData;
     private getCreateWorkingCopyFromTeamServerData;
+    private getAuthorizationHeader;
 }

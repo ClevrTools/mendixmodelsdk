@@ -14,26 +14,26 @@ class ModelSdkClientImpl {
         const defaultConfig = {
             endPoint: "https://model.api.mendix.com"
         };
-        const sdkConfig = Object.assign(Object.assign({}, defaultConfig), connectionConfig);
+        const sdkConfig = { ...defaultConfig, ...connectionConfig };
         this.client = sdkConfig.client || new internal.ModelServerClientImpl(sdkConfig);
     }
     createWorkingCopy(workingCopyParameters, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.createWorkingCopy(workingCopyParameters, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.createWorkingCopy(workingCopyParameters, resolve, reject), callback, errorCallback);
     }
     createWorkingCopyFromTeamServer(workingCopyParameters, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.createWorkingCopyFromTeamServer(workingCopyParameters, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.createWorkingCopyFromTeamServer(workingCopyParameters, resolve, reject), callback, errorCallback);
     }
     createAndOpenWorkingCopy(workingCopyParameters, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.createWorkingCopy(workingCopyParameters, workingCopyInfo => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.createWorkingCopy(workingCopyParameters, workingCopyInfo => {
             this.openWorkingCopy(workingCopyInfo.id, resolve, reject);
         }, reject), callback, errorCallback);
     }
@@ -41,7 +41,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             checkWorkingCopyId(workingCopyId);
             const model = new this.modelConstructor(this.client, errorCallback ||
                 (err => {
@@ -54,7 +54,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             checkWorkingCopyId(workingCopyId);
             this.client.loadWorkingCopyMetaData(workingCopyId, resolve, reject);
         }, callback, errorCallback);
@@ -63,7 +63,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             checkWorkingCopyId(workingCopyId);
             this.client.deleteWorkingCopy(workingCopyId, resolve, reject);
         }, callback, errorCallback);
@@ -72,7 +72,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.grantAccess(workingCopyId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
@@ -81,7 +81,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.revokeAccess(workingCopyId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
@@ -90,7 +90,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.grantAccessByProject(projectId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
@@ -99,7 +99,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.revokeAccessByProject(projectId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
@@ -108,7 +108,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.setProjectMembers(projectId, memberOpenids, resolve, reject);
         }, callback, errorCallback);
@@ -117,7 +117,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.checkAccess(workingCopyId, memberOpenId, resolve, reject);
         }, callback, errorCallback);
@@ -126,31 +126,31 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.exportMpk(workingCopyId, outFilePath, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.exportMpk(workingCopyId, outFilePath, resolve, reject), callback, errorCallback);
     }
     exportModuleMpk(workingCopyId, moduleId, outFilePath, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.exportModuleMpk(workingCopyId, moduleId, outFilePath, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.exportModuleMpk(workingCopyId, moduleId, outFilePath, resolve, reject), callback, errorCallback);
     }
     getMyWorkingCopies(callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.getMyWorkingCopies(resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.getMyWorkingCopies(resolve, reject), callback, errorCallback);
     }
     getWorkingCopyByProject(projectId, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.getWorkingCopyByProject(projectId, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.getWorkingCopyByProject(projectId, resolve, reject), callback, errorCallback);
     }
     updateWorkingCopyByProject(projectId, workingCopyId, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.updateWorkingCopyByProject(projectId, workingCopyId, resolve, reject);
         }, callback, errorCallback);
@@ -159,7 +159,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.deleteWorkingCopyByProject(projectId, resolve, reject);
         }, callback, errorCallback);
@@ -183,7 +183,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.lockWorkingCopy(workingCopyId, lockOptions, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.lockWorkingCopy(workingCopyId, lockOptions, resolve, reject), callback, errorCallback);
     }
     unlockWorkingCopy(workingCopyId, lockTypeOrCallback, callbackOrErrorCallback, errorCallback) {
         let lockType;
@@ -199,21 +199,19 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.unlockWorkingCopy(workingCopyId, lockType, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.unlockWorkingCopy(workingCopyId, lockType, resolve, reject), callback, errorCallback);
     }
     commitToTeamServer(workingCopyId, options, callback, errorCallback) {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return promiseOrCallbacks_1.promiseOrCallbacks((resolve, reject) => this.client.commitToTeamServer(workingCopyId, options, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.commitToTeamServer(workingCopyId, options, resolve, reject), callback, errorCallback);
     }
 }
 exports.ModelSdkClientImpl = ModelSdkClientImpl;
 function assertBackendAccess(config) {
-    if (!config ||
-        !config.credentials ||
-        !config.credentials.username ||
-        !config.credentials.password) {
+    const backendCredentials = config?.credentials;
+    if (!backendCredentials || !backendCredentials.username || !backendCredentials.password) {
         throw new Error("Mendix Model SDK config: credentials are not defined. Backend access credentials are necessary to perform this operation.");
     }
 }

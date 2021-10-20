@@ -2,30 +2,27 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAuthInfo = void 0;
 function getAuthInfo(config) {
-    let auth;
-    const backendCredentials = config.credentials;
-    const sdkCredentials = config.credentials;
-    if (config.credentials && config.credentials.username) {
-        auth = { username: config.credentials.username, password: "" };
+    if (config.credentials) {
+        const backendCredentials = config.credentials;
         if (backendCredentials.password) {
-            // Backend credentials
-            auth.password = backendCredentials.password;
-            if (backendCredentials.openid) {
-                auth.openid = backendCredentials.openid;
-            }
+            return {
+                auth: "basic",
+                username: backendCredentials.username,
+                password: backendCredentials.password,
+                openid: backendCredentials.openid
+            };
         }
-        else if (sdkCredentials.apikey) {
-            // Api key
-            auth.password = sdkCredentials.apikey;
+        const sdkCredentials = config.credentials;
+        if (sdkCredentials.apikey) {
+            return { auth: "basic", username: sdkCredentials.username, password: sdkCredentials.apikey };
         }
-        else {
-            throw new Error("Expected either an API key or password (for selected users only)");
+        const patCredentials = config.credentials;
+        if (patCredentials.personalAccessToken) {
+            return { auth: "pat", personalAccessToken: patCredentials.personalAccessToken };
         }
+        throw new Error("Expected either an API key, password, or personal access token");
     }
-    else {
-        throw new Error("No credentials provided");
-    }
-    return auth;
+    throw new Error("No credentials provided");
 }
 exports.getAuthInfo = getAuthInfo;
 //# sourceMappingURL=getAuthInfo.js.map

@@ -2250,10 +2250,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ContinueOperation = ContinueOperation;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class MeterAction extends MicroflowAction {
@@ -2290,11 +2287,6 @@ var microflows;
         set description(newValue) {
             this.__description.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get tags() {
             return this.__tags.get();
         }
@@ -2307,15 +2299,15 @@ var microflows;
     MeterAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.5.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.7.0"]
         }
     }, internal.StructureType.Element);
     microflows.MeterAction = MeterAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-counter relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class CounterMeterAction extends MeterAction {
@@ -2368,7 +2360,8 @@ var microflows;
     CounterMeterAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.5.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.7.0"]
         }
     }, internal.StructureType.Element);
     microflows.CounterMeterAction = CounterMeterAction;
@@ -4352,10 +4345,9 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.FormDataRequestHandling = FormDataRequestHandling;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-gauge relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class GaugeMeterAction extends MeterAction {
@@ -4408,7 +4400,8 @@ var microflows;
     GaugeMeterAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.5.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.7.0"]
         }
     }, internal.StructureType.Element);
     microflows.GaugeMeterAction = GaugeMeterAction;
@@ -5441,10 +5434,9 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.ImportXmlAction = ImportXmlAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     * See: {@link https://docs.mendix.com/refguide/metrics-increment-counter relevant section in reference guide}
      *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class IncrementCounterMeterAction extends MeterAction {
@@ -5486,7 +5478,8 @@ var microflows;
     IncrementCounterMeterAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.5.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.7.0"]
         }
     }, internal.StructureType.Element);
     microflows.IncrementCounterMeterAction = IncrementCounterMeterAction;
@@ -6620,10 +6613,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.MemberChange = MemberChange;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.7.0: removed experimental
      * In version 9.5.0: introduced
      */
     class MeterTagMapping extends internal.Element {
@@ -6687,7 +6677,8 @@ var microflows;
     MeterTagMapping.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.5.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.7.0"]
         }
     }, internal.StructureType.Element);
     microflows.MeterTagMapping = MeterTagMapping;
@@ -9290,6 +9281,73 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.RuleSplitCondition = RuleSplitCondition;
+    /**
+     * In version 9.6.0: introduced
+     */
+    class SendExternalObject extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__variableNameToBeSent = new internal.PrimitiveProperty(SendExternalObject, this, "variableNameToBeSent", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__refreshInClient = new internal.PrimitiveProperty(SendExternalObject, this, "refreshInClient", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new SendExternalObject() cannot be invoked directly, please use 'model.microflows.createSendExternalObject()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get variableNameToBeSent() {
+            return this.__variableNameToBeSent.get();
+        }
+        set variableNameToBeSent(newValue) {
+            this.__variableNameToBeSent.set(newValue);
+        }
+        /**
+         * In version 9.7.0: introduced
+         */
+        get refreshInClient() {
+            return this.__refreshInClient.get();
+        }
+        set refreshInClient(newValue) {
+            this.__refreshInClient.set(newValue);
+        }
+        /**
+         * Creates and returns a new SendExternalObject instance in the SDK and on the server.
+         * The new SendExternalObject will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SendExternalObject.structureTypeName, { start: "9.6.0" });
+            return internal.instancehelpers.createElement(container, SendExternalObject, "action", false);
+        }
+        /**
+         * Creates and returns a new SendExternalObject instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SendExternalObject);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SendExternalObject.structureTypeName = "Microflows$SendExternalObject";
+    SendExternalObject.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.6.0",
+        properties: {
+            refreshInClient: {
+                introduced: "9.7.0"
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.SendExternalObject = SendExternalObject;
     /**
      * See: {@link https://docs.mendix.com/refguide/sequence-flow relevant section in reference guide}
      */

@@ -231,6 +231,13 @@ export declare namespace workflows {
         get workflow(): IWorkflow | null;
         set workflow(newValue: IWorkflow | null);
         get workflowQualifiedName(): string | null;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.6.0: introduced
+         */
+        get parameterExpression(): string;
+        set parameterExpression(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
@@ -661,6 +668,43 @@ export declare namespace workflows {
         static create(model: IModel): ParallelSplitOutcome;
     }
     /**
+     * In version 9.6.0: introduced
+     */
+    interface IParameter extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        readonly entityRef: domainmodels.IIndirectEntityRef | null;
+        asLoaded(): Parameter;
+        load(callback: (element: Parameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<Parameter>;
+    }
+    /**
+     * In version 9.6.0: introduced
+     */
+    class Parameter extends internal.Element<IModel> implements IParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        get entityRef(): domainmodels.IndirectEntityRef | null;
+        set entityRef(newValue: domainmodels.IndirectEntityRef | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new Parameter instance in the SDK and on the server.
+         * The new Parameter will be automatically stored in the 'parameter' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.6.0 and higher
+         */
+        static createIn(container: Workflow): Parameter;
+        /**
+         * Creates and returns a new Parameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): Parameter;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -669,10 +713,16 @@ export declare namespace workflows {
     interface IUserTask extends IWorkflowActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
+        /**
+         * In version 9.6.0: introduced
+         */
+        readonly userTaskEntity: domainmodels.IEntity | null;
+        readonly userTaskEntityQualifiedName: string | null;
         readonly page: pages.IPage | null;
         readonly pageQualifiedName: string | null;
         readonly outcomes: internal.IList<IUserTaskOutcome>;
         /**
+         * In version 9.6.0: deleted
          * In version 9.0.3: introduced
          */
         readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
@@ -691,6 +741,12 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        /**
+         * In version 9.6.0: introduced
+         */
+        get userTaskEntity(): domainmodels.IEntity | null;
+        set userTaskEntity(newValue: domainmodels.IEntity | null);
+        get userTaskEntityQualifiedName(): string | null;
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
         get pageQualifiedName(): string | null;
@@ -707,6 +763,7 @@ export declare namespace workflows {
         set userSource(newValue: UserSource);
         get outcomes(): internal.IList<UserTaskOutcome>;
         /**
+         * In version 9.6.0: deleted
          * In version 9.0.3: introduced
          */
         get allowedModuleRoles(): internal.IList<security.IModuleRole>;
@@ -822,14 +879,38 @@ export declare namespace workflows {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         readonly title: string;
+        /**
+         * In version 9.6.0: deleted
+         */
         readonly contextEntity: domainmodels.IEntity | null;
         readonly contextEntityQualifiedName: string | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 9.6.0: introduced
+         */
+        readonly parameter: IParameter;
+        /**
+         * In version 9.7.0: deleted
+         * In version 9.6.0: introduced
+         */
+        readonly workflowEntity: domainmodels.IEntity | null;
+        readonly workflowEntityQualifiedName: string | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 9.7.0: introduced
+         */
+        readonly workflowType: IWorkflowType;
         readonly overviewPage: pages.IPage | null;
         readonly overviewPageQualifiedName: string | null;
         /**
          * This property is required and cannot be set to null.
          */
         readonly flow: IFlow;
+        /**
+         * In version 9.6.0: deleted
+         */
         readonly allowedModuleRoles: internal.IList<security.IModuleRole>;
         readonly allowedModuleRolesQualifiedNames: string[];
         asLoaded(): Workflow;
@@ -848,9 +929,29 @@ export declare namespace workflows {
         get containerAsFolderBase(): projects.FolderBase;
         get title(): string;
         set title(newValue: string);
+        /**
+         * In version 9.6.0: deleted
+         */
         get contextEntity(): domainmodels.IEntity | null;
         set contextEntity(newValue: domainmodels.IEntity | null);
         get contextEntityQualifiedName(): string | null;
+        /**
+         * In version 9.6.0: introduced
+         */
+        get parameter(): Parameter;
+        set parameter(newValue: Parameter);
+        /**
+         * In version 9.7.0: deleted
+         * In version 9.6.0: introduced
+         */
+        get workflowEntity(): domainmodels.IEntity | null;
+        set workflowEntity(newValue: domainmodels.IEntity | null);
+        get workflowEntityQualifiedName(): string | null;
+        /**
+         * In version 9.7.0: introduced
+         */
+        get workflowType(): WorkflowType;
+        set workflowType(newValue: WorkflowType);
         get overviewPage(): pages.IPage | null;
         set overviewPage(newValue: pages.IPage | null);
         get overviewPageQualifiedName(): string | null;
@@ -865,6 +966,9 @@ export declare namespace workflows {
          */
         get dueDate(): string;
         set dueDate(newValue: string);
+        /**
+         * In version 9.6.0: deleted
+         */
         get allowedModuleRoles(): internal.IList<security.IModuleRole>;
         get allowedModuleRolesQualifiedNames(): string[];
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
@@ -873,6 +977,45 @@ export declare namespace workflows {
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container: projects.IFolderBase): Workflow;
+    }
+    /**
+     * In version 9.7.0: introduced
+     */
+    interface IWorkflowType extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        readonly entity: domainmodels.IEntity | null;
+        readonly entityQualifiedName: string | null;
+        asLoaded(): WorkflowType;
+        load(callback: (element: WorkflowType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WorkflowType>;
+    }
+    /**
+     * In version 9.7.0: introduced
+     */
+    class WorkflowType extends internal.Element<IModel> implements IWorkflowType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowType instance in the SDK and on the server.
+         * The new WorkflowType will be automatically stored in the 'workflowType' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.7.0 and higher
+         */
+        static createIn(container: Workflow): WorkflowType;
+        /**
+         * Creates and returns a new WorkflowType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowType;
     }
     /**
      * In version 9.0.5: removed experimental

@@ -79,7 +79,7 @@ class ModelEventManager {
                     continue;
                 }
                 // Process deltas inside a MobX action, as there might be inconsistent states in between processing the individual deltas.
-                mobx_1.runInAction(() => {
+                (0, mobx_1.runInAction)(() => {
                     if (modelEvent.type === "deltas") {
                         this.deltaProcessor.processDeltas(modelEvent.deltas);
                     }

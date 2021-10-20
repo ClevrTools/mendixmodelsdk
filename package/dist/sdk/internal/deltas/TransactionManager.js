@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runInTransaction = exports.beginTransaction = exports.TransactionManager = exports.Transaction = void 0;
 const EventEmitter_1 = require("../EventEmitter");
@@ -76,8 +67,8 @@ class TransactionManager {
     }
     deltaReceived(delta) {
         if (delta.deltaType === "DETACH_ELEMENT") {
-            const unit = deltaUtils_1.asModelUnit(deltaUtils_1.getUnit(this.model, delta.unitId), delta);
-            const element = deltaUtils_1.getElement(this.model, unit, delta.elementId);
+            const unit = (0, deltaUtils_1.asModelUnit)((0, deltaUtils_1.getUnit)(this.model, delta.unitId), delta);
+            const element = (0, deltaUtils_1.getElement)(this.model, unit, delta.elementId);
             const handle = element.container._childHandle(element);
             if (handle.containingProperty.isRequired && element.container instanceof elements_1.AbstractElement) {
                 this.detachedRequiredProperties.push(handle.containingProperty);
@@ -117,7 +108,7 @@ exports.TransactionManager = TransactionManager;
  * When rolling back a deleted element/unit, a new element/unit instance will be created with the same id. Be sure not to use the old - deleted - instance.
  */
 function beginTransaction(model, options) {
-    return model.deltaManager.beginTransaction(options === null || options === void 0 ? void 0 : options.commitCurrentImplicitTransaction);
+    return model.deltaManager.beginTransaction(options?.commitCurrentImplicitTransaction);
 }
 exports.beginTransaction = beginTransaction;
 function runInTransaction(model, actionOrOptions, action) {
@@ -131,7 +122,7 @@ function runInTransaction(model, actionOrOptions, action) {
             throw new Error("action is missing");
         }
     }
-    const transaction = model.deltaManager.beginTransaction(options === null || options === void 0 ? void 0 : options.commitCurrentImplicitTransaction);
+    const transaction = model.deltaManager.beginTransaction(options?.commitCurrentImplicitTransaction);
     let result;
     try {
         result = action();
@@ -148,17 +139,15 @@ function runInTransaction(model, actionOrOptions, action) {
     return asyncRunInTransaction(transaction, result);
 }
 exports.runInTransaction = runInTransaction;
-function asyncRunInTransaction(transaction, resultPromise) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const result = yield resultPromise;
-            transaction.commit();
-            return result;
-        }
-        catch (err) {
-            transaction.rollback();
-            throw err;
-        }
-    });
+async function asyncRunInTransaction(transaction, resultPromise) {
+    try {
+        const result = await resultPromise;
+        transaction.commit();
+        return result;
+    }
+    catch (err) {
+        transaction.rollback();
+        throw err;
+    }
 }
 //# sourceMappingURL=TransactionManager.js.map

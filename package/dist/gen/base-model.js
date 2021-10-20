@@ -389,6 +389,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findPageByQualifiedName(qname) {
         return this._resolveName("Pages$Page", qname);
     }
+    findPageParameterByQualifiedName(qname) {
+        return this._resolveName("Pages$PageParameter", qname);
+    }
     findSnippetByQualifiedName(qname) {
         return this._resolveName("Pages$Snippet", qname);
     }

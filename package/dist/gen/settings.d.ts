@@ -440,6 +440,11 @@ export declare namespace settings {
          */
         get useDeprecatedClientForWebServiceCalls(): boolean;
         set useDeprecatedClientForWebServiceCalls(newValue: boolean);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get useSystemContextForBackgroundTasks(): boolean;
+        set useSystemContextForBackgroundTasks(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.

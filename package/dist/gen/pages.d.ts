@@ -20564,6 +20564,40 @@ export declare namespace pages {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 9.7.0: introduced
+     */
+    class PageParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageSettings(): PageSettings;
+        get parameter(): IPageParameter;
+        set parameter(newValue: IPageParameter);
+        get parameterQualifiedName(): string;
+        get variable(): PageVariable;
+        set variable(newValue: PageVariable);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get argument(): string;
+        set argument(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PageParameterMapping instance in the SDK and on the server.
+         * The new PageParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent PageSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.7.0 and higher
+         */
+        static createIn(container: PageSettings): PageParameterMapping;
+        /**
+         * Creates and returns a new PageParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PageParameterMapping;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element<IModel> {
@@ -20598,6 +20632,10 @@ export declare namespace pages {
          */
         get location(): FormLocation;
         set location(newValue: FormLocation);
+        /**
+         * In version 9.7.0: introduced
+         */
+        get parameterMappings(): internal.IList<PageParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageSettings instance in the SDK and on the server.
@@ -20770,6 +20808,7 @@ export declare namespace pages {
         get containerAsAttributeWidget(): AttributeWidget;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
+        get containerAsPageParameterMapping(): PageParameterMapping;
         get widget(): Widget | null;
         set widget(newValue: Widget | null);
         get widgetLocalName(): string | null;
@@ -20818,6 +20857,15 @@ export declare namespace pages {
          *  8.4.0 and higher
          */
         static createInNanoflowParameterMappingUnderVariable(container: NanoflowParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent PageParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.7.0 and higher
+         */
+        static createInPageParameterMappingUnderVariable(container: PageParameterMapping): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

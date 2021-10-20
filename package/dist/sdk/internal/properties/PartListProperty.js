@@ -29,7 +29,7 @@ class PartListProperty extends AbstractProperty_1.AbstractProperty {
         return this.observableValue;
     }
     updateWithRawValue(value) {
-        const newChildren = value.map(e => instantiateChildElement_1.instantiateChildElement(this.parent, e));
+        const newChildren = value.map(e => (0, instantiateChildElement_1.instantiateChildElement)(this.parent, e));
         const oldChildren = this.observableValue;
         // dispose old children:
         for (let i = 0; i < oldChildren.length; i++) {
@@ -171,7 +171,12 @@ class PartListProperty extends AbstractProperty_1.AbstractProperty {
     }
     dispose() {
         super.dispose();
-        this.observableValue.forEach(elem => elem._dispose());
+        // Only dispose an element that is contained by this PartListProperty
+        this.observableValue.forEach(elem => {
+            if (this.parent.id === elem.container.id) {
+                elem._dispose();
+            }
+        });
     }
     /** @internal */
     _toJSON() {

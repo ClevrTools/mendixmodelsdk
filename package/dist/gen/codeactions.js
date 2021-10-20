@@ -1002,6 +1002,8 @@ var codeactions;
             this.__category = new internal.PrimitiveProperty(MicroflowActionInfo, this, "category", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__icon = new internal.ByNameReferenceProperty(MicroflowActionInfo, this, "icon", null, "Images$Image");
+            /** @internal */
+            this.__imageData = new internal.PrimitiveProperty(MicroflowActionInfo, this, "imageData", null, internal.PrimitiveTypeEnum.Blob);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowActionInfo() cannot be invoked directly, please use 'model.codeactions.createMicroflowActionInfo()'");
             }
@@ -1032,6 +1034,15 @@ var codeactions;
         }
         get iconQualifiedName() {
             return this.__icon.qualifiedName();
+        }
+        /**
+         * In version 9.6.0: introduced
+         */
+        get imageData() {
+            return this.__imageData.get();
+        }
+        set imageData(newValue) {
+            this.__imageData.set(newValue);
         }
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
@@ -1109,6 +1120,12 @@ var codeactions;
                 }
             },
             icon: {
+                public: {
+                    currentValue: true
+                }
+            },
+            imageData: {
+                introduced: "9.6.0",
                 public: {
                     currentValue: true
                 }

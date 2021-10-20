@@ -69,7 +69,7 @@ class DeltaManager {
         this.transactionManager.deltaReceived(delta);
     }
     processDeltas(deltas) {
-        this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(deltas));
+        this.deltaProcessor.processDeltas((0, deltaUtils_1.removeUselessDeltas)(deltas));
         this.deltaSender.scheduleDeltas(deltas);
     }
     reverseDelta(delta) {
@@ -98,7 +98,7 @@ class DeltaManager {
         if (error) {
             throw error;
         }
-        this.deltaProcessor.processDeltas(deltaUtils_1.removeUselessDeltas(reverseDeltas), true);
+        this.deltaProcessor.processDeltas((0, deltaUtils_1.removeUselessDeltas)(reverseDeltas), true);
         this.queue.splice(0, this.queue.length);
         this.eventEmitter.emit("TransactionRollback", undefined);
     }

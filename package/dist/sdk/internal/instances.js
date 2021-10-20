@@ -229,11 +229,10 @@ function _createInstanceWithInitializer(initializer, callback, json) {
  * Creates (deserializes) a structure based on incoming JSON.
  */
 function createStructureFromJson(initializer, findInstance, callback, json, container) {
-    var _a;
     const structure = findInstance(json.$ID);
     if (structure) {
         structure._updateWithJson(json);
-        if (container && container.id !== ((_a = structure.container) === null || _a === void 0 ? void 0 : _a.id)) {
+        if (container && container.id !== structure.container?.id) {
             structure._container = container;
         }
         return structure;
@@ -241,7 +240,7 @@ function createStructureFromJson(initializer, findInstance, callback, json, cont
     return _createInstanceWithInitializer(initializer, callback, json);
 }
 function replaceJsonIds(json, oldToNewIdMap) {
-    if (json === null || json === void 0 ? void 0 : json.$ID) {
+    if (json?.$ID) {
         const newId = utils_1.utils.randomUuid();
         oldToNewIdMap[json.$ID] = newId;
         json.$ID = newId;

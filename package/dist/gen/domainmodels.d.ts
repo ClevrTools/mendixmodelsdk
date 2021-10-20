@@ -331,9 +331,24 @@ export declare namespace domainmodels {
         static create(model: IModel): AssociationDeleteBehavior;
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    abstract class MemberRef extends internal.Element<IModel> {
+    interface IMemberRef extends internal.IElement {
+        readonly model: IModel;
+        /**
+         * In version 9.6.0: added public
+         */
+        readonly entityRef: IIndirectEntityRef | null;
+        asLoaded(): MemberRef;
+        load(callback: (element: MemberRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MemberRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    abstract class MemberRef extends internal.Element<IModel> implements IMemberRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -350,14 +365,28 @@ export declare namespace domainmodels {
         get containerAsRangeSearchField(): pages.RangeSearchField;
         get containerAsSingleSearchField(): pages.SingleSearchField;
         get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
+        /**
+         * In version 9.6.0: added public
+         */
         get entityRef(): IndirectEntityRef | null;
         set entityRef(newValue: IndirectEntityRef | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    class AssociationRef extends MemberRef {
+    interface IAssociationRef extends IMemberRef {
+        readonly model: IModel;
+        asLoaded(): AssociationRef;
+        load(callback: (element: AssociationRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AssociationRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    class AssociationRef extends MemberRef implements IAssociationRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsVariableRefExpression(): expressions.VariableRefExpression;
@@ -508,9 +537,20 @@ export declare namespace domainmodels {
         static create(model: IModel): AttributeCapabilities;
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    class AttributeRef extends MemberRef {
+    interface IAttributeRef extends IMemberRef {
+        readonly model: IModel;
+        asLoaded(): AttributeRef;
+        load(callback: (element: AttributeRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AttributeRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    class AttributeRef extends MemberRef implements IAttributeRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -1240,9 +1280,21 @@ export declare namespace domainmodels {
         static create(model: IModel): DecimalAttributeType;
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    abstract class EntityRef extends internal.Element<IModel> {
+    interface IEntityRef extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsParameter: workflows.IParameter;
+        asLoaded(): EntityRef;
+        load(callback: (element: EntityRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    abstract class EntityRef extends internal.Element<IModel> implements IEntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -1253,12 +1305,24 @@ export declare namespace domainmodels {
         get containerAsNewButton(): pages.NewButton;
         get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
         get containerAsSelectorXPathSource(): pages.SelectorXPathSource;
+        get containerAsParameter(): workflows.Parameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    class DirectEntityRef extends EntityRef {
+    interface IDirectEntityRef extends IEntityRef {
+        readonly model: IModel;
+        asLoaded(): DirectEntityRef;
+        load(callback: (element: DirectEntityRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<DirectEntityRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    class DirectEntityRef extends EntityRef implements IDirectEntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -1613,9 +1677,20 @@ export declare namespace domainmodels {
         get qualifiedName(): string | null;
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    class EntityRefStep extends internal.Element<IModel> {
+    interface IEntityRefStep extends internal.IElement {
+        readonly model: IModel;
+        asLoaded(): EntityRefStep;
+        load(callback: (element: EntityRefStep) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EntityRefStep>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    class EntityRefStep extends internal.Element<IModel> implements IEntityRefStep {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsIndirectEntityRef(): IndirectEntityRef;
@@ -2009,9 +2084,25 @@ export declare namespace domainmodels {
         static create(model: IModel): IndexedAttribute;
     }
     /**
+     * In version 9.6.0: added public
      * In version 7.11.0: introduced
      */
-    class IndirectEntityRef extends EntityRef {
+    interface IIndirectEntityRef extends IEntityRef {
+        readonly model: IModel;
+        readonly containerAsParameter: workflows.IParameter;
+        /**
+         * In version 9.6.0: added public
+         */
+        readonly steps: internal.IList<IEntityRefStep>;
+        asLoaded(): IndirectEntityRef;
+        load(callback: (element: IndirectEntityRef) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<IndirectEntityRef>;
+    }
+    /**
+     * In version 9.6.0: added public
+     * In version 7.11.0: introduced
+     */
+    class IndirectEntityRef extends EntityRef implements IIndirectEntityRef {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
@@ -2022,6 +2113,10 @@ export declare namespace domainmodels {
         get containerAsNewButton(): pages.NewButton;
         get containerAsReferenceSetSelector(): pages.ReferenceSetSelector;
         get containerAsSelectorXPathSource(): pages.SelectorXPathSource;
+        get containerAsParameter(): workflows.Parameter;
+        /**
+         * In version 9.6.0: added public
+         */
         get steps(): internal.IList<EntityRefStep>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2096,6 +2191,15 @@ export declare namespace domainmodels {
          *  7.11.0 and higher
          */
         static createInSelectorXPathSourceUnderConstrainedByRefs(container: pages.SelectorXPathSource): IndirectEntityRef;
+        /**
+         * Creates and returns a new IndirectEntityRef instance in the SDK and on the server.
+         * The new IndirectEntityRef will be automatically stored in the 'entityRef' property
+         * of the parent workflows.Parameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.6.0 and higher
+         */
+        static createInParameterUnderEntityRef(container: workflows.Parameter): IndirectEntityRef;
         /**
          * Creates and returns a new IndirectEntityRef instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2506,6 +2610,10 @@ export declare namespace domainmodels {
          * In version 8.16.0: introduced
          */
         readonly metadataHash: string;
+        /**
+         * In version 9.6.0: introduced
+         */
+        readonly validated: boolean;
         asLoaded(): RemoteEntitySourceDocument;
         load(callback: (element: RemoteEntitySourceDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<RemoteEntitySourceDocument>;
@@ -2584,6 +2692,11 @@ export declare namespace domainmodels {
          */
         get metadataHash(): string;
         set metadataHash(newValue: string);
+        /**
+         * In version 9.6.0: introduced
+         */
+        get validated(): boolean;
+        set validated(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     class RequiredRuleInfo extends RuleInfo {
@@ -2753,4 +2866,5 @@ import { regularexpressions } from "./regularexpressions";
 import { rest } from "./rest";
 import { security } from "./security";
 import { texts } from "./texts";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

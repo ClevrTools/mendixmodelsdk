@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeltaSender = void 0;
 const deltaUtils_1 = require("./deltaUtils");
@@ -48,41 +39,37 @@ class DeltaSender {
             this.processQueue();
         }
     }
-    processQueue() {
-        return __awaiter(this, void 0, void 0, function* () {
-            while (this.queue.length > 0 && !this.hasError) {
-                let lastEventId = undefined;
-                try {
-                    this.model.startPendingChange();
-                    lastEventId = yield this.sendDeltas(deltaUtils_1.removeUselessDeltas(this.queue.shift()));
-                }
-                catch (error) {
-                    this.hasError = true;
-                    this.errorCallback(error);
-                }
-                finally {
-                    this.model.completePendingChange(lastEventId);
-                }
+    async processQueue() {
+        while (this.queue.length > 0 && !this.hasError) {
+            let lastEventId = undefined;
+            try {
+                this.model.startPendingChange();
+                lastEventId = await this.sendDeltas((0, deltaUtils_1.removeUselessDeltas)(this.queue.shift()));
             }
-            this.pending = false;
-            if (!this.hasError) {
-                this.flushCallback();
+            catch (error) {
+                this.hasError = true;
+                this.errorCallback(error);
             }
-        });
+            finally {
+                this.model.completePendingChange(lastEventId);
+            }
+        }
+        this.pending = false;
+        if (!this.hasError) {
+            this.flushCallback();
+        }
     }
-    sendDeltas(deltas) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return new Promise((resolve, reject) => {
-                this.model._client.sendDeltas(this.model.workingCopy.id, deltas, result => {
-                    if (result.firstError) {
-                        reject(result.firstError);
-                    }
-                    else {
-                        resolve(result.eventId);
-                    }
-                }, err => {
-                    reject(err);
-                });
+    async sendDeltas(deltas) {
+        return new Promise((resolve, reject) => {
+            this.model._client.sendDeltas(this.model.workingCopy.id, deltas, result => {
+                if (result.firstError) {
+                    reject(result.firstError);
+                }
+                else {
+                    resolve(result.eventId);
+                }
+            }, err => {
+                reject(err);
             });
         });
     }

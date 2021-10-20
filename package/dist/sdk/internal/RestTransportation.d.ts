@@ -1,9 +1,16 @@
 import { common } from "../../common";
 import { configuration } from "../configuration";
 import { ITransportation, IRequestOptions, IResponseCallback, IRequestMultipartBinaryFileUploadOptions, IRequestFileDownloadOptions } from "./transportation";
+export interface IRequestResult {
+    headers: {
+        [key: string]: any;
+    };
+    statusCode: number;
+    body: any;
+}
 /**
  * Default implementation of {@link ITransportation} that communicates with the Model API Server over
- * HTTP using Request.
+ * HTTP using Got.
  */
 export declare class RestTransportation implements ITransportation {
     private config;
@@ -18,4 +25,5 @@ export declare class RestTransportation implements ITransportation {
     private generateStandardOptions;
     private handleRequest;
     private retryRequest;
+    private got;
 }

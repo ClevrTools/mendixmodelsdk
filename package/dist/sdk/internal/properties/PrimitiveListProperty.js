@@ -34,7 +34,7 @@ class PrimitiveListProperty extends AbstractProperty_1.AbstractProperty {
             return change;
         }
         this.assertWritable();
-        sendListChangeDeltas_1.sendListChangeDeltas(this, change);
+        (0, sendListChangeDeltas_1.sendListChangeDeltas)(this, change);
         return change;
     }
     /** @internal */
