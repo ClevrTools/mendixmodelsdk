@@ -6,4 +6,3 @@ REM apply manual changes
 REM npm login if needed .
 cd package
 npm publish
-

@@ -5,11 +5,10 @@ A fork of npm mendixmodelsdk
 Use to to keep customizations and bugfixes for the npm module while updating.
 
 To publish changes navigate to package and run `npm publish`
- 
 
 ## Changes
 
-* `package.json` - Line: **2**
+- `package.json` - Line: **2**
 
 ```javascript
 //Original
@@ -18,8 +17,7 @@ To publish changes navigate to package and run `npm publish`
 "name": "@gajduk/mendixmodelsdk",
 ```
 
-* `/dist/sdk/internal/RestTransportation.js` - Line: **9**  
-
+- `/dist/sdk/internal/RestTransportation.js` - Line: **11-12**
 
 ```javascript
 // Original
