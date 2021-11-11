@@ -14,7 +14,7 @@ To publish changes navigate to package and run `npm publish`
 //Original
 "name": "mendixmodelsdk",
 // Updated
-"name": "@gajduk/mendixmodelsdk",
+"name": "@clevr/mendixmodelsdk",
 ```
 
 - `/dist/sdk/internal/RestTransportation.js` - Line: **11-12**
