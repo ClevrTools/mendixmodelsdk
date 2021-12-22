@@ -1,85 +1,39 @@
 {
   "name": "@clevr/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.56.1",
+  "version": "4.58.0",
   "author": "Mendix",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index",
   "scripts": {
     "postbuild": "node scripts/add-license.js",
     "prebuild": "node scripts/write-version.js",
-    "build": "tsc",
+    "build": "yarn --cwd .. nx build model-sdk",
     "postbuild-ci": "node scripts/add-license.js",
     "prebuild-ci": "node scripts/write-version.js",
-    "build-ci": "tsc",
+    "build-ci": "yarn --cwd .. nx build model-sdk",
     "clean": "rm -rf dist/ test-output/ doc/generated-doc/ tmp/",
     "clean-build": "rm -rf node_modules && yarn install && yarn run build",
-    "coverage": "nyc --require ts-node/register mocha --colors --compilers ts-node/register \"src/test/unit-tests/**/*.ts\" \"src/test-mendix/unit-tests/**/*.ts\"",
     "generate-ts-doc": "bash ./scripts/generate-typedoc.sh",
     "kill-debuggers": "kill-by-port -p 5858",
-    "lint": "tslint --project tsconfig.json --format msbuild",
-    "pretest": "tsc",
-    "pretest-debug": "yarn run kill-debuggers && yarn run build",
-    "test": "mocha --colors --recursive --timeout 10s --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
-    "test-no-compilation": "CI=true mocha --colors --recursive --timeout 10s --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
+    "link-package": "cd dist && (yarn unlink --silent || true) && yarn link --silent",
+    "lint": "yarn --cwd .. nx lint model-sdk",
+    "test": "yarn --cwd .. nx test model-sdk",
+    "test-no-compilation": "CI=true yarn --cwd .. nx test model-sdk",
     "test-watch": "mocha --colors --watch --timeout 5s --recursive --require source-map-support/register dist/test-mendix/unit-tests dist/test/unit-tests",
     "unit-test": "yarn run test",
-    "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test",
-    "snyk": "../node_modules/.bin/snyk test --org=appdev --project-name=mendixmodelsdk --severity-threshold=high --json --print-deps | ../node_modules/.bin/snyk-delta",
-    "snyk:update-base-line": "../node_modules/.bin/snyk monitor --org=appdev --project-name=mendixmodelsdk"
+    "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test"
   },
   "dependencies": {
     "@types/eventsource": "^1.1.3",
-    "deep-equal": "^1.0.1",
-    "eventsource": "^1.0.7",
-    "form-data": "^4.0.0",
-    "got": "^11.8.2",
     "mobx": "^5.0.0",
-    "uuid": "^3.0.1",
-    "wolfy87-eventemitter": "^5.2.1"
+    "wolfy87-eventemitter": "^5.2.1",
+    "eventsource": "^1.0.7",
+    "got": "^11.8.2",
+    "form-data": "^4.0.0",
+    "deep-equal": "^1.0.1",
+    "uuid": "^8.3.2"
   },
-  "devDependencies": {
-    "@mendix/tslint-rules": "^0.7.0",
-    "@types/chai": "^4.2.7",
-    "@types/chai-as-promised": "^7.1.2",
-    "@types/chai-jest-snapshot": "^1.3.5",
-    "@types/deep-equal": "^1.0.1",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^14.14.6",
-    "@types/uuid": "^3.4.6",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "chai-jest-snapshot": "^2.0.0",
-    "mocha": "^6.2.3",
-    "nyc": "^14.1.1",
-    "source-map-support": "^0.5.16",
-    "ts-node": "^8.5.4",
-    "tslint": "^6.1.3",
-    "tslint-microsoft-contrib": "^6.2.0",
-    "tslint-no-circular-imports": "^0.7.0",
-    "typedoc": "^0.16.4",
-    "typescript": "~4.4.3"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "node_modules/",
-      "dist/"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "reporter": [
-      "text-summary",
-      "html"
-    ],
-    "sourceMap": true,
-    "instrument": true
-  }
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "peerDependencies": {}
 }
