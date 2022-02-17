@@ -19,10 +19,21 @@ var javascriptactions;
     class JavaScriptAction extends codeactions_1.codeactions.CodeAction {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__platform = new internal.EnumProperty(JavaScriptAction, this, "platform", client_1.client.SupportedPlatform.All, client_1.client.SupportedPlatform);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get platform() {
+            return this.__platform.get();
+        }
+        set platform(newValue) {
+            this.__platform.set(newValue);
         }
         /**
          * Creates a new JavaScriptAction unit in the SDK and on the server.
@@ -38,11 +49,22 @@ var javascriptactions;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__platform.isAvailable) {
+                this.platform = client_1.client.SupportedPlatform.All;
+            }
         }
     }
     JavaScriptAction.structureTypeName = "JavaScriptActions$JavaScriptAction";
     JavaScriptAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.21.0",
+        properties: {
+            platform: {
+                introduced: "9.10.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["8.0.0"]
@@ -127,5 +149,6 @@ var javascriptactions;
     }, internal.StructureType.Element);
     javascriptactions.NanoflowJavaScriptActionParameterType = NanoflowJavaScriptActionParameterType;
 })(javascriptactions = exports.javascriptactions || (exports.javascriptactions = {}));
+const client_1 = require("./client");
 const projects_1 = require("./projects");
 //# sourceMappingURL=javascriptactions.js.map

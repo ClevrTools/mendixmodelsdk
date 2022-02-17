@@ -650,6 +650,9 @@ export declare namespace codeactions {
         readonly containerAsMicroflow: microflows.IMicroflow;
         readonly caption: string;
         readonly category: string;
+        /**
+         * In version 9.10.0: deleted
+         */
         readonly icon: images.IImage | null;
         readonly iconQualifiedName: string | null;
         /**
@@ -672,14 +675,32 @@ export declare namespace codeactions {
         set caption(newValue: string);
         get category(): string;
         set category(newValue: string);
+        /**
+         * In version 9.10.0: deleted
+         */
         get icon(): images.IImage | null;
         set icon(newValue: images.IImage | null);
         get iconQualifiedName(): string | null;
+        /**
+         * In version 9.10.0: introduced
+         */
+        get iconData(): string | null;
+        set iconData(newValue: string | null);
+        /**
+         * In version 9.10.0: introduced
+         */
+        get iconDataDark(): string | null;
+        set iconDataDark(newValue: string | null);
         /**
          * In version 9.6.0: introduced
          */
         get imageData(): string | null;
         set imageData(newValue: string | null);
+        /**
+         * In version 9.10.0: introduced
+         */
+        get imageDataDark(): string | null;
+        set imageDataDark(newValue: string | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.

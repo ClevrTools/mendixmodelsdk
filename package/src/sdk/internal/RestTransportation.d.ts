@@ -21,7 +21,6 @@ export declare class RestTransportation implements ITransportation {
     requestMultipartBinaryFileUpload<T>(opts: IRequestMultipartBinaryFileUploadOptions, success: IResponseCallback<T>, failure: common.IErrorCallback): void;
     requestFileDownload<T>(opts: IRequestFileDownloadOptions, success: IResponseCallback<T>, failure: common.IErrorCallback): void;
     private sanitizedMethod;
-    private url;
     private generateStandardOptions;
     private handleRequest;
     private retryRequest;

@@ -1,4 +1,9 @@
 import * as internal from "./internal";
+export declare enum Priority {
+    Low = 0,
+    Medium = 1,
+    High = 2
+}
 /**
  * The `configuration` module allows the Model SDK user to configure
  * how to communicate with the Model API Server;
@@ -38,6 +43,7 @@ export declare namespace configuration {
         projectId?: string;
         description?: string;
         avatarUrl?: string;
+        priority?: Priority;
         /**
          * Force the working copy state to be marked to contain changes.
          *  - this excludes regular SDK users for the moment.

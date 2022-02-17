@@ -2,6 +2,12 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 export declare namespace queues {
+    class QueueRetryIntervalType extends internal.AbstractEnum {
+        static Seconds: QueueRetryIntervalType;
+        static Minutes: QueueRetryIntervalType;
+        static Hours: QueueRetryIntervalType;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Queues`.
      */
@@ -74,5 +80,98 @@ export declare namespace queues {
          */
         static createIn(container: projects.IFolderBase): Queue;
     }
+    /**
+     * In version 9.10.0: introduced
+     */
+    abstract class QueueRetry extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueueSettings(): QueueSettings;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueExponentialRetry extends QueueRetry {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueueSettings(): QueueSettings;
+        get retries(): number;
+        set retries(newValue: number);
+        get initialInterval(): number;
+        set initialInterval(newValue: number);
+        get maximumInterval(): number;
+        set maximumInterval(newValue: number);
+        get intervalType(): QueueRetryIntervalType;
+        set intervalType(newValue: QueueRetryIntervalType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueueExponentialRetry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueueExponentialRetry;
+    }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueFixedRetry extends QueueRetry {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueueSettings(): QueueSettings;
+        get retries(): number;
+        set retries(newValue: number);
+        get interval(): number;
+        set interval(newValue: number);
+        get intervalType(): QueueRetryIntervalType;
+        set intervalType(newValue: QueueRetryIntervalType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueueFixedRetry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueueFixedRetry;
+    }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueSettings extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJavaActionCallAction(): microflows.JavaActionCallAction;
+        get containerAsMicroflowCall(): microflows.MicroflowCall;
+        get queue(): IQueue | null;
+        set queue(newValue: IQueue | null);
+        get queueQualifiedName(): string | null;
+        get retry(): QueueRetry | null;
+        set retry(newValue: QueueRetry | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * The new QueueSettings will be automatically stored in the 'queueSettings' property
+         * of the parent microflows.JavaActionCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInJavaActionCallActionUnderQueueSettings(container: microflows.JavaActionCallAction): QueueSettings;
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * The new QueueSettings will be automatically stored in the 'queueSettings' property
+         * of the parent microflows.MicroflowCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMicroflowCallUnderQueueSettings(container: microflows.MicroflowCall): QueueSettings;
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueueSettings;
+    }
 }
+import { microflows } from "./microflows";
 import { IModel } from "./base-model";

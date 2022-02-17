@@ -78,6 +78,16 @@ var settings;
     ThemeConversionStatusEnum.ChangesInAtlas = new ThemeConversionStatusEnum("ChangesInAtlas", {});
     ThemeConversionStatusEnum.AtlasNotFound = new ThemeConversionStatusEnum("AtlasNotFound", {});
     settings.ThemeConversionStatusEnum = ThemeConversionStatusEnum;
+    class UseOptimizedClient extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "settings.UseOptimizedClient";
+        }
+    }
+    UseOptimizedClient.No = new UseOptimizedClient("No", {});
+    UseOptimizedClient.Yes = new UseOptimizedClient("Yes", {});
+    UseOptimizedClient.MigrationMode = new UseOptimizedClient("MigrationMode", {});
+    settings.UseOptimizedClient = UseOptimizedClient;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Settings`.
      */
@@ -627,6 +637,85 @@ var settings;
     IntegrationProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     settings.IntegrationProjectSettingsPart = IntegrationProjectSettingsPart;
     /**
+     * In version 9.10.0: introduced
+     */
+    class JarDeploymentSettings extends ProjectSettingsPart {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__exclusions = new internal.PartListProperty(JarDeploymentSettings, this, "exclusions", []);
+            if (arguments.length < 4) {
+                throw new Error("new JarDeploymentSettings() cannot be invoked directly, please use 'model.settings.createJarDeploymentSettings()'");
+            }
+        }
+        get containerAsProjectSettings() {
+            return super.getContainerAs(ProjectSettings);
+        }
+        get exclusions() {
+            return this.__exclusions.get();
+        }
+        /**
+         * Creates and returns a new JarDeploymentSettings instance in the SDK and on the server.
+         * The new JarDeploymentSettings will be automatically stored in the 'settingsParts' property
+         * of the parent ProjectSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, JarDeploymentSettings.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, JarDeploymentSettings, "settingsParts", true);
+        }
+        /**
+         * Creates and returns a new JarDeploymentSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, JarDeploymentSettings);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    JarDeploymentSettings.structureTypeName = "Settings$JarDeploymentSettings";
+    JarDeploymentSettings.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    settings.JarDeploymentSettings = JarDeploymentSettings;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class JarLocationBase extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__jarFileName = new internal.PrimitiveProperty(JarLocationBase, this, "jarFileName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new JarLocationBase() cannot be invoked directly, please use 'model.settings.createJarLocationBase()'");
+            }
+        }
+        get containerAsJarDeploymentSettings() {
+            return super.getContainerAs(JarDeploymentSettings);
+        }
+        get jarFileName() {
+            return this.__jarFileName.get();
+        }
+        set jarFileName(newValue) {
+            this.__jarFileName.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    JarLocationBase.structureTypeName = "Settings$JarLocationBase";
+    JarLocationBase.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    settings.JarLocationBase = JarLocationBase;
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
@@ -902,6 +991,57 @@ var settings;
     ProjectSettings.structureTypeName = "Settings$ProjectSettings";
     ProjectSettings.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
     settings.ProjectSettings = ProjectSettings;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class ProtectedModuleJarLocation extends JarLocationBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__moduleName = new internal.PrimitiveProperty(ProtectedModuleJarLocation, this, "moduleName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ProtectedModuleJarLocation() cannot be invoked directly, please use 'model.settings.createProtectedModuleJarLocation()'");
+            }
+        }
+        get containerAsJarDeploymentSettings() {
+            return super.getContainerAs(JarDeploymentSettings);
+        }
+        get moduleName() {
+            return this.__moduleName.get();
+        }
+        set moduleName(newValue) {
+            this.__moduleName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ProtectedModuleJarLocation instance in the SDK and on the server.
+         * The new ProtectedModuleJarLocation will be automatically stored in the 'exclusions' property
+         * of the parent JarDeploymentSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ProtectedModuleJarLocation.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, ProtectedModuleJarLocation, "exclusions", true);
+        }
+        /**
+         * Creates and returns a new ProtectedModuleJarLocation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ProtectedModuleJarLocation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ProtectedModuleJarLocation.structureTypeName = "Settings$ProtectedModuleJarLocation";
+    ProtectedModuleJarLocation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    settings.ProtectedModuleJarLocation = ProtectedModuleJarLocation;
     class RuntimeSettings extends ProjectSettingsPart {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -919,6 +1059,8 @@ var settings;
             this.__scheduledEventTimeZoneCode = new internal.PrimitiveProperty(RuntimeSettings, this, "scheduledEventTimeZoneCode", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__hashAlgorithm = new internal.EnumProperty(RuntimeSettings, this, "hashAlgorithm", HashAlgorithmType.BCrypt, HashAlgorithmType);
+            /** @internal */
+            this.__bcryptCost = new internal.PrimitiveProperty(RuntimeSettings, this, "bcryptCost", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__roundingMode = new internal.EnumProperty(RuntimeSettings, this, "roundingMode", RoundingMode.HalfUp, RoundingMode);
             /** @internal */
@@ -990,6 +1132,15 @@ var settings;
         }
         set hashAlgorithm(newValue) {
             this.__hashAlgorithm.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get bcryptCost() {
+            return this.__bcryptCost.get();
+        }
+        set bcryptCost(newValue) {
+            this.__bcryptCost.set(newValue);
         }
         get roundingMode() {
             return this.__roundingMode.get();
@@ -1070,6 +1221,9 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__bcryptCost.isAvailable) {
+                this.bcryptCost = 10;
+            }
             if (this.__enableDataStorageNewQueryHandling.isAvailable) {
                 this.enableDataStorageNewQueryHandling = true;
             }
@@ -1094,6 +1248,9 @@ var settings;
     RuntimeSettings.structureTypeName = "Settings$RuntimeSettings";
     RuntimeSettings.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            bcryptCost: {
+                introduced: "9.11.0"
+            },
             enforceDataStorageUniqueness: {
                 introduced: "7.1.0",
                 deleted: "9.0.2",
@@ -1157,9 +1314,54 @@ var settings;
         introduced: "9.3.0"
     }, internal.StructureType.Element);
     settings.ThemeModuleEntry = ThemeModuleEntry;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class UserLibJarLocation extends JarLocationBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UserLibJarLocation() cannot be invoked directly, please use 'model.settings.createUserLibJarLocation()'");
+            }
+        }
+        get containerAsJarDeploymentSettings() {
+            return super.getContainerAs(JarDeploymentSettings);
+        }
+        /**
+         * Creates and returns a new UserLibJarLocation instance in the SDK and on the server.
+         * The new UserLibJarLocation will be automatically stored in the 'exclusions' property
+         * of the parent JarDeploymentSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, UserLibJarLocation.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, UserLibJarLocation, "exclusions", true);
+        }
+        /**
+         * Creates and returns a new UserLibJarLocation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, UserLibJarLocation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UserLibJarLocation.structureTypeName = "Settings$UserLibJarLocation";
+    UserLibJarLocation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    settings.UserLibJarLocation = UserLibJarLocation;
     class WebUIProjectSettingsPart extends ProjectSettingsPart {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__useOptimizedClient = new internal.EnumProperty(WebUIProjectSettingsPart, this, "useOptimizedClient", UseOptimizedClient.No, UseOptimizedClient);
             /** @internal */
             this.__theme = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "theme", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -1182,6 +1384,15 @@ var settings;
         }
         get containerAsProjectSettings() {
             return super.getContainerAs(ProjectSettings);
+        }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get useOptimizedClient() {
+            return this.__useOptimizedClient.get();
+        }
+        set useOptimizedClient(newValue) {
+            this.__useOptimizedClient.set(newValue);
         }
         /**
          * In version 9.2.0: deleted
@@ -1279,11 +1490,17 @@ var settings;
             if (this.__themeConversionStatus.isAvailable) {
                 this.themeConversionStatus = ThemeConversionStatusEnum.Done;
             }
+            if (this.__useOptimizedClient.isAvailable) {
+                this.useOptimizedClient = UseOptimizedClient.No;
+            }
         }
     }
     WebUIProjectSettingsPart.structureTypeName = "Settings$WebUIProjectSettingsPart";
     WebUIProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            useOptimizedClient: {
+                introduced: "9.10.0"
+            },
             theme: {
                 deleted: "9.2.0",
                 deletionMessage: null

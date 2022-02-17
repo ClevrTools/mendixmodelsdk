@@ -80,6 +80,251 @@ var rest;
     });
     rest.RestOperationParameterType = RestOperationParameterType;
     /**
+     * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
+     */
+    /**
+     * In version 9.11.0: introduced
+     */
+    class ChangeMode extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ChangeMode() cannot be invoked directly, please use 'model.rest.createChangeMode()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ChangeMode.structureTypeName = "Rest$ChangeMode";
+    ChangeMode.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0"
+    }, internal.StructureType.Element);
+    rest.ChangeMode = ChangeMode;
+    /**
+     * In version 9.11.0: introduced
+     */
+    class CallMicroflowToChange extends ChangeMode {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(CallMicroflowToChange, this, "microflow", null, "Microflows$Microflow");
+            if (arguments.length < 4) {
+                throw new Error("new CallMicroflowToChange() cannot be invoked directly, please use 'model.rest.createCallMicroflowToChange()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowToChange, "deleteMode", false);
+        }
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowToChange, "insertMode", false);
+        }
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowToChange, "updateMode", false);
+        }
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CallMicroflowToChange);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CallMicroflowToChange.structureTypeName = "Rest$CallMicroflowToChange";
+    CallMicroflowToChange.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0",
+        properties: {
+            microflow: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    rest.CallMicroflowToChange = CallMicroflowToChange;
+    /**
+     * In version 9.11.0: introduced
+     */
+    class ChangeNotSupported extends ChangeMode {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ChangeNotSupported() cannot be invoked directly, please use 'model.rest.createChangeNotSupported()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container) {
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeNotSupported, "deleteMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container) {
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeNotSupported, "insertMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container) {
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeNotSupported, "updateMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ChangeNotSupported);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ChangeNotSupported.structureTypeName = "Rest$ChangeNotSupported";
+    ChangeNotSupported.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0"
+    }, internal.StructureType.Element);
+    rest.ChangeNotSupported = ChangeNotSupported;
+    /**
+     * In version 9.11.0: introduced
+     */
+    class ChangeSource extends ChangeMode {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ChangeSource() cannot be invoked directly, please use 'model.rest.createChangeSource()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container) {
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeSource, "deleteMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container) {
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeSource, "insertMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container) {
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, ChangeSource, "updateMode", false);
+        }
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ChangeSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ChangeSource.structureTypeName = "Rest$ChangeSource";
+    ChangeSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0"
+    }, internal.StructureType.Element);
+    rest.ChangeSource = ChangeSource;
+    /**
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
@@ -748,7 +993,11 @@ var rest;
             /** @internal */
             this.__sortable = new internal.PrimitiveProperty(ODataMappedValue, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__representsStream = new internal.PrimitiveProperty(ODataMappedValue, this, "representsStream", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
             this.__updatable = new internal.PrimitiveProperty(ODataMappedValue, this, "updatable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__creatable = new internal.PrimitiveProperty(ODataMappedValue, this, "creatable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataMappedValue() cannot be invoked directly, please use 'model.rest.createODataMappedValue()'");
             }
@@ -790,6 +1039,15 @@ var rest;
             this.__sortable.set(newValue);
         }
         /**
+         * In version 9.11.0: introduced
+         */
+        get representsStream() {
+            return this.__representsStream.get();
+        }
+        set representsStream(newValue) {
+            this.__representsStream.set(newValue);
+        }
+        /**
          * In version 9.6.0: introduced
          */
         get updatable() {
@@ -797,6 +1055,15 @@ var rest;
         }
         set updatable(newValue) {
             this.__updatable.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatable() {
+            return this.__creatable.get();
+        }
+        set creatable(newValue) {
+            this.__creatable.set(newValue);
         }
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -821,8 +1088,14 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__creatable.isAvailable) {
+                this.creatable = false;
+            }
             if (this.__filterable.isAvailable) {
                 this.filterable = true;
+            }
+            if (this.__representsStream.isAvailable) {
+                this.representsStream = false;
             }
             if (this.__sortable.isAvailable) {
                 this.sortable = true;
@@ -851,8 +1124,17 @@ var rest;
                     currentValue: true
                 }
             },
+            representsStream: {
+                introduced: "9.11.0",
+                public: {
+                    currentValue: true
+                }
+            },
             updatable: {
                 introduced: "9.6.0"
+            },
+            creatable: {
+                introduced: "9.11.0"
             }
         },
         public: {
@@ -876,6 +1158,10 @@ var rest;
             this.__updatableFromChild = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromChild", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__updatableFromParent = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromParent", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__creatableFromChild = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "creatableFromChild", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__creatableFromParent = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "creatableFromParent", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteAssociationSource() cannot be invoked directly, please use 'model.rest.createODataRemoteAssociationSource()'");
             }
@@ -923,6 +1209,24 @@ var rest;
             this.__updatableFromParent.set(newValue);
         }
         /**
+         * In version 9.11.0: introduced
+         */
+        get creatableFromChild() {
+            return this.__creatableFromChild.get();
+        }
+        set creatableFromChild(newValue) {
+            this.__creatableFromChild.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatableFromParent() {
+            return this.__creatableFromParent.get();
+        }
+        set creatableFromParent(newValue) {
+            this.__creatableFromParent.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
          * The new ODataRemoteAssociationSource will be automatically stored in the 'source' property
          * of the parent domainmodels.AssociationBase element passed as argument.
@@ -962,6 +1266,12 @@ var rest;
             },
             updatableFromParent: {
                 introduced: "9.6.0"
+            },
+            creatableFromChild: {
+                introduced: "9.11.0"
+            },
+            creatableFromParent: {
+                introduced: "9.11.0"
             }
         },
         public: {
@@ -989,6 +1299,10 @@ var rest;
             this.__key = new internal.PartProperty(ODataRemoteEntitySource, this, "key", null, false);
             /** @internal */
             this.__countable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__creatable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "creatable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__deletable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "deletable", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteEntitySource() cannot be invoked directly, please use 'model.rest.createODataRemoteEntitySource()'");
             }
@@ -1070,6 +1384,24 @@ var rest;
             this.__countable.set(newValue);
         }
         /**
+         * In version 9.11.0: introduced
+         */
+        get creatable() {
+            return this.__creatable.get();
+        }
+        set creatable(newValue) {
+            this.__creatable.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get deletable() {
+            return this.__deletable.get();
+        }
+        set deletable(newValue) {
+            this.__deletable.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
          * The new ODataRemoteEntitySource will be automatically stored in the 'source' property
          * of the parent domainmodels.Entity element passed as argument.
@@ -1094,6 +1426,12 @@ var rest;
             super._initializeDefaultProperties();
             if (this.__countable.isAvailable) {
                 this.countable = true;
+            }
+            if (this.__creatable.isAvailable) {
+                this.creatable = false;
+            }
+            if (this.__deletable.isAvailable) {
+                this.deletable = false;
             }
         }
     }
@@ -1127,6 +1465,12 @@ var rest;
                 public: {
                     currentValue: true
                 }
+            },
+            creatable: {
+                introduced: "9.11.0"
+            },
+            deletable: {
+                introduced: "9.11.0"
             }
         },
         public: {
@@ -1374,6 +1718,16 @@ var rest;
             /** @internal */
             this.__updateMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "updateMicroflow", null, "Microflows$Microflow");
             /** @internal */
+            this.__insertable = new internal.PrimitiveProperty(PublishedRestResource, this, "insertable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__deletable = new internal.PrimitiveProperty(PublishedRestResource, this, "deletable", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__updateMode = new internal.PartProperty(PublishedRestResource, this, "updateMode", null, true);
+            /** @internal */
+            this.__insertMode = new internal.PartProperty(PublishedRestResource, this, "insertMode", null, true);
+            /** @internal */
+            this.__deleteMode = new internal.PartProperty(PublishedRestResource, this, "deleteMode", null, true);
+            /** @internal */
             this.__queryMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "queryMicroflow", null, "Microflows$Microflow");
             /** @internal */
             this.__countMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "countMicroflow", null, "Microflows$Microflow");
@@ -1430,6 +1784,7 @@ var rest;
             this.__pageSize.set(newValue);
         }
         /**
+         * In version 9.11.0: deleted
          * In version 9.4.0: introduced
          */
         get updatable() {
@@ -1439,6 +1794,7 @@ var rest;
             this.__updatable.set(newValue);
         }
         /**
+         * In version 9.11.0: deleted
          * In version 9.9.0: introduced
          */
         get updateMicroflow() {
@@ -1449,6 +1805,53 @@ var rest;
         }
         get updateMicroflowQualifiedName() {
             return this.__updateMicroflow.qualifiedName();
+        }
+        /**
+         * In version 9.11.0: deleted
+         * In version 9.10.0: introduced
+         */
+        get insertable() {
+            return this.__insertable.get();
+        }
+        set insertable(newValue) {
+            this.__insertable.set(newValue);
+        }
+        /**
+         * In version 9.11.0: deleted
+         * In version 9.10.0: introduced
+         */
+        get deletable() {
+            return this.__deletable.get();
+        }
+        set deletable(newValue) {
+            this.__deletable.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get updateMode() {
+            return this.__updateMode.get();
+        }
+        set updateMode(newValue) {
+            this.__updateMode.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get insertMode() {
+            return this.__insertMode.get();
+        }
+        set insertMode(newValue) {
+            this.__insertMode.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get deleteMode() {
+            return this.__deleteMode.get();
+        }
+        set deleteMode(newValue) {
+            this.__deleteMode.set(newValue);
         }
         /**
          * In version 9.9.0: introduced
@@ -1493,9 +1896,24 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__deletable.isAvailable) {
+                this.deletable = false;
+            }
+            if (this.__deleteMode.isAvailable) {
+                this.deleteMode = ChangeNotSupported.create(this.model);
+            }
+            if (this.__insertMode.isAvailable) {
+                this.insertMode = ChangeNotSupported.create(this.model);
+            }
+            if (this.__insertable.isAvailable) {
+                this.insertable = false;
+            }
             this.pageSize = 10000;
             if (this.__updatable.isAvailable) {
                 this.updatable = false;
+            }
+            if (this.__updateMode.isAvailable) {
+                this.updateMode = ChangeNotSupported.create(this.model);
             }
         }
     }
@@ -1512,10 +1930,42 @@ var rest;
                 introduced: "8.0.0"
             },
             updatable: {
-                introduced: "9.4.0"
+                introduced: "9.4.0",
+                deleted: "9.11.0",
+                deletionMessage: "Replaced by updateMode"
             },
             updateMicroflow: {
-                introduced: "9.9.0"
+                introduced: "9.9.0",
+                deleted: "9.11.0",
+                deletionMessage: "Replaced by updateMode"
+            },
+            insertable: {
+                introduced: "9.10.0",
+                deleted: "9.11.0",
+                deletionMessage: "Replaced by insertMode"
+            },
+            deletable: {
+                introduced: "9.10.0",
+                deleted: "9.11.0",
+                deletionMessage: "Replaced by deleteMode"
+            },
+            updateMode: {
+                introduced: "9.11.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            insertMode: {
+                introduced: "9.11.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            deleteMode: {
+                introduced: "9.11.0",
+                required: {
+                    currentValue: true
+                }
             },
             queryMicroflow: {
                 introduced: "9.9.0"

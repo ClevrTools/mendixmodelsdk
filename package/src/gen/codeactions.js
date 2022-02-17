@@ -1003,7 +1003,13 @@ var codeactions;
             /** @internal */
             this.__icon = new internal.ByNameReferenceProperty(MicroflowActionInfo, this, "icon", null, "Images$Image");
             /** @internal */
+            this.__iconData = new internal.PrimitiveProperty(MicroflowActionInfo, this, "iconData", null, internal.PrimitiveTypeEnum.Blob);
+            /** @internal */
+            this.__iconDataDark = new internal.PrimitiveProperty(MicroflowActionInfo, this, "iconDataDark", null, internal.PrimitiveTypeEnum.Blob);
+            /** @internal */
             this.__imageData = new internal.PrimitiveProperty(MicroflowActionInfo, this, "imageData", null, internal.PrimitiveTypeEnum.Blob);
+            /** @internal */
+            this.__imageDataDark = new internal.PrimitiveProperty(MicroflowActionInfo, this, "imageDataDark", null, internal.PrimitiveTypeEnum.Blob);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowActionInfo() cannot be invoked directly, please use 'model.codeactions.createMicroflowActionInfo()'");
             }
@@ -1026,6 +1032,9 @@ var codeactions;
         set category(newValue) {
             this.__category.set(newValue);
         }
+        /**
+         * In version 9.10.0: deleted
+         */
         get icon() {
             return this.__icon.get();
         }
@@ -1036,6 +1045,24 @@ var codeactions;
             return this.__icon.qualifiedName();
         }
         /**
+         * In version 9.10.0: introduced
+         */
+        get iconData() {
+            return this.__iconData.get();
+        }
+        set iconData(newValue) {
+            this.__iconData.set(newValue);
+        }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get iconDataDark() {
+            return this.__iconDataDark.get();
+        }
+        set iconDataDark(newValue) {
+            this.__iconDataDark.set(newValue);
+        }
+        /**
          * In version 9.6.0: introduced
          */
         get imageData() {
@@ -1043,6 +1070,15 @@ var codeactions;
         }
         set imageData(newValue) {
             this.__imageData.set(newValue);
+        }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get imageDataDark() {
+            return this.__imageDataDark.get();
+        }
+        set imageDataDark(newValue) {
+            this.__imageDataDark.set(newValue);
         }
         /**
          * Creates and returns a new MicroflowActionInfo instance in the SDK and on the server.
@@ -1120,15 +1156,26 @@ var codeactions;
                 }
             },
             icon: {
+                deleted: "9.10.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 }
+            },
+            iconData: {
+                introduced: "9.10.0"
+            },
+            iconDataDark: {
+                introduced: "9.10.0"
             },
             imageData: {
                 introduced: "9.6.0",
                 public: {
                     currentValue: true
                 }
+            },
+            imageDataDark: {
+                introduced: "9.10.0"
             }
         },
         public: {

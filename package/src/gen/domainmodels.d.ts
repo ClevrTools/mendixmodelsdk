@@ -150,6 +150,10 @@ export declare namespace domainmodels {
          */
         readonly parent: IEntity;
         /**
+         * In version 9.10.0: added public
+         */
+        readonly documentation: string;
+        /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
@@ -193,6 +197,9 @@ export declare namespace domainmodels {
         set deleteBehavior(newValue: AssociationDeleteBehavior);
         get parent(): Entity;
         set parent(newValue: Entity);
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation(): string;
         set documentation(newValue: string);
         /**
@@ -441,6 +448,10 @@ export declare namespace domainmodels {
          */
         readonly type: IAttributeType;
         /**
+         * In version 9.10.0: added public
+         */
+        readonly documentation: string;
+        /**
          * This property is required and cannot be set to null.
          *
          * In version 6.6.0: added public
@@ -470,6 +481,9 @@ export declare namespace domainmodels {
         set dataStorageGuid(newValue: string);
         get type(): AttributeType;
         set type(newValue: AttributeType);
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation(): string;
         set documentation(newValue: string);
         /**
@@ -1421,6 +1435,10 @@ export declare namespace domainmodels {
     interface IDomainModel extends projects.IModuleDocument {
         readonly model: IModel;
         readonly containerAsModule: projects.IModule;
+        /**
+         * In version 9.10.0: added public
+         */
+        readonly documentation: string;
         readonly entities: internal.IList<IEntity>;
         readonly associations: internal.IList<IAssociation>;
         readonly crossAssociations: internal.IList<ICrossAssociation>;
@@ -1435,6 +1453,9 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsModule(): projects.Module;
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation(): string;
         set documentation(newValue: string);
         get entities(): internal.IList<Entity>;
@@ -1455,6 +1476,14 @@ export declare namespace domainmodels {
         readonly model: IModel;
         readonly containerAsDomainModel: IDomainModel;
         readonly name: string;
+        /**
+         * In version 9.10.0: added public
+         */
+        readonly location: common.IPoint;
+        /**
+         * In version 9.10.0: added public
+         */
+        readonly documentation: string;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1502,8 +1531,14 @@ export declare namespace domainmodels {
         set name(newValue: string);
         get dataStorageGuid(): string;
         set dataStorageGuid(newValue: string);
+        /**
+         * In version 9.10.0: added public
+         */
         get location(): common.IPoint;
         set location(newValue: common.IPoint);
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation(): string;
         set documentation(newValue: string);
         get generalization(): GeneralizationBase;
@@ -2206,7 +2241,7 @@ export declare namespace domainmodels {
          * of the parent workflows.Parameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.6.0 and higher
+         *  9.6.0 to 9.9.0
          */
         static createInParameterUnderEntityRef(container: workflows.Parameter): IndirectEntityRef;
         /**

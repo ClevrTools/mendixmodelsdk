@@ -12,7 +12,8 @@ class ModelSdkClientImpl {
         this.connectionConfig = connectionConfig;
         this.modelConstructor = modelConstructor;
         const defaultConfig = {
-            endPoint: "https://model.api.mendix.com"
+            endPoint: "https://model.api.mendix.com",
+            credentials: process.env.MENDIX_TOKEN ? { personalAccessToken: process.env.MENDIX_TOKEN } : undefined
         };
         const sdkConfig = { ...defaultConfig, ...connectionConfig };
         this.client = sdkConfig.client || new internal.ModelServerClientImpl(sdkConfig);
@@ -33,7 +34,7 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.createWorkingCopy(workingCopyParameters, workingCopyInfo => {
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.createWorkingCopy(workingCopyParameters).then(workingCopyInfo => {
             this.openWorkingCopy(workingCopyInfo.id).then(resolve, reject);
         }, reject), callback, errorCallback);
     }
@@ -75,6 +76,15 @@ class ModelSdkClientImpl {
         return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
             assertBackendAccess(this.connectionConfig);
             this.client.grantAccess(workingCopyId, memberOpenId, resolve, reject);
+        }, callback, errorCallback);
+    }
+    setWorkingCopyMembers(workingCopyId, memberOpenIds, callback, errorCallback) {
+        if (callback) {
+            checkCallbacks(callback, errorCallback);
+        }
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
+            assertBackendAccess(this.connectionConfig);
+            this.client.setWorkingCopyMembers(workingCopyId, memberOpenIds, resolve, reject);
         }, callback, errorCallback);
     }
     revokeAccess(workingCopyId, memberOpenId, callback, errorCallback) {
@@ -126,7 +136,13 @@ class ModelSdkClientImpl {
         if (callback) {
             checkCallbacks(callback, errorCallback);
         }
-        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => this.client.exportMpk(workingCopyId, outFilePath, resolve, reject), callback, errorCallback);
+        return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
+            this.client.exportMpk(workingCopyId, outFilePath, resolve, reject);
+        }, callback
+            ? result => {
+                callback(result.data, result.lastEventId);
+            }
+            : callback, errorCallback);
     }
     exportModuleMpk(workingCopyId, moduleId, outFilePath, callback, errorCallback) {
         if (callback) {

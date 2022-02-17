@@ -4,19 +4,20 @@ exports.ModelServerClientImpl = void 0;
 const fs = require("fs");
 const path = require("path");
 const EventSource = require("eventsource");
+const configuration_1 = require("../configuration");
 const RestTransportation_1 = require("./RestTransportation");
 const getAuthInfo_1 = require("./getAuthInfo");
 const utils_1 = require("../utils");
 /**
  * Default implementation of {@link IModelServerClient}.
  */
-const apiEndPoint = "/api/v1/";
 class ModelServerClientImpl {
     constructor(config) {
         this.config = config;
         this.pendingRequests = [];
         this.MAX_PARALLEL_REQUESTS = 100;
         this.runningRequests = 0;
+        this.getTaskDelayInMs = 500;
         this.transportation = config.transportation || new RestTransportation_1.RestTransportation(config);
     }
     getHeadersForModificationRequest() {
@@ -28,31 +29,42 @@ class ModelServerClientImpl {
     createWorkingCopy(workingCopyInfo, callback, errorCallback) {
         this.transportation.requestMultipartBinaryFileUpload({
             method: "post",
-            url: `${apiEndPoint}wc/`,
+            url: this.getFullUrl(`/v2/wc`),
             body: this.getCreateWorkingCopyData(workingCopyInfo),
             fileParameterName: "template",
             fileName: workingCopyInfo.template
-        }, callback, errorCallback);
+        }, newTask => {
+            this.awaitTask(newTask.taskId)
+                .then(taskResponse => {
+                callback(taskResponse.result);
+            })
+                .catch(errorCallback);
+        }, errorCallback);
     }
     createWorkingCopyFromTeamServer(workingCopyInfo, callback, errorCallback) {
         this.transportation.request({
             method: "post",
-            url: `${apiEndPoint}wc/`,
-            body: this.getCreateWorkingCopyFromTeamServerData(workingCopyInfo),
-            longTimeout: true
-        }, callback, errorCallback);
+            url: this.getFullUrl(`/v2/wc`),
+            body: this.getCreateWorkingCopyFromTeamServerData(workingCopyInfo)
+        }, newTask => {
+            this.awaitTask(newTask.taskId)
+                .then(taskResponse => {
+                callback(taskResponse.result);
+            })
+                .catch(errorCallback);
+        }, errorCallback);
     }
     loadWorkingCopyMetaData(workingCopyId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "get", url: `${apiEndPoint}wc/${workingCopyId}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "get", url: this.getFullUrl(`/v1/wc/${workingCopyId}`) }, callback, errorCallback);
     }
     loadUnitInterfaces(workingCopyId, callback, errorCallback, rootUnitId) {
-        let url = `${apiEndPoint}wc/${workingCopyId}/units`;
+        let url = `/v1/wc/${workingCopyId}/units`;
         if (rootUnitId) {
             url += `?rootUnitId=${rootUnitId}`;
         }
         this.transportation.retryableRequest({
             method: "get",
-            url: url
+            url: this.getFullUrl(url)
         }, (data, response) => {
             const lastEventIdHeader = response.headers["last-event-id"];
             if (!lastEventIdHeader) {
@@ -67,7 +79,7 @@ class ModelServerClientImpl {
     }
     deleteWorkingCopy(workingCopyId, callback, errorCallback) {
         // A 404 error thrown when the working copy doesn't exist should not be considered as an error
-        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}` }, callback, (error) => {
+        this.transportation.retryableRequest({ method: "delete", url: this.getFullUrl(`/v1/wc/${workingCopyId}`) }, callback, (error) => {
             if (error?.error?.code === 404) {
                 callback();
             }
@@ -77,42 +89,47 @@ class ModelServerClientImpl {
         });
     }
     grantAccess(workingCopyId, memberOpenId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: this.getFullUrl(`/v1/wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}`) }, callback, errorCallback);
+    }
+    setWorkingCopyMembers(workingCopyId, memberOpenIds, callback, errorCallback) {
+        this.transportation.retryableRequest({ method: "put", url: this.getFullUrl(`/v1/wc/${workingCopyId}/members`), body: { memberOpenIds } }, callback, errorCallback);
     }
     revokeAccess(workingCopyId, memberOpenId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: this.getFullUrl(`/v1/wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}`) }, callback, errorCallback);
     }
     checkAccess(workingCopyId, memberOpenId, callback, errorCallback) {
         this.transportation.retryableRequest({
             method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}`
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/members/${encodeURIComponent(memberOpenId)}`)
         }, (response) => callback(response.hasAccess), errorCallback);
     }
     grantAccessByProject(projectId, memberOpenId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: this.getFullUrl(`/v1/project/${projectId}/members/${encodeURIComponent(memberOpenId)}`) }, callback, errorCallback);
     }
     revokeAccessByProject(projectId, memberOpenId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}project/${projectId}/members/${encodeURIComponent(memberOpenId)}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: this.getFullUrl(`/v1/project/${projectId}/members/${encodeURIComponent(memberOpenId)}`) }, callback, errorCallback);
     }
     setProjectMembers(projectId, memberOpenids, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "put", url: `${apiEndPoint}project/${projectId}/members`, body: { memberOpenids } }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "put", url: this.getFullUrl(`/v1/project/${projectId}/members`), body: { memberOpenids } }, callback, errorCallback);
     }
     exportMpk(workingCopyId, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
             method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/mpk`
-        }, this.createDownloadHandler(outFilePath, callback, errorCallback), errorCallback);
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/mpk`)
+        }, this.createDownloadHandler(outFilePath, (data, response) => {
+            callback({ data, lastEventId: Number(response.headers["last-event-id"]) });
+        }, errorCallback), errorCallback);
     }
     exportModuleMpk(workingCopyId, moduleId, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
             method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/module/${moduleId}/mpk`
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/module/${moduleId}/mpk`)
         }, this.createDownloadHandler(outFilePath, callback, errorCallback), errorCallback);
     }
     importModuleMpk(workingCopyId, mpkPath, callback, errorCallback) {
         this.transportation.requestMultipartBinaryFileUpload({
             method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/module`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/module`),
             headers: this.getHeadersForModificationRequest(),
             fileParameterName: "mpk",
             fileName: mpkPath
@@ -124,13 +141,13 @@ class ModelServerClientImpl {
     filterUnitsByCustomWidgetId(workingCopyId, widgetId, callback, errorCallback) {
         this.transportation.retryableRequest({
             method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/units/filter/custom-widget?widgetId=${widgetId}`
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/units/filter/custom-widget?widgetId=${widgetId}`)
         }, callback, errorCallback);
     }
     sendDeltas(workingCopyId, deltas, callback, errorCallback) {
         this.transportation.request({
             method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/deltas`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/deltas`),
             headers: this.getHeadersForModificationRequest(),
             body: { deltas: deltas }
         }, (data, response) => {
@@ -145,7 +162,7 @@ class ModelServerClientImpl {
             options.format = "json";
         }
         const filterPostfix = options.filter ? "&filter=" + options.filter : "";
-        const downloadUrl = `${apiEndPoint}wc/${workingCopyId}/files/?format=${options.format}${filterPostfix}`;
+        const downloadUrl = this.getFullUrl(`/v1/wc/${workingCopyId}/files/?format=${options.format}${filterPostfix}`);
         if (options.format === "json") {
             this.transportation.retryableRequest({ method: "get", url: downloadUrl }, callback, errorCallback);
         }
@@ -162,13 +179,13 @@ class ModelServerClientImpl {
     getFile(workingCopyId, filePath, outFilePath, callback, errorCallback) {
         this.transportation.requestFileDownload({
             method: "get",
-            url: `${apiEndPoint}wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`)
         }, this.createDownloadHandler(outFilePath, callback, errorCallback), errorCallback);
     }
     putFile(workingCopyId, inFilePath, filePath, callback, errorCallback) {
         this.transportation.requestMultipartBinaryFileUpload({
             method: "put",
-            url: `${apiEndPoint}wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`),
             headers: this.getHeadersForModificationRequest(),
             fileParameterName: "file",
             fileName: inFilePath
@@ -179,19 +196,19 @@ class ModelServerClientImpl {
     deleteFile(workingCopyId, filePath, callback, errorCallback) {
         this.transportation.request({
             method: "delete",
-            url: `${apiEndPoint}wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/files/${encodeURIComponent(filePath)}`),
             headers: this.getHeadersForModificationRequest()
         }, (data, response) => {
             callback(Number(response.headers["last-event-id"]));
         }, errorCallback);
     }
     getMyWorkingCopies(callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "get", url: `${apiEndPoint}wc/` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "get", url: this.getFullUrl(`/v1/wc`) }, callback, errorCallback);
     }
     getWorkingCopyByProject(projectId, callback, errorCallback) {
         this.transportation.retryableRequest({
             method: "get",
-            url: `${apiEndPoint}project/${projectId}`
+            url: this.getFullUrl(`/v1/project/${projectId}`)
         }, (response) => callback(response.workingCopyId), errorCallback);
     }
     /**
@@ -200,7 +217,7 @@ class ModelServerClientImpl {
     updateWorkingCopyByProject(projectId, workingCopyId, callback, errorCallback) {
         this.transportation.retryableRequest({
             method: "put",
-            url: `${apiEndPoint}project/${projectId}`,
+            url: this.getFullUrl(`/v1/project/${projectId}`),
             body: {
                 projectId: projectId,
                 workingCopyId: workingCopyId
@@ -211,7 +228,7 @@ class ModelServerClientImpl {
      * Deletes the project-to-working copy mapping for given project ID.
      */
     deleteWorkingCopyByProject(projectId, callback, errorCallback) {
-        this.transportation.retryableRequest({ method: "delete", url: `${apiEndPoint}project/${projectId}` }, callback, errorCallback);
+        this.transportation.retryableRequest({ method: "delete", url: this.getFullUrl(`/v1/project/${projectId}`) }, callback, errorCallback);
     }
     lockWorkingCopy(workingCopyId, lockOptionsOrCallback, callbackOrErrorCallback, errorCallback) {
         let callback;
@@ -234,7 +251,7 @@ class ModelServerClientImpl {
         }
         this.transportation.retryableRequest({
             method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/lock`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/lock`),
             body: lockOptions
         }, callback, errorCallback);
     }
@@ -242,20 +259,21 @@ class ModelServerClientImpl {
         this.editLockId = undefined;
         this.transportation.retryableRequest({
             method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/unlock`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/unlock`),
             body: lockType && { lockType }
         }, callback, errorCallback);
     }
     commitToTeamServer(workingCopyId, options, callback, errorCallback) {
         this.transportation.request({
             method: "post",
-            url: `${apiEndPoint}wc/${workingCopyId}/commit`,
+            url: this.getFullUrl(`/v1/wc/${workingCopyId}/commit`),
             body: options,
             longTimeout: true
         }, callback, errorCallback);
     }
     getModelEventSource(workingCopyId, lastEventId) {
         if (utils_1.utils.isBrowser()) {
+            // Studio-specific call to '/api'.
             return new EventSource(`${location.protocol}//${location.host}/api/v1/wc/${workingCopyId}/events`, {
                 headers: {
                     "Last-Event-ID": lastEventId
@@ -273,6 +291,7 @@ class ModelServerClientImpl {
     }
     getWorkingCopyEventSource(workingCopyId) {
         if (utils_1.utils.isBrowser()) {
+            // Studio-specific call to '/api'.
             return new EventSource(`${location.protocol}//${location.host}/api/v1/wc/${workingCopyId}/wc-events`);
         }
         else {
@@ -287,7 +306,7 @@ class ModelServerClientImpl {
         this.runningRequests += 1;
         this.transportation.retryableRequest({
             method: "get",
-            url: `${apiEndPoint}wc/${info.workingCopyId}/units/${info.unitId}`
+            url: this.getFullUrl(`/v1/wc/${info.workingCopyId}/units/${info.unitId}`)
         }, (data, response) => {
             this.completeGetUnitRequest();
             const lastEventIdHeader = response.headers["last-event-id"];
@@ -367,7 +386,8 @@ class ModelServerClientImpl {
             teamServerBaseCommitId: workingCopyInfo.teamServerBaseCommitId || "",
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
-            isCollaboration: workingCopyInfo.isCollaboration === true
+            isCollaboration: workingCopyInfo.isCollaboration === true,
+            priority: workingCopyInfo.priority || configuration_1.Priority.Low
         };
         return workingCopyData;
     }
@@ -384,7 +404,8 @@ class ModelServerClientImpl {
             teamServerGitUrl: workingCopyInfo.teamServerGitUrl,
             markAsChanged: workingCopyInfo.markAsChanged === true,
             setAsDefault: workingCopyInfo.setAsDefault === true,
-            isCollaboration: workingCopyInfo.isCollaboration === true
+            isCollaboration: workingCopyInfo.isCollaboration === true,
+            priority: workingCopyInfo.priority || configuration_1.Priority.Low
         };
         return workingCopyData;
     }
@@ -397,6 +418,23 @@ class ModelServerClientImpl {
             return `MxToken ${authInfo.personalAccessToken}`;
         }
         throw new Error("No credentials provided");
+    }
+    async awaitTask(taskId) {
+        let lastTaskData = { status: "running" };
+        while (lastTaskData.status === "running") {
+            await new Promise(resolve => setTimeout(resolve, this.getTaskDelayInMs));
+            lastTaskData = await new Promise((resolve, reject) => this.transportation.retryableRequest({ method: "get", url: this.getFullUrl(`/v1/tasks/${taskId}`) }, resolve, reject));
+        }
+        if (lastTaskData.status !== "finished") {
+            // Emulate the synchronous request error format by having a nested 'error' property with the actual error.
+            const error = new Error("An error occurred while creating the working copy");
+            error.error = lastTaskData.result;
+            throw error;
+        }
+        return lastTaskData;
+    }
+    getFullUrl(relativeUrl) {
+        return utils_1.utils.combineUrl(this.config.endPoint || "", relativeUrl);
     }
 }
 exports.ModelServerClientImpl = ModelServerClientImpl;

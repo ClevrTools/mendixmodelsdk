@@ -51,6 +51,7 @@ export declare namespace customwidgets {
     class WidgetValueTypeEnum extends internal.AbstractEnum {
         static Action: WidgetValueTypeEnum;
         static Attribute: WidgetValueTypeEnum;
+        static Association: WidgetValueTypeEnum;
         static Boolean: WidgetValueTypeEnum;
         static DataSource: WidgetValueTypeEnum;
         static Entity: WidgetValueTypeEnum;
@@ -1063,6 +1064,11 @@ export declare namespace customwidgets {
          */
         get dataSourceProperty(): string;
         set dataSourceProperty(newValue: string);
+        /**
+         * In version 9.10.0: introduced
+         */
+        get universeDataSourceProperty(): string;
+        set universeDataSourceProperty(newValue: string);
         get attributeTypes(): internal.IList<CustomWidgetAttributeType>;
         get enumerationValues(): internal.IList<WidgetEnumerationValue>;
         get objectType(): WidgetObjectType | null;

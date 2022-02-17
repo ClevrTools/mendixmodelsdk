@@ -89,6 +89,7 @@ export interface IBaseModel extends IAbstractModel {
     allProjectSecurities(): security.IProjectSecurity[];
     allProjectSettings(): settings.IProjectSettings[];
     allPublishedAppServices(): webservices.IPublishedAppService[];
+    allPublishedBusinessEventServices(): businessevents.IPublishedBusinessEventService[];
     allPublishedKafkaServices(): kafka.IPublishedKafkaService[];
     allPublishedODataServices(): rest.IPublishedODataService[];
     allPublishedRestServices(): rest.IPublishedRestService[];
@@ -202,6 +203,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allProjectSecurities(): security.IProjectSecurity[];
     allProjectSettings(): settings.IProjectSettings[];
     allPublishedAppServices(): webservices.IPublishedAppService[];
+    allPublishedBusinessEventServices(): businessevents.IPublishedBusinessEventService[];
     allPublishedKafkaServices(): kafka.IPublishedKafkaService[];
     allPublishedODataServices(): rest.IPublishedODataService[];
     allPublishedRestServices(): rest.IPublishedRestService[];
@@ -295,6 +297,10 @@ export declare type ConcreteModelElements = {
     AppServices$MsdMicroflowParameter: appservices.MsdMicroflowParameter;
     AppServices$MsdText: appservices.MsdText;
     AppServices$MsdVersion: appservices.MsdVersion;
+    BusinessEvents$ConsumedBusinessEvent: businessevents.ConsumedBusinessEvent;
+    BusinessEvents$PublishedChannel: businessevents.PublishedChannel;
+    BusinessEvents$PublishedMessage: businessevents.PublishedMessage;
+    BusinessEvents$PublishedMessageAttribute: businessevents.PublishedMessageAttribute;
     CodeActions$BasicParameterType: codeactions.BasicParameterType;
     CodeActions$BooleanType: codeactions.BooleanType;
     CodeActions$ConcreteEntityType: codeactions.ConcreteEntityType;
@@ -532,6 +538,7 @@ export declare type ConcreteModelElements = {
     Microflows$FormDataRequestHandling: microflows.FormDataRequestHandling;
     Microflows$GaugeMeterAction: microflows.GaugeMeterAction;
     Microflows$GenerateDocumentAction: microflows.GenerateDocumentAction;
+    Microflows$GetWorkflowDataAction: microflows.GetWorkflowDataAction;
     Microflows$Head: microflows.Head;
     Microflows$HttpConfiguration: microflows.HttpConfiguration;
     Microflows$HttpHeaderEntry: microflows.HttpHeaderEntry;
@@ -552,6 +559,9 @@ export declare type ConcreteModelElements = {
     Microflows$ListOperationAction: microflows.ListOperationAction;
     Microflows$LogMessageAction: microflows.LogMessageAction;
     Microflows$LoopedActivity: microflows.LoopedActivity;
+    Microflows$MLModelCall: microflows.MLModelCall;
+    Microflows$MLModelCallAction: microflows.MLModelCallAction;
+    Microflows$MLModelCallParameterMapping: microflows.MLModelCallParameterMapping;
     Microflows$MappingRequestHandling: microflows.MappingRequestHandling;
     Microflows$MemberChange: microflows.MemberChange;
     Microflows$MeterTagMapping: microflows.MeterTagMapping;
@@ -790,6 +800,9 @@ export declare type ConcreteModelElements = {
     Pages$WorkflowOverviewTemplateType: pages.WorkflowOverviewTemplateType;
     Projects$OneTimeConversionMarker: projects.OneTimeConversionMarker;
     Queues$BasicQueueConfig: queues.BasicQueueConfig;
+    Queues$QueueExponentialRetry: queues.QueueExponentialRetry;
+    Queues$QueueFixedRetry: queues.QueueFixedRetry;
+    Queues$QueueSettings: queues.QueueSettings;
     Reports$BasicReport: reports.BasicReport;
     Reports$BasicReportAggregate: reports.BasicReportAggregate;
     Reports$BasicReportColumn: reports.BasicReportColumn;
@@ -802,6 +815,9 @@ export declare type ConcreteModelElements = {
     Reports$ReportPane: reports.ReportPane;
     Reports$ReportZoomInfo: reports.ReportZoomInfo;
     Reports$ReportZoomMapping: reports.ReportZoomMapping;
+    Rest$CallMicroflowToChange: rest.CallMicroflowToChange;
+    Rest$ChangeNotSupported: rest.ChangeNotSupported;
+    Rest$ChangeSource: rest.ChangeSource;
     Rest$CorsConfiguration: rest.CorsConfiguration;
     Rest$MetadataReference: rest.MetadataReference;
     Rest$ODataKey: rest.ODataKey;
@@ -827,12 +843,15 @@ export declare type ConcreteModelElements = {
     Settings$ConstantValue: settings.ConstantValue;
     Settings$CustomSetting: settings.CustomSetting;
     Settings$IntegrationProjectSettingsPart: settings.IntegrationProjectSettingsPart;
+    Settings$JarDeploymentSettings: settings.JarDeploymentSettings;
     Settings$JavaActionsSettings: settings.JavaActionsSettings;
     Settings$Language: settings.Language;
     Settings$LanguageSettings: settings.LanguageSettings;
     Settings$ModelerSettings: settings.ModelerSettings;
+    Settings$ProtectedModuleJarLocation: settings.ProtectedModuleJarLocation;
     Settings$RuntimeSettings: settings.RuntimeSettings;
     Settings$ThemeModuleEntry: settings.ThemeModuleEntry;
+    Settings$UserLibJarLocation: settings.UserLibJarLocation;
     Settings$WebUIProjectSettingsPart: settings.WebUIProjectSettingsPart;
     Settings$WorkflowsProjectSettingsPart: settings.WorkflowsProjectSettingsPart;
     Texts$SystemText: texts.SystemText;
@@ -855,6 +874,7 @@ export declare type ConcreteModelElements = {
     Workflows$BooleanConditionOutcome: workflows.BooleanConditionOutcome;
     Workflows$CallMicroflowTask: workflows.CallMicroflowTask;
     Workflows$CallWorkflowActivity: workflows.CallWorkflowActivity;
+    Workflows$EmptyUserSource: workflows.EmptyUserSource;
     Workflows$EndWorkflowActivity: workflows.EndWorkflowActivity;
     Workflows$EnumerationValueConditionOutcome: workflows.EnumerationValueConditionOutcome;
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
@@ -864,6 +884,8 @@ export declare type ConcreteModelElements = {
     Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
     Workflows$MicroflowCallParameterMapping: workflows.MicroflowCallParameterMapping;
     Workflows$NoEvent: workflows.NoEvent;
+    Workflows$PageParameterMapping: workflows.PageParameterMapping;
+    Workflows$PageReference: workflows.PageReference;
     Workflows$ParallelSplitActivity: workflows.ParallelSplitActivity;
     Workflows$ParallelSplitOutcome: workflows.ParallelSplitOutcome;
     Workflows$Parameter: workflows.Parameter;

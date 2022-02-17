@@ -41,6 +41,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -84,6 +85,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -174,6 +176,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'microflowReturnType' property
@@ -286,6 +297,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -376,6 +388,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'microflowReturnType' property
@@ -488,6 +509,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -578,6 +600,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'microflowReturnType' property
@@ -690,6 +721,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -780,6 +812,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'microflowReturnType' property
@@ -892,6 +933,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -982,6 +1024,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'microflowReturnType' property
@@ -1099,6 +1150,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -1150,6 +1202,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -1243,6 +1296,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'microflowReturnType' property
@@ -1355,6 +1417,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -1445,6 +1508,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'microflowReturnType' property
@@ -1557,6 +1629,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -1647,6 +1720,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'microflowReturnType' property
@@ -1759,6 +1841,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -1849,6 +1932,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'microflowReturnType' property
@@ -1961,6 +2053,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -2051,6 +2144,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'microflowReturnType' property
@@ -2163,6 +2265,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -2253,6 +2356,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'microflowReturnType' property
@@ -2365,6 +2477,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -2455,6 +2568,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'microflowReturnType' property
@@ -2567,6 +2689,7 @@ export declare namespace datatypes {
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
+        get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
         get containerAsMicroflowParameterBase(): microflows.MicroflowParameterBase;
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
@@ -2657,6 +2780,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInCreateVariableActionUnderVariableType(container: microflows.CreateVariableAction): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'microflowReturnType' property

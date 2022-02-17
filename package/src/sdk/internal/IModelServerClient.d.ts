@@ -3,6 +3,7 @@ import { configuration } from "../configuration";
 import { common } from "../../common";
 import { ILockWorkingCopyResponse, IWorkingCopy, IGetFilesOptions, ILockWorkingCopyOptions, LockType, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./transportInterfaces";
 import { Delta } from "./deltas";
+import { IExportMpkResponse } from "../internal";
 /**
  * The IModelServerClient interface is used for forwarding calls to the underlying Mendix Model API.
  * Implementations of this interface serve as fully-typed clients for the Model API Server.
@@ -29,13 +30,14 @@ export interface IModelServerClient {
     loadWorkingCopyMetaData(workingCopyId: string, callback: common.ICallback<IWorkingCopy>, errorCallback: common.IErrorCallback): void;
     deleteWorkingCopy(workingCopyId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setWorkingCopyMembers(workingCopyId: string, memberOpenIds: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     revokeAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     checkAccess(workingCopyId: string, memberOpenId: string, callback: common.ICallback<boolean>, errorCallback: common.IErrorCallback): void;
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     getMyWorkingCopies(callback: common.ICallback<IWorkingCopy[]>, errorCallback: common.IErrorCallback): void;
-    exportMpk(workingCopyId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    exportMpk(workingCopyId: string, outFilePath: string, callback: common.ICallback<IExportMpkResponse>, errorCallback: common.IErrorCallback): void;
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     importModuleMpk(workingCopyId: string, mpkPath: string | Blob, callback: common.ICallback<string>, errorCallback: common.IErrorCallback): void;
     /**

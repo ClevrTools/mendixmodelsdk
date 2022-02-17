@@ -441,6 +441,77 @@ var workflows;
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
+    class UserSource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UserSource() cannot be invoked directly, please use 'model.workflows.createUserSource()'");
+            }
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(UserTask);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UserSource.structureTypeName = "Workflows$UserSource";
+    UserSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.2",
+        experimental: {
+            currentValue: false,
+            changedIn: ["9.0.5"]
+        }
+    }, internal.StructureType.Element);
+    workflows.UserSource = UserSource;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class EmptyUserSource extends UserSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EmptyUserSource() cannot be invoked directly, please use 'model.workflows.createEmptyUserSource()'");
+            }
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(UserTask);
+        }
+        /**
+         * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
+         * The new EmptyUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, EmptyUserSource, "userSource", false);
+        }
+        /**
+         * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmptyUserSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EmptyUserSource.structureTypeName = "Workflows$EmptyUserSource";
+    EmptyUserSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    workflows.EmptyUserSource = EmptyUserSource;
+    /**
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
     class EndWorkflowActivity extends WorkflowActivity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -839,34 +910,6 @@ var workflows;
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
-    class UserSource extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            if (arguments.length < 4) {
-                throw new Error("new UserSource() cannot be invoked directly, please use 'model.workflows.createUserSource()'");
-            }
-        }
-        get containerAsUserTask() {
-            return super.getContainerAs(UserTask);
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    UserSource.structureTypeName = "Workflows$UserSource";
-    UserSource.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.0.2",
-        experimental: {
-            currentValue: false,
-            changedIn: ["9.0.5"]
-        }
-    }, internal.StructureType.Element);
-    workflows.UserSource = UserSource;
-    /**
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
     class MicroflowBasedUserSource extends UserSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1031,6 +1074,132 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.NoEvent = NoEvent;
     /**
+     * In version 9.11.0: introduced
+     */
+    class PageParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(PageParameterMapping, this, "parameter", null, "Pages$PageParameter");
+            /** @internal */
+            this.__expression = new internal.PrimitiveProperty(PageParameterMapping, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new PageParameterMapping() cannot be invoked directly, please use 'model.workflows.createPageParameterMapping()'");
+            }
+        }
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        /**
+         * Creates and returns a new PageParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PageParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PageParameterMapping.structureTypeName = "Workflows$PageParameterMapping";
+    PageParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.PageParameterMapping = PageParameterMapping;
+    /**
+     * In version 9.11.0: introduced
+     */
+    class PageReference extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__page = new internal.ByNameReferenceProperty(PageReference, this, "page", null, "Pages$Page");
+            if (arguments.length < 4) {
+                throw new Error("new PageReference() cannot be invoked directly, please use 'model.workflows.createPageReference()'");
+            }
+        }
+        get containerAsUserTask() {
+            return super.getContainerAs(UserTask);
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get page() {
+            return this.__page.get();
+        }
+        set page(newValue) {
+            this.__page.set(newValue);
+        }
+        get pageQualifiedName() {
+            return this.__page.qualifiedName();
+        }
+        /**
+         * Creates and returns a new PageReference instance in the SDK and on the server.
+         * The new PageReference will be automatically stored in the 'taskPage' property
+         * of the parent UserTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInUserTaskUnderTaskPage(container) {
+            internal.createInVersionCheck(container.model, PageReference.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, PageReference, "taskPage", false);
+        }
+        /**
+         * Creates and returns a new PageReference instance in the SDK and on the server.
+         * The new PageReference will be automatically stored in the 'adminPage' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInWorkflowUnderAdminPage(container) {
+            internal.createInVersionCheck(container.model, PageReference.structureTypeName, { start: "9.11.0" });
+            return internal.instancehelpers.createElement(container, PageReference, "adminPage", false);
+        }
+        /**
+         * Creates and returns a new PageReference instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PageReference);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PageReference.structureTypeName = "Workflows$PageReference";
+    PageReference.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.11.0"
+    }, internal.StructureType.Element);
+    workflows.PageReference = PageReference;
+    /**
      * See: {@link https://docs.mendix.com/refguide/parallel-split relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -1154,6 +1323,8 @@ var workflows;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__entityRef = new internal.PartProperty(Parameter, this, "entityRef", null, false);
+            /** @internal */
+            this.__entity = new internal.ByNameReferenceProperty(Parameter, this, "entity", null, "DomainModels$Entity");
             if (arguments.length < 4) {
                 throw new Error("new Parameter() cannot be invoked directly, please use 'model.workflows.createParameter()'");
             }
@@ -1161,11 +1332,26 @@ var workflows;
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
+        /**
+         * In version 9.10.0: deleted
+         */
         get entityRef() {
             return this.__entityRef.get();
         }
         set entityRef(newValue) {
             this.__entityRef.set(newValue);
+        }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get entity() {
+            return this.__entity.get();
+        }
+        set entity(newValue) {
+            this.__entity.set(newValue);
+        }
+        get entityQualifiedName() {
+            return this.__entity.qualifiedName();
         }
         /**
          * Creates and returns a new Parameter instance in the SDK and on the server.
@@ -1197,6 +1383,14 @@ var workflows;
         introduced: "9.6.0",
         properties: {
             entityRef: {
+                deleted: "9.10.0",
+                deletionMessage: null,
+                public: {
+                    currentValue: true
+                }
+            },
+            entity: {
+                introduced: "9.10.0",
                 public: {
                     currentValue: true
                 }
@@ -1221,6 +1415,8 @@ var workflows;
             /** @internal */
             this.__page = new internal.ByNameReferenceProperty(UserTask, this, "page", null, "Pages$Page");
             /** @internal */
+            this.__taskPage = new internal.PartProperty(UserTask, this, "taskPage", null, true);
+            /** @internal */
             this.__taskName = new internal.PartProperty(UserTask, this, "taskName", null, true);
             /** @internal */
             this.__taskDescription = new internal.PartProperty(UserTask, this, "taskDescription", null, true);
@@ -1234,6 +1430,8 @@ var workflows;
             this.__allowedModuleRoles = new internal.ByNameReferenceListProperty(UserTask, this, "allowedModuleRoles", [], "Security$ModuleRole");
             /** @internal */
             this.__onCreatedEvent = new internal.PartProperty(UserTask, this, "onCreatedEvent", null, true);
+            /** @internal */
+            this.__autoAssignSingleTargetUser = new internal.PrimitiveProperty(UserTask, this, "autoAssignSingleTargetUser", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new UserTask() cannot be invoked directly, please use 'model.workflows.createUserTask()'");
             }
@@ -1242,6 +1440,7 @@ var workflows;
             return super.getContainerAs(Flow);
         }
         /**
+         * In version 9.10.0: deleted
          * In version 9.6.0: introduced
          */
         get userTaskEntity() {
@@ -1253,6 +1452,9 @@ var workflows;
         get userTaskEntityQualifiedName() {
             return this.__userTaskEntity.qualifiedName();
         }
+        /**
+         * In version 9.11.0: deleted
+         */
         get page() {
             return this.__page.get();
         }
@@ -1261,6 +1463,15 @@ var workflows;
         }
         get pageQualifiedName() {
             return this.__page.qualifiedName();
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get taskPage() {
+            return this.__taskPage.get();
+        }
+        set taskPage(newValue) {
+            this.__taskPage.set(newValue);
         }
         get taskName() {
             return this.__taskName.get();
@@ -1312,6 +1523,15 @@ var workflows;
             this.__onCreatedEvent.set(newValue);
         }
         /**
+         * In version 9.11.0: introduced
+         */
+        get autoAssignSingleTargetUser() {
+            return this.__autoAssignSingleTargetUser.get();
+        }
+        set autoAssignSingleTargetUser(newValue) {
+            this.__autoAssignSingleTargetUser.set(newValue);
+        }
+        /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
          * The new UserTask will be automatically stored in the 'activities' property
          * of the parent Flow element passed as argument.
@@ -1334,11 +1554,17 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__autoAssignSingleTargetUser.isAvailable) {
+                this.autoAssignSingleTargetUser = false;
+            }
             if (this.__onCreatedEvent.isAvailable) {
                 this.onCreatedEvent = NoEvent.create(this.model);
             }
             this.taskDescription = microflows_1.microflows.StringTemplate.create(this.model);
             this.taskName = microflows_1.microflows.StringTemplate.create(this.model);
+            if (this.__taskPage.isAvailable) {
+                this.taskPage = PageReference.create(this.model);
+            }
             this.userSource = XPathBasedUserSource.create(this.model);
         }
     }
@@ -1348,12 +1574,22 @@ var workflows;
         properties: {
             userTaskEntity: {
                 introduced: "9.6.0",
+                deleted: "9.10.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 }
             },
             page: {
+                deleted: "9.11.0",
+                deletionMessage: null,
                 public: {
+                    currentValue: true
+                }
+            },
+            taskPage: {
+                introduced: "9.11.0",
+                required: {
                     currentValue: true
                 }
             },
@@ -1390,6 +1626,9 @@ var workflows;
                 required: {
                     currentValue: true
                 }
+            },
+            autoAssignSingleTargetUser: {
+                introduced: "9.11.0"
             }
         },
         public: {
@@ -1560,6 +1799,8 @@ var workflows;
             /** @internal */
             this.__overviewPage = new internal.ByNameReferenceProperty(Workflow, this, "overviewPage", null, "Pages$Page");
             /** @internal */
+            this.__adminPage = new internal.PartProperty(Workflow, this, "adminPage", null, false);
+            /** @internal */
             this.__flow = new internal.PartProperty(Workflow, this, "flow", null, true);
             /** @internal */
             this.__workflowName = new internal.PartProperty(Workflow, this, "workflowName", null, true);
@@ -1615,6 +1856,7 @@ var workflows;
             return this.__workflowEntity.qualifiedName();
         }
         /**
+         * In version 9.10.0: deleted
          * In version 9.7.0: introduced
          */
         get workflowType() {
@@ -1623,6 +1865,9 @@ var workflows;
         set workflowType(newValue) {
             this.__workflowType.set(newValue);
         }
+        /**
+         * In version 9.11.0: deleted
+         */
         get overviewPage() {
             return this.__overviewPage.get();
         }
@@ -1631,6 +1876,15 @@ var workflows;
         }
         get overviewPageQualifiedName() {
             return this.__overviewPage.qualifiedName();
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get adminPage() {
+            return this.__adminPage.get();
+        }
+        set adminPage(newValue) {
+            this.__adminPage.set(newValue);
         }
         get flow() {
             return this.__flow.get();
@@ -1728,6 +1982,8 @@ var workflows;
             },
             workflowType: {
                 introduced: "9.7.0",
+                deleted: "9.10.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 },
@@ -1736,9 +1992,14 @@ var workflows;
                 }
             },
             overviewPage: {
+                deleted: "9.11.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 }
+            },
+            adminPage: {
+                introduced: "9.11.0"
             },
             flow: {
                 public: {
@@ -1773,6 +2034,7 @@ var workflows;
     }, internal.StructureType.ModelUnit);
     workflows.Workflow = Workflow;
     /**
+     * In version 9.10.0: deleted
      * In version 9.7.0: introduced
      */
     class WorkflowType extends internal.Element {
@@ -1802,10 +2064,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.7.0 and higher
+         *  9.7.0 to 9.9.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, WorkflowType.structureTypeName, { start: "9.7.0" });
+            internal.createInVersionCheck(container.model, WorkflowType.structureTypeName, { start: "9.7.0", end: "9.9.0" });
             return internal.instancehelpers.createElement(container, WorkflowType, "workflowType", false);
         }
         /**
@@ -1824,6 +2086,8 @@ var workflows;
     WorkflowType.structureTypeName = "Workflows$WorkflowType";
     WorkflowType.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.7.0",
+        deleted: "9.10.0",
+        deletionMessage: null,
         properties: {
             entity: {
                 public: {

@@ -47,6 +47,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
             "BusinessEvents$ConsumedBusinessEventService",
+            "BusinessEvents$PublishedBusinessEventService",
             "Constants$Constant",
             "DataSets$DataSet",
             "DocumentTemplates$DocumentTemplate",
@@ -156,6 +157,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
             "BusinessEvents$ConsumedBusinessEventService",
+            "BusinessEvents$PublishedBusinessEventService",
             "Constants$Constant",
             "DataSets$DataSet",
             "DocumentTemplates$DocumentTemplate",
@@ -244,6 +246,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allPublishedAppServices() {
         return super._allOfTypes(["WebServices$PublishedAppService"]);
+    }
+    allPublishedBusinessEventServices() {
+        return super._allOfTypes(["BusinessEvents$PublishedBusinessEventService"]);
     }
     allPublishedKafkaServices() {
         return super._allOfTypes(["Kafka$PublishedKafkaService"]);

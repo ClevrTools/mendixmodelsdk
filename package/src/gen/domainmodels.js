@@ -353,6 +353,9 @@ var domainmodels;
         set parent(newValue) {
             this.__parent.set(newValue);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation() {
             return this.__documentation.get();
         }
@@ -455,6 +458,12 @@ var domainmodels;
                 },
                 required: {
                     currentValue: true
+                }
+            },
+            documentation: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
                 }
             },
             remoteSourceDocument: {
@@ -917,6 +926,9 @@ var domainmodels;
         set type(newValue) {
             this.__type.set(newValue);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation() {
             return this.__documentation.get();
         }
@@ -1002,6 +1014,12 @@ var domainmodels;
                 },
                 required: {
                     currentValue: true
+                }
+            },
+            documentation: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
                 }
             },
             value: {
@@ -2457,6 +2475,9 @@ var domainmodels;
         get containerAsModule() {
             return super.getContainerAs(projects_1.projects.Module);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation() {
             return this.__documentation.get();
         }
@@ -2490,6 +2511,12 @@ var domainmodels;
     DomainModel.structureTypeName = "DomainModels$DomainModel";
     DomainModel.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            documentation: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
+                }
+            },
             entities: {
                 public: {
                     currentValue: true
@@ -2568,12 +2595,18 @@ var domainmodels;
         set dataStorageGuid(newValue) {
             this.__dataStorageGuid.set(newValue);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get location() {
             return this.__location.get();
         }
         set location(newValue) {
             this.__location.set(newValue);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation() {
             return this.__documentation.get();
         }
@@ -2720,7 +2753,18 @@ var domainmodels;
                     currentValue: true
                 }
             },
-            location: {},
+            location: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
+                }
+            },
+            documentation: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
+                }
+            },
             generalization: {
                 public: {
                     currentValue: true
@@ -3869,10 +3913,10 @@ var domainmodels;
          * of the parent workflows.Parameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.6.0 and higher
+         *  9.6.0 to 9.9.0
          */
         static createInParameterUnderEntityRef(container) {
-            internal.createInVersionCheck(container.model, IndirectEntityRef.structureTypeName, { start: "9.6.0" });
+            internal.createInVersionCheck(container.model, IndirectEntityRef.structureTypeName, { start: "9.6.0", end: "9.9.0" });
             return internal.instancehelpers.createElement(container, IndirectEntityRef, "entityRef", false);
         }
         /**

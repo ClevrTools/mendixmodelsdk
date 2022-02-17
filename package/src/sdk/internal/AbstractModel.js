@@ -124,9 +124,7 @@ class AbstractModel {
     }
     getLastEventId(callback, errorCallback) {
         return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
-            this.flushChanges(() => {
-                resolve(this.lastEventId);
-            }, reject);
+            this.flushChanges().then(() => resolve(this.lastEventId), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     get id() {
@@ -356,17 +354,21 @@ class AbstractModel {
     }
     deleteWorkingCopy(callback, errorCallback) {
         return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
-            this.flushChanges(() => this._client.deleteWorkingCopy(this.id, resolve, reject), reject);
+            this.flushChanges().then(() => this._client.deleteWorkingCopy(this.id, resolve, reject), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     exportMpk(outFilePath, callback, errorCallback) {
         return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
-            this.flushChanges(() => this._client.exportMpk(this.id, outFilePath, resolve, reject), reject);
-        }, callback, errorCallback || this._errorHandler);
+            this.flushChanges().then(() => this._client.exportMpk(this.id, outFilePath, resolve, reject), reject);
+        }, callback
+            ? result => {
+                callback(result.data, result.lastEventId);
+            }
+            : callback, errorCallback || this._errorHandler);
     }
     exportModuleMpk(moduleId, outFilePath, callback, errorCallback) {
         return (0, promiseOrCallbacks_1.promiseOrCallbacks)((resolve, reject) => {
-            this.flushChanges(() => this._client.exportModuleMpk(this.id, moduleId, outFilePath, resolve, reject), reject);
+            this.flushChanges().then(() => this._client.exportModuleMpk(this.id, moduleId, outFilePath, resolve, reject), reject);
         }, callback, errorCallback || this._errorHandler);
     }
     importModuleMpk(mpkPath, callback, errorCallback) {

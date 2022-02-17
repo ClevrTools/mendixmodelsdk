@@ -87,6 +87,9 @@ var customwidgets;
         introduced: "7.19.0"
     });
     WidgetValueTypeEnum.Attribute = new WidgetValueTypeEnum("Attribute", {});
+    WidgetValueTypeEnum.Association = new WidgetValueTypeEnum("Association", {
+        introduced: "9.10.0"
+    });
     WidgetValueTypeEnum.Boolean = new WidgetValueTypeEnum("Boolean", {});
     WidgetValueTypeEnum.DataSource = new WidgetValueTypeEnum("DataSource", {
         introduced: "8.3.0"
@@ -2037,6 +2040,8 @@ var customwidgets;
             /** @internal */
             this.__dataSourceProperty = new internal.PrimitiveProperty(WidgetValueType, this, "dataSourceProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__universeDataSourceProperty = new internal.PrimitiveProperty(WidgetValueType, this, "universeDataSourceProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__attributeTypes = new internal.EnumListProperty(WidgetValueType, this, "attributeTypes", [], CustomWidgetAttributeType);
             /** @internal */
             this.__enumerationValues = new internal.PartListProperty(WidgetValueType, this, "enumerationValues", []);
@@ -2131,6 +2136,15 @@ var customwidgets;
         set dataSourceProperty(newValue) {
             this.__dataSourceProperty.set(newValue);
         }
+        /**
+         * In version 9.10.0: introduced
+         */
+        get universeDataSourceProperty() {
+            return this.__universeDataSourceProperty.get();
+        }
+        set universeDataSourceProperty(newValue) {
+            this.__universeDataSourceProperty.set(newValue);
+        }
         get attributeTypes() {
             return this.__attributeTypes.get();
         }
@@ -2184,6 +2198,9 @@ var customwidgets;
             },
             dataSourceProperty: {
                 introduced: "8.4.0"
+            },
+            universeDataSourceProperty: {
+                introduced: "9.10.0"
             }
         }
     }, internal.StructureType.Element);

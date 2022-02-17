@@ -24146,6 +24146,11 @@ export declare namespace pages {
         set alignment(newValue: AlignmentEnum);
         get scrollBehavior(): ScrollBehavior;
         set scrollBehavior(newValue: ScrollBehavior);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get nativeHideScrollbars(): boolean;
+        set nativeHideScrollbars(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ScrollContainer instance in the SDK and on the server.

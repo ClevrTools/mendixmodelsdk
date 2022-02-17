@@ -4743,6 +4743,83 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.GenerateDocumentAction = GenerateDocumentAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.10.0: introduced
+     */
+    class GetWorkflowDataAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowVariable = new internal.PrimitiveProperty(GetWorkflowDataAction, this, "workflowVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(GetWorkflowDataAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(GetWorkflowDataAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GetWorkflowDataAction() cannot be invoked directly, please use 'model.microflows.createGetWorkflowDataAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowVariable() {
+            return this.__workflowVariable.get();
+        }
+        set workflowVariable(newValue) {
+            this.__workflowVariable.set(newValue);
+        }
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new GetWorkflowDataAction instance in the SDK and on the server.
+         * The new GetWorkflowDataAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GetWorkflowDataAction.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, GetWorkflowDataAction, "action", false);
+        }
+        /**
+         * Creates and returns a new GetWorkflowDataAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GetWorkflowDataAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GetWorkflowDataAction.structureTypeName = "Microflows$GetWorkflowDataAction";
+    GetWorkflowDataAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.GetWorkflowDataAction = GetWorkflowDataAction;
     class Head extends ListOperation {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -5793,6 +5870,8 @@ var microflows;
             /** @internal */
             this.__javaAction = new internal.ByNameReferenceProperty(JavaActionCallAction, this, "javaAction", null, "JavaActions$JavaAction");
             /** @internal */
+            this.__queueSettings = new internal.PartProperty(JavaActionCallAction, this, "queueSettings", null, false);
+            /** @internal */
             this.__queue = new internal.ByNameReferenceProperty(JavaActionCallAction, this, "queue", null, "Queues$Queue");
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(JavaActionCallAction, this, "parameterMappings", []);
@@ -5817,6 +5896,16 @@ var microflows;
             return this.__javaAction.qualifiedName();
         }
         /**
+         * In version 9.10.0: introduced
+         */
+        get queueSettings() {
+            return this.__queueSettings.get();
+        }
+        set queueSettings(newValue) {
+            this.__queueSettings.set(newValue);
+        }
+        /**
+         * In version 9.10.0: deleted
          * In version 9.0.5: introduced
          */
         get queue() {
@@ -5873,8 +5962,13 @@ var microflows;
     JavaActionCallAction.structureTypeName = "Microflows$JavaActionCallAction";
     JavaActionCallAction.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            queueSettings: {
+                introduced: "9.10.0"
+            },
             queue: {
-                introduced: "9.0.5"
+                introduced: "9.0.5",
+                deleted: "9.10.0",
+                deletionMessage: null
             },
             useReturnVariable: {
                 introduced: "7.13.0"
@@ -6491,6 +6585,220 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.LoopedActivity = LoopedActivity;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class MLModelCall extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__modelReference = new internal.PrimitiveProperty(MLModelCall, this, "modelReference", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(MLModelCall, this, "parameterMappings", []);
+            if (arguments.length < 4) {
+                throw new Error("new MLModelCall() cannot be invoked directly, please use 'model.microflows.createMLModelCall()'");
+            }
+        }
+        get containerAsMLModelCallAction() {
+            return super.getContainerAs(MLModelCallAction);
+        }
+        get modelReference() {
+            return this.__modelReference.get();
+        }
+        set modelReference(newValue) {
+            this.__modelReference.set(newValue);
+        }
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        /**
+         * Creates and returns a new MLModelCall instance in the SDK and on the server.
+         * The new MLModelCall will be automatically stored in the 'modelCall' property
+         * of the parent MLModelCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MLModelCall.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, MLModelCall, "modelCall", false);
+        }
+        /**
+         * Creates and returns a new MLModelCall instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MLModelCall);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MLModelCall.structureTypeName = "Microflows$MLModelCall";
+    MLModelCall.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    microflows.MLModelCall = MLModelCall;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/ml-model-call-action relevant section in reference guide}
+     *
+     * In version 9.10.0: introduced
+     */
+    class MLModelCallAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__modelCall = new internal.PartProperty(MLModelCallAction, this, "modelCall", null, true);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(MLModelCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MLModelCallAction() cannot be invoked directly, please use 'model.microflows.createMLModelCallAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get modelCall() {
+            return this.__modelCall.get();
+        }
+        set modelCall(newValue) {
+            this.__modelCall.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new MLModelCallAction instance in the SDK and on the server.
+         * The new MLModelCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MLModelCallAction.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, MLModelCallAction, "action", false);
+        }
+        /**
+         * Creates and returns a new MLModelCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MLModelCallAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.modelCall = MLModelCall.create(this.model);
+        }
+    }
+    MLModelCallAction.structureTypeName = "Microflows$MLModelCallAction";
+    MLModelCallAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0",
+        properties: {
+            modelCall: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.MLModelCallAction = MLModelCallAction;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class MLModelCallParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameterName = new internal.PrimitiveProperty(MLModelCallParameterMapping, this, "parameterName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterType = new internal.PartProperty(MLModelCallParameterMapping, this, "parameterType", null, true);
+            /** @internal */
+            this.__initialValue = new internal.PrimitiveProperty(MLModelCallParameterMapping, this, "initialValue", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__initialValueModel = new internal.PrimitiveProperty(MLModelCallParameterMapping, this, "initialValueModel", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MLModelCallParameterMapping() cannot be invoked directly, please use 'model.microflows.createMLModelCallParameterMapping()'");
+            }
+        }
+        get containerAsMLModelCall() {
+            return super.getContainerAs(MLModelCall);
+        }
+        get parameterName() {
+            return this.__parameterName.get();
+        }
+        set parameterName(newValue) {
+            this.__parameterName.set(newValue);
+        }
+        get parameterType() {
+            return this.__parameterType.get();
+        }
+        set parameterType(newValue) {
+            this.__parameterType.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get initialValue() {
+            return this.__initialValue.get();
+        }
+        set initialValue(newValue) {
+            this.__initialValue.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get initialValueModel() {
+            return this.__initialValueModel.get();
+        }
+        set initialValueModel(newValue) {
+            this.__initialValueModel.set(newValue);
+        }
+        /**
+         * Creates and returns a new MLModelCallParameterMapping instance in the SDK and on the server.
+         * The new MLModelCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent MLModelCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MLModelCallParameterMapping.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, MLModelCallParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new MLModelCallParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MLModelCallParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.parameterType = datatypes_1.datatypes.BooleanType.create(this.model);
+        }
+    }
+    MLModelCallParameterMapping.structureTypeName = "Microflows$MLModelCallParameterMapping";
+    MLModelCallParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0",
+        properties: {
+            parameterType: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.MLModelCallParameterMapping = MLModelCallParameterMapping;
     class MappingRequestHandling extends RequestHandling {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -7021,6 +7329,8 @@ var microflows;
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(MicroflowCall, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
+            this.__queueSettings = new internal.PartProperty(MicroflowCall, this, "queueSettings", null, false);
+            /** @internal */
             this.__queue = new internal.ByNameReferenceProperty(MicroflowCall, this, "queue", null, "Queues$Queue");
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(MicroflowCall, this, "parameterMappings", []);
@@ -7041,6 +7351,16 @@ var microflows;
             return this.__microflow.qualifiedName();
         }
         /**
+         * In version 9.10.0: introduced
+         */
+        get queueSettings() {
+            return this.__queueSettings.get();
+        }
+        set queueSettings(newValue) {
+            this.__queueSettings.set(newValue);
+        }
+        /**
+         * In version 9.10.0: deleted
          * In version 8.16.0: introduced
          */
         get queue() {
@@ -7079,8 +7399,13 @@ var microflows;
     MicroflowCall.structureTypeName = "Microflows$MicroflowCall";
     MicroflowCall.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            queueSettings: {
+                introduced: "9.10.0"
+            },
             queue: {
-                introduced: "8.16.0"
+                introduced: "8.16.0",
+                deleted: "9.10.0",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);
@@ -9425,6 +9750,8 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RuleSplitCondition = RuleSplitCondition;
     /**
+     * See: {@link https://docs.mendix.com/refguide/send-external-object relevant section in reference guide}
+     *
      * In version 9.6.0: introduced
      */
     class SendExternalObject extends MicroflowAction {

@@ -48,6 +48,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -121,6 +124,9 @@ var datatypes;
         }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
+        }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
         }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
@@ -253,6 +259,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, BinaryType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "parameterType", false);
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
@@ -408,6 +426,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -539,6 +560,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, BooleanType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "parameterType", false);
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -694,6 +727,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -825,6 +861,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, DateTimeType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "parameterType", false);
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -980,6 +1028,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -1111,6 +1162,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, DecimalType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "parameterType", false);
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -1266,6 +1329,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -1397,6 +1463,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, EmptyType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "parameterType", false);
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
@@ -1554,6 +1632,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -1648,6 +1729,9 @@ var datatypes;
         }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
+        }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
         }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
@@ -1789,6 +1873,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, EnumerationType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "parameterType", false);
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -1954,6 +2050,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -2085,6 +2184,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, FloatType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "parameterType", false);
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -2240,6 +2351,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -2371,6 +2485,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, IntegerType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "parameterType", false);
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -2526,6 +2652,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -2657,6 +2786,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, ListType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, ListType, "parameterType", false);
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -2812,6 +2953,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -2943,6 +3087,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, ObjectType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "parameterType", false);
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
@@ -3098,6 +3254,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -3229,6 +3388,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, StringType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, StringType, "parameterType", false);
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -3384,6 +3555,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -3515,6 +3689,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, UnknownType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "parameterType", false);
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
@@ -3670,6 +3856,9 @@ var datatypes;
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
+        get containerAsMLModelCallParameterMapping() {
+            return super.getContainerAs(microflows_1.microflows.MLModelCallParameterMapping);
+        }
         get containerAsMicroflowBase() {
             return super.getContainerAs(microflows_1.microflows.MicroflowBase);
         }
@@ -3801,6 +3990,18 @@ var datatypes;
         static createInCreateVariableActionUnderVariableType(container) {
             internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0" });
             return internal.instancehelpers.createElement(container, VoidType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'parameterType' property
+         * of the parent microflows.MLModelCallParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMLModelCallParameterMappingUnderParameterType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "parameterType", false);
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.

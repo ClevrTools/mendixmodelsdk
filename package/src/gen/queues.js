@@ -7,6 +7,16 @@ exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
 var queues;
 (function (queues) {
+    class QueueRetryIntervalType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "queues.QueueRetryIntervalType";
+        }
+    }
+    QueueRetryIntervalType.Seconds = new QueueRetryIntervalType("Seconds", {});
+    QueueRetryIntervalType.Minutes = new QueueRetryIntervalType("Minutes", {});
+    QueueRetryIntervalType.Hours = new QueueRetryIntervalType("Hours", {});
+    queues.QueueRetryIntervalType = QueueRetryIntervalType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Queues`.
      */
@@ -150,5 +160,231 @@ var queues;
         }
     }, internal.StructureType.ModelUnit);
     queues.Queue = Queue;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueRetry extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new QueueRetry() cannot be invoked directly, please use 'model.queues.createQueueRetry()'");
+            }
+        }
+        get containerAsQueueSettings() {
+            return super.getContainerAs(QueueSettings);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    QueueRetry.structureTypeName = "Queues$QueueRetry";
+    QueueRetry.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    queues.QueueRetry = QueueRetry;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueExponentialRetry extends QueueRetry {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__retries = new internal.PrimitiveProperty(QueueExponentialRetry, this, "retries", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__initialInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "initialInterval", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__maximumInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "maximumInterval", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__intervalType = new internal.EnumProperty(QueueExponentialRetry, this, "intervalType", QueueRetryIntervalType.Seconds, QueueRetryIntervalType);
+            if (arguments.length < 4) {
+                throw new Error("new QueueExponentialRetry() cannot be invoked directly, please use 'model.queues.createQueueExponentialRetry()'");
+            }
+        }
+        get containerAsQueueSettings() {
+            return super.getContainerAs(QueueSettings);
+        }
+        get retries() {
+            return this.__retries.get();
+        }
+        set retries(newValue) {
+            this.__retries.set(newValue);
+        }
+        get initialInterval() {
+            return this.__initialInterval.get();
+        }
+        set initialInterval(newValue) {
+            this.__initialInterval.set(newValue);
+        }
+        get maximumInterval() {
+            return this.__maximumInterval.get();
+        }
+        set maximumInterval(newValue) {
+            this.__maximumInterval.set(newValue);
+        }
+        get intervalType() {
+            return this.__intervalType.get();
+        }
+        set intervalType(newValue) {
+            this.__intervalType.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueueExponentialRetry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueueExponentialRetry);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.initialInterval = 1;
+            this.intervalType = QueueRetryIntervalType.Seconds;
+            this.maximumInterval = 86400;
+            this.retries = 10;
+        }
+    }
+    QueueExponentialRetry.structureTypeName = "Queues$QueueExponentialRetry";
+    QueueExponentialRetry.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    queues.QueueExponentialRetry = QueueExponentialRetry;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueFixedRetry extends QueueRetry {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__retries = new internal.PrimitiveProperty(QueueFixedRetry, this, "retries", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__interval = new internal.PrimitiveProperty(QueueFixedRetry, this, "interval", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__intervalType = new internal.EnumProperty(QueueFixedRetry, this, "intervalType", QueueRetryIntervalType.Seconds, QueueRetryIntervalType);
+            if (arguments.length < 4) {
+                throw new Error("new QueueFixedRetry() cannot be invoked directly, please use 'model.queues.createQueueFixedRetry()'");
+            }
+        }
+        get containerAsQueueSettings() {
+            return super.getContainerAs(QueueSettings);
+        }
+        get retries() {
+            return this.__retries.get();
+        }
+        set retries(newValue) {
+            this.__retries.set(newValue);
+        }
+        get interval() {
+            return this.__interval.get();
+        }
+        set interval(newValue) {
+            this.__interval.set(newValue);
+        }
+        get intervalType() {
+            return this.__intervalType.get();
+        }
+        set intervalType(newValue) {
+            this.__intervalType.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueueFixedRetry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueueFixedRetry);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.interval = 10;
+            this.intervalType = QueueRetryIntervalType.Seconds;
+            this.retries = 3;
+        }
+    }
+    QueueFixedRetry.structureTypeName = "Queues$QueueFixedRetry";
+    QueueFixedRetry.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    queues.QueueFixedRetry = QueueFixedRetry;
+    /**
+     * In version 9.10.0: introduced
+     */
+    class QueueSettings extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__queue = new internal.ByNameReferenceProperty(QueueSettings, this, "queue", null, "Queues$Queue");
+            /** @internal */
+            this.__retry = new internal.PartProperty(QueueSettings, this, "retry", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new QueueSettings() cannot be invoked directly, please use 'model.queues.createQueueSettings()'");
+            }
+        }
+        get containerAsJavaActionCallAction() {
+            return super.getContainerAs(microflows_1.microflows.JavaActionCallAction);
+        }
+        get containerAsMicroflowCall() {
+            return super.getContainerAs(microflows_1.microflows.MicroflowCall);
+        }
+        get queue() {
+            return this.__queue.get();
+        }
+        set queue(newValue) {
+            this.__queue.set(newValue);
+        }
+        get queueQualifiedName() {
+            return this.__queue.qualifiedName();
+        }
+        get retry() {
+            return this.__retry.get();
+        }
+        set retry(newValue) {
+            this.__retry.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * The new QueueSettings will be automatically stored in the 'queueSettings' property
+         * of the parent microflows.JavaActionCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInJavaActionCallActionUnderQueueSettings(container) {
+            internal.createInVersionCheck(container.model, QueueSettings.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, QueueSettings, "queueSettings", false);
+        }
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * The new QueueSettings will be automatically stored in the 'queueSettings' property
+         * of the parent microflows.MicroflowCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createInMicroflowCallUnderQueueSettings(container) {
+            internal.createInVersionCheck(container.model, QueueSettings.structureTypeName, { start: "9.10.0" });
+            return internal.instancehelpers.createElement(container, QueueSettings, "queueSettings", false);
+        }
+        /**
+         * Creates and returns a new QueueSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueueSettings);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    QueueSettings.structureTypeName = "Queues$QueueSettings";
+    QueueSettings.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.10.0"
+    }, internal.StructureType.Element);
+    queues.QueueSettings = QueueSettings;
 })(queues = exports.queues || (exports.queues = {}));
+const microflows_1 = require("./microflows");
 //# sourceMappingURL=queues.js.map

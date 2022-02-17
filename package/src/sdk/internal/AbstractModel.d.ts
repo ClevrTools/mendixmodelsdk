@@ -59,10 +59,10 @@ export interface IAbstractModel {
     deleteWorkingCopy(): Promise<void>;
     /**
      * Exports this model as MPK.
-     * If outFilePath is empty, the raw response body will be provided in the callback
+     * If outFilePath is empty, the raw response body will be provided.
      */
-    exportMpk(outFilePath: string, callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
-    exportMpk(outFilePath: string): Promise<void>;
+    exportMpk(outFilePath: string, callback: IExportMpkCallback, errorCallback?: common.IErrorCallback): void;
+    exportMpk(outFilePath: string): Promise<IExportMpkResponse>;
     /**
      * Exports the module as MPK.
      * If outFilePath is empty, the raw response body will be provided in the callback
@@ -146,6 +146,13 @@ export interface IAbstractModel {
     onBuildResultEventReceived(callback: (buildResultEvent: IBuildResultEvent) => void): void;
     onWorkingCopyDataEventReceived(callback: (workingCopyDataEvent: IWorkingCopyDataEvent) => void): void;
 }
+export interface IExportMpkResponse {
+    data?: any;
+    lastEventId: number;
+}
+export interface IExportMpkCallback {
+    (data: any, lastEventId: number): void;
+}
 export interface IUnitsMap {
     [id: string]: IAbstractUnit;
 }
@@ -186,8 +193,8 @@ export declare abstract class AbstractModel implements IAbstractModel {
      */
     deleteWorkingCopy(callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     deleteWorkingCopy(): Promise<void>;
-    exportMpk(outFilePath: string, callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
-    exportMpk(outFilePath: string): Promise<void>;
+    exportMpk(outFilePath: string, callback: IExportMpkCallback, errorCallback?: common.IErrorCallback): void;
+    exportMpk(outFilePath: string): Promise<IExportMpkResponse>;
     exportModuleMpk(moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;
     exportModuleMpk(moduleId: string, outFilePath: string): Promise<void>;
     importModuleMpk(mpkPath: string | Blob, callback: common.IVoidCallback, errorCallback?: common.IErrorCallback): void;

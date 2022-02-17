@@ -33,6 +33,14 @@ export declare namespace projects {
         readonly model: IModel;
         readonly containerAsFolderBase: IFolderBase;
         readonly name: string;
+        /**
+         * In version 9.10.0: added public
+         */
+        readonly documentation: string;
+        /**
+         * In version 9.11.0: added public
+         */
+        readonly excluded: boolean;
         asLoaded(): Document;
         load(callback: (element: Document) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Document>;
@@ -43,8 +51,14 @@ export declare namespace projects {
         get containerAsFolderBase(): FolderBase;
         get name(): string;
         set name(newValue: string);
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation(): string;
         set documentation(newValue: string);
+        /**
+         * In version 9.11.0: added public
+         */
         get excluded(): boolean;
         set excluded(newValue: boolean);
         /**

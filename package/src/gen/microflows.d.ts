@@ -2098,6 +2098,41 @@ export declare namespace microflows {
          */
         static create(model: IModel): GenerateDocumentAction;
     }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.10.0: introduced
+     */
+    class GetWorkflowDataAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        get workflow(): workflows.IWorkflow | null;
+        set workflow(newValue: workflows.IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GetWorkflowDataAction instance in the SDK and on the server.
+         * The new GetWorkflowDataAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: ActionActivity): GetWorkflowDataAction;
+        /**
+         * Creates and returns a new GetWorkflowDataAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GetWorkflowDataAction;
+    }
     class Head extends ListOperation {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -2568,6 +2603,12 @@ export declare namespace microflows {
         set javaAction(newValue: javaactions.IJavaAction | null);
         get javaActionQualifiedName(): string | null;
         /**
+         * In version 9.10.0: introduced
+         */
+        get queueSettings(): queues.QueueSettings | null;
+        set queueSettings(newValue: queues.QueueSettings | null);
+        /**
+         * In version 9.10.0: deleted
          * In version 9.0.5: introduced
          */
         get queue(): queues.IQueue | null;
@@ -2827,6 +2868,101 @@ export declare namespace microflows {
          */
         static create(model: IModel): LoopedActivity;
     }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class MLModelCall extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMLModelCallAction(): MLModelCallAction;
+        get modelReference(): string;
+        set modelReference(newValue: string);
+        get parameterMappings(): internal.IList<MLModelCallParameterMapping>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MLModelCall instance in the SDK and on the server.
+         * The new MLModelCall will be automatically stored in the 'modelCall' property
+         * of the parent MLModelCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: MLModelCallAction): MLModelCall;
+        /**
+         * Creates and returns a new MLModelCall instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MLModelCall;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/ml-model-call-action relevant section in reference guide}
+     *
+     * In version 9.10.0: introduced
+     */
+    class MLModelCallAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get modelCall(): MLModelCall;
+        set modelCall(newValue: MLModelCall);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MLModelCallAction instance in the SDK and on the server.
+         * The new MLModelCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: ActionActivity): MLModelCallAction;
+        /**
+         * Creates and returns a new MLModelCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MLModelCallAction;
+    }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class MLModelCallParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMLModelCall(): MLModelCall;
+        get parameterName(): string;
+        set parameterName(newValue: string);
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get initialValue(): string;
+        set initialValue(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get initialValueModel(): string;
+        set initialValueModel(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MLModelCallParameterMapping instance in the SDK and on the server.
+         * The new MLModelCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent MLModelCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: MLModelCall): MLModelCallParameterMapping;
+        /**
+         * Creates and returns a new MLModelCallParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MLModelCallParameterMapping;
+    }
     class MappingRequestHandling extends RequestHandling {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -3081,6 +3217,12 @@ export declare namespace microflows {
         set microflow(newValue: IMicroflow | null);
         get microflowQualifiedName(): string | null;
         /**
+         * In version 9.10.0: introduced
+         */
+        get queueSettings(): queues.QueueSettings | null;
+        set queueSettings(newValue: queues.QueueSettings | null);
+        /**
+         * In version 9.10.0: deleted
          * In version 8.16.0: introduced
          */
         get queue(): queues.IQueue | null;
@@ -4160,6 +4302,8 @@ export declare namespace microflows {
         static create(model: IModel): RuleSplitCondition;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/send-external-object relevant section in reference guide}
+     *
      * In version 9.6.0: introduced
      */
     class SendExternalObject extends MicroflowAction {

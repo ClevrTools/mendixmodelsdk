@@ -41106,6 +41106,8 @@ var pages;
             this.__alignment = new internal.EnumProperty(ScrollContainer, this, "alignment", AlignmentEnum.Center, AlignmentEnum);
             /** @internal */
             this.__scrollBehavior = new internal.EnumProperty(ScrollContainer, this, "scrollBehavior", ScrollBehavior.PerRegion, ScrollBehavior);
+            /** @internal */
+            this.__nativeHideScrollbars = new internal.PrimitiveProperty(ScrollContainer, this, "nativeHideScrollbars", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ScrollContainer() cannot be invoked directly, please use 'model.pages.createScrollContainer()'");
             }
@@ -41244,6 +41246,15 @@ var pages;
         }
         set scrollBehavior(newValue) {
             this.__scrollBehavior.set(newValue);
+        }
+        /**
+         * In version 9.11.0: introduced
+         */
+        get nativeHideScrollbars() {
+            return this.__nativeHideScrollbars.get();
+        }
+        set nativeHideScrollbars(newValue) {
+            this.__nativeHideScrollbars.set(newValue);
         }
         /**
          * Creates and returns a new ScrollContainer instance in the SDK and on the server.
@@ -41871,6 +41882,9 @@ var pages;
             this.alignment = AlignmentEnum.Center;
             this.center = ScrollContainerRegion.create(this.model);
             this.layoutMode = LayoutModeType.Headline;
+            if (this.__nativeHideScrollbars.isAvailable) {
+                this.nativeHideScrollbars = false;
+            }
             this.scrollBehavior = ScrollBehavior.PerRegion;
             this.width = 960;
             this.widthMode = SizeMode.Auto;
@@ -41883,6 +41897,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeHideScrollbars: {
+                introduced: "9.11.0"
             }
         }
     }, internal.StructureType.Element);

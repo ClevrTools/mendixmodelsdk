@@ -13,6 +13,7 @@ export interface IAbstractElement extends structures.IStructure {
     load(callback: (element: IAbstractElement) => void, forceRefresh?: boolean): void;
     load(forceRefresh?: boolean): Promise<IAbstractElement>;
     asLoaded(): IAbstractElement;
+    findElementById(id: string): IAbstractElement | null;
 }
 export interface IByNameReferrable {
     /**

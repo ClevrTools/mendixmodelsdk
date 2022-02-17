@@ -4,6 +4,10 @@ import { common } from "../../common";
 import { ILockWorkingCopyResponse, IWorkingCopy, IGetFilesOptions, ILockWorkingCopyOptions, LockType, ILoadUnitInterfacesResponse, ILoadUnitResponse, ICommitToTeamServerOptions } from "./transportInterfaces";
 import { IModelServerClient, ISendDeltasResult } from "./IModelServerClient";
 import { Delta } from "./deltas";
+import { IExportMpkResponse } from "./AbstractModel";
+/**
+ * Default implementation of {@link IModelServerClient}.
+ */
 export declare class ModelServerClientImpl implements IModelServerClient {
     private config;
     private pendingRequests;
@@ -11,6 +15,7 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     private runningRequests;
     private editLockId;
     private transportation;
+    getTaskDelayInMs: number;
     constructor(config: configuration.ISdkConfig);
     private getHeadersForModificationRequest;
     createWorkingCopy(workingCopyInfo: configuration.ICreateWorkingCopyParameters, callback: common.ICallback<IWorkingCopy>, errorCallback: common.IErrorCallback): void;
@@ -19,12 +24,13 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     loadUnitInterfaces(workingCopyId: string, callback: common.ICallback<ILoadUnitInterfacesResponse>, errorCallback: common.IErrorCallback, rootUnitId?: string): void;
     deleteWorkingCopy(workingCopyId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setWorkingCopyMembers(workingCopyId: string, memberOpenIds: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     revokeAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     checkAccess(workingCopyId: string, memberOpenId: string, callback: common.ICallback<boolean>, errorCallback: common.IErrorCallback): void;
     grantAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     revokeAccessByProject(projectId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     setProjectMembers(projectId: string, memberOpenids: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
-    exportMpk(workingCopyId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    exportMpk(workingCopyId: string, outFilePath: string, callback: common.ICallback<IExportMpkResponse>, errorCallback: common.IErrorCallback): void;
     exportModuleMpk(workingCopyId: string, moduleId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     importModuleMpk(workingCopyId: string, mpkPath: string | Blob, callback: common.ICallback<string>, errorCallback: common.IErrorCallback): void;
     loadUnitById(workingCopyId: string, unitId: string, callback: common.ICallback<ILoadUnitResponse>, errorCallback: common.IErrorCallback): void;
@@ -58,4 +64,6 @@ export declare class ModelServerClientImpl implements IModelServerClient {
     private getCreateWorkingCopyData;
     private getCreateWorkingCopyFromTeamServerData;
     private getAuthorizationHeader;
+    private awaitTask;
+    private getFullUrl;
 }

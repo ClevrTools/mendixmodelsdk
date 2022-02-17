@@ -47,6 +47,12 @@ export declare namespace settings {
         static AtlasNotFound: ThemeConversionStatusEnum;
         protected qualifiedTsTypeName: string;
     }
+    class UseOptimizedClient extends internal.AbstractEnum {
+        static No: UseOptimizedClient;
+        static Yes: UseOptimizedClient;
+        static MigrationMode: UseOptimizedClient;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Settings`.
      */
@@ -264,6 +270,42 @@ export declare namespace settings {
         static create(model: IModel): IntegrationProjectSettingsPart;
     }
     /**
+     * In version 9.10.0: introduced
+     */
+    class JarDeploymentSettings extends ProjectSettingsPart {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsProjectSettings(): ProjectSettings;
+        get exclusions(): internal.IList<JarLocationBase>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new JarDeploymentSettings instance in the SDK and on the server.
+         * The new JarDeploymentSettings will be automatically stored in the 'settingsParts' property
+         * of the parent ProjectSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: ProjectSettings): JarDeploymentSettings;
+        /**
+         * Creates and returns a new JarDeploymentSettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): JarDeploymentSettings;
+    }
+    /**
+     * In version 9.10.0: introduced
+     */
+    abstract class JarLocationBase extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJarDeploymentSettings(): JarDeploymentSettings;
+        get jarFileName(): string;
+        set jarFileName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
@@ -392,6 +434,32 @@ export declare namespace settings {
          */
         static createIn(container: projects.IProject): ProjectSettings;
     }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class ProtectedModuleJarLocation extends JarLocationBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJarDeploymentSettings(): JarDeploymentSettings;
+        get moduleName(): string;
+        set moduleName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ProtectedModuleJarLocation instance in the SDK and on the server.
+         * The new ProtectedModuleJarLocation will be automatically stored in the 'exclusions' property
+         * of the parent JarDeploymentSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: JarDeploymentSettings): ProtectedModuleJarLocation;
+        /**
+         * Creates and returns a new ProtectedModuleJarLocation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ProtectedModuleJarLocation;
+    }
     class RuntimeSettings extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -413,6 +481,11 @@ export declare namespace settings {
         set scheduledEventTimeZoneCode(newValue: string);
         get hashAlgorithm(): HashAlgorithmType;
         set hashAlgorithm(newValue: HashAlgorithmType);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get bcryptCost(): number;
+        set bcryptCost(newValue: number);
         get roundingMode(): RoundingMode;
         set roundingMode(newValue: RoundingMode);
         get allowUserMultipleSessions(): boolean;
@@ -476,10 +549,39 @@ export declare namespace settings {
          */
         static create(model: IModel): ThemeModuleEntry;
     }
+    /**
+     * In version 9.10.0: introduced
+     */
+    class UserLibJarLocation extends JarLocationBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJarDeploymentSettings(): JarDeploymentSettings;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UserLibJarLocation instance in the SDK and on the server.
+         * The new UserLibJarLocation will be automatically stored in the 'exclusions' property
+         * of the parent JarDeploymentSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.10.0 and higher
+         */
+        static createIn(container: JarDeploymentSettings): UserLibJarLocation;
+        /**
+         * Creates and returns a new UserLibJarLocation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UserLibJarLocation;
+    }
     class WebUIProjectSettingsPart extends ProjectSettingsPart {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsProjectSettings(): ProjectSettings;
+        /**
+         * In version 9.10.0: introduced
+         */
+        get useOptimizedClient(): UseOptimizedClient;
+        set useOptimizedClient(newValue: UseOptimizedClient);
         /**
          * In version 9.2.0: deleted
          */

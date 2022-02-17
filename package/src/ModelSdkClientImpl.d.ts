@@ -3,6 +3,7 @@ import { configuration } from "./sdk/configuration";
 import { common } from "./common";
 import { IWorkingCopy, LockType, ILockWorkingCopyOptions, ILockWorkingCopyResponse, ICommitToTeamServerOptions } from "./sdk/internal/transportInterfaces";
 import { IModelServerClient } from "./sdk/internal/IModelServerClient";
+import { IExportMpkCallback, IExportMpkResponse } from "./sdk/internal/AbstractModel";
 /**
  * Client class of the Mendix Model SDK.
  * By instantiating this class with appropriate configuration, you can create and read working copies.
@@ -50,6 +51,11 @@ export declare class ModelSdkClientImpl<IT extends internal.IAbstractModel, CT e
     grantAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
     grantAccess(workingCopyId: string, memberOpenId: string): Promise<void>;
     /**
+     * Sets the members specified by their OpenID on the specified working copy.
+     */
+    setWorkingCopyMembers(workingCopyId: string, memberOpenIds: string[], callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
+    setWorkingCopyMembers(workingCopyId: string, memberOpenIds: string[]): Promise<void>;
+    /**
      * Revokes access of the member specified to his/her OpenID on this working copy.
      */
     revokeAccess(workingCopyId: string, memberOpenId: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
@@ -77,8 +83,8 @@ export declare class ModelSdkClientImpl<IT extends internal.IAbstractModel, CT e
     /**
      * Exports this working copy as MPK.
      */
-    exportMpk(workingCopyId: string, outFilePath: string, callback: common.IVoidCallback, errorCallback: common.IErrorCallback): void;
-    exportMpk(workingCopyId: string, outFilePath: string): Promise<void>;
+    exportMpk(workingCopyId: string, outFilePath: string, callback: IExportMpkCallback, errorCallback: common.IErrorCallback): void;
+    exportMpk(workingCopyId: string, outFilePath: string): Promise<IExportMpkResponse>;
     /**
      * Exports the module with the specified ID as MPK.
      */

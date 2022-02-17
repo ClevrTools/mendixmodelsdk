@@ -41,6 +41,144 @@ export declare namespace rest {
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
+     * In version 9.11.0: introduced
+     */
+    abstract class ChangeMode extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.11.0: introduced
+     */
+    class CallMicroflowToChange extends ChangeMode {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        get microflow(): microflows.IMicroflow;
+        set microflow(newValue: microflows.IMicroflow);
+        get microflowQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container: PublishedRestResource): CallMicroflowToChange;
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container: PublishedRestResource): CallMicroflowToChange;
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * The new CallMicroflowToChange will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container: PublishedRestResource): CallMicroflowToChange;
+        /**
+         * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallMicroflowToChange;
+    }
+    /**
+     * In version 9.11.0: introduced
+     */
+    class ChangeNotSupported extends ChangeMode {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container: PublishedRestResource): ChangeNotSupported;
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container: PublishedRestResource): ChangeNotSupported;
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * The new ChangeNotSupported will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container: PublishedRestResource): ChangeNotSupported;
+        /**
+         * Creates and returns a new ChangeNotSupported instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ChangeNotSupported;
+    }
+    /**
+     * In version 9.11.0: introduced
+     */
+    class ChangeSource extends ChangeMode {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'deleteMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderDeleteMode(container: PublishedRestResource): ChangeSource;
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'insertMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderInsertMode(container: PublishedRestResource): ChangeSource;
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * The new ChangeSource will be automatically stored in the 'updateMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.11.0 and higher
+         */
+        static createInPublishedRestResourceUnderUpdateMode(container: PublishedRestResource): ChangeSource;
+        /**
+         * Creates and returns a new ChangeSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ChangeSource;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
@@ -379,6 +517,10 @@ export declare namespace rest {
          * In version 8.16.0: introduced
          */
         readonly sortable: boolean;
+        /**
+         * In version 9.11.0: introduced
+         */
+        readonly representsStream: boolean;
         asLoaded(): ODataMappedValue;
         load(callback: (element: ODataMappedValue) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ODataMappedValue>;
@@ -408,10 +550,20 @@ export declare namespace rest {
         get sortable(): boolean;
         set sortable(newValue: boolean);
         /**
+         * In version 9.11.0: introduced
+         */
+        get representsStream(): boolean;
+        set representsStream(newValue: boolean);
+        /**
          * In version 9.6.0: introduced
          */
         get updatable(): boolean;
         set updatable(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatable(): boolean;
+        set creatable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataMappedValue instance in the SDK and on the server.
@@ -465,6 +617,16 @@ export declare namespace rest {
          */
         get updatableFromParent(): boolean;
         set updatableFromParent(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatableFromChild(): boolean;
+        set creatableFromChild(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatableFromParent(): boolean;
+        set creatableFromParent(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteAssociationSource instance in the SDK and on the server.
@@ -554,6 +716,16 @@ export declare namespace rest {
          */
         get countable(): boolean;
         set countable(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get creatable(): boolean;
+        set creatable(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get deletable(): boolean;
+        set deletable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
@@ -681,16 +853,45 @@ export declare namespace rest {
         get pageSize(): number;
         set pageSize(newValue: number);
         /**
+         * In version 9.11.0: deleted
          * In version 9.4.0: introduced
          */
         get updatable(): boolean;
         set updatable(newValue: boolean);
         /**
+         * In version 9.11.0: deleted
          * In version 9.9.0: introduced
          */
         get updateMicroflow(): microflows.IMicroflow | null;
         set updateMicroflow(newValue: microflows.IMicroflow | null);
         get updateMicroflowQualifiedName(): string | null;
+        /**
+         * In version 9.11.0: deleted
+         * In version 9.10.0: introduced
+         */
+        get insertable(): boolean;
+        set insertable(newValue: boolean);
+        /**
+         * In version 9.11.0: deleted
+         * In version 9.10.0: introduced
+         */
+        get deletable(): boolean;
+        set deletable(newValue: boolean);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get updateMode(): ChangeMode;
+        set updateMode(newValue: ChangeMode);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get insertMode(): ChangeMode;
+        set insertMode(newValue: ChangeMode);
+        /**
+         * In version 9.11.0: introduced
+         */
+        get deleteMode(): ChangeMode;
+        set deleteMode(newValue: ChangeMode);
         /**
          * In version 9.9.0: introduced
          */

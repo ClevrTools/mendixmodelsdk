@@ -64,12 +64,18 @@ var projects;
         set name(newValue) {
             this.__name.set(newValue);
         }
+        /**
+         * In version 9.10.0: added public
+         */
         get documentation() {
             return this.__documentation.get();
         }
         set documentation(newValue) {
             this.__documentation.set(newValue);
         }
+        /**
+         * In version 9.11.0: added public
+         */
         get excluded() {
             return this.__excluded.get();
         }
@@ -102,6 +108,18 @@ var projects;
             name: {
                 public: {
                     currentValue: true
+                }
+            },
+            documentation: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.10.0"]
+                }
+            },
+            excluded: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.11.0"]
                 }
             },
             exportLevel: {

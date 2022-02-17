@@ -14,6 +14,10 @@ export declare namespace javascriptactions {
     interface IJavaScriptAction extends codeactions.ICodeAction {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 9.10.0: introduced
+         */
+        readonly platform: client.SupportedPlatform;
         asLoaded(): JavaScriptAction;
         load(callback: (element: JavaScriptAction) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<JavaScriptAction>;
@@ -28,6 +32,11 @@ export declare namespace javascriptactions {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 9.10.0: introduced
+         */
+        get platform(): client.SupportedPlatform;
+        set platform(newValue: client.SupportedPlatform);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new JavaScriptAction unit in the SDK and on the server.
@@ -88,5 +97,6 @@ export declare namespace javascriptactions {
         static create(model: IModel): NanoflowJavaScriptActionParameterType;
     }
 }
+import { client } from "./client";
 import { projects } from "./projects";
 import { IModel } from "./base-model";
