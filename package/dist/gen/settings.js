@@ -1546,6 +1546,10 @@ var settings;
             this.__workflowEngineParallelism = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "workflowEngineParallelism", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__defaultTaskParallelism = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "defaultTaskParallelism", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__workflowOnStateChangeEvent = new internal.PartProperty(WorkflowsProjectSettingsPart, this, "workflowOnStateChangeEvent", null, false);
+            /** @internal */
+            this.__usertaskOnStateChangeEvent = new internal.PartProperty(WorkflowsProjectSettingsPart, this, "usertaskOnStateChangeEvent", null, false);
             if (arguments.length < 4) {
                 throw new Error("new WorkflowsProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWorkflowsProjectSettingsPart()'");
             }
@@ -1591,6 +1595,24 @@ var settings;
         }
         set defaultTaskParallelism(newValue) {
             this.__defaultTaskParallelism.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get workflowOnStateChangeEvent() {
+            return this.__workflowOnStateChangeEvent.get();
+        }
+        set workflowOnStateChangeEvent(newValue) {
+            this.__workflowOnStateChangeEvent.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get usertaskOnStateChangeEvent() {
+            return this.__usertaskOnStateChangeEvent.get();
+        }
+        set usertaskOnStateChangeEvent(newValue) {
+            this.__usertaskOnStateChangeEvent.set(newValue);
         }
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
@@ -1642,6 +1664,12 @@ var settings;
             },
             defaultTaskParallelism: {
                 introduced: "9.0.5"
+            },
+            workflowOnStateChangeEvent: {
+                introduced: "9.12.0"
+            },
+            usertaskOnStateChangeEvent: {
+                introduced: "9.12.0"
             }
         },
         experimental: {

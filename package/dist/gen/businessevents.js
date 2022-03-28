@@ -361,6 +361,8 @@ var businessevents;
             /** @internal */
             this.__exposedName = new internal.PrimitiveProperty(PublishedMessage, this, "exposedName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__eventName = new internal.PrimitiveProperty(PublishedMessage, this, "eventName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedMessage, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__summary = new internal.PrimitiveProperty(PublishedMessage, this, "summary", "", internal.PrimitiveTypeEnum.String);
@@ -382,11 +384,23 @@ var businessevents;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
+        /**
+         * In version 9.12.0: deleted
+         */
         get exposedName() {
             return this.__exposedName.get();
         }
         set exposedName(newValue) {
             this.__exposedName.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get eventName() {
+            return this.__eventName.get();
+        }
+        set eventName(newValue) {
+            this.__eventName.set(newValue);
         }
         get description() {
             return this.__description.get();
@@ -441,6 +455,13 @@ var businessevents;
                 required: {
                     currentValue: true
                 }
+            },
+            exposedName: {
+                deleted: "9.12.0",
+                deletionMessage: null
+            },
+            eventName: {
+                introduced: "9.12.0"
             }
         },
         experimental: {

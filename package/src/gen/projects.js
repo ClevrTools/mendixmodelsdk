@@ -24,6 +24,15 @@ var projects;
     ModuleExportLevel.Source = new ModuleExportLevel("Source", {});
     ModuleExportLevel.Protected = new ModuleExportLevel("Protected", {});
     projects.ModuleExportLevel = ModuleExportLevel;
+    class ProtectedModuleType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "projects.ProtectedModuleType";
+        }
+    }
+    ProtectedModuleType.AddOn = new ProtectedModuleType("AddOn", {});
+    ProtectedModuleType.Solution = new ProtectedModuleType("Solution", {});
+    projects.ProtectedModuleType = ProtectedModuleType;
     class ModuleDocument extends internal.ModelUnit {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
@@ -383,6 +392,8 @@ var projects;
     }, internal.StructureType.StructuralUnit);
     projects.Module = Module;
     /**
+     * See: {@link https://docs.mendix.com/refguide/module-settings relevant section in reference guide}
+     *
      * In version 9.8.0: introduced
      */
     class ModuleSettings extends ModuleDocument {
@@ -390,6 +401,8 @@ var projects;
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
             this.__exportLevel = new internal.EnumProperty(ModuleSettings, this, "exportLevel", ModuleExportLevel.Source, ModuleExportLevel);
+            /** @internal */
+            this.__protectedModuleType = new internal.EnumProperty(ModuleSettings, this, "protectedModuleType", ProtectedModuleType.AddOn, ProtectedModuleType);
             /** @internal */
             this.__version = new internal.PrimitiveProperty(ModuleSettings, this, "version", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "moduleSettings";
@@ -402,6 +415,15 @@ var projects;
         }
         set exportLevel(newValue) {
             this.__exportLevel.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get protectedModuleType() {
+            return this.__protectedModuleType.get();
+        }
+        set protectedModuleType(newValue) {
+            this.__protectedModuleType.set(newValue);
         }
         get version() {
             return this.__version.get();
@@ -420,12 +442,20 @@ var projects;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.exportLevel = ModuleExportLevel.Source;
+            if (this.__protectedModuleType.isAvailable) {
+                this.protectedModuleType = ProtectedModuleType.AddOn;
+            }
             this.version = "1.0.0";
         }
     }
     ModuleSettings.structureTypeName = "Projects$ModuleSettings";
     ModuleSettings.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.8.0"
+        introduced: "9.8.0",
+        properties: {
+            protectedModuleType: {
+                introduced: "9.12.0"
+            }
+        }
     }, internal.StructureType.ModelUnit);
     projects.ModuleSettings = ModuleSettings;
     class OneTimeConversionMarker extends internal.Element {

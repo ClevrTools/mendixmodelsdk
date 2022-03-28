@@ -7,6 +7,14 @@ exports.StructureVersionInfo = internal.StructureVersionInfo;
 const pages_1 = require("./pages");
 var customwidgets;
 (function (customwidgets) {
+    class CustomWidgetAssociationType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "customwidgets.CustomWidgetAssociationType";
+        }
+    }
+    CustomWidgetAssociationType.Reference = new CustomWidgetAssociationType("Reference", {});
+    customwidgets.CustomWidgetAssociationType = CustomWidgetAssociationType;
     class CustomWidgetAttributeType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -2042,7 +2050,11 @@ var customwidgets;
             /** @internal */
             this.__universeDataSourceProperty = new internal.PrimitiveProperty(WidgetValueType, this, "universeDataSourceProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__selectableObjectsProperty = new internal.PrimitiveProperty(WidgetValueType, this, "selectableObjectsProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__attributeTypes = new internal.EnumListProperty(WidgetValueType, this, "attributeTypes", [], CustomWidgetAttributeType);
+            /** @internal */
+            this.__associationTypes = new internal.EnumListProperty(WidgetValueType, this, "associationTypes", [], CustomWidgetAssociationType);
             /** @internal */
             this.__enumerationValues = new internal.PartListProperty(WidgetValueType, this, "enumerationValues", []);
             /** @internal */
@@ -2137,6 +2149,7 @@ var customwidgets;
             this.__dataSourceProperty.set(newValue);
         }
         /**
+         * In version 9.12.0: deleted
          * In version 9.10.0: introduced
          */
         get universeDataSourceProperty() {
@@ -2145,8 +2158,23 @@ var customwidgets;
         set universeDataSourceProperty(newValue) {
             this.__universeDataSourceProperty.set(newValue);
         }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get selectableObjectsProperty() {
+            return this.__selectableObjectsProperty.get();
+        }
+        set selectableObjectsProperty(newValue) {
+            this.__selectableObjectsProperty.set(newValue);
+        }
         get attributeTypes() {
             return this.__attributeTypes.get();
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get associationTypes() {
+            return this.__associationTypes.get();
         }
         get enumerationValues() {
             return this.__enumerationValues.get();
@@ -2200,7 +2228,15 @@ var customwidgets;
                 introduced: "8.4.0"
             },
             universeDataSourceProperty: {
-                introduced: "9.10.0"
+                introduced: "9.10.0",
+                deleted: "9.12.0",
+                deletionMessage: "Use 'selectableObjectsProperty' instead"
+            },
+            selectableObjectsProperty: {
+                introduced: "9.12.0"
+            },
+            associationTypes: {
+                introduced: "9.12.0"
             }
         }
     }, internal.StructureType.Element);

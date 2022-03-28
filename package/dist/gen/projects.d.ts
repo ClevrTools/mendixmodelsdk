@@ -11,6 +11,11 @@ export declare namespace projects {
         static Protected: ModuleExportLevel;
         protected qualifiedTsTypeName: string;
     }
+    class ProtectedModuleType extends internal.AbstractEnum {
+        static AddOn: ProtectedModuleType;
+        static Solution: ProtectedModuleType;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Projects`.
      */
@@ -224,6 +229,8 @@ export declare namespace projects {
         static createIn(container: IProject): Module;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/module-settings relevant section in reference guide}
+     *
      * In version 9.8.0: introduced
      */
     interface IModuleSettings extends IModuleDocument {
@@ -234,6 +241,8 @@ export declare namespace projects {
         load(forceRefresh?: boolean): Promise<ModuleSettings>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/module-settings relevant section in reference guide}
+     *
      * In version 9.8.0: introduced
      */
     class ModuleSettings extends ModuleDocument implements IModuleSettings {
@@ -242,6 +251,11 @@ export declare namespace projects {
         get containerAsModule(): Module;
         get exportLevel(): ModuleExportLevel;
         set exportLevel(newValue: ModuleExportLevel);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get protectedModuleType(): ProtectedModuleType;
+        set protectedModuleType(newValue: ProtectedModuleType);
         get version(): string;
         set version(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IModule);

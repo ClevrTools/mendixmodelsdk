@@ -243,10 +243,7 @@ var microflows;
      * Interfaces and instance classes for types from the Mendix sub meta model `Microflows`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class WorkflowOperation extends internal.Element {
@@ -268,15 +265,13 @@ var microflows;
     WorkflowOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.2.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.WorkflowOperation = WorkflowOperation;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class AbortOperation extends WorkflowOperation {
@@ -342,7 +337,8 @@ var microflows;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.AbortOperation = AbortOperation;
@@ -403,14 +399,13 @@ var microflows;
     Activity.structureTypeName = "Microflows$Activity";
     Activity.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Activity = Activity;
-    /**
-     * See: {@link https://docs.mendix.com/refguide/activities relevant section in reference guide}
-     */
     class ActionActivity extends Activity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__action = new internal.PartProperty(ActionActivity, this, "action", null, false);
+            /** @internal */
+            this.__disabled = new internal.PrimitiveProperty(ActionActivity, this, "disabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(ActionActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -431,6 +426,15 @@ var microflows;
         }
         set action(newValue) {
             this.__action.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get disabled() {
+            return this.__disabled.get();
+        }
+        set disabled(newValue) {
+            this.__disabled.set(newValue);
         }
         get caption() {
             return this.__caption.get();
@@ -482,7 +486,13 @@ var microflows;
         }
     }
     ActionActivity.structureTypeName = "Microflows$ActionActivity";
-    ActionActivity.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ActionActivity.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            disabled: {
+                introduced: "9.12.0"
+            }
+        }
+    }, internal.StructureType.Element);
     microflows.ActionActivity = ActionActivity;
     class RequestHandling extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2207,10 +2217,7 @@ var microflows;
     ContinueEvent.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.ContinueEvent = ContinueEvent;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
      */
     class ContinueOperation extends WorkflowOperation {
@@ -2260,7 +2267,8 @@ var microflows;
     ContinueOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.3.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.ContinueOperation = ContinueOperation;
@@ -2956,6 +2964,67 @@ var microflows;
     DeleteAction.structureTypeName = "Microflows$DeleteAction";
     DeleteAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.DeleteAction = DeleteAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/delete-external-object relevant section in reference guide}
+     *
+     * In version 9.12.0: introduced
+     */
+    class DeleteExternalObject extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__deleteVariableName = new internal.PrimitiveProperty(DeleteExternalObject, this, "deleteVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__refreshInClient = new internal.PrimitiveProperty(DeleteExternalObject, this, "refreshInClient", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new DeleteExternalObject() cannot be invoked directly, please use 'model.microflows.createDeleteExternalObject()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get deleteVariableName() {
+            return this.__deleteVariableName.get();
+        }
+        set deleteVariableName(newValue) {
+            this.__deleteVariableName.set(newValue);
+        }
+        get refreshInClient() {
+            return this.__refreshInClient.get();
+        }
+        set refreshInClient(newValue) {
+            this.__refreshInClient.set(newValue);
+        }
+        /**
+         * Creates and returns a new DeleteExternalObject instance in the SDK and on the server.
+         * The new DeleteExternalObject will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, DeleteExternalObject.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, DeleteExternalObject, "action", false);
+        }
+        /**
+         * Creates and returns a new DeleteExternalObject instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, DeleteExternalObject);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    DeleteExternalObject.structureTypeName = "Microflows$DeleteExternalObject";
+    DeleteExternalObject.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.12.0"
+    }, internal.StructureType.Element);
+    microflows.DeleteExternalObject = DeleteExternalObject;
     class DocumentTemplateParameterMapping extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -4744,10 +4813,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.GenerateDocumentAction = GenerateDocumentAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
      */
     class GetWorkflowDataAction extends MicroflowAction {
@@ -4816,7 +4882,8 @@ var microflows;
     GetWorkflowDataAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.10.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.GetWorkflowDataAction = GetWorkflowDataAction;
@@ -6558,6 +6625,12 @@ var microflows;
                 this.loopSource = IterableList.create(this.model);
             }
             this.objectCollection = MicroflowObjectCollection.create(this.model);
+            (() => {
+                if (internal.isAtLeast("9.12.0", this.model)) {
+                    this.size = { width: 300, height: 200 };
+                    return;
+                }
+            })();
         }
     }
     LoopedActivity.structureTypeName = "Microflows$LoopedActivity";
@@ -8442,10 +8515,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.OpenWorkflowAction = OpenWorkflowAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
      */
     class PauseOperation extends WorkflowOperation {
@@ -8495,7 +8565,8 @@ var microflows;
     PauseOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.3.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.PauseOperation = PauseOperation;
@@ -9125,10 +9196,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RestCallAction = RestCallAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class RestartOperation extends WorkflowOperation {
@@ -9178,7 +9246,8 @@ var microflows;
     RestartOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.2.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.RestartOperation = RestartOperation;
@@ -9319,6 +9388,7 @@ var microflows;
      *
      * @ignore
      *
+     * In version 9.12.0: deleted
      * In version 9.3.0: introduced
      */
     class ResumeOperation extends WorkflowOperation {
@@ -9345,10 +9415,10 @@ var microflows;
          * of the parent WorkflowOperationAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.3.0 and higher
+         *  9.3.0 to 9.11.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, ResumeOperation.structureTypeName, { start: "9.3.0" });
+            internal.createInVersionCheck(container.model, ResumeOperation.structureTypeName, { start: "9.3.0", end: "9.11.0" });
             return internal.instancehelpers.createElement(container, ResumeOperation, "operation", false);
         }
         /**
@@ -9367,6 +9437,8 @@ var microflows;
     ResumeOperation.structureTypeName = "Microflows$ResumeOperation";
     ResumeOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.3.0",
+        deleted: "9.12.0",
+        deletionMessage: "Use UnpauseOperation instead",
         experimental: {
             currentValue: true
         }
@@ -9434,6 +9506,57 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.RetrieveAction = RetrieveAction;
+    /**
+     * In version 9.12.0: introduced
+     */
+    class RetryOperation extends WorkflowOperation {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowVariable = new internal.PrimitiveProperty(RetryOperation, this, "workflowVariable", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new RetryOperation() cannot be invoked directly, please use 'model.microflows.createRetryOperation()'");
+            }
+        }
+        get containerAsWorkflowOperationAction() {
+            return super.getContainerAs(WorkflowOperationAction);
+        }
+        get workflowVariable() {
+            return this.__workflowVariable.get();
+        }
+        set workflowVariable(newValue) {
+            this.__workflowVariable.set(newValue);
+        }
+        /**
+         * Creates and returns a new RetryOperation instance in the SDK and on the server.
+         * The new RetryOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RetryOperation.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, RetryOperation, "operation", false);
+        }
+        /**
+         * Creates and returns a new RetryOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RetryOperation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RetryOperation.structureTypeName = "Microflows$RetryOperation";
+    RetryOperation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.12.0"
+    }, internal.StructureType.Element);
+    microflows.RetryOperation = RetryOperation;
     /**
      * See: {@link https://docs.mendix.com/refguide/rollback-object relevant section in reference guide}
      */
@@ -11140,6 +11263,57 @@ var microflows;
     Union.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Union = Union;
     /**
+     * In version 9.12.0: introduced
+     */
+    class UnpauseOperation extends WorkflowOperation {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowVariable = new internal.PrimitiveProperty(UnpauseOperation, this, "workflowVariable", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new UnpauseOperation() cannot be invoked directly, please use 'model.microflows.createUnpauseOperation()'");
+            }
+        }
+        get containerAsWorkflowOperationAction() {
+            return super.getContainerAs(WorkflowOperationAction);
+        }
+        get workflowVariable() {
+            return this.__workflowVariable.get();
+        }
+        set workflowVariable(newValue) {
+            this.__workflowVariable.set(newValue);
+        }
+        /**
+         * Creates and returns a new UnpauseOperation instance in the SDK and on the server.
+         * The new UnpauseOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, UnpauseOperation.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, UnpauseOperation, "operation", false);
+        }
+        /**
+         * Creates and returns a new UnpauseOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, UnpauseOperation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UnpauseOperation.structureTypeName = "Microflows$UnpauseOperation";
+    UnpauseOperation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.12.0"
+    }, internal.StructureType.Element);
+    microflows.UnpauseOperation = UnpauseOperation;
+    /**
      * See: {@link https://docs.mendix.com/refguide/validation-feedback relevant section in reference guide}
      */
     class ValidationFeedbackAction extends MicroflowAction {
@@ -11878,10 +12052,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.WorkflowCallAction = WorkflowCallAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class WorkflowOperationAction extends MicroflowAction {
@@ -11896,11 +12067,6 @@ var microflows;
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get operation() {
             return this.__operation.get();
         }
@@ -11944,7 +12110,8 @@ var microflows;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["9.12.0"]
         }
     }, internal.StructureType.Element);
     microflows.WorkflowOperationAction = WorkflowOperationAction;

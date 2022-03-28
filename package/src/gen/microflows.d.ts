@@ -149,10 +149,7 @@ export declare namespace microflows {
      * Interfaces and instance classes for types from the Mendix sub meta model `Microflows`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     abstract class WorkflowOperation extends internal.Element<IModel> {
@@ -162,10 +159,7 @@ export declare namespace microflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class AbortOperation extends WorkflowOperation {
@@ -209,15 +203,17 @@ export declare namespace microflows {
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/activities relevant section in reference guide}
-     */
     class ActionActivity extends Activity {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMicroflowObjectCollection(): MicroflowObjectCollection;
         get action(): MicroflowAction | null;
         set action(newValue: MicroflowAction | null);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get disabled(): boolean;
+        set disabled(newValue: boolean);
         get caption(): string;
         set caption(newValue: string);
         get autoGenerateCaption(): boolean;
@@ -985,10 +981,7 @@ export declare namespace microflows {
         static create(model: IModel): ContinueEvent;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
      */
     class ContinueOperation extends WorkflowOperation {
@@ -1314,6 +1307,36 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): DeleteAction;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/delete-external-object relevant section in reference guide}
+     *
+     * In version 9.12.0: introduced
+     */
+    class DeleteExternalObject extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get deleteVariableName(): string;
+        set deleteVariableName(newValue: string);
+        get refreshInClient(): boolean;
+        set refreshInClient(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new DeleteExternalObject instance in the SDK and on the server.
+         * The new DeleteExternalObject will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container: ActionActivity): DeleteExternalObject;
+        /**
+         * Creates and returns a new DeleteExternalObject instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): DeleteExternalObject;
     }
     class DocumentTemplateParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
@@ -2099,10 +2122,7 @@ export declare namespace microflows {
         static create(model: IModel): GenerateDocumentAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
      */
     class GetWorkflowDataAction extends MicroflowAction {
@@ -3732,10 +3752,7 @@ export declare namespace microflows {
         static create(model: IModel): OpenWorkflowAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
      */
     class PauseOperation extends WorkflowOperation {
@@ -4017,10 +4034,7 @@ export declare namespace microflows {
         static create(model: IModel): RestCallAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class RestartOperation extends WorkflowOperation {
@@ -4105,6 +4119,7 @@ export declare namespace microflows {
      *
      * @ignore
      *
+     * In version 9.12.0: deleted
      * In version 9.3.0: introduced
      */
     class ResumeOperation extends WorkflowOperation {
@@ -4120,7 +4135,7 @@ export declare namespace microflows {
          * of the parent WorkflowOperationAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.3.0 and higher
+         *  9.3.0 to 9.11.0
          */
         static createIn(container: WorkflowOperationAction): ResumeOperation;
         /**
@@ -4154,6 +4169,32 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RetrieveAction;
+    }
+    /**
+     * In version 9.12.0: introduced
+     */
+    class RetryOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RetryOperation instance in the SDK and on the server.
+         * The new RetryOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): RetryOperation;
+        /**
+         * Creates and returns a new RetryOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RetryOperation;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/rollback-object relevant section in reference guide}
@@ -4953,6 +4994,32 @@ export declare namespace microflows {
         static create(model: IModel): Union;
     }
     /**
+     * In version 9.12.0: introduced
+     */
+    class UnpauseOperation extends WorkflowOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowOperationAction(): WorkflowOperationAction;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UnpauseOperation instance in the SDK and on the server.
+         * The new UnpauseOperation will be automatically stored in the 'operation' property
+         * of the parent WorkflowOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createIn(container: WorkflowOperationAction): UnpauseOperation;
+        /**
+         * Creates and returns a new UnpauseOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UnpauseOperation;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/validation-feedback relevant section in reference guide}
      */
     class ValidationFeedbackAction extends MicroflowAction {
@@ -5229,21 +5296,13 @@ export declare namespace microflows {
         static create(model: IModel): WorkflowCallAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */
     class WorkflowOperationAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get operation(): WorkflowOperation;
         set operation(newValue: WorkflowOperation);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

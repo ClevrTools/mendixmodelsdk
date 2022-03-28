@@ -516,6 +516,7 @@ export declare type ConcreteModelElements = {
     Microflows$CustomRequestHandling: microflows.CustomRequestHandling;
     Microflows$DatabaseRetrieveSource: microflows.DatabaseRetrieveSource;
     Microflows$DeleteAction: microflows.DeleteAction;
+    Microflows$DeleteExternalObject: microflows.DeleteExternalObject;
     Microflows$DocumentTemplateParameterMapping: microflows.DocumentTemplateParameterMapping;
     Microflows$DownloadFileAction: microflows.DownloadFileAction;
     Microflows$EndEvent: microflows.EndEvent;
@@ -589,6 +590,7 @@ export declare type ConcreteModelElements = {
     Microflows$ResultHandling: microflows.ResultHandling;
     Microflows$ResumeOperation: microflows.ResumeOperation;
     Microflows$RetrieveAction: microflows.RetrieveAction;
+    Microflows$RetryOperation: microflows.RetryOperation;
     Microflows$RollbackAction: microflows.RollbackAction;
     Microflows$RuleCall: microflows.RuleCall;
     Microflows$RuleCallParameterMapping: microflows.RuleCallParameterMapping;
@@ -614,6 +616,7 @@ export declare type ConcreteModelElements = {
     Microflows$TextTemplate: microflows.TextTemplate;
     Microflows$TypedTemplate: microflows.TypedTemplate;
     Microflows$Union: microflows.Union;
+    Microflows$UnpauseOperation: microflows.UnpauseOperation;
     Microflows$ValidationFeedbackAction: microflows.ValidationFeedbackAction;
     Microflows$VariableExport: microflows.VariableExport;
     Microflows$WebServiceCallAction: microflows.WebServiceCallAction;
@@ -829,6 +832,14 @@ export declare type ConcreteModelElements = {
     Rest$PublishedRestServiceOperation: rest.PublishedRestServiceOperation;
     Rest$PublishedRestServiceResource: rest.PublishedRestServiceResource;
     Rest$RestOperationParameter: rest.RestOperationParameter;
+    ScheduledEvents$DaySchedule: scheduledevents.DaySchedule;
+    ScheduledEvents$HourSchedule: scheduledevents.HourSchedule;
+    ScheduledEvents$MinuteSchedule: scheduledevents.MinuteSchedule;
+    ScheduledEvents$MonthDateSchedule: scheduledevents.MonthDateSchedule;
+    ScheduledEvents$MonthWeekdaySchedule: scheduledevents.MonthWeekdaySchedule;
+    ScheduledEvents$WeekSchedule: scheduledevents.WeekSchedule;
+    ScheduledEvents$YearDateSchedule: scheduledevents.YearDateSchedule;
+    ScheduledEvents$YearWeekdaySchedule: scheduledevents.YearWeekdaySchedule;
     Security$DemoUser: security.DemoUser;
     Security$FileDocumentAccessRuleContainer: security.FileDocumentAccessRuleContainer;
     Security$ImageAccessRuleContainer: security.ImageAccessRuleContainer;
@@ -883,6 +894,7 @@ export declare type ConcreteModelElements = {
     Workflows$MicroflowBasedEvent: workflows.MicroflowBasedEvent;
     Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
     Workflows$MicroflowCallParameterMapping: workflows.MicroflowCallParameterMapping;
+    Workflows$MicroflowEventHandler: workflows.MicroflowEventHandler;
     Workflows$NoEvent: workflows.NoEvent;
     Workflows$PageParameterMapping: workflows.PageParameterMapping;
     Workflows$PageReference: workflows.PageReference;

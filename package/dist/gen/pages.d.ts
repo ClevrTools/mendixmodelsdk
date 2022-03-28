@@ -2182,8 +2182,16 @@ export declare namespace pages {
         get workflowQualifiedName(): string | null;
         get closePage(): boolean;
         set closePage(newValue: boolean);
+        /**
+         * In version 9.12.0: deleted
+         */
         get commit(): boolean;
         set commit(newValue: boolean);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get confirmationInfo(): ConfirmationInfo | null;
+        set confirmationInfo(newValue: ConfirmationInfo | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
@@ -4004,6 +4012,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
+        get containerAsCallWorkflowClientAction(): CallWorkflowClientAction;
         get containerAsMicroflowSettings(): MicroflowSettings;
         get question(): texts.Text;
         set question(newValue: texts.Text);
@@ -4030,6 +4039,15 @@ export declare namespace pages {
          *  7.8.0 and higher
          */
         static createInCallNanoflowClientActionUnderConfirmationInfo(container: CallNanoflowClientAction): ConfirmationInfo;
+        /**
+         * Creates and returns a new ConfirmationInfo instance in the SDK and on the server.
+         * The new ConfirmationInfo will be automatically stored in the 'confirmationInfo' property
+         * of the parent CallWorkflowClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInCallWorkflowClientActionUnderConfirmationInfo(container: CallWorkflowClientAction): ConfirmationInfo;
         /**
          * Creates and returns a new ConfirmationInfo instance in the SDK and on the server.
          * The new ConfirmationInfo will be automatically stored in the 'confirmationInfo' property

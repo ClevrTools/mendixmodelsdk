@@ -663,6 +663,16 @@ export declare namespace settings {
          */
         get defaultTaskParallelism(): number;
         set defaultTaskParallelism(newValue: number);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get workflowOnStateChangeEvent(): workflows.MicroflowEventHandler | null;
+        set workflowOnStateChangeEvent(newValue: workflows.MicroflowEventHandler | null);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get usertaskOnStateChangeEvent(): workflows.MicroflowEventHandler | null;
+        set usertaskOnStateChangeEvent(newValue: workflows.MicroflowEventHandler | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
@@ -684,4 +694,5 @@ export declare namespace settings {
 import { constants } from "./constants";
 import { domainmodels } from "./domainmodels";
 import { microflows } from "./microflows";
+import { workflows } from "./workflows";
 import { IModel } from "./base-model";

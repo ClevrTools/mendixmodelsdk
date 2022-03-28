@@ -29,6 +29,17 @@ export declare namespace queues {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsQueue(): Queue;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.12.0: introduced
+         */
+        get parallelismExpression(): string;
+        set parallelismExpression(newValue: string);
+        /**
+         * In version 9.12.0: deleted
+         * In version 8.16.0: introduced
+         */
         get parallelism(): number;
         set parallelism(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

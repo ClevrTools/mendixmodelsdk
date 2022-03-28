@@ -1,7 +1,7 @@
 {
   "name": "@clevr/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.60.1",
+  "version": "4.61.1",
   "author": "Mendix",
   "license": "MIT",
   "scripts": {

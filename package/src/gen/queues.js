@@ -56,6 +56,8 @@ var queues;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__parallelismExpression = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelismExpression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__parallelism = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelism", 0, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new BasicQueueConfig() cannot be invoked directly, please use 'model.queues.createBasicQueueConfig()'");
@@ -64,6 +66,21 @@ var queues;
         get containerAsQueue() {
             return super.getContainerAs(Queue);
         }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 9.12.0: introduced
+         */
+        get parallelismExpression() {
+            return this.__parallelismExpression.get();
+        }
+        set parallelismExpression(newValue) {
+            this.__parallelismExpression.set(newValue);
+        }
+        /**
+         * In version 9.12.0: deleted
+         * In version 8.16.0: introduced
+         */
         get parallelism() {
             return this.__parallelism.get();
         }
@@ -93,12 +110,27 @@ var queues;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.parallelism = 1;
+            if (this.__parallelism.isAvailable) {
+                this.parallelism = 1;
+            }
+            if (this.__parallelismExpression.isAvailable) {
+                this.parallelismExpression = "1";
+            }
         }
     }
     BasicQueueConfig.structureTypeName = "Queues$BasicQueueConfig";
     BasicQueueConfig.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.16.0",
+        properties: {
+            parallelismExpression: {
+                introduced: "9.12.0"
+            },
+            parallelism: {
+                introduced: "8.16.0",
+                deleted: "9.12.0",
+                deletionMessage: null
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.3.0"]

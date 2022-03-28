@@ -2,6 +2,10 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { pages } from "./pages";
 export declare namespace customwidgets {
+    class CustomWidgetAssociationType extends internal.AbstractEnum {
+        static Reference: CustomWidgetAssociationType;
+        protected qualifiedTsTypeName: string;
+    }
     class CustomWidgetAttributeType extends internal.AbstractEnum {
         static AutoNumber: CustomWidgetAttributeType;
         static Binary: CustomWidgetAttributeType;
@@ -1065,11 +1069,21 @@ export declare namespace customwidgets {
         get dataSourceProperty(): string;
         set dataSourceProperty(newValue: string);
         /**
+         * In version 9.12.0: deleted
          * In version 9.10.0: introduced
          */
         get universeDataSourceProperty(): string;
         set universeDataSourceProperty(newValue: string);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get selectableObjectsProperty(): string;
+        set selectableObjectsProperty(newValue: string);
         get attributeTypes(): internal.IList<CustomWidgetAttributeType>;
+        /**
+         * In version 9.12.0: introduced
+         */
+        get associationTypes(): internal.IList<CustomWidgetAssociationType>;
         get enumerationValues(): internal.IList<WidgetEnumerationValue>;
         get objectType(): WidgetObjectType | null;
         set objectType(newValue: WidgetObjectType | null);

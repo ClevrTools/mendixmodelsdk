@@ -590,6 +590,61 @@ export declare namespace workflows {
         static create(model: IModel): MicroflowCallParameterMapping;
     }
     /**
+     * In version 9.12.0: introduced
+     */
+    class MicroflowEventHandler extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowsProjectSettingsPart(): settings.WorkflowsProjectSettingsPart;
+        get containerAsWorkflow(): Workflow;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderUsertaskOnStateChangeEvent(container: settings.WorkflowsProjectSettingsPart): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'workflowOnStateChangeEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderWorkflowOnStateChangeEvent(container: settings.WorkflowsProjectSettingsPart): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowUnderUsertaskOnStateChangeEvent(container: Workflow): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'workflowOnStateChangeEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowUnderWorkflowOnStateChangeEvent(container: Workflow): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowEventHandler;
+    }
+    /**
      * In version 9.0.5: introduced
      */
     class NoEvent extends UserTaskEvent {
@@ -1102,6 +1157,16 @@ export declare namespace workflows {
          */
         get allowedModuleRoles(): internal.IList<security.IModuleRole>;
         get allowedModuleRolesQualifiedNames(): string[];
+        /**
+         * In version 9.12.0: introduced
+         */
+        get workflowOnStateChangeEvent(): MicroflowEventHandler | null;
+        set workflowOnStateChangeEvent(newValue: MicroflowEventHandler | null);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get usertaskOnStateChangeEvent(): MicroflowEventHandler | null;
+        set usertaskOnStateChangeEvent(newValue: MicroflowEventHandler | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Workflow unit in the SDK and on the server.
@@ -1186,4 +1251,5 @@ import { enumerations } from "./enumerations";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
 import { security } from "./security";
+import { settings } from "./settings";
 import { IModel } from "./base-model";

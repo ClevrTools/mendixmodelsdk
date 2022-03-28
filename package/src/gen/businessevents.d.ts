@@ -194,8 +194,16 @@ export declare namespace businessevents {
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
+        /**
+         * In version 9.12.0: deleted
+         */
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 9.12.0: introduced
+         */
+        get eventName(): string;
+        set eventName(newValue: string);
         get description(): string;
         set description(newValue: string);
         get summary(): string;

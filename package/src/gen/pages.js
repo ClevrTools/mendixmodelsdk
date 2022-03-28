@@ -4254,6 +4254,8 @@ var pages;
             this.__closePage = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__commit = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "commit", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__confirmationInfo = new internal.PartProperty(CallWorkflowClientAction, this, "confirmationInfo", null, false);
             if (arguments.length < 4) {
                 throw new Error("new CallWorkflowClientAction() cannot be invoked directly, please use 'model.pages.createCallWorkflowClientAction()'");
             }
@@ -4312,11 +4314,23 @@ var pages;
         set closePage(newValue) {
             this.__closePage.set(newValue);
         }
+        /**
+         * In version 9.12.0: deleted
+         */
         get commit() {
             return this.__commit.get();
         }
         set commit(newValue) {
             this.__commit.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get confirmationInfo() {
+            return this.__confirmationInfo.get();
+        }
+        set confirmationInfo(newValue) {
+            this.__confirmationInfo.set(newValue);
         }
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
@@ -4522,12 +4536,23 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.closePage = true;
-            this.commit = true;
+            if (this.__commit.isAvailable) {
+                this.commit = true;
+            }
         }
     }
     CallWorkflowClientAction.structureTypeName = "Pages$CallWorkflowClientAction";
     CallWorkflowClientAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        properties: {
+            commit: {
+                deleted: "9.12.0",
+                deletionMessage: "This action will always commit"
+            },
+            confirmationInfo: {
+                introduced: "9.12.0"
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -7656,6 +7681,9 @@ var pages;
         get containerAsCallNanoflowClientAction() {
             return super.getContainerAs(CallNanoflowClientAction);
         }
+        get containerAsCallWorkflowClientAction() {
+            return super.getContainerAs(CallWorkflowClientAction);
+        }
         get containerAsMicroflowSettings() {
             return super.getContainerAs(MicroflowSettings);
         }
@@ -7699,6 +7727,18 @@ var pages;
          */
         static createInCallNanoflowClientActionUnderConfirmationInfo(container) {
             internal.createInVersionCheck(container.model, ConfirmationInfo.structureTypeName, { start: "7.8.0" });
+            return internal.instancehelpers.createElement(container, ConfirmationInfo, "confirmationInfo", false);
+        }
+        /**
+         * Creates and returns a new ConfirmationInfo instance in the SDK and on the server.
+         * The new ConfirmationInfo will be automatically stored in the 'confirmationInfo' property
+         * of the parent CallWorkflowClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInCallWorkflowClientActionUnderConfirmationInfo(container) {
+            internal.createInVersionCheck(container.model, ConfirmationInfo.structureTypeName, { start: "9.12.0" });
             return internal.instancehelpers.createElement(container, ConfirmationInfo, "confirmationInfo", false);
         }
         /**

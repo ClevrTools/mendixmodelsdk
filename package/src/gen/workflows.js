@@ -1031,6 +1031,99 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MicroflowCallParameterMapping = MicroflowCallParameterMapping;
     /**
+     * In version 9.12.0: introduced
+     */
+    class MicroflowEventHandler extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(MicroflowEventHandler, this, "microflow", null, "Microflows$Microflow");
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowEventHandler() cannot be invoked directly, please use 'model.workflows.createMicroflowEventHandler()'");
+            }
+        }
+        get containerAsWorkflowsProjectSettingsPart() {
+            return super.getContainerAs(settings_1.settings.WorkflowsProjectSettingsPart);
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderUsertaskOnStateChangeEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "usertaskOnStateChangeEvent", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'workflowOnStateChangeEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderWorkflowOnStateChangeEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "workflowOnStateChangeEvent", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowUnderUsertaskOnStateChangeEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "usertaskOnStateChangeEvent", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'workflowOnStateChangeEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.12.0 and higher
+         */
+        static createInWorkflowUnderWorkflowOnStateChangeEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "workflowOnStateChangeEvent", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowEventHandler);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowEventHandler.structureTypeName = "Workflows$MicroflowEventHandler";
+    MicroflowEventHandler.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.12.0"
+    }, internal.StructureType.Element);
+    workflows.MicroflowEventHandler = MicroflowEventHandler;
+    /**
      * In version 9.0.5: introduced
      */
     class NoEvent extends UserTaskEvent {
@@ -1810,6 +1903,10 @@ var workflows;
             this.__dueDate = new internal.PrimitiveProperty(Workflow, this, "dueDate", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__allowedModuleRoles = new internal.ByNameReferenceListProperty(Workflow, this, "allowedModuleRoles", [], "Security$ModuleRole");
+            /** @internal */
+            this.__workflowOnStateChangeEvent = new internal.PartProperty(Workflow, this, "workflowOnStateChangeEvent", null, false);
+            /** @internal */
+            this.__usertaskOnStateChangeEvent = new internal.PartProperty(Workflow, this, "usertaskOnStateChangeEvent", null, false);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1923,6 +2020,24 @@ var workflows;
             return this.__allowedModuleRoles.qualifiedNames();
         }
         /**
+         * In version 9.12.0: introduced
+         */
+        get workflowOnStateChangeEvent() {
+            return this.__workflowOnStateChangeEvent.get();
+        }
+        set workflowOnStateChangeEvent(newValue) {
+            this.__workflowOnStateChangeEvent.set(newValue);
+        }
+        /**
+         * In version 9.12.0: introduced
+         */
+        get usertaskOnStateChangeEvent() {
+            return this.__usertaskOnStateChangeEvent.get();
+        }
+        set usertaskOnStateChangeEvent(newValue) {
+            this.__usertaskOnStateChangeEvent.set(newValue);
+        }
+        /**
          * Creates a new Workflow unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -2025,6 +2140,12 @@ var workflows;
                 public: {
                     currentValue: true
                 }
+            },
+            workflowOnStateChangeEvent: {
+                introduced: "9.12.0"
+            },
+            usertaskOnStateChangeEvent: {
+                introduced: "9.12.0"
             }
         },
         experimental: {
@@ -2161,4 +2282,5 @@ var workflows;
     workflows.XPathBasedUserSource = XPathBasedUserSource;
 })(workflows = exports.workflows || (exports.workflows = {}));
 const microflows_1 = require("./microflows");
+const settings_1 = require("./settings");
 //# sourceMappingURL=workflows.js.map
