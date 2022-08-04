@@ -1069,7 +1069,7 @@ var javaactions;
             /** @internal */
             this.__parameters = new internal.PartListProperty(JavaAction, this, "parameters", []);
             /** @internal */
-            this.__returnType = new internal.PrimitiveProperty(JavaAction, this, "returnType", "", internal.PrimitiveTypeEnum.String);
+            this.__returnType = new internal.PrimitiveProperty(JavaAction, this, "returnType", "Boolean", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__javaReturnType = new internal.PartProperty(JavaAction, this, "javaReturnType", null, true);
             /** @internal */
@@ -1219,7 +1219,7 @@ var javaactions;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__type = new internal.PrimitiveProperty(JavaActionParameter, this, "type", "", internal.PrimitiveTypeEnum.String);
+            this.__type = new internal.PrimitiveProperty(JavaActionParameter, this, "type", "Unknown", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__javaType = new internal.PartProperty(JavaActionParameter, this, "javaType", null, true);
             /** @internal */

@@ -21,6 +21,11 @@ export declare namespace businessevents {
         get containerAsConsumedBusinessEventService(): ConsumedBusinessEventService;
         get eventName(): string;
         set eventName(newValue: string);
+        /**
+         * In version 9.13.0: introduced
+         */
+        get channelId(): string;
+        set channelId(newValue: string);
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
@@ -121,6 +126,11 @@ export declare namespace businessevents {
         get containerAsFolderBase(): projects.FolderBase;
         get serviceName(): string;
         set serviceName(newValue: string);
+        /**
+         * In version 9.13.0: introduced
+         */
+        get eventNamePrefix(): string;
+        set eventNamePrefix(newValue: string);
         get version(): string;
         set version(newValue: string);
         get description(): string;
@@ -245,6 +255,11 @@ export declare namespace businessevents {
         get attribute(): domainmodels.IAttribute;
         set attribute(newValue: domainmodels.IAttribute);
         get attributeQualifiedName(): string;
+        /**
+         * In version 9.14.0: introduced
+         */
+        get attributeType(): domainmodels.AttributeType;
+        set attributeType(newValue: domainmodels.AttributeType);
         get exposedName(): string;
         set exposedName(newValue: string);
         get description(): string;

@@ -1,6 +1,8 @@
 /**
  * All primitive types.
  * Note: must match exactly with MxPrimitiveTypeEnum!
+ *
+ * @ignore
  */
 export declare enum PrimitiveTypeEnum {
     Integer = 0,

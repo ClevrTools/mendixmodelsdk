@@ -14,6 +14,9 @@ var customwidgets;
         }
     }
     CustomWidgetAssociationType.Reference = new CustomWidgetAssociationType("Reference", {});
+    CustomWidgetAssociationType.ReferenceSet = new CustomWidgetAssociationType("ReferenceSet", {
+        introduced: "9.13.0"
+    });
     customwidgets.CustomWidgetAssociationType = CustomWidgetAssociationType;
     class CustomWidgetAttributeType extends internal.AbstractEnum {
         constructor() {

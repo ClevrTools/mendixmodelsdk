@@ -4,6 +4,7 @@ import { pages } from "./pages";
 export declare namespace customwidgets {
     class CustomWidgetAssociationType extends internal.AbstractEnum {
         static Reference: CustomWidgetAssociationType;
+        static ReferenceSet: CustomWidgetAssociationType;
         protected qualifiedTsTypeName: string;
     }
     class CustomWidgetAttributeType extends internal.AbstractEnum {

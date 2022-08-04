@@ -26,6 +26,8 @@ var businessevents;
             /** @internal */
             this.__eventName = new internal.PrimitiveProperty(ConsumedBusinessEvent, this, "eventName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__channelId = new internal.PrimitiveProperty(ConsumedBusinessEvent, this, "channelId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__entity = new internal.ByNameReferenceProperty(ConsumedBusinessEvent, this, "entity", null, "DomainModels$Entity");
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(ConsumedBusinessEvent, this, "microflow", null, "Microflows$Microflow");
@@ -41,6 +43,15 @@ var businessevents;
         }
         set eventName(newValue) {
             this.__eventName.set(newValue);
+        }
+        /**
+         * In version 9.13.0: introduced
+         */
+        get channelId() {
+            return this.__channelId.get();
+        }
+        set channelId(newValue) {
+            this.__channelId.set(newValue);
         }
         get entity() {
             return this.__entity.get();
@@ -89,6 +100,9 @@ var businessevents;
     ConsumedBusinessEvent.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.11.0",
         properties: {
+            channelId: {
+                introduced: "9.13.0"
+            },
             entity: {
                 required: {
                     currentValue: true
@@ -198,6 +212,8 @@ var businessevents;
             /** @internal */
             this.__serviceName = new internal.PrimitiveProperty(PublishedBusinessEventService, this, "serviceName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__eventNamePrefix = new internal.PrimitiveProperty(PublishedBusinessEventService, this, "eventNamePrefix", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__version = new internal.PrimitiveProperty(PublishedBusinessEventService, this, "version", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedBusinessEventService, this, "description", "", internal.PrimitiveTypeEnum.String);
@@ -215,6 +231,15 @@ var businessevents;
         }
         set serviceName(newValue) {
             this.__serviceName.set(newValue);
+        }
+        /**
+         * In version 9.13.0: introduced
+         */
+        get eventNamePrefix() {
+            return this.__eventNamePrefix.get();
+        }
+        set eventNamePrefix(newValue) {
+            this.__eventNamePrefix.set(newValue);
         }
         get version() {
             return this.__version.get();
@@ -257,6 +282,11 @@ var businessevents;
     PublishedBusinessEventService.structureTypeName = "BusinessEvents$PublishedBusinessEventService";
     PublishedBusinessEventService.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.11.0",
+        properties: {
+            eventNamePrefix: {
+                introduced: "9.13.0"
+            }
+        },
         experimental: {
             currentValue: true
         }
@@ -482,6 +512,8 @@ var businessevents;
             /** @internal */
             this.__attribute = new internal.ByNameReferenceProperty(PublishedMessageAttribute, this, "attribute", null, "DomainModels$Attribute");
             /** @internal */
+            this.__attributeType = new internal.PartProperty(PublishedMessageAttribute, this, "attributeType", null, true);
+            /** @internal */
             this.__exposedName = new internal.PrimitiveProperty(PublishedMessageAttribute, this, "exposedName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(PublishedMessageAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
@@ -500,6 +532,15 @@ var businessevents;
         }
         get attributeQualifiedName() {
             return this.__attribute.qualifiedName();
+        }
+        /**
+         * In version 9.14.0: introduced
+         */
+        get attributeType() {
+            return this.__attributeType.get();
+        }
+        set attributeType(newValue) {
+            this.__attributeType.set(newValue);
         }
         get exposedName() {
             return this.__exposedName.get();
@@ -536,6 +577,9 @@ var businessevents;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__attributeType.isAvailable) {
+                this.attributeType = domainmodels_1.domainmodels.StringAttributeType.create(this.model);
+            }
         }
     }
     PublishedMessageAttribute.structureTypeName = "BusinessEvents$PublishedMessageAttribute";
@@ -543,6 +587,12 @@ var businessevents;
         introduced: "9.11.0",
         properties: {
             attribute: {
+                required: {
+                    currentValue: true
+                }
+            },
+            attributeType: {
+                introduced: "9.14.0",
                 required: {
                     currentValue: true
                 }
@@ -554,4 +604,5 @@ var businessevents;
     }, internal.StructureType.Element);
     businessevents.PublishedMessageAttribute = PublishedMessageAttribute;
 })(businessevents = exports.businessevents || (exports.businessevents = {}));
+const domainmodels_1 = require("./domainmodels");
 //# sourceMappingURL=businessevents.js.map

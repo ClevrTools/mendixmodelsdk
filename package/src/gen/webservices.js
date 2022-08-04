@@ -454,7 +454,7 @@ var webservices;
             /** @internal */
             this.__wsdlUrl = new internal.PrimitiveProperty(ImportedWebService, this, "wsdlUrl", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__useMtom = new internal.PrimitiveProperty(ImportedWebService, this, "useMtom", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useMtom = new internal.PrimitiveProperty(ImportedWebService, this, "useMtom", true, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -845,15 +845,15 @@ var webservices;
             /** @internal */
             this.__parameters = new internal.PartListProperty(PublishedOperation, this, "parameters", []);
             /** @internal */
-            this.__returnTypeNameByContract = new internal.PrimitiveProperty(PublishedOperation, this, "returnTypeNameByContract", "", internal.PrimitiveTypeEnum.String);
+            this.__returnTypeNameByContract = new internal.PrimitiveProperty(PublishedOperation, this, "returnTypeNameByContract", "Nothing", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__returnTypeSpecificationByContract = new internal.PrimitiveProperty(PublishedOperation, this, "returnTypeSpecificationByContract", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__entityExposedNameByContract = new internal.PrimitiveProperty(PublishedOperation, this, "entityExposedNameByContract", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__entityExposedName = new internal.PrimitiveProperty(PublishedOperation, this, "entityExposedName", "", internal.PrimitiveTypeEnum.String);
+            this.__entityExposedName = new internal.PrimitiveProperty(PublishedOperation, this, "entityExposedName", "Result", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__returnType = new internal.PrimitiveProperty(PublishedOperation, this, "returnType", "", internal.PrimitiveTypeEnum.String);
+            this.__returnType = new internal.PrimitiveProperty(PublishedOperation, this, "returnType", "Void", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__operationReturnType = new internal.PartProperty(PublishedOperation, this, "operationReturnType", null, true);
             /** @internal */
@@ -1065,7 +1065,7 @@ var webservices;
             /** @internal */
             this.__entityExposedItemName = new internal.PrimitiveProperty(PublishedParameter, this, "entityExposedItemName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__type = new internal.PrimitiveProperty(PublishedParameter, this, "type", "", internal.PrimitiveTypeEnum.String);
+            this.__type = new internal.PrimitiveProperty(PublishedParameter, this, "type", "Void", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__parameterType = new internal.PartProperty(PublishedParameter, this, "parameterType", null, true);
             /** @internal */
@@ -1591,7 +1591,7 @@ var webservices;
             /** @internal */
             this.__documentation = new internal.PrimitiveProperty(VersionedService, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__targetNamespace = new internal.PrimitiveProperty(VersionedService, this, "targetNamespace", "", internal.PrimitiveTypeEnum.String);
+            this.__targetNamespace = new internal.PrimitiveProperty(VersionedService, this, "targetNamespace", "http://www.example.com/", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__headerAuthentication = new internal.EnumProperty(VersionedService, this, "headerAuthentication", HeaderAuthentication.None, HeaderAuthentication);
             /** @internal */
@@ -1601,7 +1601,7 @@ var webservices;
             /** @internal */
             this.__enumerationsByContract = new internal.PartProperty(VersionedService, this, "enumerationsByContract", null, false);
             /** @internal */
-            this.__optimizedXml = new internal.PrimitiveProperty(VersionedService, this, "optimizedXml", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__optimizedXml = new internal.PrimitiveProperty(VersionedService, this, "optimizedXml", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__headerImportMapping = new internal.ByNameReferenceProperty(VersionedService, this, "headerImportMapping", null, "ImportMappings$ImportMapping");
             /** @internal */

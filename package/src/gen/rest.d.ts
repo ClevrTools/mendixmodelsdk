@@ -95,6 +95,42 @@ export declare namespace rest {
         static create(model: IModel): CallMicroflowToChange;
     }
     /**
+     * In version 9.14.0: introduced
+     */
+    abstract class ReadMode extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 9.14.0: introduced
+     */
+    class CallMicroflowToRead extends ReadMode {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        get microflow(): microflows.IMicroflow;
+        set microflow(newValue: microflows.IMicroflow);
+        get microflowQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallMicroflowToRead instance in the SDK and on the server.
+         * The new CallMicroflowToRead will be automatically stored in the 'readMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container: PublishedRestResource): CallMicroflowToRead;
+        /**
+         * Creates and returns a new CallMicroflowToRead instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallMicroflowToRead;
+    }
+    /**
      * In version 9.11.0: introduced
      */
     class ChangeNotSupported extends ChangeMode {
@@ -486,6 +522,11 @@ export declare namespace rest {
          */
         get remoteType(): string;
         set remoteType(newValue: string);
+        /**
+         * In version 9.16.0: introduced
+         */
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
@@ -603,10 +644,16 @@ export declare namespace rest {
         get remoteChildNavigationProperty(): string;
         set remoteChildNavigationProperty(newValue: string);
         /**
+         * In version 9.14.0: deleted
          * In version 8.16.0: introduced
          */
         get navigability(): AssociationNavigability;
         set navigability(newValue: AssociationNavigability);
+        /**
+         * In version 9.14.0: introduced
+         */
+        get navigability2(): domainmodels.Navigability;
+        set navigability2(newValue: domainmodels.Navigability);
         /**
          * In version 9.6.0: introduced
          */
@@ -742,6 +789,24 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ODataRemoteEntitySource;
+    }
+    /**
+     * In version 9.14.0: introduced
+     */
+    class PublishedODataContract extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get serviceFeed(): ServiceFeed;
+        set serviceFeed(newValue: ServiceFeed);
+        get metadata(): string;
+        set metadata(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PublishedODataContract instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PublishedODataContract;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
@@ -893,12 +958,19 @@ export declare namespace rest {
         get deleteMode(): ChangeMode;
         set deleteMode(newValue: ChangeMode);
         /**
+         * In version 9.14.0: introduced
+         */
+        get readMode(): ReadMode;
+        set readMode(newValue: ReadMode);
+        /**
+         * In version 9.14.0: deleted
          * In version 9.9.0: introduced
          */
         get queryMicroflow(): microflows.IMicroflow | null;
         set queryMicroflow(newValue: microflows.IMicroflow | null);
         get queryMicroflowQualifiedName(): string | null;
         /**
+         * In version 9.14.0: deleted
          * In version 9.9.0: introduced
          */
         get countMicroflow(): microflows.IMicroflow | null;
@@ -1093,6 +1165,30 @@ export declare namespace rest {
         static create(model: IModel): PublishedRestServiceResource;
     }
     /**
+     * In version 9.14.0: introduced
+     */
+    class ReadSource extends ReadMode {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ReadSource instance in the SDK and on the server.
+         * The new ReadSource will be automatically stored in the 'readMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container: PublishedRestResource): ReadSource;
+        /**
+         * Creates and returns a new ReadSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ReadSource;
+    }
+    /**
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
      */
@@ -1153,6 +1249,25 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RestOperationParameter;
+    }
+    /**
+     * In version 9.14.0: introduced
+     */
+    class ServiceFeed extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedODataContract(): PublishedODataContract;
+        get xml(): string;
+        set xml(newValue: string);
+        get json(): string;
+        set json(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ServiceFeed instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ServiceFeed;
     }
 }
 import { constants } from "./constants";

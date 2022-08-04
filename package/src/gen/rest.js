@@ -191,6 +191,90 @@ var rest;
     }, internal.StructureType.Element);
     rest.CallMicroflowToChange = CallMicroflowToChange;
     /**
+     * In version 9.14.0: introduced
+     */
+    class ReadMode extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ReadMode() cannot be invoked directly, please use 'model.rest.createReadMode()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ReadMode.structureTypeName = "Rest$ReadMode";
+    ReadMode.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0"
+    }, internal.StructureType.Element);
+    rest.ReadMode = ReadMode;
+    /**
+     * In version 9.14.0: introduced
+     */
+    class CallMicroflowToRead extends ReadMode {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(CallMicroflowToRead, this, "microflow", null, "Microflows$Microflow");
+            if (arguments.length < 4) {
+                throw new Error("new CallMicroflowToRead() cannot be invoked directly, please use 'model.rest.createCallMicroflowToRead()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        /**
+         * Creates and returns a new CallMicroflowToRead instance in the SDK and on the server.
+         * The new CallMicroflowToRead will be automatically stored in the 'readMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowToRead.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowToRead, "readMode", false);
+        }
+        /**
+         * Creates and returns a new CallMicroflowToRead instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CallMicroflowToRead);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CallMicroflowToRead.structureTypeName = "Rest$CallMicroflowToRead";
+    CallMicroflowToRead.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0",
+        properties: {
+            microflow: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    rest.CallMicroflowToRead = CallMicroflowToRead;
+    /**
      * In version 9.11.0: introduced
      */
     class ChangeNotSupported extends ChangeMode {
@@ -355,7 +439,7 @@ var rest;
             /** @internal */
             this.__timeoutModel = new internal.PartProperty(ConsumedODataService, this, "timeoutModel", null, true);
             /** @internal */
-            this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "", internal.PrimitiveTypeEnum.String);
+            this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "300", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__oDataVersion = new internal.EnumProperty(ConsumedODataService, this, "oDataVersion", ODataVersion.OData3, ODataVersion);
             /** @internal */
@@ -627,7 +711,7 @@ var rest;
             /** @internal */
             this.__allowedOrigins = new internal.ByNameReferenceProperty(CorsConfiguration, this, "allowedOrigins", null, "Constants$Constant");
             /** @internal */
-            this.__allowAuthentication = new internal.PrimitiveProperty(CorsConfiguration, this, "allowAuthentication", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__allowAuthentication = new internal.PrimitiveProperty(CorsConfiguration, this, "allowAuthentication", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__maxAge = new internal.ByNameReferenceProperty(CorsConfiguration, this, "maxAge", null, "Constants$Constant");
             if (arguments.length < 4) {
@@ -894,6 +978,8 @@ var rest;
             this.__type = new internal.PartProperty(ODataKeyPart, this, "type", null, true);
             /** @internal */
             this.__remoteType = new internal.PrimitiveProperty(ODataKeyPart, this, "remoteType", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__filterable = new internal.PrimitiveProperty(ODataKeyPart, this, "filterable", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataKeyPart() cannot be invoked directly, please use 'model.rest.createODataKeyPart()'");
             }
@@ -929,6 +1015,15 @@ var rest;
             this.__remoteType.set(newValue);
         }
         /**
+         * In version 9.16.0: introduced
+         */
+        get filterable() {
+            return this.__filterable.get();
+        }
+        set filterable(newValue) {
+            this.__filterable.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataKeyPart instance in the SDK and on the server.
          * The new ODataKeyPart will be automatically stored in the 'parts' property
          * of the parent ODataKey element passed as argument.
@@ -951,6 +1046,9 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__filterable.isAvailable) {
+                this.filterable = true;
+            }
             this.type = domainmodels_1.domainmodels.LongAttributeType.create(this.model);
         }
     }
@@ -968,6 +1066,9 @@ var rest;
             },
             remoteType: {
                 introduced: "9.9.0"
+            },
+            filterable: {
+                introduced: "9.16.0"
             }
         },
         public: {
@@ -989,9 +1090,9 @@ var rest;
             /** @internal */
             this.__remoteType = new internal.PrimitiveProperty(ODataMappedValue, this, "remoteType", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__filterable = new internal.PrimitiveProperty(ODataMappedValue, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__filterable = new internal.PrimitiveProperty(ODataMappedValue, this, "filterable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__sortable = new internal.PrimitiveProperty(ODataMappedValue, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__sortable = new internal.PrimitiveProperty(ODataMappedValue, this, "sortable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__representsStream = new internal.PrimitiveProperty(ODataMappedValue, this, "representsStream", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -1155,6 +1256,8 @@ var rest;
             /** @internal */
             this.__navigability = new internal.EnumProperty(ODataRemoteAssociationSource, this, "navigability", AssociationNavigability.BothDirections, AssociationNavigability);
             /** @internal */
+            this.__navigability2 = new internal.EnumProperty(ODataRemoteAssociationSource, this, "navigability2", domainmodels_1.domainmodels.Navigability.BothDirections, domainmodels_1.domainmodels.Navigability);
+            /** @internal */
             this.__updatableFromChild = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromChild", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__updatableFromParent = new internal.PrimitiveProperty(ODataRemoteAssociationSource, this, "updatableFromParent", false, internal.PrimitiveTypeEnum.Boolean);
@@ -1182,6 +1285,7 @@ var rest;
             this.__remoteChildNavigationProperty.set(newValue);
         }
         /**
+         * In version 9.14.0: deleted
          * In version 8.16.0: introduced
          */
         get navigability() {
@@ -1189,6 +1293,15 @@ var rest;
         }
         set navigability(newValue) {
             this.__navigability.set(newValue);
+        }
+        /**
+         * In version 9.14.0: introduced
+         */
+        get navigability2() {
+            return this.__navigability2.get();
+        }
+        set navigability2(newValue) {
+            this.__navigability2.set(newValue);
         }
         /**
          * In version 9.6.0: introduced
@@ -1252,6 +1365,9 @@ var rest;
             if (this.__navigability.isAvailable) {
                 this.navigability = AssociationNavigability.BothDirections;
             }
+            if (this.__navigability2.isAvailable) {
+                this.navigability2 = domainmodels_1.domainmodels.Navigability.BothDirections;
+            }
         }
     }
     ODataRemoteAssociationSource.structureTypeName = "Rest$ODataRemoteAssociationSource";
@@ -1259,7 +1375,12 @@ var rest;
         introduced: "8.10.0",
         properties: {
             navigability: {
-                introduced: "8.16.0"
+                introduced: "8.16.0",
+                deleted: "9.14.0",
+                deletionMessage: "Replaced by navigability2"
+            },
+            navigability2: {
+                introduced: "9.14.0"
             },
             updatableFromChild: {
                 introduced: "9.6.0"
@@ -1298,7 +1419,7 @@ var rest;
             /** @internal */
             this.__key = new internal.PartProperty(ODataRemoteEntitySource, this, "key", null, false);
             /** @internal */
-            this.__countable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__countable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "countable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__creatable = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "creatable", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -1479,13 +1600,65 @@ var rest;
     }, internal.StructureType.Element);
     rest.ODataRemoteEntitySource = ODataRemoteEntitySource;
     /**
+     * In version 9.14.0: introduced
+     */
+    class PublishedODataContract extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__serviceFeed = new internal.PartProperty(PublishedODataContract, this, "serviceFeed", null, true);
+            /** @internal */
+            this.__metadata = new internal.PrimitiveProperty(PublishedODataContract, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new PublishedODataContract() cannot be invoked directly, please use 'model.rest.createPublishedODataContract()'");
+            }
+        }
+        get serviceFeed() {
+            return this.__serviceFeed.get();
+        }
+        set serviceFeed(newValue) {
+            this.__serviceFeed.set(newValue);
+        }
+        get metadata() {
+            return this.__metadata.get();
+        }
+        set metadata(newValue) {
+            this.__metadata.set(newValue);
+        }
+        /**
+         * Creates and returns a new PublishedODataContract instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PublishedODataContract);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.serviceFeed = ServiceFeed.create(this.model);
+        }
+    }
+    PublishedODataContract.structureTypeName = "Rest$PublishedODataContract";
+    PublishedODataContract.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0",
+        properties: {
+            serviceFeed: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    rest.PublishedODataContract = PublishedODataContract;
+    /**
      * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
      */
     class PublishedODataService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
-            this.__namespace = new internal.PrimitiveProperty(PublishedODataService, this, "namespace", "", internal.PrimitiveTypeEnum.String);
+            this.__namespace = new internal.PrimitiveProperty(PublishedODataService, this, "namespace", "DefaultNamespace", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__path = new internal.PrimitiveProperty(PublishedODataService, this, "path", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -1495,9 +1668,9 @@ var rest;
             /** @internal */
             this.__resources = new internal.PartListProperty(PublishedODataService, this, "resources", []);
             /** @internal */
-            this.__publishAssociations = new internal.PrimitiveProperty(PublishedODataService, this, "publishAssociations", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__publishAssociations = new internal.PrimitiveProperty(PublishedODataService, this, "publishAssociations", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__version = new internal.PrimitiveProperty(PublishedODataService, this, "version", "", internal.PrimitiveTypeEnum.String);
+            this.__version = new internal.PrimitiveProperty(PublishedODataService, this, "version", "1.0.0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__authenticationMicroflow = new internal.ByNameReferenceProperty(PublishedODataService, this, "authenticationMicroflow", null, "Microflows$Microflow");
             /** @internal */
@@ -1712,7 +1885,7 @@ var rest;
             /** @internal */
             this.__usePaging = new internal.PrimitiveProperty(PublishedRestResource, this, "usePaging", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__pageSize = new internal.PrimitiveProperty(PublishedRestResource, this, "pageSize", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__pageSize = new internal.PrimitiveProperty(PublishedRestResource, this, "pageSize", 10000, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__updatable = new internal.PrimitiveProperty(PublishedRestResource, this, "updatable", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -1727,6 +1900,8 @@ var rest;
             this.__insertMode = new internal.PartProperty(PublishedRestResource, this, "insertMode", null, true);
             /** @internal */
             this.__deleteMode = new internal.PartProperty(PublishedRestResource, this, "deleteMode", null, true);
+            /** @internal */
+            this.__readMode = new internal.PartProperty(PublishedRestResource, this, "readMode", null, true);
             /** @internal */
             this.__queryMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "queryMicroflow", null, "Microflows$Microflow");
             /** @internal */
@@ -1854,6 +2029,16 @@ var rest;
             this.__deleteMode.set(newValue);
         }
         /**
+         * In version 9.14.0: introduced
+         */
+        get readMode() {
+            return this.__readMode.get();
+        }
+        set readMode(newValue) {
+            this.__readMode.set(newValue);
+        }
+        /**
+         * In version 9.14.0: deleted
          * In version 9.9.0: introduced
          */
         get queryMicroflow() {
@@ -1866,6 +2051,7 @@ var rest;
             return this.__queryMicroflow.qualifiedName();
         }
         /**
+         * In version 9.14.0: deleted
          * In version 9.9.0: introduced
          */
         get countMicroflow() {
@@ -1909,6 +2095,9 @@ var rest;
                 this.insertable = false;
             }
             this.pageSize = 10000;
+            if (this.__readMode.isAvailable) {
+                this.readMode = ReadSource.create(this.model);
+            }
             if (this.__updatable.isAvailable) {
                 this.updatable = false;
             }
@@ -1967,11 +2156,21 @@ var rest;
                     currentValue: true
                 }
             },
+            readMode: {
+                introduced: "9.14.0",
+                required: {
+                    currentValue: true
+                }
+            },
             queryMicroflow: {
-                introduced: "9.9.0"
+                introduced: "9.9.0",
+                deleted: "9.14.0",
+                deletionMessage: "Replaced by readMode"
             },
             countMicroflow: {
-                introduced: "9.9.0"
+                introduced: "9.9.0",
+                deleted: "9.14.0",
+                deletionMessage: "Replaced by readMode"
             }
         }
     }, internal.StructureType.Element);
@@ -1990,7 +2189,7 @@ var rest;
             /** @internal */
             this.__serviceName = new internal.PrimitiveProperty(PublishedRestService, this, "serviceName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__version = new internal.PrimitiveProperty(PublishedRestService, this, "version", "", internal.PrimitiveTypeEnum.String);
+            this.__version = new internal.PrimitiveProperty(PublishedRestService, this, "version", "1.0.0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__authenticationType = new internal.EnumProperty(PublishedRestService, this, "authenticationType", RestAuthenticationType.Basic, RestAuthenticationType);
             /** @internal */
@@ -2411,6 +2610,49 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedRestServiceResource = PublishedRestServiceResource;
     /**
+     * In version 9.14.0: introduced
+     */
+    class ReadSource extends ReadMode {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ReadSource() cannot be invoked directly, please use 'model.rest.createReadSource()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        /**
+         * Creates and returns a new ReadSource instance in the SDK and on the server.
+         * The new ReadSource will be automatically stored in the 'readMode' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ReadSource.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, ReadSource, "readMode", false);
+        }
+        /**
+         * Creates and returns a new ReadSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ReadSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ReadSource.structureTypeName = "Rest$ReadSource";
+    ReadSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0"
+    }, internal.StructureType.Element);
+    rest.ReadSource = ReadSource;
+    /**
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
      */
@@ -2428,7 +2670,7 @@ var rest;
             /** @internal */
             this.__description = new internal.PrimitiveProperty(RestOperationParameter, this, "description", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__dataType = new internal.PrimitiveProperty(RestOperationParameter, this, "dataType", "", internal.PrimitiveTypeEnum.String);
+            this.__dataType = new internal.PrimitiveProperty(RestOperationParameter, this, "dataType", "String", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new RestOperationParameter() cannot be invoked directly, please use 'model.rest.createRestOperationParameter()'");
             }
@@ -2566,6 +2808,53 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.RestOperationParameter = RestOperationParameter;
+    /**
+     * In version 9.14.0: introduced
+     */
+    class ServiceFeed extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__xml = new internal.PrimitiveProperty(ServiceFeed, this, "xml", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__json = new internal.PrimitiveProperty(ServiceFeed, this, "json", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ServiceFeed() cannot be invoked directly, please use 'model.rest.createServiceFeed()'");
+            }
+        }
+        get containerAsPublishedODataContract() {
+            return super.getContainerAs(PublishedODataContract);
+        }
+        get xml() {
+            return this.__xml.get();
+        }
+        set xml(newValue) {
+            this.__xml.set(newValue);
+        }
+        get json() {
+            return this.__json.get();
+        }
+        set json(newValue) {
+            this.__json.set(newValue);
+        }
+        /**
+         * Creates and returns a new ServiceFeed instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ServiceFeed);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ServiceFeed.structureTypeName = "Rest$ServiceFeed";
+    ServiceFeed.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0"
+    }, internal.StructureType.Element);
+    rest.ServiceFeed = ServiceFeed;
 })(rest = exports.rest || (exports.rest = {}));
 const datatypes_1 = require("./datatypes");
 const expressions_1 = require("./expressions");

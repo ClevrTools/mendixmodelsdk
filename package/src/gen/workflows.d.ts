@@ -6,6 +6,42 @@ export declare namespace workflows {
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
     /**
+     * In version 9.15.0: introduced
+     */
+    class Annotation extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        get containerAsWorkflowActivity(): WorkflowActivity;
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createInWorkflowUnderAnnotation(container: Workflow): Annotation;
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent WorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createInWorkflowActivityUnderAnnotation(container: WorkflowActivity): Annotation;
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): Annotation;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -135,6 +171,11 @@ export declare namespace workflows {
         set name(newValue: string);
         get caption(): string;
         set caption(newValue: string);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get annotation(): Annotation | null;
+        set annotation(newValue: Annotation | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         get qualifiedName(): string | null;
     }
@@ -691,13 +732,34 @@ export declare namespace workflows {
         static create(model: IModel): PageParameterMapping;
     }
     /**
+     * In version 9.12.0: added public
      * In version 9.11.0: introduced
      */
-    class PageReference extends internal.Element<IModel> {
+    interface IPageReference extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsUserTask: IUserTask;
+        readonly containerAsWorkflow: IWorkflow;
+        /**
+         * In version 9.12.0: added public
+         */
+        readonly page: pages.IPage | null;
+        readonly pageQualifiedName: string | null;
+        asLoaded(): PageReference;
+        load(callback: (element: PageReference) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<PageReference>;
+    }
+    /**
+     * In version 9.12.0: added public
+     * In version 9.11.0: introduced
+     */
+    class PageReference extends internal.Element<IModel> implements IPageReference {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
         get containerAsWorkflow(): Workflow;
+        /**
+         * In version 9.12.0: added public
+         */
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
         get pageQualifiedName(): string | null;
@@ -879,6 +941,13 @@ export declare namespace workflows {
          */
         readonly page: pages.IPage | null;
         readonly pageQualifiedName: string | null;
+        /**
+         * This property is required and cannot be set to null.
+         *
+         * In version 9.12.0: added public
+         * In version 9.11.0: introduced
+         */
+        readonly taskPage: IPageReference;
         readonly outcomes: internal.IList<IUserTaskOutcome>;
         /**
          * In version 9.6.0: deleted
@@ -914,6 +983,7 @@ export declare namespace workflows {
         set page(newValue: pages.IPage | null);
         get pageQualifiedName(): string | null;
         /**
+         * In version 9.12.0: added public
          * In version 9.11.0: introduced
          */
         get taskPage(): PageReference;
@@ -1167,6 +1237,11 @@ export declare namespace workflows {
          */
         get usertaskOnStateChangeEvent(): MicroflowEventHandler | null;
         set usertaskOnStateChangeEvent(newValue: MicroflowEventHandler | null);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get annotation(): Annotation | null;
+        set annotation(newValue: Annotation | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Workflow unit in the SDK and on the server.

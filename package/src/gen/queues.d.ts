@@ -42,6 +42,11 @@ export declare namespace queues {
          */
         get parallelism(): number;
         set parallelism(newValue: number);
+        /**
+         * In version 9.13.0: introduced
+         */
+        get clusterWide(): boolean;
+        set clusterWide(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new BasicQueueConfig instance in the SDK and on the server.

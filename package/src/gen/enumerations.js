@@ -16,7 +16,7 @@ var enumerations;
             /** @internal */
             this.__attributeValue = new internal.PrimitiveProperty(Condition, this, "attributeValue", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__editableVisible = new internal.PrimitiveProperty(Condition, this, "editableVisible", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__editableVisible = new internal.PrimitiveProperty(Condition, this, "editableVisible", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new Condition() cannot be invoked directly, please use 'model.enumerations.createCondition()'");
             }

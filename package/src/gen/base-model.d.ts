@@ -493,6 +493,7 @@ export declare type ConcreteModelElements = {
     Microflows$AnnotationFlow: microflows.AnnotationFlow;
     Microflows$AppServiceCallAction: microflows.AppServiceCallAction;
     Microflows$AppServiceCallParameterMapping: microflows.AppServiceCallParameterMapping;
+    Microflows$ApplyJumpToOptionAction: microflows.ApplyJumpToOptionAction;
     Microflows$AssociationRetrieveSource: microflows.AssociationRetrieveSource;
     Microflows$BasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
     Microflows$BasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
@@ -539,6 +540,7 @@ export declare type ConcreteModelElements = {
     Microflows$FormDataRequestHandling: microflows.FormDataRequestHandling;
     Microflows$GaugeMeterAction: microflows.GaugeMeterAction;
     Microflows$GenerateDocumentAction: microflows.GenerateDocumentAction;
+    Microflows$GenerateJumpToOptionsAction: microflows.GenerateJumpToOptionsAction;
     Microflows$GetWorkflowDataAction: microflows.GetWorkflowDataAction;
     Microflows$Head: microflows.Head;
     Microflows$HttpConfiguration: microflows.HttpConfiguration;
@@ -819,6 +821,7 @@ export declare type ConcreteModelElements = {
     Reports$ReportZoomInfo: reports.ReportZoomInfo;
     Reports$ReportZoomMapping: reports.ReportZoomMapping;
     Rest$CallMicroflowToChange: rest.CallMicroflowToChange;
+    Rest$CallMicroflowToRead: rest.CallMicroflowToRead;
     Rest$ChangeNotSupported: rest.ChangeNotSupported;
     Rest$ChangeSource: rest.ChangeSource;
     Rest$CorsConfiguration: rest.CorsConfiguration;
@@ -828,10 +831,13 @@ export declare type ConcreteModelElements = {
     Rest$ODataMappedValue: rest.ODataMappedValue;
     Rest$ODataRemoteAssociationSource: rest.ODataRemoteAssociationSource;
     Rest$ODataRemoteEntitySource: rest.ODataRemoteEntitySource;
+    Rest$PublishedODataContract: rest.PublishedODataContract;
     Rest$PublishedRestResource: rest.PublishedRestResource;
     Rest$PublishedRestServiceOperation: rest.PublishedRestServiceOperation;
     Rest$PublishedRestServiceResource: rest.PublishedRestServiceResource;
+    Rest$ReadSource: rest.ReadSource;
     Rest$RestOperationParameter: rest.RestOperationParameter;
+    Rest$ServiceFeed: rest.ServiceFeed;
     ScheduledEvents$DaySchedule: scheduledevents.DaySchedule;
     ScheduledEvents$HourSchedule: scheduledevents.HourSchedule;
     ScheduledEvents$MinuteSchedule: scheduledevents.MinuteSchedule;
@@ -882,6 +888,7 @@ export declare type ConcreteModelElements = {
     WebServices$VersionedService: webservices.VersionedService;
     WebServices$WsdlDescription: webservices.WsdlDescription;
     WebServices$WsdlEntry: webservices.WsdlEntry;
+    Workflows$Annotation: workflows.Annotation;
     Workflows$BooleanConditionOutcome: workflows.BooleanConditionOutcome;
     Workflows$CallMicroflowTask: workflows.CallMicroflowTask;
     Workflows$CallWorkflowActivity: workflows.CallWorkflowActivity;

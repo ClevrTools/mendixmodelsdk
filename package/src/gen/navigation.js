@@ -38,6 +38,18 @@ var navigation;
     ProfileKind.ResponsiveOffline = new ProfileKind("ResponsiveOffline", {
         introduced: "8.14.0"
     });
+    ProfileKind.HybridTablet = new ProfileKind("HybridTablet", {
+        introduced: "7.4.0"
+    });
+    ProfileKind.HybridTabletOffline = new ProfileKind("HybridTabletOffline", {
+        introduced: "7.4.0"
+    });
+    ProfileKind.HybridPhone = new ProfileKind("HybridPhone", {
+        introduced: "7.4.0"
+    });
+    ProfileKind.HybridPhoneOffline = new ProfileKind("HybridPhoneOffline", {
+        introduced: "7.4.0"
+    });
     ProfileKind.Tablet = new ProfileKind("Tablet", {});
     ProfileKind.TabletOffline = new ProfileKind("TabletOffline", {
         introduced: "8.14.0"
@@ -58,18 +70,6 @@ var navigation;
     ProfileKind.HybridOffline = new ProfileKind("HybridOffline", {
         deleted: "7.4.0",
         deletionMessage: null
-    });
-    ProfileKind.HybridTablet = new ProfileKind("HybridTablet", {
-        introduced: "7.4.0"
-    });
-    ProfileKind.HybridTabletOffline = new ProfileKind("HybridTabletOffline", {
-        introduced: "7.4.0"
-    });
-    ProfileKind.HybridPhone = new ProfileKind("HybridPhone", {
-        introduced: "7.4.0"
-    });
-    ProfileKind.HybridPhoneOffline = new ProfileKind("HybridPhoneOffline", {
-        introduced: "7.4.0"
     });
     navigation.ProfileKind = ProfileKind;
     class ProfileType extends internal.AbstractEnum {
@@ -342,6 +342,8 @@ var navigation;
             this.__bottomBarItems = new internal.PartListProperty(NativeNavigationProfile, this, "bottomBarItems", []);
             /** @internal */
             this.__otaEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "otaEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__loggingEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "loggingEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -396,6 +398,15 @@ var navigation;
             this.__otaEnabled.set(newValue);
         }
         /**
+         * In version 9.15.0: introduced
+         */
+        get loggingEnabled() {
+            return this.__loggingEnabled.get();
+        }
+        set loggingEnabled(newValue) {
+            this.__loggingEnabled.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -418,6 +429,9 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__loggingEnabled.isAvailable) {
+                this.loggingEnabled = false;
+            }
             if (this.__nativeHomePage.isAvailable) {
                 this.nativeHomePage = NativeHomePage.create(this.model);
             }
@@ -448,6 +462,9 @@ var navigation;
             },
             otaEnabled: {
                 introduced: "9.4.0"
+            },
+            loggingEnabled: {
+                introduced: "9.15.0"
             }
         },
         public: {
@@ -700,7 +717,7 @@ var navigation;
             /** @internal */
             this.__roleBasedHomePages = new internal.PartListProperty(NavigationProfile, this, "roleBasedHomePages", []);
             /** @internal */
-            this.__applicationTitle = new internal.PrimitiveProperty(NavigationProfile, this, "applicationTitle", "", internal.PrimitiveTypeEnum.String);
+            this.__applicationTitle = new internal.PrimitiveProperty(NavigationProfile, this, "applicationTitle", "Mendix", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__appTitle = new internal.PartProperty(NavigationProfile, this, "appTitle", null, true);
             /** @internal */
@@ -1080,7 +1097,7 @@ var navigation;
             /** @internal */
             this.__downloadMode = new internal.EnumProperty(OfflineEntityConfig, this, "downloadMode", OfflineEntitySyncDownloadMode.All, OfflineEntitySyncDownloadMode);
             /** @internal */
-            this.__shouldDownload = new internal.PrimitiveProperty(OfflineEntityConfig, this, "shouldDownload", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__shouldDownload = new internal.PrimitiveProperty(OfflineEntityConfig, this, "shouldDownload", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__constraint = new internal.PrimitiveProperty(OfflineEntityConfig, this, "constraint", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -1194,7 +1211,7 @@ var navigation;
             /** @internal */
             this.__precaching = new internal.PrimitiveProperty(ProgressiveWebAppSettings, this, "precaching", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__installPrompt = new internal.PrimitiveProperty(ProgressiveWebAppSettings, this, "installPrompt", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__installPrompt = new internal.PrimitiveProperty(ProgressiveWebAppSettings, this, "installPrompt", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ProgressiveWebAppSettings() cannot be invoked directly, please use 'model.navigation.createProgressiveWebAppSettings()'");
             }

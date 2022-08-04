@@ -1086,7 +1086,7 @@ var pages;
             /** @internal */
             this.__ariaRole = new internal.EnumProperty(ActionButton, this, "ariaRole", ButtonAriaRoleType.Button, ButtonAriaRoleType);
             /** @internal */
-            this.__disabledDuringAction = new internal.PrimitiveProperty(ActionButton, this, "disabledDuringAction", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__disabledDuringAction = new internal.PrimitiveProperty(ActionButton, this, "disabledDuringAction", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ActionButton() cannot be invoked directly, please use 'model.pages.createActionButton()'");
             }
@@ -3620,9 +3620,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
-            this.__canvasWidth = new internal.PrimitiveProperty(FormBase, this, "canvasWidth", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__canvasWidth = new internal.PrimitiveProperty(FormBase, this, "canvasWidth", 800, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__canvasHeight = new internal.PrimitiveProperty(FormBase, this, "canvasHeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__canvasHeight = new internal.PrimitiveProperty(FormBase, this, "canvasHeight", 600, internal.PrimitiveTypeEnum.Integer);
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
@@ -3831,7 +3831,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__disabledDuringExecution = new internal.PrimitiveProperty(ClientAction, this, "disabledDuringExecution", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__disabledDuringExecution = new internal.PrimitiveProperty(ClientAction, this, "disabledDuringExecution", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ClientAction() cannot be invoked directly, please use 'model.pages.createClientAction()'");
             }
@@ -4251,9 +4251,9 @@ var pages;
             /** @internal */
             this.__workflow = new internal.ByNameReferenceProperty(CallWorkflowClientAction, this, "workflow", null, "Workflows$Workflow");
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__commit = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "commit", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__commit = new internal.PrimitiveProperty(CallWorkflowClientAction, this, "commit", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__confirmationInfo = new internal.PartProperty(CallWorkflowClientAction, this, "confirmationInfo", null, false);
             if (arguments.length < 4) {
@@ -4568,7 +4568,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(CancelButton, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(CancelButton, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new CancelButton() cannot be invoked directly, please use 'model.pages.createCancelButton()'");
             }
@@ -4952,7 +4952,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(CancelChangesClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(CancelChangesClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new CancelChangesClientAction() cannot be invoked directly, please use 'model.pages.createCancelChangesClientAction()'");
             }
@@ -6330,7 +6330,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__numberOfPages = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfPages = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPages", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__numberOfPagesToClose = new internal.PrimitiveProperty(ClosePageClientAction, this, "numberOfPagesToClose", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -6835,9 +6835,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__isControlBarVisible = new internal.PrimitiveProperty(Grid, this, "isControlBarVisible", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__isControlBarVisible = new internal.PrimitiveProperty(Grid, this, "isControlBarVisible", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__isPagingEnabled = new internal.PrimitiveProperty(Grid, this, "isPagingEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__isPagingEnabled = new internal.PrimitiveProperty(Grid, this, "isPagingEnabled", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__showPagingBar = new internal.EnumProperty(Grid, this, "showPagingBar", ShowPagingBarType.YesWithTotalCount, ShowPagingBarType);
             /** @internal */
@@ -7029,7 +7029,7 @@ var pages;
             /** @internal */
             this.__columns = new internal.PartListProperty(ColumnGrid, this, "columns", []);
             /** @internal */
-            this.__numberOfRows = new internal.PrimitiveProperty(ColumnGrid, this, "numberOfRows", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfRows = new internal.PrimitiveProperty(ColumnGrid, this, "numberOfRows", 20, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__showEmptyRows = new internal.PrimitiveProperty(ColumnGrid, this, "showEmptyRows", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -9164,13 +9164,13 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__maxNumberOfRows = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "maxNumberOfRows", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maxNumberOfRows = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "maxNumberOfRows", 1000, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__decimalSeparator = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "decimalSeparator", "", internal.PrimitiveTypeEnum.String);
+            this.__decimalSeparator = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "decimalSeparator", ".", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__groupSeparator = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "groupSeparator", "", internal.PrimitiveTypeEnum.String);
+            this.__groupSeparator = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "groupSeparator", ",", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__delimiter = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "delimiter", "", internal.PrimitiveTypeEnum.String);
+            this.__delimiter = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "delimiter", ";", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__generateExcelHint = new internal.PrimitiveProperty(DataGridExportToCSVButton, this, "generateExcelHint", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -9276,9 +9276,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__maxNumberOfRows = new internal.PrimitiveProperty(DataGridExportToExcelButton, this, "maxNumberOfRows", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maxNumberOfRows = new internal.PrimitiveProperty(DataGridExportToExcelButton, this, "maxNumberOfRows", 1000, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__useExcelDateType = new internal.PrimitiveProperty(DataGridExportToExcelButton, this, "useExcelDateType", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useExcelDateType = new internal.PrimitiveProperty(DataGridExportToExcelButton, this, "useExcelDateType", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DataGridExportToExcelButton() cannot be invoked directly, please use 'model.pages.createDataGridExportToExcelButton()'");
             }
@@ -9422,11 +9422,11 @@ var pages;
             /** @internal */
             this.__footerWidgets = new internal.PartListProperty(DataView, this, "footerWidgets", []);
             /** @internal */
-            this.__editable = new internal.PrimitiveProperty(DataView, this, "editable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__editable = new internal.PrimitiveProperty(DataView, this, "editable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__showControlBar = new internal.PrimitiveProperty(DataView, this, "showControlBar", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__showFooter = new internal.PrimitiveProperty(DataView, this, "showFooter", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__showFooter = new internal.PrimitiveProperty(DataView, this, "showFooter", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__closeOnSaveOrCancel = new internal.PrimitiveProperty(DataView, this, "closeOnSaveOrCancel", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -9434,7 +9434,7 @@ var pages;
             /** @internal */
             this.__noEntityMessage = new internal.PartProperty(DataView, this, "noEntityMessage", null, true);
             /** @internal */
-            this.__labelWidth = new internal.PrimitiveProperty(DataView, this, "labelWidth", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__labelWidth = new internal.PrimitiveProperty(DataView, this, "labelWidth", 3, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__controlBar = new internal.PartProperty(DataView, this, "controlBar", null, false);
             /** @internal */
@@ -11678,7 +11678,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(DeleteClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(DeleteClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DeleteClientAction() cannot be invoked directly, please use 'model.pages.createDeleteClientAction()'");
             }
@@ -14465,7 +14465,7 @@ var pages;
             /** @internal */
             this.__height = new internal.PrimitiveProperty(DynamicImageViewer, this, "height", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__responsive = new internal.PrimitiveProperty(DynamicImageViewer, this, "responsive", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__responsive = new internal.PrimitiveProperty(DynamicImageViewer, this, "responsive", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__showAsThumbnail = new internal.PrimitiveProperty(DynamicImageViewer, this, "showAsThumbnail", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -16189,7 +16189,7 @@ var pages;
             /** @internal */
             this.__type = new internal.EnumProperty(FileManager, this, "type", FileManagerType.Both, FileManagerType);
             /** @internal */
-            this.__maxFileSize = new internal.PrimitiveProperty(FileManager, this, "maxFileSize", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maxFileSize = new internal.PrimitiveProperty(FileManager, this, "maxFileSize", 5, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__showFileInBrowser = new internal.PrimitiveProperty(FileManager, this, "showFileInBrowser", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
@@ -16951,7 +16951,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__decimalPrecision = new internal.PrimitiveProperty(FormattingInfo, this, "decimalPrecision", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__decimalPrecision = new internal.PrimitiveProperty(FormattingInfo, this, "decimalPrecision", 2, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__groupDigits = new internal.PrimitiveProperty(FormattingInfo, this, "groupDigits", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -17131,7 +17131,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__code = new internal.PrimitiveProperty(GlyphIcon, this, "code", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__code = new internal.PrimitiveProperty(GlyphIcon, this, "code", -1, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new GlyphIcon() cannot be invoked directly, please use 'model.pages.createGlyphIcon()'");
             }
@@ -20106,7 +20106,7 @@ var pages;
             /** @internal */
             this.__height = new internal.PrimitiveProperty(SplitPane, this, "height", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__position = new internal.PrimitiveProperty(SplitPane, this, "position", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__position = new internal.PrimitiveProperty(SplitPane, this, "position", 50, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new SplitPane() cannot be invoked directly, please use 'model.pages.createSplitPane()'");
             }
@@ -21028,9 +21028,9 @@ var pages;
             /** @internal */
             this.__allowedExtensions = new internal.PrimitiveProperty(ImageUploader, this, "allowedExtensions", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__thumbnailSize = new internal.PrimitiveProperty(ImageUploader, this, "thumbnailSize", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            this.__thumbnailSize = new internal.PrimitiveProperty(ImageUploader, this, "thumbnailSize", { width: 100, height: 75 }, internal.PrimitiveTypeEnum.Size);
             /** @internal */
-            this.__maxFileSize = new internal.PrimitiveProperty(ImageUploader, this, "maxFileSize", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maxFileSize = new internal.PrimitiveProperty(ImageUploader, this, "maxFileSize", 5, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new ImageUploader() cannot be invoked directly, please use 'model.pages.createImageUploader()'");
             }
@@ -24594,11 +24594,13 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__weight = new internal.PrimitiveProperty(LayoutGridColumn, this, "weight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__weight = new internal.PrimitiveProperty(LayoutGridColumn, this, "weight", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__tabletWeight = new internal.PrimitiveProperty(LayoutGridColumn, this, "tabletWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__tabletWeight = new internal.PrimitiveProperty(LayoutGridColumn, this, "tabletWeight", -1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__phoneWeight = new internal.PrimitiveProperty(LayoutGridColumn, this, "phoneWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__phoneWeight = new internal.PrimitiveProperty(LayoutGridColumn, this, "phoneWeight", -1, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__previewWidth = new internal.PrimitiveProperty(LayoutGridColumn, this, "previewWidth", -1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__widget = new internal.PartProperty(LayoutGridColumn, this, "widget", null, false);
             /** @internal */
@@ -24641,6 +24643,15 @@ var pages;
         }
         set phoneWeight(newValue) {
             this.__phoneWeight.set(newValue);
+        }
+        /**
+         * In version 9.16.0: introduced
+         */
+        get previewWidth() {
+            return this.__previewWidth.get();
+        }
+        set previewWidth(newValue) {
+            this.__previewWidth.set(newValue);
         }
         /**
          * In version 7.15.0: deleted
@@ -24718,6 +24729,9 @@ var pages;
             if (this.__phoneWeight.isAvailable) {
                 this.phoneWeight = -1;
             }
+            if (this.__previewWidth.isAvailable) {
+                this.previewWidth = -1;
+            }
             if (this.__tabletWeight.isAvailable) {
                 this.tabletWeight = -1;
             }
@@ -24735,6 +24749,9 @@ var pages;
             },
             phoneWeight: {
                 introduced: "8.3.0"
+            },
+            previewWidth: {
+                introduced: "9.16.0"
             },
             widget: {
                 deleted: "7.15.0",
@@ -24781,7 +24798,7 @@ var pages;
             /** @internal */
             this.__horizontalAlignment = new internal.EnumProperty(LayoutGridRow, this, "horizontalAlignment", LayoutGridAlignment.None, LayoutGridAlignment);
             /** @internal */
-            this.__spacingBetweenColumns = new internal.PrimitiveProperty(LayoutGridRow, this, "spacingBetweenColumns", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__spacingBetweenColumns = new internal.PrimitiveProperty(LayoutGridRow, this, "spacingBetweenColumns", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new LayoutGridRow() cannot be invoked directly, please use 'model.pages.createLayoutGridRow()'");
             }
@@ -25391,7 +25408,7 @@ var pages;
             /** @internal */
             this.__widgets = new internal.PartListProperty(ListView, this, "widgets", []);
             /** @internal */
-            this.__pageSize = new internal.PrimitiveProperty(ListView, this, "pageSize", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__pageSize = new internal.PrimitiveProperty(ListView, this, "pageSize", 10, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__clickAction = new internal.PartProperty(ListView, this, "clickAction", null, true);
             /** @internal */
@@ -25401,7 +25418,7 @@ var pages;
             /** @internal */
             this.__scrollDirection = new internal.EnumProperty(ListView, this, "scrollDirection", ScrollDirection.Vertical, ScrollDirection);
             /** @internal */
-            this.__numberOfColumns = new internal.PrimitiveProperty(ListView, this, "numberOfColumns", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfColumns = new internal.PrimitiveProperty(ListView, this, "numberOfColumns", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__pullDownAction = new internal.PartProperty(ListView, this, "pullDownAction", null, true);
             if (arguments.length < 4) {
@@ -27352,7 +27369,7 @@ var pages;
             /** @internal */
             this.__label = new internal.PartProperty(LoginTextBox, this, "label", null, false);
             /** @internal */
-            this.__labelWidth = new internal.PrimitiveProperty(LoginTextBox, this, "labelWidth", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__labelWidth = new internal.PrimitiveProperty(LoginTextBox, this, "labelWidth", 3, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__placeholder = new internal.PartProperty(LoginTextBox, this, "placeholder", null, true);
             if (arguments.length < 4) {
@@ -28993,9 +29010,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__responsiveWeight = new internal.PrimitiveProperty(MasterDetailDetailRegion, this, "responsiveWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__responsiveWeight = new internal.PrimitiveProperty(MasterDetailDetailRegion, this, "responsiveWeight", 9, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__tabletWeight = new internal.PrimitiveProperty(MasterDetailDetailRegion, this, "tabletWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__tabletWeight = new internal.PrimitiveProperty(MasterDetailDetailRegion, this, "tabletWeight", 9, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__title = new internal.PartProperty(MasterDetailDetailRegion, this, "title", null, true);
             if (arguments.length < 4) {
@@ -29080,9 +29097,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__responsiveWeight = new internal.PrimitiveProperty(MasterDetailMasterRegion, this, "responsiveWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__responsiveWeight = new internal.PrimitiveProperty(MasterDetailMasterRegion, this, "responsiveWeight", 3, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__tabletWeight = new internal.PrimitiveProperty(MasterDetailMasterRegion, this, "tabletWeight", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__tabletWeight = new internal.PrimitiveProperty(MasterDetailMasterRegion, this, "tabletWeight", 3, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new MasterDetailMasterRegion() cannot be invoked directly, please use 'model.pages.createMasterDetailMasterRegion()'");
             }
@@ -30955,7 +30972,7 @@ var pages;
             /** @internal */
             this.__rightHeaderPlaceholder = new internal.PartProperty(NativeLayoutContent, this, "rightHeaderPlaceholder", null, false);
             /** @internal */
-            this.__showBottomBar = new internal.PrimitiveProperty(NativeLayoutContent, this, "showBottomBar", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__showBottomBar = new internal.PrimitiveProperty(NativeLayoutContent, this, "showBottomBar", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sidebar = new internal.PrimitiveProperty(NativeLayoutContent, this, "sidebar", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -34810,7 +34827,7 @@ var pages;
             /** @internal */
             this.__popupHeight = new internal.PrimitiveProperty(Page, this, "popupHeight", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__popupResizable = new internal.PrimitiveProperty(Page, this, "popupResizable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__popupResizable = new internal.PrimitiveProperty(Page, this, "popupResizable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__markAsUsed = new internal.PrimitiveProperty(Page, this, "markAsUsed", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -37528,7 +37545,7 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__renderHorizontal = new internal.PrimitiveProperty(RadioButtonGroup, this, "renderHorizontal", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__renderHorizontal = new internal.PrimitiveProperty(RadioButtonGroup, this, "renderHorizontal", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new RadioButtonGroup() cannot be invoked directly, please use 'model.pages.createRadioButtonGroup()'");
             }
@@ -40440,7 +40457,7 @@ var pages;
             /** @internal */
             this.__syncAutomatically = new internal.PrimitiveProperty(SaveButton, this, "syncAutomatically", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(SaveButton, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(SaveButton, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new SaveButton() cannot be invoked directly, please use 'model.pages.createSaveButton()'");
             }
@@ -40838,7 +40855,7 @@ var pages;
             /** @internal */
             this.__syncAutomatically = new internal.PrimitiveProperty(SaveChangesClientAction, this, "syncAutomatically", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(SaveChangesClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(SaveChangesClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new SaveChangesClientAction() cannot be invoked directly, please use 'model.pages.createSaveChangesClientAction()'");
             }
@@ -41141,7 +41158,7 @@ var pages;
             /** @internal */
             this.__widthMode = new internal.EnumProperty(ScrollContainer, this, "widthMode", SizeMode.Auto, SizeMode);
             /** @internal */
-            this.__width = new internal.PrimitiveProperty(ScrollContainer, this, "width", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__width = new internal.PrimitiveProperty(ScrollContainer, this, "width", 960, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__alignment = new internal.EnumProperty(ScrollContainer, this, "alignment", AlignmentEnum.Center, AlignmentEnum);
             /** @internal */
@@ -41954,7 +41971,7 @@ var pages;
             /** @internal */
             this.__sizeMode = new internal.EnumProperty(ScrollContainerRegion, this, "sizeMode", SizeMode.Auto, SizeMode);
             /** @internal */
-            this.__size = new internal.PrimitiveProperty(ScrollContainerRegion, this, "size", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__size = new internal.PrimitiveProperty(ScrollContainerRegion, this, "size", 200, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__class = new internal.PrimitiveProperty(ScrollContainerRegion, this, "class", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -42576,9 +42593,9 @@ var pages;
             /** @internal */
             this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeClientAction, this, "outcome", null, "Workflows$UserTaskOutcome");
             /** @internal */
-            this.__closePage = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "closePage", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__closePage = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__commit = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "commit", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__commit = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "commit", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new SetTaskOutcomeClientAction() cannot be invoked directly, please use 'model.pages.createSetTaskOutcomeClientAction()'");
             }
@@ -45536,7 +45553,7 @@ var pages;
             /** @internal */
             this.__clickAction = new internal.PartProperty(StaticImageViewer, this, "clickAction", null, true);
             /** @internal */
-            this.__responsive = new internal.PrimitiveProperty(StaticImageViewer, this, "responsive", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__responsive = new internal.PrimitiveProperty(StaticImageViewer, this, "responsive", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__alternativeText = new internal.PartProperty(StaticImageViewer, this, "alternativeText", null, true);
             if (arguments.length < 4) {
@@ -48702,9 +48719,9 @@ var pages;
             /** @internal */
             this.__topRowIndex = new internal.PrimitiveProperty(TableCell, this, "topRowIndex", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__width = new internal.PrimitiveProperty(TableCell, this, "width", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__width = new internal.PrimitiveProperty(TableCell, this, "width", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__height = new internal.PrimitiveProperty(TableCell, this, "height", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__height = new internal.PrimitiveProperty(TableCell, this, "height", 1, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new TableCell() cannot be invoked directly, please use 'model.pages.createTableCell()'");
             }
@@ -48995,9 +49012,9 @@ var pages;
             /** @internal */
             this.__contents = new internal.PartProperty(TemplateGrid, this, "contents", null, true);
             /** @internal */
-            this.__numberOfRows = new internal.PrimitiveProperty(TemplateGrid, this, "numberOfRows", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfRows = new internal.PrimitiveProperty(TemplateGrid, this, "numberOfRows", 3, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__numberOfColumns = new internal.PrimitiveProperty(TemplateGrid, this, "numberOfColumns", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfColumns = new internal.PrimitiveProperty(TemplateGrid, this, "numberOfColumns", 2, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new TemplateGrid() cannot be invoked directly, please use 'model.pages.createTemplateGrid()'");
             }
@@ -50143,7 +50160,9 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__maxLengthCode = new internal.PrimitiveProperty(TextWidget, this, "maxLengthCode", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maxLengthCode = new internal.PrimitiveProperty(TextWidget, this, "maxLengthCode", -1, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__autoFocus = new internal.PrimitiveProperty(TextWidget, this, "autoFocus", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new TextWidget() cannot be invoked directly, please use 'model.pages.createTextWidget()'");
             }
@@ -50229,6 +50248,15 @@ var pages;
         set maxLengthCode(newValue) {
             this.__maxLengthCode.set(newValue);
         }
+        /**
+         * In version 9.15.0: introduced
+         */
+        get autoFocus() {
+            return this.__autoFocus.get();
+        }
+        set autoFocus(newValue) {
+            this.__autoFocus.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -50236,7 +50264,13 @@ var pages;
         }
     }
     TextWidget.structureTypeName = "Pages$TextWidget";
-    TextWidget.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    TextWidget.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            autoFocus: {
+                introduced: "9.15.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.TextWidget = TextWidget;
     /**
      * See: {@link https://docs.mendix.com/refguide/text-area relevant section in reference guide}
@@ -50245,13 +50279,17 @@ var pages;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__numberOfLines = new internal.PrimitiveProperty(TextArea, this, "numberOfLines", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfLines = new internal.PrimitiveProperty(TextArea, this, "numberOfLines", 5, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__counterMessage = new internal.PartProperty(TextArea, this, "counterMessage", null, true);
             /** @internal */
             this.__textTooLongMessage = new internal.PartProperty(TextArea, this, "textTooLongMessage", null, true);
             /** @internal */
-            this.__autocomplete = new internal.PrimitiveProperty(TextArea, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__autocomplete = new internal.PrimitiveProperty(TextArea, this, "autocomplete", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__submitBehaviour = new internal.EnumProperty(TextArea, this, "submitBehaviour", SubmitBehaviourType.OnEndEditing, SubmitBehaviourType);
+            /** @internal */
+            this.__submitOnInputDelay = new internal.PrimitiveProperty(TextArea, this, "submitOnInputDelay", 300, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new TextArea() cannot be invoked directly, please use 'model.pages.createTextArea()'");
             }
@@ -50357,6 +50395,24 @@ var pages;
         }
         set autocomplete(newValue) {
             this.__autocomplete.set(newValue);
+        }
+        /**
+         * In version 9.14.0: introduced
+         */
+        get submitBehaviour() {
+            return this.__submitBehaviour.get();
+        }
+        set submitBehaviour(newValue) {
+            this.__submitBehaviour.set(newValue);
+        }
+        /**
+         * In version 9.14.0: introduced
+         */
+        get submitOnInputDelay() {
+            return this.__submitOnInputDelay.get();
+        }
+        set submitOnInputDelay(newValue) {
+            this.__submitOnInputDelay.set(newValue);
         }
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -50986,6 +51042,12 @@ var pages;
             }
             this.counterMessage = texts_1.texts.Text.create(this.model);
             this.numberOfLines = 5;
+            if (this.__submitBehaviour.isAvailable) {
+                this.submitBehaviour = SubmitBehaviourType.OnEndEditing;
+            }
+            if (this.__submitOnInputDelay.isAvailable) {
+                this.submitOnInputDelay = 300;
+            }
             this.textTooLongMessage = texts_1.texts.Text.create(this.model);
         }
     }
@@ -51004,6 +51066,12 @@ var pages;
             },
             autocomplete: {
                 introduced: "8.10.0"
+            },
+            submitBehaviour: {
+                introduced: "9.14.0"
+            },
+            submitOnInputDelay: {
+                introduced: "9.14.0"
             }
         }
     }, internal.StructureType.Element);
@@ -51025,13 +51093,13 @@ var pages;
             /** @internal */
             this.__onEnterKeyPressAction = new internal.PartProperty(TextBox, this, "onEnterKeyPressAction", null, true);
             /** @internal */
-            this.__autocomplete = new internal.PrimitiveProperty(TextBox, this, "autocomplete", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__autocomplete = new internal.PrimitiveProperty(TextBox, this, "autocomplete", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__autocompletePurpose = new internal.EnumProperty(TextBox, this, "autocompletePurpose", AutocompletePurposeType.On, AutocompletePurposeType);
             /** @internal */
             this.__submitBehaviour = new internal.EnumProperty(TextBox, this, "submitBehaviour", SubmitBehaviourType.OnEndEditing, SubmitBehaviourType);
             /** @internal */
-            this.__submitOnInputDelay = new internal.PrimitiveProperty(TextBox, this, "submitOnInputDelay", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__submitOnInputDelay = new internal.PrimitiveProperty(TextBox, this, "submitOnInputDelay", 300, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
             }

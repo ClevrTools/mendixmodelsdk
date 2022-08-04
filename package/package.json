@@ -1,7 +1,7 @@
 {
   "name": "@clevr/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.61.1",
+  "version": "4.65.0",
   "author": "Mendix",
   "license": "MIT",
   "scripts": {
@@ -14,7 +14,6 @@
     "clean": "rm -rf dist/ test-output/ doc/generated-doc/ tmp/",
     "clean-build": "rm -rf node_modules && yarn install && yarn run build",
     "generate-ts-doc": "bash ./scripts/generate-typedoc.sh",
-    "kill-debuggers": "kill-by-port -p 5858",
     "link-package": "cd dist && (yarn unlink --silent || true) && yarn link --silent",
     "lint": "yarn --cwd .. nx lint model-sdk",
     "test": "yarn --cwd .. nx test model-sdk",
@@ -27,8 +26,8 @@
     "@types/eventsource": "^1.1.7",
     "mobx": "^5.0.0",
     "wolfy87-eventemitter": "^5.2.1",
-    "eventsource": "^1.0.7",
-    "got": "^11.8.2",
+    "eventsource": "^2.0.2",
+    "got": "^11.8.5",
     "form-data": "^4.0.0",
     "deep-equal": "^1.0.1",
     "uuid": "^8.3.2"

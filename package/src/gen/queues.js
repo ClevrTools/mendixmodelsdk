@@ -56,9 +56,11 @@ var queues;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__parallelismExpression = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelismExpression", "", internal.PrimitiveTypeEnum.String);
+            this.__parallelismExpression = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelismExpression", "1", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__parallelism = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelism", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__parallelism = new internal.PrimitiveProperty(BasicQueueConfig, this, "parallelism", 1, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__clusterWide = new internal.PrimitiveProperty(BasicQueueConfig, this, "clusterWide", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new BasicQueueConfig() cannot be invoked directly, please use 'model.queues.createBasicQueueConfig()'");
             }
@@ -88,6 +90,15 @@ var queues;
             this.__parallelism.set(newValue);
         }
         /**
+         * In version 9.13.0: introduced
+         */
+        get clusterWide() {
+            return this.__clusterWide.get();
+        }
+        set clusterWide(newValue) {
+            this.__clusterWide.set(newValue);
+        }
+        /**
          * Creates and returns a new BasicQueueConfig instance in the SDK and on the server.
          * The new BasicQueueConfig will be automatically stored in the 'config' property
          * of the parent Queue element passed as argument.
@@ -110,6 +121,9 @@ var queues;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__clusterWide.isAvailable) {
+                this.clusterWide = false;
+            }
             if (this.__parallelism.isAvailable) {
                 this.parallelism = 1;
             }
@@ -129,6 +143,9 @@ var queues;
                 introduced: "8.16.0",
                 deleted: "9.12.0",
                 deletionMessage: null
+            },
+            clusterWide: {
+                introduced: "9.13.0"
             }
         },
         experimental: {
@@ -222,11 +239,11 @@ var queues;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__retries = new internal.PrimitiveProperty(QueueExponentialRetry, this, "retries", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__retries = new internal.PrimitiveProperty(QueueExponentialRetry, this, "retries", 10, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__initialInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "initialInterval", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__initialInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "initialInterval", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__maximumInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "maximumInterval", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__maximumInterval = new internal.PrimitiveProperty(QueueExponentialRetry, this, "maximumInterval", 86400, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__intervalType = new internal.EnumProperty(QueueExponentialRetry, this, "intervalType", QueueRetryIntervalType.Seconds, QueueRetryIntervalType);
             if (arguments.length < 4) {
@@ -289,9 +306,9 @@ var queues;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__retries = new internal.PrimitiveProperty(QueueFixedRetry, this, "retries", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__retries = new internal.PrimitiveProperty(QueueFixedRetry, this, "retries", 3, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
-            this.__interval = new internal.PrimitiveProperty(QueueFixedRetry, this, "interval", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__interval = new internal.PrimitiveProperty(QueueFixedRetry, this, "interval", 10, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__intervalType = new internal.EnumProperty(QueueFixedRetry, this, "intervalType", QueueRetryIntervalType.Seconds, QueueRetryIntervalType);
             if (arguments.length < 4) {

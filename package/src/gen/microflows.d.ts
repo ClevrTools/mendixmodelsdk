@@ -457,6 +457,34 @@ export declare namespace microflows {
          */
         static create(model: IModel): AppServiceCallParameterMapping;
     }
+    /**
+     * In version 9.15.0: introduced
+     */
+    class ApplyJumpToOptionAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowJumpToDetailsVariable(): string;
+        set workflowJumpToDetailsVariable(newValue: string);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ApplyJumpToOptionAction instance in the SDK and on the server.
+         * The new ApplyJumpToOptionAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createIn(container: ActionActivity): ApplyJumpToOptionAction;
+        /**
+         * Creates and returns a new ApplyJumpToOptionAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ApplyJumpToOptionAction;
+    }
     abstract class RetrieveSource extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -2120,6 +2148,40 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): GenerateDocumentAction;
+    }
+    /**
+     * In version 9.14.0: introduced
+     */
+    class GenerateJumpToOptionsAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        /**
+         * In version 9.16.0: deleted
+         */
+        get workflow(): workflows.IWorkflow | null;
+        set workflow(newValue: workflows.IWorkflow | null);
+        get workflowQualifiedName(): string | null;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GenerateJumpToOptionsAction instance in the SDK and on the server.
+         * The new GenerateJumpToOptionsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container: ActionActivity): GenerateJumpToOptionsAction;
+        /**
+         * Creates and returns a new GenerateJumpToOptionsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GenerateJumpToOptionsAction;
     }
     /**
      * In version 9.12.0: removed experimental

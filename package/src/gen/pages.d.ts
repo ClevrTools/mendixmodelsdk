@@ -14144,6 +14144,11 @@ export declare namespace pages {
         get phoneWeight(): number;
         set phoneWeight(newValue: number);
         /**
+         * In version 9.16.0: introduced
+         */
+        get previewWidth(): number;
+        set previewWidth(newValue: number);
+        /**
          * In version 7.15.0: deleted
          */
         get widget(): Widget | null;
@@ -29761,6 +29766,11 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get maxLengthCode(): number;
         set maxLengthCode(newValue: number);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get autoFocus(): boolean;
+        set autoFocus(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -29805,6 +29815,16 @@ export declare namespace pages {
          */
         get autocomplete(): boolean;
         set autocomplete(newValue: boolean);
+        /**
+         * In version 9.14.0: introduced
+         */
+        get submitBehaviour(): SubmitBehaviourType;
+        set submitBehaviour(newValue: SubmitBehaviourType);
+        /**
+         * In version 9.14.0: introduced
+         */
+        get submitOnInputDelay(): number;
+        set submitOnInputDelay(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.

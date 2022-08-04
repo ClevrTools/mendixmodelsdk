@@ -18,6 +18,10 @@ export declare namespace navigation {
     class ProfileKind extends internal.AbstractEnum {
         static Responsive: ProfileKind;
         static ResponsiveOffline: ProfileKind;
+        static HybridTablet: ProfileKind;
+        static HybridTabletOffline: ProfileKind;
+        static HybridPhone: ProfileKind;
+        static HybridPhoneOffline: ProfileKind;
         static Tablet: ProfileKind;
         static TabletOffline: ProfileKind;
         static Phone: ProfileKind;
@@ -25,10 +29,6 @@ export declare namespace navigation {
         static NativePhone: ProfileKind;
         static Hybrid: ProfileKind;
         static HybridOffline: ProfileKind;
-        static HybridTablet: ProfileKind;
-        static HybridTabletOffline: ProfileKind;
-        static HybridPhone: ProfileKind;
-        static HybridPhoneOffline: ProfileKind;
         protected qualifiedTsTypeName: string;
     }
     class ProfileType extends internal.AbstractEnum {
@@ -190,6 +190,11 @@ export declare namespace navigation {
          */
         get otaEnabled(): boolean;
         set otaEnabled(newValue: boolean);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get loggingEnabled(): boolean;
+        set loggingEnabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.

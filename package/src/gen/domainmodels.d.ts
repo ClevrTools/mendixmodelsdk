@@ -56,6 +56,11 @@ export declare namespace domainmodels {
         static ReadWrite: MemberAccessRights;
         protected qualifiedTsTypeName: string;
     }
+    class Navigability extends internal.AbstractEnum {
+        static BothDirections: Navigability;
+        static ParentToChild: Navigability;
+        protected qualifiedTsTypeName: string;
+    }
     class RangeType extends internal.AbstractEnum {
         static GreaterThanOrEqualTo: RangeType;
         static SmallerThanOrEqualTo: RangeType;
@@ -122,6 +127,11 @@ export declare namespace domainmodels {
         set location(newValue: common.IPoint);
         get width(): number;
         set width(newValue: number);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get exportLevel(): projects.ExportLevel;
+        set exportLevel(newValue: projects.ExportLevel);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
@@ -748,6 +758,7 @@ export declare namespace domainmodels {
     abstract class AttributeType extends internal.Element<IModel> implements IAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -765,6 +776,7 @@ export declare namespace domainmodels {
     abstract class NumericAttributeTypeBase extends AttributeType implements INumericAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -782,6 +794,7 @@ export declare namespace domainmodels {
     abstract class IntegerAttributeTypeBase extends NumericAttributeTypeBase implements IIntegerAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -799,6 +812,7 @@ export declare namespace domainmodels {
     class AutoNumberAttributeType extends IntegerAttributeTypeBase implements IAutoNumberAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -812,6 +826,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): AutoNumberAttributeType;
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
@@ -855,6 +878,7 @@ export declare namespace domainmodels {
     class BinaryAttributeType extends AttributeType implements IBinaryAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -868,6 +892,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): BinaryAttributeType;
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
@@ -911,6 +944,7 @@ export declare namespace domainmodels {
     class BooleanAttributeType extends AttributeType implements IBooleanAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -924,6 +958,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): BooleanAttributeType;
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
@@ -1093,6 +1136,7 @@ export declare namespace domainmodels {
     abstract class DecimalAttributeTypeBase extends NumericAttributeTypeBase implements IDecimalAttributeTypeBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1200,6 +1244,7 @@ export declare namespace domainmodels {
     class DateTimeAttributeType extends AttributeType implements IDateTimeAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1215,6 +1260,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): DateTimeAttributeType;
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
@@ -1258,6 +1312,7 @@ export declare namespace domainmodels {
     class DecimalAttributeType extends DecimalAttributeTypeBase implements IDecimalAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1271,6 +1326,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): DecimalAttributeType;
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
@@ -1797,6 +1861,7 @@ export declare namespace domainmodels {
     class EnumerationAttributeType extends AttributeType implements IEnumerationAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -1813,6 +1878,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): EnumerationAttributeType;
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
@@ -2032,6 +2106,7 @@ export declare namespace domainmodels {
     class HashedStringAttributeType extends AttributeType implements IHashedStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2045,6 +2120,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): HashedStringAttributeType;
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
@@ -2263,6 +2347,7 @@ export declare namespace domainmodels {
     class IntegerAttributeType extends IntegerAttributeTypeBase implements IIntegerAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2276,6 +2361,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): IntegerAttributeType;
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
@@ -2319,6 +2413,7 @@ export declare namespace domainmodels {
     class LongAttributeType extends IntegerAttributeTypeBase implements ILongAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2332,6 +2427,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): LongAttributeType;
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
@@ -2814,6 +2918,7 @@ export declare namespace domainmodels {
     class StringAttributeType extends AttributeType implements IStringAttributeType {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
@@ -2829,6 +2934,15 @@ export declare namespace domainmodels {
          *  6.0.0 to 8.8.0
          */
         static createIn(container: Attribute): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container: businessevents.PublishedMessageAttribute): StringAttributeType;
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
@@ -2907,6 +3021,7 @@ export declare namespace domainmodels {
         static create(model: IModel): ValidationRule;
     }
 }
+import { businessevents } from "./businessevents";
 import { customwidgets } from "./customwidgets";
 import { documenttemplates } from "./documenttemplates";
 import { enumerations } from "./enumerations";

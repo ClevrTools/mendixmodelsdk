@@ -11,6 +11,72 @@ var workflows;
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
     /**
+     * In version 9.15.0: introduced
+     */
+    class Annotation extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(Annotation, this, "description", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new Annotation() cannot be invoked directly, please use 'model.workflows.createAnnotation()'");
+            }
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get containerAsWorkflowActivity() {
+            return super.getContainerAs(WorkflowActivity);
+        }
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createInWorkflowUnderAnnotation(container) {
+            internal.createInVersionCheck(container.model, Annotation.structureTypeName, { start: "9.15.0" });
+            return internal.instancehelpers.createElement(container, Annotation, "annotation", false);
+        }
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent WorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createInWorkflowActivityUnderAnnotation(container) {
+            internal.createInVersionCheck(container.model, Annotation.structureTypeName, { start: "9.15.0" });
+            return internal.instancehelpers.createElement(container, Annotation, "annotation", false);
+        }
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, Annotation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Annotation.structureTypeName = "Workflows$Annotation";
+    Annotation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.15.0"
+    }, internal.StructureType.Element);
+    workflows.Annotation = Annotation;
+    /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -178,6 +244,8 @@ var workflows;
             this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__annotation = new internal.PartProperty(WorkflowActivity, this, "annotation", null, false);
             if (arguments.length < 4) {
                 throw new Error("new WorkflowActivity() cannot be invoked directly, please use 'model.workflows.createWorkflowActivity()'");
             }
@@ -199,6 +267,15 @@ var workflows;
         }
         set caption(newValue) {
             this.__caption.set(newValue);
+        }
+        /**
+         * In version 9.15.0: introduced
+         */
+        get annotation() {
+            return this.__annotation.get();
+        }
+        set annotation(newValue) {
+            this.__annotation.set(newValue);
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -222,6 +299,9 @@ var workflows;
                 public: {
                     currentValue: true
                 }
+            },
+            annotation: {
+                introduced: "9.15.0"
             }
         },
         public: {
@@ -1224,6 +1304,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.PageParameterMapping = PageParameterMapping;
     /**
+     * In version 9.12.0: added public
      * In version 9.11.0: introduced
      */
     class PageReference extends internal.Element {
@@ -1241,6 +1322,9 @@ var workflows;
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
+        /**
+         * In version 9.12.0: added public
+         */
         get page() {
             return this.__page.get();
         }
@@ -1289,7 +1373,19 @@ var workflows;
     }
     PageReference.structureTypeName = "Workflows$PageReference";
     PageReference.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.11.0"
+        introduced: "9.11.0",
+        properties: {
+            page: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.12.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["9.12.0"]
+        }
     }, internal.StructureType.Element);
     workflows.PageReference = PageReference;
     /**
@@ -1558,6 +1654,7 @@ var workflows;
             return this.__page.qualifiedName();
         }
         /**
+         * In version 9.12.0: added public
          * In version 9.11.0: introduced
          */
         get taskPage() {
@@ -1682,6 +1779,10 @@ var workflows;
             },
             taskPage: {
                 introduced: "9.11.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["9.12.0"]
+                },
                 required: {
                     currentValue: true
                 }
@@ -1907,6 +2008,8 @@ var workflows;
             this.__workflowOnStateChangeEvent = new internal.PartProperty(Workflow, this, "workflowOnStateChangeEvent", null, false);
             /** @internal */
             this.__usertaskOnStateChangeEvent = new internal.PartProperty(Workflow, this, "usertaskOnStateChangeEvent", null, false);
+            /** @internal */
+            this.__annotation = new internal.PartProperty(Workflow, this, "annotation", null, false);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -2038,6 +2141,15 @@ var workflows;
             this.__usertaskOnStateChangeEvent.set(newValue);
         }
         /**
+         * In version 9.15.0: introduced
+         */
+        get annotation() {
+            return this.__annotation.get();
+        }
+        set annotation(newValue) {
+            this.__annotation.set(newValue);
+        }
+        /**
          * Creates a new Workflow unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -2146,6 +2258,9 @@ var workflows;
             },
             usertaskOnStateChangeEvent: {
                 introduced: "9.12.0"
+            },
+            annotation: {
+                introduced: "9.15.0"
             }
         },
         experimental: {

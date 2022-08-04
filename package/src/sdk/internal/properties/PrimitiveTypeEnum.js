@@ -4,6 +4,8 @@ exports.PrimitiveTypeEnum = void 0;
 /**
  * All primitive types.
  * Note: must match exactly with MxPrimitiveTypeEnum!
+ *
+ * @ignore
  */
 var PrimitiveTypeEnum;
 (function (PrimitiveTypeEnum) {

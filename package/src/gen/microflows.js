@@ -407,9 +407,9 @@ var microflows;
             /** @internal */
             this.__disabled = new internal.PrimitiveProperty(ActionActivity, this, "disabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__caption = new internal.PrimitiveProperty(ActionActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            this.__caption = new internal.PrimitiveProperty(ActionActivity, this, "caption", "Activity", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__autoGenerateCaption = new internal.PrimitiveProperty(ActionActivity, this, "autoGenerateCaption", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__autoGenerateCaption = new internal.PrimitiveProperty(ActionActivity, this, "autoGenerateCaption", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__backgroundColor = new internal.EnumProperty(ActionActivity, this, "backgroundColor", ActionActivityColor.Default, ActionActivityColor);
             /** @internal */
@@ -707,7 +707,7 @@ var microflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__caption = new internal.PrimitiveProperty(Annotation, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            this.__caption = new internal.PrimitiveProperty(Annotation, this, "caption", "Add your annotation here.", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new Annotation() cannot be invoked directly, please use 'model.microflows.createAnnotation()'");
             }
@@ -893,7 +893,7 @@ var microflows;
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(AppServiceCallAction, this, "parameterMappings", []);
             /** @internal */
-            this.__useVariable = new internal.PrimitiveProperty(AppServiceCallAction, this, "useVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useVariable = new internal.PrimitiveProperty(AppServiceCallAction, this, "useVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(AppServiceCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -1051,6 +1051,65 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.AppServiceCallParameterMapping = AppServiceCallParameterMapping;
+    /**
+     * In version 9.15.0: introduced
+     */
+    class ApplyJumpToOptionAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowJumpToDetailsVariable = new internal.PrimitiveProperty(ApplyJumpToOptionAction, this, "workflowJumpToDetailsVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(ApplyJumpToOptionAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ApplyJumpToOptionAction() cannot be invoked directly, please use 'model.microflows.createApplyJumpToOptionAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowJumpToDetailsVariable() {
+            return this.__workflowJumpToDetailsVariable.get();
+        }
+        set workflowJumpToDetailsVariable(newValue) {
+            this.__workflowJumpToDetailsVariable.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ApplyJumpToOptionAction instance in the SDK and on the server.
+         * The new ApplyJumpToOptionAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.15.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ApplyJumpToOptionAction.structureTypeName, { start: "9.15.0" });
+            return internal.instancehelpers.createElement(container, ApplyJumpToOptionAction, "action", false);
+        }
+        /**
+         * Creates and returns a new ApplyJumpToOptionAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ApplyJumpToOptionAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ApplyJumpToOptionAction.structureTypeName = "Microflows$ApplyJumpToOptionAction";
+    ApplyJumpToOptionAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.15.0"
+    }, internal.StructureType.Element);
+    microflows.ApplyJumpToOptionAction = ApplyJumpToOptionAction;
     class RetrieveSource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1918,7 +1977,7 @@ var microflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__numberOfPages = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPages", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__numberOfPages = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPages", 1, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__numberOfPagesToClose = new internal.PrimitiveProperty(CloseFormAction, this, "numberOfPagesToClose", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -2015,7 +2074,7 @@ var microflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__withEvents = new internal.PrimitiveProperty(CommitAction, this, "withEvents", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__withEvents = new internal.PrimitiveProperty(CommitAction, this, "withEvents", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__commitVariableName = new internal.PrimitiveProperty(CommitAction, this, "commitVariableName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -2509,7 +2568,7 @@ var microflows;
             /** @internal */
             this.__variableName = new internal.PrimitiveProperty(CreateVariableAction, this, "variableName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__variableDataType = new internal.PrimitiveProperty(CreateVariableAction, this, "variableDataType", "", internal.PrimitiveTypeEnum.String);
+            this.__variableDataType = new internal.PrimitiveProperty(CreateVariableAction, this, "variableDataType", "Boolean", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__variableType = new internal.PartProperty(CreateVariableAction, this, "variableType", null, true);
             /** @internal */
@@ -4549,19 +4608,19 @@ var microflows;
             /** @internal */
             this.__overrideRightMargin = new internal.PrimitiveProperty(GenerateDocumentAction, this, "overrideRightMargin", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__marginLeftInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginLeftInInch", "", internal.PrimitiveTypeEnum.String);
+            this.__marginLeftInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginLeftInInch", "0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__marginLeftInInchModel = new internal.PartProperty(GenerateDocumentAction, this, "marginLeftInInchModel", null, true);
             /** @internal */
-            this.__marginRightInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginRightInInch", "", internal.PrimitiveTypeEnum.String);
+            this.__marginRightInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginRightInInch", "0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__marginRightInInchModel = new internal.PartProperty(GenerateDocumentAction, this, "marginRightInInchModel", null, true);
             /** @internal */
-            this.__marginTopInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginTopInInch", "", internal.PrimitiveTypeEnum.String);
+            this.__marginTopInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginTopInInch", "0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__marginTopInInchModel = new internal.PartProperty(GenerateDocumentAction, this, "marginTopInInchModel", null, true);
             /** @internal */
-            this.__marginBottomInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginBottomInInch", "", internal.PrimitiveTypeEnum.String);
+            this.__marginBottomInInch = new internal.PrimitiveProperty(GenerateDocumentAction, this, "marginBottomInInch", "0", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__marginBottomInInchModel = new internal.PartProperty(GenerateDocumentAction, this, "marginBottomInInchModel", null, true);
             if (arguments.length < 4) {
@@ -4812,6 +4871,85 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.GenerateDocumentAction = GenerateDocumentAction;
+    /**
+     * In version 9.14.0: introduced
+     */
+    class GenerateJumpToOptionsAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowVariable = new internal.PrimitiveProperty(GenerateJumpToOptionsAction, this, "workflowVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(GenerateJumpToOptionsAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(GenerateJumpToOptionsAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GenerateJumpToOptionsAction() cannot be invoked directly, please use 'model.microflows.createGenerateJumpToOptionsAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowVariable() {
+            return this.__workflowVariable.get();
+        }
+        set workflowVariable(newValue) {
+            this.__workflowVariable.set(newValue);
+        }
+        /**
+         * In version 9.16.0: deleted
+         */
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new GenerateJumpToOptionsAction instance in the SDK and on the server.
+         * The new GenerateJumpToOptionsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GenerateJumpToOptionsAction.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, GenerateJumpToOptionsAction, "action", false);
+        }
+        /**
+         * Creates and returns a new GenerateJumpToOptionsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GenerateJumpToOptionsAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GenerateJumpToOptionsAction.structureTypeName = "Microflows$GenerateJumpToOptionsAction";
+    GenerateJumpToOptionsAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.14.0",
+        properties: {
+            workflow: {
+                deleted: "9.16.0",
+                deletionMessage: null
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.GenerateJumpToOptionsAction = GenerateJumpToOptionsAction;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
@@ -5943,7 +6081,7 @@ var microflows;
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(JavaActionCallAction, this, "parameterMappings", []);
             /** @internal */
-            this.__useReturnVariable = new internal.PrimitiveProperty(JavaActionCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useReturnVariable = new internal.PrimitiveProperty(JavaActionCallAction, this, "useReturnVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(JavaActionCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -6168,7 +6306,7 @@ var microflows;
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(JavaScriptActionCallAction, this, "parameterMappings", []);
             /** @internal */
-            this.__useReturnVariable = new internal.PrimitiveProperty(JavaScriptActionCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useReturnVariable = new internal.PrimitiveProperty(JavaScriptActionCallAction, this, "useReturnVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(JavaScriptActionCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -7280,7 +7418,7 @@ var microflows;
             /** @internal */
             this.__workflowActionInfo = new internal.PartProperty(Microflow, this, "workflowActionInfo", null, false);
             /** @internal */
-            this.__allowConcurrentExecution = new internal.PrimitiveProperty(Microflow, this, "allowConcurrentExecution", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__allowConcurrentExecution = new internal.PrimitiveProperty(Microflow, this, "allowConcurrentExecution", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__concurrencyErrorMessage = new internal.PartProperty(Microflow, this, "concurrencyErrorMessage", null, true);
             /** @internal */
@@ -7492,7 +7630,7 @@ var microflows;
             /** @internal */
             this.__microflowCall = new internal.PartProperty(MicroflowCallAction, this, "microflowCall", null, true);
             /** @internal */
-            this.__useReturnVariable = new internal.PrimitiveProperty(MicroflowCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useReturnVariable = new internal.PrimitiveProperty(MicroflowCallAction, this, "useReturnVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(MicroflowCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -7761,7 +7899,7 @@ var microflows;
             /** @internal */
             this.__name = new internal.PrimitiveProperty(MicroflowParameterBase, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__type = new internal.PrimitiveProperty(MicroflowParameterBase, this, "type", "", internal.PrimitiveTypeEnum.String);
+            this.__type = new internal.PrimitiveProperty(MicroflowParameterBase, this, "type", "Unknown", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__parameterType = new internal.PartProperty(MicroflowParameterBase, this, "parameterType", null, true);
             if (arguments.length < 4) {
@@ -7879,7 +8017,7 @@ var microflows;
             /** @internal */
             this.__name = new internal.PrimitiveProperty(MicroflowParameterObject, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__type = new internal.PrimitiveProperty(MicroflowParameterObject, this, "type", "", internal.PrimitiveTypeEnum.String);
+            this.__type = new internal.PrimitiveProperty(MicroflowParameterObject, this, "type", "Unknown", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__variableType = new internal.PartProperty(MicroflowParameterObject, this, "variableType", null, true);
             /** @internal */
@@ -8165,7 +8303,7 @@ var microflows;
             /** @internal */
             this.__nanoflowCall = new internal.PartProperty(NanoflowCallAction, this, "nanoflowCall", null, true);
             /** @internal */
-            this.__useReturnVariable = new internal.PrimitiveProperty(NanoflowCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useReturnVariable = new internal.PrimitiveProperty(NanoflowCallAction, this, "useReturnVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(NanoflowCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -8679,7 +8817,7 @@ var microflows;
             /** @internal */
             this.__portExpressionModel = new internal.PartProperty(ProxyConfiguration, this, "portExpressionModel", null, false);
             /** @internal */
-            this.__useConfigurationExpression = new internal.PrimitiveProperty(ProxyConfiguration, this, "useConfigurationExpression", "", internal.PrimitiveTypeEnum.String);
+            this.__useConfigurationExpression = new internal.PrimitiveProperty(ProxyConfiguration, this, "useConfigurationExpression", "true", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__useConfigurationExpressionModel = new internal.PartProperty(ProxyConfiguration, this, "useConfigurationExpressionModel", null, false);
             if (arguments.length < 4) {
@@ -8939,13 +9077,13 @@ var microflows;
             /** @internal */
             this.__errorResultHandlingType = new internal.EnumProperty(RestCallAction, this, "errorResultHandlingType", ErrorResultHandlingType.HttpResponse, ErrorResultHandlingType);
             /** @internal */
-            this.__useRequestTimeOut = new internal.PrimitiveProperty(RestCallAction, this, "useRequestTimeOut", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useRequestTimeOut = new internal.PrimitiveProperty(RestCallAction, this, "useRequestTimeOut", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__timeOut = new internal.PrimitiveProperty(RestCallAction, this, "timeOut", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__timeOut = new internal.PrimitiveProperty(RestCallAction, this, "timeOut", 30, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__timeOutModel = new internal.PartProperty(RestCallAction, this, "timeOutModel", null, true);
             /** @internal */
-            this.__timeOutExpression = new internal.PrimitiveProperty(RestCallAction, this, "timeOutExpression", "", internal.PrimitiveTypeEnum.String);
+            this.__timeOutExpression = new internal.PrimitiveProperty(RestCallAction, this, "timeOutExpression", "300", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__requestProxyType = new internal.EnumProperty(RestCallAction, this, "requestProxyType", RequestProxyType.DefaultProxy, RequestProxyType);
             /** @internal */
@@ -9261,7 +9399,7 @@ var microflows;
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(ResultHandling, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__variableDataType = new internal.PrimitiveProperty(ResultHandling, this, "variableDataType", "", internal.PrimitiveTypeEnum.String);
+            this.__variableDataType = new internal.PrimitiveProperty(ResultHandling, this, "variableDataType", "Void", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__variableType = new internal.PartProperty(ResultHandling, this, "variableType", null, true);
             if (arguments.length < 4) {
@@ -10120,7 +10258,7 @@ var microflows;
             /** @internal */
             this.__type = new internal.EnumProperty(ShowMessageAction, this, "type", ShowMessageType.Information, ShowMessageType);
             /** @internal */
-            this.__blocking = new internal.PrimitiveProperty(ShowMessageAction, this, "blocking", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__blocking = new internal.PrimitiveProperty(ShowMessageAction, this, "blocking", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ShowMessageAction() cannot be invoked directly, please use 'model.microflows.createShowMessageAction()'");
             }
@@ -11458,13 +11596,13 @@ var microflows;
             /** @internal */
             this.__operationName = new internal.PrimitiveProperty(WebServiceCallAction, this, "operationName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__useRequestTimeOut = new internal.PrimitiveProperty(WebServiceCallAction, this, "useRequestTimeOut", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useRequestTimeOut = new internal.PrimitiveProperty(WebServiceCallAction, this, "useRequestTimeOut", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__timeOut = new internal.PrimitiveProperty(WebServiceCallAction, this, "timeOut", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__timeOut = new internal.PrimitiveProperty(WebServiceCallAction, this, "timeOut", 30, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__timeOutModel = new internal.PartProperty(WebServiceCallAction, this, "timeOutModel", null, true);
             /** @internal */
-            this.__timeOutExpression = new internal.PrimitiveProperty(WebServiceCallAction, this, "timeOutExpression", "", internal.PrimitiveTypeEnum.String);
+            this.__timeOutExpression = new internal.PrimitiveProperty(WebServiceCallAction, this, "timeOutExpression", "300", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__sendNullValueChoice = new internal.EnumProperty(WebServiceCallAction, this, "sendNullValueChoice", NullValueOption.LeaveOutElement, NullValueOption);
             /** @internal */
@@ -11729,7 +11867,7 @@ var microflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__isChecked = new internal.PrimitiveProperty(WebServiceOperationParameterMapping, this, "isChecked", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__isChecked = new internal.PrimitiveProperty(WebServiceOperationParameterMapping, this, "isChecked", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__parameterName = new internal.PrimitiveProperty(WebServiceOperationParameterMapping, this, "parameterName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -11979,7 +12117,7 @@ var microflows;
             /** @internal */
             this.__workflowContextVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "workflowContextVariable", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__useReturnVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "useReturnVariable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useReturnVariable = new internal.PrimitiveProperty(WorkflowCallAction, this, "useReturnVariable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(WorkflowCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {

@@ -97,6 +97,15 @@ var domainmodels;
     MemberAccessRights.ReadOnly = new MemberAccessRights("ReadOnly", {});
     MemberAccessRights.ReadWrite = new MemberAccessRights("ReadWrite", {});
     domainmodels.MemberAccessRights = MemberAccessRights;
+    class Navigability extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "domainmodels.Navigability";
+        }
+    }
+    Navigability.BothDirections = new Navigability("BothDirections", {});
+    Navigability.ParentToChild = new Navigability("ParentToChild", {});
+    domainmodels.Navigability = Navigability;
     class RangeType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -226,7 +235,9 @@ var domainmodels;
             /** @internal */
             this.__location = new internal.PrimitiveProperty(Annotation, this, "location", { x: 0, y: 0 }, internal.PrimitiveTypeEnum.Point);
             /** @internal */
-            this.__width = new internal.PrimitiveProperty(Annotation, this, "width", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__width = new internal.PrimitiveProperty(Annotation, this, "width", 250, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__exportLevel = new internal.EnumProperty(Annotation, this, "exportLevel", projects_1.projects.ExportLevel.Hidden, projects_1.projects.ExportLevel);
             if (arguments.length < 4) {
                 throw new Error("new Annotation() cannot be invoked directly, please use 'model.domainmodels.createAnnotation()'");
             }
@@ -253,6 +264,15 @@ var domainmodels;
             this.__width.set(newValue);
         }
         /**
+         * In version 9.15.0: introduced
+         */
+        get exportLevel() {
+            return this.__exportLevel.get();
+        }
+        set exportLevel(newValue) {
+            this.__exportLevel.set(newValue);
+        }
+        /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
          * The new Annotation will be automatically stored in the 'annotations' property
          * of the parent DomainModel element passed as argument.
@@ -271,6 +291,9 @@ var domainmodels;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__exportLevel.isAvailable) {
+                this.exportLevel = projects_1.projects.ExportLevel.Hidden;
+            }
             this.width = 250;
         }
     }
@@ -278,7 +301,10 @@ var domainmodels;
     Annotation.versionInfo = new exports.StructureVersionInfo({
         properties: {
             location: {},
-            width: {}
+            width: {},
+            exportLevel: {
+                introduced: "9.15.0"
+            }
         }
     }, internal.StructureType.Element);
     domainmodels.Annotation = Annotation;
@@ -1059,9 +1085,9 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__filterable = new internal.PrimitiveProperty(AttributeCapabilities, this, "filterable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__filterable = new internal.PrimitiveProperty(AttributeCapabilities, this, "filterable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__sortable = new internal.PrimitiveProperty(AttributeCapabilities, this, "sortable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__sortable = new internal.PrimitiveProperty(AttributeCapabilities, this, "sortable", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new AttributeCapabilities() cannot be invoked directly, please use 'model.domainmodels.createAttributeCapabilities()'");
             }
@@ -1410,6 +1436,9 @@ var domainmodels;
                 throw new Error("new AttributeType() cannot be invoked directly, please use 'model.domainmodels.createAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -1437,6 +1466,9 @@ var domainmodels;
             if (arguments.length < 4) {
                 throw new Error("new NumericAttributeTypeBase() cannot be invoked directly, please use 'model.domainmodels.createNumericAttributeTypeBase()'");
             }
+        }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
@@ -1466,6 +1498,9 @@ var domainmodels;
                 throw new Error("new IntegerAttributeTypeBase() cannot be invoked directly, please use 'model.domainmodels.createIntegerAttributeTypeBase()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -1494,6 +1529,9 @@ var domainmodels;
                 throw new Error("new AutoNumberAttributeType() cannot be invoked directly, please use 'model.domainmodels.createAutoNumberAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -1514,6 +1552,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
@@ -1574,6 +1624,9 @@ var domainmodels;
                 throw new Error("new BinaryAttributeType() cannot be invoked directly, please use 'model.domainmodels.createBinaryAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -1594,6 +1647,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, BinaryAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
@@ -1654,6 +1719,9 @@ var domainmodels;
                 throw new Error("new BooleanAttributeType() cannot be invoked directly, please use 'model.domainmodels.createBooleanAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -1674,6 +1742,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
@@ -1814,7 +1894,7 @@ var domainmodels;
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(CalculatedValue, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
-            this.__passEntity = new internal.PrimitiveProperty(CalculatedValue, this, "passEntity", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__passEntity = new internal.PrimitiveProperty(CalculatedValue, this, "passEntity", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new CalculatedValue() cannot be invoked directly, please use 'model.domainmodels.createCalculatedValue()'");
             }
@@ -1932,6 +2012,9 @@ var domainmodels;
             if (arguments.length < 4) {
                 throw new Error("new DecimalAttributeTypeBase() cannot be invoked directly, please use 'model.domainmodels.createDecimalAttributeTypeBase()'");
             }
+        }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
@@ -2081,10 +2164,13 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__localizeDate = new internal.PrimitiveProperty(DateTimeAttributeType, this, "localizeDate", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__localizeDate = new internal.PrimitiveProperty(DateTimeAttributeType, this, "localizeDate", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DateTimeAttributeType() cannot be invoked directly, please use 'model.domainmodels.createDateTimeAttributeType()'");
             }
+        }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
@@ -2112,6 +2198,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, DateTimeAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
@@ -2173,6 +2271,9 @@ var domainmodels;
                 throw new Error("new DecimalAttributeType() cannot be invoked directly, please use 'model.domainmodels.createDecimalAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -2193,6 +2294,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
@@ -2834,7 +2947,7 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__countable = new internal.PrimitiveProperty(EntityCapabilities, this, "countable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__countable = new internal.PrimitiveProperty(EntityCapabilities, this, "countable", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new EntityCapabilities() cannot be invoked directly, please use 'model.domainmodels.createEntityCapabilities()'");
             }
@@ -3136,6 +3249,9 @@ var domainmodels;
                 throw new Error("new EnumerationAttributeType() cannot be invoked directly, please use 'model.domainmodels.createEnumerationAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -3165,6 +3281,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
@@ -3250,7 +3378,7 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__useValue = new internal.PrimitiveProperty(EqualsToRuleInfo, this, "useValue", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useValue = new internal.PrimitiveProperty(EqualsToRuleInfo, this, "useValue", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__equalsToValue = new internal.PrimitiveProperty(EqualsToRuleInfo, this, "equalsToValue", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -3321,9 +3449,9 @@ var domainmodels;
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(EventHandler, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
-            this.__raiseErrorOnFalse = new internal.PrimitiveProperty(EventHandler, this, "raiseErrorOnFalse", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__raiseErrorOnFalse = new internal.PrimitiveProperty(EventHandler, this, "raiseErrorOnFalse", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__passEventObject = new internal.PrimitiveProperty(EventHandler, this, "passEventObject", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__passEventObject = new internal.PrimitiveProperty(EventHandler, this, "passEventObject", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new EventHandler() cannot be invoked directly, please use 'model.domainmodels.createEventHandler()'");
             }
@@ -3570,6 +3698,9 @@ var domainmodels;
                 throw new Error("new HashedStringAttributeType() cannot be invoked directly, please use 'model.domainmodels.createHashedStringAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -3590,6 +3721,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
@@ -3702,7 +3845,7 @@ var domainmodels;
             /** @internal */
             this.__attribute = new internal.ByIdReferenceProperty(IndexedAttribute, this, "attribute", null);
             /** @internal */
-            this.__ascending = new internal.PrimitiveProperty(IndexedAttribute, this, "ascending", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__ascending = new internal.PrimitiveProperty(IndexedAttribute, this, "ascending", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new IndexedAttribute() cannot be invoked directly, please use 'model.domainmodels.createIndexedAttribute()'");
             }
@@ -3956,6 +4099,9 @@ var domainmodels;
                 throw new Error("new IntegerAttributeType() cannot be invoked directly, please use 'model.domainmodels.createIntegerAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -3976,6 +4122,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, IntegerAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
@@ -4036,6 +4194,9 @@ var domainmodels;
                 throw new Error("new LongAttributeType() cannot be invoked directly, please use 'model.domainmodels.createLongAttributeType()'");
             }
         }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
+        }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
         }
@@ -4056,6 +4217,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
@@ -4280,7 +4453,7 @@ var domainmodels;
             /** @internal */
             this.__hasChangedBy = new internal.PrimitiveProperty(NoGeneralization, this, "hasChangedBy", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__persistable = new internal.PrimitiveProperty(NoGeneralization, this, "persistable", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__persistable = new internal.PrimitiveProperty(NoGeneralization, this, "persistable", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NoGeneralization() cannot be invoked directly, please use 'model.domainmodels.createNoGeneralization()'");
             }
@@ -4422,9 +4595,9 @@ var domainmodels;
             /** @internal */
             this.__typeOfRange = new internal.EnumProperty(RangeRuleInfo, this, "typeOfRange", RangeType.Between, RangeType);
             /** @internal */
-            this.__useMinValue = new internal.PrimitiveProperty(RangeRuleInfo, this, "useMinValue", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useMinValue = new internal.PrimitiveProperty(RangeRuleInfo, this, "useMinValue", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__useMaxValue = new internal.PrimitiveProperty(RangeRuleInfo, this, "useMaxValue", false, internal.PrimitiveTypeEnum.Boolean);
+            this.__useMaxValue = new internal.PrimitiveProperty(RangeRuleInfo, this, "useMaxValue", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__minValue = new internal.PrimitiveProperty(RangeRuleInfo, this, "minValue", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -4946,10 +5119,13 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__length = new internal.PrimitiveProperty(StringAttributeType, this, "length", 0, internal.PrimitiveTypeEnum.Integer);
+            this.__length = new internal.PrimitiveProperty(StringAttributeType, this, "length", 200, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new StringAttributeType() cannot be invoked directly, please use 'model.domainmodels.createStringAttributeType()'");
             }
+        }
+        get containerAsPublishedMessageAttribute() {
+            return super.getContainerAs(businessevents_1.businessevents.PublishedMessageAttribute);
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
@@ -4977,6 +5153,18 @@ var domainmodels;
         static createIn(container) {
             internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { end: "8.8.0" });
             return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent businessevents.PublishedMessageAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.14.0 and higher
+         */
+        static createInPublishedMessageAttributeUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "9.14.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
@@ -5150,6 +5338,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.ValidationRule = ValidationRule;
 })(domainmodels = exports.domainmodels || (exports.domainmodels = {}));
+const businessevents_1 = require("./businessevents");
 const customwidgets_1 = require("./customwidgets");
 const documenttemplates_1 = require("./documenttemplates");
 const expressions_1 = require("./expressions");
