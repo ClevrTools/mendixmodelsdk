@@ -17,6 +17,7 @@ import { javaactions } from "./javaactions";
 import { javascriptactions } from "./javascriptactions";
 import { jsonstructures } from "./jsonstructures";
 import { kafka } from "./kafka";
+import { mlmappings } from "./mlmappings";
 import { mappings } from "./mappings";
 import { menus } from "./menus";
 import { messagedefinitions } from "./messagedefinitions";
@@ -63,10 +64,12 @@ export interface IBaseModel extends IAbstractModel {
     allImageCollections(): images.IImageCollection[];
     allImportMappings(): importmappings.IImportMapping[];
     allImportedWebServices(): webservices.IImportedWebService[];
+    allInteractiveRests(): rest.IInteractiveRest[];
     allJavaActions(): javaactions.IJavaAction[];
     allJavaScriptActions(): javascriptactions.IJavaScriptAction[];
     allJsonStructures(): jsonstructures.IJsonStructure[];
     allLayouts(): pages.ILayout[];
+    allMLMappingDocuments(): mlmappings.IMLMappingDocument[];
     allMappingDocuments(): mappings.IMappingDocument[];
     allMenuDocuments(): menus.IMenuDocument[];
     allMessageDefinitionCollections(): messagedefinitions.IMessageDefinitionCollection[];
@@ -127,6 +130,7 @@ export interface IBaseModel extends IAbstractModel {
     findJavaScriptActionParameterByQualifiedName(qname: string): javascriptactions.IJavaScriptActionParameter | null;
     findJsonStructureByQualifiedName(qname: string): jsonstructures.IJsonStructure | null;
     findConsumedKafkaServiceByQualifiedName(qname: string): kafka.IConsumedKafkaService | null;
+    findMLMappingDocumentByQualifiedName(qname: string): mlmappings.IMLMappingDocument | null;
     findMenuDocumentByQualifiedName(qname: string): menus.IMenuDocument | null;
     findMessageDefinitionByQualifiedName(qname: string): messagedefinitions.IMessageDefinition | null;
     findMicroflowByQualifiedName(qname: string): microflows.IMicroflow | null;
@@ -149,6 +153,7 @@ export interface IBaseModel extends IAbstractModel {
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findParameterByQualifiedName(qname: string): workflows.IParameter | null;
     findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
@@ -177,10 +182,12 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allImageCollections(): images.IImageCollection[];
     allImportMappings(): importmappings.IImportMapping[];
     allImportedWebServices(): webservices.IImportedWebService[];
+    allInteractiveRests(): rest.IInteractiveRest[];
     allJavaActions(): javaactions.IJavaAction[];
     allJavaScriptActions(): javascriptactions.IJavaScriptAction[];
     allJsonStructures(): jsonstructures.IJsonStructure[];
     allLayouts(): pages.ILayout[];
+    allMLMappingDocuments(): mlmappings.IMLMappingDocument[];
     allMappingDocuments(): mappings.IMappingDocument[];
     allMenuDocuments(): menus.IMenuDocument[];
     allMessageDefinitionCollections(): messagedefinitions.IMessageDefinitionCollection[];
@@ -241,6 +248,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findJavaScriptActionParameterByQualifiedName(qname: string): javascriptactions.IJavaScriptActionParameter | null;
     findJsonStructureByQualifiedName(qname: string): jsonstructures.IJsonStructure | null;
     findConsumedKafkaServiceByQualifiedName(qname: string): kafka.IConsumedKafkaService | null;
+    findMLMappingDocumentByQualifiedName(qname: string): mlmappings.IMLMappingDocument | null;
     findMenuDocumentByQualifiedName(qname: string): menus.IMenuDocument | null;
     findMessageDefinitionByQualifiedName(qname: string): messagedefinitions.IMessageDefinition | null;
     findMicroflowByQualifiedName(qname: string): microflows.IMicroflow | null;
@@ -263,6 +271,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
+    findParameterByQualifiedName(qname: string): workflows.IParameter | null;
     findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
@@ -474,6 +483,10 @@ export declare type ConcreteModelElements = {
     Kafka$KafkaRemoteEntitySource: kafka.KafkaRemoteEntitySource;
     Kafka$PublishedKafkaResource: kafka.PublishedKafkaResource;
     Kafka$PublishedKafkaResourceAttribute: kafka.PublishedKafkaResourceAttribute;
+    MLMappings$MLModelEntityMappings: mlmappings.MLModelEntityMappings;
+    MLMappings$MLModelMappings: mlmappings.MLModelMappings;
+    MLMappings$TensorDimension: mlmappings.TensorDimension;
+    MLMappings$TensorMappingElement: mlmappings.TensorMappingElement;
     Mappings$MappingMicroflowCall: mappings.MappingMicroflowCall;
     Mappings$MappingMicroflowParameter: mappings.MappingMicroflowParameter;
     Menus$MenuItem: menus.MenuItem;
@@ -764,6 +777,7 @@ export declare type ConcreteModelElements = {
     Pages$RetrievalQuery: pages.RetrievalQuery;
     Pages$RetrievalQueryParameter: pages.RetrievalQueryParameter;
     Pages$RetrievalSchema: pages.RetrievalSchema;
+    Pages$RuntimeOperation: pages.RuntimeOperation;
     Pages$SaveButton: pages.SaveButton;
     Pages$SaveChangesClientAction: pages.SaveChangesClientAction;
     Pages$ScrollContainer: pages.ScrollContainer;
@@ -835,6 +849,7 @@ export declare type ConcreteModelElements = {
     Rest$PublishedRestResource: rest.PublishedRestResource;
     Rest$PublishedRestServiceOperation: rest.PublishedRestServiceOperation;
     Rest$PublishedRestServiceResource: rest.PublishedRestServiceResource;
+    Rest$QueryOptions: rest.QueryOptions;
     Rest$ReadSource: rest.ReadSource;
     Rest$RestOperationParameter: rest.RestOperationParameter;
     Rest$ServiceFeed: rest.ServiceFeed;
@@ -911,6 +926,7 @@ export declare type ConcreteModelElements = {
     Workflows$UserTask: workflows.UserTask;
     Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
     Workflows$VoidConditionOutcome: workflows.VoidConditionOutcome;
+    Workflows$WorkflowCallParameterMapping: workflows.WorkflowCallParameterMapping;
     Workflows$WorkflowType: workflows.WorkflowType;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;

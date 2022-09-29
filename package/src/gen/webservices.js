@@ -307,6 +307,10 @@ var webservices;
             this.__summary = new internal.PrimitiveProperty(DataAttribute, this, "summary", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__description = new internal.PrimitiveProperty(DataAttribute, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__filterable = new internal.PrimitiveProperty(DataAttribute, this, "filterable", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sortable = new internal.PrimitiveProperty(DataAttribute, this, "sortable", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DataAttribute() cannot be invoked directly, please use 'model.webservices.createDataAttribute()'");
             }
@@ -351,6 +355,24 @@ var webservices;
             this.__description.set(newValue);
         }
         /**
+         * In version 9.18.0: introduced
+         */
+        get filterable() {
+            return this.__filterable.get();
+        }
+        set filterable(newValue) {
+            this.__filterable.set(newValue);
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get sortable() {
+            return this.__sortable.get();
+        }
+        set sortable(newValue) {
+            this.__sortable.set(newValue);
+        }
+        /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.
          * The new DataAttribute will be automatically stored in the 'childMembers' property
          * of the parent DataEntityBase element passed as argument.
@@ -369,6 +391,12 @@ var webservices;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__filterable.isAvailable) {
+                this.filterable = true;
+            }
+            if (this.__sortable.isAvailable) {
+                this.sortable = true;
+            }
         }
     }
     DataAttribute.structureTypeName = "WebServices$DataAttribute";
@@ -383,6 +411,12 @@ var webservices;
             },
             description: {
                 introduced: "8.5.0"
+            },
+            filterable: {
+                introduced: "9.18.0"
+            },
+            sortable: {
+                introduced: "9.18.0"
             }
         }
     }, internal.StructureType.Element);
@@ -490,7 +524,7 @@ var webservices;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {

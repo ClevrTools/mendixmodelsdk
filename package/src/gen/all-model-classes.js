@@ -36,6 +36,7 @@ __exportStar(require("./javaactions"), exports);
 __exportStar(require("./javascriptactions"), exports);
 __exportStar(require("./jsonstructures"), exports);
 __exportStar(require("./kafka"), exports);
+__exportStar(require("./mlmappings"), exports);
 __exportStar(require("./mappings"), exports);
 __exportStar(require("./menus"), exports);
 __exportStar(require("./messagedefinitions"), exports);

@@ -761,6 +761,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -779,6 +780,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -797,6 +799,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -815,6 +818,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -852,6 +856,15 @@ export declare namespace domainmodels {
         static createInEntityKeyPartUnderType(container: EntityKeyPart): AutoNumberAttributeType;
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): AutoNumberAttributeType;
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -881,6 +894,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -918,6 +932,15 @@ export declare namespace domainmodels {
         static createInEntityKeyPartUnderType(container: EntityKeyPart): BinaryAttributeType;
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): BinaryAttributeType;
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -947,6 +970,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -982,6 +1006,15 @@ export declare namespace domainmodels {
          *  8.9.0 and higher
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): BooleanAttributeType;
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): BooleanAttributeType;
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
          * The new BooleanAttributeType will be automatically stored in the 'type' property
@@ -1139,6 +1172,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -1247,6 +1281,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         get localizeDate(): boolean;
         set localizeDate(newValue: boolean);
@@ -1286,6 +1321,15 @@ export declare namespace domainmodels {
         static createInEntityKeyPartUnderType(container: EntityKeyPart): DateTimeAttributeType;
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): DateTimeAttributeType;
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -1315,6 +1359,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1352,6 +1397,15 @@ export declare namespace domainmodels {
         static createInEntityKeyPartUnderType(container: EntityKeyPart): DecimalAttributeType;
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): DecimalAttributeType;
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
          * The new DecimalAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -1372,6 +1426,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRef extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         asLoaded(): EntityRef;
         load(callback: (element: EntityRef) => void, forceRefresh?: boolean): void;
@@ -1616,6 +1671,11 @@ export declare namespace domainmodels {
         set image(newValue: images.IImage | null);
         get imageQualifiedName(): string | null;
         /**
+         * In version 9.17.0: introduced
+         */
+        get imageData(): string | null;
+        set imageData(newValue: string | null);
+        /**
          * In version 8.10.0: deleted
          * In version 8.2.0: added public
          * In version 7.17.0: introduced
@@ -1790,6 +1850,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRefStep extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsIndirectEntityRef: IIndirectEntityRef;
         asLoaded(): EntityRefStep;
         load(callback: (element: EntityRefStep) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EntityRefStep>;
@@ -1864,6 +1925,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         get enumeration(): enumerations.IEnumeration;
         set enumeration(newValue: enumerations.IEnumeration);
@@ -1902,6 +1964,15 @@ export declare namespace domainmodels {
          *  8.9.0 and higher
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): EnumerationAttributeType;
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): EnumerationAttributeType;
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
          * The new EnumerationAttributeType will be automatically stored in the 'type' property
@@ -2109,6 +2180,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2144,6 +2216,15 @@ export declare namespace domainmodels {
          *  8.9.0 and higher
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): HashedStringAttributeType;
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): HashedStringAttributeType;
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
          * The new HashedStringAttributeType will be automatically stored in the 'type' property
@@ -2217,6 +2298,7 @@ export declare namespace domainmodels {
      */
     interface IIndirectEntityRef extends IEntityRef {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         /**
          * In version 9.6.0: added public
@@ -2350,6 +2432,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2387,6 +2470,15 @@ export declare namespace domainmodels {
         static createInEntityKeyPartUnderType(container: EntityKeyPart): IntegerAttributeType;
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): IntegerAttributeType;
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -2416,6 +2508,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2451,6 +2544,15 @@ export declare namespace domainmodels {
          *  8.9.0 and higher
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): LongAttributeType;
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): LongAttributeType;
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
          * The new LongAttributeType will be automatically stored in the 'type' property
@@ -2921,6 +3023,7 @@ export declare namespace domainmodels {
         get containerAsPublishedMessageAttribute(): businessevents.PublishedMessageAttribute;
         get containerAsAttribute(): Attribute;
         get containerAsEntityKeyPart(): EntityKeyPart;
+        get containerAsTensorMappingElement(): mlmappings.TensorMappingElement;
         get containerAsODataKeyPart(): rest.ODataKeyPart;
         get length(): number;
         set length(newValue: number);
@@ -2958,6 +3061,15 @@ export declare namespace domainmodels {
          *  8.9.0 and higher
          */
         static createInEntityKeyPartUnderType(container: EntityKeyPart): StringAttributeType;
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container: mlmappings.TensorMappingElement): StringAttributeType;
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
          * The new StringAttributeType will be automatically stored in the 'type' property
@@ -3027,6 +3139,7 @@ import { documenttemplates } from "./documenttemplates";
 import { enumerations } from "./enumerations";
 import { expressions } from "./expressions";
 import { images } from "./images";
+import { mlmappings } from "./mlmappings";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
 import { regularexpressions } from "./regularexpressions";

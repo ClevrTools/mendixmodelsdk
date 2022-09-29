@@ -619,7 +619,7 @@ var rest;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -776,6 +776,73 @@ var rest;
         introduced: "7.18.0"
     }, internal.StructureType.Element);
     rest.CorsConfiguration = CorsConfiguration;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.17.0: introduced
+     */
+    class InteractiveRest extends projects_1.projects.Document {
+        constructor(model, structureTypeName, id, isPartial, container) {
+            super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__url = new internal.PrimitiveProperty(InteractiveRest, this, "url", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__httpConfiguration = new internal.PartProperty(InteractiveRest, this, "httpConfiguration", null, true);
+            this._containmentName = "documents";
+        }
+        get containerAsFolderBase() {
+            return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        get url() {
+            return this.__url.get();
+        }
+        set url(newValue) {
+            this.__url.set(newValue);
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get httpConfiguration() {
+            return this.__httpConfiguration.get();
+        }
+        set httpConfiguration(newValue) {
+            this.__httpConfiguration.set(newValue);
+        }
+        /**
+         * Creates a new InteractiveRest unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container) {
+            return internal.instancehelpers.createUnit(container, InteractiveRest);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__httpConfiguration.isAvailable) {
+                this.httpConfiguration = microflows_1.microflows.HttpConfiguration.create(this.model);
+            }
+        }
+    }
+    InteractiveRest.structureTypeName = "Rest$InteractiveRest";
+    InteractiveRest.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.17.0",
+        properties: {
+            httpConfiguration: {
+                introduced: "9.18.0",
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.ModelUnit);
+    rest.InteractiveRest = InteractiveRest;
     /**
      * In version 8.6.0: introduced
      */
@@ -1609,6 +1676,8 @@ var rest;
             this.__serviceFeed = new internal.PartProperty(PublishedODataContract, this, "serviceFeed", null, true);
             /** @internal */
             this.__metadata = new internal.PrimitiveProperty(PublishedODataContract, this, "metadata", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__openApi = new internal.PrimitiveProperty(PublishedODataContract, this, "openApi", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PublishedODataContract() cannot be invoked directly, please use 'model.rest.createPublishedODataContract()'");
             }
@@ -1624,6 +1693,15 @@ var rest;
         }
         set metadata(newValue) {
             this.__metadata.set(newValue);
+        }
+        /**
+         * In version 9.17.0: introduced
+         */
+        get openApi() {
+            return this.__openApi.get();
+        }
+        set openApi(newValue) {
+            this.__openApi.set(newValue);
         }
         /**
          * Creates and returns a new PublishedODataContract instance in the SDK and on the server.
@@ -1647,6 +1725,9 @@ var rest;
                 required: {
                     currentValue: true
                 }
+            },
+            openApi: {
+                introduced: "9.17.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1903,6 +1984,8 @@ var rest;
             /** @internal */
             this.__readMode = new internal.PartProperty(PublishedRestResource, this, "readMode", null, true);
             /** @internal */
+            this.__queryOptions = new internal.PartProperty(PublishedRestResource, this, "queryOptions", null, true);
+            /** @internal */
             this.__queryMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "queryMicroflow", null, "Microflows$Microflow");
             /** @internal */
             this.__countMicroflow = new internal.ByNameReferenceProperty(PublishedRestResource, this, "countMicroflow", null, "Microflows$Microflow");
@@ -2038,6 +2121,15 @@ var rest;
             this.__readMode.set(newValue);
         }
         /**
+         * In version 9.17.0: introduced
+         */
+        get queryOptions() {
+            return this.__queryOptions.get();
+        }
+        set queryOptions(newValue) {
+            this.__queryOptions.set(newValue);
+        }
+        /**
          * In version 9.14.0: deleted
          * In version 9.9.0: introduced
          */
@@ -2095,6 +2187,9 @@ var rest;
                 this.insertable = false;
             }
             this.pageSize = 10000;
+            if (this.__queryOptions.isAvailable) {
+                this.queryOptions = QueryOptions.create(this.model);
+            }
             if (this.__readMode.isAvailable) {
                 this.readMode = ReadSource.create(this.model);
             }
@@ -2158,6 +2253,12 @@ var rest;
             },
             readMode: {
                 introduced: "9.14.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            queryOptions: {
+                introduced: "9.17.0",
                 required: {
                     currentValue: true
                 }
@@ -2609,6 +2710,58 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.PublishedRestServiceResource = PublishedRestServiceResource;
+    /**
+     * In version 9.17.0: introduced
+     */
+    class QueryOptions extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__countable = new internal.PrimitiveProperty(QueryOptions, this, "countable", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new QueryOptions() cannot be invoked directly, please use 'model.rest.createQueryOptions()'");
+            }
+        }
+        get containerAsPublishedRestResource() {
+            return super.getContainerAs(PublishedRestResource);
+        }
+        get countable() {
+            return this.__countable.get();
+        }
+        set countable(newValue) {
+            this.__countable.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueryOptions instance in the SDK and on the server.
+         * The new QueryOptions will be automatically stored in the 'queryOptions' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, QueryOptions.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, QueryOptions, "queryOptions", false);
+        }
+        /**
+         * Creates and returns a new QueryOptions instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueryOptions);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.countable = true;
+        }
+    }
+    QueryOptions.structureTypeName = "Rest$QueryOptions";
+    QueryOptions.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.17.0"
+    }, internal.StructureType.Element);
+    rest.QueryOptions = QueryOptions;
     /**
      * In version 9.14.0: introduced
      */

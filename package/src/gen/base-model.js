@@ -60,6 +60,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JsonStructures$JsonStructure",
             "Kafka$ConsumedKafkaService",
             "Kafka$PublishedKafkaService",
+            "MLMappings$MLMappingDocument",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -75,6 +76,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Queues$Queue",
             "RegularExpressions$RegularExpression",
             "Rest$ConsumedODataService",
+            "Rest$InteractiveRest",
             "Rest$PublishedODataService",
             "Rest$PublishedRestService",
             "ScheduledEvents$ScheduledEvent",
@@ -123,6 +125,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allImportedWebServices() {
         return super._allOfTypes(["WebServices$ImportedWebService"]);
     }
+    allInteractiveRests() {
+        return super._allOfTypes(["Rest$InteractiveRest"]);
+    }
     allJavaActions() {
         return super._allOfTypes(["JavaActions$JavaAction"]);
     }
@@ -134,6 +139,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allLayouts() {
         return super._allOfTypes(["Pages$Layout"]);
+    }
+    allMLMappingDocuments() {
+        return super._allOfTypes(["MLMappings$MLMappingDocument"]);
     }
     allMappingDocuments() {
         return super._allOfTypes(["ExportMappings$ExportMapping", "ImportMappings$ImportMapping"]);
@@ -171,6 +179,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "JsonStructures$JsonStructure",
             "Kafka$ConsumedKafkaService",
             "Kafka$PublishedKafkaService",
+            "MLMappings$MLMappingDocument",
             "Menus$MenuDocument",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
@@ -187,6 +196,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Queues$Queue",
             "RegularExpressions$RegularExpression",
             "Rest$ConsumedODataService",
+            "Rest$InteractiveRest",
             "Rest$PublishedODataService",
             "Rest$PublishedRestService",
             "ScheduledEvents$ScheduledEvent",
@@ -361,6 +371,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findConsumedKafkaServiceByQualifiedName(qname) {
         return this._resolveName("Kafka$ConsumedKafkaService", qname);
     }
+    findMLMappingDocumentByQualifiedName(qname) {
+        return this._resolveName("MLMappings$MLMappingDocument", qname);
+    }
     findMenuDocumentByQualifiedName(qname) {
         return this._resolveName("Menus$MenuDocument", qname);
     }
@@ -426,6 +439,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findImportedWebServiceByQualifiedName(qname) {
         return this._resolveName("WebServices$ImportedWebService", qname);
+    }
+    findParameterByQualifiedName(qname) {
+        return this._resolveName("Workflows$Parameter", qname);
     }
     findUserTaskOutcomeByQualifiedName(qname) {
         return this._resolveName("Workflows$UserTaskOutcome", qname);

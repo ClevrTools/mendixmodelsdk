@@ -435,7 +435,7 @@ var domainmodels;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -1007,7 +1007,7 @@ var domainmodels;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -1445,6 +1445,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -1475,6 +1478,9 @@ var domainmodels;
         }
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
         }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
@@ -1507,6 +1513,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -1537,6 +1546,9 @@ var domainmodels;
         }
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
         }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
@@ -1587,6 +1599,18 @@ var domainmodels;
         }
         /**
          * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
+         * The new AutoNumberAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, AutoNumberAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, AutoNumberAttributeType, "attributeType", false);
+        }
+        /**
+         * Creates and returns a new AutoNumberAttributeType instance in the SDK and on the server.
          * The new AutoNumberAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -1632,6 +1656,9 @@ var domainmodels;
         }
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
         }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
@@ -1682,6 +1709,18 @@ var domainmodels;
         }
         /**
          * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
+         * The new BinaryAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, BinaryAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, BinaryAttributeType, "attributeType", false);
+        }
+        /**
+         * Creates and returns a new BinaryAttributeType instance in the SDK and on the server.
          * The new BinaryAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -1727,6 +1766,9 @@ var domainmodels;
         }
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
         }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
@@ -1774,6 +1816,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, BooleanAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
+         * The new BooleanAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, BooleanAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, BooleanAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new BooleanAttributeType instance in the SDK and on the server.
@@ -2022,6 +2076,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -2178,6 +2235,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -2233,6 +2293,18 @@ var domainmodels;
         }
         /**
          * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
+         * The new DateTimeAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, DateTimeAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, DateTimeAttributeType, "attributeType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeAttributeType instance in the SDK and on the server.
          * The new DateTimeAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -2280,6 +2352,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -2326,6 +2401,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, DecimalAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
+         * The new DecimalAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, DecimalAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, DecimalAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new DecimalAttributeType instance in the SDK and on the server.
@@ -2677,6 +2764,8 @@ var domainmodels;
             /** @internal */
             this.__image = new internal.ByNameReferenceProperty(Entity, this, "image", null, "Images$Image");
             /** @internal */
+            this.__imageData = new internal.PrimitiveProperty(Entity, this, "imageData", null, internal.PrimitiveTypeEnum.Blob);
+            /** @internal */
             this.__isRemote = new internal.PrimitiveProperty(Entity, this, "isRemote", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__remoteSource = new internal.PrimitiveProperty(Entity, this, "remoteSource", "", internal.PrimitiveTypeEnum.String);
@@ -2755,6 +2844,15 @@ var domainmodels;
         }
         get imageQualifiedName() {
             return this.__image.qualifiedName();
+        }
+        /**
+         * In version 9.17.0: introduced
+         */
+        get imageData() {
+            return this.__imageData.get();
+        }
+        set imageData(newValue) {
+            this.__imageData.set(newValue);
         }
         /**
          * In version 8.10.0: deleted
@@ -2840,7 +2938,7 @@ var domainmodels;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -2890,6 +2988,9 @@ var domainmodels;
                 public: {
                     currentValue: true
                 }
+            },
+            imageData: {
+                introduced: "9.17.0"
             },
             isRemote: {
                 introduced: "7.17.0",
@@ -3258,6 +3359,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -3313,6 +3417,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, EnumerationAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
+         * The new EnumerationAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, EnumerationAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, EnumerationAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new EnumerationAttributeType instance in the SDK and on the server.
@@ -3707,6 +3823,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -3753,6 +3872,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, HashedStringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
+         * The new HashedStringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, HashedStringAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, HashedStringAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new HashedStringAttributeType instance in the SDK and on the server.
@@ -4108,6 +4239,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -4157,6 +4291,18 @@ var domainmodels;
         }
         /**
          * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
+         * The new IntegerAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, IntegerAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, IntegerAttributeType, "attributeType", false);
+        }
+        /**
+         * Creates and returns a new IntegerAttributeType instance in the SDK and on the server.
          * The new IntegerAttributeType will be automatically stored in the 'type' property
          * of the parent rest.ODataKeyPart element passed as argument.
          *
@@ -4202,6 +4348,9 @@ var domainmodels;
         }
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
+        }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
         }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
@@ -4249,6 +4398,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, LongAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new LongAttributeType instance in the SDK and on the server.
+         * The new LongAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, LongAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, LongAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new LongAttributeType instance in the SDK and on the server.
@@ -4935,7 +5096,7 @@ var domainmodels;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -5133,6 +5294,9 @@ var domainmodels;
         get containerAsEntityKeyPart() {
             return super.getContainerAs(EntityKeyPart);
         }
+        get containerAsTensorMappingElement() {
+            return super.getContainerAs(mlmappings_1.mlmappings.TensorMappingElement);
+        }
         get containerAsODataKeyPart() {
             return super.getContainerAs(rest_1.rest.ODataKeyPart);
         }
@@ -5185,6 +5349,18 @@ var domainmodels;
         static createInEntityKeyPartUnderType(container) {
             internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "8.9.0" });
             return internal.instancehelpers.createElement(container, StringAttributeType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringAttributeType instance in the SDK and on the server.
+         * The new StringAttributeType will be automatically stored in the 'attributeType' property
+         * of the parent mlmappings.TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInTensorMappingElementUnderAttributeType(container) {
+            internal.createInVersionCheck(container.model, StringAttributeType.structureTypeName, { start: "9.17.0" });
+            return internal.instancehelpers.createElement(container, StringAttributeType, "attributeType", false);
         }
         /**
          * Creates and returns a new StringAttributeType instance in the SDK and on the server.
@@ -5342,6 +5518,7 @@ const businessevents_1 = require("./businessevents");
 const customwidgets_1 = require("./customwidgets");
 const documenttemplates_1 = require("./documenttemplates");
 const expressions_1 = require("./expressions");
+const mlmappings_1 = require("./mlmappings");
 const microflows_1 = require("./microflows");
 const pages_1 = require("./pages");
 const rest_1 = require("./rest");

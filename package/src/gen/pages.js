@@ -23497,7 +23497,7 @@ var pages;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -24963,7 +24963,7 @@ var pages;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -34945,7 +34945,7 @@ var pages;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -35477,7 +35477,7 @@ var pages;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -40319,6 +40319,9 @@ var pages;
         get containerAsRetrievalQuery() {
             return super.getContainerAs(RetrievalQuery);
         }
+        get containerAsRuntimeOperation() {
+            return super.getContainerAs(RuntimeOperation);
+        }
         get name() {
             return this.__name.get();
         }
@@ -40337,10 +40340,34 @@ var pages;
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.6.0 and higher
+         *  8.6.0 to 9.16.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "8.6.0", end: "9.16.0" });
+            return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
+        }
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInRetrievalQueryUnderParameters(container) {
             internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "8.6.0" });
+            return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
+        }
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RuntimeOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInRuntimeOperationUnderParameters(container) {
+            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "9.17.0" });
             return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
         }
         /**
@@ -40446,6 +40473,71 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.RetrievalSchema = RetrievalSchema;
+    /**
+     * In version 9.17.0: introduced
+     */
+    class RuntimeOperation extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__operationId = new internal.PrimitiveProperty(RuntimeOperation, this, "operationId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameters = new internal.PartListProperty(RuntimeOperation, this, "parameters", []);
+            /** @internal */
+            this.__operationType = new internal.PrimitiveProperty(RuntimeOperation, this, "operationType", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__allowedUserRoles = new internal.ByNameReferenceListProperty(RuntimeOperation, this, "allowedUserRoles", [], "Security$UserRole");
+            if (arguments.length < 4) {
+                throw new Error("new RuntimeOperation() cannot be invoked directly, please use 'model.pages.createRuntimeOperation()'");
+            }
+        }
+        get operationId() {
+            return this.__operationId.get();
+        }
+        set operationId(newValue) {
+            this.__operationId.set(newValue);
+        }
+        get parameters() {
+            return this.__parameters.get();
+        }
+        get operationType() {
+            return this.__operationType.get();
+        }
+        set operationType(newValue) {
+            this.__operationType.set(newValue);
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get allowedUserRoles() {
+            return this.__allowedUserRoles.get();
+        }
+        get allowedUserRolesQualifiedNames() {
+            return this.__allowedUserRoles.qualifiedNames();
+        }
+        /**
+         * Creates and returns a new RuntimeOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RuntimeOperation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RuntimeOperation.structureTypeName = "Pages$RuntimeOperation";
+    RuntimeOperation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.17.0",
+        properties: {
+            allowedUserRoles: {
+                introduced: "9.18.0"
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.RuntimeOperation = RuntimeOperation;
     /**
      * See: {@link https://docs.mendix.com/refguide6/save-button relevant section in reference guide}
      *
@@ -44724,7 +44816,7 @@ var pages;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {

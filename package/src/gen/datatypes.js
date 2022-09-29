@@ -266,10 +266,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, BinaryType, "parameterType", false);
         }
         /**
@@ -567,10 +567,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, BooleanType, "parameterType", false);
         }
         /**
@@ -868,10 +868,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, DateTimeType, "parameterType", false);
         }
         /**
@@ -1169,10 +1169,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, DecimalType, "parameterType", false);
         }
         /**
@@ -1470,10 +1470,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, EmptyType, "parameterType", false);
         }
         /**
@@ -1880,10 +1880,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, EnumerationType, "parameterType", false);
         }
         /**
@@ -2191,10 +2191,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, FloatType, "parameterType", false);
         }
         /**
@@ -2492,10 +2492,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, IntegerType, "parameterType", false);
         }
         /**
@@ -2793,10 +2793,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, ListType, "parameterType", false);
         }
         /**
@@ -3094,10 +3094,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, ObjectType, "parameterType", false);
         }
         /**
@@ -3395,10 +3395,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, StringType, "parameterType", false);
         }
         /**
@@ -3696,10 +3696,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, UnknownType, "parameterType", false);
         }
         /**
@@ -3997,10 +3997,10 @@ var datatypes;
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container) {
-            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, VoidType, "parameterType", false);
         }
         /**

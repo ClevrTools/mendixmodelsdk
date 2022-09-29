@@ -231,7 +231,7 @@ var security;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -663,7 +663,7 @@ var security;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();

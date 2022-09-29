@@ -368,6 +368,49 @@ export declare namespace rest {
         static create(model: IModel): CorsConfiguration;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.17.0: introduced
+     */
+    interface IInteractiveRest extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        asLoaded(): InteractiveRest;
+        load(callback: (element: InteractiveRest) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<InteractiveRest>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.17.0: introduced
+     */
+    class InteractiveRest extends projects.Document implements IInteractiveRest {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        get url(): string;
+        set url(newValue: string);
+        /**
+         * In version 9.18.0: introduced
+         */
+        get httpConfiguration(): microflows.HttpConfiguration;
+        set httpConfiguration(newValue: microflows.HttpConfiguration);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+        /**
+         * Creates a new InteractiveRest unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container: projects.IFolderBase): InteractiveRest;
+    }
+    /**
      * In version 8.6.0: introduced
      */
     class MetadataReference extends internal.Element<IModel> {
@@ -800,6 +843,11 @@ export declare namespace rest {
         set serviceFeed(newValue: ServiceFeed);
         get metadata(): string;
         set metadata(newValue: string);
+        /**
+         * In version 9.17.0: introduced
+         */
+        get openApi(): string;
+        set openApi(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedODataContract instance in the SDK and on the server.
@@ -962,6 +1010,11 @@ export declare namespace rest {
          */
         get readMode(): ReadMode;
         set readMode(newValue: ReadMode);
+        /**
+         * In version 9.17.0: introduced
+         */
+        get queryOptions(): QueryOptions;
+        set queryOptions(newValue: QueryOptions);
         /**
          * In version 9.14.0: deleted
          * In version 9.9.0: introduced
@@ -1163,6 +1216,32 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): PublishedRestServiceResource;
+    }
+    /**
+     * In version 9.17.0: introduced
+     */
+    class QueryOptions extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedRestResource(): PublishedRestResource;
+        get countable(): boolean;
+        set countable(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueryOptions instance in the SDK and on the server.
+         * The new QueryOptions will be automatically stored in the 'queryOptions' property
+         * of the parent PublishedRestResource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createIn(container: PublishedRestResource): QueryOptions;
+        /**
+         * Creates and returns a new QueryOptions instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueryOptions;
     }
     /**
      * In version 9.14.0: introduced

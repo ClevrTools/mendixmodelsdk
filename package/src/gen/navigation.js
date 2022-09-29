@@ -344,6 +344,8 @@ var navigation;
             this.__otaEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "otaEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__loggingEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "loggingEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__encryptionDbEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "encryptionDbEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -407,6 +409,15 @@ var navigation;
             this.__loggingEnabled.set(newValue);
         }
         /**
+         * In version 9.18.0: introduced
+         */
+        get encryptionDbEnabled() {
+            return this.__encryptionDbEnabled.get();
+        }
+        set encryptionDbEnabled(newValue) {
+            this.__encryptionDbEnabled.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -429,6 +440,9 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__encryptionDbEnabled.isAvailable) {
+                this.encryptionDbEnabled = false;
+            }
             if (this.__loggingEnabled.isAvailable) {
                 this.loggingEnabled = false;
             }
@@ -465,6 +479,9 @@ var navigation;
             },
             loggingEnabled: {
                 introduced: "9.15.0"
+            },
+            encryptionDbEnabled: {
+                introduced: "9.18.0"
             }
         },
         public: {
@@ -972,7 +989,7 @@ var navigation;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {

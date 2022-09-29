@@ -130,6 +130,16 @@ export declare namespace webservices {
          */
         get description(): string;
         set description(newValue: string);
+        /**
+         * In version 9.18.0: introduced
+         */
+        get filterable(): boolean;
+        set filterable(newValue: boolean);
+        /**
+         * In version 9.18.0: introduced
+         */
+        get sortable(): boolean;
+        set sortable(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.

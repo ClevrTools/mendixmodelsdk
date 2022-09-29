@@ -23637,6 +23637,7 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsRetrievalQuery(): RetrievalQuery;
+        get containerAsRuntimeOperation(): RuntimeOperation;
         get name(): string;
         set name(newValue: string);
         get type(): string;
@@ -23648,9 +23649,27 @@ export declare namespace pages {
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.6.0 and higher
+         *  8.6.0 to 9.16.0
          */
         static createIn(container: RetrievalQuery): RetrievalQueryParameter;
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.6.0 and higher
+         */
+        static createInRetrievalQueryUnderParameters(container: RetrievalQuery): RetrievalQueryParameter;
+        /**
+         * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
+         * The new RetrievalQueryParameter will be automatically stored in the 'parameters' property
+         * of the parent RuntimeOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.17.0 and higher
+         */
+        static createInRuntimeOperationUnderParameters(container: RuntimeOperation): RetrievalQueryParameter;
         /**
          * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -23690,6 +23709,30 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RetrievalSchema;
+    }
+    /**
+     * In version 9.17.0: introduced
+     */
+    class RuntimeOperation extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get operationId(): string;
+        set operationId(newValue: string);
+        get parameters(): internal.IList<RetrievalQueryParameter>;
+        get operationType(): string;
+        set operationType(newValue: string);
+        /**
+         * In version 9.18.0: introduced
+         */
+        get allowedUserRoles(): internal.IList<security.IUserRole>;
+        get allowedUserRolesQualifiedNames(): string[];
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RuntimeOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RuntimeOperation;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide6/save-button relevant section in reference guide}

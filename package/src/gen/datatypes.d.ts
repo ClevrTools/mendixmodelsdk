@@ -182,7 +182,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): BinaryType;
         /**
@@ -394,7 +394,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): BooleanType;
         /**
@@ -606,7 +606,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): DateTimeType;
         /**
@@ -818,7 +818,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): DecimalType;
         /**
@@ -1030,7 +1030,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): EmptyType;
         /**
@@ -1302,7 +1302,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): EnumerationType;
         /**
@@ -1514,7 +1514,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): FloatType;
         /**
@@ -1726,7 +1726,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): IntegerType;
         /**
@@ -1938,7 +1938,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): ListType;
         /**
@@ -2150,7 +2150,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): ObjectType;
         /**
@@ -2362,7 +2362,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): StringType;
         /**
@@ -2574,7 +2574,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): UnknownType;
         /**
@@ -2786,7 +2786,7 @@ export declare namespace datatypes {
          * of the parent microflows.MLModelCallParameterMapping element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createInMLModelCallParameterMappingUnderParameterType(container: microflows.MLModelCallParameterMapping): VoidType;
         /**

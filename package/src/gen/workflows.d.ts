@@ -275,10 +275,20 @@ export declare namespace workflows {
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
+         * In version 9.18.0: deleted
          * In version 9.6.0: introduced
          */
         get parameterExpression(): string;
         set parameterExpression(newValue: string);
+        /**
+         * In version 9.18.0: introduced
+         */
+        get parameterMappings(): internal.IList<WorkflowCallParameterMapping>;
+        /**
+         * In version 9.18.0: introduced
+         */
+        get executeAsync(): boolean;
+        set executeAsync(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
@@ -870,7 +880,7 @@ export declare namespace workflows {
     /**
      * In version 9.6.0: introduced
      */
-    interface IParameter extends internal.IElement {
+    interface IParameter extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
         readonly containerAsWorkflow: IWorkflow;
         /**
@@ -882,6 +892,10 @@ export declare namespace workflows {
          */
         readonly entity: domainmodels.IEntity | null;
         readonly entityQualifiedName: string | null;
+        /**
+         * In version 9.18.0: introduced
+         */
+        readonly name: string;
         asLoaded(): Parameter;
         load(callback: (element: Parameter) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Parameter>;
@@ -904,6 +918,11 @@ export declare namespace workflows {
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
         get entityQualifiedName(): string | null;
+        /**
+         * In version 9.18.0: introduced
+         */
+        get name(): string;
+        set name(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Parameter instance in the SDK and on the server.
@@ -920,6 +939,7 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Parameter;
+        get qualifiedName(): string | null;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
@@ -1248,6 +1268,29 @@ export declare namespace workflows {
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
         static createIn(container: projects.IFolderBase): Workflow;
+    }
+    /**
+     * In version 9.18.0: introduced
+     */
+    class WorkflowCallParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get parameter(): IParameter;
+        set parameter(newValue: IParameter);
+        get parameterQualifiedName(): string;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowCallParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowCallParameterMapping;
     }
     /**
      * In version 9.10.0: deleted

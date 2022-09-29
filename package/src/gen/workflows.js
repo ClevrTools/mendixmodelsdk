@@ -443,6 +443,10 @@ var workflows;
             this.__workflow = new internal.ByNameReferenceProperty(CallWorkflowActivity, this, "workflow", null, "Workflows$Workflow");
             /** @internal */
             this.__parameterExpression = new internal.PrimitiveProperty(CallWorkflowActivity, this, "parameterExpression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(CallWorkflowActivity, this, "parameterMappings", []);
+            /** @internal */
+            this.__executeAsync = new internal.PrimitiveProperty(CallWorkflowActivity, this, "executeAsync", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new CallWorkflowActivity() cannot be invoked directly, please use 'model.workflows.createCallWorkflowActivity()'");
             }
@@ -462,6 +466,7 @@ var workflows;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          *
+         * In version 9.18.0: deleted
          * In version 9.6.0: introduced
          */
         get parameterExpression() {
@@ -469,6 +474,21 @@ var workflows;
         }
         set parameterExpression(newValue) {
             this.__parameterExpression.set(newValue);
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get executeAsync() {
+            return this.__executeAsync.get();
+        }
+        set executeAsync(newValue) {
+            this.__executeAsync.set(newValue);
         }
         /**
          * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
@@ -505,7 +525,15 @@ var workflows;
                 }
             },
             parameterExpression: {
-                introduced: "9.6.0"
+                introduced: "9.6.0",
+                deleted: "9.18.0",
+                deletionMessage: null
+            },
+            parameterMappings: {
+                introduced: "9.18.0"
+            },
+            executeAsync: {
+                introduced: "9.18.0"
             }
         },
         public: {
@@ -1514,6 +1542,8 @@ var workflows;
             this.__entityRef = new internal.PartProperty(Parameter, this, "entityRef", null, false);
             /** @internal */
             this.__entity = new internal.ByNameReferenceProperty(Parameter, this, "entity", null, "DomainModels$Entity");
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(Parameter, this, "name", "WorkflowContext", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new Parameter() cannot be invoked directly, please use 'model.workflows.createParameter()'");
             }
@@ -1543,6 +1573,15 @@ var workflows;
             return this.__entity.qualifiedName();
         }
         /**
+         * In version 9.18.0: introduced
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /**
          * Creates and returns a new Parameter instance in the SDK and on the server.
          * The new Parameter will be automatically stored in the 'parameter' property
          * of the parent Workflow element passed as argument.
@@ -1563,8 +1602,18 @@ var workflows;
             return internal.instancehelpers.createElement(model, Parameter);
         }
         /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__name.isAvailable) {
+                this.name = "WorkflowContext";
+            }
         }
     }
     Parameter.structureTypeName = "Workflows$Parameter";
@@ -1580,6 +1629,12 @@ var workflows;
             },
             entity: {
                 introduced: "9.10.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            name: {
+                introduced: "9.18.0",
                 public: {
                     currentValue: true
                 }
@@ -1886,7 +1941,7 @@ var workflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         get qualifiedName() {
             return this._getQualifiedName();
@@ -2158,7 +2213,7 @@ var workflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -2269,6 +2324,66 @@ var workflows;
         }
     }, internal.StructureType.ModelUnit);
     workflows.Workflow = Workflow;
+    /**
+     * In version 9.18.0: introduced
+     */
+    class WorkflowCallParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(WorkflowCallParameterMapping, this, "parameter", null, "Workflows$Parameter");
+            /** @internal */
+            this.__expression = new internal.PrimitiveProperty(WorkflowCallParameterMapping, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowCallParameterMapping() cannot be invoked directly, please use 'model.workflows.createWorkflowCallParameterMapping()'");
+            }
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowCallParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowCallParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowCallParameterMapping.structureTypeName = "Workflows$WorkflowCallParameterMapping";
+    WorkflowCallParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.18.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.WorkflowCallParameterMapping = WorkflowCallParameterMapping;
     /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced

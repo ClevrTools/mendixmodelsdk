@@ -5101,6 +5101,9 @@ var microflows;
         get containerAsConsumedODataService() {
             return super.getContainerAs(rest_1.rest.ConsumedODataService);
         }
+        get containerAsInteractiveRest() {
+            return super.getContainerAs(rest_1.rest.InteractiveRest);
+        }
         get overrideLocation() {
             return this.__overrideLocation.get();
         }
@@ -5266,6 +5269,18 @@ var microflows;
          */
         static createInConsumedODataServiceUnderHttpConfiguration(container) {
             internal.createInVersionCheck(container.model, HttpConfiguration.structureTypeName, { start: "8.0.0" });
+            return internal.instancehelpers.createElement(container, HttpConfiguration, "httpConfiguration", false);
+        }
+        /**
+         * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
+         * The new HttpConfiguration will be automatically stored in the 'httpConfiguration' property
+         * of the parent rest.InteractiveRest element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.18.0 and higher
+         */
+        static createInInteractiveRestUnderHttpConfiguration(container) {
+            internal.createInVersionCheck(container.model, HttpConfiguration.structureTypeName, { start: "9.18.0" });
             return internal.instancehelpers.createElement(container, HttpConfiguration, "httpConfiguration", false);
         }
         /**
@@ -6797,6 +6812,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.LoopedActivity = LoopedActivity;
     /**
+     * In version 9.18.0: deleted
      * In version 9.10.0: introduced
      */
     class MLModelCall extends internal.Element {
@@ -6804,6 +6820,8 @@ var microflows;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__modelReference = new internal.PrimitiveProperty(MLModelCall, this, "modelReference", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__mlMappingDocument = new internal.ByNameReferenceProperty(MLModelCall, this, "mlMappingDocument", null, "MLMappings$MLMappingDocument");
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(MLModelCall, this, "parameterMappings", []);
             if (arguments.length < 4) {
@@ -6819,6 +6837,22 @@ var microflows;
         set modelReference(newValue) {
             this.__modelReference.set(newValue);
         }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.17.0: introduced
+         */
+        get mlMappingDocument() {
+            return this.__mlMappingDocument.get();
+        }
+        set mlMappingDocument(newValue) {
+            this.__mlMappingDocument.set(newValue);
+        }
+        get mlMappingDocumentQualifiedName() {
+            return this.__mlMappingDocument.qualifiedName();
+        }
         get parameterMappings() {
             return this.__parameterMappings.get();
         }
@@ -6828,10 +6862,10 @@ var microflows;
          * of the parent MLModelCallAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, MLModelCall.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, MLModelCall.structureTypeName, { start: "9.10.0", end: "9.17.0" });
             return internal.instancehelpers.createElement(container, MLModelCall, "modelCall", false);
         }
         /**
@@ -6849,7 +6883,14 @@ var microflows;
     }
     MLModelCall.structureTypeName = "Microflows$MLModelCall";
     MLModelCall.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.10.0"
+        introduced: "9.10.0",
+        deleted: "9.18.0",
+        deletionMessage: null,
+        properties: {
+            mlMappingDocument: {
+                introduced: "9.17.0"
+            }
+        }
     }, internal.StructureType.Element);
     microflows.MLModelCall = MLModelCall;
     /**
@@ -6863,6 +6904,10 @@ var microflows;
             /** @internal */
             this.__modelCall = new internal.PartProperty(MLModelCallAction, this, "modelCall", null, true);
             /** @internal */
+            this.__mlMappingDocument = new internal.ByNameReferenceProperty(MLModelCallAction, this, "mlMappingDocument", null, "MLMappings$MLMappingDocument");
+            /** @internal */
+            this.__inputVariableName = new internal.PrimitiveProperty(MLModelCallAction, this, "inputVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(MLModelCallAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new MLModelCallAction() cannot be invoked directly, please use 'model.microflows.createMLModelCallAction()'");
@@ -6871,11 +6916,39 @@ var microflows;
         get containerAsActionActivity() {
             return super.getContainerAs(ActionActivity);
         }
+        /**
+         * In version 9.18.0: deleted
+         */
         get modelCall() {
             return this.__modelCall.get();
         }
         set modelCall(newValue) {
             this.__modelCall.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.18.0: introduced
+         */
+        get mlMappingDocument() {
+            return this.__mlMappingDocument.get();
+        }
+        set mlMappingDocument(newValue) {
+            this.__mlMappingDocument.set(newValue);
+        }
+        get mlMappingDocumentQualifiedName() {
+            return this.__mlMappingDocument.qualifiedName();
+        }
+        /**
+         * In version 9.18.0: introduced
+         */
+        get inputVariableName() {
+            return this.__inputVariableName.get();
+        }
+        set inputVariableName(newValue) {
+            this.__inputVariableName.set(newValue);
         }
         get outputVariableName() {
             return this.__outputVariableName.get();
@@ -6906,7 +6979,9 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.modelCall = MLModelCall.create(this.model);
+            if (this.__modelCall.isAvailable) {
+                this.modelCall = MLModelCall.create(this.model);
+            }
         }
     }
     MLModelCallAction.structureTypeName = "Microflows$MLModelCallAction";
@@ -6914,14 +6989,23 @@ var microflows;
         introduced: "9.10.0",
         properties: {
             modelCall: {
+                deleted: "9.18.0",
+                deletionMessage: null,
                 required: {
                     currentValue: true
                 }
+            },
+            mlMappingDocument: {
+                introduced: "9.18.0"
+            },
+            inputVariableName: {
+                introduced: "9.18.0"
             }
         }
     }, internal.StructureType.Element);
     microflows.MLModelCallAction = MLModelCallAction;
     /**
+     * In version 9.18.0: deleted
      * In version 9.10.0: introduced
      */
     class MLModelCallParameterMapping extends internal.Element {
@@ -6978,10 +7062,13 @@ var microflows;
          * of the parent MLModelCall element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, MLModelCallParameterMapping.structureTypeName, { start: "9.10.0" });
+            internal.createInVersionCheck(container.model, MLModelCallParameterMapping.structureTypeName, {
+                start: "9.10.0",
+                end: "9.17.0"
+            });
             return internal.instancehelpers.createElement(container, MLModelCallParameterMapping, "parameterMappings", true);
         }
         /**
@@ -7001,6 +7088,8 @@ var microflows;
     MLModelCallParameterMapping.structureTypeName = "Microflows$MLModelCallParameterMapping";
     MLModelCallParameterMapping.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.10.0",
+        deleted: "9.18.0",
+        deletionMessage: null,
         properties: {
             parameterType: {
                 required: {
@@ -7485,7 +7574,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -7997,7 +8086,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -8022,6 +8111,8 @@ var microflows;
             this.__variableType = new internal.PartProperty(MicroflowParameterObject, this, "variableType", null, true);
             /** @internal */
             this.__documentation = new internal.PrimitiveProperty(MicroflowParameterObject, this, "documentation", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__hasVariableNameBeenChanged = new internal.PrimitiveProperty(MicroflowParameterObject, this, "hasVariableNameBeenChanged", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowParameterObject() cannot be invoked directly, please use 'model.microflows.createMicroflowParameterObject()'");
             }
@@ -8060,6 +8151,15 @@ var microflows;
         }
         set documentation(newValue) {
             this.__documentation.set(newValue);
+        }
+        /**
+         * In version 9.17.0: introduced
+         */
+        get hasVariableNameBeenChanged() {
+            return this.__hasVariableNameBeenChanged.get();
+        }
+        set hasVariableNameBeenChanged(newValue) {
+            this.__hasVariableNameBeenChanged.set(newValue);
         }
         /**
          * Creates and returns a new MicroflowParameterObject instance in the SDK and on the server.
@@ -8101,6 +8201,9 @@ var microflows;
                 required: {
                     currentValue: true
                 }
+            },
+            hasVariableNameBeenChanged: {
+                introduced: "9.17.0"
             }
         }
     }, internal.StructureType.Element);
@@ -8208,7 +8311,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -8487,7 +8590,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -9768,7 +9871,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -9945,7 +10048,7 @@ var microflows;
         }
         /** @internal */
         _isByNameReferrable() {
-            return true;
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -10344,6 +10447,9 @@ var microflows;
         set pageSettings(newValue) {
             this.__pageSettings.set(newValue);
         }
+        /**
+         * In version 9.18.0: deleted
+         */
         get passedObjectVariableName() {
             return this.__passedObjectVariableName.get();
         }
@@ -10390,6 +10496,10 @@ var microflows;
                 required: {
                     currentValue: true
                 }
+            },
+            passedObjectVariableName: {
+                deleted: "9.18.0",
+                deletionMessage: "Use property 'pageSettings' with property 'parameterMappings' instead"
             },
             numberOfPagesToClose: {
                 introduced: "8.11.0"

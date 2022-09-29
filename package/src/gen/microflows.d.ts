@@ -2239,6 +2239,7 @@ export declare namespace microflows {
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get containerAsConsumedODataService(): rest.ConsumedODataService;
+        get containerAsInteractiveRest(): rest.InteractiveRest;
         get overrideLocation(): boolean;
         set overrideLocation(newValue: boolean);
         /**
@@ -2346,6 +2347,15 @@ export declare namespace microflows {
          *  8.0.0 and higher
          */
         static createInConsumedODataServiceUnderHttpConfiguration(container: rest.ConsumedODataService): HttpConfiguration;
+        /**
+         * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
+         * The new HttpConfiguration will be automatically stored in the 'httpConfiguration' property
+         * of the parent rest.InteractiveRest element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.18.0 and higher
+         */
+        static createInInteractiveRestUnderHttpConfiguration(container: rest.InteractiveRest): HttpConfiguration;
         /**
          * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2951,6 +2961,7 @@ export declare namespace microflows {
         static create(model: IModel): LoopedActivity;
     }
     /**
+     * In version 9.18.0: deleted
      * In version 9.10.0: introduced
      */
     class MLModelCall extends internal.Element<IModel> {
@@ -2959,6 +2970,16 @@ export declare namespace microflows {
         get containerAsMLModelCallAction(): MLModelCallAction;
         get modelReference(): string;
         set modelReference(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.17.0: introduced
+         */
+        get mlMappingDocument(): mlmappings.IMLMappingDocument | null;
+        set mlMappingDocument(newValue: mlmappings.IMLMappingDocument | null);
+        get mlMappingDocumentQualifiedName(): string | null;
         get parameterMappings(): internal.IList<MLModelCallParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -2967,7 +2988,7 @@ export declare namespace microflows {
          * of the parent MLModelCallAction element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createIn(container: MLModelCallAction): MLModelCall;
         /**
@@ -2986,8 +3007,26 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 9.18.0: deleted
+         */
         get modelCall(): MLModelCall;
         set modelCall(newValue: MLModelCall);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.18.0: introduced
+         */
+        get mlMappingDocument(): mlmappings.IMLMappingDocument | null;
+        set mlMappingDocument(newValue: mlmappings.IMLMappingDocument | null);
+        get mlMappingDocumentQualifiedName(): string | null;
+        /**
+         * In version 9.18.0: introduced
+         */
+        get inputVariableName(): string;
+        set inputVariableName(newValue: string);
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3008,6 +3047,7 @@ export declare namespace microflows {
         static create(model: IModel): MLModelCallAction;
     }
     /**
+     * In version 9.18.0: deleted
      * In version 9.10.0: introduced
      */
     class MLModelCallParameterMapping extends internal.Element<IModel> {
@@ -3035,7 +3075,7 @@ export declare namespace microflows {
          * of the parent MLModelCall element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 9.17.0
          */
         static createIn(container: MLModelCall): MLModelCallParameterMapping;
         /**
@@ -3524,6 +3564,11 @@ export declare namespace microflows {
         set variableType(newValue: datatypes.DataType);
         get documentation(): string;
         set documentation(newValue: string);
+        /**
+         * In version 9.17.0: introduced
+         */
+        get hasVariableNameBeenChanged(): boolean;
+        set hasVariableNameBeenChanged(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterObject instance in the SDK and on the server.
@@ -4551,6 +4596,9 @@ export declare namespace microflows {
         get containerAsActionActivity(): ActionActivity;
         get pageSettings(): pages.PageSettings;
         set pageSettings(newValue: pages.PageSettings);
+        /**
+         * In version 9.18.0: deleted
+         */
         get passedObjectVariableName(): string;
         set passedObjectVariableName(newValue: string);
         /**
@@ -5395,6 +5443,7 @@ import { expressions } from "./expressions";
 import { importmappings } from "./importmappings";
 import { javaactions } from "./javaactions";
 import { javascriptactions } from "./javascriptactions";
+import { mlmappings } from "./mlmappings";
 import { mappings } from "./mappings";
 import { pages } from "./pages";
 import { queues } from "./queues";
