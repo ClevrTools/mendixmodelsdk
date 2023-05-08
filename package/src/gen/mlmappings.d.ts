@@ -8,15 +8,15 @@ export declare namespace mlmappings {
     class TensorType extends internal.AbstractEnum {
         static UnsignedInteger8Tensor: TensorType;
         static UnsignedInteger16Tensor: TensorType;
+        static Float16Tensor: TensorType;
+        static Complex64Tensor: TensorType;
+        static Complex128Tensor: TensorType;
         static Integer8Tensor: TensorType;
         static Integer16Tensor: TensorType;
         static Integer32Tensor: TensorType;
         static Integer64Tensor: TensorType;
-        static Float16Tensor: TensorType;
         static Float32Tensor: TensorType;
         static Float64Tensor: TensorType;
-        static Complex64Tensor: TensorType;
-        static Complex128Tensor: TensorType;
         static StringTensor: TensorType;
         static BooleanTensor: TensorType;
         static UnknownTensor: TensorType;
@@ -56,6 +56,14 @@ export declare namespace mlmappings {
         get containerAsFolderBase(): projects.FolderBase;
         get mlModelFileName(): string;
         set mlModelFileName(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.22.0: introduced
+         */
+        get mlModelMetadata(): internal.IList<MLModelMetadata>;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -163,6 +171,38 @@ export declare namespace mlmappings {
      *
      * @ignore
      *
+     * In version 9.22.0: introduced
+     */
+    class MLModelMetadata extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMLMappingDocument(): MLMappingDocument;
+        get name(): string;
+        set name(newValue: string);
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MLModelMetadata instance in the SDK and on the server.
+         * The new MLModelMetadata will be automatically stored in the 'mlModelMetadata' property
+         * of the parent MLMappingDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createIn(container: MLMappingDocument): MLModelMetadata;
+        /**
+         * Creates and returns a new MLModelMetadata instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MLModelMetadata;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
      * In version 9.17.0: introduced
      */
     class TensorDimension extends internal.Element<IModel> {
@@ -178,9 +218,18 @@ export declare namespace mlmappings {
          * of the parent TensorMappingElement element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.17.0 and higher
+         *  9.17.0 to 9.20.0
          */
         static createInTensorMappingElementUnderAttributeShape(container: TensorMappingElement): TensorDimension;
+        /**
+         * Creates and returns a new TensorDimension instance in the SDK and on the server.
+         * The new TensorDimension will be automatically stored in the 'staticTensorShape' property
+         * of the parent TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInTensorMappingElementUnderStaticTensorShape(container: TensorMappingElement): TensorDimension;
         /**
          * Creates and returns a new TensorDimension instance in the SDK and on the server.
          * The new TensorDimension will be automatically stored in the 'tensorShape' property
@@ -208,6 +257,24 @@ export declare namespace mlmappings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMLModelEntityMappings(): MLModelEntityMappings;
+        /**
+         * In version 9.21.0: deleted
+         */
+        get attributeName(): string;
+        set attributeName(newValue: string);
+        /**
+         * In version 9.21.0: deleted
+         */
+        get attributeType(): domainmodels.AttributeType | null;
+        set attributeType(newValue: domainmodels.AttributeType | null);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.21.0: deleted
+         */
+        get attributeShape(): internal.IList<TensorDimension>;
         get tensorName(): string;
         set tensorName(newValue: string);
         get tensorType(): TensorType;
@@ -218,16 +285,20 @@ export declare namespace mlmappings {
          * @ignore
          */
         get tensorShape(): internal.IList<TensorDimension>;
-        get attributeName(): string;
-        set attributeName(newValue: string);
-        get attributeType(): domainmodels.AttributeType | null;
-        set attributeType(newValue: domainmodels.AttributeType | null);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 9.21.0: introduced
          */
-        get attributeShape(): internal.IList<TensorDimension>;
+        get staticTensorShape(): internal.IList<TensorDimension>;
+        /**
+         * In version 9.21.0: introduced
+         */
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TensorMappingElement instance in the SDK and on the server.

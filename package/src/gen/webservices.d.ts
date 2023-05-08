@@ -140,6 +140,11 @@ export declare namespace webservices {
          */
         get sortable(): boolean;
         set sortable(newValue: boolean);
+        /**
+         * In version 9.21.0: introduced
+         */
+        get enumerationAsString(): boolean;
+        set enumerationAsString(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.

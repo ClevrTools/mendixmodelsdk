@@ -661,6 +661,289 @@ var pages;
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
     /**
+     * In version 9.22.0: introduced
+     */
+    class AccessibilitySettings extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__screenReaderDescription = new internal.PartProperty(AccessibilitySettings, this, "screenReaderDescription", null, true);
+            /** @internal */
+            this.__screenReaderTitle = new internal.PartProperty(AccessibilitySettings, this, "screenReaderTitle", null, true);
+            /** @internal */
+            this.__accessible = new internal.PrimitiveProperty(AccessibilitySettings, this, "accessible", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new AccessibilitySettings() cannot be invoked directly, please use 'model.pages.createAccessibilitySettings()'");
+            }
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsCheckBox() {
+            return super.getContainerAs(CheckBox);
+        }
+        get containerAsConditionallyVisibleWidget() {
+            return super.getContainerAs(ConditionallyVisibleWidget);
+        }
+        get containerAsDatePicker() {
+            return super.getContainerAs(DatePicker);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDropDown() {
+            return super.getContainerAs(DropDown);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsDynamicText() {
+            return super.getContainerAs(DynamicText);
+        }
+        get containerAsReferenceSelector() {
+            return super.getContainerAs(ReferenceSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTextArea() {
+            return super.getContainerAs(TextArea);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        get containerAsTitle() {
+            return super.getContainerAs(Title);
+        }
+        get screenReaderDescription() {
+            return this.__screenReaderDescription.get();
+        }
+        set screenReaderDescription(newValue) {
+            this.__screenReaderDescription.set(newValue);
+        }
+        get screenReaderTitle() {
+            return this.__screenReaderTitle.get();
+        }
+        set screenReaderTitle(newValue) {
+            this.__screenReaderTitle.set(newValue);
+        }
+        /**
+         * In version 9.24.0: deleted
+         */
+        get accessible() {
+            return this.__accessible.get();
+        }
+        set accessible(newValue) {
+            this.__accessible.set(newValue);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'accessibilitySettings' property
+         * of the parent ConditionallyVisibleWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 to 9.23.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.22.0", end: "9.23.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "accessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInActionButtonUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent CheckBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInCheckBoxUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'accessibilitySettings' property
+         * of the parent ConditionallyVisibleWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 to 9.23.0
+         */
+        static createInConditionallyVisibleWidgetUnderAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.22.0", end: "9.23.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "accessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DatePicker element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDatePickerUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDivContainerUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DropDown element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDropDownUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDynamicImageViewerUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DynamicText element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDynamicTextUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent ReferenceSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInReferenceSelectorUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInStaticImageViewerUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent TextArea element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTextAreaUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTextBoxUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent Title element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTitleUnderNativeAccessibilitySettings(container) {
+            internal.createInVersionCheck(container.model, AccessibilitySettings.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, AccessibilitySettings, "nativeAccessibilitySettings", false);
+        }
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AccessibilitySettings);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__accessible.isAvailable) {
+                this.accessible = true;
+            }
+            this.screenReaderDescription = ClientTemplate.create(this.model);
+            this.screenReaderTitle = ClientTemplate.create(this.model);
+        }
+    }
+    AccessibilitySettings.structureTypeName = "Pages$AccessibilitySettings";
+    AccessibilitySettings.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.22.0",
+        properties: {
+            screenReaderDescription: {
+                required: {
+                    currentValue: true
+                }
+            },
+            screenReaderTitle: {
+                required: {
+                    currentValue: true
+                }
+            },
+            accessible: {
+                deleted: "9.24.0",
+                deletionMessage: null
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.AccessibilitySettings = AccessibilitySettings;
+    /**
      * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     class Widget extends internal.Element {
@@ -827,6 +1110,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__conditionalVisibilitySettings = new internal.PartProperty(ConditionallyVisibleWidget, this, "conditionalVisibilitySettings", null, false);
+            /** @internal */
+            this.__accessibilitySettings = new internal.PartProperty(ConditionallyVisibleWidget, this, "accessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new ConditionallyVisibleWidget() cannot be invoked directly, please use 'model.pages.createConditionallyVisibleWidget()'");
             }
@@ -912,13 +1197,31 @@ var pages;
         set conditionalVisibilitySettings(newValue) {
             this.__conditionalVisibilitySettings.set(newValue);
         }
+        /**
+         * In version 9.24.0: deleted
+         * In version 9.22.0: introduced
+         */
+        get accessibilitySettings() {
+            return this.__accessibilitySettings.get();
+        }
+        set accessibilitySettings(newValue) {
+            this.__accessibilitySettings.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
     }
     ConditionallyVisibleWidget.structureTypeName = "Pages$ConditionallyVisibleWidget";
-    ConditionallyVisibleWidget.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ConditionallyVisibleWidget.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            accessibilitySettings: {
+                introduced: "9.22.0",
+                deleted: "9.24.0",
+                deletionMessage: null
+            }
+        }
+    }, internal.StructureType.Element);
     pages.ConditionallyVisibleWidget = ConditionallyVisibleWidget;
     /**
      * See: {@link https://docs.mendix.com/refguide/button-widgets relevant section in reference guide}
@@ -1087,6 +1390,8 @@ var pages;
             this.__ariaRole = new internal.EnumProperty(ActionButton, this, "ariaRole", ButtonAriaRoleType.Button, ButtonAriaRoleType);
             /** @internal */
             this.__disabledDuringAction = new internal.PrimitiveProperty(ActionButton, this, "disabledDuringAction", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(ActionButton, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new ActionButton() cannot be invoked directly, please use 'model.pages.createActionButton()'");
             }
@@ -1189,6 +1494,15 @@ var pages;
         }
         set disabledDuringAction(newValue) {
             this.__disabledDuringAction.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new ActionButton instance in the SDK and on the server.
@@ -1864,6 +2178,9 @@ var pages;
             disabledDuringAction: {
                 deleted: "8.12.0",
                 deletionMessage: null
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -2688,6 +3005,8 @@ var pages;
             this.__onChangeMicroflowSettings = new internal.PartProperty(AssociationWidget, this, "onChangeMicroflowSettings", null, true);
             /** @internal */
             this.__onChangeAction = new internal.PartProperty(AssociationWidget, this, "onChangeAction", null, true);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(AssociationWidget, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new AssociationWidget() cannot be invoked directly, please use 'model.pages.createAssociationWidget()'");
             }
@@ -2797,6 +3116,15 @@ var pages;
         set onChangeAction(newValue) {
             this.__onChangeAction.set(newValue);
         }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2835,6 +3163,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            sourceVariable: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -5238,6 +5569,8 @@ var pages;
             this.__labelPosition = new internal.EnumProperty(CheckBox, this, "labelPosition", LabelPosition.Default, LabelPosition);
             /** @internal */
             this.__nativeRenderMode = new internal.EnumProperty(CheckBox, this, "nativeRenderMode", NativeRenderMode.Switch, NativeRenderMode);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(CheckBox, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new CheckBox() cannot be invoked directly, please use 'model.pages.createCheckBox()'");
             }
@@ -5334,6 +5667,15 @@ var pages;
         }
         set nativeRenderMode(newValue) {
             this.__nativeRenderMode.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new CheckBox instance in the SDK and on the server.
@@ -5974,6 +6316,9 @@ var pages;
             },
             nativeRenderMode: {
                 introduced: "9.8.0"
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -5999,6 +6344,9 @@ var pages;
         }
         get containerAsWidgetValue() {
             return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsAccessibilitySettings() {
+            return super.getContainerAs(AccessibilitySettings);
         }
         get containerAsButton() {
             return super.getContainerAs(Button);
@@ -6080,6 +6428,30 @@ var pages;
         static createInWidgetValueUnderTextTemplate(container) {
             internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "7.23.0" });
             return internal.instancehelpers.createElement(container, ClientTemplate, "textTemplate", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderDescription' property
+         * of the parent AccessibilitySettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInAccessibilitySettingsUnderScreenReaderDescription(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "9.22.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "screenReaderDescription", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderTitle' property
+         * of the parent AccessibilitySettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInAccessibilitySettingsUnderScreenReaderTitle(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "9.22.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "screenReaderTitle", false);
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
@@ -6230,6 +6602,8 @@ var pages;
             this.__expression = new internal.PrimitiveProperty(ClientTemplateParameter, this, "expression", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__formattingInfo = new internal.PartProperty(ClientTemplateParameter, this, "formattingInfo", null, true);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(ClientTemplateParameter, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new ClientTemplateParameter() cannot be invoked directly, please use 'model.pages.createClientTemplateParameter()'");
             }
@@ -6278,6 +6652,15 @@ var pages;
             this.__formattingInfo.set(newValue);
         }
         /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
+        /**
          * Creates and returns a new ClientTemplateParameter instance in the SDK and on the server.
          * The new ClientTemplateParameter will be automatically stored in the 'parameters' property
          * of the parent ClientTemplate element passed as argument.
@@ -6319,6 +6702,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            sourceVariable: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -7249,16 +7635,22 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.caption = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Caption";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.caption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.caption = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Caption";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
             if (this.__placeholder.isAvailable) {
                 this.placeholder = texts_1.texts.Text.create(this.model);
             }
@@ -7393,6 +7785,8 @@ var pages;
             /** @internal */
             this.__expression = new internal.PrimitiveProperty(ConditionalSettings, this, "expression", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__sourceVariable = new internal.PartProperty(ConditionalSettings, this, "sourceVariable", null, false);
+            /** @internal */
             this.__expressionModel = new internal.PartProperty(ConditionalSettings, this, "expressionModel", null, true);
             if (arguments.length < 4) {
                 throw new Error("new ConditionalSettings() cannot be invoked directly, please use 'model.pages.createConditionalSettings()'");
@@ -7446,6 +7840,15 @@ var pages;
             this.__expression.set(newValue);
         }
         /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
+        /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
@@ -7472,6 +7875,9 @@ var pages;
         properties: {
             expression: {
                 introduced: "7.0.1"
+            },
+            sourceVariable: {
+                introduced: "9.24.0"
             },
             expressionModel: {
                 introduced: "7.9.0",
@@ -7760,51 +8166,69 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.cancelButtonCaption = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Cancel";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model)),
-                    ((translation) => {
-                        translation.languageCode = "nl_NL";
-                        translation.text = "Annuleren";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
-            this.proceedButtonCaption = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Proceed";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model)),
-                    ((translation) => {
-                        translation.languageCode = "nl_NL";
-                        translation.text = "Doorgaan";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
-            this.question = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Are you sure?";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model)),
-                    ((translation) => {
-                        translation.languageCode = "nl_NL";
-                        translation.text = "Weet u het zeker?";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.cancelButtonCaption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.cancelButtonCaption = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Cancel";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model)),
+                        ((translation) => {
+                            translation.languageCode = "nl_NL";
+                            translation.text = "Annuleren";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.proceedButtonCaption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.proceedButtonCaption = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Proceed";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model)),
+                        ((translation) => {
+                            translation.languageCode = "nl_NL";
+                            translation.text = "Doorgaan";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.question = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.question = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Are you sure?";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model)),
+                        ((translation) => {
+                            translation.languageCode = "nl_NL";
+                            translation.text = "Weet u het zeker?";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
         }
     }
     ConfirmationInfo.structureTypeName = "Pages$ConfirmationInfo";
@@ -10712,6 +11136,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__pageParameter = new internal.LocalByNameReferenceProperty(DataViewSource, this, "pageParameter", null, "Pages$PageParameter");
+            /** @internal */
+            this.__snippetParameter = new internal.LocalByNameReferenceProperty(DataViewSource, this, "snippetParameter", null, "Pages$SnippetParameter");
             if (arguments.length < 4) {
                 throw new Error("new DataViewSource() cannot be invoked directly, please use 'model.pages.createDataViewSource()'");
             }
@@ -10733,6 +11159,18 @@ var pages;
         }
         get pageParameterLocalName() {
             return this.__pageParameter.localName();
+        }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get snippetParameter() {
+            return this.__snippetParameter.get();
+        }
+        set snippetParameter(newValue) {
+            this.__snippetParameter.set(newValue);
+        }
+        get snippetParameterLocalName() {
+            return this.__snippetParameter.localName();
         }
         /**
          * Creates and returns a new DataViewSource instance in the SDK and on the server.
@@ -10784,6 +11222,9 @@ var pages;
         properties: {
             pageParameter: {
                 introduced: "9.5.0"
+            },
+            snippetParameter: {
+                introduced: "9.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -10949,6 +11390,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__formattingInfo = new internal.PartProperty(DatePicker, this, "formattingInfo", null, true);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(DatePicker, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DatePicker() cannot be invoked directly, please use 'model.pages.createDatePicker()'");
             }
@@ -11033,6 +11476,15 @@ var pages;
         }
         set formattingInfo(newValue) {
             this.__formattingInfo.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new DatePicker instance in the SDK and on the server.
@@ -11667,6 +12119,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -12046,6 +12501,8 @@ var pages;
             this.__onClickAction = new internal.PartProperty(DivContainer, this, "onClickAction", null, true);
             /** @internal */
             this.__screenReaderHidden = new internal.PrimitiveProperty(DivContainer, this, "screenReaderHidden", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(DivContainer, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DivContainer() cannot be invoked directly, please use 'model.pages.createDivContainer()'");
             }
@@ -12166,6 +12623,15 @@ var pages;
         }
         set screenReaderHidden(newValue) {
             this.__screenReaderHidden.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -12822,6 +13288,9 @@ var pages;
             },
             screenReaderHidden: {
                 introduced: "8.12.0"
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -12834,6 +13303,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__emptyOptionCaption = new internal.PartProperty(DropDown, this, "emptyOptionCaption", null, true);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(DropDown, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DropDown() cannot be invoked directly, please use 'model.pages.createDropDown()'");
             }
@@ -12921,6 +13392,15 @@ var pages;
         }
         set emptyOptionCaption(newValue) {
             this.__emptyOptionCaption.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new DropDown instance in the SDK and on the server.
@@ -13558,6 +14038,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -14351,16 +14834,22 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.caption = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Item";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.caption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.caption = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Item";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
         }
     }
     DropDownButtonItem.structureTypeName = "Pages$DropDownButtonItem";
@@ -14476,6 +14965,8 @@ var pages;
             this.__onClickEnlarge = new internal.PrimitiveProperty(DynamicImageViewer, this, "onClickEnlarge", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__alternativeText = new internal.PartProperty(DynamicImageViewer, this, "alternativeText", null, true);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(DynamicImageViewer, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DynamicImageViewer() cannot be invoked directly, please use 'model.pages.createDynamicImageViewer()'");
             }
@@ -14635,6 +15126,15 @@ var pages;
         }
         set alternativeText(newValue) {
             this.__alternativeText.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -15323,6 +15823,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -15339,6 +15842,8 @@ var pages;
             this.__renderMode = new internal.EnumProperty(DynamicText, this, "renderMode", TextRenderMode.Text, TextRenderMode);
             /** @internal */
             this.__nativeTextStyle = new internal.EnumProperty(DynamicText, this, "nativeTextStyle", NativeTextStyle.Text, NativeTextStyle);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(DynamicText, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DynamicText() cannot be invoked directly, please use 'model.pages.createDynamicText()'");
             }
@@ -15438,6 +15943,15 @@ var pages;
         }
         set nativeTextStyle(newValue) {
             this.__nativeTextStyle.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new DynamicText instance in the SDK and on the server.
@@ -16102,6 +16616,9 @@ var pages;
             },
             nativeTextStyle: {
                 introduced: "8.0.0"
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -17499,6 +18016,10 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.aggregateCaption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
                 if (internal.isAtLeast("7.13.0", this.model)) {
                     this.aggregateCaption = ((text) => {
                         text.translations.replace([
@@ -17524,6 +18045,10 @@ var pages;
                 this.appearance = Appearance.create(this.model);
             }
             (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.caption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
                 if (internal.isAtLeast("7.13.0", this.model)) {
                     this.caption = ((text) => {
                         text.translations.replace([
@@ -20914,6 +21439,127 @@ var pages;
         deletionMessage: null
     }, internal.StructureType.Element);
     pages.HorizontalSplitPane = HorizontalSplitPane;
+    /**
+     * In version 9.20.0: introduced
+     */
+    class IconCollectionIcon extends Icon {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__image = new internal.ByNameReferenceProperty(IconCollectionIcon, this, "image", null, "CustomIcons$CustomIcon");
+            if (arguments.length < 4) {
+                throw new Error("new IconCollectionIcon() cannot be invoked directly, please use 'model.pages.createIconCollectionIcon()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsBottomBarItem() {
+            return super.getContainerAs(nativepages_1.nativepages.BottomBarItem);
+        }
+        get containerAsButton() {
+            return super.getContainerAs(Button);
+        }
+        get containerAsControlBarButton() {
+            return super.getContainerAs(ControlBarButton);
+        }
+        get image() {
+            return this.__image.get();
+        }
+        set image(newValue) {
+            this.__image.set(newValue);
+        }
+        get imageQualifiedName() {
+            return this.__image.qualifiedName();
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInWidgetValueUnderIcon(container) {
+            internal.createInVersionCheck(container.model, IconCollectionIcon.structureTypeName, { start: "9.20.0" });
+            return internal.instancehelpers.createElement(container, IconCollectionIcon, "icon", false);
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInMenuItemUnderIcon(container) {
+            internal.createInVersionCheck(container.model, IconCollectionIcon.structureTypeName, { start: "9.20.0" });
+            return internal.instancehelpers.createElement(container, IconCollectionIcon, "icon", false);
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent nativepages.BottomBarItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInBottomBarItemUnderIcon(container) {
+            internal.createInVersionCheck(container.model, IconCollectionIcon.structureTypeName, { start: "9.20.0" });
+            return internal.instancehelpers.createElement(container, IconCollectionIcon, "icon", false);
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent Button element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInButtonUnderIcon(container) {
+            internal.createInVersionCheck(container.model, IconCollectionIcon.structureTypeName, { start: "9.20.0" });
+            return internal.instancehelpers.createElement(container, IconCollectionIcon, "icon", false);
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent ControlBarButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInControlBarButtonUnderIcon(container) {
+            internal.createInVersionCheck(container.model, IconCollectionIcon.structureTypeName, { start: "9.20.0" });
+            return internal.instancehelpers.createElement(container, IconCollectionIcon, "icon", false);
+        }
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, IconCollectionIcon);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    IconCollectionIcon.structureTypeName = "Pages$IconCollectionIcon";
+    IconCollectionIcon.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.20.0",
+        properties: {
+            image: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.IconCollectionIcon = IconCollectionIcon;
     class ImageIcon extends Icon {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -30737,6 +31383,53 @@ var pages;
     }, internal.StructureType.Element);
     pages.MicroflowSource = MicroflowSource;
     /**
+     * In version 9.24.0: introduced
+     */
+    class NamedValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(NamedValue, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(NamedValue, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new NamedValue() cannot be invoked directly, please use 'model.pages.createNamedValue()'");
+            }
+        }
+        get containerAsRuntimeOperation() {
+            return super.getContainerAs(RuntimeOperation);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new NamedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NamedValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NamedValue.structureTypeName = "Pages$NamedValue";
+    NamedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.24.0"
+    }, internal.StructureType.Element);
+    pages.NamedValue = NamedValue;
+    /**
      * In version 7.19.0: introduced
      */
     class NanoflowParameterMapping extends internal.Element {
@@ -34260,6 +34953,10 @@ var pages;
     class OpenUserTaskClientAction extends ClientAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__assignOnOpen = new internal.PrimitiveProperty(OpenUserTaskClientAction, this, "assignOnOpen", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__openWhenAssigned = new internal.PrimitiveProperty(OpenUserTaskClientAction, this, "openWhenAssigned", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new OpenUserTaskClientAction() cannot be invoked directly, please use 'model.pages.createOpenUserTaskClientAction()'");
             }
@@ -34302,6 +34999,24 @@ var pages;
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
+        }
+        /**
+         * In version 9.20.0: introduced
+         */
+        get assignOnOpen() {
+            return this.__assignOnOpen.get();
+        }
+        set assignOnOpen(newValue) {
+            this.__assignOnOpen.set(newValue);
+        }
+        /**
+         * In version 9.20.0: introduced
+         */
+        get openWhenAssigned() {
+            return this.__openWhenAssigned.get();
+        }
+        set openWhenAssigned(newValue) {
+            this.__openWhenAssigned.set(newValue);
         }
         /**
          * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
@@ -34506,11 +35221,25 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__assignOnOpen.isAvailable) {
+                this.assignOnOpen = true;
+            }
+            if (this.__openWhenAssigned.isAvailable) {
+                this.openWhenAssigned = false;
+            }
         }
     }
     OpenUserTaskClientAction.structureTypeName = "Pages$OpenUserTaskClientAction";
     OpenUserTaskClientAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        properties: {
+            assignOnOpen: {
+                introduced: "9.20.0"
+            },
+            openWhenAssigned: {
+                introduced: "9.20.0"
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -34955,16 +35684,22 @@ var pages;
             }
             this.layoutCall = LayoutCall.create(this.model);
             this.popupResizable = true;
-            this.title = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "Page Title";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.title = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.title = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "Page Title";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
         }
     }
     Page.structureTypeName = "Pages$Page";
@@ -35992,6 +36727,8 @@ var pages;
             /** @internal */
             this.__pageParameter = new internal.LocalByNameReferenceProperty(PageVariable, this, "pageParameter", null, "Pages$PageParameter");
             /** @internal */
+            this.__snippetParameter = new internal.LocalByNameReferenceProperty(PageVariable, this, "snippetParameter", null, "Pages$SnippetParameter");
+            /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(PageVariable, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
@@ -36000,8 +36737,17 @@ var pages;
         get containerAsWidgetValue() {
             return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
         }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
         get containerAsAttributeWidget() {
             return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsClientTemplateParameter() {
+            return super.getContainerAs(ClientTemplateParameter);
+        }
+        get containerAsConditionalSettings() {
+            return super.getContainerAs(ConditionalSettings);
         }
         get containerAsMicroflowParameterMapping() {
             return super.getContainerAs(MicroflowParameterMapping);
@@ -36011,6 +36757,9 @@ var pages;
         }
         get containerAsPageParameterMapping() {
             return super.getContainerAs(PageParameterMapping);
+        }
+        get containerAsSnippetParameterMapping() {
+            return super.getContainerAs(SnippetParameterMapping);
         }
         get widget() {
             return this.__widget.get();
@@ -36033,6 +36782,18 @@ var pages;
         get pageParameterLocalName() {
             return this.__pageParameter.localName();
         }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get snippetParameter() {
+            return this.__snippetParameter.get();
+        }
+        set snippetParameter(newValue) {
+            this.__snippetParameter.set(newValue);
+        }
+        get snippetParameterLocalName() {
+            return this.__snippetParameter.localName();
+        }
         get useAllPages() {
             return this.__useAllPages.get();
         }
@@ -36054,6 +36815,18 @@ var pages;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInAssociationWidgetUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
@@ -36061,6 +36834,30 @@ var pages;
          */
         static createInAttributeWidgetUnderSourceVariable(container) {
             internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.8.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent ClientTemplateParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInClientTemplateParameterUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent ConditionalSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInConditionalSettingsUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.24.0" });
             return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
         }
         /**
@@ -36101,6 +36898,18 @@ var pages;
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent SnippetParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterMappingUnderVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -36119,6 +36928,9 @@ var pages;
         properties: {
             pageParameter: {
                 introduced: "9.5.0"
+            },
+            snippetParameter: {
+                introduced: "9.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -38398,6 +39210,8 @@ var pages;
             this.__formattingInfo = new internal.PartProperty(ReferenceSelector, this, "formattingInfo", null, true);
             /** @internal */
             this.__emptyOptionCaption = new internal.PartProperty(ReferenceSelector, this, "emptyOptionCaption", null, true);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(ReferenceSelector, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new ReferenceSelector() cannot be invoked directly, please use 'model.pages.createReferenceSelector()'");
             }
@@ -38530,6 +39344,15 @@ var pages;
         }
         set emptyOptionCaption(newValue) {
             this.__emptyOptionCaption.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
@@ -39203,6 +40026,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -40149,6 +40975,8 @@ var pages;
             /** @internal */
             this.__allowedUserRoles = new internal.ByNameReferenceListProperty(RetrievalQuery, this, "allowedUserRoles", [], "Security$UserRole");
             /** @internal */
+            this.__allowedUserRoleSets = new internal.PartListProperty(RetrievalQuery, this, "allowedUserRoleSets", []);
+            /** @internal */
             this.__xPath = new internal.PrimitiveProperty(RetrievalQuery, this, "xPath", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(RetrievalQuery, this, "microflow", null, "Microflows$Microflow");
@@ -40176,11 +41004,20 @@ var pages;
         set queryId(newValue) {
             this.__queryId.set(newValue);
         }
+        /**
+         * In version 9.21.0: deleted
+         */
         get allowedUserRoles() {
             return this.__allowedUserRoles.get();
         }
         get allowedUserRolesQualifiedNames() {
             return this.__allowedUserRoles.qualifiedNames();
+        }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get allowedUserRoleSets() {
+            return this.__allowedUserRoleSets.get();
         }
         get xPath() {
             return this.__xPath.get();
@@ -40274,6 +41111,13 @@ var pages;
     RetrievalQuery.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.12.0",
         properties: {
+            allowedUserRoles: {
+                deleted: "9.21.0",
+                deletionMessage: null
+            },
+            allowedUserRoleSets: {
+                introduced: "9.21.0"
+            },
             microflow: {
                 introduced: "7.21.0"
             },
@@ -40484,9 +41328,15 @@ var pages;
             /** @internal */
             this.__parameters = new internal.PartListProperty(RuntimeOperation, this, "parameters", []);
             /** @internal */
+            this.__constants = new internal.PartListProperty(RuntimeOperation, this, "constants", []);
+            /** @internal */
             this.__operationType = new internal.PrimitiveProperty(RuntimeOperation, this, "operationType", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__operationName = new internal.PrimitiveProperty(RuntimeOperation, this, "operationName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__allowedUserRoles = new internal.ByNameReferenceListProperty(RuntimeOperation, this, "allowedUserRoles", [], "Security$UserRole");
+            /** @internal */
+            this.__allowedUserRoleSets = new internal.PartListProperty(RuntimeOperation, this, "allowedUserRoleSets", []);
             if (arguments.length < 4) {
                 throw new Error("new RuntimeOperation() cannot be invoked directly, please use 'model.pages.createRuntimeOperation()'");
             }
@@ -40500,6 +41350,12 @@ var pages;
         get parameters() {
             return this.__parameters.get();
         }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get constants() {
+            return this.__constants.get();
+        }
         get operationType() {
             return this.__operationType.get();
         }
@@ -40507,6 +41363,17 @@ var pages;
             this.__operationType.set(newValue);
         }
         /**
+         * In version 9.24.0: deleted
+         * In version 9.20.0: introduced
+         */
+        get operationName() {
+            return this.__operationName.get();
+        }
+        set operationName(newValue) {
+            this.__operationName.set(newValue);
+        }
+        /**
+         * In version 9.21.0: deleted
          * In version 9.18.0: introduced
          */
         get allowedUserRoles() {
@@ -40514,6 +41381,12 @@ var pages;
         }
         get allowedUserRolesQualifiedNames() {
             return this.__allowedUserRoles.qualifiedNames();
+        }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get allowedUserRoleSets() {
+            return this.__allowedUserRoleSets.get();
         }
         /**
          * Creates and returns a new RuntimeOperation instance in the SDK and on the server.
@@ -40532,8 +41405,21 @@ var pages;
     RuntimeOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.17.0",
         properties: {
+            constants: {
+                introduced: "9.24.0"
+            },
+            operationName: {
+                introduced: "9.20.0",
+                deleted: "9.24.0",
+                deletionMessage: null
+            },
             allowedUserRoles: {
-                introduced: "9.18.0"
+                introduced: "9.18.0",
+                deleted: "9.21.0",
+                deletionMessage: null
+            },
+            allowedUserRoleSets: {
+                introduced: "9.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -42685,6 +43571,8 @@ var pages;
             /** @internal */
             this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeClientAction, this, "outcome", null, "Workflows$UserTaskOutcome");
             /** @internal */
+            this.__outcomeValue = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "outcomeValue", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__closePage = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__commit = new internal.PrimitiveProperty(SetTaskOutcomeClientAction, this, "commit", true, internal.PrimitiveTypeEnum.Boolean);
@@ -42731,6 +43619,9 @@ var pages;
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
+        /**
+         * In version 9.19.0: deleted
+         */
         get outcome() {
             return this.__outcome.get();
         }
@@ -42739,6 +43630,15 @@ var pages;
         }
         get outcomeQualifiedName() {
             return this.__outcome.qualifiedName();
+        }
+        /**
+         * In version 9.19.0: introduced
+         */
+        get outcomeValue() {
+            return this.__outcomeValue.get();
+        }
+        set outcomeValue(newValue) {
+            this.__outcomeValue.set(newValue);
         }
         get closePage() {
             return this.__closePage.get();
@@ -42962,6 +43862,15 @@ var pages;
     SetTaskOutcomeClientAction.structureTypeName = "Pages$SetTaskOutcomeClientAction";
     SetTaskOutcomeClientAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        properties: {
+            outcome: {
+                deleted: "9.19.0",
+                deletionMessage: null
+            },
+            outcomeValue: {
+                introduced: "9.19.0"
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -44768,11 +45677,16 @@ var pages;
             this.__widgets = new internal.PartListProperty(Snippet, this, "widgets", []);
             /** @internal */
             this.__type = new internal.EnumProperty(Snippet, this, "type", SnippetType.Web, SnippetType);
+            /** @internal */
+            this.__parameters = new internal.PartListProperty(Snippet, this, "parameters", []);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
+        /**
+         * In version 9.21.0: deleted
+         */
         get entity() {
             return this.__entity.get();
         }
@@ -44808,6 +45722,12 @@ var pages;
             this.__type.set(newValue);
         }
         /**
+         * In version 9.21.0: introduced
+         */
+        get parameters() {
+            return this.__parameters.get();
+        }
+        /**
          * Creates a new Snippet unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -44830,6 +45750,8 @@ var pages;
     Snippet.versionInfo = new exports.StructureVersionInfo({
         properties: {
             entity: {
+                deleted: "9.21.0",
+                deletionMessage: "Use property 'parameters' instead",
                 public: {
                     currentValue: true
                 }
@@ -44847,6 +45769,12 @@ var pages;
                     currentValue: true,
                     changedIn: ["8.4.0"]
                 }
+            },
+            parameters: {
+                introduced: "9.21.0",
+                public: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -44856,6 +45784,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__snippet = new internal.ByNameReferenceProperty(SnippetCall, this, "snippet", null, "Pages$Snippet");
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(SnippetCall, this, "parameterMappings", []);
             if (arguments.length < 4) {
                 throw new Error("new SnippetCall() cannot be invoked directly, please use 'model.pages.createSnippetCall()'");
             }
@@ -44871,6 +45801,12 @@ var pages;
         }
         get snippetQualifiedName() {
             return this.__snippet.qualifiedName();
+        }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
         }
         /**
          * Creates and returns a new SnippetCall instance in the SDK and on the server.
@@ -44894,7 +45830,13 @@ var pages;
         }
     }
     SnippetCall.structureTypeName = "Pages$SnippetCall";
-    SnippetCall.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    SnippetCall.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            parameterMappings: {
+                introduced: "9.21.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.SnippetCall = SnippetCall;
     /**
      * See: {@link https://docs.mendix.com/refguide/snippet-call relevant section in reference guide}
@@ -45627,6 +46569,166 @@ var pages;
     }, internal.StructureType.Element);
     pages.SnippetCallWidget = SnippetCallWidget;
     /**
+     * In version 9.21.0: introduced
+     */
+    class SnippetParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(SnippetParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterType = new internal.PartProperty(SnippetParameter, this, "parameterType", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new SnippetParameter() cannot be invoked directly, please use 'model.pages.createSnippetParameter()'");
+            }
+        }
+        get containerAsSnippet() {
+            return super.getContainerAs(Snippet);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get parameterType() {
+            return this.__parameterType.get();
+        }
+        set parameterType(newValue) {
+            this.__parameterType.set(newValue);
+        }
+        /**
+         * Creates and returns a new SnippetParameter instance in the SDK and on the server.
+         * The new SnippetParameter will be automatically stored in the 'parameters' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SnippetParameter.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, SnippetParameter, "parameters", true);
+        }
+        /**
+         * Creates and returns a new SnippetParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SnippetParameter);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.parameterType = datatypes_1.datatypes.UnknownType.create(this.model);
+        }
+    }
+    SnippetParameter.structureTypeName = "Pages$SnippetParameter";
+    SnippetParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.21.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            parameterType: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.SnippetParameter = SnippetParameter;
+    /**
+     * In version 9.21.0: introduced
+     */
+    class SnippetParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(SnippetParameterMapping, this, "parameter", null, "Pages$SnippetParameter");
+            /** @internal */
+            this.__variable = new internal.PartProperty(SnippetParameterMapping, this, "variable", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new SnippetParameterMapping() cannot be invoked directly, please use 'model.pages.createSnippetParameterMapping()'");
+            }
+        }
+        get containerAsSnippetCall() {
+            return super.getContainerAs(SnippetCall);
+        }
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        get variable() {
+            return this.__variable.get();
+        }
+        set variable(newValue) {
+            this.__variable.set(newValue);
+        }
+        /**
+         * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.
+         * The new SnippetParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent SnippetCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SnippetParameterMapping.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, SnippetParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SnippetParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.variable = PageVariable.create(this.model);
+        }
+    }
+    SnippetParameterMapping.structureTypeName = "Pages$SnippetParameterMapping";
+    SnippetParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.21.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            },
+            variable: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.SnippetParameterMapping = SnippetParameterMapping;
+    /**
      * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
     class StaticImageViewer extends ConditionallyVisibleWidget {
@@ -45648,6 +46750,8 @@ var pages;
             this.__responsive = new internal.PrimitiveProperty(StaticImageViewer, this, "responsive", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__alternativeText = new internal.PartProperty(StaticImageViewer, this, "alternativeText", null, true);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(StaticImageViewer, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new StaticImageViewer() cannot be invoked directly, please use 'model.pages.createStaticImageViewer()'");
             }
@@ -45780,6 +46884,15 @@ var pages;
         }
         set alternativeText(newValue) {
             this.__alternativeText.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -46426,6 +47539,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -47992,16 +49108,22 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.caption = ((text) => {
-                text.translations.replace([
-                    ((translation) => {
-                        translation.languageCode = "en_US";
-                        translation.text = "TabPage";
-                        return translation;
-                    })(texts_1.texts.Translation.create(this.model))
-                ]);
-                return text;
-            })(texts_1.texts.Text.create(this.model));
+            (() => {
+                if (internal.isAtLeast("9.23.0", this.model)) {
+                    this.caption = texts_1.texts.Text.create(this.model);
+                    return;
+                }
+                this.caption = ((text) => {
+                    text.translations.replace([
+                        ((translation) => {
+                            translation.languageCode = "en_US";
+                            translation.text = "TabPage";
+                            return translation;
+                        })(texts_1.texts.Translation.create(this.model))
+                    ]);
+                    return text;
+                })(texts_1.texts.Text.create(this.model));
+            })();
         }
     }
     TabPage.structureTypeName = "Pages$TabPage";
@@ -50382,6 +51504,8 @@ var pages;
             this.__submitBehaviour = new internal.EnumProperty(TextArea, this, "submitBehaviour", SubmitBehaviourType.OnEndEditing, SubmitBehaviourType);
             /** @internal */
             this.__submitOnInputDelay = new internal.PrimitiveProperty(TextArea, this, "submitOnInputDelay", 300, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(TextArea, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new TextArea() cannot be invoked directly, please use 'model.pages.createTextArea()'");
             }
@@ -50505,6 +51629,15 @@ var pages;
         }
         set submitOnInputDelay(newValue) {
             this.__submitOnInputDelay.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -51164,6 +52297,9 @@ var pages;
             },
             submitOnInputDelay: {
                 introduced: "9.14.0"
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -51192,6 +52328,8 @@ var pages;
             this.__submitBehaviour = new internal.EnumProperty(TextBox, this, "submitBehaviour", SubmitBehaviourType.OnEndEditing, SubmitBehaviourType);
             /** @internal */
             this.__submitOnInputDelay = new internal.PrimitiveProperty(TextBox, this, "submitOnInputDelay", 300, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(TextBox, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new TextBox() cannot be invoked directly, please use 'model.pages.createTextBox()'");
             }
@@ -51342,6 +52480,15 @@ var pages;
         }
         set submitOnInputDelay(newValue) {
             this.__submitOnInputDelay.set(newValue);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -52015,6 +53162,9 @@ var pages;
             },
             submitOnInputDelay: {
                 introduced: "8.15.0"
+            },
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
             }
         }
     }, internal.StructureType.Element);
@@ -52025,6 +53175,8 @@ var pages;
     class Title extends ConditionallyVisibleWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__nativeAccessibilitySettings = new internal.PartProperty(Title, this, "nativeAccessibilitySettings", null, false);
             if (arguments.length < 4) {
                 throw new Error("new Title() cannot be invoked directly, please use 'model.pages.createTitle()'");
             }
@@ -52103,6 +53255,15 @@ var pages;
         }
         get containerAsReportPane() {
             return super.getContainerAs(reports_1.reports.ReportPane);
+        }
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings() {
+            return this.__nativeAccessibilitySettings.get();
+        }
+        set nativeAccessibilitySettings(newValue) {
+            this.__nativeAccessibilitySettings.set(newValue);
         }
         /**
          * Creates and returns a new Title instance in the SDK and on the server.
@@ -52730,8 +53891,80 @@ var pages;
         }
     }
     Title.structureTypeName = "Pages$Title";
-    Title.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    Title.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            nativeAccessibilitySettings: {
+                introduced: "9.24.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.Title = Title;
+    /**
+     * In version 9.21.0: introduced
+     */
+    class UserRoleSet extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__userRoles = new internal.ByNameReferenceListProperty(UserRoleSet, this, "userRoles", [], "Security$UserRole");
+            if (arguments.length < 4) {
+                throw new Error("new UserRoleSet() cannot be invoked directly, please use 'model.pages.createUserRoleSet()'");
+            }
+        }
+        get containerAsRetrievalQuery() {
+            return super.getContainerAs(RetrievalQuery);
+        }
+        get containerAsRuntimeOperation() {
+            return super.getContainerAs(RuntimeOperation);
+        }
+        get userRoles() {
+            return this.__userRoles.get();
+        }
+        get userRolesQualifiedNames() {
+            return this.__userRoles.qualifiedNames();
+        }
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * The new UserRoleSet will be automatically stored in the 'allowedUserRoleSets' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInRetrievalQueryUnderAllowedUserRoleSets(container) {
+            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, UserRoleSet, "allowedUserRoleSets", true);
+        }
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * The new UserRoleSet will be automatically stored in the 'allowedUserRoleSets' property
+         * of the parent RuntimeOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInRuntimeOperationUnderAllowedUserRoleSets(container) {
+            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, UserRoleSet, "allowedUserRoleSets", true);
+        }
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, UserRoleSet);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UserRoleSet.structureTypeName = "Pages$UserRoleSet";
+    UserRoleSet.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.21.0"
+    }, internal.StructureType.Element);
+    pages.UserRoleSet = UserRoleSet;
     /**
      * In version 9.0.2: introduced
      */

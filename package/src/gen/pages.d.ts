@@ -430,6 +430,168 @@ export declare namespace pages {
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
     /**
+     * In version 9.22.0: introduced
+     */
+    class AccessibilitySettings extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionButton(): ActionButton;
+        get containerAsCheckBox(): CheckBox;
+        get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
+        get containerAsDatePicker(): DatePicker;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDropDown(): DropDown;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsDynamicText(): DynamicText;
+        get containerAsReferenceSelector(): ReferenceSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTextArea(): TextArea;
+        get containerAsTextBox(): TextBox;
+        get containerAsTitle(): Title;
+        get screenReaderDescription(): ClientTemplate;
+        set screenReaderDescription(newValue: ClientTemplate);
+        get screenReaderTitle(): ClientTemplate;
+        set screenReaderTitle(newValue: ClientTemplate);
+        /**
+         * In version 9.24.0: deleted
+         */
+        get accessible(): boolean;
+        set accessible(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'accessibilitySettings' property
+         * of the parent ConditionallyVisibleWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 to 9.23.0
+         */
+        static createIn(container: ConditionallyVisibleWidget): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInActionButtonUnderNativeAccessibilitySettings(container: ActionButton): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent CheckBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInCheckBoxUnderNativeAccessibilitySettings(container: CheckBox): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'accessibilitySettings' property
+         * of the parent ConditionallyVisibleWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 to 9.23.0
+         */
+        static createInConditionallyVisibleWidgetUnderAccessibilitySettings(container: ConditionallyVisibleWidget): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DatePicker element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDatePickerUnderNativeAccessibilitySettings(container: DatePicker): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDivContainerUnderNativeAccessibilitySettings(container: DivContainer): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DropDown element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDropDownUnderNativeAccessibilitySettings(container: DropDown): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDynamicImageViewerUnderNativeAccessibilitySettings(container: DynamicImageViewer): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent DynamicText element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInDynamicTextUnderNativeAccessibilitySettings(container: DynamicText): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent ReferenceSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInReferenceSelectorUnderNativeAccessibilitySettings(container: ReferenceSelector): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInStaticImageViewerUnderNativeAccessibilitySettings(container: StaticImageViewer): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent TextArea element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTextAreaUnderNativeAccessibilitySettings(container: TextArea): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTextBoxUnderNativeAccessibilitySettings(container: TextBox): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * The new AccessibilitySettings will be automatically stored in the 'nativeAccessibilitySettings' property
+         * of the parent Title element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInTitleUnderNativeAccessibilitySettings(container: Title): AccessibilitySettings;
+        /**
+         * Creates and returns a new AccessibilitySettings instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AccessibilitySettings;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/pages relevant section in reference guide}
      */
     abstract class Widget extends internal.Element<IModel> {
@@ -511,6 +673,12 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get conditionalVisibilitySettings(): ConditionalVisibilitySettings | null;
         set conditionalVisibilitySettings(newValue: ConditionalVisibilitySettings | null);
+        /**
+         * In version 9.24.0: deleted
+         * In version 9.22.0: introduced
+         */
+        get accessibilitySettings(): AccessibilitySettings | null;
+        set accessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -599,6 +767,11 @@ export declare namespace pages {
          */
         get disabledDuringAction(): boolean;
         set disabledDuringAction(newValue: boolean);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ActionButton instance in the SDK and on the server.
@@ -1455,6 +1628,11 @@ export declare namespace pages {
          */
         get onChangeAction(): ClientAction;
         set onChangeAction(newValue: ClientAction);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class AttributeWidget extends MemberWidget {
@@ -2805,6 +2983,11 @@ export declare namespace pages {
          */
         get nativeRenderMode(): NativeRenderMode;
         set nativeRenderMode(newValue: NativeRenderMode);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CheckBox instance in the SDK and on the server.
@@ -3278,6 +3461,7 @@ export declare namespace pages {
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsWidgetObject(): customwidgets.WidgetObject;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAccessibilitySettings(): AccessibilitySettings;
         get containerAsButton(): Button;
         get containerAsControlBarButton(): ControlBarButton;
         get containerAsDataGrid(): DataGrid;
@@ -3323,6 +3507,24 @@ export declare namespace pages {
          *  7.23.0 and higher
          */
         static createInWidgetValueUnderTextTemplate(container: customwidgets.WidgetValue): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderDescription' property
+         * of the parent AccessibilitySettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInAccessibilitySettingsUnderScreenReaderDescription(container: AccessibilitySettings): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'screenReaderTitle' property
+         * of the parent AccessibilitySettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInAccessibilitySettingsUnderScreenReaderTitle(container: AccessibilitySettings): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'caption' property
@@ -3436,6 +3638,11 @@ export declare namespace pages {
          */
         get formattingInfo(): FormattingInfo;
         set formattingInfo(newValue: FormattingInfo);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ClientTemplateParameter instance in the SDK and on the server.
@@ -3892,6 +4099,11 @@ export declare namespace pages {
          */
         get expression(): string;
         set expression(newValue: string);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -5628,6 +5840,12 @@ export declare namespace pages {
         get pageParameter(): PageParameter | null;
         set pageParameter(newValue: PageParameter | null);
         get pageParameterLocalName(): string | null;
+        /**
+         * In version 9.21.0: introduced
+         */
+        get snippetParameter(): SnippetParameter | null;
+        set snippetParameter(newValue: SnippetParameter | null);
+        get snippetParameterLocalName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DataViewSource instance in the SDK and on the server.
@@ -5754,6 +5972,11 @@ export declare namespace pages {
         get containerAsReportPane(): reports.ReportPane;
         get formattingInfo(): FormattingInfo;
         set formattingInfo(newValue: FormattingInfo);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatePicker instance in the SDK and on the server.
@@ -6491,6 +6714,11 @@ export declare namespace pages {
          */
         get screenReaderHidden(): boolean;
         set screenReaderHidden(newValue: boolean);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DivContainer instance in the SDK and on the server.
@@ -6994,6 +7222,11 @@ export declare namespace pages {
          */
         get emptyOptionCaption(): texts.Text;
         set emptyOptionCaption(newValue: texts.Text);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DropDown instance in the SDK and on the server.
@@ -8079,6 +8312,11 @@ export declare namespace pages {
          */
         get alternativeText(): ClientTemplate;
         set alternativeText(newValue: ClientTemplate);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicImageViewer instance in the SDK and on the server.
@@ -8586,6 +8824,11 @@ export declare namespace pages {
          */
         get nativeTextStyle(): NativeTextStyle;
         set nativeTextStyle(newValue: NativeTextStyle);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DynamicText instance in the SDK and on the server.
@@ -11769,6 +12012,73 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): HorizontalSplitPane;
+    }
+    /**
+     * In version 9.20.0: introduced
+     */
+    class IconCollectionIcon extends Icon {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsBottomBarItem(): nativepages.BottomBarItem;
+        get containerAsButton(): Button;
+        get containerAsControlBarButton(): ControlBarButton;
+        get image(): customicons.ICustomIcon;
+        set image(newValue: customicons.ICustomIcon);
+        get imageQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInWidgetValueUnderIcon(container: customwidgets.WidgetValue): IconCollectionIcon;
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInMenuItemUnderIcon(container: menus.MenuItem): IconCollectionIcon;
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent nativepages.BottomBarItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInBottomBarItemUnderIcon(container: nativepages.BottomBarItem): IconCollectionIcon;
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent Button element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInButtonUnderIcon(container: Button): IconCollectionIcon;
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * The new IconCollectionIcon will be automatically stored in the 'icon' property
+         * of the parent ControlBarButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.20.0 and higher
+         */
+        static createInControlBarButtonUnderIcon(container: ControlBarButton): IconCollectionIcon;
+        /**
+         * Creates and returns a new IconCollectionIcon instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): IconCollectionIcon;
     }
     class ImageIcon extends Icon {
         static structureTypeName: string;
@@ -17730,6 +18040,25 @@ export declare namespace pages {
         static create(model: IModel): MicroflowSource;
     }
     /**
+     * In version 9.24.0: introduced
+     */
+    class NamedValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRuntimeOperation(): RuntimeOperation;
+        get name(): string;
+        set name(newValue: string);
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NamedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NamedValue;
+    }
+    /**
      * In version 7.19.0: introduced
      */
     class NanoflowParameterMapping extends internal.Element<IModel> {
@@ -19910,6 +20239,16 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 9.20.0: introduced
+         */
+        get assignOnOpen(): boolean;
+        set assignOnOpen(newValue: boolean);
+        /**
+         * In version 9.20.0: introduced
+         */
+        get openWhenAssigned(): boolean;
+        set openWhenAssigned(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
@@ -20839,10 +21178,14 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsAssociationWidget(): AssociationWidget;
         get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsClientTemplateParameter(): ClientTemplateParameter;
+        get containerAsConditionalSettings(): ConditionalSettings;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
         get containerAsPageParameterMapping(): PageParameterMapping;
+        get containerAsSnippetParameterMapping(): SnippetParameterMapping;
         get widget(): Widget | null;
         set widget(newValue: Widget | null);
         get widgetLocalName(): string | null;
@@ -20852,6 +21195,12 @@ export declare namespace pages {
         get pageParameter(): PageParameter | null;
         set pageParameter(newValue: PageParameter | null);
         get pageParameterLocalName(): string | null;
+        /**
+         * In version 9.21.0: introduced
+         */
+        get snippetParameter(): SnippetParameter | null;
+        set snippetParameter(newValue: SnippetParameter | null);
+        get snippetParameterLocalName(): string | null;
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -20867,12 +21216,39 @@ export declare namespace pages {
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInAssociationWidgetUnderSourceVariable(container: AssociationWidget): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
          * of the parent AttributeWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  8.8.0 and higher
          */
         static createInAttributeWidgetUnderSourceVariable(container: AttributeWidget): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent ClientTemplateParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInClientTemplateParameterUnderSourceVariable(container: ClientTemplateParameter): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent ConditionalSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInConditionalSettingsUnderSourceVariable(container: ConditionalSettings): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property
@@ -20900,6 +21276,15 @@ export declare namespace pages {
          *  9.7.0 and higher
          */
         static createInPageParameterMappingUnderVariable(container: PageParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'variable' property
+         * of the parent SnippetParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterMappingUnderVariable(container: SnippetParameterMapping): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -22501,6 +22886,11 @@ export declare namespace pages {
          */
         get emptyOptionCaption(): texts.Text;
         set emptyOptionCaption(newValue: texts.Text);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ReferenceSelector instance in the SDK and on the server.
@@ -23580,8 +23970,15 @@ export declare namespace pages {
         static versionInfo: StructureVersionInfo;
         get queryId(): string;
         set queryId(newValue: string);
+        /**
+         * In version 9.21.0: deleted
+         */
         get allowedUserRoles(): internal.IList<security.IUserRole>;
         get allowedUserRolesQualifiedNames(): string[];
+        /**
+         * In version 9.21.0: introduced
+         */
+        get allowedUserRoleSets(): internal.IList<UserRoleSet>;
         get xPath(): string;
         set xPath(newValue: string);
         /**
@@ -23719,13 +24116,28 @@ export declare namespace pages {
         get operationId(): string;
         set operationId(newValue: string);
         get parameters(): internal.IList<RetrievalQueryParameter>;
+        /**
+         * In version 9.24.0: introduced
+         */
+        get constants(): internal.IList<NamedValue>;
         get operationType(): string;
         set operationType(newValue: string);
         /**
+         * In version 9.24.0: deleted
+         * In version 9.20.0: introduced
+         */
+        get operationName(): string;
+        set operationName(newValue: string);
+        /**
+         * In version 9.21.0: deleted
          * In version 9.18.0: introduced
          */
         get allowedUserRoles(): internal.IList<security.IUserRole>;
         get allowedUserRolesQualifiedNames(): string[];
+        /**
+         * In version 9.21.0: introduced
+         */
+        get allowedUserRoleSets(): internal.IList<UserRoleSet>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeOperation instance in the SDK and on the server.
@@ -24972,9 +25384,17 @@ export declare namespace pages {
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
         get containerAsTextBox(): TextBox;
+        /**
+         * In version 9.19.0: deleted
+         */
         get outcome(): workflows.IUserTaskOutcome | null;
         set outcome(newValue: workflows.IUserTaskOutcome | null);
         get outcomeQualifiedName(): string | null;
+        /**
+         * In version 9.19.0: introduced
+         */
+        get outcomeValue(): string;
+        set outcomeValue(newValue: string);
         get closePage(): boolean;
         set closePage(newValue: boolean);
         get commit(): boolean;
@@ -26331,6 +26751,9 @@ export declare namespace pages {
     interface ISnippet extends IFormBase {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 9.21.0: deleted
+         */
         readonly entity: domainmodels.IEntity | null;
         readonly entityQualifiedName: string | null;
         /**
@@ -26338,6 +26761,10 @@ export declare namespace pages {
          * In version 8.0.0: introduced
          */
         readonly type: SnippetType;
+        /**
+         * In version 9.21.0: introduced
+         */
+        readonly parameters: internal.IList<ISnippetParameter>;
         asLoaded(): Snippet;
         load(callback: (element: Snippet) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<Snippet>;
@@ -26349,6 +26776,9 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 9.21.0: deleted
+         */
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
         get entityQualifiedName(): string | null;
@@ -26367,6 +26797,10 @@ export declare namespace pages {
          */
         get type(): SnippetType;
         set type(newValue: SnippetType);
+        /**
+         * In version 9.21.0: introduced
+         */
+        get parameters(): internal.IList<SnippetParameter>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Snippet unit in the SDK and on the server.
@@ -26381,6 +26815,10 @@ export declare namespace pages {
         get snippet(): ISnippet | null;
         set snippet(newValue: ISnippet | null);
         get snippetQualifiedName(): string | null;
+        /**
+         * In version 9.21.0: introduced
+         */
+        get parameterMappings(): internal.IList<SnippetParameterMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SnippetCall instance in the SDK and on the server.
@@ -26896,6 +27334,79 @@ export declare namespace pages {
         static create(model: IModel): SnippetCallWidget;
     }
     /**
+     * In version 9.21.0: introduced
+     */
+    interface ISnippetParameter extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsSnippet: ISnippet;
+        readonly name: string;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly parameterType: datatypes.IDataType;
+        asLoaded(): SnippetParameter;
+        load(callback: (element: SnippetParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<SnippetParameter>;
+    }
+    /**
+     * In version 9.21.0: introduced
+     */
+    class SnippetParameter extends internal.Element<IModel> implements ISnippetParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSnippet(): Snippet;
+        get name(): string;
+        set name(newValue: string);
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SnippetParameter instance in the SDK and on the server.
+         * The new SnippetParameter will be automatically stored in the 'parameters' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container: Snippet): SnippetParameter;
+        /**
+         * Creates and returns a new SnippetParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SnippetParameter;
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 9.21.0: introduced
+     */
+    class SnippetParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSnippetCall(): SnippetCall;
+        get parameter(): ISnippetParameter;
+        set parameter(newValue: ISnippetParameter);
+        get parameterQualifiedName(): string;
+        get variable(): PageVariable;
+        set variable(newValue: PageVariable);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.
+         * The new SnippetParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent SnippetCall element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container: SnippetCall): SnippetParameterMapping;
+        /**
+         * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SnippetParameterMapping;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/image relevant section in reference guide}
      */
     class StaticImageViewer extends ConditionallyVisibleWidget {
@@ -26946,6 +27457,11 @@ export declare namespace pages {
          */
         get alternativeText(): ClientTemplate;
         set alternativeText(newValue: ClientTemplate);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new StaticImageViewer instance in the SDK and on the server.
@@ -29868,6 +30384,11 @@ export declare namespace pages {
          */
         get submitOnInputDelay(): number;
         set submitOnInputDelay(newValue: number);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextArea instance in the SDK and on the server.
@@ -30402,6 +30923,11 @@ export declare namespace pages {
          */
         get submitOnInputDelay(): number;
         set submitOnInputDelay(newValue: number);
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TextBox instance in the SDK and on the server.
@@ -30900,6 +31426,11 @@ export declare namespace pages {
         get containerAsVerticalFlow(): VerticalFlow;
         get containerAsWebLayoutContent(): WebLayoutContent;
         get containerAsReportPane(): reports.ReportPane;
+        /**
+         * In version 9.24.0: introduced
+         */
+        get nativeAccessibilitySettings(): AccessibilitySettings | null;
+        set nativeAccessibilitySettings(newValue: AccessibilitySettings | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Title instance in the SDK and on the server.
@@ -31366,6 +31897,42 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Title;
+    }
+    /**
+     * In version 9.21.0: introduced
+     */
+    class UserRoleSet extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRetrievalQuery(): RetrievalQuery;
+        get containerAsRuntimeOperation(): RuntimeOperation;
+        get userRoles(): internal.IList<security.IUserRole>;
+        get userRolesQualifiedNames(): string[];
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * The new UserRoleSet will be automatically stored in the 'allowedUserRoleSets' property
+         * of the parent RetrievalQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInRetrievalQueryUnderAllowedUserRoleSets(container: RetrievalQuery): UserRoleSet;
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * The new UserRoleSet will be automatically stored in the 'allowedUserRoleSets' property
+         * of the parent RuntimeOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInRuntimeOperationUnderAllowedUserRoleSets(container: RuntimeOperation): UserRoleSet;
+        /**
+         * Creates and returns a new UserRoleSet instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UserRoleSet;
     }
     /**
      * In version 9.0.2: introduced
@@ -32740,6 +33307,7 @@ export declare namespace pages {
         static create(model: IModel): WorkflowOverviewTemplateType;
     }
 }
+import { customicons } from "./customicons";
 import { customwidgets } from "./customwidgets";
 import { datatypes } from "./datatypes";
 import { documenttemplates } from "./documenttemplates";

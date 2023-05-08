@@ -19,8 +19,14 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         }
         return internal_1.instancehelpers.createElement(this, elementClass);
     }
+    allAuthentications() {
+        return super._allOfTypes(["Rest$Authentication"]);
+    }
     allBuildingBlocks() {
         return super._allOfTypes(["Pages$BuildingBlock"]);
+    }
+    allBusinessEventServices() {
+        return super._allOfTypes(["BusinessEvents$BusinessEventService"]);
     }
     allCodeActions() {
         return super._allOfTypes(["JavaActions$JavaAction", "JavaScriptActions$JavaScriptAction"]);
@@ -40,18 +46,28 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allConsumedODataServices() {
         return super._allOfTypes(["Rest$ConsumedODataService"]);
     }
+    allCustomIconCollections() {
+        return super._allOfTypes(["CustomIcons$CustomIconCollection"]);
+    }
     allDataSets() {
         return super._allOfTypes(["DataSets$DataSet"]);
+    }
+    allDatabaseConnections() {
+        return super._allOfTypes(["DatabaseConnector$DatabaseConnection"]);
     }
     allDocuments() {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
+            "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
             "Constants$Constant",
+            "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
+            "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
             "Enumerations$Enumeration",
+            "ExcelDataImporter$Template",
             "ExportMappings$ExportMapping",
             "Images$ImageCollection",
             "ImportMappings$ImportMapping",
@@ -75,8 +91,10 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Pages$Snippet",
             "Queues$Queue",
             "RegularExpressions$RegularExpression",
+            "Rest$Authentication",
             "Rest$ConsumedODataService",
             "Rest$InteractiveRest",
+            "Rest$InteractiveRestCollection",
             "Rest$PublishedODataService",
             "Rest$PublishedRestService",
             "ScheduledEvents$ScheduledEvent",
@@ -128,6 +146,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allInteractiveRests() {
         return super._allOfTypes(["Rest$InteractiveRest"]);
     }
+    allInteractiveRestCollections() {
+        return super._allOfTypes(["Rest$InteractiveRestCollection"]);
+    }
     allJavaActions() {
         return super._allOfTypes(["JavaActions$JavaAction"]);
     }
@@ -164,13 +185,17 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allModuleDocuments() {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
+            "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
             "Constants$Constant",
+            "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
+            "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
             "DomainModels$DomainModel",
             "Enumerations$Enumeration",
+            "ExcelDataImporter$Template",
             "ExportMappings$ExportMapping",
             "Images$ImageCollection",
             "ImportMappings$ImportMapping",
@@ -195,11 +220,14 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Projects$ModuleSettings",
             "Queues$Queue",
             "RegularExpressions$RegularExpression",
+            "Rest$Authentication",
             "Rest$ConsumedODataService",
             "Rest$InteractiveRest",
+            "Rest$InteractiveRestCollection",
             "Rest$PublishedODataService",
             "Rest$PublishedRestService",
             "ScheduledEvents$ScheduledEvent",
+            "Security$ModuleSecurity",
             "WebServices$ImportedWebService",
             "WebServices$PublishedAppService",
             "WebServices$PublishedWebService",
@@ -299,6 +327,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allSystemTextCollections() {
         return super._allOfTypes(["Texts$SystemTextCollection"]);
     }
+    allTemplates() {
+        return super._allOfTypes(["ExcelDataImporter$Template"]);
+    }
     allTemplateFormBases() {
         return super._allOfTypes(["Pages$BuildingBlock", "Pages$PageTemplate"]);
     }
@@ -317,11 +348,17 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findConstantByQualifiedName(qname) {
         return this._resolveName("Constants$Constant", qname);
     }
+    findCustomIconByQualifiedName(qname) {
+        return this._resolveName("CustomIcons$CustomIcon", qname);
+    }
     findDataSetByQualifiedName(qname) {
         return this._resolveName("DataSets$DataSet", qname);
     }
     findDataSetParameterByQualifiedName(qname) {
         return this._resolveName("DataSets$DataSetParameter", qname);
+    }
+    findDatabaseQueryByQualifiedName(qname) {
+        return this._resolveName("DatabaseConnector$DatabaseQuery", qname);
     }
     findDocumentTemplateByQualifiedName(qname) {
         return this._resolveName("DocumentTemplates$DocumentTemplate", qname);
@@ -422,14 +459,26 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findSnippetByQualifiedName(qname) {
         return this._resolveName("Pages$Snippet", qname);
     }
+    findSnippetParameterByQualifiedName(qname) {
+        return this._resolveName("Pages$SnippetParameter", qname);
+    }
     findQueueByQualifiedName(qname) {
         return this._resolveName("Queues$Queue", qname);
     }
     findRegularExpressionByQualifiedName(qname) {
         return this._resolveName("RegularExpressions$RegularExpression", qname);
     }
+    findAuthenticationByQualifiedName(qname) {
+        return this._resolveName("Rest$Authentication", qname);
+    }
     findConsumedODataServiceByQualifiedName(qname) {
         return this._resolveName("Rest$ConsumedODataService", qname);
+    }
+    findInteractiveRestOperationByQualifiedName(qname) {
+        return this._resolveName("Rest$InteractiveRestOperation", qname);
+    }
+    findOperationParameterByQualifiedName(qname) {
+        return this._resolveName("Rest$OperationParameter", qname);
     }
     findModuleRoleByQualifiedName(qname) {
         return this._resolveName("Security$ModuleRole", qname);

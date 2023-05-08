@@ -37,6 +37,16 @@ var customwidgets;
     CustomWidgetAttributeType.String = new CustomWidgetAttributeType("String", {});
     CustomWidgetAttributeType.Decimal = new CustomWidgetAttributeType("Decimal", {});
     customwidgets.CustomWidgetAttributeType = CustomWidgetAttributeType;
+    class CustomWidgetSelectionType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "customwidgets.CustomWidgetSelectionType";
+        }
+    }
+    CustomWidgetSelectionType.None = new CustomWidgetSelectionType("None", {});
+    CustomWidgetSelectionType.Single = new CustomWidgetSelectionType("Single", {});
+    CustomWidgetSelectionType.Multi = new CustomWidgetSelectionType("Multi", {});
+    customwidgets.CustomWidgetSelectionType = CustomWidgetSelectionType;
     class IsPath extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -79,6 +89,9 @@ var customwidgets;
             this.qualifiedTsTypeName = "customwidgets.WidgetReturnTypeEnum";
         }
     }
+    WidgetReturnTypeEnum.None = new WidgetReturnTypeEnum("None", {
+        introduced: "9.20.0"
+    });
     WidgetReturnTypeEnum.Void = new WidgetReturnTypeEnum("Void", {});
     WidgetReturnTypeEnum.Boolean = new WidgetReturnTypeEnum("Boolean", {});
     WidgetReturnTypeEnum.Integer = new WidgetReturnTypeEnum("Integer", {});
@@ -129,6 +142,9 @@ var customwidgets;
     });
     WidgetValueTypeEnum.Object = new WidgetValueTypeEnum("Object", {});
     WidgetValueTypeEnum.String = new WidgetValueTypeEnum("String", {});
+    WidgetValueTypeEnum.Selection = new WidgetValueTypeEnum("Selection", {
+        introduced: "9.23.0"
+    });
     WidgetValueTypeEnum.TranslatableString = new WidgetValueTypeEnum("TranslatableString", {});
     WidgetValueTypeEnum.TextTemplate = new WidgetValueTypeEnum("TextTemplate", {
         introduced: "7.23.0"
@@ -1621,11 +1637,13 @@ var customwidgets;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__type = new internal.EnumProperty(WidgetReturnType, this, "type", WidgetReturnTypeEnum.Boolean, WidgetReturnTypeEnum);
+            this.__type = new internal.EnumProperty(WidgetReturnType, this, "type", WidgetReturnTypeEnum.None, WidgetReturnTypeEnum);
             /** @internal */
             this.__isList = new internal.PrimitiveProperty(WidgetReturnType, this, "isList", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__entityProperty = new internal.PrimitiveProperty(WidgetReturnType, this, "entityProperty", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__assignableTo = new internal.PrimitiveProperty(WidgetReturnType, this, "assignableTo", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new WidgetReturnType() cannot be invoked directly, please use 'model.customwidgets.createWidgetReturnType()'");
             }
@@ -1652,6 +1670,15 @@ var customwidgets;
             this.__entityProperty.set(newValue);
         }
         /**
+         * In version 9.20.0: introduced
+         */
+        get assignableTo() {
+            return this.__assignableTo.get();
+        }
+        set assignableTo(newValue) {
+            this.__assignableTo.set(newValue);
+        }
+        /**
          * Creates and returns a new WidgetReturnType instance in the SDK and on the server.
          * The new WidgetReturnType will be automatically stored in the 'returnType' property
          * of the parent WidgetValueType element passed as argument.
@@ -1670,11 +1697,24 @@ var customwidgets;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.type = WidgetReturnTypeEnum.Boolean;
+            (() => {
+                if (internal.isAtLeast("9.20.0", this.model)) {
+                    this.type = WidgetReturnTypeEnum.None;
+                    return;
+                }
+                this.type = WidgetReturnTypeEnum.Boolean;
+            })();
         }
     }
     WidgetReturnType.structureTypeName = "CustomWidgets$WidgetReturnType";
-    WidgetReturnType.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    WidgetReturnType.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            type: {},
+            assignableTo: {
+                introduced: "9.20.0"
+            }
+        }
+    }, internal.StructureType.Element);
     customwidgets.WidgetReturnType = WidgetReturnType;
     class WidgetTranslation extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1769,6 +1809,8 @@ var customwidgets;
             this.__dataSource = new internal.PartProperty(WidgetValue, this, "dataSource", null, false);
             /** @internal */
             this.__sourceVariable = new internal.PartProperty(WidgetValue, this, "sourceVariable", null, false);
+            /** @internal */
+            this.__selection = new internal.EnumProperty(WidgetValue, this, "selection", CustomWidgetSelectionType.None, CustomWidgetSelectionType);
             if (arguments.length < 4) {
                 throw new Error("new WidgetValue() cannot be invoked directly, please use 'model.customwidgets.createWidgetValue()'");
             }
@@ -1948,6 +1990,15 @@ var customwidgets;
             this.__sourceVariable.set(newValue);
         }
         /**
+         * In version 9.23.0: introduced
+         */
+        get selection() {
+            return this.__selection.get();
+        }
+        set selection(newValue) {
+            this.__selection.set(newValue);
+        }
+        /**
          * Creates and returns a new WidgetValue instance in the SDK and on the server.
          * The new WidgetValue will be automatically stored in the 'value' property
          * of the parent WidgetProperty element passed as argument.
@@ -1968,6 +2019,9 @@ var customwidgets;
             super._initializeDefaultProperties();
             if (this.__action.isAvailable) {
                 this.action = pages_1.pages.NoClientAction.create(this.model);
+            }
+            if (this.__selection.isAvailable) {
+                this.selection = CustomWidgetSelectionType.None;
             }
         }
     }
@@ -2019,6 +2073,9 @@ var customwidgets;
             },
             sourceVariable: {
                 introduced: "8.8.0"
+            },
+            selection: {
+                introduced: "9.23.0"
             }
         }
     }, internal.StructureType.Element);
@@ -2058,6 +2115,8 @@ var customwidgets;
             this.__attributeTypes = new internal.EnumListProperty(WidgetValueType, this, "attributeTypes", [], CustomWidgetAttributeType);
             /** @internal */
             this.__associationTypes = new internal.EnumListProperty(WidgetValueType, this, "associationTypes", [], CustomWidgetAssociationType);
+            /** @internal */
+            this.__selectionTypes = new internal.EnumListProperty(WidgetValueType, this, "selectionTypes", [], CustomWidgetSelectionType);
             /** @internal */
             this.__enumerationValues = new internal.PartListProperty(WidgetValueType, this, "enumerationValues", []);
             /** @internal */
@@ -2179,6 +2238,12 @@ var customwidgets;
         get associationTypes() {
             return this.__associationTypes.get();
         }
+        /**
+         * In version 9.23.0: introduced
+         */
+        get selectionTypes() {
+            return this.__selectionTypes.get();
+        }
         get enumerationValues() {
             return this.__enumerationValues.get();
         }
@@ -2240,6 +2305,9 @@ var customwidgets;
             },
             associationTypes: {
                 introduced: "9.12.0"
+            },
+            selectionTypes: {
+                introduced: "9.23.0"
             }
         }
     }, internal.StructureType.Element);

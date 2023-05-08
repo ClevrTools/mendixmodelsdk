@@ -20,6 +20,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): DataType;
         load(callback: (element: DataType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DataType>;
@@ -37,6 +39,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -47,6 +50,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -66,6 +71,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): BinaryType;
         load(callback: (element: BinaryType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BinaryType>;
@@ -81,6 +88,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -91,6 +99,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -140,6 +150,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'parameterType' property
@@ -232,6 +251,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -278,6 +315,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): BooleanType;
         load(callback: (element: BooleanType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BooleanType>;
@@ -293,6 +332,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -303,6 +343,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -352,6 +394,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'parameterType' property
@@ -444,6 +495,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -490,6 +559,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): DateTimeType;
         load(callback: (element: DateTimeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DateTimeType>;
@@ -505,6 +576,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -515,6 +587,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -564,6 +638,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'parameterType' property
@@ -656,6 +739,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -702,6 +803,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): DecimalType;
         load(callback: (element: DecimalType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalType>;
@@ -717,6 +820,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -727,6 +831,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -776,6 +882,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'parameterType' property
@@ -868,6 +983,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -914,6 +1047,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): EmptyType;
         load(callback: (element: EmptyType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EmptyType>;
@@ -929,6 +1064,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -939,6 +1075,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -988,6 +1126,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'parameterType' property
@@ -1080,6 +1227,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1126,6 +1291,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1146,6 +1313,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -1156,6 +1324,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1178,6 +1348,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1198,6 +1370,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -1208,6 +1381,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1260,6 +1435,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'parameterType' property
@@ -1352,6 +1536,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1398,6 +1600,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): FloatType;
         load(callback: (element: FloatType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatType>;
@@ -1413,6 +1617,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -1423,6 +1628,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1472,6 +1679,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'parameterType' property
@@ -1564,6 +1780,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1610,6 +1844,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): IntegerType;
         load(callback: (element: IntegerType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerType>;
@@ -1625,6 +1861,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -1635,6 +1872,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1684,6 +1923,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'parameterType' property
@@ -1776,6 +2024,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -1822,6 +2088,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): ListType;
         load(callback: (element: ListType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ListType>;
@@ -1837,6 +2105,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -1847,6 +2116,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1896,6 +2167,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'parameterType' property
@@ -1988,6 +2268,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2034,6 +2332,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): ObjectType;
         load(callback: (element: ObjectType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ObjectType>;
@@ -2049,6 +2349,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -2059,6 +2360,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2108,6 +2411,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'parameterType' property
@@ -2200,6 +2512,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2246,6 +2576,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): StringType;
         load(callback: (element: StringType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringType>;
@@ -2261,6 +2593,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -2271,6 +2604,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2320,6 +2655,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'parameterType' property
@@ -2412,6 +2756,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2458,6 +2820,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): UnknownType;
         load(callback: (element: UnknownType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<UnknownType>;
@@ -2473,6 +2837,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -2483,6 +2848,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2532,6 +2899,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'parameterType' property
@@ -2624,6 +3000,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2670,6 +3064,8 @@ export declare namespace datatypes {
         readonly containerAsMicroflowBase: microflows.IMicroflowBase;
         readonly containerAsMicroflowParameterBase: microflows.IMicroflowParameterBase;
         readonly containerAsPageParameter: pages.IPageParameter;
+        readonly containerAsSnippetParameter: pages.ISnippetParameter;
+        readonly containerAsOperationParameter: rest.IOperationParameter;
         asLoaded(): VoidType;
         load(callback: (element: VoidType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<VoidType>;
@@ -2685,6 +3081,7 @@ export declare namespace datatypes {
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
+        get containerAsQueryParameter(): databaseconnector.QueryParameter;
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
@@ -2695,6 +3092,8 @@ export declare namespace datatypes {
         get containerAsMicroflowParameterObject(): microflows.MicroflowParameterObject;
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPageParameter(): pages.PageParameter;
+        get containerAsSnippetParameter(): pages.SnippetParameter;
+        get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2744,6 +3143,15 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInDataSetParameterUnderParameterType(container: datasets.DataSetParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'dataType' property
+         * of the parent databaseconnector.QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInQueryParameterUnderDataType(container: databaseconnector.QueryParameter): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'parameterType' property
@@ -2836,6 +3244,24 @@ export declare namespace datatypes {
         static createInPageParameterUnderParameterType(container: pages.PageParameter): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'parameterType' property
+         * of the parent pages.SnippetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInSnippetParameterUnderParameterType(container: pages.SnippetParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'dataType' property
+         * of the parent rest.OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInOperationParameterUnderDataType(container: rest.OperationParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'type' property
          * of the parent rest.RestOperationParameter element passed as argument.
          *
@@ -2872,6 +3298,7 @@ export declare namespace datatypes {
 import { appservices } from "./appservices";
 import { constants } from "./constants";
 import { datasets } from "./datasets";
+import { databaseconnector } from "./databaseconnector";
 import { documenttemplates } from "./documenttemplates";
 import { domainmodels } from "./domainmodels";
 import { enumerations } from "./enumerations";

@@ -638,7 +638,7 @@ var microflows;
             /** @internal */
             this.__attribute = new internal.ByNameReferenceProperty(AggregateListAction, this, "attribute", null, "DomainModels$Attribute");
             /** @internal */
-            this.__aggregateFunction = new internal.EnumProperty(AggregateListAction, this, "aggregateFunction", AggregateFunctionEnum.Sum, AggregateFunctionEnum);
+            this.__aggregateFunction = new internal.EnumProperty(AggregateListAction, this, "aggregateFunction", AggregateFunctionEnum.Count, AggregateFunctionEnum);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(AggregateListAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -694,11 +694,21 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.aggregateFunction = AggregateFunctionEnum.Sum;
+            (() => {
+                if (internal.isAtLeast("9.24.0", this.model)) {
+                    this.aggregateFunction = AggregateFunctionEnum.Count;
+                    return;
+                }
+                this.aggregateFunction = AggregateFunctionEnum.Sum;
+            })();
         }
     }
     AggregateListAction.structureTypeName = "Microflows$AggregateListAction";
-    AggregateListAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    AggregateListAction.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            aggregateFunction: {}
+        }
+    }, internal.StructureType.Element);
     microflows.AggregateListAction = AggregateListAction;
     /**
      * See: {@link https://docs.mendix.com/refguide/annotation relevant section in reference guide}
@@ -1641,6 +1651,85 @@ var microflows;
     BreakEvent.structureTypeName = "Microflows$BreakEvent";
     BreakEvent.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.BreakEvent = BreakEvent;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/call-external-action relevant section in reference guide}
+     *
+     * In version 9.19.0: introduced
+     */
+    class CallExternalAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__consumedODataService = new internal.ByNameReferenceProperty(CallExternalAction, this, "consumedODataService", null, "Rest$ConsumedODataService");
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(CallExternalAction, this, "name", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new CallExternalAction() cannot be invoked directly, please use 'model.microflows.createCallExternalAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.23.0: added optional
+         */
+        get consumedODataService() {
+            return this.__consumedODataService.get();
+        }
+        set consumedODataService(newValue) {
+            this.__consumedODataService.set(newValue);
+        }
+        get consumedODataServiceQualifiedName() {
+            return this.__consumedODataService.qualifiedName();
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /**
+         * Creates and returns a new CallExternalAction instance in the SDK and on the server.
+         * The new CallExternalAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.19.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CallExternalAction.structureTypeName, { start: "9.19.0" });
+            return internal.instancehelpers.createElement(container, CallExternalAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CallExternalAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CallExternalAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CallExternalAction.structureTypeName = "Microflows$CallExternalAction";
+    CallExternalAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.19.0",
+        properties: {
+            consumedODataService: {
+                required: {
+                    currentValue: false,
+                    changedIn: ["9.23.0"]
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.CallExternalAction = CallExternalAction;
     class CaseValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -2141,6 +2230,9 @@ var microflows;
         }
         get containerAsImportMappingCall() {
             return super.getContainerAs(ImportMappingCall);
+        }
+        get containerAsListRange() {
+            return super.getContainerAs(ListRange);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -2706,6 +2798,9 @@ var microflows;
         get containerAsImportMappingCall() {
             return super.getContainerAs(ImportMappingCall);
         }
+        get containerAsListRange() {
+            return super.getContainerAs(ListRange);
+        }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -2767,6 +2862,18 @@ var microflows;
          */
         static createInImportMappingCallUnderRange(container) {
             return internal.instancehelpers.createElement(container, CustomRange, "range", false);
+        }
+        /**
+         * Creates and returns a new CustomRange instance in the SDK and on the server.
+         * The new CustomRange will be automatically stored in the 'customRange' property
+         * of the parent ListRange element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createInListRangeUnderCustomRange(container) {
+            internal.createInVersionCheck(container.model, CustomRange.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, CustomRange, "customRange", false);
         }
         /**
          * Creates and returns a new CustomRange instance in the SDK and on the server.
@@ -5104,6 +5211,9 @@ var microflows;
         get containerAsInteractiveRest() {
             return super.getContainerAs(rest_1.rest.InteractiveRest);
         }
+        get containerAsInteractiveRestOperation() {
+            return super.getContainerAs(rest_1.rest.InteractiveRestOperation);
+        }
         get overrideLocation() {
             return this.__overrideLocation.get();
         }
@@ -5277,10 +5387,22 @@ var microflows;
          * of the parent rest.InteractiveRest element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.18.0 and higher
+         *  9.18.0 to 9.22.0
          */
         static createInInteractiveRestUnderHttpConfiguration(container) {
-            internal.createInVersionCheck(container.model, HttpConfiguration.structureTypeName, { start: "9.18.0" });
+            internal.createInVersionCheck(container.model, HttpConfiguration.structureTypeName, { start: "9.18.0", end: "9.22.0" });
+            return internal.instancehelpers.createElement(container, HttpConfiguration, "httpConfiguration", false);
+        }
+        /**
+         * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
+         * The new HttpConfiguration will be automatically stored in the 'httpConfiguration' property
+         * of the parent rest.InteractiveRestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createInInteractiveRestOperationUnderHttpConfiguration(container) {
+            internal.createInVersionCheck(container.model, HttpConfiguration.structureTypeName, { start: "9.22.0" });
             return internal.instancehelpers.createElement(container, HttpConfiguration, "httpConfiguration", false);
         }
         /**
@@ -6575,6 +6697,130 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.ListOperationAction = ListOperationAction;
+    /**
+     * In version 9.24.0: introduced
+     */
+    class ListRange extends ListOperation {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__customRange = new internal.PartProperty(ListRange, this, "customRange", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new ListRange() cannot be invoked directly, please use 'model.microflows.createListRange()'");
+            }
+        }
+        get containerAsListOperationAction() {
+            return super.getContainerAs(ListOperationAction);
+        }
+        get customRange() {
+            return this.__customRange.get();
+        }
+        set customRange(newValue) {
+            this.__customRange.set(newValue);
+        }
+        /**
+         * Creates and returns a new ListRange instance in the SDK and on the server.
+         * The new ListRange will be automatically stored in the 'operation' property
+         * of the parent ListOperationAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ListRange.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, ListRange, "operation", false);
+        }
+        /**
+         * Creates and returns a new ListRange instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ListRange);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.customRange = CustomRange.create(this.model);
+        }
+    }
+    ListRange.structureTypeName = "Microflows$ListRange";
+    ListRange.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.24.0",
+        properties: {
+            customRange: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.ListRange = ListRange;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/lock-workflow relevant section in reference guide}
+     *
+     * In version 9.21.0: introduced
+     */
+    class LockWorkflowAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(LockWorkflowAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__pauseAllWorkflows = new internal.PrimitiveProperty(LockWorkflowAction, this, "pauseAllWorkflows", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new LockWorkflowAction() cannot be invoked directly, please use 'model.microflows.createLockWorkflowAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get pauseAllWorkflows() {
+            return this.__pauseAllWorkflows.get();
+        }
+        set pauseAllWorkflows(newValue) {
+            this.__pauseAllWorkflows.set(newValue);
+        }
+        /**
+         * Creates and returns a new LockWorkflowAction instance in the SDK and on the server.
+         * The new LockWorkflowAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, LockWorkflowAction.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, LockWorkflowAction, "action", false);
+        }
+        /**
+         * Creates and returns a new LockWorkflowAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, LockWorkflowAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.pauseAllWorkflows = true;
+        }
+    }
+    LockWorkflowAction.structureTypeName = "Microflows$LockWorkflowAction";
+    LockWorkflowAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.21.0"
+    }, internal.StructureType.Element);
+    microflows.LockWorkflowAction = LockWorkflowAction;
     /**
      * See: {@link https://docs.mendix.com/refguide/log-message relevant section in reference guide}
      */
@@ -8650,6 +8896,10 @@ var microflows;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__userTaskVariable = new internal.PrimitiveProperty(OpenUserTaskAction, this, "userTaskVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__assignOnOpen = new internal.PrimitiveProperty(OpenUserTaskAction, this, "assignOnOpen", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__openWhenAssigned = new internal.PrimitiveProperty(OpenUserTaskAction, this, "openWhenAssigned", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new OpenUserTaskAction() cannot be invoked directly, please use 'model.microflows.createOpenUserTaskAction()'");
             }
@@ -8662,6 +8912,24 @@ var microflows;
         }
         set userTaskVariable(newValue) {
             this.__userTaskVariable.set(newValue);
+        }
+        /**
+         * In version 9.19.0: introduced
+         */
+        get assignOnOpen() {
+            return this.__assignOnOpen.get();
+        }
+        set assignOnOpen(newValue) {
+            this.__assignOnOpen.set(newValue);
+        }
+        /**
+         * In version 9.19.0: introduced
+         */
+        get openWhenAssigned() {
+            return this.__openWhenAssigned.get();
+        }
+        set openWhenAssigned(newValue) {
+            this.__openWhenAssigned.set(newValue);
         }
         /**
          * Creates and returns a new OpenUserTaskAction instance in the SDK and on the server.
@@ -8686,11 +8954,25 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__assignOnOpen.isAvailable) {
+                this.assignOnOpen = true;
+            }
+            if (this.__openWhenAssigned.isAvailable) {
+                this.openWhenAssigned = false;
+            }
         }
     }
     OpenUserTaskAction.structureTypeName = "Microflows$OpenUserTaskAction";
     OpenUserTaskAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        properties: {
+            assignOnOpen: {
+                introduced: "9.19.0"
+            },
+            openWhenAssigned: {
+                introduced: "9.19.0"
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -8755,6 +9037,90 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.OpenWorkflowAction = OpenWorkflowAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.24.0: introduced
+     */
+    class ParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(ParameterMapping, this, "parameter", null, "Rest$OperationParameter");
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(ParameterMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ParameterMapping() cannot be invoked directly, please use 'model.microflows.createParameterMapping()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new ParameterMapping instance in the SDK and on the server.
+         * The new ParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.24.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ParameterMapping.structureTypeName, { start: "9.24.0" });
+            return internal.instancehelpers.createElement(container, ParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new ParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ParameterMapping.structureTypeName = "Microflows$ParameterMapping";
+    ParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.24.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.ParameterMapping = ParameterMapping;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
@@ -9436,6 +9802,105 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.RestCallAction = RestCallAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/call-rest-operation-action relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 9.22.0: introduced
+     */
+    class RestOperationCallAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__selectedOperation = new internal.ByNameReferenceProperty(RestOperationCallAction, this, "selectedOperation", null, "Rest$InteractiveRestOperation");
+            /** @internal */
+            this.__bodyVariableName = new internal.PrimitiveProperty(RestOperationCallAction, this, "bodyVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(RestOperationCallAction, this, "parameterMappings", []);
+            if (arguments.length < 4) {
+                throw new Error("new RestOperationCallAction() cannot be invoked directly, please use 'model.microflows.createRestOperationCallAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get selectedOperation() {
+            return this.__selectedOperation.get();
+        }
+        set selectedOperation(newValue) {
+            this.__selectedOperation.set(newValue);
+        }
+        get selectedOperationQualifiedName() {
+            return this.__selectedOperation.qualifiedName();
+        }
+        /**
+         * In version 9.23.0: introduced
+         */
+        get bodyVariableName() {
+            return this.__bodyVariableName.get();
+        }
+        set bodyVariableName(newValue) {
+            this.__bodyVariableName.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.24.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        /**
+         * Creates and returns a new RestOperationCallAction instance in the SDK and on the server.
+         * The new RestOperationCallAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RestOperationCallAction.structureTypeName, { start: "9.22.0" });
+            return internal.instancehelpers.createElement(container, RestOperationCallAction, "action", false);
+        }
+        /**
+         * Creates and returns a new RestOperationCallAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestOperationCallAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RestOperationCallAction.structureTypeName = "Microflows$RestOperationCallAction";
+    RestOperationCallAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.22.0",
+        properties: {
+            bodyVariableName: {
+                introduced: "9.23.0"
+            },
+            parameterMappings: {
+                introduced: "9.24.0"
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.RestOperationCallAction = RestOperationCallAction;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
@@ -10257,6 +10722,8 @@ var microflows;
             this.__workflowTaskVariable = new internal.PrimitiveProperty(SetTaskOutcomeAction, this, "workflowTaskVariable", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__outcome = new internal.ByNameReferenceProperty(SetTaskOutcomeAction, this, "outcome", null, "Workflows$UserTaskOutcome");
+            /** @internal */
+            this.__outcomeValue = new internal.PrimitiveProperty(SetTaskOutcomeAction, this, "outcomeValue", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new SetTaskOutcomeAction() cannot be invoked directly, please use 'model.microflows.createSetTaskOutcomeAction()'");
             }
@@ -10270,6 +10737,9 @@ var microflows;
         set workflowTaskVariable(newValue) {
             this.__workflowTaskVariable.set(newValue);
         }
+        /**
+         * In version 9.19.0: deleted
+         */
         get outcome() {
             return this.__outcome.get();
         }
@@ -10278,6 +10748,15 @@ var microflows;
         }
         get outcomeQualifiedName() {
             return this.__outcome.qualifiedName();
+        }
+        /**
+         * In version 9.19.0: introduced
+         */
+        get outcomeValue() {
+            return this.__outcomeValue.get();
+        }
+        set outcomeValue(newValue) {
+            this.__outcomeValue.set(newValue);
         }
         /**
          * Creates and returns a new SetTaskOutcomeAction instance in the SDK and on the server.
@@ -10307,6 +10786,15 @@ var microflows;
     SetTaskOutcomeAction.structureTypeName = "Microflows$SetTaskOutcomeAction";
     SetTaskOutcomeAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        properties: {
+            outcome: {
+                deleted: "9.19.0",
+                deletionMessage: null
+            },
+            outcomeValue: {
+                introduced: "9.19.0"
+            }
+        },
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -11510,6 +11998,71 @@ var microflows;
     Union.structureTypeName = "Microflows$Union";
     Union.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.Union = Union;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/unlock-workflow relevant section in reference guide}
+     *
+     * In version 9.21.0: introduced
+     */
+    class UnlockWorkflowAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(UnlockWorkflowAction, this, "workflow", null, "Workflows$Workflow");
+            /** @internal */
+            this.__resumeAllPausedWorkflows = new internal.PrimitiveProperty(UnlockWorkflowAction, this, "resumeAllPausedWorkflows", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new UnlockWorkflowAction() cannot be invoked directly, please use 'model.microflows.createUnlockWorkflowAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        get resumeAllPausedWorkflows() {
+            return this.__resumeAllPausedWorkflows.get();
+        }
+        set resumeAllPausedWorkflows(newValue) {
+            this.__resumeAllPausedWorkflows.set(newValue);
+        }
+        /**
+         * Creates and returns a new UnlockWorkflowAction instance in the SDK and on the server.
+         * The new UnlockWorkflowAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, UnlockWorkflowAction.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, UnlockWorkflowAction, "action", false);
+        }
+        /**
+         * Creates and returns a new UnlockWorkflowAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, UnlockWorkflowAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.resumeAllPausedWorkflows = true;
+        }
+    }
+    UnlockWorkflowAction.structureTypeName = "Microflows$UnlockWorkflowAction";
+    UnlockWorkflowAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.21.0"
+    }, internal.StructureType.Element);
+    microflows.UnlockWorkflowAction = UnlockWorkflowAction;
     /**
      * In version 9.12.0: introduced
      */

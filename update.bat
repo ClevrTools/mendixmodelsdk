@@ -1,5 +1,5 @@
 npm pack mendixmodelsdk
-tar xzvf mendixmodelsdk-4.67.0.tgz
+tar xzvf mendixmodelsdk-4.73.0.tgz
 
 REM apply manual changes
 

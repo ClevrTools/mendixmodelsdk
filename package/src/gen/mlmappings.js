@@ -16,17 +16,32 @@ var mlmappings;
             this.qualifiedTsTypeName = "mlmappings.TensorType";
         }
     }
-    TensorType.UnsignedInteger8Tensor = new TensorType("UnsignedInteger8Tensor", {});
-    TensorType.UnsignedInteger16Tensor = new TensorType("UnsignedInteger16Tensor", {});
+    TensorType.UnsignedInteger8Tensor = new TensorType("UnsignedInteger8Tensor", {
+        deleted: "9.19.0",
+        deletionMessage: null
+    });
+    TensorType.UnsignedInteger16Tensor = new TensorType("UnsignedInteger16Tensor", {
+        deleted: "9.19.0",
+        deletionMessage: null
+    });
+    TensorType.Float16Tensor = new TensorType("Float16Tensor", {
+        deleted: "9.19.0",
+        deletionMessage: null
+    });
+    TensorType.Complex64Tensor = new TensorType("Complex64Tensor", {
+        deleted: "9.19.0",
+        deletionMessage: null
+    });
+    TensorType.Complex128Tensor = new TensorType("Complex128Tensor", {
+        deleted: "9.19.0",
+        deletionMessage: null
+    });
     TensorType.Integer8Tensor = new TensorType("Integer8Tensor", {});
     TensorType.Integer16Tensor = new TensorType("Integer16Tensor", {});
     TensorType.Integer32Tensor = new TensorType("Integer32Tensor", {});
     TensorType.Integer64Tensor = new TensorType("Integer64Tensor", {});
-    TensorType.Float16Tensor = new TensorType("Float16Tensor", {});
     TensorType.Float32Tensor = new TensorType("Float32Tensor", {});
     TensorType.Float64Tensor = new TensorType("Float64Tensor", {});
-    TensorType.Complex64Tensor = new TensorType("Complex64Tensor", {});
-    TensorType.Complex128Tensor = new TensorType("Complex128Tensor", {});
     TensorType.StringTensor = new TensorType("StringTensor", {});
     TensorType.BooleanTensor = new TensorType("BooleanTensor", {});
     TensorType.UnknownTensor = new TensorType("UnknownTensor", {});
@@ -46,6 +61,8 @@ var mlmappings;
             /** @internal */
             this.__mlModelFileName = new internal.PrimitiveProperty(MLMappingDocument, this, "mlModelFileName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__mlModelMetadata = new internal.PartListProperty(MLMappingDocument, this, "mlModelMetadata", []);
+            /** @internal */
             this.__mlModelMappings = new internal.PartProperty(MLMappingDocument, this, "mlModelMappings", null, false);
             this._containmentName = "documents";
         }
@@ -57,6 +74,16 @@ var mlmappings;
         }
         set mlModelFileName(newValue) {
             this.__mlModelFileName.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.22.0: introduced
+         */
+        get mlModelMetadata() {
+            return this.__mlModelMetadata.get();
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -88,6 +115,11 @@ var mlmappings;
     MLMappingDocument.structureTypeName = "MLMappings$MLMappingDocument";
     MLMappingDocument.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.17.0",
+        properties: {
+            mlModelMetadata: {
+                introduced: "9.22.0"
+            }
+        },
         experimental: {
             currentValue: true
         }
@@ -257,6 +289,72 @@ var mlmappings;
      *
      * @ignore
      *
+     * In version 9.22.0: introduced
+     */
+    class MLModelMetadata extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(MLModelMetadata, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(MLModelMetadata, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MLModelMetadata() cannot be invoked directly, please use 'model.mlmappings.createMLModelMetadata()'");
+            }
+        }
+        get containerAsMLMappingDocument() {
+            return super.getContainerAs(MLMappingDocument);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new MLModelMetadata instance in the SDK and on the server.
+         * The new MLModelMetadata will be automatically stored in the 'mlModelMetadata' property
+         * of the parent MLMappingDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.22.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MLModelMetadata.structureTypeName, { start: "9.22.0" });
+            return internal.instancehelpers.createElement(container, MLModelMetadata, "mlModelMetadata", true);
+        }
+        /**
+         * Creates and returns a new MLModelMetadata instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MLModelMetadata);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MLModelMetadata.structureTypeName = "MLMappings$MLModelMetadata";
+    MLModelMetadata.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.22.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    mlmappings.MLModelMetadata = MLModelMetadata;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
      * In version 9.17.0: introduced
      */
     class TensorDimension extends internal.Element {
@@ -283,11 +381,23 @@ var mlmappings;
          * of the parent TensorMappingElement element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.17.0 and higher
+         *  9.17.0 to 9.20.0
          */
         static createInTensorMappingElementUnderAttributeShape(container) {
-            internal.createInVersionCheck(container.model, TensorDimension.structureTypeName, { start: "9.17.0" });
+            internal.createInVersionCheck(container.model, TensorDimension.structureTypeName, { start: "9.17.0", end: "9.20.0" });
             return internal.instancehelpers.createElement(container, TensorDimension, "attributeShape", true);
+        }
+        /**
+         * Creates and returns a new TensorDimension instance in the SDK and on the server.
+         * The new TensorDimension will be automatically stored in the 'staticTensorShape' property
+         * of the parent TensorMappingElement element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.21.0 and higher
+         */
+        static createInTensorMappingElementUnderStaticTensorShape(container) {
+            internal.createInVersionCheck(container.model, TensorDimension.structureTypeName, { start: "9.21.0" });
+            return internal.instancehelpers.createElement(container, TensorDimension, "staticTensorShape", true);
         }
         /**
          * Creates and returns a new TensorDimension instance in the SDK and on the server.
@@ -334,23 +444,55 @@ var mlmappings;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__attributeName = new internal.PrimitiveProperty(TensorMappingElement, this, "attributeName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__attributeType = new internal.PartProperty(TensorMappingElement, this, "attributeType", null, false);
+            /** @internal */
+            this.__attributeShape = new internal.PartListProperty(TensorMappingElement, this, "attributeShape", []);
+            /** @internal */
             this.__tensorName = new internal.PrimitiveProperty(TensorMappingElement, this, "tensorName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__tensorType = new internal.EnumProperty(TensorMappingElement, this, "tensorType", TensorType.UnknownTensor, TensorType);
             /** @internal */
             this.__tensorShape = new internal.PartListProperty(TensorMappingElement, this, "tensorShape", []);
             /** @internal */
-            this.__attributeName = new internal.PrimitiveProperty(TensorMappingElement, this, "attributeName", "", internal.PrimitiveTypeEnum.String);
+            this.__staticTensorShape = new internal.PartListProperty(TensorMappingElement, this, "staticTensorShape", []);
             /** @internal */
-            this.__attributeType = new internal.PartProperty(TensorMappingElement, this, "attributeType", null, false);
-            /** @internal */
-            this.__attributeShape = new internal.PartListProperty(TensorMappingElement, this, "attributeShape", []);
+            this.__attribute = new internal.ByNameReferenceProperty(TensorMappingElement, this, "attribute", null, "DomainModels$Attribute");
             if (arguments.length < 4) {
                 throw new Error("new TensorMappingElement() cannot be invoked directly, please use 'model.mlmappings.createTensorMappingElement()'");
             }
         }
         get containerAsMLModelEntityMappings() {
             return super.getContainerAs(MLModelEntityMappings);
+        }
+        /**
+         * In version 9.21.0: deleted
+         */
+        get attributeName() {
+            return this.__attributeName.get();
+        }
+        set attributeName(newValue) {
+            this.__attributeName.set(newValue);
+        }
+        /**
+         * In version 9.21.0: deleted
+         */
+        get attributeType() {
+            return this.__attributeType.get();
+        }
+        set attributeType(newValue) {
+            this.__attributeType.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 9.21.0: deleted
+         */
+        get attributeShape() {
+            return this.__attributeShape.get();
         }
         get tensorName() {
             return this.__tensorName.get();
@@ -372,25 +514,27 @@ var mlmappings;
         get tensorShape() {
             return this.__tensorShape.get();
         }
-        get attributeName() {
-            return this.__attributeName.get();
-        }
-        set attributeName(newValue) {
-            this.__attributeName.set(newValue);
-        }
-        get attributeType() {
-            return this.__attributeType.get();
-        }
-        set attributeType(newValue) {
-            this.__attributeType.set(newValue);
-        }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 9.21.0: introduced
          */
-        get attributeShape() {
-            return this.__attributeShape.get();
+        get staticTensorShape() {
+            return this.__staticTensorShape.get();
+        }
+        /**
+         * In version 9.21.0: introduced
+         */
+        get attribute() {
+            return this.__attribute.get();
+        }
+        set attribute(newValue) {
+            this.__attribute.set(newValue);
+        }
+        get attributeQualifiedName() {
+            return this.__attribute.qualifiedName();
         }
         /**
          * Creates and returns a new TensorMappingElement instance in the SDK and on the server.
@@ -421,6 +565,26 @@ var mlmappings;
     TensorMappingElement.structureTypeName = "MLMappings$TensorMappingElement";
     TensorMappingElement.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.17.0",
+        properties: {
+            attributeName: {
+                deleted: "9.21.0",
+                deletionMessage: null
+            },
+            attributeType: {
+                deleted: "9.21.0",
+                deletionMessage: null
+            },
+            attributeShape: {
+                deleted: "9.21.0",
+                deletionMessage: null
+            },
+            staticTensorShape: {
+                introduced: "9.21.0"
+            },
+            attribute: {
+                introduced: "9.21.0"
+            }
+        },
         experimental: {
             currentValue: true
         }

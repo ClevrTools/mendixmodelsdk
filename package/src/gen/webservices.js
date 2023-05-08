@@ -311,6 +311,8 @@ var webservices;
             this.__filterable = new internal.PrimitiveProperty(DataAttribute, this, "filterable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sortable = new internal.PrimitiveProperty(DataAttribute, this, "sortable", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__enumerationAsString = new internal.PrimitiveProperty(DataAttribute, this, "enumerationAsString", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DataAttribute() cannot be invoked directly, please use 'model.webservices.createDataAttribute()'");
             }
@@ -373,6 +375,15 @@ var webservices;
             this.__sortable.set(newValue);
         }
         /**
+         * In version 9.21.0: introduced
+         */
+        get enumerationAsString() {
+            return this.__enumerationAsString.get();
+        }
+        set enumerationAsString(newValue) {
+            this.__enumerationAsString.set(newValue);
+        }
+        /**
          * Creates and returns a new DataAttribute instance in the SDK and on the server.
          * The new DataAttribute will be automatically stored in the 'childMembers' property
          * of the parent DataEntityBase element passed as argument.
@@ -391,6 +402,9 @@ var webservices;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__enumerationAsString.isAvailable) {
+                this.enumerationAsString = false;
+            }
             if (this.__filterable.isAvailable) {
                 this.filterable = true;
             }
@@ -417,6 +431,9 @@ var webservices;
             },
             sortable: {
                 introduced: "9.18.0"
+            },
+            enumerationAsString: {
+                introduced: "9.21.0"
             }
         }
     }, internal.StructureType.Element);
