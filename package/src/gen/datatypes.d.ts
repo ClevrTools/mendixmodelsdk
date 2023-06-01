@@ -43,6 +43,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -52,6 +53,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -92,6 +94,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -101,6 +104,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -188,6 +192,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -264,9 +277,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'type' property
@@ -336,6 +358,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -345,6 +368,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -432,6 +456,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -508,9 +541,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'type' property
@@ -580,6 +622,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -589,6 +632,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -676,6 +720,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -752,9 +805,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'type' property
@@ -824,6 +886,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -833,6 +896,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -920,6 +984,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -996,9 +1069,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'type' property
@@ -1068,6 +1150,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -1077,6 +1160,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1164,6 +1248,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1240,9 +1333,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'type' property
@@ -1317,6 +1419,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -1326,6 +1429,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1374,6 +1478,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -1383,6 +1488,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1473,6 +1579,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1549,9 +1664,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'type' property
@@ -1621,6 +1745,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -1630,6 +1755,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1717,6 +1843,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1793,9 +1928,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'type' property
@@ -1865,6 +2009,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -1874,6 +2019,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -1961,6 +2107,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2037,9 +2192,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'type' property
@@ -2109,6 +2273,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -2118,6 +2283,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2205,6 +2371,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2281,9 +2456,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'type' property
@@ -2353,6 +2537,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -2362,6 +2547,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2449,6 +2635,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2525,9 +2720,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'type' property
@@ -2597,6 +2801,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -2606,6 +2811,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2693,6 +2899,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2769,9 +2984,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'type' property
@@ -2841,6 +3065,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -2850,6 +3075,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -2937,6 +3163,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -3013,9 +3248,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'type' property
@@ -3085,6 +3329,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
         get containerAsMLModelCallParameterMapping(): microflows.MLModelCallParameterMapping;
         get containerAsMicroflowBase(): microflows.MicroflowBase;
@@ -3094,6 +3339,7 @@ export declare namespace datatypes {
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
+        get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
@@ -3181,6 +3427,15 @@ export declare namespace datatypes {
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container: microflows.AggregateListAction): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -3257,9 +3512,18 @@ export declare namespace datatypes {
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container: rest.OperationParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container: rest.PublishedODataMicroflowParameter): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'type' property

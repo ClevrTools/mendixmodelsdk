@@ -51,16 +51,24 @@ var navigation;
         introduced: "8.14.0"
     });
     ProfileKind.HybridTablet = new ProfileKind("HybridTablet", {
-        introduced: "7.4.0"
+        introduced: "7.4.0",
+        deleted: "10.0.0",
+        deletionMessage: null
     });
     ProfileKind.HybridTabletOffline = new ProfileKind("HybridTabletOffline", {
-        introduced: "7.4.0"
+        introduced: "7.4.0",
+        deleted: "10.0.0",
+        deletionMessage: null
     });
     ProfileKind.HybridPhone = new ProfileKind("HybridPhone", {
-        introduced: "7.4.0"
+        introduced: "7.4.0",
+        deleted: "10.0.0",
+        deletionMessage: null
     });
     ProfileKind.HybridPhoneOffline = new ProfileKind("HybridPhoneOffline", {
-        introduced: "7.4.0"
+        introduced: "7.4.0",
+        deleted: "10.0.0",
+        deletionMessage: null
     });
     ProfileKind.Tablet = new ProfileKind("Tablet", {});
     ProfileKind.TabletOffline = new ProfileKind("TabletOffline", {

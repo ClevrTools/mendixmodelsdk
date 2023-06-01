@@ -6,9 +6,6 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
 const microflows_1 = require("./microflows");
-/**
- * @ignore
- */
 var databaseconnector;
 (function (databaseconnector) {
     /**
@@ -108,6 +105,7 @@ var databaseconnector;
      *
      * @ignore
      *
+     * In version 10.0.0: deleted
      * In version 9.22.0: introduced
      */
     class ConnectionDetails extends internal.Element {
@@ -150,10 +148,10 @@ var databaseconnector;
          * of the parent DatabaseConnection element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 9.24.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, ConnectionDetails.structureTypeName, { start: "9.22.0" });
+            internal.createInVersionCheck(container.model, ConnectionDetails.structureTypeName, { start: "9.22.0", end: "9.24.0" });
             return internal.instancehelpers.createElement(container, ConnectionDetails, "connectionDetails", false);
         }
         /**
@@ -172,11 +170,167 @@ var databaseconnector;
     ConnectionDetails.structureTypeName = "DatabaseConnector$ConnectionDetails";
     ConnectionDetails.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.22.0",
+        deleted: "10.0.0",
+        deletionMessage: "Replaced by ConnectionInput",
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     databaseconnector.ConnectionDetails = ConnectionDetails;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class ConnectionInput extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ConnectionInput() cannot be invoked directly, please use 'model.databaseconnector.createConnectionInput()'");
+            }
+        }
+        get containerAsDatabaseConnection() {
+            return super.getContainerAs(DatabaseConnection);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConnectionInput.structureTypeName = "DatabaseConnector$ConnectionInput";
+    ConnectionInput.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    databaseconnector.ConnectionInput = ConnectionInput;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ConnectionParts extends ConnectionInput {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__host = new internal.PrimitiveProperty(ConnectionParts, this, "host", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__port = new internal.PrimitiveProperty(ConnectionParts, this, "port", 0, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__databaseName = new internal.PrimitiveProperty(ConnectionParts, this, "databaseName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ConnectionParts() cannot be invoked directly, please use 'model.databaseconnector.createConnectionParts()'");
+            }
+        }
+        get containerAsDatabaseConnection() {
+            return super.getContainerAs(DatabaseConnection);
+        }
+        get host() {
+            return this.__host.get();
+        }
+        set host(newValue) {
+            this.__host.set(newValue);
+        }
+        get port() {
+            return this.__port.get();
+        }
+        set port(newValue) {
+            this.__port.set(newValue);
+        }
+        get databaseName() {
+            return this.__databaseName.get();
+        }
+        set databaseName(newValue) {
+            this.__databaseName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ConnectionParts instance in the SDK and on the server.
+         * The new ConnectionParts will be automatically stored in the 'connectionInput' property
+         * of the parent DatabaseConnection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ConnectionParts.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ConnectionParts, "connectionInput", false);
+        }
+        /**
+         * Creates and returns a new ConnectionParts instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ConnectionParts);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConnectionParts.structureTypeName = "DatabaseConnector$ConnectionParts";
+    ConnectionParts.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    databaseconnector.ConnectionParts = ConnectionParts;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ConnectionString extends ConnectionInput {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(ConnectionString, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ConnectionString() cannot be invoked directly, please use 'model.databaseconnector.createConnectionString()'");
+            }
+        }
+        get containerAsDatabaseConnection() {
+            return super.getContainerAs(DatabaseConnection);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new ConnectionString instance in the SDK and on the server.
+         * The new ConnectionString will be automatically stored in the 'connectionInput' property
+         * of the parent DatabaseConnection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ConnectionString.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ConnectionString, "connectionInput", false);
+        }
+        /**
+         * Creates and returns a new ConnectionString instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ConnectionString);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConnectionString.structureTypeName = "DatabaseConnector$ConnectionString";
+    ConnectionString.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    databaseconnector.ConnectionString = ConnectionString;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -190,6 +344,8 @@ var databaseconnector;
             /** @internal */
             this.__databaseType = new internal.PrimitiveProperty(DatabaseConnection, this, "databaseType", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__connectionInput = new internal.PartProperty(DatabaseConnection, this, "connectionInput", null, false);
+            /** @internal */
             this.__connectionDetails = new internal.PartProperty(DatabaseConnection, this, "connectionDetails", null, false);
             /** @internal */
             this.__connectionString = new internal.ByNameReferenceProperty(DatabaseConnection, this, "connectionString", null, "Constants$Constant");
@@ -197,6 +353,8 @@ var databaseconnector;
             this.__userName = new internal.ByNameReferenceProperty(DatabaseConnection, this, "userName", null, "Constants$Constant");
             /** @internal */
             this.__password = new internal.ByNameReferenceProperty(DatabaseConnection, this, "password", null, "Constants$Constant");
+            /** @internal */
+            this.__lastSelectedQuery = new internal.ByNameReferenceProperty(DatabaseConnection, this, "lastSelectedQuery", null, "DatabaseConnector$DatabaseQuery");
             /** @internal */
             this.__queries = new internal.PartListProperty(DatabaseConnection, this, "queries", []);
             this._containmentName = "documents";
@@ -214,6 +372,21 @@ var databaseconnector;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.0.0: introduced
+         */
+        get connectionInput() {
+            return this.__connectionInput.get();
+        }
+        set connectionInput(newValue) {
+            this.__connectionInput.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.0.0: deleted
          */
         get connectionDetails() {
             return this.__connectionDetails.get();
@@ -252,6 +425,22 @@ var databaseconnector;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.0.0: introduced
+         */
+        get lastSelectedQuery() {
+            return this.__lastSelectedQuery.get();
+        }
+        set lastSelectedQuery(newValue) {
+            this.__lastSelectedQuery.set(newValue);
+        }
+        get lastSelectedQueryQualifiedName() {
+            return this.__lastSelectedQuery.qualifiedName();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
          */
         get queries() {
             return this.__queries.get();
@@ -272,6 +461,16 @@ var databaseconnector;
     DatabaseConnection.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.22.0",
         properties: {
+            connectionInput: {
+                introduced: "10.0.0"
+            },
+            connectionDetails: {
+                deleted: "10.0.0",
+                deletionMessage: null
+            },
+            lastSelectedQuery: {
+                introduced: "10.0.0"
+            },
             queries: {
                 public: {
                     currentValue: true

@@ -203,6 +203,12 @@ var pages;
     }
     DesignPropertyValueType.DropDown = new DesignPropertyValueType("DropDown", {});
     DesignPropertyValueType.Toggle = new DesignPropertyValueType("Toggle", {});
+    DesignPropertyValueType.ColorPicker = new DesignPropertyValueType("ColorPicker", {
+        introduced: "10.0.0"
+    });
+    DesignPropertyValueType.ToggleButtonGroup = new DesignPropertyValueType("ToggleButtonGroup", {
+        introduced: "10.0.0"
+    });
     pages.DesignPropertyValueType = DesignPropertyValueType;
     class EditableEnum extends internal.AbstractEnum {
         constructor() {
@@ -2501,6 +2507,8 @@ var pages;
             this.__entityPath = new internal.PrimitiveProperty(EntityPathSource, this, "entityPath", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__entityRef = new internal.PartProperty(EntityPathSource, this, "entityRef", null, false);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(EntityPathSource, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new EntityPathSource() cannot be invoked directly, please use 'model.pages.createEntityPathSource()'");
             }
@@ -2531,6 +2539,15 @@ var pages;
         set entityRef(newValue) {
             this.__entityRef.set(newValue);
         }
+        /**
+         * In version 10.0.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -2545,6 +2562,9 @@ var pages;
             },
             entityRef: {
                 introduced: "7.11.0"
+            },
+            sourceVariable: {
+                introduced: "10.0.0"
             }
         }
     }, internal.StructureType.Element);
@@ -36749,6 +36769,9 @@ var pages;
         get containerAsConditionalSettings() {
             return super.getContainerAs(ConditionalSettings);
         }
+        get containerAsEntityPathSource() {
+            return super.getContainerAs(EntityPathSource);
+        }
         get containerAsMicroflowParameterMapping() {
             return super.getContainerAs(MicroflowParameterMapping);
         }
@@ -36862,6 +36885,18 @@ var pages;
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent EntityPathSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInEntityPathSourceUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property
          * of the parent MicroflowParameterMapping element passed as argument.
          *
@@ -36935,6 +36970,134 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.PageVariable = PageVariable;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class UrlSegment extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UrlSegment() cannot be invoked directly, please use 'model.pages.createUrlSegment()'");
+            }
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UrlSegment.structureTypeName = "Pages$UrlSegment";
+    UrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    pages.UrlSegment = UrlSegment;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ParameterAttributeUrlSegment extends UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__pageParameter = new internal.LocalByNameReferenceProperty(ParameterAttributeUrlSegment, this, "pageParameter", null, "Pages$PageParameter");
+            /** @internal */
+            this.__attribute = new internal.ByNameReferenceProperty(ParameterAttributeUrlSegment, this, "attribute", null, "DomainModels$Attribute");
+            if (arguments.length < 4) {
+                throw new Error("new ParameterAttributeUrlSegment() cannot be invoked directly, please use 'model.pages.createParameterAttributeUrlSegment()'");
+            }
+        }
+        get pageParameter() {
+            return this.__pageParameter.get();
+        }
+        set pageParameter(newValue) {
+            this.__pageParameter.set(newValue);
+        }
+        get pageParameterLocalName() {
+            return this.__pageParameter.localName();
+        }
+        get attribute() {
+            return this.__attribute.get();
+        }
+        set attribute(newValue) {
+            this.__attribute.set(newValue);
+        }
+        get attributeQualifiedName() {
+            return this.__attribute.qualifiedName();
+        }
+        /**
+         * Creates and returns a new ParameterAttributeUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ParameterAttributeUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ParameterAttributeUrlSegment.structureTypeName = "Pages$ParameterAttributeUrlSegment";
+    ParameterAttributeUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        properties: {
+            pageParameter: {
+                required: {
+                    currentValue: true
+                }
+            },
+            attribute: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.ParameterAttributeUrlSegment = ParameterAttributeUrlSegment;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ParameterIdUrlSegment extends UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__pageParameter = new internal.LocalByNameReferenceProperty(ParameterIdUrlSegment, this, "pageParameter", null, "Pages$PageParameter");
+            if (arguments.length < 4) {
+                throw new Error("new ParameterIdUrlSegment() cannot be invoked directly, please use 'model.pages.createParameterIdUrlSegment()'");
+            }
+        }
+        get pageParameter() {
+            return this.__pageParameter.get();
+        }
+        set pageParameter(newValue) {
+            this.__pageParameter.set(newValue);
+        }
+        get pageParameterLocalName() {
+            return this.__pageParameter.localName();
+        }
+        /**
+         * Creates and returns a new ParameterIdUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ParameterIdUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ParameterIdUrlSegment.structureTypeName = "Pages$ParameterIdUrlSegment";
+    ParameterIdUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        properties: {
+            pageParameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.ParameterIdUrlSegment = ParameterIdUrlSegment;
     /**
      * See: {@link https://docs.mendix.com/refguide/password-text-box relevant section in reference guide}
      *
@@ -41156,6 +41319,8 @@ var pages;
             this.__name = new internal.PrimitiveProperty(RetrievalQueryParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__type = new internal.PrimitiveProperty(RetrievalQueryParameter, this, "type", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__types = new internal.PrimitiveListProperty(RetrievalQueryParameter, this, "types", [], internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new RetrievalQueryParameter() cannot be invoked directly, please use 'model.pages.createRetrievalQueryParameter()'");
             }
@@ -41172,11 +41337,20 @@ var pages;
         set name(newValue) {
             this.__name.set(newValue);
         }
+        /**
+         * In version 10.0.0: deleted
+         */
         get type() {
             return this.__type.get();
         }
         set type(newValue) {
             this.__type.set(newValue);
+        }
+        /**
+         * In version 10.0.0: introduced
+         */
+        get types() {
+            return this.__types.get();
         }
         /**
          * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
@@ -41229,7 +41403,16 @@ var pages;
     }
     RetrievalQueryParameter.structureTypeName = "Pages$RetrievalQueryParameter";
     RetrievalQueryParameter.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.6.0"
+        introduced: "8.6.0",
+        properties: {
+            type: {
+                deleted: "10.0.0",
+                deletionMessage: null
+            },
+            types: {
+                introduced: "10.0.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.RetrievalQueryParameter = RetrievalQueryParameter;
     /**
@@ -47649,6 +47832,42 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.StaticOrDynamicString = StaticOrDynamicString;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class StaticUrlSegment extends UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__segment = new internal.PrimitiveProperty(StaticUrlSegment, this, "segment", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new StaticUrlSegment() cannot be invoked directly, please use 'model.pages.createStaticUrlSegment()'");
+            }
+        }
+        get segment() {
+            return this.__segment.get();
+        }
+        set segment(newValue) {
+            this.__segment.set(newValue);
+        }
+        /**
+         * Creates and returns a new StaticUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StaticUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    StaticUrlSegment.structureTypeName = "Pages$StaticUrlSegment";
+    StaticUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    pages.StaticUrlSegment = StaticUrlSegment;
     /**
      * In version 7.0.2: deleted
      */

@@ -149,6 +149,8 @@ export declare namespace pages {
     class DesignPropertyValueType extends internal.AbstractEnum {
         static DropDown: DesignPropertyValueType;
         static Toggle: DesignPropertyValueType;
+        static ColorPicker: DesignPropertyValueType;
+        static ToggleButtonGroup: DesignPropertyValueType;
         protected qualifiedTsTypeName: string;
     }
     class EditableEnum extends internal.AbstractEnum {
@@ -1421,6 +1423,11 @@ export declare namespace pages {
          */
         get entityRef(): domainmodels.EntityRef | null;
         set entityRef(newValue: domainmodels.EntityRef | null);
+        /**
+         * In version 10.0.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     class AssociationSource extends EntityPathSource {
@@ -21182,6 +21189,7 @@ export declare namespace pages {
         get containerAsAttributeWidget(): AttributeWidget;
         get containerAsClientTemplateParameter(): ClientTemplateParameter;
         get containerAsConditionalSettings(): ConditionalSettings;
+        get containerAsEntityPathSource(): EntityPathSource;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
         get containerAsPageParameterMapping(): PageParameterMapping;
@@ -21251,6 +21259,15 @@ export declare namespace pages {
         static createInConditionalSettingsUnderSourceVariable(container: ConditionalSettings): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent EntityPathSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInEntityPathSourceUnderSourceVariable(container: EntityPathSource): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property
          * of the parent MicroflowParameterMapping element passed as argument.
          *
@@ -21291,6 +21308,51 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): PageVariable;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    abstract class UrlSegment extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ParameterAttributeUrlSegment extends UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get pageParameter(): PageParameter;
+        set pageParameter(newValue: PageParameter);
+        get pageParameterLocalName(): string;
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ParameterAttributeUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ParameterAttributeUrlSegment;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ParameterIdUrlSegment extends UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get pageParameter(): PageParameter;
+        set pageParameter(newValue: PageParameter);
+        get pageParameterLocalName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ParameterIdUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ParameterIdUrlSegment;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/password-text-box relevant section in reference guide}
@@ -24037,8 +24099,15 @@ export declare namespace pages {
         get containerAsRuntimeOperation(): RuntimeOperation;
         get name(): string;
         set name(newValue: string);
+        /**
+         * In version 10.0.0: deleted
+         */
         get type(): string;
         set type(newValue: string);
+        /**
+         * In version 10.0.0: introduced
+         */
+        get types(): internal.IList<string>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RetrievalQueryParameter instance in the SDK and on the server.
@@ -27975,6 +28044,22 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): StaticOrDynamicString;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class StaticUrlSegment extends UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get segment(): string;
+        set segment(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StaticUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): StaticUrlSegment;
     }
     /**
      * In version 7.0.2: deleted

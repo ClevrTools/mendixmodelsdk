@@ -1,7 +1,7 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
-import { projects } from "./projects";
 import { domainmodels } from "./domainmodels";
+import { projects } from "./projects";
 import { webservices } from "./webservices";
 export declare namespace rest {
     class AssociationNavigability extends internal.AbstractEnum {
@@ -40,42 +40,6 @@ export declare namespace rest {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
-    /**
-     * See: {@link https://docs.mendix.com/refguide/authentication relevant section in reference guide}
-     *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.20.0: introduced
-     */
-    interface IAuthentication extends projects.IDocument {
-        readonly model: IModel;
-        readonly containerAsFolderBase: projects.IFolderBase;
-        asLoaded(): Authentication;
-        load(callback: (element: Authentication) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<Authentication>;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/authentication relevant section in reference guide}
-     *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.20.0: introduced
-     */
-    class Authentication extends projects.Document implements IAuthentication {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsFolderBase(): projects.FolderBase;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
-        /**
-         * Creates a new Authentication unit in the SDK and on the server.
-         * Expects one argument, the projects.IFolderBase in which this unit is contained.
-         */
-        static createIn(container: projects.IFolderBase): Authentication;
-    }
     /**
      * In version 9.11.0: introduced
      */
@@ -256,10 +220,7 @@ export declare namespace rest {
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.0.0: removed experimental
      * In version 7.18.0: introduced
      */
     interface IConsumedODataService extends domainmodels.IRemoteEntitySourceDocument {
@@ -276,10 +237,7 @@ export declare namespace rest {
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.0.0: removed experimental
      * In version 7.18.0: introduced
      */
     class ConsumedODataService extends domainmodels.RemoteEntitySourceDocument implements IConsumedODataService {
@@ -373,6 +331,61 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): ConsumedODataService;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    interface IConsumedRestService extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        readonly paths: internal.IList<IRestPath>;
+        asLoaded(): ConsumedRestService;
+        load(callback: (element: ConsumedRestService) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ConsumedRestService>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class ConsumedRestService extends projects.Document implements IConsumedRestService {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get baseUrl(): UriTemplate;
+        set baseUrl(newValue: UriTemplate);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get paths(): internal.IList<RestPath>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+        /**
+         * Creates a new ConsumedRestService unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container: projects.IFolderBase): ConsumedRestService;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/cors-settings relevant section in reference guide}
      *
      * In version 7.18.0: introduced
@@ -407,327 +420,81 @@ export declare namespace rest {
         static create(model: IModel): CorsConfiguration;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 9.23.0: introduced
+     * In version 10.0.0: introduced
      */
-    class HttpHeader extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
-        get name(): string;
-        set name(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get value(): ParameterizedValue;
-        set value(newValue: ParameterizedValue);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new HttpHeader instance in the SDK and on the server.
-         * The new HttpHeader will be automatically stored in the 'headers' property
-         * of the parent InteractiveRestOperation element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.23.0 and higher
-         */
-        static createIn(container: InteractiveRestOperation): HttpHeader;
-        /**
-         * Creates and returns a new HttpHeader instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): HttpHeader;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: introduced
-     */
-    class ImplicitExportMapping extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsImplicitRequestHandling(): ImplicitRequestHandling;
-        get name(): string;
-        set name(newValue: string);
-        get mapping(): exportmappings.ExportObjectMappingElement | null;
-        set mapping(newValue: exportmappings.ExportObjectMappingElement | null);
-        get nullValueOption(): microflows.NullValueOption;
-        set nullValueOption(newValue: microflows.NullValueOption);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ImplicitExportMapping instance in the SDK and on the server.
-         * The new ImplicitExportMapping will be automatically stored in the 'implicitExportMapping' property
-         * of the parent ImplicitRequestHandling element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.23.0 and higher
-         */
-        static createIn(container: ImplicitRequestHandling): ImplicitExportMapping;
-        /**
-         * Creates and returns a new ImplicitExportMapping instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ImplicitExportMapping;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: introduced
-     */
-    abstract class RequestHandling extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: introduced
-     */
-    class ImplicitRequestHandling extends RequestHandling {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get implicitExportMapping(): ImplicitExportMapping;
-        set implicitExportMapping(newValue: ImplicitExportMapping);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ImplicitRequestHandling instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ImplicitRequestHandling;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: deleted
-     * In version 9.17.0: introduced
-     */
-    interface IInteractiveRest extends projects.IDocument {
+    interface IOperationParameter extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
-        readonly containerAsFolderBase: projects.IFolderBase;
-        asLoaded(): InteractiveRest;
-        load(callback: (element: InteractiveRest) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<InteractiveRest>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: deleted
-     * In version 9.17.0: introduced
-     */
-    class InteractiveRest extends projects.Document implements IInteractiveRest {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsFolderBase(): projects.FolderBase;
-        get url(): string;
-        set url(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.20.0: introduced
-         */
-        get authentication(): IAuthentication | null;
-        set authentication(newValue: IAuthentication | null);
-        get authenticationQualifiedName(): string | null;
-        /**
-         * In version 9.18.0: introduced
-         */
-        get httpConfiguration(): microflows.HttpConfiguration;
-        set httpConfiguration(newValue: microflows.HttpConfiguration);
-        /**
-         * In version 9.19.0: introduced
-         */
-        get httpBody(): string;
-        set httpBody(newValue: string);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
-        /**
-         * Creates a new InteractiveRest unit in the SDK and on the server.
-         * Expects one argument, the projects.IFolderBase in which this unit is contained.
-         */
-        static createIn(container: projects.IFolderBase): InteractiveRest;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
-     *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.22.0: introduced
-     */
-    interface IInteractiveRestCollection extends projects.IDocument {
-        readonly model: IModel;
-        readonly containerAsFolderBase: projects.IFolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        readonly interactiveRestOperations: internal.IList<IInteractiveRestOperation>;
-        asLoaded(): InteractiveRestCollection;
-        load(callback: (element: InteractiveRestCollection) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<InteractiveRestCollection>;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
-     *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.22.0: introduced
-     */
-    class InteractiveRestCollection extends projects.Document implements IInteractiveRestCollection {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsFolderBase(): projects.FolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get interactiveRestOperations(): internal.IList<InteractiveRestOperation>;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
-        /**
-         * Creates a new InteractiveRestCollection unit in the SDK and on the server.
-         * Expects one argument, the projects.IFolderBase in which this unit is contained.
-         */
-        static createIn(container: projects.IFolderBase): InteractiveRestCollection;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
-     *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.22.0: introduced
-     */
-    interface IInteractiveRestOperation extends internal.IElement, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsInteractiveRestCollection: IInteractiveRestCollection;
+        readonly containerAsRestOperation: IRestOperation;
         readonly name: string;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.24.0: introduced
-         */
-        readonly parameters: internal.IList<IOperationParameter>;
-        asLoaded(): InteractiveRestOperation;
-        load(callback: (element: InteractiveRestOperation) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<InteractiveRestOperation>;
+        asLoaded(): OperationParameter;
+        load(callback: (element: OperationParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<OperationParameter>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/interactive-rest relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 9.22.0: introduced
+     * In version 10.0.0: introduced
      */
-    class InteractiveRestOperation extends internal.Element<IModel> implements IInteractiveRestOperation {
+    abstract class OperationParameter extends internal.Element<IModel> implements IOperationParameter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsInteractiveRestCollection(): InteractiveRestCollection;
+        get containerAsRestOperation(): RestOperation;
         get name(): string;
         set name(newValue: string);
-        /**
-         * In version 9.24.0: deleted
-         */
-        get url(): string;
-        set url(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.24.0: introduced
-         */
-        get path(): ParameterizedValue;
-        set path(newValue: ParameterizedValue);
+        get dataType(): datatypes.DataType;
+        set dataType(newValue: datatypes.DataType);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
          */
-        get authentication(): IAuthentication | null;
-        set authentication(newValue: IAuthentication | null);
-        get authenticationQualifiedName(): string | null;
-        get httpConfiguration(): microflows.HttpConfiguration;
-        set httpConfiguration(newValue: microflows.HttpConfiguration);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.23.0: introduced
-         */
-        get requestHandling(): RequestHandling | null;
-        set requestHandling(newValue: RequestHandling | null);
-        get httpBody(): string;
-        set httpBody(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.23.0: introduced
-         */
-        get headers(): internal.IList<HttpHeader>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.24.0: introduced
-         */
-        get parameters(): internal.IList<OperationParameter>;
+        get testValue(): Value;
+        set testValue(newValue: Value);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    interface IHeaderParameter extends IOperationParameter {
+        readonly model: IModel;
+        readonly containerAsRestOperation: IRestOperation;
+        asLoaded(): HeaderParameter;
+        load(callback: (element: HeaderParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<HeaderParameter>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class HeaderParameter extends OperationParameter implements IHeaderParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperation(): RestOperation;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new InteractiveRestOperation instance in the SDK and on the server.
-         * The new InteractiveRestOperation will be automatically stored in the 'interactiveRestOperations' property
-         * of the parent InteractiveRestCollection element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
-         */
-        static createIn(container: InteractiveRestCollection): InteractiveRestOperation;
-        /**
-         * Creates and returns a new InteractiveRestOperation instance in the SDK and on the server.
+         * Creates and returns a new HeaderParameter instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): InteractiveRestOperation;
-        get qualifiedName(): string | null;
+        static create(model: IModel): HeaderParameter;
     }
     /**
      * In version 8.6.0: introduced
@@ -1082,11 +849,6 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsEntity(): domainmodels.Entity;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get sourceDocument(): IConsumedODataService | null;
         set sourceDocument(newValue: IConsumedODataService | null);
         get sourceDocumentQualifiedName(): string | null;
@@ -1161,68 +923,6 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ODataRemoteEntitySource;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.24.0: introduced
-     */
-    interface IOperationParameter extends internal.IElement, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsInteractiveRestOperation: IInteractiveRestOperation;
-        readonly name: string;
-        asLoaded(): OperationParameter;
-        load(callback: (element: OperationParameter) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<OperationParameter>;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.24.0: introduced
-     */
-    class OperationParameter extends internal.Element<IModel> implements IOperationParameter {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
-        get name(): string;
-        set name(newValue: string);
-        get dataType(): datatypes.DataType;
-        set dataType(newValue: datatypes.DataType);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new OperationParameter instance in the SDK and on the server.
-         * The new OperationParameter will be automatically stored in the 'parameters' property
-         * of the parent InteractiveRestOperation element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
-         */
-        static createIn(container: InteractiveRestOperation): OperationParameter;
-        /**
-         * Creates and returns a new OperationParameter instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): OperationParameter;
-        get qualifiedName(): string | null;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.23.0: introduced
-     */
-    abstract class ParameterizedValue extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsHttpHeader(): HttpHeader;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * In version 9.14.0: introduced
@@ -1330,6 +1030,10 @@ export declare namespace rest {
         get microflow(): microflows.IMicroflow;
         set microflow(newValue: microflows.IMicroflow);
         get microflowQualifiedName(): string;
+        /**
+         * In version 10.0.0: introduced
+         */
+        get parameters(): internal.IList<PublishedODataMicroflowParameter>;
         get summary(): string;
         set summary(newValue: string);
         get description(): string;
@@ -1350,6 +1054,45 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): PublishedODataMicroflow;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/published-odata-microflow-parameter relevant section in reference guide}
+     *
+     * In version 10.0.0: introduced
+     */
+    class PublishedODataMicroflowParameter extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPublishedODataMicroflow(): PublishedODataMicroflow;
+        get exposedName(): string;
+        set exposedName(newValue: string);
+        get microflowParameter(): microflows.IMicroflowParameter;
+        set microflowParameter(newValue: microflows.IMicroflowParameter);
+        get microflowParameterQualifiedName(): string;
+        get type(): datatypes.DataType;
+        set type(newValue: datatypes.DataType);
+        get canBeEmpty(): boolean;
+        set canBeEmpty(newValue: boolean);
+        get summary(): string;
+        set summary(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PublishedODataMicroflowParameter instance in the SDK and on the server.
+         * The new PublishedODataMicroflowParameter will be automatically stored in the 'parameters' property
+         * of the parent PublishedODataMicroflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: PublishedODataMicroflow): PublishedODataMicroflowParameter;
+        /**
+         * Creates and returns a new PublishedODataMicroflowParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PublishedODataMicroflowParameter;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
@@ -1781,6 +1524,68 @@ export declare namespace rest {
         static create(model: IModel): ReadSource;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    interface IRestOperation extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsRestPath: IRestPath;
+        readonly name: string;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        readonly parameters: internal.IList<IOperationParameter>;
+        asLoaded(): RestOperation;
+        load(callback: (element: RestOperation) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RestOperation>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class RestOperation extends internal.Element<IModel> implements IRestOperation {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestPath(): RestPath;
+        get name(): string;
+        set name(newValue: string);
+        get httpMethod(): services.HttpMethod;
+        set httpMethod(newValue: services.HttpMethod);
+        get timeout(): number;
+        set timeout(newValue: number);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parameters(): internal.IList<OperationParameter>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestOperation instance in the SDK and on the server.
+         * The new RestOperation will be automatically stored in the 'operations' property
+         * of the parent RestPath element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: RestPath): RestOperation;
+        /**
+         * Creates and returns a new RestOperation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestOperation;
+        get qualifiedName(): string | null;
+    }
+    /**
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
      */
@@ -1843,6 +1648,67 @@ export declare namespace rest {
         static create(model: IModel): RestOperationParameter;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    interface IRestPath extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsConsumedRestService: IConsumedRestService;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        readonly operations: internal.IList<IRestOperation>;
+        asLoaded(): RestPath;
+        load(callback: (element: RestPath) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RestPath>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class RestPath extends internal.Element<IModel> implements IRestPath {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConsumedRestService(): ConsumedRestService;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get path(): UriTemplate;
+        set path(newValue: UriTemplate);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get operations(): internal.IList<RestOperation>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestPath instance in the SDK and on the server.
+         * The new RestPath will be automatically stored in the 'paths' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: ConsumedRestService): RestPath;
+        /**
+         * Creates and returns a new RestPath instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestPath;
+    }
+    /**
      * In version 9.14.0: introduced
      */
     class ServiceFeed extends internal.Element<IModel> {
@@ -1866,49 +1732,74 @@ export declare namespace rest {
      *
      * @ignore
      *
-     * In version 9.23.0: introduced
+     * In version 10.0.0: introduced
      */
-    class StringWithParameters extends ParameterizedValue {
+    abstract class Value extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
-        get containerAsHttpHeader(): HttpHeader;
-        get containerAsInteractiveRestOperation(): InteractiveRestOperation;
+        get containerAsOperationParameter(): OperationParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class StringValue extends Value {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsOperationParameter(): OperationParameter;
         get value(): string;
         set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new StringWithParameters instance in the SDK and on the server.
-         * The new StringWithParameters will be automatically stored in the 'value' property
-         * of the parent HttpHeader element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.23.0 to 9.23.0
-         */
-        static createIn(container: HttpHeader): StringWithParameters;
-        /**
-         * Creates and returns a new StringWithParameters instance in the SDK and on the server.
-         * The new StringWithParameters will be automatically stored in the 'value' property
-         * of the parent HttpHeader element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.23.0 and higher
-         */
-        static createInHttpHeaderUnderValue(container: HttpHeader): StringWithParameters;
-        /**
-         * Creates and returns a new StringWithParameters instance in the SDK and on the server.
-         * The new StringWithParameters will be automatically stored in the 'path' property
-         * of the parent InteractiveRestOperation element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
-         */
-        static createInInteractiveRestOperationUnderPath(container: InteractiveRestOperation): StringWithParameters;
-        /**
-         * Creates and returns a new StringWithParameters instance in the SDK and on the server.
+         * Creates and returns a new StringValue instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): StringWithParameters;
+        static create(model: IModel): StringValue;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class UriTemplate extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConsumedRestService(): ConsumedRestService;
+        get containerAsRestPath(): RestPath;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new UriTemplate instance in the SDK and on the server.
+         * The new UriTemplate will be automatically stored in the 'baseUrl' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInConsumedRestServiceUnderBaseUrl(container: ConsumedRestService): UriTemplate;
+        /**
+         * Creates and returns a new UriTemplate instance in the SDK and on the server.
+         * The new UriTemplate will be automatically stored in the 'path' property
+         * of the parent RestPath element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInRestPathUnderPath(container: RestPath): UriTemplate;
+        /**
+         * Creates and returns a new UriTemplate instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): UriTemplate;
     }
 }
 import { constants } from "./constants";

@@ -1366,6 +1366,40 @@ export declare namespace workflows {
         static create(model: IModel): VoidConditionOutcome;
     }
     /**
+     * In version 10.0.0: introduced
+     */
+    interface IWaitForNotificationActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): WaitForNotificationActivity;
+        load(callback: (element: WaitForNotificationActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WaitForNotificationActivity>;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WaitForNotificationActivity extends WorkflowActivity implements IWaitForNotificationActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: Flow): WaitForNotificationActivity;
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WaitForNotificationActivity;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -1524,6 +1558,89 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): WorkflowCallParameterMapping;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    abstract class WorkflowDefinitionSelection extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsLockWorkflowAction(): microflows.LockWorkflowAction;
+        get containerAsUnlockWorkflowAction(): microflows.UnlockWorkflowAction;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WorkflowDefinitionNameSelection extends WorkflowDefinitionSelection {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsLockWorkflowAction(): microflows.LockWorkflowAction;
+        get containerAsUnlockWorkflowAction(): microflows.UnlockWorkflowAction;
+        get workflow(): IWorkflow;
+        set workflow(newValue: IWorkflow);
+        get workflowQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionNameSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.LockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInLockWorkflowActionUnderWorkflowSelection(container: microflows.LockWorkflowAction): WorkflowDefinitionNameSelection;
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionNameSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.UnlockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInUnlockWorkflowActionUnderWorkflowSelection(container: microflows.UnlockWorkflowAction): WorkflowDefinitionNameSelection;
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowDefinitionNameSelection;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WorkflowDefinitionObjectSelection extends WorkflowDefinitionSelection {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsLockWorkflowAction(): microflows.LockWorkflowAction;
+        get containerAsUnlockWorkflowAction(): microflows.UnlockWorkflowAction;
+        get workflowDefinitionVariable(): string;
+        set workflowDefinitionVariable(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionObjectSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.LockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInLockWorkflowActionUnderWorkflowSelection(container: microflows.LockWorkflowAction): WorkflowDefinitionObjectSelection;
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionObjectSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.UnlockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInUnlockWorkflowActionUnderWorkflowSelection(container: microflows.UnlockWorkflowAction): WorkflowDefinitionObjectSelection;
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowDefinitionObjectSelection;
     }
     /**
      * In version 9.10.0: deleted

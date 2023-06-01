@@ -2524,6 +2524,56 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.VoidConditionOutcome = VoidConditionOutcome;
     /**
+     * In version 10.0.0: introduced
+     */
+    class WaitForNotificationActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new WaitForNotificationActivity() cannot be invoked directly, please use 'model.workflows.createWaitForNotificationActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WaitForNotificationActivity.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, WaitForNotificationActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WaitForNotificationActivity);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WaitForNotificationActivity.structureTypeName = "Workflows$WaitForNotificationActivity";
+    WaitForNotificationActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.WaitForNotificationActivity = WaitForNotificationActivity;
+    /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -2881,6 +2931,174 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.WorkflowCallParameterMapping = WorkflowCallParameterMapping;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WorkflowDefinitionSelection extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowDefinitionSelection() cannot be invoked directly, please use 'model.workflows.createWorkflowDefinitionSelection()'");
+            }
+        }
+        get containerAsLockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.LockWorkflowAction);
+        }
+        get containerAsUnlockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.UnlockWorkflowAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowDefinitionSelection.structureTypeName = "Workflows$WorkflowDefinitionSelection";
+    WorkflowDefinitionSelection.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    workflows.WorkflowDefinitionSelection = WorkflowDefinitionSelection;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WorkflowDefinitionNameSelection extends WorkflowDefinitionSelection {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflow = new internal.ByNameReferenceProperty(WorkflowDefinitionNameSelection, this, "workflow", null, "Workflows$Workflow");
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowDefinitionNameSelection() cannot be invoked directly, please use 'model.workflows.createWorkflowDefinitionNameSelection()'");
+            }
+        }
+        get containerAsLockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.LockWorkflowAction);
+        }
+        get containerAsUnlockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.UnlockWorkflowAction);
+        }
+        get workflow() {
+            return this.__workflow.get();
+        }
+        set workflow(newValue) {
+            this.__workflow.set(newValue);
+        }
+        get workflowQualifiedName() {
+            return this.__workflow.qualifiedName();
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionNameSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.LockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInLockWorkflowActionUnderWorkflowSelection(container) {
+            internal.createInVersionCheck(container.model, WorkflowDefinitionNameSelection.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, WorkflowDefinitionNameSelection, "workflowSelection", false);
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionNameSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.UnlockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInUnlockWorkflowActionUnderWorkflowSelection(container) {
+            internal.createInVersionCheck(container.model, WorkflowDefinitionNameSelection.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, WorkflowDefinitionNameSelection, "workflowSelection", false);
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionNameSelection instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowDefinitionNameSelection);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowDefinitionNameSelection.structureTypeName = "Workflows$WorkflowDefinitionNameSelection";
+    WorkflowDefinitionNameSelection.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        properties: {
+            workflow: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.WorkflowDefinitionNameSelection = WorkflowDefinitionNameSelection;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class WorkflowDefinitionObjectSelection extends WorkflowDefinitionSelection {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowDefinitionVariable = new internal.PrimitiveProperty(WorkflowDefinitionObjectSelection, this, "workflowDefinitionVariable", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowDefinitionObjectSelection() cannot be invoked directly, please use 'model.workflows.createWorkflowDefinitionObjectSelection()'");
+            }
+        }
+        get containerAsLockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.LockWorkflowAction);
+        }
+        get containerAsUnlockWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.UnlockWorkflowAction);
+        }
+        get workflowDefinitionVariable() {
+            return this.__workflowDefinitionVariable.get();
+        }
+        set workflowDefinitionVariable(newValue) {
+            this.__workflowDefinitionVariable.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionObjectSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.LockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInLockWorkflowActionUnderWorkflowSelection(container) {
+            internal.createInVersionCheck(container.model, WorkflowDefinitionObjectSelection.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, WorkflowDefinitionObjectSelection, "workflowSelection", false);
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * The new WorkflowDefinitionObjectSelection will be automatically stored in the 'workflowSelection' property
+         * of the parent microflows.UnlockWorkflowAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInUnlockWorkflowActionUnderWorkflowSelection(container) {
+            internal.createInVersionCheck(container.model, WorkflowDefinitionObjectSelection.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, WorkflowDefinitionObjectSelection, "workflowSelection", false);
+        }
+        /**
+         * Creates and returns a new WorkflowDefinitionObjectSelection instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowDefinitionObjectSelection);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowDefinitionObjectSelection.structureTypeName = "Workflows$WorkflowDefinitionObjectSelection";
+    WorkflowDefinitionObjectSelection.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    workflows.WorkflowDefinitionObjectSelection = WorkflowDefinitionObjectSelection;
     /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced

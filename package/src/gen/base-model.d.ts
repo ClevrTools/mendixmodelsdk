@@ -48,7 +48,6 @@ export interface IBaseModel extends IAbstractModel {
      * @param typeName `structureTypeName` of the element type you want to create
      */
     createElement<T extends keyof ConcreteModelElements>(typeName: T): ConcreteModelElements[T];
-    allAuthentications(): rest.IAuthentication[];
     allBuildingBlocks(): pages.IBuildingBlock[];
     allBusinessEventServices(): businessevents.IBusinessEventService[];
     allCodeActions(): codeactions.ICodeAction[];
@@ -57,6 +56,7 @@ export interface IBaseModel extends IAbstractModel {
     allConsumedBusinessEventServices(): businessevents.IConsumedBusinessEventService[];
     allConsumedKafkaServices(): kafka.IConsumedKafkaService[];
     allConsumedODataServices(): rest.IConsumedODataService[];
+    allConsumedRestServices(): rest.IConsumedRestService[];
     allCustomIconCollections(): customicons.ICustomIconCollection[];
     allDataSets(): datasets.IDataSet[];
     allDatabaseConnections(): databaseconnector.IDatabaseConnection[];
@@ -71,8 +71,6 @@ export interface IBaseModel extends IAbstractModel {
     allImageCollections(): images.IImageCollection[];
     allImportMappings(): importmappings.IImportMapping[];
     allImportedWebServices(): webservices.IImportedWebService[];
-    allInteractiveRests(): rest.IInteractiveRest[];
-    allInteractiveRestCollections(): rest.IInteractiveRestCollection[];
     allJavaActions(): javaactions.IJavaAction[];
     allJavaScriptActions(): javascriptactions.IJavaScriptAction[];
     allJsonStructures(): jsonstructures.IJsonStructure[];
@@ -161,15 +159,14 @@ export interface IBaseModel extends IAbstractModel {
     findSnippetParameterByQualifiedName(qname: string): pages.ISnippetParameter | null;
     findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
-    findAuthenticationByQualifiedName(qname: string): rest.IAuthentication | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
-    findInteractiveRestOperationByQualifiedName(qname: string): rest.IInteractiveRestOperation | null;
-    findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
+    findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
     findParameterByQualifiedName(qname: string): workflows.IParameter | null;
     findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
+    findWaitForNotificationActivityByQualifiedName(qname: string): workflows.IWaitForNotificationActivity | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
@@ -178,7 +175,6 @@ export interface IBaseModel extends IAbstractModel {
  */
 export declare abstract class BaseModel extends AbstractModel implements IBaseModel {
     createElement<T extends keyof ConcreteModelElements>(typeName: T): ConcreteModelElements[T];
-    allAuthentications(): rest.IAuthentication[];
     allBuildingBlocks(): pages.IBuildingBlock[];
     allBusinessEventServices(): businessevents.IBusinessEventService[];
     allCodeActions(): codeactions.ICodeAction[];
@@ -187,6 +183,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allConsumedBusinessEventServices(): businessevents.IConsumedBusinessEventService[];
     allConsumedKafkaServices(): kafka.IConsumedKafkaService[];
     allConsumedODataServices(): rest.IConsumedODataService[];
+    allConsumedRestServices(): rest.IConsumedRestService[];
     allCustomIconCollections(): customicons.ICustomIconCollection[];
     allDataSets(): datasets.IDataSet[];
     allDatabaseConnections(): databaseconnector.IDatabaseConnection[];
@@ -201,8 +198,6 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allImageCollections(): images.IImageCollection[];
     allImportMappings(): importmappings.IImportMapping[];
     allImportedWebServices(): webservices.IImportedWebService[];
-    allInteractiveRests(): rest.IInteractiveRest[];
-    allInteractiveRestCollections(): rest.IInteractiveRestCollection[];
     allJavaActions(): javaactions.IJavaAction[];
     allJavaScriptActions(): javascriptactions.IJavaScriptAction[];
     allJsonStructures(): jsonstructures.IJsonStructure[];
@@ -291,15 +286,14 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findSnippetParameterByQualifiedName(qname: string): pages.ISnippetParameter | null;
     findQueueByQualifiedName(qname: string): queues.IQueue | null;
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
-    findAuthenticationByQualifiedName(qname: string): rest.IAuthentication | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
-    findInteractiveRestOperationByQualifiedName(qname: string): rest.IInteractiveRestOperation | null;
-    findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
+    findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
     findParameterByQualifiedName(qname: string): workflows.IParameter | null;
     findUserTaskOutcomeByQualifiedName(qname: string): workflows.IUserTaskOutcome | null;
+    findWaitForNotificationActivityByQualifiedName(qname: string): workflows.IWaitForNotificationActivity | null;
     findWorkflowByQualifiedName(qname: string): workflows.IWorkflow | null;
     findXmlSchemaByQualifiedName(qname: string): xmlschemas.IXmlSchema | null;
 }
@@ -333,6 +327,8 @@ export declare type ConcreteModelElements = {
     AppServices$MsdMicroflowParameter: appservices.MsdMicroflowParameter;
     AppServices$MsdText: appservices.MsdText;
     AppServices$MsdVersion: appservices.MsdVersion;
+    BusinessEvents$AttributeEnumeration: businessevents.AttributeEnumeration;
+    BusinessEvents$AttributeEnumertionItem: businessevents.AttributeEnumertionItem;
     BusinessEvents$BusinessEventDefinition: businessevents.BusinessEventDefinition;
     BusinessEvents$Channel: businessevents.Channel;
     BusinessEvents$ConsumedBusinessEvent: businessevents.ConsumedBusinessEvent;
@@ -398,6 +394,8 @@ export declare type ConcreteModelElements = {
     DataTypes$VoidType: datatypes.VoidType;
     DatabaseConnector$ColumnMapping: databaseconnector.ColumnMapping;
     DatabaseConnector$ConnectionDetails: databaseconnector.ConnectionDetails;
+    DatabaseConnector$ConnectionParts: databaseconnector.ConnectionParts;
+    DatabaseConnector$ConnectionString: databaseconnector.ConnectionString;
     DatabaseConnector$DatabaseQuery: databaseconnector.DatabaseQuery;
     DatabaseConnector$ExecuteDatabaseQueryAction: databaseconnector.ExecuteDatabaseQueryAction;
     DatabaseConnector$LimitedLengthSqlDataType: databaseconnector.LimitedLengthSqlDataType;
@@ -565,6 +563,7 @@ export declare type ConcreteModelElements = {
     Microflows$ChangeListAction: microflows.ChangeListAction;
     Microflows$ChangeObjectAction: microflows.ChangeObjectAction;
     Microflows$ChangeVariableAction: microflows.ChangeVariableAction;
+    Microflows$ClearFromClientAction: microflows.ClearFromClientAction;
     Microflows$CloseFormAction: microflows.CloseFormAction;
     Microflows$CommitAction: microflows.CommitAction;
     Microflows$ConstantRange: microflows.ConstantRange;
@@ -645,9 +644,9 @@ export declare type ConcreteModelElements = {
     Microflows$NanoflowCallParameterMapping: microflows.NanoflowCallParameterMapping;
     Microflows$NanoflowParameter: microflows.NanoflowParameter;
     Microflows$NoCase: microflows.NoCase;
+    Microflows$NotifyWorkflowAction: microflows.NotifyWorkflowAction;
     Microflows$OpenUserTaskAction: microflows.OpenUserTaskAction;
     Microflows$OpenWorkflowAction: microflows.OpenWorkflowAction;
-    Microflows$ParameterMapping: microflows.ParameterMapping;
     Microflows$PauseOperation: microflows.PauseOperation;
     Microflows$PrimitiveTypedTemplateArgument: microflows.PrimitiveTypedTemplateArgument;
     Microflows$ProxyConfiguration: microflows.ProxyConfiguration;
@@ -823,6 +822,8 @@ export declare type ConcreteModelElements = {
     Pages$PageParameterMapping: pages.PageParameterMapping;
     Pages$PageSettings: pages.PageSettings;
     Pages$PageVariable: pages.PageVariable;
+    Pages$ParameterAttributeUrlSegment: pages.ParameterAttributeUrlSegment;
+    Pages$ParameterIdUrlSegment: pages.ParameterIdUrlSegment;
     Pages$PasswordTextBox: pages.PasswordTextBox;
     Pages$Placeholder: pages.Placeholder;
     Pages$RadioButtonGroup: pages.RadioButtonGroup;
@@ -855,6 +856,7 @@ export declare type ConcreteModelElements = {
     Pages$SnippetParameterMapping: pages.SnippetParameterMapping;
     Pages$StaticImageViewer: pages.StaticImageViewer;
     Pages$StaticOrDynamicString: pages.StaticOrDynamicString;
+    Pages$StaticUrlSegment: pages.StaticUrlSegment;
     Pages$SyncButton: pages.SyncButton;
     Pages$SyncClientAction: pages.SyncClientAction;
     Pages$TabContainer: pages.TabContainer;
@@ -877,6 +879,7 @@ export declare type ConcreteModelElements = {
     Pages$WebLayoutContent: pages.WebLayoutContent;
     Pages$WidgetValidation: pages.WidgetValidation;
     Pages$WorkflowOverviewTemplateType: pages.WorkflowOverviewTemplateType;
+    Projects$JarDependency: projects.JarDependency;
     Projects$OneTimeConversionMarker: projects.OneTimeConversionMarker;
     Queues$BasicQueueConfig: queues.BasicQueueConfig;
     Queues$QueueExponentialRetry: queues.QueueExponentialRetry;
@@ -899,29 +902,29 @@ export declare type ConcreteModelElements = {
     Rest$ChangeNotSupported: rest.ChangeNotSupported;
     Rest$ChangeSource: rest.ChangeSource;
     Rest$CorsConfiguration: rest.CorsConfiguration;
-    Rest$HttpHeader: rest.HttpHeader;
-    Rest$ImplicitExportMapping: rest.ImplicitExportMapping;
-    Rest$ImplicitRequestHandling: rest.ImplicitRequestHandling;
-    Rest$InteractiveRestOperation: rest.InteractiveRestOperation;
+    Rest$HeaderParameter: rest.HeaderParameter;
     Rest$MetadataReference: rest.MetadataReference;
     Rest$ODataKey: rest.ODataKey;
     Rest$ODataKeyPart: rest.ODataKeyPart;
     Rest$ODataMappedValue: rest.ODataMappedValue;
     Rest$ODataRemoteAssociationSource: rest.ODataRemoteAssociationSource;
     Rest$ODataRemoteEntitySource: rest.ODataRemoteEntitySource;
-    Rest$OperationParameter: rest.OperationParameter;
     Rest$PublishedODataContract: rest.PublishedODataContract;
     Rest$PublishedODataEnumeration: rest.PublishedODataEnumeration;
     Rest$PublishedODataEnumerationValue: rest.PublishedODataEnumerationValue;
     Rest$PublishedODataMicroflow: rest.PublishedODataMicroflow;
+    Rest$PublishedODataMicroflowParameter: rest.PublishedODataMicroflowParameter;
     Rest$PublishedRestResource: rest.PublishedRestResource;
     Rest$PublishedRestServiceOperation: rest.PublishedRestServiceOperation;
     Rest$PublishedRestServiceResource: rest.PublishedRestServiceResource;
     Rest$QueryOptions: rest.QueryOptions;
     Rest$ReadSource: rest.ReadSource;
+    Rest$RestOperation: rest.RestOperation;
     Rest$RestOperationParameter: rest.RestOperationParameter;
+    Rest$RestPath: rest.RestPath;
     Rest$ServiceFeed: rest.ServiceFeed;
-    Rest$StringWithParameters: rest.StringWithParameters;
+    Rest$StringValue: rest.StringValue;
+    Rest$UriTemplate: rest.UriTemplate;
     ScheduledEvents$DaySchedule: scheduledevents.DaySchedule;
     ScheduledEvents$HourSchedule: scheduledevents.HourSchedule;
     ScheduledEvents$MinuteSchedule: scheduledevents.MinuteSchedule;
@@ -1003,7 +1006,10 @@ export declare type ConcreteModelElements = {
     Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
     Workflows$VetoCompletionCriteria: workflows.VetoCompletionCriteria;
     Workflows$VoidConditionOutcome: workflows.VoidConditionOutcome;
+    Workflows$WaitForNotificationActivity: workflows.WaitForNotificationActivity;
     Workflows$WorkflowCallParameterMapping: workflows.WorkflowCallParameterMapping;
+    Workflows$WorkflowDefinitionNameSelection: workflows.WorkflowDefinitionNameSelection;
+    Workflows$WorkflowDefinitionObjectSelection: workflows.WorkflowDefinitionObjectSelection;
     Workflows$WorkflowType: workflows.WorkflowType;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;

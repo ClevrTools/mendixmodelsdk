@@ -21,6 +21,9 @@ export declare namespace microflows {
         static Count: AggregateFunctionEnum;
         static Minimum: AggregateFunctionEnum;
         static Maximum: AggregateFunctionEnum;
+        static All: AggregateFunctionEnum;
+        static Any: AggregateFunctionEnum;
+        static Reduce: AggregateFunctionEnum;
         protected qualifiedTsTypeName: string;
     }
     class ChangeActionItemType extends internal.AbstractEnum {
@@ -304,10 +307,34 @@ export declare namespace microflows {
         get attribute(): domainmodels.IAttribute | null;
         set attribute(newValue: domainmodels.IAttribute | null);
         get attributeQualifiedName(): string | null;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.0.0: introduced
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        /**
+         * In version 10.0.0: introduced
+         */
+        get useExpression(): boolean;
+        set useExpression(newValue: boolean);
         get aggregateFunction(): AggregateFunctionEnum;
         set aggregateFunction(newValue: AggregateFunctionEnum);
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
+        /**
+         * In version 10.0.0: introduced
+         */
+        get reduceReturnDataType(): datatypes.DataType;
+        set reduceReturnDataType(newValue: datatypes.DataType);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.0.0: introduced
+         */
+        get reduceInitialValueExpression(): string;
+        set reduceInitialValueExpression(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AggregateListAction instance in the SDK and on the server.
@@ -736,10 +763,6 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 9.23.0: added optional
          */
         get consumedODataService(): rest.IConsumedODataService | null;
@@ -904,6 +927,33 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ChangeVariableAction;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ClearFromClientAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get entity(): domainmodels.IEntity | null;
+        set entity(newValue: domainmodels.IEntity | null);
+        get entityQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ClearFromClientAction instance in the SDK and on the server.
+         * The new ClearFromClientAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: ActionActivity): ClearFromClientAction;
+        /**
+         * Creates and returns a new ClearFromClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ClearFromClientAction;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/close-page relevant section in reference guide}
@@ -2288,8 +2338,6 @@ export declare namespace microflows {
         get containerAsRestCallAction(): RestCallAction;
         get containerAsWebServiceCallAction(): WebServiceCallAction;
         get containerAsConsumedODataService(): rest.ConsumedODataService;
-        get containerAsInteractiveRest(): rest.InteractiveRest;
-        get containerAsInteractiveRestOperation(): rest.InteractiveRestOperation;
         get overrideLocation(): boolean;
         set overrideLocation(newValue: boolean);
         /**
@@ -2397,24 +2445,6 @@ export declare namespace microflows {
          *  8.0.0 and higher
          */
         static createInConsumedODataServiceUnderHttpConfiguration(container: rest.ConsumedODataService): HttpConfiguration;
-        /**
-         * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
-         * The new HttpConfiguration will be automatically stored in the 'httpConfiguration' property
-         * of the parent rest.InteractiveRest element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.18.0 to 9.22.0
-         */
-        static createInInteractiveRestUnderHttpConfiguration(container: rest.InteractiveRest): HttpConfiguration;
-        /**
-         * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
-         * The new HttpConfiguration will be automatically stored in the 'httpConfiguration' property
-         * of the parent rest.InteractiveRestOperation element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
-         */
-        static createInInteractiveRestOperationUnderHttpConfiguration(container: rest.InteractiveRestOperation): HttpConfiguration;
         /**
          * Creates and returns a new HttpConfiguration instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2970,9 +3000,17 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 10.0.0: deleted
+         */
         get workflow(): workflows.IWorkflow | null;
         set workflow(newValue: workflows.IWorkflow | null);
         get workflowQualifiedName(): string | null;
+        /**
+         * In version 10.0.0: introduced
+         */
+        get workflowSelection(): workflows.WorkflowDefinitionSelection | null;
+        set workflowSelection(newValue: workflows.WorkflowDefinitionSelection | null);
         get pauseAllWorkflows(): boolean;
         set pauseAllWorkflows(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3917,6 +3955,37 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
+     * In version 10.0.0: introduced
+     */
+    class NotifyWorkflowAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        get activity(): workflows.IWaitForNotificationActivity | null;
+        set activity(newValue: workflows.IWaitForNotificationActivity | null);
+        get activityQualifiedName(): string | null;
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotifyWorkflowAction instance in the SDK and on the server.
+         * The new NotifyWorkflowAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: ActionActivity): NotifyWorkflowAction;
+        /**
+         * Creates and returns a new NotifyWorkflowAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotifyWorkflowAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/show-task-page relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -3983,47 +4052,6 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): OpenWorkflowAction;
-    }
-    /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.24.0: introduced
-     */
-    class ParameterMapping extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsRestOperationCallAction(): RestOperationCallAction;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get parameter(): rest.IOperationParameter;
-        set parameter(newValue: rest.IOperationParameter);
-        get parameterQualifiedName(): string;
-        /**
-         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
-         */
-        get value(): string;
-        set value(newValue: string);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new ParameterMapping instance in the SDK and on the server.
-         * The new ParameterMapping will be automatically stored in the 'parameterMappings' property
-         * of the parent RestOperationCallAction element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
-         */
-        static createIn(container: RestOperationCallAction): ParameterMapping;
-        /**
-         * Creates and returns a new ParameterMapping instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model: IModel): ParameterMapping;
     }
     /**
      * In version 9.12.0: removed experimental
@@ -4308,13 +4336,9 @@ export declare namespace microflows {
         static create(model: IModel): RestCallAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/call-rest-operation-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 9.22.0: introduced
+     * In version 10.0.0: introduced
      */
     class RestOperationCallAction extends MicroflowAction {
         static structureTypeName: string;
@@ -4325,22 +4349,9 @@ export declare namespace microflows {
          *
          * @ignore
          */
-        get selectedOperation(): rest.IInteractiveRestOperation | null;
-        set selectedOperation(newValue: rest.IInteractiveRestOperation | null);
-        get selectedOperationQualifiedName(): string | null;
-        /**
-         * In version 9.23.0: introduced
-         */
-        get bodyVariableName(): string;
-        set bodyVariableName(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 9.24.0: introduced
-         */
-        get parameterMappings(): internal.IList<ParameterMapping>;
+        get operation(): rest.IRestOperation | null;
+        set operation(newValue: rest.IRestOperation | null);
+        get operationQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RestOperationCallAction instance in the SDK and on the server.
@@ -4348,7 +4359,7 @@ export declare namespace microflows {
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  10.0.0 and higher
          */
         static createIn(container: ActionActivity): RestOperationCallAction;
         /**
@@ -5338,9 +5349,17 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
+        /**
+         * In version 10.0.0: deleted
+         */
         get workflow(): workflows.IWorkflow | null;
         set workflow(newValue: workflows.IWorkflow | null);
         get workflowQualifiedName(): string | null;
+        /**
+         * In version 10.0.0: introduced
+         */
+        get workflowSelection(): workflows.WorkflowDefinitionSelection | null;
+        set workflowSelection(newValue: workflows.WorkflowDefinitionSelection | null);
         get resumeAllPausedWorkflows(): boolean;
         set resumeAllPausedWorkflows(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

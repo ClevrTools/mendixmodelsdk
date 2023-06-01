@@ -2,9 +2,6 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 import { microflows } from "./microflows";
-/**
- * @ignore
- */
 export declare namespace databaseconnector {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DatabaseConnector`.
@@ -54,6 +51,7 @@ export declare namespace databaseconnector {
      *
      * @ignore
      *
+     * In version 10.0.0: deleted
      * In version 9.22.0: introduced
      */
     class ConnectionDetails extends internal.Element<IModel> {
@@ -73,7 +71,7 @@ export declare namespace databaseconnector {
          * of the parent DatabaseConnection element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 9.24.0
          */
         static createIn(container: DatabaseConnection): ConnectionDetails;
         /**
@@ -82,6 +80,75 @@ export declare namespace databaseconnector {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ConnectionDetails;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    abstract class ConnectionInput extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDatabaseConnection(): DatabaseConnection;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ConnectionParts extends ConnectionInput {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDatabaseConnection(): DatabaseConnection;
+        get host(): string;
+        set host(newValue: string);
+        get port(): number;
+        set port(newValue: number);
+        get databaseName(): string;
+        set databaseName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ConnectionParts instance in the SDK and on the server.
+         * The new ConnectionParts will be automatically stored in the 'connectionInput' property
+         * of the parent DatabaseConnection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: DatabaseConnection): ConnectionParts;
+        /**
+         * Creates and returns a new ConnectionParts instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ConnectionParts;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ConnectionString extends ConnectionInput {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDatabaseConnection(): DatabaseConnection;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ConnectionString instance in the SDK and on the server.
+         * The new ConnectionString will be automatically stored in the 'connectionInput' property
+         * of the parent DatabaseConnection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: DatabaseConnection): ConnectionString;
+        /**
+         * Creates and returns a new ConnectionString instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ConnectionString;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
@@ -120,6 +187,17 @@ export declare namespace databaseconnector {
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.0.0: introduced
+         */
+        get connectionInput(): ConnectionInput | null;
+        set connectionInput(newValue: ConnectionInput | null);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.0.0: deleted
          */
         get connectionDetails(): ConnectionDetails | null;
         set connectionDetails(newValue: ConnectionDetails | null);
@@ -132,6 +210,16 @@ export declare namespace databaseconnector {
         get password(): constants.IConstant | null;
         set password(newValue: constants.IConstant | null);
         get passwordQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.0.0: introduced
+         */
+        get lastSelectedQuery(): IDatabaseQuery | null;
+        set lastSelectedQuery(newValue: IDatabaseQuery | null);
+        get lastSelectedQueryQualifiedName(): string | null;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *

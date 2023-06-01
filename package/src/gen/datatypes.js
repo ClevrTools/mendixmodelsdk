@@ -48,6 +48,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -74,6 +77,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -134,6 +140,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -160,6 +169,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -280,6 +292,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -380,11 +404,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, BinaryType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "type", false);
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
@@ -480,6 +516,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -506,6 +545,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -626,6 +668,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -726,11 +780,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, BooleanType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "type", false);
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -826,6 +892,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -852,6 +921,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -972,6 +1044,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1072,11 +1156,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, DateTimeType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "type", false);
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -1172,6 +1268,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -1198,6 +1297,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -1318,6 +1420,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1418,11 +1532,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, DecimalType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "type", false);
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -1518,6 +1644,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -1544,6 +1673,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -1664,6 +1796,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -1764,11 +1908,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, EmptyType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "type", false);
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
@@ -1866,6 +2022,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -1892,6 +2051,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -1973,6 +2135,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -1999,6 +2164,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -2128,6 +2296,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2228,11 +2408,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, EnumerationType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "type", false);
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -2338,6 +2530,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -2364,6 +2559,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -2484,6 +2682,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2584,11 +2794,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, FloatType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "type", false);
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -2684,6 +2906,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -2710,6 +2935,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -2830,6 +3058,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -2930,11 +3170,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, IntegerType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "type", false);
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -3030,6 +3282,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -3056,6 +3311,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -3176,6 +3434,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ListType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -3276,11 +3546,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, ListType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ListType, "type", false);
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -3376,6 +3658,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -3402,6 +3687,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -3522,6 +3810,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -3622,11 +3922,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, ObjectType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "type", false);
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
@@ -3722,6 +4034,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -3748,6 +4063,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -3868,6 +4186,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, StringType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -3968,11 +4298,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, StringType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, StringType, "type", false);
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -4068,6 +4410,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -4094,6 +4439,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -4214,6 +4562,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -4314,11 +4674,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, UnknownType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "type", false);
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
@@ -4414,6 +4786,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAggregateListAction() {
+            return super.getContainerAs(microflows_1.microflows.AggregateListAction);
+        }
         get containerAsCreateVariableAction() {
             return super.getContainerAs(microflows_1.microflows.CreateVariableAction);
         }
@@ -4440,6 +4815,9 @@ var datatypes;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(rest_1.rest.OperationParameter);
+        }
+        get containerAsPublishedODataMicroflowParameter() {
+            return super.getContainerAs(rest_1.rest.PublishedODataMicroflowParameter);
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
@@ -4560,6 +4938,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'reduceReturnDataType' property
+         * of the parent microflows.AggregateListAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInAggregateListActionUnderReduceReturnDataType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "reduceReturnDataType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'variableType' property
          * of the parent microflows.CreateVariableAction element passed as argument.
          *
@@ -4660,11 +5050,23 @@ var datatypes;
          * of the parent rest.OperationParameter element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.24.0 and higher
+         *  10.0.0 and higher
          */
         static createInOperationParameterUnderDataType(container) {
-            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "9.24.0" });
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, VoidType, "dataType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'type' property
+         * of the parent rest.PublishedODataMicroflowParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInPublishedODataMicroflowParameterUnderType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "type", false);
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
