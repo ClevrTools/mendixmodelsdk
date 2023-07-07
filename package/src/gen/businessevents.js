@@ -77,13 +77,13 @@ var businessevents;
      *
      * In version 10.0.0: introduced
      */
-    class AttributeEnumertionItem extends internal.Element {
+    class AttributeEnumerationItem extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__value = new internal.PrimitiveProperty(AttributeEnumertionItem, this, "value", "", internal.PrimitiveTypeEnum.String);
+            this.__value = new internal.PrimitiveProperty(AttributeEnumerationItem, this, "value", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
-                throw new Error("new AttributeEnumertionItem() cannot be invoked directly, please use 'model.businessevents.createAttributeEnumertionItem()'");
+                throw new Error("new AttributeEnumerationItem() cannot be invoked directly, please use 'model.businessevents.createAttributeEnumerationItem()'");
             }
         }
         get containerAsAttributeEnumeration() {
@@ -96,38 +96,38 @@ var businessevents;
             this.__value.set(newValue);
         }
         /**
-         * Creates and returns a new AttributeEnumertionItem instance in the SDK and on the server.
-         * The new AttributeEnumertionItem will be automatically stored in the 'items' property
+         * Creates and returns a new AttributeEnumerationItem instance in the SDK and on the server.
+         * The new AttributeEnumerationItem will be automatically stored in the 'items' property
          * of the parent AttributeEnumeration element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.0.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, AttributeEnumertionItem.structureTypeName, { start: "10.0.0" });
-            return internal.instancehelpers.createElement(container, AttributeEnumertionItem, "items", true);
+            internal.createInVersionCheck(container.model, AttributeEnumerationItem.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, AttributeEnumerationItem, "items", true);
         }
         /**
-         * Creates and returns a new AttributeEnumertionItem instance in the SDK and on the server.
+         * Creates and returns a new AttributeEnumerationItem instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, AttributeEnumertionItem);
+            return internal.instancehelpers.createElement(model, AttributeEnumerationItem);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
         }
     }
-    AttributeEnumertionItem.structureTypeName = "BusinessEvents$AttributeEnumertionItem";
-    AttributeEnumertionItem.versionInfo = new exports.StructureVersionInfo({
+    AttributeEnumerationItem.structureTypeName = "BusinessEvents$AttributeEnumerationItem";
+    AttributeEnumerationItem.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.0.0",
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    businessevents.AttributeEnumertionItem = AttributeEnumertionItem;
+    businessevents.AttributeEnumerationItem = AttributeEnumerationItem;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *

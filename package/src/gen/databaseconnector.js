@@ -621,6 +621,8 @@ var databaseconnector;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.0.0: added optional
          */
         get query() {
             return this.__query.get();
@@ -676,7 +678,8 @@ var databaseconnector;
         properties: {
             query: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["10.0.0"]
                 }
             }
         },

@@ -309,10 +309,12 @@ export declare namespace databaseconnector {
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.0.0: added optional
          */
-        get query(): IDatabaseQuery;
-        set query(newValue: IDatabaseQuery);
-        get queryQualifiedName(): string;
+        get query(): IDatabaseQuery | null;
+        set query(newValue: IDatabaseQuery | null);
+        get queryQualifiedName(): string | null;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *

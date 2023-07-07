@@ -21,7 +21,7 @@ export declare namespace businessevents {
          *
          * @ignore
          */
-        get items(): internal.IList<AttributeEnumertionItem>;
+        get items(): internal.IList<AttributeEnumerationItem>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AttributeEnumeration instance in the SDK and on the server.
@@ -46,7 +46,7 @@ export declare namespace businessevents {
      *
      * In version 10.0.0: introduced
      */
-    class AttributeEnumertionItem extends internal.Element<IModel> {
+    class AttributeEnumerationItem extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAttributeEnumeration(): AttributeEnumeration;
@@ -54,20 +54,20 @@ export declare namespace businessevents {
         set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
-         * Creates and returns a new AttributeEnumertionItem instance in the SDK and on the server.
-         * The new AttributeEnumertionItem will be automatically stored in the 'items' property
+         * Creates and returns a new AttributeEnumerationItem instance in the SDK and on the server.
+         * The new AttributeEnumerationItem will be automatically stored in the 'items' property
          * of the parent AttributeEnumeration element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.0.0 and higher
          */
-        static createIn(container: AttributeEnumeration): AttributeEnumertionItem;
+        static createIn(container: AttributeEnumeration): AttributeEnumerationItem;
         /**
-         * Creates and returns a new AttributeEnumertionItem instance in the SDK and on the server.
+         * Creates and returns a new AttributeEnumerationItem instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
-        static create(model: IModel): AttributeEnumertionItem;
+        static create(model: IModel): AttributeEnumerationItem;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.

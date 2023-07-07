@@ -1,5 +1,6 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
+import { microflows } from "./microflows";
 import { projects } from "./projects";
 /**
  * @ignore
@@ -45,6 +46,46 @@ export declare namespace exceldataimporter {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ColumnAttributeMapping;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class ImportExcelDataAction extends microflows.MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): microflows.ActionActivity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get template(): ITemplate;
+        set template(newValue: ITemplate);
+        get templateQualifiedName(): string;
+        get fileVariableName(): string;
+        set fileVariableName(newValue: string);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.
+         * The new ImportExcelDataAction will be automatically stored in the 'action' property
+         * of the parent microflows.ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: microflows.ActionActivity): ImportExcelDataAction;
+        /**
+         * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ImportExcelDataAction;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.

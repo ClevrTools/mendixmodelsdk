@@ -492,6 +492,8 @@ var projects;
             this.__solutionIdentifier = new internal.PrimitiveProperty(ModuleSettings, this, "solutionIdentifier", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__jarDependencies = new internal.PartListProperty(ModuleSettings, this, "jarDependencies", []);
+            /** @internal */
+            this.__basedOnVersion = new internal.PrimitiveProperty(ModuleSettings, this, "basedOnVersion", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "moduleSettings";
         }
         get containerAsModule() {
@@ -538,6 +540,15 @@ var projects;
             return this.__jarDependencies.get();
         }
         /**
+         * In version 10.0.0: introduced
+         */
+        get basedOnVersion() {
+            return this.__basedOnVersion.get();
+        }
+        set basedOnVersion(newValue) {
+            this.__basedOnVersion.set(newValue);
+        }
+        /**
          * Creates a new ModuleSettings unit in the SDK and on the server.
          * Expects one argument, the IModule in which this unit is contained.
          */
@@ -565,6 +576,9 @@ var projects;
                 introduced: "10.0.0"
             },
             jarDependencies: {
+                introduced: "10.0.0"
+            },
+            basedOnVersion: {
                 introduced: "10.0.0"
             }
         }

@@ -130,6 +130,7 @@ export interface IBaseModel extends IAbstractModel {
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
+    findTemplateByQualifiedName(qname: string): exceldataimporter.ITemplate | null;
     findExportMappingByQualifiedName(qname: string): exportmappings.IExportMapping | null;
     findImageByQualifiedName(qname: string): images.IImage | null;
     findImportMappingByQualifiedName(qname: string): importmappings.IImportMapping | null;
@@ -257,6 +258,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
+    findTemplateByQualifiedName(qname: string): exceldataimporter.ITemplate | null;
     findExportMappingByQualifiedName(qname: string): exportmappings.IExportMapping | null;
     findImageByQualifiedName(qname: string): images.IImage | null;
     findImportMappingByQualifiedName(qname: string): importmappings.IImportMapping | null;
@@ -328,7 +330,7 @@ export declare type ConcreteModelElements = {
     AppServices$MsdText: appservices.MsdText;
     AppServices$MsdVersion: appservices.MsdVersion;
     BusinessEvents$AttributeEnumeration: businessevents.AttributeEnumeration;
-    BusinessEvents$AttributeEnumertionItem: businessevents.AttributeEnumertionItem;
+    BusinessEvents$AttributeEnumerationItem: businessevents.AttributeEnumerationItem;
     BusinessEvents$BusinessEventDefinition: businessevents.BusinessEventDefinition;
     BusinessEvents$Channel: businessevents.Channel;
     BusinessEvents$ConsumedBusinessEvent: businessevents.ConsumedBusinessEvent;
@@ -475,6 +477,7 @@ export declare type ConcreteModelElements = {
     Enumerations$Condition: enumerations.Condition;
     Enumerations$EnumerationValue: enumerations.EnumerationValue;
     ExcelDataImporter$ColumnAttributeMapping: exceldataimporter.ColumnAttributeMapping;
+    ExcelDataImporter$ImportExcelDataAction: exceldataimporter.ImportExcelDataAction;
     ExcelDataImporter$IndexReference: exceldataimporter.IndexReference;
     ExcelDataImporter$NameReference: exceldataimporter.NameReference;
     ExcelDataImporter$Sheet: exceldataimporter.Sheet;
@@ -989,6 +992,7 @@ export declare type ConcreteModelElements = {
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
     Workflows$Flow: workflows.Flow;
     Workflows$JumpToActivity: workflows.JumpToActivity;
+    Workflows$MajorityCompletionCriteria: workflows.MajorityCompletionCriteria;
     Workflows$MicroflowBasedEvent: workflows.MicroflowBasedEvent;
     Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
     Workflows$MicroflowCallParameterMapping: workflows.MicroflowCallParameterMapping;
@@ -1002,6 +1006,7 @@ export declare type ConcreteModelElements = {
     Workflows$Parameter: workflows.Parameter;
     Workflows$PercentageAmountUserInput: workflows.PercentageAmountUserInput;
     Workflows$SingleInputCompletion: workflows.SingleInputCompletion;
+    Workflows$ThresholdCompletionCriteria: workflows.ThresholdCompletionCriteria;
     Workflows$UserTask: workflows.UserTask;
     Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
     Workflows$VetoCompletionCriteria: workflows.VetoCompletionCriteria;

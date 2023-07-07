@@ -7,6 +7,15 @@ exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
 var workflows;
 (function (workflows) {
+    class CompletionType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "workflows.CompletionType";
+        }
+    }
+    CompletionType.Relative = new CompletionType("Relative", {});
+    CompletionType.Absolute = new CompletionType("Absolute", {});
+    workflows.CompletionType = CompletionType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
@@ -1138,6 +1147,66 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.JumpToActivity = JumpToActivity;
     /**
+     * In version 10.0.0: introduced
+     */
+    class MajorityCompletionCriteria extends UserTaskCompletionCriteria {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__completionType = new internal.EnumProperty(MajorityCompletionCriteria, this, "completionType", CompletionType.Absolute, CompletionType);
+            /** @internal */
+            this.__fallbackOutcome = new internal.ByIdReferenceProperty(MajorityCompletionCriteria, this, "fallbackOutcome", null);
+            if (arguments.length < 4) {
+                throw new Error("new MajorityCompletionCriteria() cannot be invoked directly, please use 'model.workflows.createMajorityCompletionCriteria()'");
+            }
+        }
+        get containerAsMultiInputCompletion() {
+            return super.getContainerAs(MultiInputCompletion);
+        }
+        get completionType() {
+            return this.__completionType.get();
+        }
+        set completionType(newValue) {
+            this.__completionType.set(newValue);
+        }
+        get fallbackOutcome() {
+            return this.__fallbackOutcome.get();
+        }
+        set fallbackOutcome(newValue) {
+            this.__fallbackOutcome.set(newValue);
+        }
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * The new MajorityCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiInputCompletion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MajorityCompletionCriteria.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, MajorityCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MajorityCompletionCriteria);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.completionType = CompletionType.Absolute;
+        }
+    }
+    MajorityCompletionCriteria.structureTypeName = "Workflows$MajorityCompletionCriteria";
+    MajorityCompletionCriteria.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    workflows.MajorityCompletionCriteria = MajorityCompletionCriteria;
+    /**
      * In version 9.0.5: introduced
      */
     class UserTaskEvent extends internal.Element {
@@ -2044,6 +2113,75 @@ var workflows;
         introduced: "9.22.0"
     }, internal.StructureType.Element);
     workflows.SingleInputCompletion = SingleInputCompletion;
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ThresholdCompletionCriteria extends UserTaskCompletionCriteria {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__completionType = new internal.EnumProperty(ThresholdCompletionCriteria, this, "completionType", CompletionType.Relative, CompletionType);
+            /** @internal */
+            this.__threshold = new internal.PrimitiveProperty(ThresholdCompletionCriteria, this, "threshold", 50, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__fallbackOutcome = new internal.ByIdReferenceProperty(ThresholdCompletionCriteria, this, "fallbackOutcome", null);
+            if (arguments.length < 4) {
+                throw new Error("new ThresholdCompletionCriteria() cannot be invoked directly, please use 'model.workflows.createThresholdCompletionCriteria()'");
+            }
+        }
+        get containerAsMultiInputCompletion() {
+            return super.getContainerAs(MultiInputCompletion);
+        }
+        get completionType() {
+            return this.__completionType.get();
+        }
+        set completionType(newValue) {
+            this.__completionType.set(newValue);
+        }
+        get threshold() {
+            return this.__threshold.get();
+        }
+        set threshold(newValue) {
+            this.__threshold.set(newValue);
+        }
+        get fallbackOutcome() {
+            return this.__fallbackOutcome.get();
+        }
+        set fallbackOutcome(newValue) {
+            this.__fallbackOutcome.set(newValue);
+        }
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * The new ThresholdCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiInputCompletion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ThresholdCompletionCriteria.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ThresholdCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ThresholdCompletionCriteria);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.completionType = CompletionType.Relative;
+            this.threshold = 50;
+        }
+    }
+    ThresholdCompletionCriteria.structureTypeName = "Workflows$ThresholdCompletionCriteria";
+    ThresholdCompletionCriteria.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0"
+    }, internal.StructureType.Element);
+    workflows.ThresholdCompletionCriteria = ThresholdCompletionCriteria;
     /**
      * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
      *

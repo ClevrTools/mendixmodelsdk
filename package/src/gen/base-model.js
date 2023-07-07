@@ -371,6 +371,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findEnumerationValueByQualifiedName(qname) {
         return this._resolveName("Enumerations$EnumerationValue", qname);
     }
+    findTemplateByQualifiedName(qname) {
+        return this._resolveName("ExcelDataImporter$Template", qname);
+    }
     findExportMappingByQualifiedName(qname) {
         return this._resolveName("ExportMappings$ExportMapping", qname);
     }

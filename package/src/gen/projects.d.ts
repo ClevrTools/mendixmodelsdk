@@ -307,6 +307,11 @@ export declare namespace projects {
          * In version 10.0.0: introduced
          */
         get jarDependencies(): internal.IList<JarDependency>;
+        /**
+         * In version 10.0.0: introduced
+         */
+        get basedOnVersion(): string;
+        set basedOnVersion(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IModule);
         /**
          * Creates a new ModuleSettings unit in the SDK and on the server.

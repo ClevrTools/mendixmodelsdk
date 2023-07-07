@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.exceldataimporter = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+const microflows_1 = require("./microflows");
 const projects_1 = require("./projects");
 /**
  * @ignore
@@ -100,6 +101,95 @@ var exceldataimporter;
         }
     }, internal.StructureType.Element);
     exceldataimporter.ColumnAttributeMapping = ColumnAttributeMapping;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.0.0: introduced
+     */
+    class ImportExcelDataAction extends microflows_1.microflows.MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__template = new internal.ByNameReferenceProperty(ImportExcelDataAction, this, "template", null, "ExcelDataImporter$Template");
+            /** @internal */
+            this.__fileVariableName = new internal.PrimitiveProperty(ImportExcelDataAction, this, "fileVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(ImportExcelDataAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ImportExcelDataAction() cannot be invoked directly, please use 'model.exceldataimporter.createImportExcelDataAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(microflows_1.microflows.ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get template() {
+            return this.__template.get();
+        }
+        set template(newValue) {
+            this.__template.set(newValue);
+        }
+        get templateQualifiedName() {
+            return this.__template.qualifiedName();
+        }
+        get fileVariableName() {
+            return this.__fileVariableName.get();
+        }
+        set fileVariableName(newValue) {
+            this.__fileVariableName.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.
+         * The new ImportExcelDataAction will be automatically stored in the 'action' property
+         * of the parent microflows.ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ImportExcelDataAction.structureTypeName, { start: "10.0.0" });
+            return internal.instancehelpers.createElement(container, ImportExcelDataAction, "action", false);
+        }
+        /**
+         * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ImportExcelDataAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ImportExcelDataAction.structureTypeName = "ExcelDataImporter$ImportExcelDataAction";
+    ImportExcelDataAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        properties: {
+            template: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    exceldataimporter.ImportExcelDataAction = ImportExcelDataAction;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -426,6 +516,10 @@ var exceldataimporter;
          */
         static createIn(container) {
             return internal.instancehelpers.createUnit(container, Template);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
         }
         /** @internal */
         _initializeDefaultProperties() {

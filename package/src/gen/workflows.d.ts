@@ -2,6 +2,11 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 export declare namespace workflows {
+    class CompletionType extends internal.AbstractEnum {
+        static Relative: CompletionType;
+        static Absolute: CompletionType;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
@@ -647,6 +652,34 @@ export declare namespace workflows {
         static create(model: IModel): JumpToActivity;
     }
     /**
+     * In version 10.0.0: introduced
+     */
+    class MajorityCompletionCriteria extends UserTaskCompletionCriteria {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get completionType(): CompletionType;
+        set completionType(newValue: CompletionType);
+        get fallbackOutcome(): UserTaskOutcome | null;
+        set fallbackOutcome(newValue: UserTaskOutcome | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * The new MajorityCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiInputCompletion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: MultiInputCompletion): MajorityCompletionCriteria;
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MajorityCompletionCriteria;
+    }
+    /**
      * In version 9.0.5: introduced
      */
     abstract class UserTaskEvent extends internal.Element<IModel> {
@@ -1121,6 +1154,36 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): SingleInputCompletion;
+    }
+    /**
+     * In version 10.0.0: introduced
+     */
+    class ThresholdCompletionCriteria extends UserTaskCompletionCriteria {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get completionType(): CompletionType;
+        set completionType(newValue: CompletionType);
+        get threshold(): number;
+        set threshold(newValue: number);
+        get fallbackOutcome(): UserTaskOutcome | null;
+        set fallbackOutcome(newValue: UserTaskOutcome | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * The new ThresholdCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiInputCompletion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createIn(container: MultiInputCompletion): ThresholdCompletionCriteria;
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ThresholdCompletionCriteria;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
