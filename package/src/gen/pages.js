@@ -6,6 +6,7 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const utils_1 = require("../sdk/utils");
 const projects_1 = require("./projects");
+const url_1 = require("./url");
 var pages;
 (function (pages) {
     class AggregateFunction extends internal.AbstractEnum {
@@ -203,6 +204,9 @@ var pages;
     }
     DesignPropertyValueType.DropDown = new DesignPropertyValueType("DropDown", {});
     DesignPropertyValueType.Toggle = new DesignPropertyValueType("Toggle", {});
+    DesignPropertyValueType.Spacing = new DesignPropertyValueType("Spacing", {
+        introduced: "10.1.0"
+    });
     DesignPropertyValueType.ColorPicker = new DesignPropertyValueType("ColorPicker", {
         introduced: "10.0.0"
     });
@@ -666,6 +670,29 @@ var pages;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
+    /**
+     * In version 10.2.0: introduced
+     */
+    class AbstractDesignPropertyValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new AbstractDesignPropertyValue() cannot be invoked directly, please use 'model.pages.createAbstractDesignPropertyValue()'");
+            }
+        }
+        get containerAsDesignPropertyValue() {
+            return super.getContainerAs(DesignPropertyValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AbstractDesignPropertyValue.structureTypeName = "Pages$AbstractDesignPropertyValue";
+    AbstractDesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    pages.AbstractDesignPropertyValue = AbstractDesignPropertyValue;
     /**
      * In version 9.22.0: introduced
      */
@@ -7394,6 +7421,10 @@ var pages;
             super._initializeDefaultProperties();
             this.controlBar = GridControlBar.create(this.model);
             (() => {
+                if (internal.isAtLeast("10.5.0", this.model)) {
+                    this.dataSource = GridXPathSource.create(this.model);
+                    return;
+                }
                 if (internal.isAtLeast("7.13.0", this.model)) {
                     this.dataSource = GridDatabaseSource.create(this.model);
                     return;
@@ -7795,6 +7826,54 @@ var pages;
     ComparisonSearchField.structureTypeName = "Pages$ComparisonSearchField";
     ComparisonSearchField.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ComparisonSearchField = ComparisonSearchField;
+    /**
+     * In version 10.2.0: introduced
+     */
+    class CompoundDesignPropertyValue extends AbstractDesignPropertyValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__properties = new internal.PartListProperty(CompoundDesignPropertyValue, this, "properties", []);
+            if (arguments.length < 4) {
+                throw new Error("new CompoundDesignPropertyValue() cannot be invoked directly, please use 'model.pages.createCompoundDesignPropertyValue()'");
+            }
+        }
+        get containerAsDesignPropertyValue() {
+            return super.getContainerAs(DesignPropertyValue);
+        }
+        get properties() {
+            return this.__properties.get();
+        }
+        /**
+         * Creates and returns a new CompoundDesignPropertyValue instance in the SDK and on the server.
+         * The new CompoundDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CompoundDesignPropertyValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, CompoundDesignPropertyValue, "value", false);
+        }
+        /**
+         * Creates and returns a new CompoundDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CompoundDesignPropertyValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CompoundDesignPropertyValue.structureTypeName = "Pages$CompoundDesignPropertyValue";
+    CompoundDesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    pages.CompoundDesignPropertyValue = CompoundDesignPropertyValue;
     class ConditionalSettings extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -8767,6 +8846,57 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.CreateObjectClientAction = CreateObjectClientAction;
+    /**
+     * In version 10.2.0: introduced
+     */
+    class CustomDesignPropertyValue extends AbstractDesignPropertyValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(CustomDesignPropertyValue, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new CustomDesignPropertyValue() cannot be invoked directly, please use 'model.pages.createCustomDesignPropertyValue()'");
+            }
+        }
+        get containerAsDesignPropertyValue() {
+            return super.getContainerAs(DesignPropertyValue);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new CustomDesignPropertyValue instance in the SDK and on the server.
+         * The new CustomDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CustomDesignPropertyValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, CustomDesignPropertyValue, "value", false);
+        }
+        /**
+         * Creates and returns a new CustomDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CustomDesignPropertyValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CustomDesignPropertyValue.structureTypeName = "Pages$CustomDesignPropertyValue";
+    CustomDesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    pages.CustomDesignPropertyValue = CustomDesignPropertyValue;
     /**
      * See: {@link https://docs.mendix.com/refguide/data-grid relevant section in reference guide}
      */
@@ -11169,6 +11299,7 @@ var pages;
             return super.getContainerAs(EntityWidget);
         }
         /**
+         * In version 10.2.0: deleted
          * In version 9.5.0: introduced
          */
         get pageParameter() {
@@ -11181,6 +11312,7 @@ var pages;
             return this.__pageParameter.localName();
         }
         /**
+         * In version 10.2.0: deleted
          * In version 9.21.0: introduced
          */
         get snippetParameter() {
@@ -11241,14 +11373,21 @@ var pages;
     DataViewSource.versionInfo = new exports.StructureVersionInfo({
         properties: {
             pageParameter: {
-                introduced: "9.5.0"
+                introduced: "9.5.0",
+                deleted: "10.2.0",
+                deletionMessage: null
             },
             snippetParameter: {
-                introduced: "9.21.0"
+                introduced: "9.21.0",
+                deleted: "10.2.0",
+                deletionMessage: null
             }
         }
     }, internal.StructureType.Element);
     pages.DataViewSource = DataViewSource;
+    /**
+     * In version 10.5.0: deleted
+     */
     class DatabaseConstraint extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -11305,8 +11444,12 @@ var pages;
          * Creates and returns a new DatabaseConstraint instance in the SDK and on the server.
          * The new DatabaseConstraint will be automatically stored in the 'databaseConstraints' property
          * of the parent DatabaseSourceBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInDatabaseSourceBaseUnderDatabaseConstraints(container) {
+            internal.createInVersionCheck(container.model, DatabaseConstraint.structureTypeName, { end: "10.4.0" });
             return internal.instancehelpers.createElement(container, DatabaseConstraint, "databaseConstraints", true);
         }
         /**
@@ -11315,10 +11458,10 @@ var pages;
          * of the parent SelectorDatabaseSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.1.0 and higher
+         *  6.1.0 to 10.4.0
          */
         static createInSelectorDatabaseSourceUnderDatabaseConstraints(container) {
-            internal.createInVersionCheck(container.model, DatabaseConstraint.structureTypeName, { start: "6.1.0" });
+            internal.createInVersionCheck(container.model, DatabaseConstraint.structureTypeName, { start: "6.1.0", end: "10.4.0" });
             return internal.instancehelpers.createElement(container, DatabaseConstraint, "databaseConstraints", true);
         }
         /**
@@ -11336,7 +11479,10 @@ var pages;
         }
     }
     DatabaseConstraint.structureTypeName = "Pages$DatabaseConstraint";
-    DatabaseConstraint.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DatabaseConstraint.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.5.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     pages.DatabaseConstraint = DatabaseConstraint;
     class SortableEntityPathSource extends EntityPathSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -11376,6 +11522,9 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.SortableEntityPathSource = SortableEntityPathSource;
+    /**
+     * In version 10.5.0: deleted
+     */
     class DatabaseSourceBase extends SortableEntityPathSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -11400,7 +11549,10 @@ var pages;
         }
     }
     DatabaseSourceBase.structureTypeName = "Pages$DatabaseSourceBase";
-    DatabaseSourceBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DatabaseSourceBase.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.5.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     pages.DatabaseSourceBase = DatabaseSourceBase;
     /**
      * See: {@link https://docs.mendix.com/refguide/date-picker relevant section in reference guide}
@@ -12154,6 +12306,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__closePage = new internal.PrimitiveProperty(DeleteClientAction, this, "closePage", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(DeleteClientAction, this, "sourceVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DeleteClientAction() cannot be invoked directly, please use 'model.pages.createDeleteClientAction()'");
             }
@@ -12205,6 +12359,15 @@ var pages;
         }
         set closePage(newValue) {
             this.__closePage.set(newValue);
+        }
+        /**
+         * In version 10.4.0: introduced
+         */
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
         }
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
@@ -12426,7 +12589,12 @@ var pages;
     }
     DeleteClientAction.structureTypeName = "Pages$DeleteClientAction";
     DeleteClientAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "7.17.0"
+        introduced: "7.17.0",
+        properties: {
+            sourceVariable: {
+                introduced: "10.4.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.DeleteClientAction = DeleteClientAction;
     /**
@@ -12443,6 +12611,8 @@ var pages;
             this.__stringValue = new internal.PrimitiveProperty(DesignPropertyValue, this, "stringValue", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__booleanValue = new internal.PrimitiveProperty(DesignPropertyValue, this, "booleanValue", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__value = new internal.PartProperty(DesignPropertyValue, this, "value", null, false);
             if (arguments.length < 4) {
                 throw new Error("new DesignPropertyValue() cannot be invoked directly, please use 'model.pages.createDesignPropertyValue()'");
             }
@@ -12450,29 +12620,62 @@ var pages;
         get containerAsAppearance() {
             return super.getContainerAs(Appearance);
         }
+        get containerAsCompoundDesignPropertyValue() {
+            return super.getContainerAs(CompoundDesignPropertyValue);
+        }
         get key() {
             return this.__key.get();
         }
         set key(newValue) {
             this.__key.set(newValue);
         }
+        /**
+         * In version 10.2.0: deleted
+         */
         get type() {
             return this.__type.get();
         }
         set type(newValue) {
             this.__type.set(newValue);
         }
+        /**
+         * In version 10.2.0: deleted
+         */
         get stringValue() {
             return this.__stringValue.get();
         }
         set stringValue(newValue) {
             this.__stringValue.set(newValue);
         }
+        /**
+         * In version 10.2.0: deleted
+         */
         get booleanValue() {
             return this.__booleanValue.get();
         }
         set booleanValue(newValue) {
             this.__booleanValue.set(newValue);
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
+         * The new DesignPropertyValue will be automatically stored in the 'designProperties' property
+         * of the parent Appearance element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.0.0 to 10.1.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, DesignPropertyValue.structureTypeName, { start: "8.0.0", end: "10.1.0" });
+            return internal.instancehelpers.createElement(container, DesignPropertyValue, "designProperties", true);
         }
         /**
          * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
@@ -12482,9 +12685,21 @@ var pages;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  8.0.0 and higher
          */
-        static createIn(container) {
+        static createInAppearanceUnderDesignProperties(container) {
             internal.createInVersionCheck(container.model, DesignPropertyValue.structureTypeName, { start: "8.0.0" });
             return internal.instancehelpers.createElement(container, DesignPropertyValue, "designProperties", true);
+        }
+        /**
+         * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
+         * The new DesignPropertyValue will be automatically stored in the 'properties' property
+         * of the parent CompoundDesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInCompoundDesignPropertyValueUnderProperties(container) {
+            internal.createInVersionCheck(container.model, DesignPropertyValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, DesignPropertyValue, "properties", true);
         }
         /**
          * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
@@ -12497,12 +12712,31 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.type = DesignPropertyValueType.DropDown;
+            if (this.__type.isAvailable) {
+                this.type = DesignPropertyValueType.DropDown;
+            }
         }
     }
     DesignPropertyValue.structureTypeName = "Pages$DesignPropertyValue";
     DesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.0.0"
+        introduced: "8.0.0",
+        properties: {
+            type: {
+                deleted: "10.2.0",
+                deletionMessage: null
+            },
+            stringValue: {
+                deleted: "10.2.0",
+                deletionMessage: null
+            },
+            booleanValue: {
+                deleted: "10.2.0",
+                deletionMessage: null
+            },
+            value: {
+                introduced: "10.2.0"
+            }
+        }
     }, internal.StructureType.Element);
     pages.DesignPropertyValue = DesignPropertyValue;
     /**
@@ -18212,6 +18446,9 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.GridControlBar = GridControlBar;
+    /**
+     * In version 10.5.0: deleted
+     */
     class GridDatabaseSource extends DatabaseSourceBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -18251,18 +18488,22 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.3.0 and higher
+         *  8.3.0 to 10.4.0
          */
         static createInWidgetValueUnderDataSource(container) {
-            internal.createInVersionCheck(container.model, GridDatabaseSource.structureTypeName, { start: "8.3.0" });
+            internal.createInVersionCheck(container.model, GridDatabaseSource.structureTypeName, { start: "8.3.0", end: "10.4.0" });
             return internal.instancehelpers.createElement(container, GridDatabaseSource, "dataSource", false);
         }
         /**
          * Creates and returns a new GridDatabaseSource instance in the SDK and on the server.
          * The new GridDatabaseSource will be automatically stored in the 'dataSource' property
          * of the parent EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInEntityWidgetUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, GridDatabaseSource.structureTypeName, { end: "10.4.0" });
             return internal.instancehelpers.createElement(container, GridDatabaseSource, "dataSource", false);
         }
         /**
@@ -18281,6 +18522,8 @@ var pages;
     }
     GridDatabaseSource.structureTypeName = "Pages$GridDatabaseSource";
     GridDatabaseSource.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.5.0",
+        deletionMessage: null,
         properties: {
             searchBar: {
                 required: {
@@ -18817,10 +19060,10 @@ var pages;
          * of the parent SelectorDatabaseSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.2.0 and higher
+         *  6.2.0 to 10.4.0
          */
         static createInSelectorDatabaseSourceUnderSortBar(container) {
-            internal.createInVersionCheck(container.model, GridSortBar.structureTypeName, { start: "6.2.0" });
+            internal.createInVersionCheck(container.model, GridSortBar.structureTypeName, { start: "6.2.0", end: "10.4.0" });
             return internal.instancehelpers.createElement(container, GridSortBar, "sortBar", false);
         }
         /**
@@ -26853,7 +27096,13 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.clickAction = NoClientAction.create(this.model);
-            this.dataSource = ListViewDatabaseSource.create(this.model);
+            (() => {
+                if (internal.isAtLeast("10.5.0", this.model)) {
+                    this.dataSource = ListViewXPathSource.create(this.model);
+                    return;
+                }
+                this.dataSource = ListViewDatabaseSource.create(this.model);
+            })();
             if (this.__numberOfColumns.isAvailable) {
                 this.numberOfColumns = 1;
             }
@@ -26896,6 +27145,9 @@ var pages;
         }
     }, internal.StructureType.Element);
     pages.ListView = ListView;
+    /**
+     * In version 10.5.0: deleted
+     */
     class ListViewDatabaseSource extends DatabaseSourceBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -26935,18 +27187,22 @@ var pages;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.3.0 and higher
+         *  8.3.0 to 10.4.0
          */
         static createInWidgetValueUnderDataSource(container) {
-            internal.createInVersionCheck(container.model, ListViewDatabaseSource.structureTypeName, { start: "8.3.0" });
+            internal.createInVersionCheck(container.model, ListViewDatabaseSource.structureTypeName, { start: "8.3.0", end: "10.4.0" });
             return internal.instancehelpers.createElement(container, ListViewDatabaseSource, "dataSource", false);
         }
         /**
          * Creates and returns a new ListViewDatabaseSource instance in the SDK and on the server.
          * The new ListViewDatabaseSource will be automatically stored in the 'dataSource' property
          * of the parent EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInEntityWidgetUnderDataSource(container) {
+            internal.createInVersionCheck(container.model, ListViewDatabaseSource.structureTypeName, { end: "10.4.0" });
             return internal.instancehelpers.createElement(container, ListViewDatabaseSource, "dataSource", false);
         }
         /**
@@ -26965,6 +27221,8 @@ var pages;
     }
     ListViewDatabaseSource.structureTypeName = "Pages$ListViewDatabaseSource";
     ListViewDatabaseSource.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.5.0",
+        deletionMessage: null,
         properties: {
             search: {
                 required: {
@@ -27008,9 +27266,25 @@ var pages;
         /**
          * Creates and returns a new ListViewSearch instance in the SDK and on the server.
          * The new ListViewSearch will be automatically stored in the 'search' property
+         * of the parent ListViewXPathSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ListViewSearch.structureTypeName, { start: "10.5.0" });
+            return internal.instancehelpers.createElement(container, ListViewSearch, "search", false);
+        }
+        /**
+         * Creates and returns a new ListViewSearch instance in the SDK and on the server.
+         * The new ListViewSearch will be automatically stored in the 'search' property
          * of the parent ListViewDatabaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInListViewDatabaseSourceUnderSearch(container) {
+            internal.createInVersionCheck(container.model, ListViewSearch.structureTypeName, { end: "10.4.0" });
             return internal.instancehelpers.createElement(container, ListViewSearch, "search", false);
         }
         /**
@@ -31403,6 +31677,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.MicroflowSource = MicroflowSource;
     /**
+     * In version 10.1.0: deleted
      * In version 9.24.0: introduced
      */
     class NamedValue extends internal.Element {
@@ -31446,7 +31721,9 @@ var pages;
     }
     NamedValue.structureTypeName = "Pages$NamedValue";
     NamedValue.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.24.0"
+        introduced: "9.24.0",
+        deleted: "10.1.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     pages.NamedValue = NamedValue;
     /**
@@ -35550,6 +35827,57 @@ var pages;
     }, internal.StructureType.Element);
     pages.OpenWorkflowClientAction = OpenWorkflowClientAction;
     /**
+     * In version 10.2.0: introduced
+     */
+    class OptionDesignPropertyValue extends AbstractDesignPropertyValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__option = new internal.PrimitiveProperty(OptionDesignPropertyValue, this, "option", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OptionDesignPropertyValue() cannot be invoked directly, please use 'model.pages.createOptionDesignPropertyValue()'");
+            }
+        }
+        get containerAsDesignPropertyValue() {
+            return super.getContainerAs(DesignPropertyValue);
+        }
+        get option() {
+            return this.__option.get();
+        }
+        set option(newValue) {
+            this.__option.set(newValue);
+        }
+        /**
+         * Creates and returns a new OptionDesignPropertyValue instance in the SDK and on the server.
+         * The new OptionDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OptionDesignPropertyValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, OptionDesignPropertyValue, "value", false);
+        }
+        /**
+         * Creates and returns a new OptionDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OptionDesignPropertyValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OptionDesignPropertyValue.structureTypeName = "Pages$OptionDesignPropertyValue";
+    OptionDesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    pages.OptionDesignPropertyValue = OptionDesignPropertyValue;
+    /**
      * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     class Page extends FormBase {
@@ -36769,6 +37097,9 @@ var pages;
         get containerAsConditionalSettings() {
             return super.getContainerAs(ConditionalSettings);
         }
+        get containerAsDeleteClientAction() {
+            return super.getContainerAs(DeleteClientAction);
+        }
         get containerAsEntityPathSource() {
             return super.getContainerAs(EntityPathSource);
         }
@@ -36886,6 +37217,18 @@ var pages;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent DeleteClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createInDeleteClientActionUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
          * of the parent EntityPathSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
@@ -36973,27 +37316,7 @@ var pages;
     /**
      * In version 10.0.0: introduced
      */
-    class UrlSegment extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            if (arguments.length < 4) {
-                throw new Error("new UrlSegment() cannot be invoked directly, please use 'model.pages.createUrlSegment()'");
-            }
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    UrlSegment.structureTypeName = "Pages$UrlSegment";
-    UrlSegment.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0"
-    }, internal.StructureType.Element);
-    pages.UrlSegment = UrlSegment;
-    /**
-     * In version 10.0.0: introduced
-     */
-    class ParameterAttributeUrlSegment extends UrlSegment {
+    class ParameterAttributeUrlSegment extends url_1.url.UrlSegment {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -37055,7 +37378,7 @@ var pages;
     /**
      * In version 10.0.0: introduced
      */
-    class ParameterIdUrlSegment extends UrlSegment {
+    class ParameterIdUrlSegment extends url_1.url.UrlSegment {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -41128,6 +41451,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.RegularPageTemplateType = RegularPageTemplateType;
     /**
+     * In version 10.1.0: deleted
      * In version 7.12.0: introduced
      */
     class RetrievalQuery extends internal.Element {
@@ -41273,6 +41597,8 @@ var pages;
     RetrievalQuery.structureTypeName = "Pages$RetrievalQuery";
     RetrievalQuery.versionInfo = new exports.StructureVersionInfo({
         introduced: "7.12.0",
+        deleted: "10.1.0",
+        deletionMessage: null,
         properties: {
             allowedUserRoles: {
                 deleted: "9.21.0",
@@ -41310,6 +41636,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.RetrievalQuery = RetrievalQuery;
     /**
+     * In version 10.1.0: deleted
      * In version 8.6.0: introduced
      */
     class RetrievalQueryParameter extends internal.Element {
@@ -41370,10 +41697,10 @@ var pages;
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.6.0 and higher
+         *  8.6.0 to 10.0.0
          */
         static createInRetrievalQueryUnderParameters(container) {
-            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "8.6.0" });
+            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "8.6.0", end: "10.0.0" });
             return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
         }
         /**
@@ -41382,10 +41709,10 @@ var pages;
          * of the parent RuntimeOperation element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.17.0 and higher
+         *  9.17.0 to 10.0.0
          */
         static createInRuntimeOperationUnderParameters(container) {
-            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "9.17.0" });
+            internal.createInVersionCheck(container.model, RetrievalQueryParameter.structureTypeName, { start: "9.17.0", end: "10.0.0" });
             return internal.instancehelpers.createElement(container, RetrievalQueryParameter, "parameters", true);
         }
         /**
@@ -41404,6 +41731,8 @@ var pages;
     RetrievalQueryParameter.structureTypeName = "Pages$RetrievalQueryParameter";
     RetrievalQueryParameter.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.6.0",
+        deleted: "10.1.0",
+        deletionMessage: null,
         properties: {
             type: {
                 deleted: "10.0.0",
@@ -41501,6 +41830,7 @@ var pages;
     }, internal.StructureType.Element);
     pages.RetrievalSchema = RetrievalSchema;
     /**
+     * In version 10.1.0: deleted
      * In version 9.17.0: introduced
      */
     class RuntimeOperation extends internal.Element {
@@ -41587,6 +41917,8 @@ var pages;
     RuntimeOperation.structureTypeName = "Pages$RuntimeOperation";
     RuntimeOperation.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.17.0",
+        deleted: "10.1.0",
+        deletionMessage: null,
         properties: {
             constants: {
                 introduced: "9.24.0"
@@ -43338,6 +43670,18 @@ var pages;
          * Creates and returns a new SearchBar instance in the SDK and on the server.
          * The new SearchBar will be automatically stored in the 'searchBar' property
          * of the parent GridBaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SearchBar.structureTypeName, { start: "10.5.0" });
+            return internal.instancehelpers.createElement(container, SearchBar, "searchBar", false);
+        }
+        /**
+         * Creates and returns a new SearchBar instance in the SDK and on the server.
+         * The new SearchBar will be automatically stored in the 'searchBar' property
+         * of the parent GridBaseSource element passed as argument.
          */
         static createInGridBaseSourceUnderSearchBar(container) {
             return internal.instancehelpers.createElement(container, SearchBar, "searchBar", false);
@@ -43346,8 +43690,12 @@ var pages;
          * Creates and returns a new SearchBar instance in the SDK and on the server.
          * The new SearchBar will be automatically stored in the 'searchBar' property
          * of the parent GridDatabaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInGridDatabaseSourceUnderSearchBar(container) {
+            internal.createInVersionCheck(container.model, SearchBar.structureTypeName, { end: "10.4.0" });
             return internal.instancehelpers.createElement(container, SearchBar, "searchBar", false);
         }
         /**
@@ -43492,6 +43840,7 @@ var pages;
     SelectorSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.SelectorSource = SelectorSource;
     /**
+     * In version 10.5.0: deleted
      * In version 6.1.0: introduced
      */
     class SelectorDatabaseSource extends SelectorSource {
@@ -43526,10 +43875,10 @@ var pages;
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.1.0 and higher
+         *  6.1.0 to 10.4.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, SelectorDatabaseSource.structureTypeName, { start: "6.1.0" });
+            internal.createInVersionCheck(container.model, SelectorDatabaseSource.structureTypeName, { start: "6.1.0", end: "10.4.0" });
             return internal.instancehelpers.createElement(container, SelectorDatabaseSource, "selectorSource", false);
         }
         /**
@@ -43551,6 +43900,8 @@ var pages;
     SelectorDatabaseSource.structureTypeName = "Pages$SelectorDatabaseSource";
     SelectorDatabaseSource.versionInfo = new exports.StructureVersionInfo({
         introduced: "6.1.0",
+        deleted: "10.5.0",
+        deletionMessage: null,
         properties: {
             sortBar: {
                 introduced: "6.2.0",
@@ -47833,6 +48184,30 @@ var pages;
     }, internal.StructureType.Element);
     pages.StaticOrDynamicString = StaticOrDynamicString;
     /**
+     * In version 10.1.0: deleted
+     * In version 10.0.0: introduced
+     */
+    class UrlSegment extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UrlSegment() cannot be invoked directly, please use 'model.pages.createUrlSegment()'");
+            }
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UrlSegment.structureTypeName = "Pages$UrlSegment";
+    UrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.0.0",
+        deleted: "10.1.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
+    pages.UrlSegment = UrlSegment;
+    /**
+     * In version 10.1.0: deleted
      * In version 10.0.0: introduced
      */
     class StaticUrlSegment extends UrlSegment {
@@ -47865,7 +48240,9 @@ var pages;
     }
     StaticUrlSegment.structureTypeName = "Pages$StaticUrlSegment";
     StaticUrlSegment.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0"
+        introduced: "10.0.0",
+        deleted: "10.1.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     pages.StaticUrlSegment = StaticUrlSegment;
     /**
@@ -54119,6 +54496,50 @@ var pages;
     }, internal.StructureType.Element);
     pages.Title = Title;
     /**
+     * In version 10.2.0: introduced
+     */
+    class ToggleDesignPropertyValue extends AbstractDesignPropertyValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ToggleDesignPropertyValue() cannot be invoked directly, please use 'model.pages.createToggleDesignPropertyValue()'");
+            }
+        }
+        get containerAsDesignPropertyValue() {
+            return super.getContainerAs(DesignPropertyValue);
+        }
+        /**
+         * Creates and returns a new ToggleDesignPropertyValue instance in the SDK and on the server.
+         * The new ToggleDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ToggleDesignPropertyValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ToggleDesignPropertyValue, "value", false);
+        }
+        /**
+         * Creates and returns a new ToggleDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ToggleDesignPropertyValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ToggleDesignPropertyValue.structureTypeName = "Pages$ToggleDesignPropertyValue";
+    ToggleDesignPropertyValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    pages.ToggleDesignPropertyValue = ToggleDesignPropertyValue;
+    /**
+     * In version 10.1.0: deleted
      * In version 9.21.0: introduced
      */
     class UserRoleSet extends internal.Element {
@@ -54148,10 +54569,10 @@ var pages;
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.0.0
          */
         static createInRetrievalQueryUnderAllowedUserRoleSets(container) {
-            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0" });
+            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0", end: "10.0.0" });
             return internal.instancehelpers.createElement(container, UserRoleSet, "allowedUserRoleSets", true);
         }
         /**
@@ -54160,10 +54581,10 @@ var pages;
          * of the parent RuntimeOperation element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.0.0
          */
         static createInRuntimeOperationUnderAllowedUserRoleSets(container) {
-            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0" });
+            internal.createInVersionCheck(container.model, UserRoleSet.structureTypeName, { start: "9.21.0", end: "10.0.0" });
             return internal.instancehelpers.createElement(container, UserRoleSet, "allowedUserRoleSets", true);
         }
         /**
@@ -54181,7 +54602,9 @@ var pages;
     }
     UserRoleSet.structureTypeName = "Pages$UserRoleSet";
     UserRoleSet.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.21.0"
+        introduced: "9.21.0",
+        deleted: "10.1.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     pages.UserRoleSet = UserRoleSet;
     /**

@@ -4,7 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.microflows = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+const utils_1 = require("../sdk/utils");
 const projects_1 = require("./projects");
+const url_1 = require("./url");
 var microflows;
 (function (microflows) {
     class ActionActivityColor extends internal.AbstractEnum {
@@ -1692,6 +1694,65 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.BinaryRequestHandling = BinaryRequestHandling;
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.5.0: introduced
+     */
+    class BodyVariable extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__variableName = new internal.PrimitiveProperty(BodyVariable, this, "variableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new BodyVariable() cannot be invoked directly, please use 'model.microflows.createBodyVariable()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        get variableName() {
+            return this.__variableName.get();
+        }
+        set variableName(newValue) {
+            this.__variableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new BodyVariable instance in the SDK and on the server.
+         * The new BodyVariable will be automatically stored in the 'bodyVariable' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BodyVariable.structureTypeName, { start: "10.5.0" });
+            return internal.instancehelpers.createElement(container, BodyVariable, "bodyVariable", false);
+        }
+        /**
+         * Creates and returns a new BodyVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BodyVariable);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.variableName = "";
+        }
+    }
+    BodyVariable.structureTypeName = "Microflows$BodyVariable";
+    BodyVariable.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.5.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.BodyVariable = BodyVariable;
+    /**
      * See: {@link https://docs.mendix.com/refguide/break-event relevant section in reference guide}
      */
     class BreakEvent extends MicroflowObject {
@@ -1741,6 +1802,12 @@ var microflows;
             this.__consumedODataService = new internal.ByNameReferenceProperty(CallExternalAction, this, "consumedODataService", null, "Rest$ConsumedODataService");
             /** @internal */
             this.__name = new internal.PrimitiveProperty(CallExternalAction, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(CallExternalAction, this, "parameterMappings", []);
+            /** @internal */
+            this.__variableName = new internal.PrimitiveProperty(CallExternalAction, this, "variableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__variableDataType = new internal.PartProperty(CallExternalAction, this, "variableDataType", null, true);
             if (arguments.length < 4) {
                 throw new Error("new CallExternalAction() cannot be invoked directly, please use 'model.microflows.createCallExternalAction()'");
             }
@@ -1767,6 +1834,30 @@ var microflows;
             this.__name.set(newValue);
         }
         /**
+         * In version 10.2.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get variableName() {
+            return this.__variableName.get();
+        }
+        set variableName(newValue) {
+            this.__variableName.set(newValue);
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get variableDataType() {
+            return this.__variableDataType.get();
+        }
+        set variableDataType(newValue) {
+            this.__variableDataType.set(newValue);
+        }
+        /**
          * Creates and returns a new CallExternalAction instance in the SDK and on the server.
          * The new CallExternalAction will be automatically stored in the 'action' property
          * of the parent ActionActivity element passed as argument.
@@ -1789,6 +1880,9 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__variableDataType.isAvailable) {
+                this.variableDataType = datatypes_1.datatypes.UnknownType.create(this.model);
+            }
         }
     }
     CallExternalAction.structureTypeName = "Microflows$CallExternalAction";
@@ -1799,6 +1893,18 @@ var microflows;
                 required: {
                     currentValue: false,
                     changedIn: ["9.23.0"]
+                }
+            },
+            parameterMappings: {
+                introduced: "10.2.0"
+            },
+            variableName: {
+                introduced: "10.2.0"
+            },
+            variableDataType: {
+                introduced: "10.2.0",
+                required: {
+                    currentValue: true
                 }
             }
         }
@@ -4279,6 +4385,92 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.ExpressionSplitCondition = ExpressionSplitCondition;
+    /**
+     * In version 10.2.0: introduced
+     */
+    class ExternalActionParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameterName = new internal.PrimitiveProperty(ExternalActionParameterMapping, this, "parameterName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterType = new internal.PartProperty(ExternalActionParameterMapping, this, "parameterType", null, true);
+            /** @internal */
+            this.__canBeEmpty = new internal.PrimitiveProperty(ExternalActionParameterMapping, this, "canBeEmpty", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__argument = new internal.PrimitiveProperty(ExternalActionParameterMapping, this, "argument", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ExternalActionParameterMapping() cannot be invoked directly, please use 'model.microflows.createExternalActionParameterMapping()'");
+            }
+        }
+        get containerAsCallExternalAction() {
+            return super.getContainerAs(CallExternalAction);
+        }
+        get parameterName() {
+            return this.__parameterName.get();
+        }
+        set parameterName(newValue) {
+            this.__parameterName.set(newValue);
+        }
+        get parameterType() {
+            return this.__parameterType.get();
+        }
+        set parameterType(newValue) {
+            this.__parameterType.set(newValue);
+        }
+        get canBeEmpty() {
+            return this.__canBeEmpty.get();
+        }
+        set canBeEmpty(newValue) {
+            this.__canBeEmpty.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get argument() {
+            return this.__argument.get();
+        }
+        set argument(newValue) {
+            this.__argument.set(newValue);
+        }
+        /**
+         * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
+         * The new ExternalActionParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent CallExternalAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ExternalActionParameterMapping.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ExternalActionParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ExternalActionParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.parameterType = datatypes_1.datatypes.UnknownType.create(this.model);
+        }
+    }
+    ExternalActionParameterMapping.structureTypeName = "Microflows$ExternalActionParameterMapping";
+    ExternalActionParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0",
+        properties: {
+            parameterType: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.ExternalActionParameterMapping = ExternalActionParameterMapping;
     class OutputMethod extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -4752,7 +4944,10 @@ var microflows;
     }
     FormDataRequestHandling.structureTypeName = "Microflows$FormDataRequestHandling";
     FormDataRequestHandling.versionInfo = new exports.StructureVersionInfo({
-        introduced: "8.0.0"
+        introduced: "8.0.0",
+        properties: {
+            parts: {}
+        }
     }, internal.StructureType.Element);
     microflows.FormDataRequestHandling = FormDataRequestHandling;
     /**
@@ -5186,6 +5381,65 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.GenerateJumpToOptionsAction = GenerateJumpToOptionsAction;
     /**
+     * In version 10.4.0: introduced
+     */
+    class GetWorkflowActivityRecordsAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowVariable = new internal.PrimitiveProperty(GetWorkflowActivityRecordsAction, this, "workflowVariable", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(GetWorkflowActivityRecordsAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GetWorkflowActivityRecordsAction() cannot be invoked directly, please use 'model.microflows.createGetWorkflowActivityRecordsAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowVariable() {
+            return this.__workflowVariable.get();
+        }
+        set workflowVariable(newValue) {
+            this.__workflowVariable.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new GetWorkflowActivityRecordsAction instance in the SDK and on the server.
+         * The new GetWorkflowActivityRecordsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GetWorkflowActivityRecordsAction.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, GetWorkflowActivityRecordsAction, "action", false);
+        }
+        /**
+         * Creates and returns a new GetWorkflowActivityRecordsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GetWorkflowActivityRecordsAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GetWorkflowActivityRecordsAction.structureTypeName = "Microflows$GetWorkflowActivityRecordsAction";
+    GetWorkflowActivityRecordsAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0"
+    }, internal.StructureType.Element);
+    microflows.GetWorkflowActivityRecordsAction = GetWorkflowActivityRecordsAction;
+    /**
      * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
      */
@@ -5260,6 +5514,65 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.GetWorkflowDataAction = GetWorkflowDataAction;
+    /**
+     * In version 10.4.0: introduced
+     */
+    class GetWorkflowsAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__workflowContextVariableName = new internal.PrimitiveProperty(GetWorkflowsAction, this, "workflowContextVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(GetWorkflowsAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GetWorkflowsAction() cannot be invoked directly, please use 'model.microflows.createGetWorkflowsAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get workflowContextVariableName() {
+            return this.__workflowContextVariableName.get();
+        }
+        set workflowContextVariableName(newValue) {
+            this.__workflowContextVariableName.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new GetWorkflowsAction instance in the SDK and on the server.
+         * The new GetWorkflowsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GetWorkflowsAction.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, GetWorkflowsAction, "action", false);
+        }
+        /**
+         * Creates and returns a new GetWorkflowsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GetWorkflowsAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GetWorkflowsAction.structureTypeName = "Microflows$GetWorkflowsAction";
+    GetWorkflowsAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0"
+    }, internal.StructureType.Element);
+    microflows.GetWorkflowsAction = GetWorkflowsAction;
     class Head extends ListOperation {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -7879,6 +8192,10 @@ var microflows;
             this.__concurrencyErrorMessage = new internal.PartProperty(Microflow, this, "concurrencyErrorMessage", null, true);
             /** @internal */
             this.__concurrencyErrorMicroflow = new internal.ByNameReferenceProperty(Microflow, this, "concurrencyErrorMicroflow", null, "Microflows$Microflow");
+            /** @internal */
+            this.__url = new internal.PrimitiveProperty(Microflow, this, "url", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__stableId = new internal.PrimitiveProperty(Microflow, this, "stableId", "", internal.PrimitiveTypeEnum.Guid);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -7933,6 +8250,24 @@ var microflows;
             return this.__concurrencyErrorMicroflow.qualifiedName();
         }
         /**
+         * In version 10.1.0: introduced
+         */
+        get url() {
+            return this.__url.get();
+        }
+        set url(newValue) {
+            this.__url.set(newValue);
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get stableId() {
+            return this.__stableId.get();
+        }
+        set stableId(newValue) {
+            this.__stableId.set(newValue);
+        }
+        /**
          * Creates a new Microflow unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -7958,6 +8293,9 @@ var microflows;
                     }
                     this.returnType = "Void";
                 })();
+            }
+            if (this.__stableId.isAvailable) {
+                this.stableId = utils_1.utils.randomUuid();
             }
         }
     }
@@ -7986,6 +8324,12 @@ var microflows;
                 required: {
                     currentValue: true
                 }
+            },
+            url: {
+                introduced: "10.1.0"
+            },
+            stableId: {
+                introduced: "10.2.0"
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -8467,6 +8811,68 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.MicroflowParameter = MicroflowParameter;
+    /**
+     * In version 10.1.0: introduced
+     */
+    class MicroflowParameterAttributeUrlSegment extends url_1.url.UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflowParameter = new internal.LocalByNameReferenceProperty(MicroflowParameterAttributeUrlSegment, this, "microflowParameter", null, "Microflows$MicroflowParameter");
+            /** @internal */
+            this.__attribute = new internal.ByNameReferenceProperty(MicroflowParameterAttributeUrlSegment, this, "attribute", null, "DomainModels$Attribute");
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowParameterAttributeUrlSegment() cannot be invoked directly, please use 'model.microflows.createMicroflowParameterAttributeUrlSegment()'");
+            }
+        }
+        get microflowParameter() {
+            return this.__microflowParameter.get();
+        }
+        set microflowParameter(newValue) {
+            this.__microflowParameter.set(newValue);
+        }
+        get microflowParameterLocalName() {
+            return this.__microflowParameter.localName();
+        }
+        get attribute() {
+            return this.__attribute.get();
+        }
+        set attribute(newValue) {
+            this.__attribute.set(newValue);
+        }
+        get attributeQualifiedName() {
+            return this.__attribute.qualifiedName();
+        }
+        /**
+         * Creates and returns a new MicroflowParameterAttributeUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowParameterAttributeUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowParameterAttributeUrlSegment.structureTypeName = "Microflows$MicroflowParameterAttributeUrlSegment";
+    MicroflowParameterAttributeUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
+        properties: {
+            microflowParameter: {
+                required: {
+                    currentValue: true
+                }
+            },
+            attribute: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.MicroflowParameterAttributeUrlSegment = MicroflowParameterAttributeUrlSegment;
     class MicroflowParameterObject extends MicroflowObject {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -8644,6 +9050,52 @@ var microflows;
         introduced: "7.21.0"
     }, internal.StructureType.Element);
     microflows.MicroflowParameterValue = MicroflowParameterValue;
+    /**
+     * In version 10.3.0: introduced
+     */
+    class MicroflowPrimitiveParameterUrlSegment extends url_1.url.UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflowParameter = new internal.LocalByNameReferenceProperty(MicroflowPrimitiveParameterUrlSegment, this, "microflowParameter", null, "Microflows$MicroflowParameter");
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowPrimitiveParameterUrlSegment() cannot be invoked directly, please use 'model.microflows.createMicroflowPrimitiveParameterUrlSegment()'");
+            }
+        }
+        get microflowParameter() {
+            return this.__microflowParameter.get();
+        }
+        set microflowParameter(newValue) {
+            this.__microflowParameter.set(newValue);
+        }
+        get microflowParameterLocalName() {
+            return this.__microflowParameter.localName();
+        }
+        /**
+         * Creates and returns a new MicroflowPrimitiveParameterUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowPrimitiveParameterUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowPrimitiveParameterUrlSegment.structureTypeName = "Microflows$MicroflowPrimitiveParameterUrlSegment";
+    MicroflowPrimitiveParameterUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.3.0",
+        properties: {
+            microflowParameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.MicroflowPrimitiveParameterUrlSegment = MicroflowPrimitiveParameterUrlSegment;
     /**
      * See: {@link https://docs.mendix.com/refguide/nanoflows relevant section in reference guide}
      *
@@ -9228,6 +9680,111 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.OpenWorkflowAction = OpenWorkflowAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class OutputVariable extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__variableName = new internal.PrimitiveProperty(OutputVariable, this, "variableName", "Variable", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OutputVariable() cannot be invoked directly, please use 'model.microflows.createOutputVariable()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        get variableName() {
+            return this.__variableName.get();
+        }
+        set variableName(newValue) {
+            this.__variableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new OutputVariable instance in the SDK and on the server.
+         * The new OutputVariable will be automatically stored in the 'outputVariable' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OutputVariable.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, OutputVariable, "outputVariable", false);
+        }
+        /**
+         * Creates and returns a new OutputVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OutputVariable);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.variableName = "Variable";
+        }
+    }
+    OutputVariable.structureTypeName = "Microflows$OutputVariable";
+    OutputVariable.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.OutputVariable = OutputVariable;
+    /**
+     * In version 10.1.0: introduced
+     */
+    class ParameterIdUrlSegment extends url_1.url.UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflowParameter = new internal.LocalByNameReferenceProperty(ParameterIdUrlSegment, this, "microflowParameter", null, "Microflows$MicroflowParameter");
+            if (arguments.length < 4) {
+                throw new Error("new ParameterIdUrlSegment() cannot be invoked directly, please use 'model.microflows.createParameterIdUrlSegment()'");
+            }
+        }
+        get microflowParameter() {
+            return this.__microflowParameter.get();
+        }
+        set microflowParameter(newValue) {
+            this.__microflowParameter.set(newValue);
+        }
+        get microflowParameterLocalName() {
+            return this.__microflowParameter.localName();
+        }
+        /**
+         * Creates and returns a new ParameterIdUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ParameterIdUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ParameterIdUrlSegment.structureTypeName = "Microflows$ParameterIdUrlSegment";
+    ParameterIdUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
+        properties: {
+            microflowParameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.ParameterIdUrlSegment = ParameterIdUrlSegment;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.3.0: introduced
@@ -9910,15 +10467,25 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RestCallAction = RestCallAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-entity-to-microflow relevant section in reference guide}
      *
-     * In version 10.0.0: introduced
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.1.0: introduced
      */
     class RestOperationCallAction extends MicroflowAction {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__operation = new internal.ByNameReferenceProperty(RestOperationCallAction, this, "operation", null, "Rest$RestOperation");
+            /** @internal */
+            this.__bodyVariable = new internal.PartProperty(RestOperationCallAction, this, "bodyVariable", null, false);
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(RestOperationCallAction, this, "parameterMappings", []);
+            /** @internal */
+            this.__outputVariable = new internal.PartProperty(RestOperationCallAction, this, "outputVariable", null, false);
             if (arguments.length < 4) {
                 throw new Error("new RestOperationCallAction() cannot be invoked directly, please use 'model.microflows.createRestOperationCallAction()'");
             }
@@ -9941,15 +10508,51 @@ var microflows;
             return this.__operation.qualifiedName();
         }
         /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.5.0: introduced
+         */
+        get bodyVariable() {
+            return this.__bodyVariable.get();
+        }
+        set bodyVariable(newValue) {
+            this.__bodyVariable.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.2.0: introduced
+         */
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.4.0: introduced
+         */
+        get outputVariable() {
+            return this.__outputVariable.get();
+        }
+        set outputVariable(newValue) {
+            this.__outputVariable.set(newValue);
+        }
+        /**
          * Creates and returns a new RestOperationCallAction instance in the SDK and on the server.
          * The new RestOperationCallAction will be automatically stored in the 'action' property
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.1.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, RestOperationCallAction.structureTypeName, { start: "10.0.0" });
+            internal.createInVersionCheck(container.model, RestOperationCallAction.structureTypeName, { start: "10.1.0" });
             return internal.instancehelpers.createElement(container, RestOperationCallAction, "action", false);
         }
         /**
@@ -9967,9 +10570,107 @@ var microflows;
     }
     RestOperationCallAction.structureTypeName = "Microflows$RestOperationCallAction";
     RestOperationCallAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0"
+        introduced: "10.1.0",
+        properties: {
+            bodyVariable: {
+                introduced: "10.5.0"
+            },
+            parameterMappings: {
+                introduced: "10.2.0"
+            },
+            outputVariable: {
+                introduced: "10.4.0"
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
     }, internal.StructureType.Element);
     microflows.RestOperationCallAction = RestOperationCallAction;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.2.0: introduced
+     */
+    class RestOperationParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(RestOperationParameterMapping, this, "parameter", null, "Rest$OperationParameter");
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(RestOperationParameterMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new RestOperationParameterMapping() cannot be invoked directly, please use 'model.microflows.createRestOperationParameterMapping()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new RestOperationParameterMapping instance in the SDK and on the server.
+         * The new RestOperationParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RestOperationParameterMapping.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, RestOperationParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new RestOperationParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestOperationParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RestOperationParameterMapping.structureTypeName = "Microflows$RestOperationParameterMapping";
+    RestOperationParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.RestOperationParameterMapping = RestOperationParameterMapping;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced

@@ -2,6 +2,7 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { common } from "../common";
 import { projects } from "./projects";
+import { url } from "./url";
 export declare namespace pages {
     class AggregateFunction extends internal.AbstractEnum {
         static None: AggregateFunction;
@@ -149,6 +150,7 @@ export declare namespace pages {
     class DesignPropertyValueType extends internal.AbstractEnum {
         static DropDown: DesignPropertyValueType;
         static Toggle: DesignPropertyValueType;
+        static Spacing: DesignPropertyValueType;
         static ColorPicker: DesignPropertyValueType;
         static ToggleButtonGroup: DesignPropertyValueType;
         protected qualifiedTsTypeName: string;
@@ -431,6 +433,15 @@ export declare namespace pages {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Pages`.
      */
+    /**
+     * In version 10.2.0: introduced
+     */
+    abstract class AbstractDesignPropertyValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDesignPropertyValue(): DesignPropertyValue;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     /**
      * In version 9.22.0: introduced
      */
@@ -4084,6 +4095,31 @@ export declare namespace pages {
          */
         static create(model: IModel): ComparisonSearchField;
     }
+    /**
+     * In version 10.2.0: introduced
+     */
+    class CompoundDesignPropertyValue extends AbstractDesignPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDesignPropertyValue(): DesignPropertyValue;
+        get properties(): internal.IList<DesignPropertyValue>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CompoundDesignPropertyValue instance in the SDK and on the server.
+         * The new CompoundDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: DesignPropertyValue): CompoundDesignPropertyValue;
+        /**
+         * Creates and returns a new CompoundDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CompoundDesignPropertyValue;
+    }
     abstract class ConditionalSettings extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -4519,6 +4555,32 @@ export declare namespace pages {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): CreateObjectClientAction;
+    }
+    /**
+     * In version 10.2.0: introduced
+     */
+    class CustomDesignPropertyValue extends AbstractDesignPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDesignPropertyValue(): DesignPropertyValue;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CustomDesignPropertyValue instance in the SDK and on the server.
+         * The new CustomDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: DesignPropertyValue): CustomDesignPropertyValue;
+        /**
+         * Creates and returns a new CustomDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CustomDesignPropertyValue;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/data-grid relevant section in reference guide}
@@ -5842,12 +5904,14 @@ export declare namespace pages {
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
         /**
+         * In version 10.2.0: deleted
          * In version 9.5.0: introduced
          */
         get pageParameter(): PageParameter | null;
         set pageParameter(newValue: PageParameter | null);
         get pageParameterLocalName(): string | null;
         /**
+         * In version 10.2.0: deleted
          * In version 9.21.0: introduced
          */
         get snippetParameter(): SnippetParameter | null;
@@ -5885,6 +5949,9 @@ export declare namespace pages {
          */
         static create(model: IModel): DataViewSource;
     }
+    /**
+     * In version 10.5.0: deleted
+     */
     class DatabaseConstraint extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -5911,6 +5978,9 @@ export declare namespace pages {
          * Creates and returns a new DatabaseConstraint instance in the SDK and on the server.
          * The new DatabaseConstraint will be automatically stored in the 'databaseConstraints' property
          * of the parent DatabaseSourceBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInDatabaseSourceBaseUnderDatabaseConstraints(container: DatabaseSourceBase): DatabaseConstraint;
         /**
@@ -5919,7 +5989,7 @@ export declare namespace pages {
          * of the parent SelectorDatabaseSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.1.0 and higher
+         *  6.1.0 to 10.4.0
          */
         static createInSelectorDatabaseSourceUnderDatabaseConstraints(container: SelectorDatabaseSource): DatabaseConstraint;
         /**
@@ -5938,6 +6008,9 @@ export declare namespace pages {
         set sortBar(newValue: GridSortBar);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
+    /**
+     * In version 10.5.0: deleted
+     */
     abstract class DatabaseSourceBase extends SortableEntityPathSource {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -6473,6 +6546,11 @@ export declare namespace pages {
         get containerAsTextBox(): TextBox;
         get closePage(): boolean;
         set closePage(newValue: boolean);
+        /**
+         * In version 10.4.0: introduced
+         */
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
@@ -6641,15 +6719,39 @@ export declare namespace pages {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAppearance(): Appearance;
+        get containerAsCompoundDesignPropertyValue(): CompoundDesignPropertyValue;
         get key(): string;
         set key(newValue: string);
+        /**
+         * In version 10.2.0: deleted
+         */
         get type(): DesignPropertyValueType;
         set type(newValue: DesignPropertyValueType);
+        /**
+         * In version 10.2.0: deleted
+         */
         get stringValue(): string;
         set stringValue(newValue: string);
+        /**
+         * In version 10.2.0: deleted
+         */
         get booleanValue(): boolean;
         set booleanValue(newValue: boolean);
+        /**
+         * In version 10.2.0: introduced
+         */
+        get value(): AbstractDesignPropertyValue | null;
+        set value(newValue: AbstractDesignPropertyValue | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
+         * The new DesignPropertyValue will be automatically stored in the 'designProperties' property
+         * of the parent Appearance element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.0.0 to 10.1.0
+         */
+        static createIn(container: Appearance): DesignPropertyValue;
         /**
          * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
          * The new DesignPropertyValue will be automatically stored in the 'designProperties' property
@@ -6658,7 +6760,16 @@ export declare namespace pages {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  8.0.0 and higher
          */
-        static createIn(container: Appearance): DesignPropertyValue;
+        static createInAppearanceUnderDesignProperties(container: Appearance): DesignPropertyValue;
+        /**
+         * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
+         * The new DesignPropertyValue will be automatically stored in the 'properties' property
+         * of the parent CompoundDesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInCompoundDesignPropertyValueUnderProperties(container: CompoundDesignPropertyValue): DesignPropertyValue;
         /**
          * Creates and returns a new DesignPropertyValue instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -10128,6 +10239,9 @@ export declare namespace pages {
          */
         static create(model: IModel): GridControlBar;
     }
+    /**
+     * In version 10.5.0: deleted
+     */
     class GridDatabaseSource extends DatabaseSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -10151,13 +10265,16 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.3.0 and higher
+         *  8.3.0 to 10.4.0
          */
         static createInWidgetValueUnderDataSource(container: customwidgets.WidgetValue): GridDatabaseSource;
         /**
          * Creates and returns a new GridDatabaseSource instance in the SDK and on the server.
          * The new GridDatabaseSource will be automatically stored in the 'dataSource' property
          * of the parent EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInEntityWidgetUnderDataSource(container: EntityWidget): GridDatabaseSource;
         /**
@@ -10362,7 +10479,7 @@ export declare namespace pages {
          * of the parent SelectorDatabaseSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.2.0 and higher
+         *  6.2.0 to 10.4.0
          */
         static createInSelectorDatabaseSourceUnderSortBar(container: SelectorDatabaseSource): GridSortBar;
         /**
@@ -15351,6 +15468,9 @@ export declare namespace pages {
          */
         static create(model: IModel): ListView;
     }
+    /**
+     * In version 10.5.0: deleted
+     */
     class ListViewDatabaseSource extends DatabaseSourceBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -15374,13 +15494,16 @@ export declare namespace pages {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.3.0 and higher
+         *  8.3.0 to 10.4.0
          */
         static createInWidgetValueUnderDataSource(container: customwidgets.WidgetValue): ListViewDatabaseSource;
         /**
          * Creates and returns a new ListViewDatabaseSource instance in the SDK and on the server.
          * The new ListViewDatabaseSource will be automatically stored in the 'dataSource' property
          * of the parent EntityWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInEntityWidgetUnderDataSource(container: EntityWidget): ListViewDatabaseSource;
         /**
@@ -15409,7 +15532,19 @@ export declare namespace pages {
         /**
          * Creates and returns a new ListViewSearch instance in the SDK and on the server.
          * The new ListViewSearch will be automatically stored in the 'search' property
+         * of the parent ListViewXPathSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container: ListViewXPathSource): ListViewSearch;
+        /**
+         * Creates and returns a new ListViewSearch instance in the SDK and on the server.
+         * The new ListViewSearch will be automatically stored in the 'search' property
          * of the parent ListViewDatabaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInListViewDatabaseSourceUnderSearch(container: ListViewDatabaseSource): ListViewSearch;
         /**
@@ -18047,6 +18182,7 @@ export declare namespace pages {
         static create(model: IModel): MicroflowSource;
     }
     /**
+     * In version 10.1.0: deleted
      * In version 9.24.0: introduced
      */
     class NamedValue extends internal.Element<IModel> {
@@ -20587,6 +20723,32 @@ export declare namespace pages {
         static create(model: IModel): OpenWorkflowClientAction;
     }
     /**
+     * In version 10.2.0: introduced
+     */
+    class OptionDesignPropertyValue extends AbstractDesignPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDesignPropertyValue(): DesignPropertyValue;
+        get option(): string;
+        set option(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OptionDesignPropertyValue instance in the SDK and on the server.
+         * The new OptionDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: DesignPropertyValue): OptionDesignPropertyValue;
+        /**
+         * Creates and returns a new OptionDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OptionDesignPropertyValue;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     interface IPage extends IFormBase {
@@ -21189,6 +21351,7 @@ export declare namespace pages {
         get containerAsAttributeWidget(): AttributeWidget;
         get containerAsClientTemplateParameter(): ClientTemplateParameter;
         get containerAsConditionalSettings(): ConditionalSettings;
+        get containerAsDeleteClientAction(): DeleteClientAction;
         get containerAsEntityPathSource(): EntityPathSource;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
@@ -21260,6 +21423,15 @@ export declare namespace pages {
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent DeleteClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createInDeleteClientActionUnderSourceVariable(container: DeleteClientAction): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
          * of the parent EntityPathSource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
@@ -21312,15 +21484,7 @@ export declare namespace pages {
     /**
      * In version 10.0.0: introduced
      */
-    abstract class UrlSegment extends internal.Element<IModel> {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-    }
-    /**
-     * In version 10.0.0: introduced
-     */
-    class ParameterAttributeUrlSegment extends UrlSegment {
+    class ParameterAttributeUrlSegment extends url.UrlSegment {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get pageParameter(): PageParameter;
@@ -21340,7 +21504,7 @@ export declare namespace pages {
     /**
      * In version 10.0.0: introduced
      */
-    class ParameterIdUrlSegment extends UrlSegment {
+    class ParameterIdUrlSegment extends url.UrlSegment {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get pageParameter(): PageParameter;
@@ -24025,6 +24189,7 @@ export declare namespace pages {
         static create(model: IModel): RegularPageTemplateType;
     }
     /**
+     * In version 10.1.0: deleted
      * In version 7.12.0: introduced
      */
     class RetrievalQuery extends internal.Element<IModel> {
@@ -24090,6 +24255,7 @@ export declare namespace pages {
         static create(model: IModel): RetrievalQuery;
     }
     /**
+     * In version 10.1.0: deleted
      * In version 8.6.0: introduced
      */
     class RetrievalQueryParameter extends internal.Element<IModel> {
@@ -24124,7 +24290,7 @@ export declare namespace pages {
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.6.0 and higher
+         *  8.6.0 to 10.0.0
          */
         static createInRetrievalQueryUnderParameters(container: RetrievalQuery): RetrievalQueryParameter;
         /**
@@ -24133,7 +24299,7 @@ export declare namespace pages {
          * of the parent RuntimeOperation element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.17.0 and higher
+         *  9.17.0 to 10.0.0
          */
         static createInRuntimeOperationUnderParameters(container: RuntimeOperation): RetrievalQueryParameter;
         /**
@@ -24177,6 +24343,7 @@ export declare namespace pages {
         static create(model: IModel): RetrievalSchema;
     }
     /**
+     * In version 10.1.0: deleted
      * In version 9.17.0: introduced
      */
     class RuntimeOperation extends internal.Element<IModel> {
@@ -25257,12 +25424,24 @@ export declare namespace pages {
          * Creates and returns a new SearchBar instance in the SDK and on the server.
          * The new SearchBar will be automatically stored in the 'searchBar' property
          * of the parent GridBaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container: GridBaseSource): SearchBar;
+        /**
+         * Creates and returns a new SearchBar instance in the SDK and on the server.
+         * The new SearchBar will be automatically stored in the 'searchBar' property
+         * of the parent GridBaseSource element passed as argument.
          */
         static createInGridBaseSourceUnderSearchBar(container: GridBaseSource): SearchBar;
         /**
          * Creates and returns a new SearchBar instance in the SDK and on the server.
          * The new SearchBar will be automatically stored in the 'searchBar' property
          * of the parent GridDatabaseSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.4.0
          */
         static createInGridDatabaseSourceUnderSearchBar(container: GridDatabaseSource): SearchBar;
         /**
@@ -25334,6 +25513,7 @@ export declare namespace pages {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 10.5.0: deleted
      * In version 6.1.0: introduced
      */
     class SelectorDatabaseSource extends SelectorSource {
@@ -25353,7 +25533,7 @@ export declare namespace pages {
          * of the parent AssociationWidget element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  6.1.0 and higher
+         *  6.1.0 to 10.4.0
          */
         static createIn(container: AssociationWidget): SelectorDatabaseSource;
         /**
@@ -28046,6 +28226,16 @@ export declare namespace pages {
         static create(model: IModel): StaticOrDynamicString;
     }
     /**
+     * In version 10.1.0: deleted
+     * In version 10.0.0: introduced
+     */
+    abstract class UrlSegment extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.1.0: deleted
      * In version 10.0.0: introduced
      */
     class StaticUrlSegment extends UrlSegment {
@@ -31984,6 +32174,31 @@ export declare namespace pages {
         static create(model: IModel): Title;
     }
     /**
+     * In version 10.2.0: introduced
+     */
+    class ToggleDesignPropertyValue extends AbstractDesignPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDesignPropertyValue(): DesignPropertyValue;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ToggleDesignPropertyValue instance in the SDK and on the server.
+         * The new ToggleDesignPropertyValue will be automatically stored in the 'value' property
+         * of the parent DesignPropertyValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: DesignPropertyValue): ToggleDesignPropertyValue;
+        /**
+         * Creates and returns a new ToggleDesignPropertyValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ToggleDesignPropertyValue;
+    }
+    /**
+     * In version 10.1.0: deleted
      * In version 9.21.0: introduced
      */
     class UserRoleSet extends internal.Element<IModel> {
@@ -32000,7 +32215,7 @@ export declare namespace pages {
          * of the parent RetrievalQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.0.0
          */
         static createInRetrievalQueryUnderAllowedUserRoleSets(container: RetrievalQuery): UserRoleSet;
         /**
@@ -32009,7 +32224,7 @@ export declare namespace pages {
          * of the parent RuntimeOperation element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.0.0
          */
         static createInRuntimeOperationUnderAllowedUserRoleSets(container: RuntimeOperation): UserRoleSet;
         /**

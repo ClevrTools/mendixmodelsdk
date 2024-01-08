@@ -39,6 +39,9 @@ var navigation;
     OfflineEntitySyncMode.None = new OfflineEntitySyncMode("None", {});
     OfflineEntitySyncMode.NoneAndPreserveData = new OfflineEntitySyncMode("NoneAndPreserveData", {});
     OfflineEntitySyncMode.Never = new OfflineEntitySyncMode("Never", {});
+    OfflineEntitySyncMode.Online = new OfflineEntitySyncMode("Online", {
+        introduced: "10.2.0"
+    });
     navigation.OfflineEntitySyncMode = OfflineEntitySyncMode;
     class ProfileKind extends internal.AbstractEnum {
         constructor() {

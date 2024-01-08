@@ -2,6 +2,7 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { common } from "../common";
 import { projects } from "./projects";
+import { url } from "./url";
 export declare namespace microflows {
     class ActionActivityColor extends internal.AbstractEnum {
         static Default: ActionActivityColor;
@@ -733,6 +734,36 @@ export declare namespace microflows {
         static create(model: IModel): BinaryRequestHandling;
     }
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.5.0: introduced
+     */
+    class BodyVariable extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationCallAction(): RestOperationCallAction;
+        get variableName(): string;
+        set variableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BodyVariable instance in the SDK and on the server.
+         * The new BodyVariable will be automatically stored in the 'bodyVariable' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.5.0 and higher
+         */
+        static createIn(container: RestOperationCallAction): BodyVariable;
+        /**
+         * Creates and returns a new BodyVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BodyVariable;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/break-event relevant section in reference guide}
      */
     class BreakEvent extends MicroflowObject {
@@ -770,6 +801,20 @@ export declare namespace microflows {
         get consumedODataServiceQualifiedName(): string | null;
         get name(): string;
         set name(newValue: string);
+        /**
+         * In version 10.2.0: introduced
+         */
+        get parameterMappings(): internal.IList<ExternalActionParameterMapping>;
+        /**
+         * In version 10.2.0: introduced
+         */
+        get variableName(): string;
+        set variableName(newValue: string);
+        /**
+         * In version 10.2.0: introduced
+         */
+        get variableDataType(): datatypes.DataType;
+        set variableDataType(newValue: datatypes.DataType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallExternalAction instance in the SDK and on the server.
@@ -1887,6 +1932,41 @@ export declare namespace microflows {
          */
         static create(model: IModel): ExpressionSplitCondition;
     }
+    /**
+     * In version 10.2.0: introduced
+     */
+    class ExternalActionParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallExternalAction(): CallExternalAction;
+        get parameterName(): string;
+        set parameterName(newValue: string);
+        get parameterType(): datatypes.DataType;
+        set parameterType(newValue: datatypes.DataType);
+        get canBeEmpty(): boolean;
+        set canBeEmpty(newValue: boolean);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get argument(): string;
+        set argument(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
+         * The new ExternalActionParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent CallExternalAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: CallExternalAction): ExternalActionParameterMapping;
+        /**
+         * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ExternalActionParameterMapping;
+    }
     abstract class OutputMethod extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -2283,6 +2363,34 @@ export declare namespace microflows {
         static create(model: IModel): GenerateJumpToOptionsAction;
     }
     /**
+     * In version 10.4.0: introduced
+     */
+    class GetWorkflowActivityRecordsAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowVariable(): string;
+        set workflowVariable(newValue: string);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GetWorkflowActivityRecordsAction instance in the SDK and on the server.
+         * The new GetWorkflowActivityRecordsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container: ActionActivity): GetWorkflowActivityRecordsAction;
+        /**
+         * Creates and returns a new GetWorkflowActivityRecordsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GetWorkflowActivityRecordsAction;
+    }
+    /**
      * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
      */
@@ -2313,6 +2421,34 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): GetWorkflowDataAction;
+    }
+    /**
+     * In version 10.4.0: introduced
+     */
+    class GetWorkflowsAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get workflowContextVariableName(): string;
+        set workflowContextVariableName(newValue: string);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GetWorkflowsAction instance in the SDK and on the server.
+         * The new GetWorkflowsAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container: ActionActivity): GetWorkflowsAction;
+        /**
+         * Creates and returns a new GetWorkflowsAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GetWorkflowsAction;
     }
     class Head extends ListOperation {
         static structureTypeName: string;
@@ -3478,6 +3614,16 @@ export declare namespace microflows {
         get concurrencyErrorMicroflow(): IMicroflow | null;
         set concurrencyErrorMicroflow(newValue: IMicroflow | null);
         get concurrencyErrorMicroflowQualifiedName(): string | null;
+        /**
+         * In version 10.1.0: introduced
+         */
+        get url(): string;
+        set url(newValue: string);
+        /**
+         * In version 10.2.0: introduced
+         */
+        get stableId(): string;
+        set stableId(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Microflow unit in the SDK and on the server.
@@ -3698,6 +3844,26 @@ export declare namespace microflows {
         get containerAsMicroflow(): Microflow;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
+    /**
+     * In version 10.1.0: introduced
+     */
+    class MicroflowParameterAttributeUrlSegment extends url.UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get microflowParameter(): MicroflowParameter;
+        set microflowParameter(newValue: MicroflowParameter);
+        get microflowParameterLocalName(): string;
+        get attribute(): domainmodels.IAttribute;
+        set attribute(newValue: domainmodels.IAttribute);
+        get attributeQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowParameterAttributeUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowParameterAttributeUrlSegment;
+    }
     class MicroflowParameterObject extends MicroflowObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -3773,6 +3939,23 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): MicroflowParameterValue;
+    }
+    /**
+     * In version 10.3.0: introduced
+     */
+    class MicroflowPrimitiveParameterUrlSegment extends url.UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get microflowParameter(): MicroflowParameter;
+        set microflowParameter(newValue: MicroflowParameter);
+        get microflowParameterLocalName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowPrimitiveParameterUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowPrimitiveParameterUrlSegment;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/nanoflows relevant section in reference guide}
@@ -4052,6 +4235,53 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): OpenWorkflowAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class OutputVariable extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationCallAction(): RestOperationCallAction;
+        get variableName(): string;
+        set variableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OutputVariable instance in the SDK and on the server.
+         * The new OutputVariable will be automatically stored in the 'outputVariable' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createIn(container: RestOperationCallAction): OutputVariable;
+        /**
+         * Creates and returns a new OutputVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OutputVariable;
+    }
+    /**
+     * In version 10.1.0: introduced
+     */
+    class ParameterIdUrlSegment extends url.UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get microflowParameter(): MicroflowParameter;
+        set microflowParameter(newValue: MicroflowParameter);
+        get microflowParameterLocalName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ParameterIdUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ParameterIdUrlSegment;
     }
     /**
      * In version 9.12.0: removed experimental
@@ -4336,9 +4566,13 @@ export declare namespace microflows {
         static create(model: IModel): RestCallAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-entity-to-microflow relevant section in reference guide}
      *
-     * In version 10.0.0: introduced
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.1.0: introduced
      */
     class RestOperationCallAction extends MicroflowAction {
         static structureTypeName: string;
@@ -4352,6 +4586,32 @@ export declare namespace microflows {
         get operation(): rest.IRestOperation | null;
         set operation(newValue: rest.IRestOperation | null);
         get operationQualifiedName(): string | null;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.5.0: introduced
+         */
+        get bodyVariable(): BodyVariable | null;
+        set bodyVariable(newValue: BodyVariable | null);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.2.0: introduced
+         */
+        get parameterMappings(): internal.IList<RestOperationParameterMapping>;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.4.0: introduced
+         */
+        get outputVariable(): OutputVariable | null;
+        set outputVariable(newValue: OutputVariable | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RestOperationCallAction instance in the SDK and on the server.
@@ -4359,7 +4619,7 @@ export declare namespace microflows {
          * of the parent ActionActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.1.0 and higher
          */
         static createIn(container: ActionActivity): RestOperationCallAction;
         /**
@@ -4368,6 +4628,47 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RestOperationCallAction;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.2.0: introduced
+     */
+    class RestOperationParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationCallAction(): RestOperationCallAction;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get parameter(): rest.IOperationParameter;
+        set parameter(newValue: rest.IOperationParameter);
+        get parameterQualifiedName(): string;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestOperationParameterMapping instance in the SDK and on the server.
+         * The new RestOperationParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container: RestOperationCallAction): RestOperationParameterMapping;
+        /**
+         * Creates and returns a new RestOperationParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestOperationParameterMapping;
     }
     /**
      * In version 9.12.0: removed experimental

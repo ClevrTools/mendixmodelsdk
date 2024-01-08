@@ -90,6 +90,11 @@ export declare namespace domainmodels {
         get defaultMemberAccessRights(): MemberAccessRights;
         set defaultMemberAccessRights(newValue: MemberAccessRights);
         /**
+         * In version 10.5.0: introduced
+         */
+        get xPathConstraintCaption(): string;
+        set xPathConstraintCaption(newValue: string);
+        /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
         get xPathConstraint(): string;
@@ -1100,9 +1105,15 @@ export declare namespace domainmodels {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsAttribute(): Attribute;
+        /**
+         * In version 10.4.0: introduced
+         */
+        get defaultValueDesignTime(): string;
+        set defaultValueDesignTime(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 10.2.0: deleted
      * In version 9.0.2: introduced
      */
     interface ICachedMappedValue extends IMappedValue {
@@ -1113,6 +1124,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<CachedMappedValue>;
     }
     /**
+     * In version 10.2.0: deleted
      * In version 9.0.2: introduced
      */
     abstract class CachedMappedValue extends MappedValue implements ICachedMappedValue {
@@ -2680,6 +2692,7 @@ export declare namespace domainmodels {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 10.2.0: deleted
      * In version 8.11.0: introduced
      */
     interface IMaterializedRemoteEntitySource extends IRemoteEntitySource {
@@ -2690,6 +2703,7 @@ export declare namespace domainmodels {
         load(forceRefresh?: boolean): Promise<MaterializedRemoteEntitySource>;
     }
     /**
+     * In version 10.2.0: deleted
      * In version 8.11.0: introduced
      */
     abstract class MaterializedRemoteEntitySource extends RemoteEntitySource implements IMaterializedRemoteEntitySource {

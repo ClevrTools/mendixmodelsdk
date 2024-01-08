@@ -497,7 +497,7 @@ var databaseconnector;
             /** @internal */
             this.__query = new internal.PrimitiveProperty(DatabaseQuery, this, "query", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__tableMapping = new internal.PartProperty(DatabaseQuery, this, "tableMapping", null, true);
+            this.__tableMapping = new internal.PartProperty(DatabaseQuery, this, "tableMapping", null, false);
             /** @internal */
             this.__parameters = new internal.PartListProperty(DatabaseQuery, this, "parameters", []);
             if (arguments.length < 4) {
@@ -523,6 +523,8 @@ var databaseconnector;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.6.0: added optional
          */
         get tableMapping() {
             return this.__tableMapping.get();
@@ -568,7 +570,12 @@ var databaseconnector;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.tableMapping = TableMapping.create(this.model);
+            (() => {
+                if (internal.isAtLeast("10.6.0", this.model)) {
+                    return;
+                }
+                this.tableMapping = TableMapping.create(this.model);
+            })();
         }
     }
     DatabaseQuery.structureTypeName = "DatabaseConnector$DatabaseQuery";
@@ -582,7 +589,8 @@ var databaseconnector;
             },
             tableMapping: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["10.6.0"]
                 }
             }
         },
@@ -817,7 +825,7 @@ var databaseconnector;
             /** @internal */
             this.__sqlDataType = new internal.PartProperty(QueryParameter, this, "sqlDataType", null, false);
             /** @internal */
-            this.__dataType = new internal.PartProperty(QueryParameter, this, "dataType", null, false);
+            this.__dataType = new internal.PartProperty(QueryParameter, this, "dataType", null, true);
             /** @internal */
             this.__defaultValue = new internal.PrimitiveProperty(QueryParameter, this, "defaultValue", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -844,6 +852,9 @@ var databaseconnector;
         set sqlDataType(newValue) {
             this.__sqlDataType.set(newValue);
         }
+        /**
+         * In version 10.1.0: removed optional
+         */
         get dataType() {
             return this.__dataType.get();
         }
@@ -879,11 +890,25 @@ var databaseconnector;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            (() => {
+                if (internal.isAtLeast("10.1.0", this.model)) {
+                    this.dataType = datatypes_1.datatypes.UnknownType.create(this.model);
+                    return;
+                }
+            })();
         }
     }
     QueryParameter.structureTypeName = "DatabaseConnector$QueryParameter";
     QueryParameter.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.22.0",
+        properties: {
+            dataType: {
+                required: {
+                    currentValue: true,
+                    changedIn: ["10.1.0"]
+                }
+            }
+        },
         experimental: {
             currentValue: true
         }
@@ -1110,4 +1135,5 @@ var databaseconnector;
     }, internal.StructureType.Element);
     databaseconnector.TableMapping = TableMapping;
 })(databaseconnector = exports.databaseconnector || (exports.databaseconnector = {}));
+const datatypes_1 = require("./datatypes");
 //# sourceMappingURL=databaseconnector.js.map

@@ -267,9 +267,11 @@ export declare namespace databaseconnector {
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.6.0: added optional
          */
-        get tableMapping(): TableMapping;
-        set tableMapping(newValue: TableMapping);
+        get tableMapping(): TableMapping | null;
+        set tableMapping(newValue: TableMapping | null);
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -416,6 +418,9 @@ export declare namespace databaseconnector {
          */
         get sqlDataType(): SqlDataType | null;
         set sqlDataType(newValue: SqlDataType | null);
+        /**
+         * In version 10.1.0: removed optional
+         */
         get dataType(): datatypes.DataType | null;
         set dataType(newValue: datatypes.DataType | null);
         get defaultValue(): string;

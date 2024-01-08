@@ -1408,6 +1408,60 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MicroflowCallParameterMapping = MicroflowCallParameterMapping;
     /**
+     * In version 10.3.0: introduced
+     */
+    class MicroflowCompletionCriteria extends UserTaskCompletionCriteria {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(MicroflowCompletionCriteria, this, "microflow", null, "Microflows$Microflow");
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowCompletionCriteria() cannot be invoked directly, please use 'model.workflows.createMicroflowCompletionCriteria()'");
+            }
+        }
+        get containerAsMultiInputCompletion() {
+            return super.getContainerAs(MultiInputCompletion);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        /**
+         * Creates and returns a new MicroflowCompletionCriteria instance in the SDK and on the server.
+         * The new MicroflowCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiInputCompletion element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.3.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MicroflowCompletionCriteria.structureTypeName, { start: "10.3.0" });
+            return internal.instancehelpers.createElement(container, MicroflowCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new MicroflowCompletionCriteria instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowCompletionCriteria);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowCompletionCriteria.structureTypeName = "Workflows$MicroflowCompletionCriteria";
+    MicroflowCompletionCriteria.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.3.0"
+    }, internal.StructureType.Element);
+    workflows.MicroflowCompletionCriteria = MicroflowCompletionCriteria;
+    /**
      * In version 9.12.0: introduced
      */
     class MicroflowEventHandler extends internal.Element {
@@ -1533,6 +1587,8 @@ var workflows;
             this.__targetUserInput = new internal.PartProperty(MultiInputCompletion, this, "targetUserInput", null, true);
             /** @internal */
             this.__completionCriteria = new internal.PartProperty(MultiInputCompletion, this, "completionCriteria", null, true);
+            /** @internal */
+            this.__awaitAllUsers = new internal.PrimitiveProperty(MultiInputCompletion, this, "awaitAllUsers", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new MultiInputCompletion() cannot be invoked directly, please use 'model.workflows.createMultiInputCompletion()'");
             }
@@ -1551,6 +1607,15 @@ var workflows;
         }
         set completionCriteria(newValue) {
             this.__completionCriteria.set(newValue);
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get awaitAllUsers() {
+            return this.__awaitAllUsers.get();
+        }
+        set awaitAllUsers(newValue) {
+            this.__awaitAllUsers.set(newValue);
         }
         /**
          * Creates and returns a new MultiInputCompletion instance in the SDK and on the server.
@@ -1575,6 +1640,9 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__awaitAllUsers.isAvailable) {
+                this.awaitAllUsers = false;
+            }
             this.completionCriteria = ConsensusCompletionCriteria.create(this.model);
             this.targetUserInput = AllUserInput.create(this.model);
         }
@@ -1592,6 +1660,9 @@ var workflows;
                 required: {
                     currentValue: true
                 }
+            },
+            awaitAllUsers: {
+                introduced: "10.2.0"
             }
         }
     }, internal.StructureType.Element);
@@ -2183,8 +2254,6 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ThresholdCompletionCriteria = ThresholdCompletionCriteria;
     /**
-     * See: {@link https://docs.mendix.com/refguide/user-task relevant section in reference guide}
-     *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -2711,6 +2780,63 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.WaitForNotificationActivity = WaitForNotificationActivity;
+    /**
+     * In version 10.6.0: introduced
+     */
+    class WaitForTimerActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__delay = new internal.PrimitiveProperty(WaitForTimerActivity, this, "delay", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WaitForTimerActivity() cannot be invoked directly, please use 'model.workflows.createWaitForTimerActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get delay() {
+            return this.__delay.get();
+        }
+        set delay(newValue) {
+            this.__delay.set(newValue);
+        }
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * The new WaitForTimerActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WaitForTimerActivity.structureTypeName, { start: "10.6.0" });
+            return internal.instancehelpers.createElement(container, WaitForTimerActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WaitForTimerActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WaitForTimerActivity.structureTypeName = "Workflows$WaitForTimerActivity";
+    WaitForTimerActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.6.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.WaitForTimerActivity = WaitForTimerActivity;
     /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *

@@ -6,6 +6,7 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const domainmodels_1 = require("./domainmodels");
 const projects_1 = require("./projects");
+const enumerations_1 = require("./enumerations");
 const webservices_1 = require("./webservices");
 var rest;
 (function (rest) {
@@ -83,6 +84,145 @@ var rest;
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.2.0: introduced
+     */
+    class AuthenticationScheme extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new AuthenticationScheme() cannot be invoked directly, please use 'model.rest.createAuthenticationScheme()'");
+            }
+        }
+        get containerAsConsumedRestService() {
+            return super.getContainerAs(ConsumedRestService);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AuthenticationScheme.structureTypeName = "Rest$AuthenticationScheme";
+    AuthenticationScheme.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.AuthenticationScheme = AuthenticationScheme;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.2.0: introduced
+     */
+    class BasicAuthenticationScheme extends AuthenticationScheme {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__username = new internal.PartProperty(BasicAuthenticationScheme, this, "username", null, true);
+            /** @internal */
+            this.__password = new internal.PartProperty(BasicAuthenticationScheme, this, "password", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new BasicAuthenticationScheme() cannot be invoked directly, please use 'model.rest.createBasicAuthenticationScheme()'");
+            }
+        }
+        get containerAsConsumedRestService() {
+            return super.getContainerAs(ConsumedRestService);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get username() {
+            return this.__username.get();
+        }
+        set username(newValue) {
+            this.__username.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get password() {
+            return this.__password.get();
+        }
+        set password(newValue) {
+            this.__password.set(newValue);
+        }
+        /**
+         * Creates and returns a new BasicAuthenticationScheme instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BasicAuthenticationScheme);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.password = ConstantValue.create(this.model);
+            this.username = ConstantValue.create(this.model);
+        }
+    }
+    BasicAuthenticationScheme.structureTypeName = "Rest$BasicAuthenticationScheme";
+    BasicAuthenticationScheme.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0",
+        properties: {
+            username: {
+                required: {
+                    currentValue: true
+                }
+            },
+            password: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.BasicAuthenticationScheme = BasicAuthenticationScheme;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class Body extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new Body() cannot be invoked directly, please use 'model.rest.createBody()'");
+            }
+        }
+        get containerAsRestOperationMethodWithBody() {
+            return super.getContainerAs(RestOperationMethodWithBody);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Body.structureTypeName = "Rest$Body";
+    Body.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.Body = Body;
+    /**
+     * In version 10.4.0: deleted
      * In version 9.11.0: introduced
      */
     class ChangeMode extends internal.Element {
@@ -102,10 +242,13 @@ var rest;
     }
     ChangeMode.structureTypeName = "Rest$ChangeMode";
     ChangeMode.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.11.0"
+        introduced: "9.11.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ChangeMode = ChangeMode;
     /**
+     * In version 10.4.0: deleted
      * In version 9.11.0: introduced
      */
     class CallMicroflowToChange extends ChangeMode {
@@ -135,10 +278,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderDeleteMode(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowToChange, "deleteMode", false);
         }
         /**
@@ -147,10 +290,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderInsertMode(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowToChange, "insertMode", false);
         }
         /**
@@ -159,10 +302,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderUpdateMode(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, CallMicroflowToChange.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowToChange, "updateMode", false);
         }
         /**
@@ -181,6 +324,8 @@ var rest;
     CallMicroflowToChange.structureTypeName = "Rest$CallMicroflowToChange";
     CallMicroflowToChange.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.11.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             microflow: {
                 required: {
@@ -191,6 +336,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.CallMicroflowToChange = CallMicroflowToChange;
     /**
+     * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
     class ReadMode extends internal.Element {
@@ -210,10 +356,13 @@ var rest;
     }
     ReadMode.structureTypeName = "Rest$ReadMode";
     ReadMode.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.14.0"
+        introduced: "9.14.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ReadMode = ReadMode;
     /**
+     * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
     class CallMicroflowToRead extends ReadMode {
@@ -246,10 +395,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.14.0 and higher
+         *  9.14.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowToRead.structureTypeName, { start: "9.14.0" });
+            internal.createInVersionCheck(container.model, CallMicroflowToRead.structureTypeName, { start: "9.14.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowToRead, "readMode", false);
         }
         /**
@@ -268,6 +417,8 @@ var rest;
     CallMicroflowToRead.structureTypeName = "Rest$CallMicroflowToRead";
     CallMicroflowToRead.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.14.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             microflow: {
                 required: {
@@ -279,6 +430,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.CallMicroflowToRead = CallMicroflowToRead;
     /**
+     * In version 10.4.0: deleted
      * In version 9.11.0: introduced
      */
     class ChangeNotSupported extends ChangeMode {
@@ -297,10 +449,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderDeleteMode(container) {
-            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeNotSupported, "deleteMode", false);
         }
         /**
@@ -309,10 +461,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderInsertMode(container) {
-            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeNotSupported, "insertMode", false);
         }
         /**
@@ -321,10 +473,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderUpdateMode(container) {
-            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeNotSupported.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeNotSupported, "updateMode", false);
         }
         /**
@@ -342,10 +494,13 @@ var rest;
     }
     ChangeNotSupported.structureTypeName = "Rest$ChangeNotSupported";
     ChangeNotSupported.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.11.0"
+        introduced: "9.11.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ChangeNotSupported = ChangeNotSupported;
     /**
+     * In version 10.4.0: deleted
      * In version 9.11.0: introduced
      */
     class ChangeSource extends ChangeMode {
@@ -364,10 +519,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderDeleteMode(container) {
-            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeSource, "deleteMode", false);
         }
         /**
@@ -376,10 +531,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderInsertMode(container) {
-            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeSource, "insertMode", false);
         }
         /**
@@ -388,10 +543,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.3.0
          */
         static createInPublishedRestResourceUnderUpdateMode(container) {
-            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, ChangeSource.structureTypeName, { start: "9.11.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ChangeSource, "updateMode", false);
         }
         /**
@@ -409,9 +564,157 @@ var rest;
     }
     ChangeSource.structureTypeName = "Rest$ChangeSource";
     ChangeSource.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.11.0"
+        introduced: "9.11.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ChangeSource = ChangeSource;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.1.0: introduced
+     */
+    class Value extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new Value() cannot be invoked directly, please use 'model.rest.createValue()'");
+            }
+        }
+        get containerAsBasicAuthenticationScheme() {
+            return super.getContainerAs(BasicAuthenticationScheme);
+        }
+        get containerAsImplicitMappingBody() {
+            return super.getContainerAs(ImplicitMappingBody);
+        }
+        get containerAsOperationParameter() {
+            return super.getContainerAs(OperationParameter);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Value.structureTypeName = "Rest$Value";
+    Value.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.Value = Value;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.2.0: introduced
+     */
+    class ConstantValue extends Value {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.ByNameReferenceProperty(ConstantValue, this, "value", null, "Constants$Constant");
+            if (arguments.length < 4) {
+                throw new Error("new ConstantValue() cannot be invoked directly, please use 'model.rest.createConstantValue()'");
+            }
+        }
+        get containerAsBasicAuthenticationScheme() {
+            return super.getContainerAs(BasicAuthenticationScheme);
+        }
+        get containerAsImplicitMappingBody() {
+            return super.getContainerAs(ImplicitMappingBody);
+        }
+        get containerAsOperationParameter() {
+            return super.getContainerAs(OperationParameter);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        get valueQualifiedName() {
+            return this.__value.qualifiedName();
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'password' property
+         * of the parent BasicAuthenticationScheme element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInBasicAuthenticationSchemeUnderPassword(container) {
+            internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ConstantValue, "password", false);
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'username' property
+         * of the parent BasicAuthenticationScheme element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInBasicAuthenticationSchemeUnderUsername(container) {
+            internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ConstantValue, "username", false);
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'testValue' property
+         * of the parent ImplicitMappingBody element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createInImplicitMappingBodyUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, ConstantValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'testValue' property
+         * of the parent OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInOperationParameterUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ConstantValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ConstantValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConstantValue.structureTypeName = "Rest$ConstantValue";
+    ConstantValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0",
+        properties: {
+            value: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ConstantValue = ConstantValue;
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-odata-service-properties relevant section in reference guide}
      *
@@ -703,13 +1006,13 @@ var rest;
     }, internal.StructureType.ModelUnit);
     rest.ConsumedODataService = ConsumedODataService;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.1.0: introduced
      */
     class ConsumedRestService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -717,7 +1020,9 @@ var rest;
             /** @internal */
             this.__baseUrl = new internal.PartProperty(ConsumedRestService, this, "baseUrl", null, true);
             /** @internal */
-            this.__paths = new internal.PartListProperty(ConsumedRestService, this, "paths", []);
+            this.__authenticationScheme = new internal.PartProperty(ConsumedRestService, this, "authenticationScheme", null, false);
+            /** @internal */
+            this.__operations = new internal.PartListProperty(ConsumedRestService, this, "operations", []);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -738,9 +1043,22 @@ var rest;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.2.0: introduced
          */
-        get paths() {
-            return this.__paths.get();
+        get authenticationScheme() {
+            return this.__authenticationScheme.get();
+        }
+        set authenticationScheme(newValue) {
+            this.__authenticationScheme.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get operations() {
+            return this.__operations.get();
         }
         /**
          * Creates a new ConsumedRestService unit in the SDK and on the server.
@@ -752,19 +1070,22 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.baseUrl = UriTemplate.create(this.model);
+            this.baseUrl = ValueTemplate.create(this.model);
         }
     }
     ConsumedRestService.structureTypeName = "Rest$ConsumedRestService";
     ConsumedRestService.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+        introduced: "10.1.0",
         properties: {
             baseUrl: {
                 required: {
                     currentValue: true
                 }
             },
-            paths: {
+            authenticationScheme: {
+                introduced: "10.2.0"
+            },
+            operations: {
                 public: {
                     currentValue: true
                 }
@@ -852,25 +1173,23 @@ var rest;
     }, internal.StructureType.Element);
     rest.CorsConfiguration = CorsConfiguration;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-headers relevant section in reference guide}
      *
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.1.0: introduced
      */
-    class OperationParameter extends internal.Element {
+    class HeaderWithValueTemplate extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__name = new internal.PrimitiveProperty(OperationParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            this.__name = new internal.PrimitiveProperty(HeaderWithValueTemplate, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__dataType = new internal.PartProperty(OperationParameter, this, "dataType", null, true);
-            /** @internal */
-            this.__testValue = new internal.PartProperty(OperationParameter, this, "testValue", null, true);
+            this.__value = new internal.PartProperty(HeaderWithValueTemplate, this, "value", null, true);
             if (arguments.length < 4) {
-                throw new Error("new OperationParameter() cannot be invoked directly, please use 'model.rest.createOperationParameter()'");
+                throw new Error("new HeaderWithValueTemplate() cannot be invoked directly, please use 'model.rest.createHeaderWithValueTemplate()'");
             }
         }
         get containerAsRestOperation() {
@@ -882,11 +1201,95 @@ var rest;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        get dataType() {
-            return this.__dataType.get();
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get value() {
+            return this.__value.get();
         }
-        set dataType(newValue) {
-            this.__dataType.set(newValue);
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new HeaderWithValueTemplate instance in the SDK and on the server.
+         * The new HeaderWithValueTemplate will be automatically stored in the 'headers' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, HeaderWithValueTemplate.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, HeaderWithValueTemplate, "headers", true);
+        }
+        /**
+         * Creates and returns a new HeaderWithValueTemplate instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, HeaderWithValueTemplate);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.value = ValueTemplate.create(this.model);
+        }
+    }
+    HeaderWithValueTemplate.structureTypeName = "Rest$HeaderWithValueTemplate";
+    HeaderWithValueTemplate.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            value: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.HeaderWithValueTemplate = HeaderWithValueTemplate;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class ImplicitMappingBody extends Body {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__rootMappingElement = new internal.PartProperty(ImplicitMappingBody, this, "rootMappingElement", null, true);
+            /** @internal */
+            this.__testValue = new internal.PartProperty(ImplicitMappingBody, this, "testValue", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new ImplicitMappingBody() cannot be invoked directly, please use 'model.rest.createImplicitMappingBody()'");
+            }
+        }
+        get containerAsRestOperationMethodWithBody() {
+            return super.getContainerAs(RestOperationMethodWithBody);
+        }
+        get rootMappingElement() {
+            return this.__rootMappingElement.get();
+        }
+        set rootMappingElement(newValue) {
+            this.__rootMappingElement.set(newValue);
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -899,26 +1302,26 @@ var rest;
         set testValue(newValue) {
             this.__testValue.set(newValue);
         }
-        get qualifiedName() {
-            return this._getQualifiedName();
+        /**
+         * Creates and returns a new ImplicitMappingBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ImplicitMappingBody);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.dataType = datatypes_1.datatypes.StringType.create(this.model);
+            this.rootMappingElement = exportmappings_1.exportmappings.ExportObjectMappingElement.create(this.model);
             this.testValue = StringValue.create(this.model);
         }
     }
-    OperationParameter.structureTypeName = "Rest$OperationParameter";
-    OperationParameter.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+    ImplicitMappingBody.structureTypeName = "Rest$ImplicitMappingBody";
+    ImplicitMappingBody.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
         properties: {
-            name: {
-                public: {
-                    currentValue: true
-                }
-            },
-            dataType: {
+            rootMappingElement: {
                 required: {
                     currentValue: true
                 }
@@ -929,55 +1332,113 @@ var rest;
                 }
             }
         },
-        public: {
-            currentValue: true
-        },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.OperationParameter = OperationParameter;
+    rest.ImplicitMappingBody = ImplicitMappingBody;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.3.0: introduced
      */
-    class HeaderParameter extends OperationParameter {
+    class RestOperationResponseHandling extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__statusCode = new internal.PrimitiveProperty(RestOperationResponseHandling, this, "statusCode", 200, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__contentType = new internal.PrimitiveProperty(RestOperationResponseHandling, this, "contentType", "application/json", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
-                throw new Error("new HeaderParameter() cannot be invoked directly, please use 'model.rest.createHeaderParameter()'");
+                throw new Error("new RestOperationResponseHandling() cannot be invoked directly, please use 'model.rest.createRestOperationResponseHandling()'");
             }
         }
         get containerAsRestOperation() {
             return super.getContainerAs(RestOperation);
         }
-        /**
-         * Creates and returns a new HeaderParameter instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model) {
-            return internal.instancehelpers.createElement(model, HeaderParameter);
+        get statusCode() {
+            return this.__statusCode.get();
+        }
+        set statusCode(newValue) {
+            this.__statusCode.set(newValue);
+        }
+        get contentType() {
+            return this.__contentType.get();
+        }
+        set contentType(newValue) {
+            this.__contentType.set(newValue);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            this.contentType = "application/json";
+            this.statusCode = 200;
         }
     }
-    HeaderParameter.structureTypeName = "Rest$HeaderParameter";
-    HeaderParameter.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
-        public: {
+    RestOperationResponseHandling.structureTypeName = "Rest$RestOperationResponseHandling";
+    RestOperationResponseHandling.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.3.0",
+        experimental: {
             currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.RestOperationResponseHandling = RestOperationResponseHandling;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.3.0: introduced
+     */
+    class ImplicitMappingResponseHandling extends RestOperationResponseHandling {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__rootMappingElement = new internal.PartProperty(ImplicitMappingResponseHandling, this, "rootMappingElement", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new ImplicitMappingResponseHandling() cannot be invoked directly, please use 'model.rest.createImplicitMappingResponseHandling()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        get rootMappingElement() {
+            return this.__rootMappingElement.get();
+        }
+        set rootMappingElement(newValue) {
+            this.__rootMappingElement.set(newValue);
+        }
+        /**
+         * Creates and returns a new ImplicitMappingResponseHandling instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ImplicitMappingResponseHandling);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.rootMappingElement = importmappings_1.importmappings.ImportObjectMappingElement.create(this.model);
+        }
+    }
+    ImplicitMappingResponseHandling.structureTypeName = "Rest$ImplicitMappingResponseHandling";
+    ImplicitMappingResponseHandling.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.3.0",
+        properties: {
+            rootMappingElement: {
+                required: {
+                    currentValue: true
+                }
+            }
         },
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.HeaderParameter = HeaderParameter;
+    rest.ImplicitMappingResponseHandling = ImplicitMappingResponseHandling;
     /**
      * In version 8.6.0: introduced
      */
@@ -1039,10 +1500,10 @@ var rest;
          * of the parent kafka.ConsumedKafkaService element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  8.11.0 to 10.1.0
          */
         static createInConsumedKafkaServiceUnderMetadataReferences(container) {
-            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.11.0" });
+            internal.createInVersionCheck(container.model, MetadataReference.structureTypeName, { start: "8.11.0", end: "10.1.0" });
             return internal.instancehelpers.createElement(container, MetadataReference, "metadataReferences", true);
         }
         /**
@@ -1092,6 +1553,44 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.MetadataReference = MetadataReference;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.3.0: introduced
+     */
+    class NoResponseHandling extends RestOperationResponseHandling {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NoResponseHandling() cannot be invoked directly, please use 'model.rest.createNoResponseHandling()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        /**
+         * Creates and returns a new NoResponseHandling instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NoResponseHandling);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NoResponseHandling.structureTypeName = "Rest$NoResponseHandling";
+    NoResponseHandling.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.3.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.NoResponseHandling = NoResponseHandling;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -1630,6 +2129,8 @@ var rest;
             this.__topSupported = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "topSupported", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__skipSupported = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "skipSupported", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__createChangeLocally = new internal.PrimitiveProperty(ODataRemoteEntitySource, this, "createChangeLocally", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataRemoteEntitySource() cannot be invoked directly, please use 'model.rest.createODataRemoteEntitySource()'");
             }
@@ -1742,6 +2243,15 @@ var rest;
             this.__skipSupported.set(newValue);
         }
         /**
+         * In version 10.4.0: introduced
+         */
+        get createChangeLocally() {
+            return this.__createChangeLocally.get();
+        }
+        set createChangeLocally(newValue) {
+            this.__createChangeLocally.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataRemoteEntitySource instance in the SDK and on the server.
          * The new ODataRemoteEntitySource will be automatically stored in the 'source' property
          * of the parent domainmodels.Entity element passed as argument.
@@ -1769,6 +2279,9 @@ var rest;
             }
             if (this.__creatable.isAvailable) {
                 this.creatable = false;
+            }
+            if (this.__createChangeLocally.isAvailable) {
+                this.createChangeLocally = false;
             }
             if (this.__deletable.isAvailable) {
                 this.deletable = false;
@@ -1823,6 +2336,9 @@ var rest;
             },
             skipSupported: {
                 introduced: "9.21.0"
+            },
+            createChangeLocally: {
+                introduced: "10.4.0"
             }
         },
         public: {
@@ -1831,6 +2347,167 @@ var rest;
     }, internal.StructureType.Element);
     rest.ODataRemoteEntitySource = ODataRemoteEntitySource;
     /**
+     * In version 10.2.0: introduced
+     */
+    class ODataRemoteEnumerationSource extends enumerations_1.enumerations.RemoteEnumerationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__consumedODataService = new internal.ByNameReferenceProperty(ODataRemoteEnumerationSource, this, "consumedODataService", null, "Rest$ConsumedODataService");
+            /** @internal */
+            this.__remoteName = new internal.PrimitiveProperty(ODataRemoteEnumerationSource, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ODataRemoteEnumerationSource() cannot be invoked directly, please use 'model.rest.createODataRemoteEnumerationSource()'");
+            }
+        }
+        get containerAsEnumeration() {
+            return super.getContainerAs(enumerations_1.enumerations.Enumeration);
+        }
+        get consumedODataService() {
+            return this.__consumedODataService.get();
+        }
+        set consumedODataService(newValue) {
+            this.__consumedODataService.set(newValue);
+        }
+        get consumedODataServiceQualifiedName() {
+            return this.__consumedODataService.qualifiedName();
+        }
+        get remoteName() {
+            return this.__remoteName.get();
+        }
+        set remoteName(newValue) {
+            this.__remoteName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataRemoteEnumerationSource instance in the SDK and on the server.
+         * The new ODataRemoteEnumerationSource will be automatically stored in the 'remoteSource' property
+         * of the parent enumerations.Enumeration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataRemoteEnumerationSource.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ODataRemoteEnumerationSource, "remoteSource", false);
+        }
+        /**
+         * Creates and returns a new ODataRemoteEnumerationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataRemoteEnumerationSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataRemoteEnumerationSource.structureTypeName = "Rest$ODataRemoteEnumerationSource";
+    ODataRemoteEnumerationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.2.0"
+    }, internal.StructureType.Element);
+    rest.ODataRemoteEnumerationSource = ODataRemoteEnumerationSource;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.1.0: introduced
+     */
+    class OperationParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(OperationParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__dataType = new internal.PartProperty(OperationParameter, this, "dataType", null, true);
+            /** @internal */
+            this.__testValue = new internal.PartProperty(OperationParameter, this, "testValue", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new OperationParameter() cannot be invoked directly, please use 'model.rest.createOperationParameter()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get dataType() {
+            return this.__dataType.get();
+        }
+        set dataType(newValue) {
+            this.__dataType.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get testValue() {
+            return this.__testValue.get();
+        }
+        set testValue(newValue) {
+            this.__testValue.set(newValue);
+        }
+        /**
+         * Creates and returns a new OperationParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OperationParameter);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.dataType = datatypes_1.datatypes.StringType.create(this.model);
+            this.testValue = StringValue.create(this.model);
+        }
+    }
+    OperationParameter.structureTypeName = "Rest$OperationParameter";
+    OperationParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            dataType: {
+                required: {
+                    currentValue: true
+                }
+            },
+            testValue: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.OperationParameter = OperationParameter;
+    /**
+     * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
     class PublishedODataContract extends internal.Element {
@@ -1884,6 +2561,8 @@ var rest;
     PublishedODataContract.structureTypeName = "Rest$PublishedODataContract";
     PublishedODataContract.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.14.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             serviceFeed: {
                 required: {
@@ -1897,8 +2576,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedODataContract = PublishedODataContract;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-enumeration relevant section in reference guide}
-     *
+     * In version 10.4.0: deleted
      * In version 9.21.0: introduced
      */
     class PublishedODataEnumeration extends internal.Element {
@@ -1957,10 +2635,10 @@ var rest;
          * of the parent PublishedODataService element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, PublishedODataEnumeration.structureTypeName, { start: "9.21.0" });
+            internal.createInVersionCheck(container.model, PublishedODataEnumeration.structureTypeName, { start: "9.21.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, PublishedODataEnumeration, "enumerations", true);
         }
         /**
@@ -1979,6 +2657,8 @@ var rest;
     PublishedODataEnumeration.structureTypeName = "Rest$PublishedODataEnumeration";
     PublishedODataEnumeration.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.21.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             enumeration: {
                 required: {
@@ -1989,6 +2669,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedODataEnumeration = PublishedODataEnumeration;
     /**
+     * In version 10.4.0: deleted
      * In version 9.21.0: introduced
      */
     class PublishedODataEnumerationValue extends internal.Element {
@@ -2042,10 +2723,13 @@ var rest;
          * of the parent PublishedODataEnumeration element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.21.0 and higher
+         *  9.21.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, PublishedODataEnumerationValue.structureTypeName, { start: "9.21.0" });
+            internal.createInVersionCheck(container.model, PublishedODataEnumerationValue.structureTypeName, {
+                start: "9.21.0",
+                end: "10.3.0"
+            });
             return internal.instancehelpers.createElement(container, PublishedODataEnumerationValue, "values", true);
         }
         /**
@@ -2064,6 +2748,8 @@ var rest;
     PublishedODataEnumerationValue.structureTypeName = "Rest$PublishedODataEnumerationValue";
     PublishedODataEnumerationValue.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.21.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             enumerationValue: {
                 required: {
@@ -2074,8 +2760,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedODataEnumerationValue = PublishedODataEnumerationValue;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-microflow relevant section in reference guide}
-     *
+     * In version 10.4.0: deleted
      * In version 9.19.0: introduced
      */
     class PublishedODataMicroflow extends internal.Element {
@@ -2087,6 +2772,8 @@ var rest;
             this.__microflow = new internal.ByNameReferenceProperty(PublishedODataMicroflow, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
             this.__parameters = new internal.PartListProperty(PublishedODataMicroflow, this, "parameters", []);
+            /** @internal */
+            this.__returnType = new internal.PartProperty(PublishedODataMicroflow, this, "returnType", null, true);
             /** @internal */
             this.__summary = new internal.PrimitiveProperty(PublishedODataMicroflow, this, "summary", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -2119,6 +2806,15 @@ var rest;
         get parameters() {
             return this.__parameters.get();
         }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get returnType() {
+            return this.__returnType.get();
+        }
+        set returnType(newValue) {
+            this.__returnType.set(newValue);
+        }
         get summary() {
             return this.__summary.get();
         }
@@ -2137,10 +2833,10 @@ var rest;
          * of the parent PublishedODataService element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.19.0 and higher
+         *  9.19.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, PublishedODataMicroflow.structureTypeName, { start: "9.19.0" });
+            internal.createInVersionCheck(container.model, PublishedODataMicroflow.structureTypeName, { start: "9.19.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, PublishedODataMicroflow, "microflows", true);
         }
         /**
@@ -2154,11 +2850,16 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__returnType.isAvailable) {
+                this.returnType = datatypes_1.datatypes.UnknownType.create(this.model);
+            }
         }
     }
     PublishedODataMicroflow.structureTypeName = "Rest$PublishedODataMicroflow";
     PublishedODataMicroflow.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.19.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             microflow: {
                 required: {
@@ -2167,13 +2868,18 @@ var rest;
             },
             parameters: {
                 introduced: "10.0.0"
+            },
+            returnType: {
+                introduced: "10.2.0",
+                required: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.Element);
     rest.PublishedODataMicroflow = PublishedODataMicroflow;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-microflow-parameter relevant section in reference guide}
-     *
+     * In version 10.4.0: deleted
      * In version 10.0.0: introduced
      */
     class PublishedODataMicroflowParameter extends internal.Element {
@@ -2185,6 +2891,8 @@ var rest;
             this.__microflowParameter = new internal.ByNameReferenceProperty(PublishedODataMicroflowParameter, this, "microflowParameter", null, "Microflows$MicroflowParameter");
             /** @internal */
             this.__type = new internal.PartProperty(PublishedODataMicroflowParameter, this, "type", null, true);
+            /** @internal */
+            this.__dataType = new internal.PartProperty(PublishedODataMicroflowParameter, this, "dataType", null, true);
             /** @internal */
             this.__canBeEmpty = new internal.PrimitiveProperty(PublishedODataMicroflowParameter, this, "canBeEmpty", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
@@ -2213,11 +2921,23 @@ var rest;
         get microflowParameterQualifiedName() {
             return this.__microflowParameter.qualifiedName();
         }
+        /**
+         * In version 10.2.0: deleted
+         */
         get type() {
             return this.__type.get();
         }
         set type(newValue) {
             this.__type.set(newValue);
+        }
+        /**
+         * In version 10.2.0: introduced
+         */
+        get dataType() {
+            return this.__dataType.get();
+        }
+        set dataType(newValue) {
+            this.__dataType.set(newValue);
         }
         get canBeEmpty() {
             return this.__canBeEmpty.get();
@@ -2243,10 +2963,13 @@ var rest;
          * of the parent PublishedODataMicroflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, PublishedODataMicroflowParameter.structureTypeName, { start: "10.0.0" });
+            internal.createInVersionCheck(container.model, PublishedODataMicroflowParameter.structureTypeName, {
+                start: "10.0.0",
+                end: "10.3.0"
+            });
             return internal.instancehelpers.createElement(container, PublishedODataMicroflowParameter, "parameters", true);
         }
         /**
@@ -2260,12 +2983,19 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.type = datatypes_1.datatypes.UnknownType.create(this.model);
+            if (this.__dataType.isAvailable) {
+                this.dataType = datatypes_1.datatypes.UnknownType.create(this.model);
+            }
+            if (this.__type.isAvailable) {
+                this.type = datatypes_1.datatypes.UnknownType.create(this.model);
+            }
         }
     }
     PublishedODataMicroflowParameter.structureTypeName = "Rest$PublishedODataMicroflowParameter";
     PublishedODataMicroflowParameter.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.0.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             microflowParameter: {
                 required: {
@@ -2273,6 +3003,14 @@ var rest;
                 }
             },
             type: {
+                deleted: "10.2.0",
+                deletionMessage: "Replaced with dataType",
+                required: {
+                    currentValue: true
+                }
+            },
+            dataType: {
+                introduced: "10.2.0",
                 required: {
                     currentValue: true
                 }
@@ -2281,7 +3019,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedODataMicroflowParameter = PublishedODataMicroflowParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-services relevant section in reference guide}
+     * In version 10.4.0: deleted
      */
     class PublishedODataService extends projects_1.projects.Document {
         constructor(model, structureTypeName, id, isPartial, container) {
@@ -2479,6 +3217,8 @@ var rest;
     }
     PublishedODataService.structureTypeName = "Rest$PublishedODataService";
     PublishedODataService.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             serviceName: {
                 introduced: "8.0.0"
@@ -2520,7 +3260,7 @@ var rest;
     }, internal.StructureType.ModelUnit);
     rest.PublishedODataService = PublishedODataService;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-resource relevant section in reference guide}
+     * In version 10.4.0: deleted
      */
     class PublishedRestResource extends webservices_1.webservices.PublishedResource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2729,8 +3469,12 @@ var rest;
          * Creates and returns a new PublishedRestResource instance in the SDK and on the server.
          * The new PublishedRestResource will be automatically stored in the 'resources' property
          * of the parent PublishedODataService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.3.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, PublishedRestResource.structureTypeName, { end: "10.3.0" });
             return internal.instancehelpers.createElement(container, PublishedRestResource, "resources", true);
         }
         /**
@@ -2773,6 +3517,8 @@ var rest;
     }
     PublishedRestResource.structureTypeName = "Rest$PublishedRestResource";
     PublishedRestResource.versionInfo = new exports.StructureVersionInfo({
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             exposedName: {
                 introduced: "7.19.0"
@@ -3281,6 +4027,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.PublishedRestServiceResource = PublishedRestServiceResource;
     /**
+     * In version 10.4.0: deleted
      * In version 9.17.0: introduced
      */
     class QueryOptions extends internal.Element {
@@ -3329,10 +4076,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.17.0 and higher
+         *  9.17.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, QueryOptions.structureTypeName, { start: "9.17.0" });
+            internal.createInVersionCheck(container.model, QueryOptions.structureTypeName, { start: "9.17.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, QueryOptions, "queryOptions", false);
         }
         /**
@@ -3358,6 +4105,8 @@ var rest;
     QueryOptions.structureTypeName = "Rest$QueryOptions";
     QueryOptions.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.17.0",
+        deleted: "10.4.0",
+        deletionMessage: null,
         properties: {
             topSupported: {
                 introduced: "9.19.0"
@@ -3369,6 +4118,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.QueryOptions = QueryOptions;
     /**
+     * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
     class ReadSource extends ReadMode {
@@ -3387,10 +4137,10 @@ var rest;
          * of the parent PublishedRestResource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.14.0 and higher
+         *  9.14.0 to 10.3.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, ReadSource.structureTypeName, { start: "9.14.0" });
+            internal.createInVersionCheck(container.model, ReadSource.structureTypeName, { start: "9.14.0", end: "10.3.0" });
             return internal.instancehelpers.createElement(container, ReadSource, "readMode", false);
         }
         /**
@@ -3408,7 +4158,9 @@ var rest;
     }
     ReadSource.structureTypeName = "Rest$ReadSource";
     ReadSource.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.14.0"
+        introduced: "9.14.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ReadSource = ReadSource;
     /**
@@ -3416,7 +4168,7 @@ var rest;
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.1.0: introduced
      */
     class RestOperation extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3424,17 +4176,23 @@ var rest;
             /** @internal */
             this.__name = new internal.PrimitiveProperty(RestOperation, this, "name", "Operation", internal.PrimitiveTypeEnum.String);
             /** @internal */
-            this.__httpMethod = new internal.EnumProperty(RestOperation, this, "httpMethod", services_1.services.HttpMethod.Get, services_1.services.HttpMethod);
+            this.__path = new internal.PartProperty(RestOperation, this, "path", null, true);
+            /** @internal */
+            this.__method = new internal.PartProperty(RestOperation, this, "method", null, true);
             /** @internal */
             this.__timeout = new internal.PrimitiveProperty(RestOperation, this, "timeout", 300, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
+            this.__headers = new internal.PartListProperty(RestOperation, this, "headers", []);
+            /** @internal */
             this.__parameters = new internal.PartListProperty(RestOperation, this, "parameters", []);
+            /** @internal */
+            this.__responseHandling = new internal.PartProperty(RestOperation, this, "responseHandling", null, true);
             if (arguments.length < 4) {
                 throw new Error("new RestOperation() cannot be invoked directly, please use 'model.rest.createRestOperation()'");
             }
         }
-        get containerAsRestPath() {
-            return super.getContainerAs(RestPath);
+        get containerAsConsumedRestService() {
+            return super.getContainerAs(ConsumedRestService);
         }
         get name() {
             return this.__name.get();
@@ -3442,11 +4200,29 @@ var rest;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        get httpMethod() {
-            return this.__httpMethod.get();
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get path() {
+            return this.__path.get();
         }
-        set httpMethod(newValue) {
-            this.__httpMethod.set(newValue);
+        set path(newValue) {
+            this.__path.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.4.0: introduced
+         */
+        get method() {
+            return this.__method.get();
+        }
+        set method(newValue) {
+            this.__method.set(newValue);
         }
         get timeout() {
             return this.__timeout.get();
@@ -3459,19 +4235,40 @@ var rest;
          *
          * @ignore
          */
+        get headers() {
+            return this.__headers.get();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
         get parameters() {
             return this.__parameters.get();
         }
         /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.3.0: introduced
+         */
+        get responseHandling() {
+            return this.__responseHandling.get();
+        }
+        set responseHandling(newValue) {
+            this.__responseHandling.set(newValue);
+        }
+        /**
          * Creates and returns a new RestOperation instance in the SDK and on the server.
          * The new RestOperation will be automatically stored in the 'operations' property
-         * of the parent RestPath element passed as argument.
+         * of the parent ConsumedRestService element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.1.0 and higher
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, RestOperation.structureTypeName, { start: "10.0.0" });
+            internal.createInVersionCheck(container.model, RestOperation.structureTypeName, { start: "10.1.0" });
             return internal.instancehelpers.createElement(container, RestOperation, "operations", true);
         }
         /**
@@ -3492,22 +4289,50 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.httpMethod = services_1.services.HttpMethod.Get;
+            if (this.__method.isAvailable) {
+                this.method = RestOperationMethodWithoutBody.create(this.model);
+            }
             this.name = "Operation";
+            this.path = ValueTemplate.create(this.model);
+            if (this.__responseHandling.isAvailable) {
+                this.responseHandling = NoResponseHandling.create(this.model);
+            }
             this.timeout = 300;
         }
     }
     RestOperation.structureTypeName = "Rest$RestOperation";
     RestOperation.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+        introduced: "10.1.0",
         properties: {
             name: {
                 public: {
                     currentValue: true
                 }
             },
+            path: {
+                required: {
+                    currentValue: true
+                }
+            },
+            method: {
+                introduced: "10.4.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            headers: {
+                public: {
+                    currentValue: true
+                }
+            },
             parameters: {
                 public: {
+                    currentValue: true
+                }
+            },
+            responseHandling: {
+                introduced: "10.3.0",
+                required: {
                     currentValue: true
                 }
             }
@@ -3520,6 +4345,143 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.RestOperation = RestOperation;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class RestOperationMethod extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__httpMethod = new internal.EnumProperty(RestOperationMethod, this, "httpMethod", services_1.services.HttpMethod.Get, services_1.services.HttpMethod);
+            if (arguments.length < 4) {
+                throw new Error("new RestOperationMethod() cannot be invoked directly, please use 'model.rest.createRestOperationMethod()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        get httpMethod() {
+            return this.__httpMethod.get();
+        }
+        set httpMethod(newValue) {
+            this.__httpMethod.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RestOperationMethod.structureTypeName = "Rest$RestOperationMethod";
+    RestOperationMethod.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.RestOperationMethod = RestOperationMethod;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class RestOperationMethodWithBody extends RestOperationMethod {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__body = new internal.PartProperty(RestOperationMethodWithBody, this, "body", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new RestOperationMethodWithBody() cannot be invoked directly, please use 'model.rest.createRestOperationMethodWithBody()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get body() {
+            return this.__body.get();
+        }
+        set body(newValue) {
+            this.__body.set(newValue);
+        }
+        /**
+         * Creates and returns a new RestOperationMethodWithBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestOperationMethodWithBody);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.body = StringBody.create(this.model);
+            this.httpMethod = services_1.services.HttpMethod.Post;
+        }
+    }
+    RestOperationMethodWithBody.structureTypeName = "Rest$RestOperationMethodWithBody";
+    RestOperationMethodWithBody.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
+        properties: {
+            body: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.RestOperationMethodWithBody = RestOperationMethodWithBody;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.4.0: introduced
+     */
+    class RestOperationMethodWithoutBody extends RestOperationMethod {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RestOperationMethodWithoutBody() cannot be invoked directly, please use 'model.rest.createRestOperationMethodWithoutBody()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        /**
+         * Creates and returns a new RestOperationMethodWithoutBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestOperationMethodWithoutBody);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.httpMethod = services_1.services.HttpMethod.Get;
+        }
+    }
+    RestOperationMethodWithoutBody.structureTypeName = "Rest$RestOperationMethodWithoutBody";
+    RestOperationMethodWithoutBody.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.RestOperationMethodWithoutBody = RestOperationMethodWithoutBody;
     /**
      * In version 7.11.0: removed experimental
      * In version 7.8.0: introduced
@@ -3677,95 +4639,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.RestOperationParameter = RestOperationParameter;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
-     * In version 10.0.0: introduced
-     */
-    class RestPath extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            /** @internal */
-            this.__path = new internal.PartProperty(RestPath, this, "path", null, true);
-            /** @internal */
-            this.__operations = new internal.PartListProperty(RestPath, this, "operations", []);
-            if (arguments.length < 4) {
-                throw new Error("new RestPath() cannot be invoked directly, please use 'model.rest.createRestPath()'");
-            }
-        }
-        get containerAsConsumedRestService() {
-            return super.getContainerAs(ConsumedRestService);
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get path() {
-            return this.__path.get();
-        }
-        set path(newValue) {
-            this.__path.set(newValue);
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
-        get operations() {
-            return this.__operations.get();
-        }
-        /**
-         * Creates and returns a new RestPath instance in the SDK and on the server.
-         * The new RestPath will be automatically stored in the 'paths' property
-         * of the parent ConsumedRestService element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
-         */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, RestPath.structureTypeName, { start: "10.0.0" });
-            return internal.instancehelpers.createElement(container, RestPath, "paths", true);
-        }
-        /**
-         * Creates and returns a new RestPath instance in the SDK and on the server.
-         * Expects one argument: the IModel object the instance will "live on".
-         * After creation, assign or add this instance to a property that accepts this kind of objects.
-         */
-        static create(model) {
-            return internal.instancehelpers.createElement(model, RestPath);
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-            this.path = UriTemplate.create(this.model);
-        }
-    }
-    RestPath.structureTypeName = "Rest$RestPath";
-    RestPath.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
-        properties: {
-            path: {
-                required: {
-                    currentValue: true
-                }
-            },
-            operations: {
-                public: {
-                    currentValue: true
-                }
-            }
-        },
-        public: {
-            currentValue: true
-        },
-        experimental: {
-            currentValue: true
-        }
-    }, internal.StructureType.Element);
-    rest.RestPath = RestPath;
-    /**
+     * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
     class ServiceFeed extends internal.Element {
@@ -3809,7 +4683,9 @@ var rest;
     }
     ServiceFeed.structureTypeName = "Rest$ServiceFeed";
     ServiceFeed.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.14.0"
+        introduced: "9.14.0",
+        deleted: "10.4.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     rest.ServiceFeed = ServiceFeed;
     /**
@@ -3817,37 +4693,54 @@ var rest;
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.4.0: introduced
      */
-    class Value extends internal.Element {
+    class StringBody extends Body {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(StringBody, this, "value", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
-                throw new Error("new Value() cannot be invoked directly, please use 'model.rest.createValue()'");
+                throw new Error("new StringBody() cannot be invoked directly, please use 'model.rest.createStringBody()'");
             }
         }
-        get containerAsOperationParameter() {
-            return super.getContainerAs(OperationParameter);
+        get containerAsRestOperationMethodWithBody() {
+            return super.getContainerAs(RestOperationMethodWithBody);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new StringBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StringBody);
         }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            this.value = "";
         }
     }
-    Value.structureTypeName = "Rest$Value";
-    Value.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+    StringBody.structureTypeName = "Rest$StringBody";
+    StringBody.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.4.0",
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.Value = Value;
+    rest.StringBody = StringBody;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.1.0: introduced
      */
     class StringValue extends Value {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3858,6 +4751,12 @@ var rest;
                 throw new Error("new StringValue() cannot be invoked directly, please use 'model.rest.createStringValue()'");
             }
         }
+        get containerAsBasicAuthenticationScheme() {
+            return super.getContainerAs(BasicAuthenticationScheme);
+        }
+        get containerAsImplicitMappingBody() {
+            return super.getContainerAs(ImplicitMappingBody);
+        }
         get containerAsOperationParameter() {
             return super.getContainerAs(OperationParameter);
         }
@@ -3866,6 +4765,66 @@ var rest;
         }
         set value(newValue) {
             this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'testValue' property
+         * of the parent OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 to 10.1.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.1.0", end: "10.1.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'password' property
+         * of the parent BasicAuthenticationScheme element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInBasicAuthenticationSchemeUnderPassword(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "password", false);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'username' property
+         * of the parent BasicAuthenticationScheme element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.2.0 and higher
+         */
+        static createInBasicAuthenticationSchemeUnderUsername(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "username", false);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'testValue' property
+         * of the parent ImplicitMappingBody element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.4.0 and higher
+         */
+        static createInImplicitMappingBodyUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.4.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'testValue' property
+         * of the parent OperationParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 and higher
+         */
+        static createInOperationParameterUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "testValue", false);
         }
         /**
          * Creates and returns a new StringValue instance in the SDK and on the server.
@@ -3883,7 +4842,7 @@ var rest;
     }
     StringValue.structureTypeName = "Rest$StringValue";
     StringValue.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+        introduced: "10.1.0",
         experimental: {
             currentValue: true
         }
@@ -3894,22 +4853,25 @@ var rest;
      *
      * @ignore
      *
-     * In version 10.0.0: introduced
+     * In version 10.1.0: introduced
      */
-    class UriTemplate extends internal.Element {
+    class ValueTemplate extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__value = new internal.PrimitiveProperty(UriTemplate, this, "value", "", internal.PrimitiveTypeEnum.String);
+            this.__value = new internal.PrimitiveProperty(ValueTemplate, this, "value", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
-                throw new Error("new UriTemplate() cannot be invoked directly, please use 'model.rest.createUriTemplate()'");
+                throw new Error("new ValueTemplate() cannot be invoked directly, please use 'model.rest.createValueTemplate()'");
             }
         }
         get containerAsConsumedRestService() {
             return super.getContainerAs(ConsumedRestService);
         }
-        get containerAsRestPath() {
-            return super.getContainerAs(RestPath);
+        get containerAsHeaderWithValueTemplate() {
+            return super.getContainerAs(HeaderWithValueTemplate);
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
         }
         get value() {
             return this.__value.get();
@@ -3918,36 +4880,48 @@ var rest;
             this.__value.set(newValue);
         }
         /**
-         * Creates and returns a new UriTemplate instance in the SDK and on the server.
-         * The new UriTemplate will be automatically stored in the 'baseUrl' property
+         * Creates and returns a new ValueTemplate instance in the SDK and on the server.
+         * The new ValueTemplate will be automatically stored in the 'baseUrl' property
          * of the parent ConsumedRestService element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.1.0 and higher
          */
         static createInConsumedRestServiceUnderBaseUrl(container) {
-            internal.createInVersionCheck(container.model, UriTemplate.structureTypeName, { start: "10.0.0" });
-            return internal.instancehelpers.createElement(container, UriTemplate, "baseUrl", false);
+            internal.createInVersionCheck(container.model, ValueTemplate.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, ValueTemplate, "baseUrl", false);
         }
         /**
-         * Creates and returns a new UriTemplate instance in the SDK and on the server.
-         * The new UriTemplate will be automatically stored in the 'path' property
-         * of the parent RestPath element passed as argument.
+         * Creates and returns a new ValueTemplate instance in the SDK and on the server.
+         * The new ValueTemplate will be automatically stored in the 'value' property
+         * of the parent HeaderWithValueTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.1.0 and higher
          */
-        static createInRestPathUnderPath(container) {
-            internal.createInVersionCheck(container.model, UriTemplate.structureTypeName, { start: "10.0.0" });
-            return internal.instancehelpers.createElement(container, UriTemplate, "path", false);
+        static createInHeaderWithValueTemplateUnderValue(container) {
+            internal.createInVersionCheck(container.model, ValueTemplate.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, ValueTemplate, "value", false);
         }
         /**
-         * Creates and returns a new UriTemplate instance in the SDK and on the server.
+         * Creates and returns a new ValueTemplate instance in the SDK and on the server.
+         * The new ValueTemplate will be automatically stored in the 'path' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 and higher
+         */
+        static createInRestOperationUnderPath(container) {
+            internal.createInVersionCheck(container.model, ValueTemplate.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, ValueTemplate, "path", false);
+        }
+        /**
+         * Creates and returns a new ValueTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model) {
-            return internal.instancehelpers.createElement(model, UriTemplate);
+            return internal.instancehelpers.createElement(model, ValueTemplate);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -3955,17 +4929,19 @@ var rest;
             this.value = "";
         }
     }
-    UriTemplate.structureTypeName = "Rest$UriTemplate";
-    UriTemplate.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0",
+    ValueTemplate.structureTypeName = "Rest$ValueTemplate";
+    ValueTemplate.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.1.0",
         experimental: {
             currentValue: true
         }
     }, internal.StructureType.Element);
-    rest.UriTemplate = UriTemplate;
+    rest.ValueTemplate = ValueTemplate;
 })(rest = exports.rest || (exports.rest = {}));
 const datatypes_1 = require("./datatypes");
+const exportmappings_1 = require("./exportmappings");
 const expressions_1 = require("./expressions");
+const importmappings_1 = require("./importmappings");
 const kafka_1 = require("./kafka");
 const mappings_1 = require("./mappings");
 const microflows_1 = require("./microflows");

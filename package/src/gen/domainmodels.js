@@ -138,6 +138,8 @@ var domainmodels;
             /** @internal */
             this.__defaultMemberAccessRights = new internal.EnumProperty(AccessRule, this, "defaultMemberAccessRights", MemberAccessRights.None, MemberAccessRights);
             /** @internal */
+            this.__xPathConstraintCaption = new internal.PrimitiveProperty(AccessRule, this, "xPathConstraintCaption", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__xPathConstraint = new internal.PrimitiveProperty(AccessRule, this, "xPathConstraint", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new AccessRule() cannot be invoked directly, please use 'model.domainmodels.createAccessRule()'");
@@ -183,6 +185,15 @@ var domainmodels;
             this.__defaultMemberAccessRights.set(newValue);
         }
         /**
+         * In version 10.5.0: introduced
+         */
+        get xPathConstraintCaption() {
+            return this.__xPathConstraintCaption.get();
+        }
+        set xPathConstraintCaption(newValue) {
+            this.__xPathConstraintCaption.set(newValue);
+        }
+        /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
         get xPathConstraint() {
@@ -222,7 +233,13 @@ var domainmodels;
         }
     }
     AccessRule.structureTypeName = "DomainModels$AccessRule";
-    AccessRule.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    AccessRule.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            xPathConstraintCaption: {
+                introduced: "10.5.0"
+            }
+        }
+    }, internal.StructureType.Element);
     domainmodels.AccessRule = AccessRule;
     /**
      * See: {@link https://docs.mendix.com/refguide/annotations relevant section in reference guide}
@@ -1947,12 +1964,23 @@ var domainmodels;
     class MappedValue extends ValueType {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__defaultValueDesignTime = new internal.PrimitiveProperty(MappedValue, this, "defaultValueDesignTime", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new MappedValue() cannot be invoked directly, please use 'model.domainmodels.createMappedValue()'");
             }
         }
         get containerAsAttribute() {
             return super.getContainerAs(Attribute);
+        }
+        /**
+         * In version 10.4.0: introduced
+         */
+        get defaultValueDesignTime() {
+            return this.__defaultValueDesignTime.get();
+        }
+        set defaultValueDesignTime(newValue) {
+            this.__defaultValueDesignTime.set(newValue);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -1962,12 +1990,18 @@ var domainmodels;
     MappedValue.structureTypeName = "DomainModels$MappedValue";
     MappedValue.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.10.0",
+        properties: {
+            defaultValueDesignTime: {
+                introduced: "10.4.0"
+            }
+        },
         public: {
             currentValue: true
         }
     }, internal.StructureType.Element);
     domainmodels.MappedValue = MappedValue;
     /**
+     * In version 10.2.0: deleted
      * In version 9.0.2: introduced
      */
     class CachedMappedValue extends MappedValue {
@@ -1988,6 +2022,8 @@ var domainmodels;
     CachedMappedValue.structureTypeName = "DomainModels$CachedMappedValue";
     CachedMappedValue.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "10.2.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
@@ -4617,6 +4653,7 @@ var domainmodels;
     }, internal.StructureType.Element);
     domainmodels.RemoteEntitySource = RemoteEntitySource;
     /**
+     * In version 10.2.0: deleted
      * In version 8.11.0: introduced
      */
     class MaterializedRemoteEntitySource extends RemoteEntitySource {
@@ -4637,6 +4674,8 @@ var domainmodels;
     MaterializedRemoteEntitySource.structureTypeName = "DomainModels$MaterializedRemoteEntitySource";
     MaterializedRemoteEntitySource.versionInfo = new exports.StructureVersionInfo({
         introduced: "8.11.0",
+        deleted: "10.2.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
