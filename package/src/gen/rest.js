@@ -84,10 +84,7 @@ var rest;
      * Interfaces and instance classes for types from the Mendix sub meta model `Rest`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.2.0: introduced
      */
     class AuthenticationScheme extends internal.Element {
@@ -109,15 +106,13 @@ var rest;
     AuthenticationScheme.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.2.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.AuthenticationScheme = AuthenticationScheme;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.2.0: introduced
      */
     class BasicAuthenticationScheme extends AuthenticationScheme {
@@ -134,22 +129,12 @@ var rest;
         get containerAsConsumedRestService() {
             return super.getContainerAs(ConsumedRestService);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get username() {
             return this.__username.get();
         }
         set username(newValue) {
             this.__username.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get password() {
             return this.__password.get();
         }
@@ -187,15 +172,13 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.BasicAuthenticationScheme = BasicAuthenticationScheme;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class Body extends internal.Element {
@@ -217,7 +200,8 @@ var rest;
     Body.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.Body = Body;
@@ -570,10 +554,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.ChangeSource = ChangeSource;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class Value extends internal.Element {
@@ -601,15 +582,13 @@ var rest;
     Value.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.1.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.Value = Value;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.2.0: introduced
      */
     class ConstantValue extends Value {
@@ -711,7 +690,8 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.ConstantValue = ConstantValue;
@@ -740,6 +720,8 @@ var rest;
             this.__httpConfiguration = new internal.PartProperty(ConsumedODataService, this, "httpConfiguration", null, true);
             /** @internal */
             this.__headersMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "headersMicroflow", null, "Microflows$Microflow");
+            /** @internal */
+            this.__configurationMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "configurationMicroflow", null, "Microflows$Microflow");
             /** @internal */
             this.__timeoutModel = new internal.PartProperty(ConsumedODataService, this, "timeoutModel", null, true);
             /** @internal */
@@ -819,6 +801,7 @@ var rest;
             this.__httpConfiguration.set(newValue);
         }
         /**
+         * In version 10.12.0: deleted
          * In version 8.4.0: introduced
          */
         get headersMicroflow() {
@@ -829,6 +812,18 @@ var rest;
         }
         get headersMicroflowQualifiedName() {
             return this.__headersMicroflow.qualifiedName();
+        }
+        /**
+         * In version 10.12.0: introduced
+         */
+        get configurationMicroflow() {
+            return this.__configurationMicroflow.get();
+        }
+        set configurationMicroflow(newValue) {
+            this.__configurationMicroflow.set(newValue);
+        }
+        get configurationMicroflowQualifiedName() {
+            return this.__configurationMicroflow.qualifiedName();
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -960,7 +955,12 @@ var rest;
                 }
             },
             headersMicroflow: {
-                introduced: "8.4.0"
+                introduced: "8.4.0",
+                deleted: "10.12.0",
+                deletionMessage: "Replaced by configurationMicroflow"
+            },
+            configurationMicroflow: {
+                introduced: "10.12.0"
             },
             timeoutModel: {
                 introduced: "8.5.0",
@@ -1008,10 +1008,7 @@ var rest;
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class ConsumedRestService extends projects_1.projects.Document {
@@ -1028,11 +1025,6 @@ var rest;
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get baseUrl() {
             return this.__baseUrl.get();
         }
@@ -1040,10 +1032,6 @@ var rest;
             this.__baseUrl.set(newValue);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.2.0: introduced
          */
         get authenticationScheme() {
@@ -1052,11 +1040,6 @@ var rest;
         set authenticationScheme(newValue) {
             this.__authenticationScheme.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get operations() {
             return this.__operations.get();
         }
@@ -1092,7 +1075,8 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.ModelUnit);
     rest.ConsumedRestService = ConsumedRestService;
@@ -1175,10 +1159,7 @@ var rest;
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-headers relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class HeaderWithValueTemplate extends internal.Element {
@@ -1201,11 +1182,6 @@ var rest;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get value() {
             return this.__value.get();
         }
@@ -1260,15 +1236,13 @@ var rest;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.HeaderWithValueTemplate = HeaderWithValueTemplate;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class ImplicitMappingBody extends Body {
@@ -1291,11 +1265,6 @@ var rest;
         set rootMappingElement(newValue) {
             this.__rootMappingElement.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get testValue() {
             return this.__testValue.get();
         }
@@ -1333,15 +1302,13 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.ImplicitMappingBody = ImplicitMappingBody;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.3.0: introduced
      */
     class RestOperationResponseHandling extends internal.Element {
@@ -1381,15 +1348,13 @@ var rest;
     RestOperationResponseHandling.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.3.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.RestOperationResponseHandling = RestOperationResponseHandling;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.3.0: introduced
      */
     class ImplicitMappingResponseHandling extends RestOperationResponseHandling {
@@ -1435,7 +1400,8 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.ImplicitMappingResponseHandling = ImplicitMappingResponseHandling;
@@ -1554,10 +1520,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.MetadataReference = MetadataReference;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.3.0: introduced
      */
     class NoResponseHandling extends RestOperationResponseHandling {
@@ -1587,10 +1550,96 @@ var rest;
     NoResponseHandling.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.3.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.NoResponseHandling = NoResponseHandling;
+    /**
+     * In version 10.8.0: introduced
+     */
+    class ODataEntityTypeSource extends domainmodels_1.domainmodels.RemoteEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__sourceDocument = new internal.ByNameReferenceProperty(ODataEntityTypeSource, this, "sourceDocument", null, "Rest$ConsumedODataService");
+            /** @internal */
+            this.__entityTypeName = new internal.PrimitiveProperty(ODataEntityTypeSource, this, "entityTypeName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__key = new internal.PartProperty(ODataEntityTypeSource, this, "key", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new ODataEntityTypeSource() cannot be invoked directly, please use 'model.rest.createODataEntityTypeSource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(domainmodels_1.domainmodels.Entity);
+        }
+        get sourceDocument() {
+            return this.__sourceDocument.get();
+        }
+        set sourceDocument(newValue) {
+            this.__sourceDocument.set(newValue);
+        }
+        get sourceDocumentQualifiedName() {
+            return this.__sourceDocument.qualifiedName();
+        }
+        get entityTypeName() {
+            return this.__entityTypeName.get();
+        }
+        set entityTypeName(newValue) {
+            this.__entityTypeName.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get key() {
+            return this.__key.get();
+        }
+        set key(newValue) {
+            this.__key.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataEntityTypeSource instance in the SDK and on the server.
+         * The new ODataEntityTypeSource will be automatically stored in the 'source' property
+         * of the parent domainmodels.Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.8.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataEntityTypeSource.structureTypeName, { start: "10.8.0" });
+            return internal.instancehelpers.createElement(container, ODataEntityTypeSource, "source", false);
+        }
+        /**
+         * Creates and returns a new ODataEntityTypeSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataEntityTypeSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataEntityTypeSource.structureTypeName = "Rest$ODataEntityTypeSource";
+    ODataEntityTypeSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.8.0",
+        properties: {
+            key: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataEntityTypeSource = ODataEntityTypeSource;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *
@@ -1606,6 +1655,9 @@ var rest;
             if (arguments.length < 4) {
                 throw new Error("new ODataKey() cannot be invoked directly, please use 'model.rest.createODataKey()'");
             }
+        }
+        get containerAsODataEntityTypeSource() {
+            return super.getContainerAs(ODataEntityTypeSource);
         }
         get containerAsODataRemoteEntitySource() {
             return super.getContainerAs(ODataRemoteEntitySource);
@@ -1624,9 +1676,33 @@ var rest;
          * of the parent ODataRemoteEntitySource element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.11.0 and higher
+         *  8.11.0 to 10.7.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataKey.structureTypeName, { start: "8.11.0", end: "10.7.0" });
+            return internal.instancehelpers.createElement(container, ODataKey, "key", false);
+        }
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataEntityTypeSource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.8.0 and higher
+         */
+        static createInODataEntityTypeSourceUnderKey(container) {
+            internal.createInVersionCheck(container.model, ODataKey.structureTypeName, { start: "10.8.0" });
+            return internal.instancehelpers.createElement(container, ODataKey, "key", false);
+        }
+        /**
+         * Creates and returns a new ODataKey instance in the SDK and on the server.
+         * The new ODataKey will be automatically stored in the 'key' property
+         * of the parent ODataRemoteEntitySource element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  8.11.0 and higher
+         */
+        static createInODataRemoteEntitySourceUnderKey(container) {
             internal.createInVersionCheck(container.model, ODataKey.structureTypeName, { start: "8.11.0" });
             return internal.instancehelpers.createElement(container, ODataKey, "key", false);
         }
@@ -2409,12 +2485,60 @@ var rest;
     }, internal.StructureType.Element);
     rest.ODataRemoteEnumerationSource = ODataRemoteEnumerationSource;
     /**
+     * In version 10.12.0: introduced
+     */
+    class ODataRemoteEnumerationValue extends enumerations_1.enumerations.RemoteEnumerationValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__remoteName = new internal.PrimitiveProperty(ODataRemoteEnumerationValue, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ODataRemoteEnumerationValue() cannot be invoked directly, please use 'model.rest.createODataRemoteEnumerationValue()'");
+            }
+        }
+        get containerAsEnumerationValue() {
+            return super.getContainerAs(enumerations_1.enumerations.EnumerationValue);
+        }
+        get remoteName() {
+            return this.__remoteName.get();
+        }
+        set remoteName(newValue) {
+            this.__remoteName.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataRemoteEnumerationValue instance in the SDK and on the server.
+         * The new ODataRemoteEnumerationValue will be automatically stored in the 'remoteValue' property
+         * of the parent enumerations.EnumerationValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataRemoteEnumerationValue.structureTypeName, { start: "10.12.0" });
+            return internal.instancehelpers.createElement(container, ODataRemoteEnumerationValue, "remoteValue", false);
+        }
+        /**
+         * Creates and returns a new ODataRemoteEnumerationValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataRemoteEnumerationValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataRemoteEnumerationValue.structureTypeName = "Rest$ODataRemoteEnumerationValue";
+    ODataRemoteEnumerationValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0"
+    }, internal.StructureType.Element);
+    rest.ODataRemoteEnumerationValue = ODataRemoteEnumerationValue;
+    /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class OperationParameter extends internal.Element {
@@ -2445,11 +2569,6 @@ var rest;
         set dataType(newValue) {
             this.__dataType.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get testValue() {
             return this.__testValue.get();
         }
@@ -2502,7 +2621,8 @@ var rest;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.OperationParameter = OperationParameter;
@@ -4164,10 +4284,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.ReadSource = ReadSource;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class RestOperation extends internal.Element {
@@ -4200,11 +4317,6 @@ var rest;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get path() {
             return this.__path.get();
         }
@@ -4212,10 +4324,6 @@ var rest;
             this.__path.set(newValue);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.4.0: introduced
          */
         get method() {
@@ -4230,27 +4338,13 @@ var rest;
         set timeout(newValue) {
             this.__timeout.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get headers() {
             return this.__headers.get();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get parameters() {
             return this.__parameters.get();
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.3.0: introduced
          */
         get responseHandling() {
@@ -4341,15 +4435,13 @@ var rest;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.RestOperation = RestOperation;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class RestOperationMethod extends internal.Element {
@@ -4379,15 +4471,13 @@ var rest;
     RestOperationMethod.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.RestOperationMethod = RestOperationMethod;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class RestOperationMethodWithBody extends RestOperationMethod {
@@ -4402,11 +4492,6 @@ var rest;
         get containerAsRestOperation() {
             return super.getContainerAs(RestOperation);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get body() {
             return this.__body.get();
         }
@@ -4439,15 +4524,13 @@ var rest;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.RestOperationMethodWithBody = RestOperationMethodWithBody;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class RestOperationMethodWithoutBody extends RestOperationMethod {
@@ -4478,7 +4561,8 @@ var rest;
     RestOperationMethodWithoutBody.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.RestOperationMethodWithoutBody = RestOperationMethodWithoutBody;
@@ -4689,10 +4773,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.ServiceFeed = ServiceFeed;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class StringBody extends Body {
@@ -4700,6 +4781,8 @@ var rest;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__value = new internal.PrimitiveProperty(StringBody, this, "value", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__valueTemplate = new internal.PartProperty(StringBody, this, "valueTemplate", null, true);
             if (arguments.length < 4) {
                 throw new Error("new StringBody() cannot be invoked directly, please use 'model.rest.createStringBody()'");
             }
@@ -4707,11 +4790,23 @@ var rest;
         get containerAsRestOperationMethodWithBody() {
             return super.getContainerAs(RestOperationMethodWithBody);
         }
+        /**
+         * In version 10.11.0: deleted
+         */
         get value() {
             return this.__value.get();
         }
         set value(newValue) {
             this.__value.set(newValue);
+        }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get valueTemplate() {
+            return this.__valueTemplate.get();
+        }
+        set valueTemplate(newValue) {
+            this.__valueTemplate.set(newValue);
         }
         /**
          * Creates and returns a new StringBody instance in the SDK and on the server.
@@ -4724,22 +4819,37 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.value = "";
+            if (this.__value.isAvailable) {
+                this.value = "";
+            }
+            if (this.__valueTemplate.isAvailable) {
+                this.valueTemplate = ValueTemplate.create(this.model);
+            }
         }
     }
     StringBody.structureTypeName = "Rest$StringBody";
     StringBody.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
+        properties: {
+            value: {
+                deleted: "10.11.0",
+                deletionMessage: "Use valueTemplate instead."
+            },
+            valueTemplate: {
+                introduced: "10.11.0",
+                required: {
+                    currentValue: true
+                }
+            }
+        },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.StringBody = StringBody;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class StringValue extends Value {
@@ -4844,15 +4954,13 @@ var rest;
     StringValue.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.1.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.StringValue = StringValue;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class ValueTemplate extends internal.Element {
@@ -4872,6 +4980,9 @@ var rest;
         }
         get containerAsRestOperation() {
             return super.getContainerAs(RestOperation);
+        }
+        get containerAsStringBody() {
+            return super.getContainerAs(StringBody);
         }
         get value() {
             return this.__value.get();
@@ -4917,6 +5028,18 @@ var rest;
         }
         /**
          * Creates and returns a new ValueTemplate instance in the SDK and on the server.
+         * The new ValueTemplate will be automatically stored in the 'valueTemplate' property
+         * of the parent StringBody element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.11.0 and higher
+         */
+        static createInStringBodyUnderValueTemplate(container) {
+            internal.createInVersionCheck(container.model, ValueTemplate.structureTypeName, { start: "10.11.0" });
+            return internal.instancehelpers.createElement(container, ValueTemplate, "valueTemplate", false);
+        }
+        /**
+         * Creates and returns a new ValueTemplate instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4933,7 +5056,8 @@ var rest;
     ValueTemplate.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.1.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.7.0"]
         }
     }, internal.StructureType.Element);
     rest.ValueTemplate = ValueTemplate;

@@ -3,14 +3,55 @@ export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
 import { microflows } from "./microflows";
 export declare namespace databaseconnector {
+    class QueryParameterMode extends internal.AbstractEnum {
+        static Unknown: QueryParameterMode;
+        static In: QueryParameterMode;
+        static Out: QueryParameterMode;
+        static InOut: QueryParameterMode;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DatabaseConnector`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.12.0: introduced
+     */
+    class AdditionalProperty extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsDatabaseConnection(): DatabaseConnection;
+        get key(): string;
+        set key(newValue: string);
+        get value(): AdditionalPropertyValue | null;
+        set value(newValue: AdditionalPropertyValue | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AdditionalProperty instance in the SDK and on the server.
+         * The new AdditionalProperty will be automatically stored in the 'additionalProperties' property
+         * of the parent DatabaseConnection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: DatabaseConnection): AdditionalProperty;
+        /**
+         * Creates and returns a new AdditionalProperty instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AdditionalProperty;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    abstract class AdditionalPropertyValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAdditionalProperty(): AdditionalProperty;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class ColumnMapping extends internal.Element<IModel> {
@@ -19,11 +60,6 @@ export declare namespace databaseconnector {
         get containerAsTableMapping(): TableMapping;
         get columnName(): string;
         set columnName(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get sqlDataType(): SqlDataType | null;
         set sqlDataType(newValue: SqlDataType | null);
         get attribute(): domainmodels.IAttribute;
@@ -82,10 +118,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): ConnectionDetails;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 10.0.0: introduced
      */
     abstract class ConnectionInput extends internal.Element<IModel> {
@@ -151,30 +184,19 @@ export declare namespace databaseconnector {
         static create(model: IModel): ConnectionString;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     interface IDatabaseConnection extends projects.IDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly queries: internal.IList<IDatabaseQuery>;
         asLoaded(): DatabaseConnection;
         load(callback: (element: DatabaseConnection) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DatabaseConnection>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class DatabaseConnection extends projects.Document implements IDatabaseConnection {
@@ -184,10 +206,6 @@ export declare namespace databaseconnector {
         get databaseType(): string;
         set databaseType(newValue: string);
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.0.0: introduced
          */
         get connectionInput(): ConnectionInput | null;
@@ -211,21 +229,16 @@ export declare namespace databaseconnector {
         set password(newValue: constants.IConstant | null);
         get passwordQualifiedName(): string | null;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.0.0: introduced
          */
         get lastSelectedQuery(): IDatabaseQuery | null;
         set lastSelectedQuery(newValue: IDatabaseQuery | null);
         get lastSelectedQueryQualifiedName(): string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get queries(): internal.IList<DatabaseQuery>;
+        /**
+         * In version 10.12.0: introduced
+         */
+        get additionalProperties(): internal.IList<AdditionalProperty>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new DatabaseConnection unit in the SDK and on the server.
@@ -234,10 +247,7 @@ export declare namespace databaseconnector {
         static createIn(container: projects.IFolderBase): DatabaseConnection;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     interface IDatabaseQuery extends internal.IElement, internal.IByNameReferrable {
@@ -249,10 +259,7 @@ export declare namespace databaseconnector {
         load(forceRefresh?: boolean): Promise<DatabaseQuery>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class DatabaseQuery extends internal.Element<IModel> implements IDatabaseQuery {
@@ -264,20 +271,21 @@ export declare namespace databaseconnector {
         get query(): string;
         set query(newValue: string);
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
+         * In version 10.12.0: deleted
          * In version 10.6.0: added optional
          */
         get tableMapping(): TableMapping | null;
         set tableMapping(newValue: TableMapping | null);
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
+         * In version 10.12.0: introduced
          */
+        get tableMappings(): internal.IList<TableMapping> | null;
         get parameters(): internal.IList<QueryParameter>;
+        /**
+         * In version 10.12.0: introduced
+         */
+        get queryType(): number;
+        set queryType(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatabaseQuery instance in the SDK and on the server.
@@ -297,10 +305,7 @@ export declare namespace databaseconnector {
         get qualifiedName(): string | null;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.24.0: introduced
      */
     class ExecuteDatabaseQueryAction extends microflows.MicroflowAction {
@@ -308,20 +313,11 @@ export declare namespace databaseconnector {
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): microflows.ActionActivity;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.0.0: added optional
          */
         get query(): IDatabaseQuery | null;
         set query(newValue: IDatabaseQuery | null);
         get queryQualifiedName(): string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get parameterMappings(): internal.IList<QueryParameterMapping>;
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
@@ -343,10 +339,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): ExecuteDatabaseQueryAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     abstract class SqlDataType extends internal.Element<IModel> {
@@ -359,10 +352,7 @@ export declare namespace databaseconnector {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class LimitedLengthSqlDataType extends SqlDataType {
@@ -399,10 +389,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): LimitedLengthSqlDataType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class QueryParameter extends internal.Element<IModel> {
@@ -411,11 +398,6 @@ export declare namespace databaseconnector {
         get containerAsDatabaseQuery(): DatabaseQuery;
         get parameterName(): string;
         set parameterName(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get sqlDataType(): SqlDataType | null;
         set sqlDataType(newValue: SqlDataType | null);
         /**
@@ -425,6 +407,21 @@ export declare namespace databaseconnector {
         set dataType(newValue: datatypes.DataType | null);
         get defaultValue(): string;
         set defaultValue(newValue: string);
+        /**
+         * In version 10.10.0: introduced
+         */
+        get mode(): QueryParameterMode;
+        set mode(newValue: QueryParameterMode);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get databaseParameterName(): string;
+        set databaseParameterName(newValue: string);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get emptyValueBecomesNull(): boolean;
+        set emptyValueBecomesNull(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new QueryParameter instance in the SDK and on the server.
@@ -443,10 +440,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): QueryParameter;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.24.0: introduced
      */
     class QueryParameterMapping extends internal.Element<IModel> {
@@ -478,10 +472,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): QueryParameterMapping;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class SimpleSqlDataType extends SqlDataType {
@@ -516,10 +507,7 @@ export declare namespace databaseconnector {
         static create(model: IModel): SimpleSqlDataType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.10.0: removed experimental
      * In version 9.22.0: introduced
      */
     class TableMapping extends internal.Element<IModel> {
@@ -531,11 +519,6 @@ export declare namespace databaseconnector {
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columns(): internal.IList<ColumnMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -544,15 +527,77 @@ export declare namespace databaseconnector {
          * of the parent DatabaseQuery element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: DatabaseQuery): TableMapping;
+        static createInDatabaseQueryUnderTableMapping(container: DatabaseQuery): TableMapping;
+        /**
+         * Creates and returns a new TableMapping instance in the SDK and on the server.
+         * The new TableMapping will be automatically stored in the 'tableMappings' property
+         * of the parent DatabaseQuery element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInDatabaseQueryUnderTableMappings(container: DatabaseQuery): TableMapping;
         /**
          * Creates and returns a new TableMapping instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): TableMapping;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    class ValueAsConstant extends AdditionalPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAdditionalProperty(): AdditionalProperty;
+        get value(): constants.IConstant | null;
+        set value(newValue: constants.IConstant | null);
+        get valueQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ValueAsConstant instance in the SDK and on the server.
+         * The new ValueAsConstant will be automatically stored in the 'value' property
+         * of the parent AdditionalProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: AdditionalProperty): ValueAsConstant;
+        /**
+         * Creates and returns a new ValueAsConstant instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ValueAsConstant;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    class ValueAsString extends AdditionalPropertyValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAdditionalProperty(): AdditionalProperty;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ValueAsString instance in the SDK and on the server.
+         * The new ValueAsString will be automatically stored in the 'value' property
+         * of the parent AdditionalProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: AdditionalProperty): ValueAsString;
+        /**
+         * Creates and returns a new ValueAsString instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ValueAsString;
     }
 }
 import { constants } from "./constants";

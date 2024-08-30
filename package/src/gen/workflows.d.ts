@@ -7,6 +7,40 @@ export declare namespace workflows {
         static Absolute: CompletionType;
         protected qualifiedTsTypeName: string;
     }
+    class WorkflowEventType extends internal.AbstractEnum {
+        static WorkflowCompleted: WorkflowEventType;
+        static WorkflowInitiated: WorkflowEventType;
+        static WorkflowRestarted: WorkflowEventType;
+        static WorkflowFailed: WorkflowEventType;
+        static WorkflowAborted: WorkflowEventType;
+        static WorkflowPaused: WorkflowEventType;
+        static WorkflowUnpaused: WorkflowEventType;
+        static WorkflowRetried: WorkflowEventType;
+        static WorkflowUpdated: WorkflowEventType;
+        static WorkflowUpgraded: WorkflowEventType;
+        static WorkflowConflicted: WorkflowEventType;
+        static WorkflowResolved: WorkflowEventType;
+        static WorkflowJumpToOptionApplied: WorkflowEventType;
+        static StartEventExecuted: WorkflowEventType;
+        static EndEventExecuted: WorkflowEventType;
+        static DecisionExecuted: WorkflowEventType;
+        static JumpExecuted: WorkflowEventType;
+        static ParallelSplitExecuted: WorkflowEventType;
+        static ParallelMergeExecuted: WorkflowEventType;
+        static CallWorkflowStarted: WorkflowEventType;
+        static CallWorkflowEnded: WorkflowEventType;
+        static CallMicroflowStarted: WorkflowEventType;
+        static CallMicroflowEnded: WorkflowEventType;
+        static WaitForNotificationStarted: WorkflowEventType;
+        static WaitForNotificationEnded: WorkflowEventType;
+        static WaitForTimerStarted: WorkflowEventType;
+        static WaitForTimerEnded: WorkflowEventType;
+        static UserTaskStarted: WorkflowEventType;
+        static MultiUserTaskOutcomeSelected: WorkflowEventType;
+        static UserTaskEnded: WorkflowEventType;
+        static NonInterruptingTimerEventExecuted: WorkflowEventType;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
@@ -17,6 +51,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -26,6 +61,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get amount(): number;
         set amount(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -35,9 +71,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): AbsoluteAmountUserInput;
+        static createInMultiInputCompletionUnderTargetUserInput(container: MultiInputCompletion): AbsoluteAmountUserInput;
+        /**
+         * Creates and returns a new AbsoluteAmountUserInput instance in the SDK and on the server.
+         * The new AbsoluteAmountUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container: MultiUserTaskActivity): AbsoluteAmountUserInput;
         /**
          * Creates and returns a new AbsoluteAmountUserInput instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -52,6 +97,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new AllUserInput instance in the SDK and on the server.
@@ -59,9 +105,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): AllUserInput;
+        static createInMultiInputCompletionUnderTargetUserInput(container: MultiInputCompletion): AllUserInput;
+        /**
+         * Creates and returns a new AllUserInput instance in the SDK and on the server.
+         * The new AllUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container: MultiUserTaskActivity): AllUserInput;
         /**
          * Creates and returns a new AllUserInput instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -116,6 +171,7 @@ export declare namespace workflows {
         readonly containerAsConditionOutcomeActivity: IConditionOutcomeActivity;
         readonly containerAsParallelSplitActivity: IParallelSplitActivity;
         readonly containerAsUserTask: IUserTask;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
         /**
          * This property is required and cannot be set to null.
          */
@@ -136,6 +192,7 @@ export declare namespace workflows {
         get containerAsConditionOutcomeActivity(): ConditionOutcomeActivity;
         get containerAsParallelSplitActivity(): ParallelSplitActivity;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         get flow(): Flow;
         set flow(newValue: Flow);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -199,6 +256,40 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): BooleanConditionOutcome;
+    }
+    /**
+     * In version 10.14.0: introduced
+     */
+    interface IBoundaryEvent extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsCallMicroflowTask: ICallMicroflowTask;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly flow: IFlow;
+        readonly caption: string;
+        asLoaded(): BoundaryEvent;
+        load(callback: (element: BoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<BoundaryEvent>;
+    }
+    /**
+     * In version 10.14.0: introduced
+     */
+    abstract class BoundaryEvent extends internal.Element<IModel> implements IBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        get flow(): Flow;
+        set flow(newValue: Flow);
+        get caption(): string;
+        set caption(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
@@ -277,6 +368,10 @@ export declare namespace workflows {
         readonly containerAsFlow: IFlow;
         readonly microflow: microflows.IMicroflow | null;
         readonly microflowQualifiedName: string | null;
+        /**
+         * In version 10.14.0: introduced
+         */
+        readonly boundaryEvents: internal.IList<IBoundaryEvent>;
         asLoaded(): CallMicroflowTask;
         load(callback: (element: CallMicroflowTask) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CallMicroflowTask>;
@@ -295,6 +390,10 @@ export declare namespace workflows {
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
         get parameterMappings(): internal.IList<MicroflowCallParameterMapping>;
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents(): internal.IList<BoundaryEvent>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
@@ -321,6 +420,10 @@ export declare namespace workflows {
         readonly containerAsFlow: IFlow;
         readonly workflow: IWorkflow | null;
         readonly workflowQualifiedName: string | null;
+        /**
+         * In version 10.14.0: introduced
+         */
+        readonly boundaryEvents: internal.IList<IBoundaryEvent>;
         asLoaded(): CallWorkflowActivity;
         load(callback: (element: CallWorkflowActivity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CallWorkflowActivity>;
@@ -348,6 +451,10 @@ export declare namespace workflows {
          * In version 9.18.0: introduced
          */
         get parameterMappings(): internal.IList<WorkflowCallParameterMapping>;
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents(): internal.IList<BoundaryEvent>;
         /**
          * In version 9.18.0: introduced
          */
@@ -377,6 +484,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -386,6 +494,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get fallbackOutcome(): UserTaskOutcome | null;
         set fallbackOutcome(newValue: UserTaskOutcome | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -395,9 +504,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): ConsensusCompletionCriteria;
+        static createInMultiInputCompletionUnderCompletionCriteria(container: MultiInputCompletion): ConsensusCompletionCriteria;
+        /**
+         * Creates and returns a new ConsensusCompletionCriteria instance in the SDK and on the server.
+         * The new ConsensusCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container: MultiUserTaskActivity): ConsensusCompletionCriteria;
         /**
          * Creates and returns a new ConsensusCompletionCriteria instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -413,6 +531,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -422,6 +541,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
@@ -429,15 +549,58 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 10.11.0
          */
-        static createIn(container: UserTask): EmptyUserSource;
+        static createInUserTaskUnderUserSource(container: UserTask): EmptyUserSource;
+        /**
+         * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
+         * The new EmptyUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): EmptyUserSource;
         /**
          * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): EmptyUserSource;
+    }
+    /**
+     * In version 10.14.0: introduced
+     */
+    interface IEndOfBoundaryEventPathActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): EndOfBoundaryEventPathActivity;
+        load(callback: (element: EndOfBoundaryEventPathActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EndOfBoundaryEventPathActivity>;
+    }
+    /**
+     * In version 10.14.0: introduced
+     */
+    class EndOfBoundaryEventPathActivity extends WorkflowActivity implements IEndOfBoundaryEventPathActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createIn(container: Flow): EndOfBoundaryEventPathActivity;
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EndOfBoundaryEventPathActivity;
     }
     /**
      * In version 9.0.5: removed experimental
@@ -567,6 +730,7 @@ export declare namespace workflows {
      */
     interface IFlow extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsBoundaryEvent: IBoundaryEvent;
         readonly containerAsOutcome: IOutcome;
         readonly containerAsWorkflow: IWorkflow;
         readonly activities: internal.IList<IWorkflowActivity>;
@@ -581,10 +745,20 @@ export declare namespace workflows {
     class Flow extends internal.Element<IModel> implements IFlow {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsBoundaryEvent(): BoundaryEvent;
         get containerAsOutcome(): Outcome;
         get containerAsWorkflow(): Workflow;
         get activities(): internal.IList<WorkflowActivity>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new Flow instance in the SDK and on the server.
+         * The new Flow will be automatically stored in the 'flow' property
+         * of the parent BoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInBoundaryEventUnderFlow(container: BoundaryEvent): Flow;
         /**
          * Creates and returns a new Flow instance in the SDK and on the server.
          * The new Flow will be automatically stored in the 'flow' property
@@ -658,6 +832,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get completionType(): CompletionType;
         set completionType(newValue: CompletionType);
         get fallbackOutcome(): UserTaskOutcome | null;
@@ -669,9 +844,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): MajorityCompletionCriteria;
+        static createInMultiInputCompletionUnderCompletionCriteria(container: MultiInputCompletion): MajorityCompletionCriteria;
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * The new MajorityCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container: MultiUserTaskActivity): MajorityCompletionCriteria;
         /**
          * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -686,6 +870,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -695,6 +880,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
@@ -705,9 +891,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 10.11.0
          */
-        static createIn(container: UserTask): MicroflowBasedEvent;
+        static createInUserTaskUnderOnCreatedEvent(container: UserTask): MicroflowBasedEvent;
+        /**
+         * Creates and returns a new MicroflowBasedEvent instance in the SDK and on the server.
+         * The new MicroflowBasedEvent will be automatically stored in the 'onCreatedEvent' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOnCreatedEvent(container: UserTaskActivity): MicroflowBasedEvent;
         /**
          * Creates and returns a new MicroflowBasedEvent instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -723,6 +918,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
@@ -733,9 +929,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container: UserTask): MicroflowBasedUserSource;
+        static createInUserTaskUnderUserSource(container: UserTask): MicroflowBasedUserSource;
+        /**
+         * Creates and returns a new MicroflowBasedUserSource instance in the SDK and on the server.
+         * The new MicroflowBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): MicroflowBasedUserSource;
         /**
          * Creates and returns a new MicroflowBasedUserSource instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -774,6 +979,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
@@ -784,9 +990,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.3.0 and higher
+         *  10.3.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): MicroflowCompletionCriteria;
+        static createInMultiInputCompletionUnderCompletionCriteria(container: MultiInputCompletion): MicroflowCompletionCriteria;
+        /**
+         * Creates and returns a new MicroflowCompletionCriteria instance in the SDK and on the server.
+         * The new MicroflowCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container: MultiUserTaskActivity): MicroflowCompletionCriteria;
         /**
          * Creates and returns a new MicroflowCompletionCriteria instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -802,6 +1017,7 @@ export declare namespace workflows {
         static versionInfo: StructureVersionInfo;
         get containerAsWorkflowsProjectSettingsPart(): settings.WorkflowsProjectSettingsPart;
         get containerAsWorkflow(): Workflow;
+        get containerAsWorkflowEventHandler(): WorkflowEventHandler;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
@@ -844,12 +1060,22 @@ export declare namespace workflows {
         static createInWorkflowUnderWorkflowOnStateChangeEvent(container: Workflow): MicroflowEventHandler;
         /**
          * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'microflowEventHandler' property
+         * of the parent WorkflowEventHandler element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowEventHandlerUnderMicroflowEventHandler(container: WorkflowEventHandler): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): MicroflowEventHandler;
     }
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     abstract class UserTaskCompletion extends internal.Element<IModel> {
@@ -859,6 +1085,7 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     class MultiInputCompletion extends UserTaskCompletion {
@@ -881,7 +1108,7 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
         static createIn(container: UserTask): MultiInputCompletion;
         /**
@@ -892,12 +1119,103 @@ export declare namespace workflows {
         static create(model: IModel): MultiInputCompletion;
     }
     /**
+     * In version 10.12.0: introduced
+     */
+    interface IUserTaskActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly taskPage: IPageReference;
+        readonly outcomes: internal.IList<IUserTaskOutcome>;
+        /**
+         * In version 10.14.0: introduced
+         */
+        readonly boundaryEvents: internal.IList<IBoundaryEvent>;
+        asLoaded(): UserTaskActivity;
+        load(callback: (element: UserTaskActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<UserTaskActivity>;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    abstract class UserTaskActivity extends WorkflowActivity implements IUserTaskActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get taskPage(): PageReference;
+        set taskPage(newValue: PageReference);
+        get taskName(): microflows.StringTemplate;
+        set taskName(newValue: microflows.StringTemplate);
+        get taskDescription(): microflows.StringTemplate;
+        set taskDescription(newValue: microflows.StringTemplate);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get dueDate(): string;
+        set dueDate(newValue: string);
+        get userSource(): UserSource;
+        set userSource(newValue: UserSource);
+        get outcomes(): internal.IList<UserTaskOutcome>;
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents(): internal.IList<BoundaryEvent>;
+        get onCreatedEvent(): UserTaskEvent;
+        set onCreatedEvent(newValue: UserTaskEvent);
+        get autoAssignSingleTargetUser(): boolean;
+        set autoAssignSingleTargetUser(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    interface IMultiUserTaskActivity extends IUserTaskActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): MultiUserTaskActivity;
+        load(callback: (element: MultiUserTaskActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MultiUserTaskActivity>;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    class MultiUserTaskActivity extends UserTaskActivity implements IMultiUserTaskActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get targetUserInput(): TargetUserInput;
+        set targetUserInput(newValue: TargetUserInput);
+        get completionCriteria(): UserTaskCompletionCriteria;
+        set completionCriteria(newValue: UserTaskCompletionCriteria);
+        get awaitAllUsers(): boolean;
+        set awaitAllUsers(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: Flow): MultiUserTaskActivity;
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MultiUserTaskActivity;
+    }
+    /**
      * In version 9.0.5: introduced
      */
     class NoEvent extends UserTaskEvent {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NoEvent instance in the SDK and on the server.
@@ -905,9 +1223,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 10.11.0
          */
-        static createIn(container: UserTask): NoEvent;
+        static createInUserTaskUnderOnCreatedEvent(container: UserTask): NoEvent;
+        /**
+         * Creates and returns a new NoEvent instance in the SDK and on the server.
+         * The new NoEvent will be automatically stored in the 'onCreatedEvent' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOnCreatedEvent(container: UserTaskActivity): NoEvent;
         /**
          * Creates and returns a new NoEvent instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -944,6 +1271,7 @@ export declare namespace workflows {
     interface IPageReference extends internal.IElement {
         readonly model: IModel;
         readonly containerAsUserTask: IUserTask;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
         readonly containerAsWorkflow: IWorkflow;
         /**
          * In version 9.12.0: added public
@@ -962,6 +1290,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         get containerAsWorkflow(): Workflow;
         /**
          * In version 9.12.0: added public
@@ -976,9 +1305,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.11.0
          */
         static createInUserTaskUnderTaskPage(container: UserTask): PageReference;
+        /**
+         * Creates and returns a new PageReference instance in the SDK and on the server.
+         * The new PageReference will be automatically stored in the 'taskPage' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderTaskPage(container: UserTaskActivity): PageReference;
         /**
          * Creates and returns a new PageReference instance in the SDK and on the server.
          * The new PageReference will be automatically stored in the 'adminPage' property
@@ -1144,6 +1482,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get percentage(): number;
         set percentage(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1153,9 +1492,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): PercentageAmountUserInput;
+        static createInMultiInputCompletionUnderTargetUserInput(container: MultiInputCompletion): PercentageAmountUserInput;
+        /**
+         * Creates and returns a new PercentageAmountUserInput instance in the SDK and on the server.
+         * The new PercentageAmountUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container: MultiUserTaskActivity): PercentageAmountUserInput;
         /**
          * Creates and returns a new PercentageAmountUserInput instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1164,6 +1512,7 @@ export declare namespace workflows {
         static create(model: IModel): PercentageAmountUserInput;
     }
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     class SingleInputCompletion extends UserTaskCompletion {
@@ -1177,7 +1526,7 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
         static createIn(container: UserTask): SingleInputCompletion;
         /**
@@ -1188,12 +1537,47 @@ export declare namespace workflows {
         static create(model: IModel): SingleInputCompletion;
     }
     /**
+     * In version 10.12.0: introduced
+     */
+    interface ISingleUserTaskActivity extends IUserTaskActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): SingleUserTaskActivity;
+        load(callback: (element: SingleUserTaskActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<SingleUserTaskActivity>;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    class SingleUserTaskActivity extends UserTaskActivity implements ISingleUserTaskActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: Flow): SingleUserTaskActivity;
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SingleUserTaskActivity;
+    }
+    /**
      * In version 10.0.0: introduced
      */
     class ThresholdCompletionCriteria extends UserTaskCompletionCriteria {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get completionType(): CompletionType;
         set completionType(newValue: CompletionType);
         get threshold(): number;
@@ -1207,9 +1591,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): ThresholdCompletionCriteria;
+        static createInMultiInputCompletionUnderCompletionCriteria(container: MultiInputCompletion): ThresholdCompletionCriteria;
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * The new ThresholdCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container: MultiUserTaskActivity): ThresholdCompletionCriteria;
         /**
          * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1218,6 +1611,79 @@ export declare namespace workflows {
         static create(model: IModel): ThresholdCompletionCriteria;
     }
     /**
+     * In version 10.14.0: introduced
+     */
+    interface ITimerBoundaryEvent extends IBoundaryEvent {
+        readonly model: IModel;
+        readonly containerAsCallMicroflowTask: ICallMicroflowTask;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        asLoaded(): TimerBoundaryEvent;
+        load(callback: (element: TimerBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<TimerBoundaryEvent>;
+    }
+    /**
+     * In version 10.14.0: introduced
+     */
+    class TimerBoundaryEvent extends BoundaryEvent implements ITimerBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get delay(): string;
+        set delay(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): TimerBoundaryEvent;
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): TimerBoundaryEvent;
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): TimerBoundaryEvent;
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): TimerBoundaryEvent;
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): TimerBoundaryEvent;
+    }
+    /**
+     * In version 10.12.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1254,6 +1720,7 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<UserTask>;
     }
     /**
+     * In version 10.12.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1320,7 +1787,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
         static createIn(container: Flow): UserTask;
         /**
@@ -1337,6 +1804,7 @@ export declare namespace workflows {
     interface IUserTaskOutcome extends IOutcome, internal.IByNameReferrable {
         readonly model: IModel;
         readonly containerAsUserTask: IUserTask;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
         /**
          * In version 9.19.0: deleted
          */
@@ -1361,6 +1829,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         /**
          * In version 9.19.0: deleted
          */
@@ -1383,9 +1852,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container: UserTask): UserTaskOutcome;
+        static createInUserTaskUnderOutcomes(container: UserTask): UserTaskOutcome;
+        /**
+         * Creates and returns a new UserTaskOutcome instance in the SDK and on the server.
+         * The new UserTaskOutcome will be automatically stored in the 'outcomes' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOutcomes(container: UserTaskActivity): UserTaskOutcome;
         /**
          * Creates and returns a new UserTaskOutcome instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1401,6 +1879,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMultiInputCompletion(): MultiInputCompletion;
+        get containerAsMultiUserTaskActivity(): MultiUserTaskActivity;
         get vetoOutcome(): UserTaskOutcome | null;
         set vetoOutcome(newValue: UserTaskOutcome | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1410,9 +1889,18 @@ export declare namespace workflows {
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container: MultiInputCompletion): VetoCompletionCriteria;
+        static createInMultiInputCompletionUnderCompletionCriteria(container: MultiInputCompletion): VetoCompletionCriteria;
+        /**
+         * Creates and returns a new VetoCompletionCriteria instance in the SDK and on the server.
+         * The new VetoCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container: MultiUserTaskActivity): VetoCompletionCriteria;
         /**
          * Creates and returns a new VetoCompletionCriteria instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1462,6 +1950,10 @@ export declare namespace workflows {
     interface IWaitForNotificationActivity extends IWorkflowActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
+        /**
+         * In version 10.14.0: introduced
+         */
+        readonly boundaryEvents: internal.IList<IBoundaryEvent>;
         asLoaded(): WaitForNotificationActivity;
         load(callback: (element: WaitForNotificationActivity) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<WaitForNotificationActivity>;
@@ -1473,6 +1965,10 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents(): internal.IList<BoundaryEvent>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
@@ -1655,6 +2151,10 @@ export declare namespace workflows {
         get usertaskOnStateChangeEvent(): MicroflowEventHandler | null;
         set usertaskOnStateChangeEvent(newValue: MicroflowEventHandler | null);
         /**
+         * In version 10.7.0: introduced
+         */
+        get onWorkflowEvent(): internal.IList<WorkflowEventHandler> | null;
+        /**
          * In version 9.15.0: introduced
          */
         get annotation(): Annotation | null;
@@ -1773,6 +2273,47 @@ export declare namespace workflows {
         static create(model: IModel): WorkflowDefinitionObjectSelection;
     }
     /**
+     * In version 10.7.0: introduced
+     */
+    class WorkflowEventHandler extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowsProjectSettingsPart(): settings.WorkflowsProjectSettingsPart;
+        get containerAsWorkflow(): Workflow;
+        get description(): string;
+        set description(newValue: string);
+        get microflowEventHandler(): MicroflowEventHandler | null;
+        set microflowEventHandler(newValue: MicroflowEventHandler | null);
+        get eventTypes(): internal.IList<WorkflowEventType>;
+        get documentation(): string;
+        set documentation(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * The new WorkflowEventHandler will be automatically stored in the 'onWorkflowEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderOnWorkflowEvent(container: settings.WorkflowsProjectSettingsPart): WorkflowEventHandler;
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * The new WorkflowEventHandler will be automatically stored in the 'onWorkflowEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowUnderOnWorkflowEvent(container: Workflow): WorkflowEventHandler;
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowEventHandler;
+    }
+    /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced
      */
@@ -1821,6 +2362,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsUserTask(): UserTask;
+        get containerAsUserTaskActivity(): UserTaskActivity;
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
@@ -1833,9 +2375,18 @@ export declare namespace workflows {
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container: UserTask): XPathBasedUserSource;
+        static createInUserTaskUnderUserSource(container: UserTask): XPathBasedUserSource;
+        /**
+         * Creates and returns a new XPathBasedUserSource instance in the SDK and on the server.
+         * The new XPathBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): XPathBasedUserSource;
         /**
          * Creates and returns a new XPathBasedUserSource instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

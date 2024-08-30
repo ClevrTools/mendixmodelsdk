@@ -115,10 +115,7 @@ export declare namespace projects {
         static createIn(container: IFolderBase): Folder;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.12.0: removed experimental
      * In version 10.0.0: introduced
      */
     class JarDependency extends internal.Element<IModel> {
@@ -133,6 +130,10 @@ export declare namespace projects {
         set version(newValue: string);
         get isIncluded(): boolean;
         set isIncluded(newValue: boolean);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get exclusions(): internal.IList<JarDependencyExclusion>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new JarDependency instance in the SDK and on the server.
@@ -149,6 +150,34 @@ export declare namespace projects {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): JarDependency;
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    class JarDependencyExclusion extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJarDependency(): JarDependency;
+        get groupId(): string;
+        set groupId(newValue: string);
+        get artifactId(): string;
+        set artifactId(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new JarDependencyExclusion instance in the SDK and on the server.
+         * The new JarDependencyExclusion will be automatically stored in the 'exclusions' property
+         * of the parent JarDependency element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container: JarDependency): JarDependencyExclusion;
+        /**
+         * Creates and returns a new JarDependencyExclusion instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): JarDependencyExclusion;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
@@ -300,10 +329,11 @@ export declare namespace projects {
         get solutionIdentifier(): string;
         set solutionIdentifier(newValue: string);
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
+         * In version 10.10.0: introduced
+         */
+        get extensionName(): string;
+        set extensionName(newValue: string);
+        /**
          * In version 10.0.0: introduced
          */
         get jarDependencies(): internal.IList<JarDependency>;

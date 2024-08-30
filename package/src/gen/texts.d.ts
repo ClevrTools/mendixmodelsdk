@@ -209,6 +209,9 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'placeholder' property
          * of the parent pages.AttributeWidgetWithPlaceholder element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.10.0
          */
         static createInAttributeWidgetWithPlaceholderUnderPlaceholder(container: pages.AttributeWidgetWithPlaceholder): Text;
         /**

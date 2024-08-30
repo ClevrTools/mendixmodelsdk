@@ -200,10 +200,7 @@ var projects;
     Folder.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.StructuralUnit);
     projects.Folder = Folder;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.12.0: removed experimental
      * In version 10.0.0: introduced
      */
     class JarDependency extends internal.Element {
@@ -217,6 +214,8 @@ var projects;
             this.__version = new internal.PrimitiveProperty(JarDependency, this, "version", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__isIncluded = new internal.PrimitiveProperty(JarDependency, this, "isIncluded", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__exclusions = new internal.PartListProperty(JarDependency, this, "exclusions", []);
             if (arguments.length < 4) {
                 throw new Error("new JarDependency() cannot be invoked directly, please use 'model.projects.createJarDependency()'");
             }
@@ -249,6 +248,12 @@ var projects;
             this.__isIncluded.set(newValue);
         }
         /**
+         * In version 10.12.0: introduced
+         */
+        get exclusions() {
+            return this.__exclusions.get();
+        }
+        /**
          * Creates and returns a new JarDependency instance in the SDK and on the server.
          * The new JarDependency will be automatically stored in the 'jarDependencies' property
          * of the parent ModuleSettings element passed as argument.
@@ -277,11 +282,76 @@ var projects;
     JarDependency.structureTypeName = "Projects$JarDependency";
     JarDependency.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.0.0",
+        properties: {
+            exclusions: {
+                introduced: "10.12.0"
+            }
+        },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["10.12.0"]
         }
     }, internal.StructureType.Element);
     projects.JarDependency = JarDependency;
+    /**
+     * In version 10.12.0: introduced
+     */
+    class JarDependencyExclusion extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__groupId = new internal.PrimitiveProperty(JarDependencyExclusion, this, "groupId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__artifactId = new internal.PrimitiveProperty(JarDependencyExclusion, this, "artifactId", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new JarDependencyExclusion() cannot be invoked directly, please use 'model.projects.createJarDependencyExclusion()'");
+            }
+        }
+        get containerAsJarDependency() {
+            return super.getContainerAs(JarDependency);
+        }
+        get groupId() {
+            return this.__groupId.get();
+        }
+        set groupId(newValue) {
+            this.__groupId.set(newValue);
+        }
+        get artifactId() {
+            return this.__artifactId.get();
+        }
+        set artifactId(newValue) {
+            this.__artifactId.set(newValue);
+        }
+        /**
+         * Creates and returns a new JarDependencyExclusion instance in the SDK and on the server.
+         * The new JarDependencyExclusion will be automatically stored in the 'exclusions' property
+         * of the parent JarDependency element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, JarDependencyExclusion.structureTypeName, { start: "10.12.0" });
+            return internal.instancehelpers.createElement(container, JarDependencyExclusion, "exclusions", true);
+        }
+        /**
+         * Creates and returns a new JarDependencyExclusion instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, JarDependencyExclusion);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    JarDependencyExclusion.structureTypeName = "Projects$JarDependencyExclusion";
+    JarDependencyExclusion.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0"
+    }, internal.StructureType.Element);
+    projects.JarDependencyExclusion = JarDependencyExclusion;
     /**
      * See: {@link https://docs.mendix.com/refguide/modules relevant section in reference guide}
      */
@@ -491,6 +561,8 @@ var projects;
             /** @internal */
             this.__solutionIdentifier = new internal.PrimitiveProperty(ModuleSettings, this, "solutionIdentifier", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__extensionName = new internal.PrimitiveProperty(ModuleSettings, this, "extensionName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__jarDependencies = new internal.PartListProperty(ModuleSettings, this, "jarDependencies", []);
             /** @internal */
             this.__basedOnVersion = new internal.PrimitiveProperty(ModuleSettings, this, "basedOnVersion", "", internal.PrimitiveTypeEnum.String);
@@ -530,10 +602,15 @@ var projects;
             this.__solutionIdentifier.set(newValue);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
+         * In version 10.10.0: introduced
+         */
+        get extensionName() {
+            return this.__extensionName.get();
+        }
+        set extensionName(newValue) {
+            this.__extensionName.set(newValue);
+        }
+        /**
          * In version 10.0.0: introduced
          */
         get jarDependencies() {
@@ -574,6 +651,9 @@ var projects;
             },
             solutionIdentifier: {
                 introduced: "10.0.0"
+            },
+            extensionName: {
+                introduced: "10.10.0"
             },
             jarDependencies: {
                 introduced: "10.0.0"

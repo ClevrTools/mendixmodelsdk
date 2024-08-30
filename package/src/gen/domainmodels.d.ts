@@ -387,6 +387,7 @@ export declare namespace domainmodels {
         get containerAsRangeSearchField(): pages.RangeSearchField;
         get containerAsSingleSearchField(): pages.SingleSearchField;
         get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
+        get containerAsTabContainer(): pages.TabContainer;
         /**
          * In version 9.6.0: added public
          */
@@ -605,6 +606,7 @@ export declare namespace domainmodels {
         get containerAsRangeSearchField(): pages.RangeSearchField;
         get containerAsSingleSearchField(): pages.SingleSearchField;
         get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
+        get containerAsTabContainer(): pages.TabContainer;
         get attribute(): IAttribute;
         set attribute(newValue: IAttribute);
         get attributeQualifiedName(): string;
@@ -744,6 +746,15 @@ export declare namespace domainmodels {
          *  7.11.0 and higher
          */
         static createInStaticOrDynamicStringUnderAttributeRef(container: pages.StaticOrDynamicString): AttributeRef;
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'activePageAttributeRef' property
+         * of the parent pages.TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageAttributeRef(container: pages.TabContainer): AttributeRef;
         /**
          * Creates and returns a new AttributeRef instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2335,6 +2346,11 @@ export declare namespace domainmodels {
         get dataStorageGuid(): string;
         set dataStorageGuid(newValue: string);
         get attributes(): internal.IList<IndexedAttribute>;
+        /**
+         * In version 10.12.0: introduced
+         */
+        get includeInOffline(): boolean;
+        set includeInOffline(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Index instance in the SDK and on the server.
@@ -2889,6 +2905,168 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NoGeneralization;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    interface IOqlViewAssociationSource extends IAssociationSource {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: IAssociationBase;
+        asLoaded(): OqlViewAssociationSource;
+        load(callback: (element: OqlViewAssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<OqlViewAssociationSource>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewAssociationSource extends AssociationSource implements IOqlViewAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAssociationBase(): AssociationBase;
+        get reference(): string;
+        set reference(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OqlViewAssociationSource instance in the SDK and on the server.
+         * The new OqlViewAssociationSource will be automatically stored in the 'source' property
+         * of the parent AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container: AssociationBase): OqlViewAssociationSource;
+        /**
+         * Creates and returns a new OqlViewAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OqlViewAssociationSource;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    interface IViewEntitySource extends IEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): ViewEntitySource;
+        load(callback: (element: ViewEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ViewEntitySource>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    abstract class ViewEntitySource extends EntitySource implements IViewEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    interface IOqlViewEntitySource extends IViewEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: IEntity;
+        asLoaded(): OqlViewEntitySource;
+        load(callback: (element: OqlViewEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<OqlViewEntitySource>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewEntitySource extends ViewEntitySource implements IOqlViewEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): Entity;
+        /**
+         * The value of this property is conceptually of type oql.OqlQuery.
+         */
+        get oql(): string;
+        set oql(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OqlViewEntitySource instance in the SDK and on the server.
+         * The new OqlViewEntitySource will be automatically stored in the 'source' property
+         * of the parent Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container: Entity): OqlViewEntitySource;
+        /**
+         * Creates and returns a new OqlViewEntitySource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OqlViewEntitySource;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    interface IOqlViewValue extends IValueType {
+        readonly model: IModel;
+        readonly containerAsAttribute: IAttribute;
+        asLoaded(): OqlViewValue;
+        load(callback: (element: OqlViewValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<OqlViewValue>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewValue extends ValueType implements IOqlViewValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): Attribute;
+        get reference(): string;
+        set reference(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OqlViewValue instance in the SDK and on the server.
+         * The new OqlViewValue will be automatically stored in the 'value' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container: Attribute): OqlViewValue;
+        /**
+         * Creates and returns a new OqlViewValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OqlViewValue;
     }
     /**
      * In version 8.10.0: introduced

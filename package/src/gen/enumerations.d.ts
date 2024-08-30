@@ -90,6 +90,11 @@ export declare namespace enumerations {
         get image(): images.IImage | null;
         set image(newValue: images.IImage | null);
         get imageQualifiedName(): string | null;
+        /**
+         * In version 10.12.0: introduced
+         */
+        get remoteValue(): RemoteEnumerationValue | null;
+        set remoteValue(newValue: RemoteEnumerationValue | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new EnumerationValue instance in the SDK and on the server.
@@ -112,6 +117,15 @@ export declare namespace enumerations {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsEnumeration(): Enumeration;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.12.0: introduced
+     */
+    abstract class RemoteEnumerationValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEnumerationValue(): EnumerationValue;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
 }

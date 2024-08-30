@@ -24,6 +24,12 @@ export declare namespace navigation {
         static Online: OfflineEntitySyncMode;
         protected qualifiedTsTypeName: string;
     }
+    class PopupNavigationTransition extends internal.AbstractEnum {
+        static SystemDefault: PopupNavigationTransition;
+        static ModalPresentationIOS: PopupNavigationTransition;
+        static BottomSheetAndroid: PopupNavigationTransition;
+        protected qualifiedTsTypeName: string;
+    }
     class ProfileKind extends internal.AbstractEnum {
         static Responsive: ProfileKind;
         static ResponsiveOffline: ProfileKind;
@@ -49,6 +55,12 @@ export declare namespace navigation {
         static OfflinePhone: ProfileType;
         static HybridPhone6: ProfileType;
         static HybridTablet6: ProfileType;
+        protected qualifiedTsTypeName: string;
+    }
+    class ScreenNavigationTransition extends internal.AbstractEnum {
+        static SystemDefault: ScreenNavigationTransition;
+        static SlideFromRightIOS: ScreenNavigationTransition;
+        static ScaleFromCenterAndroid: ScreenNavigationTransition;
         protected qualifiedTsTypeName: string;
     }
     /**
@@ -214,6 +226,26 @@ export declare namespace navigation {
          */
         get localFileEncryptionEnabled(): boolean;
         set localFileEncryptionEnabled(newValue: boolean);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get screenNavigationTransition(): ScreenNavigationTransition;
+        set screenNavigationTransition(newValue: ScreenNavigationTransition);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get popupNavigationTransition(): PopupNavigationTransition;
+        set popupNavigationTransition(newValue: PopupNavigationTransition);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get applyScreenTransition(): boolean;
+        set applyScreenTransition(newValue: boolean);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get hermesEnabled(): boolean;
+        set hermesEnabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
@@ -381,6 +413,11 @@ export declare namespace navigation {
          */
         get progressiveWebAppSettings(): ProgressiveWebAppSettings | null;
         set progressiveWebAppSettings(newValue: ProgressiveWebAppSettings | null);
+        /**
+         * In version 10.13.0: introduced
+         */
+        get notFoundHomepage(): NotFoundHomePage | null;
+        set notFoundHomepage(newValue: NotFoundHomePage | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NavigationProfile instance in the SDK and on the server.
@@ -478,6 +515,30 @@ export declare namespace navigation {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NavigationProfile;
+    }
+    /**
+     * In version 10.13.0: introduced
+     */
+    class NotFoundHomePage extends HomePageBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNavigationProfile(): NavigationProfile;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'notFoundHomepage' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.13.0 and higher
+         */
+        static createIn(container: NavigationProfile): NotFoundHomePage;
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotFoundHomePage;
     }
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.

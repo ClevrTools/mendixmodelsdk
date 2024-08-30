@@ -2509,6 +2509,8 @@ var pages;
     class DataSource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__forceFullObjects = new internal.PrimitiveProperty(DataSource, this, "forceFullObjects", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new DataSource() cannot be invoked directly, please use 'model.pages.createDataSource()'");
             }
@@ -2519,13 +2521,31 @@ var pages;
         get containerAsEntityWidget() {
             return super.getContainerAs(EntityWidget);
         }
+        /**
+         * In version 10.8.0: introduced
+         */
+        get forceFullObjects() {
+            return this.__forceFullObjects.get();
+        }
+        set forceFullObjects(newValue) {
+            this.__forceFullObjects.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__forceFullObjects.isAvailable) {
+                this.forceFullObjects = false;
+            }
         }
     }
     DataSource.structureTypeName = "Pages$DataSource";
-    DataSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSource.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            forceFullObjects: {
+                introduced: "10.8.0"
+            }
+        }
+    }, internal.StructureType.Element);
     pages.DataSource = DataSource;
     class EntityPathSource extends DataSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3522,6 +3542,8 @@ var pages;
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
             this.__placeholder = new internal.PartProperty(AttributeWidgetWithPlaceholder, this, "placeholder", null, true);
+            /** @internal */
+            this.__placeholderTemplate = new internal.PartProperty(AttributeWidgetWithPlaceholder, this, "placeholderTemplate", null, true);
             if (arguments.length < 4) {
                 throw new Error("new AttributeWidgetWithPlaceholder() cannot be invoked directly, please use 'model.pages.createAttributeWidgetWithPlaceholder()'");
             }
@@ -3601,22 +3623,47 @@ var pages;
         get containerAsReportPane() {
             return super.getContainerAs(reports_1.reports.ReportPane);
         }
+        /**
+         * In version 10.11.0: deleted
+         */
         get placeholder() {
             return this.__placeholder.get();
         }
         set placeholder(newValue) {
             this.__placeholder.set(newValue);
         }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get placeholderTemplate() {
+            return this.__placeholderTemplate.get();
+        }
+        set placeholderTemplate(newValue) {
+            this.__placeholderTemplate.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.placeholder = texts_1.texts.Text.create(this.model);
+            if (this.__placeholder.isAvailable) {
+                this.placeholder = texts_1.texts.Text.create(this.model);
+            }
+            if (this.__placeholderTemplate.isAvailable) {
+                this.placeholderTemplate = ClientTemplate.create(this.model);
+            }
         }
     }
     AttributeWidgetWithPlaceholder.structureTypeName = "Pages$AttributeWidgetWithPlaceholder";
     AttributeWidgetWithPlaceholder.versionInfo = new exports.StructureVersionInfo({
         properties: {
             placeholder: {
+                deleted: "10.11.0",
+                deletionMessage: "Use property 'placeholderTemplate' instead",
+                required: {
+                    currentValue: true
+                }
+            },
+            placeholderTemplate: {
+                introduced: "10.11.0",
                 required: {
                     currentValue: true
                 }
@@ -4256,6 +4303,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -4344,6 +4394,9 @@ var pages;
         }
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
@@ -4578,6 +4631,18 @@ var pages;
         }
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
+         * The new CallNanoflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CallNanoflowClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, CallNanoflowClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
          * The new CallNanoflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -4673,6 +4738,9 @@ var pages;
         }
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
@@ -4889,6 +4957,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
@@ -5374,6 +5454,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -5574,6 +5657,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, CancelChangesClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
+         * The new CancelChangesClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CancelChangesClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, CancelChangesClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
@@ -6395,6 +6490,9 @@ var pages;
         get containerAsAccessibilitySettings() {
             return super.getContainerAs(AccessibilitySettings);
         }
+        get containerAsAttributeWidgetWithPlaceholder() {
+            return super.getContainerAs(AttributeWidgetWithPlaceholder);
+        }
         get containerAsButton() {
             return super.getContainerAs(Button);
         }
@@ -6499,6 +6597,18 @@ var pages;
         static createInAccessibilitySettingsUnderScreenReaderTitle(container) {
             internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "9.22.0" });
             return internal.instancehelpers.createElement(container, ClientTemplate, "screenReaderTitle", false);
+        }
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'placeholderTemplate' property
+         * of the parent AttributeWidgetWithPlaceholder element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.11.0 and higher
+         */
+        static createInAttributeWidgetWithPlaceholderUnderPlaceholderTemplate(container) {
+            internal.createInVersionCheck(container.model, ClientTemplate.structureTypeName, { start: "10.11.0" });
+            return internal.instancehelpers.createElement(container, ClientTemplate, "placeholderTemplate", false);
         }
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
@@ -6809,6 +6919,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -7024,6 +7137,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, ClosePageClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
+         * The new ClosePageClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, ClosePageClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, ClosePageClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
@@ -7903,6 +8028,9 @@ var pages;
         get containerAsControlBarButton() {
             return super.getContainerAs(ControlBarButton);
         }
+        get containerAsDataView() {
+            return super.getContainerAs(DataView);
+        }
         get containerAsLayoutGridRow() {
             return super.getContainerAs(LayoutGridRow);
         }
@@ -8002,6 +8130,9 @@ var pages;
         get containerAsConditionallyEditableWidget() {
             return super.getContainerAs(ConditionallyEditableWidget);
         }
+        get containerAsDataView() {
+            return super.getContainerAs(DataView);
+        }
         /**
          * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
          * The new ConditionalEditabilitySettings will be automatically stored in the 'conditionalEditabilitySettings' property
@@ -8032,6 +8163,18 @@ var pages;
          * of the parent ConditionallyEditableWidget element passed as argument.
          */
         static createInConditionallyEditableWidgetUnderConditionalEditabilitySettings(container) {
+            return internal.instancehelpers.createElement(container, ConditionalEditabilitySettings, "conditionalEditabilitySettings", false);
+        }
+        /**
+         * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
+         * The new ConditionalEditabilitySettings will be automatically stored in the 'conditionalEditabilitySettings' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInDataViewUnderConditionalEditabilitySettings(container) {
+            internal.createInVersionCheck(container.model, ConditionalEditabilitySettings.structureTypeName, { start: "10.7.0" });
             return internal.instancehelpers.createElement(container, ConditionalEditabilitySettings, "conditionalEditabilitySettings", false);
         }
         /**
@@ -8572,6 +8715,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -8799,6 +8945,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, CreateObjectClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
+         * The new CreateObjectClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CreateObjectClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, CreateObjectClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
@@ -9998,6 +10156,10 @@ var pages;
             /** @internal */
             this.__editable = new internal.PrimitiveProperty(DataView, this, "editable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__editability = new internal.EnumProperty(DataView, this, "editability", EditableEnum.Always, EditableEnum);
+            /** @internal */
+            this.__conditionalEditabilitySettings = new internal.PartProperty(DataView, this, "conditionalEditabilitySettings", null, false);
+            /** @internal */
             this.__showControlBar = new internal.PrimitiveProperty(DataView, this, "showControlBar", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__showFooter = new internal.PrimitiveProperty(DataView, this, "showFooter", true, internal.PrimitiveTypeEnum.Boolean);
@@ -10123,11 +10285,32 @@ var pages;
         get footerWidgets() {
             return this.__footerWidgets.get();
         }
+        /**
+         * In version 10.7.0: deleted
+         */
         get editable() {
             return this.__editable.get();
         }
         set editable(newValue) {
             this.__editable.set(newValue);
+        }
+        /**
+         * In version 10.7.0: introduced
+         */
+        get editability() {
+            return this.__editability.get();
+        }
+        set editability(newValue) {
+            this.__editability.set(newValue);
+        }
+        /**
+         * In version 10.7.0: introduced
+         */
+        get conditionalEditabilitySettings() {
+            return this.__conditionalEditabilitySettings.get();
+        }
+        set conditionalEditabilitySettings(newValue) {
+            this.__conditionalEditabilitySettings.set(newValue);
         }
         /**
          * In version 6.7.0: deleted
@@ -10836,7 +11019,12 @@ var pages;
                 })();
             }
             this.dataSource = DataViewSource.create(this.model);
-            this.editable = true;
+            if (this.__editability.isAvailable) {
+                this.editability = EditableEnum.Always;
+            }
+            if (this.__editable.isAvailable) {
+                this.editable = true;
+            }
             this.labelWidth = 3;
             this.noEntityMessage = texts_1.texts.Text.create(this.model);
             if (this.__readOnlyStyle.isAvailable) {
@@ -10872,6 +11060,16 @@ var pages;
             },
             footerWidgets: {
                 introduced: "7.15.0"
+            },
+            editable: {
+                deleted: "10.7.0",
+                deletionMessage: "Use property 'editability' instead"
+            },
+            editability: {
+                introduced: "10.7.0"
+            },
+            conditionalEditabilitySettings: {
+                introduced: "10.7.0"
             },
             showControlBar: {
                 deleted: "6.7.0",
@@ -12351,6 +12549,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -12560,6 +12761,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, DeleteClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
+         * The new DeleteClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, DeleteClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, DeleteClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
@@ -31033,6 +31246,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -31224,6 +31440,18 @@ var pages;
         }
         /**
          * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
+         * The new MicroflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, MicroflowClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, MicroflowClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
          * The new MicroflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -31268,7 +31496,9 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(MicroflowParameterMapping, this, "parameter", null, "Microflows$MicroflowParameter");
             /** @internal */
-            this.__variable = new internal.PartProperty(MicroflowParameterMapping, this, "variable", null, true);
+            this.__expression = new internal.PrimitiveProperty(MicroflowParameterMapping, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__variable = new internal.PartProperty(MicroflowParameterMapping, this, "variable", null, false);
             /** @internal */
             this.__widget = new internal.LocalByNameReferenceProperty(MicroflowParameterMapping, this, "widget", null, "Pages$EntityWidget");
             /** @internal */
@@ -31290,6 +31520,18 @@ var pages;
             return this.__parameter.qualifiedName();
         }
         /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.10.0: introduced
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        /**
+         * In version 10.10.0: added optional
          * In version 8.4.0: introduced
          */
         get variable() {
@@ -31343,7 +31585,12 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             if (this.__variable.isAvailable) {
-                this.variable = PageVariable.create(this.model);
+                (() => {
+                    if (internal.isAtLeast("10.10.0", this.model)) {
+                        return;
+                    }
+                    this.variable = PageVariable.create(this.model);
+                })();
             }
         }
     }
@@ -31356,10 +31603,14 @@ var pages;
                     currentValue: true
                 }
             },
+            expression: {
+                introduced: "10.10.0"
+            },
             variable: {
                 introduced: "8.4.0",
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["10.10.0"]
                 }
             },
             widget: {
@@ -31735,7 +31986,9 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(NanoflowParameterMapping, this, "parameter", null, "Microflows$NanoflowParameter");
             /** @internal */
-            this.__variable = new internal.PartProperty(NanoflowParameterMapping, this, "variable", null, true);
+            this.__expression = new internal.PrimitiveProperty(NanoflowParameterMapping, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__variable = new internal.PartProperty(NanoflowParameterMapping, this, "variable", null, false);
             /** @internal */
             this.__widget = new internal.LocalByNameReferenceProperty(NanoflowParameterMapping, this, "widget", null, "Pages$EntityWidget");
             /** @internal */
@@ -31760,6 +32013,18 @@ var pages;
             return this.__parameter.qualifiedName();
         }
         /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.10.0: introduced
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        /**
+         * In version 10.10.0: added optional
          * In version 8.4.0: introduced
          */
         get variable() {
@@ -31825,7 +32090,12 @@ var pages;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             if (this.__variable.isAvailable) {
-                this.variable = PageVariable.create(this.model);
+                (() => {
+                    if (internal.isAtLeast("10.10.0", this.model)) {
+                        return;
+                    }
+                    this.variable = PageVariable.create(this.model);
+                })();
             }
         }
     }
@@ -31838,10 +32108,14 @@ var pages;
                     currentValue: true
                 }
             },
+            expression: {
+                introduced: "10.10.0"
+            },
             variable: {
                 introduced: "8.4.0",
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["10.10.0"]
                 }
             },
             widget: {
@@ -34463,6 +34737,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -34645,6 +34922,18 @@ var pages;
          */
         static createInStaticImageViewerUnderClickAction(container) {
             return internal.instancehelpers.createElement(container, NoClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new NoClientAction instance in the SDK and on the server.
+         * The new NoClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, NoClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, NoClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
@@ -34997,6 +35286,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -35206,6 +35498,18 @@ var pages;
         }
         /**
          * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
+         * The new OpenLinkClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenLinkClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, OpenLinkClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
          * The new OpenLinkClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -35293,6 +35597,9 @@ var pages;
         }
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
@@ -35497,6 +35804,18 @@ var pages;
         }
         /**
          * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenUserTaskClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, OpenUserTaskClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
          * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -35591,6 +35910,9 @@ var pages;
         }
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
         }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
@@ -35786,6 +36108,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, OpenWorkflowClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, OpenWorkflowClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
@@ -36159,6 +36493,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -36374,6 +36711,18 @@ var pages;
          */
         static createInStaticImageViewerUnderClickAction(container) {
             return internal.instancehelpers.createElement(container, PageClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new PageClientAction instance in the SDK and on the server.
+         * The new PageClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, PageClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, PageClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
@@ -37115,6 +37464,9 @@ var pages;
         get containerAsSnippetParameterMapping() {
             return super.getContainerAs(SnippetParameterMapping);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get widget() {
             return this.__widget.get();
         }
@@ -37285,6 +37637,18 @@ var pages;
         static createInSnippetParameterMappingUnderVariable(container) {
             internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "9.21.0" });
             return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'activePageSourceVariable' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "activePageSourceVariable", false);
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
@@ -42392,6 +42756,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -42598,6 +42965,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "7.0.2" });
             return internal.instancehelpers.createElement(container, SaveChangesClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
+         * The new SaveChangesClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SaveChangesClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, SaveChangesClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
@@ -44150,6 +44529,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -44365,6 +44747,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SetTaskOutcomeClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, SetTaskOutcomeClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
@@ -45250,6 +45644,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -45444,6 +45841,18 @@ var pages;
         static createInStaticImageViewerUnderClickAction(container) {
             internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "7.1.0" });
             return internal.instancehelpers.createElement(container, SignOutClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
+         * The new SignOutClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SignOutClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, SignOutClientAction, "activePageOnChangeAction", false);
         }
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
@@ -48659,6 +49068,9 @@ var pages;
         get containerAsStaticImageViewer() {
             return super.getContainerAs(StaticImageViewer);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
         get containerAsTextBox() {
             return super.getContainerAs(TextBox);
         }
@@ -48856,6 +49268,18 @@ var pages;
         }
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
+         * The new SyncClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, SyncClientAction.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, SyncClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new SyncClientAction instance in the SDK and on the server.
          * The new SyncClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -48894,6 +49318,12 @@ var pages;
             this.__tabPages = new internal.PartListProperty(TabContainer, this, "tabPages", []);
             /** @internal */
             this.__defaultPage = new internal.ByIdReferenceProperty(TabContainer, this, "defaultPage", null);
+            /** @internal */
+            this.__activePageAttributeRef = new internal.PartProperty(TabContainer, this, "activePageAttributeRef", null, false);
+            /** @internal */
+            this.__activePageSourceVariable = new internal.PartProperty(TabContainer, this, "activePageSourceVariable", null, false);
+            /** @internal */
+            this.__activePageOnChangeAction = new internal.PartProperty(TabContainer, this, "activePageOnChangeAction", null, true);
             if (arguments.length < 4) {
                 throw new Error("new TabContainer() cannot be invoked directly, please use 'model.pages.createTabContainer()'");
             }
@@ -48981,6 +49411,33 @@ var pages;
         }
         set defaultPage(newValue) {
             this.__defaultPage.set(newValue);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageAttributeRef() {
+            return this.__activePageAttributeRef.get();
+        }
+        set activePageAttributeRef(newValue) {
+            this.__activePageAttributeRef.set(newValue);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageSourceVariable() {
+            return this.__activePageSourceVariable.get();
+        }
+        set activePageSourceVariable(newValue) {
+            this.__activePageSourceVariable.set(newValue);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageOnChangeAction() {
+            return this.__activePageOnChangeAction.get();
+        }
+        set activePageOnChangeAction(newValue) {
+            this.__activePageOnChangeAction.set(newValue);
         }
         /**
          * Creates and returns a new TabContainer instance in the SDK and on the server.
@@ -49605,10 +50062,28 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__activePageOnChangeAction.isAvailable) {
+                this.activePageOnChangeAction = NoClientAction.create(this.model);
+            }
         }
     }
     TabContainer.structureTypeName = "Pages$TabContainer";
-    TabContainer.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    TabContainer.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            activePageAttributeRef: {
+                introduced: "10.14.0"
+            },
+            activePageSourceVariable: {
+                introduced: "10.14.0"
+            },
+            activePageOnChangeAction: {
+                introduced: "10.14.0",
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
     pages.TabContainer = TabContainer;
     /**
      * See: {@link https://docs.mendix.com/refguide/tab-container relevant section in reference guide}

@@ -195,6 +195,11 @@ export declare namespace odatapublish {
         get containerAsPublishedODataService2(): PublishedODataService2;
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 10.13.0: introduced
+         */
+        get alternativeExposedName(): string;
+        set alternativeExposedName(newValue: string);
         get entityType(): EntityType;
         set entityType(newValue: EntityType);
         get usePaging(): boolean;
@@ -333,6 +338,11 @@ export declare namespace odatapublish {
         set sortable(newValue: boolean);
         get enumerationAsString(): boolean;
         set enumerationAsString(newValue: boolean);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get stringAsGuid(): boolean;
+        set stringAsGuid(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedAttribute instance in the SDK and on the server.
@@ -362,6 +372,11 @@ export declare namespace odatapublish {
         set metadata(newValue: string);
         get openApi(): string;
         set openApi(newValue: string);
+        /**
+         * In version 10.13.0: introduced
+         */
+        get graphQL(): string;
+        set graphQL(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedContract instance in the SDK and on the server.
@@ -476,6 +491,11 @@ export declare namespace odatapublish {
         get containerAsPublishedODataService2(): PublishedODataService2;
         get exposedName(): string;
         set exposedName(newValue: string);
+        /**
+         * In version 10.13.0: introduced
+         */
+        get alternativeExposedName(): string;
+        set alternativeExposedName(newValue: string);
         get microflow(): microflows.IMicroflow;
         set microflow(newValue: microflows.IMicroflow);
         get microflowQualifiedName(): string;
@@ -593,6 +613,16 @@ export declare namespace odatapublish {
         set useGeneralization(newValue: boolean);
         get oDataVersion(): PublishedODataVersion;
         set oDataVersion(newValue: PublishedODataVersion);
+        /**
+         * In version 10.8.0: introduced
+         */
+        get includeMetadataByDefault(): boolean;
+        set includeMetadataByDefault(newValue: boolean);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get supportsGraphQL(): boolean;
+        set supportsGraphQL(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedODataService2 unit in the SDK and on the server.

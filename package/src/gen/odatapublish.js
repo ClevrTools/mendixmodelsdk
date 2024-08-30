@@ -349,6 +349,8 @@ var odatapublish;
             /** @internal */
             this.__exposedName = new internal.PrimitiveProperty(EntitySet, this, "exposedName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__alternativeExposedName = new internal.PrimitiveProperty(EntitySet, this, "alternativeExposedName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__entityType = new internal.ByIdReferenceProperty(EntitySet, this, "entityType", null);
             /** @internal */
             this.__usePaging = new internal.PrimitiveProperty(EntitySet, this, "usePaging", false, internal.PrimitiveTypeEnum.Boolean);
@@ -376,6 +378,15 @@ var odatapublish;
         }
         set exposedName(newValue) {
             this.__exposedName.set(newValue);
+        }
+        /**
+         * In version 10.13.0: introduced
+         */
+        get alternativeExposedName() {
+            return this.__alternativeExposedName.get();
+        }
+        set alternativeExposedName(newValue) {
+            this.__alternativeExposedName.set(newValue);
         }
         get entityType() {
             return this.__entityType.get();
@@ -460,6 +471,9 @@ var odatapublish;
     EntitySet.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
         properties: {
+            alternativeExposedName: {
+                introduced: "10.13.0"
+            },
             entityType: {
                 required: {
                     currentValue: true
@@ -738,6 +752,8 @@ var odatapublish;
             this.__sortable = new internal.PrimitiveProperty(PublishedAttribute, this, "sortable", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__enumerationAsString = new internal.PrimitiveProperty(PublishedAttribute, this, "enumerationAsString", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__stringAsGuid = new internal.PrimitiveProperty(PublishedAttribute, this, "stringAsGuid", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PublishedAttribute() cannot be invoked directly, please use 'model.odatapublish.createPublishedAttribute()'");
             }
@@ -785,6 +801,15 @@ var odatapublish;
             this.__enumerationAsString.set(newValue);
         }
         /**
+         * In version 10.12.0: introduced
+         */
+        get stringAsGuid() {
+            return this.__stringAsGuid.get();
+        }
+        set stringAsGuid(newValue) {
+            this.__stringAsGuid.set(newValue);
+        }
+        /**
          * Creates and returns a new PublishedAttribute instance in the SDK and on the server.
          * The new PublishedAttribute will be automatically stored in the 'childMembers' property
          * of the parent EntityType element passed as argument.
@@ -810,11 +835,19 @@ var odatapublish;
             this.enumerationAsString = false;
             this.filterable = true;
             this.sortable = true;
+            if (this.__stringAsGuid.isAvailable) {
+                this.stringAsGuid = false;
+            }
         }
     }
     PublishedAttribute.structureTypeName = "ODataPublish$PublishedAttribute";
     PublishedAttribute.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.4.0"
+        introduced: "10.4.0",
+        properties: {
+            stringAsGuid: {
+                introduced: "10.12.0"
+            }
+        }
     }, internal.StructureType.Element);
     odatapublish.PublishedAttribute = PublishedAttribute;
     /**
@@ -829,6 +862,8 @@ var odatapublish;
             this.__metadata = new internal.PrimitiveProperty(PublishedContract, this, "metadata", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__openApi = new internal.PrimitiveProperty(PublishedContract, this, "openApi", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__graphQL = new internal.PrimitiveProperty(PublishedContract, this, "graphQL", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PublishedContract() cannot be invoked directly, please use 'model.odatapublish.createPublishedContract()'");
             }
@@ -852,6 +887,15 @@ var odatapublish;
             this.__openApi.set(newValue);
         }
         /**
+         * In version 10.13.0: introduced
+         */
+        get graphQL() {
+            return this.__graphQL.get();
+        }
+        set graphQL(newValue) {
+            this.__graphQL.set(newValue);
+        }
+        /**
          * Creates and returns a new PublishedContract instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
@@ -873,6 +917,9 @@ var odatapublish;
                 required: {
                     currentValue: true
                 }
+            },
+            graphQL: {
+                introduced: "10.13.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1116,6 +1163,8 @@ var odatapublish;
             /** @internal */
             this.__exposedName = new internal.PrimitiveProperty(PublishedMicroflow, this, "exposedName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
+            this.__alternativeExposedName = new internal.PrimitiveProperty(PublishedMicroflow, this, "alternativeExposedName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__microflow = new internal.ByNameReferenceProperty(PublishedMicroflow, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
             this.__parameters = new internal.PartListProperty(PublishedMicroflow, this, "parameters", []);
@@ -1137,6 +1186,15 @@ var odatapublish;
         }
         set exposedName(newValue) {
             this.__exposedName.set(newValue);
+        }
+        /**
+         * In version 10.13.0: introduced
+         */
+        get alternativeExposedName() {
+            return this.__alternativeExposedName.get();
+        }
+        set alternativeExposedName(newValue) {
+            this.__alternativeExposedName.set(newValue);
         }
         get microflow() {
             return this.__microflow.get();
@@ -1198,6 +1256,9 @@ var odatapublish;
     PublishedMicroflow.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.4.0",
         properties: {
+            alternativeExposedName: {
+                introduced: "10.13.0"
+            },
             microflow: {
                 required: {
                     currentValue: true
@@ -1362,6 +1423,10 @@ var odatapublish;
             this.__useGeneralization = new internal.PrimitiveProperty(PublishedODataService2, this, "useGeneralization", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__oDataVersion = new internal.EnumProperty(PublishedODataService2, this, "oDataVersion", PublishedODataVersion.OData4, PublishedODataVersion);
+            /** @internal */
+            this.__includeMetadataByDefault = new internal.PrimitiveProperty(PublishedODataService2, this, "includeMetadataByDefault", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__supportsGraphQL = new internal.PrimitiveProperty(PublishedODataService2, this, "supportsGraphQL", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1458,6 +1523,24 @@ var odatapublish;
             this.__oDataVersion.set(newValue);
         }
         /**
+         * In version 10.8.0: introduced
+         */
+        get includeMetadataByDefault() {
+            return this.__includeMetadataByDefault.get();
+        }
+        set includeMetadataByDefault(newValue) {
+            this.__includeMetadataByDefault.set(newValue);
+        }
+        /**
+         * In version 10.12.0: introduced
+         */
+        get supportsGraphQL() {
+            return this.__supportsGraphQL.get();
+        }
+        set supportsGraphQL(newValue) {
+            this.__supportsGraphQL.set(newValue);
+        }
+        /**
          * Creates a new PublishedODataService2 unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -1468,17 +1551,31 @@ var odatapublish;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.authenticationTypes.replace([rest_1.rest.RestAuthenticationType.Basic]);
+            if (this.__includeMetadataByDefault.isAvailable) {
+                this.includeMetadataByDefault = true;
+            }
             this.namespace = "DefaultNamespace";
             this.oDataVersion = PublishedODataVersion.OData4;
             this.publishAssociations = true;
             this.replaceIllegalChars = false;
+            if (this.__supportsGraphQL.isAvailable) {
+                this.supportsGraphQL = false;
+            }
             this.useGeneralization = false;
             this.version = "1.0.0";
         }
     }
     PublishedODataService2.structureTypeName = "ODataPublish$PublishedODataService2";
     PublishedODataService2.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.4.0"
+        introduced: "10.4.0",
+        properties: {
+            includeMetadataByDefault: {
+                introduced: "10.8.0"
+            },
+            supportsGraphQL: {
+                introduced: "10.12.0"
+            }
+        }
     }, internal.StructureType.ModelUnit);
     odatapublish.PublishedODataService2 = PublishedODataService2;
     /**

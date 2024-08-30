@@ -16,6 +16,46 @@ var workflows;
     CompletionType.Relative = new CompletionType("Relative", {});
     CompletionType.Absolute = new CompletionType("Absolute", {});
     workflows.CompletionType = CompletionType;
+    class WorkflowEventType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "workflows.WorkflowEventType";
+        }
+    }
+    WorkflowEventType.WorkflowCompleted = new WorkflowEventType("WorkflowCompleted", {});
+    WorkflowEventType.WorkflowInitiated = new WorkflowEventType("WorkflowInitiated", {});
+    WorkflowEventType.WorkflowRestarted = new WorkflowEventType("WorkflowRestarted", {});
+    WorkflowEventType.WorkflowFailed = new WorkflowEventType("WorkflowFailed", {});
+    WorkflowEventType.WorkflowAborted = new WorkflowEventType("WorkflowAborted", {});
+    WorkflowEventType.WorkflowPaused = new WorkflowEventType("WorkflowPaused", {});
+    WorkflowEventType.WorkflowUnpaused = new WorkflowEventType("WorkflowUnpaused", {});
+    WorkflowEventType.WorkflowRetried = new WorkflowEventType("WorkflowRetried", {});
+    WorkflowEventType.WorkflowUpdated = new WorkflowEventType("WorkflowUpdated", {});
+    WorkflowEventType.WorkflowUpgraded = new WorkflowEventType("WorkflowUpgraded", {});
+    WorkflowEventType.WorkflowConflicted = new WorkflowEventType("WorkflowConflicted", {});
+    WorkflowEventType.WorkflowResolved = new WorkflowEventType("WorkflowResolved", {});
+    WorkflowEventType.WorkflowJumpToOptionApplied = new WorkflowEventType("WorkflowJumpToOptionApplied", {});
+    WorkflowEventType.StartEventExecuted = new WorkflowEventType("StartEventExecuted", {});
+    WorkflowEventType.EndEventExecuted = new WorkflowEventType("EndEventExecuted", {});
+    WorkflowEventType.DecisionExecuted = new WorkflowEventType("DecisionExecuted", {});
+    WorkflowEventType.JumpExecuted = new WorkflowEventType("JumpExecuted", {});
+    WorkflowEventType.ParallelSplitExecuted = new WorkflowEventType("ParallelSplitExecuted", {});
+    WorkflowEventType.ParallelMergeExecuted = new WorkflowEventType("ParallelMergeExecuted", {});
+    WorkflowEventType.CallWorkflowStarted = new WorkflowEventType("CallWorkflowStarted", {});
+    WorkflowEventType.CallWorkflowEnded = new WorkflowEventType("CallWorkflowEnded", {});
+    WorkflowEventType.CallMicroflowStarted = new WorkflowEventType("CallMicroflowStarted", {});
+    WorkflowEventType.CallMicroflowEnded = new WorkflowEventType("CallMicroflowEnded", {});
+    WorkflowEventType.WaitForNotificationStarted = new WorkflowEventType("WaitForNotificationStarted", {});
+    WorkflowEventType.WaitForNotificationEnded = new WorkflowEventType("WaitForNotificationEnded", {});
+    WorkflowEventType.WaitForTimerStarted = new WorkflowEventType("WaitForTimerStarted", {});
+    WorkflowEventType.WaitForTimerEnded = new WorkflowEventType("WaitForTimerEnded", {});
+    WorkflowEventType.UserTaskStarted = new WorkflowEventType("UserTaskStarted", {});
+    WorkflowEventType.MultiUserTaskOutcomeSelected = new WorkflowEventType("MultiUserTaskOutcomeSelected", {});
+    WorkflowEventType.UserTaskEnded = new WorkflowEventType("UserTaskEnded", {});
+    WorkflowEventType.NonInterruptingTimerEventExecuted = new WorkflowEventType("NonInterruptingTimerEventExecuted", {
+        introduced: "10.14.0"
+    });
+    workflows.WorkflowEventType = WorkflowEventType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
@@ -31,6 +71,9 @@ var workflows;
         }
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
+        }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
         }
         /** @internal */
         _initializeDefaultProperties() {
@@ -57,6 +100,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get amount() {
             return this.__amount.get();
         }
@@ -69,10 +115,22 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, AbsoluteAmountUserInput.structureTypeName, { start: "9.22.0" });
+        static createInMultiInputCompletionUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, AbsoluteAmountUserInput.structureTypeName, { start: "9.22.0", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, AbsoluteAmountUserInput, "targetUserInput", false);
+        }
+        /**
+         * Creates and returns a new AbsoluteAmountUserInput instance in the SDK and on the server.
+         * The new AbsoluteAmountUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, AbsoluteAmountUserInput.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, AbsoluteAmountUserInput, "targetUserInput", false);
         }
         /**
@@ -115,16 +173,31 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         /**
          * Creates and returns a new AllUserInput instance in the SDK and on the server.
          * The new AllUserInput will be automatically stored in the 'targetUserInput' property
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, AllUserInput.structureTypeName, { start: "9.22.0" });
+        static createInMultiInputCompletionUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, AllUserInput.structureTypeName, { start: "9.22.0", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, AllUserInput, "targetUserInput", false);
+        }
+        /**
+         * Creates and returns a new AllUserInput instance in the SDK and on the server.
+         * The new AllUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, AllUserInput.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, AllUserInput, "targetUserInput", false);
         }
         /**
@@ -234,6 +307,9 @@ var workflows;
         }
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
         }
         get flow() {
             return this.__flow.get();
@@ -366,6 +442,73 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.BooleanConditionOutcome = BooleanConditionOutcome;
+    /**
+     * In version 10.14.0: introduced
+     */
+    class BoundaryEvent extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__flow = new internal.PartProperty(BoundaryEvent, this, "flow", null, true);
+            /** @internal */
+            this.__caption = new internal.PrimitiveProperty(BoundaryEvent, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new BoundaryEvent() cannot be invoked directly, please use 'model.workflows.createBoundaryEvent()'");
+            }
+        }
+        get containerAsCallMicroflowTask() {
+            return super.getContainerAs(CallMicroflowTask);
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        get flow() {
+            return this.__flow.get();
+        }
+        set flow(newValue) {
+            this.__flow.set(newValue);
+        }
+        get caption() {
+            return this.__caption.get();
+        }
+        set caption(newValue) {
+            this.__caption.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.flow = Flow.create(this.model);
+        }
+    }
+    BoundaryEvent.structureTypeName = "Workflows$BoundaryEvent";
+    BoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.14.0",
+        properties: {
+            flow: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            },
+            caption: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.BoundaryEvent = BoundaryEvent;
     /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
@@ -504,6 +647,8 @@ var workflows;
             this.__microflow = new internal.ByNameReferenceProperty(CallMicroflowTask, this, "microflow", null, "Microflows$Microflow");
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(CallMicroflowTask, this, "parameterMappings", []);
+            /** @internal */
+            this.__boundaryEvents = new internal.PartListProperty(CallMicroflowTask, this, "boundaryEvents", []);
             if (arguments.length < 4) {
                 throw new Error("new CallMicroflowTask() cannot be invoked directly, please use 'model.workflows.createCallMicroflowTask()'");
             }
@@ -522,6 +667,12 @@ var workflows;
         }
         get parameterMappings() {
             return this.__parameterMappings.get();
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents() {
+            return this.__boundaryEvents.get();
         }
         /**
          * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
@@ -556,6 +707,12 @@ var workflows;
                 public: {
                     currentValue: true
                 }
+            },
+            boundaryEvents: {
+                introduced: "10.14.0",
+                public: {
+                    currentValue: true
+                }
             }
         },
         public: {
@@ -580,6 +737,8 @@ var workflows;
             this.__parameterExpression = new internal.PrimitiveProperty(CallWorkflowActivity, this, "parameterExpression", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(CallWorkflowActivity, this, "parameterMappings", []);
+            /** @internal */
+            this.__boundaryEvents = new internal.PartListProperty(CallWorkflowActivity, this, "boundaryEvents", []);
             /** @internal */
             this.__executeAsync = new internal.PrimitiveProperty(CallWorkflowActivity, this, "executeAsync", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
@@ -615,6 +774,12 @@ var workflows;
          */
         get parameterMappings() {
             return this.__parameterMappings.get();
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents() {
+            return this.__boundaryEvents.get();
         }
         /**
          * In version 9.18.0: introduced
@@ -667,6 +832,12 @@ var workflows;
             parameterMappings: {
                 introduced: "9.18.0"
             },
+            boundaryEvents: {
+                introduced: "10.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
             executeAsync: {
                 introduced: "9.18.0"
             }
@@ -693,6 +864,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -718,6 +892,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get fallbackOutcome() {
             return this.__fallbackOutcome.get();
         }
@@ -730,10 +907,25 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, ConsensusCompletionCriteria.structureTypeName, { start: "9.22.0" });
+        static createInMultiInputCompletionUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, ConsensusCompletionCriteria.structureTypeName, {
+                start: "9.22.0",
+                end: "10.11.0"
+            });
+            return internal.instancehelpers.createElement(container, ConsensusCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new ConsensusCompletionCriteria instance in the SDK and on the server.
+         * The new ConsensusCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, ConsensusCompletionCriteria.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, ConsensusCompletionCriteria, "completionCriteria", false);
         }
         /**
@@ -768,6 +960,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -795,16 +990,31 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /**
          * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
          * The new EmptyUserSource will be automatically stored in the 'userSource' property
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.10.0 and higher
+         *  9.10.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "9.10.0" });
+        static createInUserTaskUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "9.10.0", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, EmptyUserSource, "userSource", false);
+        }
+        /**
+         * Creates and returns a new EmptyUserSource instance in the SDK and on the server.
+         * The new EmptyUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, EmptyUserSource, "userSource", false);
         }
         /**
@@ -825,6 +1035,52 @@ var workflows;
         introduced: "9.10.0"
     }, internal.StructureType.Element);
     workflows.EmptyUserSource = EmptyUserSource;
+    /**
+     * In version 10.14.0: introduced
+     */
+    class EndOfBoundaryEventPathActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EndOfBoundaryEventPathActivity() cannot be invoked directly, please use 'model.workflows.createEndOfBoundaryEventPathActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EndOfBoundaryEventPathActivity.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, EndOfBoundaryEventPathActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EndOfBoundaryEventPathActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EndOfBoundaryEventPathActivity.structureTypeName = "Workflows$EndOfBoundaryEventPathActivity";
+    EndOfBoundaryEventPathActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.14.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.EndOfBoundaryEventPathActivity = EndOfBoundaryEventPathActivity;
     /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
@@ -1022,6 +1278,9 @@ var workflows;
                 throw new Error("new Flow() cannot be invoked directly, please use 'model.workflows.createFlow()'");
             }
         }
+        get containerAsBoundaryEvent() {
+            return super.getContainerAs(BoundaryEvent);
+        }
         get containerAsOutcome() {
             return super.getContainerAs(Outcome);
         }
@@ -1030,6 +1289,18 @@ var workflows;
         }
         get activities() {
             return this.__activities.get();
+        }
+        /**
+         * Creates and returns a new Flow instance in the SDK and on the server.
+         * The new Flow will be automatically stored in the 'flow' property
+         * of the parent BoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInBoundaryEventUnderFlow(container) {
+            internal.createInVersionCheck(container.model, Flow.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, Flow, "flow", false);
         }
         /**
          * Creates and returns a new Flow instance in the SDK and on the server.
@@ -1163,6 +1434,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get completionType() {
             return this.__completionType.get();
         }
@@ -1181,10 +1455,25 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, MajorityCompletionCriteria.structureTypeName, { start: "10.0.0" });
+        static createInMultiInputCompletionUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, MajorityCompletionCriteria.structureTypeName, {
+                start: "10.0.0",
+                end: "10.11.0"
+            });
+            return internal.instancehelpers.createElement(container, MajorityCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new MajorityCompletionCriteria instance in the SDK and on the server.
+         * The new MajorityCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, MajorityCompletionCriteria.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, MajorityCompletionCriteria, "completionCriteria", false);
         }
         /**
@@ -1219,6 +1508,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -1244,6 +1536,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         get microflow() {
             return this.__microflow.get();
         }
@@ -1259,10 +1554,22 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, MicroflowBasedEvent.structureTypeName, { start: "9.0.5" });
+        static createInUserTaskUnderOnCreatedEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowBasedEvent.structureTypeName, { start: "9.0.5", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, MicroflowBasedEvent, "onCreatedEvent", false);
+        }
+        /**
+         * Creates and returns a new MicroflowBasedEvent instance in the SDK and on the server.
+         * The new MicroflowBasedEvent will be automatically stored in the 'onCreatedEvent' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOnCreatedEvent(container) {
+            internal.createInVersionCheck(container.model, MicroflowBasedEvent.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, MicroflowBasedEvent, "onCreatedEvent", false);
         }
         /**
@@ -1299,6 +1606,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         get microflow() {
             return this.__microflow.get();
         }
@@ -1314,10 +1624,22 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, MicroflowBasedUserSource.structureTypeName, { start: "9.0.2" });
+        static createInUserTaskUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, MicroflowBasedUserSource.structureTypeName, { start: "9.0.2", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, MicroflowBasedUserSource, "userSource", false);
+        }
+        /**
+         * Creates and returns a new MicroflowBasedUserSource instance in the SDK and on the server.
+         * The new MicroflowBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, MicroflowBasedUserSource.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, MicroflowBasedUserSource, "userSource", false);
         }
         /**
@@ -1422,6 +1744,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get microflow() {
             return this.__microflow.get();
         }
@@ -1437,10 +1762,25 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.3.0 and higher
+         *  10.3.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, MicroflowCompletionCriteria.structureTypeName, { start: "10.3.0" });
+        static createInMultiInputCompletionUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, MicroflowCompletionCriteria.structureTypeName, {
+                start: "10.3.0",
+                end: "10.11.0"
+            });
+            return internal.instancehelpers.createElement(container, MicroflowCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new MicroflowCompletionCriteria instance in the SDK and on the server.
+         * The new MicroflowCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, MicroflowCompletionCriteria.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, MicroflowCompletionCriteria, "completionCriteria", false);
         }
         /**
@@ -1478,6 +1818,9 @@ var workflows;
         }
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
+        }
+        get containerAsWorkflowEventHandler() {
+            return super.getContainerAs(WorkflowEventHandler);
         }
         get microflow() {
             return this.__microflow.get();
@@ -1538,6 +1881,18 @@ var workflows;
         }
         /**
          * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'microflowEventHandler' property
+         * of the parent WorkflowEventHandler element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowEventHandlerUnderMicroflowEventHandler(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "10.7.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "microflowEventHandler", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -1555,6 +1910,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MicroflowEventHandler = MicroflowEventHandler;
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     class UserTaskCompletion extends internal.Element {
@@ -1574,10 +1930,13 @@ var workflows;
     }
     UserTaskCompletion.structureTypeName = "Workflows$UserTaskCompletion";
     UserTaskCompletion.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.22.0"
+        introduced: "9.22.0",
+        deleted: "10.12.0",
+        deletionMessage: "this value became part of the MultiUserTask class"
     }, internal.StructureType.Element);
     workflows.UserTaskCompletion = UserTaskCompletion;
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     class MultiInputCompletion extends UserTaskCompletion {
@@ -1623,10 +1982,10 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, MultiInputCompletion.structureTypeName, { start: "9.22.0" });
+            internal.createInVersionCheck(container.model, MultiInputCompletion.structureTypeName, { start: "9.22.0", end: "10.11.0" });
             return internal.instancehelpers.createElement(container, MultiInputCompletion, "userTaskCompletion", false);
         }
         /**
@@ -1650,6 +2009,8 @@ var workflows;
     MultiInputCompletion.structureTypeName = "Workflows$MultiInputCompletion";
     MultiInputCompletion.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.22.0",
+        deleted: "10.12.0",
+        deletionMessage: "not used anymore since now we have SingleUserTask and MultiUserTask classes",
         properties: {
             targetUserInput: {
                 required: {
@@ -1668,6 +2029,236 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MultiInputCompletion = MultiInputCompletion;
     /**
+     * In version 10.12.0: introduced
+     */
+    class UserTaskActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__taskPage = new internal.PartProperty(UserTaskActivity, this, "taskPage", null, true);
+            /** @internal */
+            this.__taskName = new internal.PartProperty(UserTaskActivity, this, "taskName", null, true);
+            /** @internal */
+            this.__taskDescription = new internal.PartProperty(UserTaskActivity, this, "taskDescription", null, true);
+            /** @internal */
+            this.__dueDate = new internal.PrimitiveProperty(UserTaskActivity, this, "dueDate", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__userSource = new internal.PartProperty(UserTaskActivity, this, "userSource", null, true);
+            /** @internal */
+            this.__outcomes = new internal.PartListProperty(UserTaskActivity, this, "outcomes", []);
+            /** @internal */
+            this.__boundaryEvents = new internal.PartListProperty(UserTaskActivity, this, "boundaryEvents", []);
+            /** @internal */
+            this.__onCreatedEvent = new internal.PartProperty(UserTaskActivity, this, "onCreatedEvent", null, true);
+            /** @internal */
+            this.__autoAssignSingleTargetUser = new internal.PrimitiveProperty(UserTaskActivity, this, "autoAssignSingleTargetUser", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new UserTaskActivity() cannot be invoked directly, please use 'model.workflows.createUserTaskActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get taskPage() {
+            return this.__taskPage.get();
+        }
+        set taskPage(newValue) {
+            this.__taskPage.set(newValue);
+        }
+        get taskName() {
+            return this.__taskName.get();
+        }
+        set taskName(newValue) {
+            this.__taskName.set(newValue);
+        }
+        get taskDescription() {
+            return this.__taskDescription.get();
+        }
+        set taskDescription(newValue) {
+            this.__taskDescription.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get dueDate() {
+            return this.__dueDate.get();
+        }
+        set dueDate(newValue) {
+            this.__dueDate.set(newValue);
+        }
+        get userSource() {
+            return this.__userSource.get();
+        }
+        set userSource(newValue) {
+            this.__userSource.set(newValue);
+        }
+        get outcomes() {
+            return this.__outcomes.get();
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents() {
+            return this.__boundaryEvents.get();
+        }
+        get onCreatedEvent() {
+            return this.__onCreatedEvent.get();
+        }
+        set onCreatedEvent(newValue) {
+            this.__onCreatedEvent.set(newValue);
+        }
+        get autoAssignSingleTargetUser() {
+            return this.__autoAssignSingleTargetUser.get();
+        }
+        set autoAssignSingleTargetUser(newValue) {
+            this.__autoAssignSingleTargetUser.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.autoAssignSingleTargetUser = false;
+            this.onCreatedEvent = NoEvent.create(this.model);
+            this.taskDescription = microflows_1.microflows.StringTemplate.create(this.model);
+            this.taskName = microflows_1.microflows.StringTemplate.create(this.model);
+            this.taskPage = PageReference.create(this.model);
+            this.userSource = XPathBasedUserSource.create(this.model);
+        }
+    }
+    UserTaskActivity.structureTypeName = "Workflows$UserTaskActivity";
+    UserTaskActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0",
+        properties: {
+            taskPage: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            },
+            taskName: {
+                required: {
+                    currentValue: true
+                }
+            },
+            taskDescription: {
+                required: {
+                    currentValue: true
+                }
+            },
+            userSource: {
+                required: {
+                    currentValue: true
+                }
+            },
+            outcomes: {
+                public: {
+                    currentValue: true
+                }
+            },
+            boundaryEvents: {
+                introduced: "10.14.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            onCreatedEvent: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.UserTaskActivity = UserTaskActivity;
+    /**
+     * In version 10.12.0: introduced
+     */
+    class MultiUserTaskActivity extends UserTaskActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__targetUserInput = new internal.PartProperty(MultiUserTaskActivity, this, "targetUserInput", null, true);
+            /** @internal */
+            this.__completionCriteria = new internal.PartProperty(MultiUserTaskActivity, this, "completionCriteria", null, true);
+            /** @internal */
+            this.__awaitAllUsers = new internal.PrimitiveProperty(MultiUserTaskActivity, this, "awaitAllUsers", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new MultiUserTaskActivity() cannot be invoked directly, please use 'model.workflows.createMultiUserTaskActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get targetUserInput() {
+            return this.__targetUserInput.get();
+        }
+        set targetUserInput(newValue) {
+            this.__targetUserInput.set(newValue);
+        }
+        get completionCriteria() {
+            return this.__completionCriteria.get();
+        }
+        set completionCriteria(newValue) {
+            this.__completionCriteria.set(newValue);
+        }
+        get awaitAllUsers() {
+            return this.__awaitAllUsers.get();
+        }
+        set awaitAllUsers(newValue) {
+            this.__awaitAllUsers.set(newValue);
+        }
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MultiUserTaskActivity.structureTypeName, { start: "10.12.0" });
+            return internal.instancehelpers.createElement(container, MultiUserTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MultiUserTaskActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.awaitAllUsers = false;
+            this.completionCriteria = ConsensusCompletionCriteria.create(this.model);
+            this.targetUserInput = AllUserInput.create(this.model);
+        }
+    }
+    MultiUserTaskActivity.structureTypeName = "Workflows$MultiUserTaskActivity";
+    MultiUserTaskActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0",
+        properties: {
+            targetUserInput: {
+                required: {
+                    currentValue: true
+                }
+            },
+            completionCriteria: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.MultiUserTaskActivity = MultiUserTaskActivity;
+    /**
      * In version 9.0.5: introduced
      */
     class NoEvent extends UserTaskEvent {
@@ -1680,16 +2271,31 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /**
          * Creates and returns a new NoEvent instance in the SDK and on the server.
          * The new NoEvent will be automatically stored in the 'onCreatedEvent' property
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, NoEvent.structureTypeName, { start: "9.0.5" });
+        static createInUserTaskUnderOnCreatedEvent(container) {
+            internal.createInVersionCheck(container.model, NoEvent.structureTypeName, { start: "9.0.5", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, NoEvent, "onCreatedEvent", false);
+        }
+        /**
+         * Creates and returns a new NoEvent instance in the SDK and on the server.
+         * The new NoEvent will be automatically stored in the 'onCreatedEvent' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOnCreatedEvent(container) {
+            internal.createInVersionCheck(container.model, NoEvent.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, NoEvent, "onCreatedEvent", false);
         }
         /**
@@ -1783,6 +2389,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
@@ -1804,10 +2413,22 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.11.0 and higher
+         *  9.11.0 to 10.11.0
          */
         static createInUserTaskUnderTaskPage(container) {
-            internal.createInVersionCheck(container.model, PageReference.structureTypeName, { start: "9.11.0" });
+            internal.createInVersionCheck(container.model, PageReference.structureTypeName, { start: "9.11.0", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, PageReference, "taskPage", false);
+        }
+        /**
+         * Creates and returns a new PageReference instance in the SDK and on the server.
+         * The new PageReference will be automatically stored in the 'taskPage' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderTaskPage(container) {
+            internal.createInVersionCheck(container.model, PageReference.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, PageReference, "taskPage", false);
         }
         /**
@@ -2096,6 +2717,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get percentage() {
             return this.__percentage.get();
         }
@@ -2108,10 +2732,25 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, PercentageAmountUserInput.structureTypeName, { start: "9.22.0" });
+        static createInMultiInputCompletionUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, PercentageAmountUserInput.structureTypeName, {
+                start: "9.22.0",
+                end: "10.11.0"
+            });
+            return internal.instancehelpers.createElement(container, PercentageAmountUserInput, "targetUserInput", false);
+        }
+        /**
+         * Creates and returns a new PercentageAmountUserInput instance in the SDK and on the server.
+         * The new PercentageAmountUserInput will be automatically stored in the 'targetUserInput' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderTargetUserInput(container) {
+            internal.createInVersionCheck(container.model, PercentageAmountUserInput.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, PercentageAmountUserInput, "targetUserInput", false);
         }
         /**
@@ -2142,6 +2781,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.PercentageAmountUserInput = PercentageAmountUserInput;
     /**
+     * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
     class SingleInputCompletion extends UserTaskCompletion {
@@ -2160,10 +2800,10 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, SingleInputCompletion.structureTypeName, { start: "9.22.0" });
+            internal.createInVersionCheck(container.model, SingleInputCompletion.structureTypeName, { start: "9.22.0", end: "10.11.0" });
             return internal.instancehelpers.createElement(container, SingleInputCompletion, "userTaskCompletion", false);
         }
         /**
@@ -2181,9 +2821,57 @@ var workflows;
     }
     SingleInputCompletion.structureTypeName = "Workflows$SingleInputCompletion";
     SingleInputCompletion.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.22.0"
+        introduced: "9.22.0",
+        deleted: "10.12.0",
+        deletionMessage: "not used anymore since now we have SingleUserTask and MultiUserTask classes"
     }, internal.StructureType.Element);
     workflows.SingleInputCompletion = SingleInputCompletion;
+    /**
+     * In version 10.12.0: introduced
+     */
+    class SingleUserTaskActivity extends UserTaskActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new SingleUserTaskActivity() cannot be invoked directly, please use 'model.workflows.createSingleUserTaskActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SingleUserTaskActivity.structureTypeName, { start: "10.12.0" });
+            return internal.instancehelpers.createElement(container, SingleUserTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SingleUserTaskActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SingleUserTaskActivity.structureTypeName = "Workflows$SingleUserTaskActivity";
+    SingleUserTaskActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.SingleUserTaskActivity = SingleUserTaskActivity;
     /**
      * In version 10.0.0: introduced
      */
@@ -2202,6 +2890,9 @@ var workflows;
         }
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
+        }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
         }
         get completionType() {
             return this.__completionType.get();
@@ -2227,10 +2918,25 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, ThresholdCompletionCriteria.structureTypeName, { start: "10.0.0" });
+        static createInMultiInputCompletionUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, ThresholdCompletionCriteria.structureTypeName, {
+                start: "10.0.0",
+                end: "10.11.0"
+            });
+            return internal.instancehelpers.createElement(container, ThresholdCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new ThresholdCompletionCriteria instance in the SDK and on the server.
+         * The new ThresholdCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, ThresholdCompletionCriteria.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, ThresholdCompletionCriteria, "completionCriteria", false);
         }
         /**
@@ -2254,6 +2960,109 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ThresholdCompletionCriteria = ThresholdCompletionCriteria;
     /**
+     * In version 10.14.0: introduced
+     */
+    class TimerBoundaryEvent extends BoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__delay = new internal.PrimitiveProperty(TimerBoundaryEvent, this, "delay", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new TimerBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createTimerBoundaryEvent()'");
+            }
+        }
+        get containerAsCallMicroflowTask() {
+            return super.getContainerAs(CallMicroflowTask);
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get delay() {
+            return this.__delay.get();
+        }
+        set delay(newValue) {
+            this.__delay.set(newValue);
+        }
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * The new TimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new TimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TimerBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TimerBoundaryEvent.structureTypeName = "Workflows$TimerBoundaryEvent";
+    TimerBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.14.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.TimerBoundaryEvent = TimerBoundaryEvent;
+    /**
+     * In version 10.12.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -2399,10 +3208,10 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, UserTask.structureTypeName, { start: "9.0.2" });
+            internal.createInVersionCheck(container.model, UserTask.structureTypeName, { start: "9.0.2", end: "10.11.0" });
             return internal.instancehelpers.createElement(container, UserTask, "activities", true);
         }
         /**
@@ -2436,6 +3245,8 @@ var workflows;
     UserTask.structureTypeName = "Workflows$UserTask";
     UserTask.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "10.12.0",
+        deletionMessage: "replaced with the abstract class UserTaskBase",
         properties: {
             userTaskEntity: {
                 introduced: "9.6.0",
@@ -2535,6 +3346,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /**
          * In version 9.19.0: deleted
          */
@@ -2568,10 +3382,22 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, UserTaskOutcome.structureTypeName, { start: "9.0.2" });
+        static createInUserTaskUnderOutcomes(container) {
+            internal.createInVersionCheck(container.model, UserTaskOutcome.structureTypeName, { start: "9.0.2", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, UserTaskOutcome, "outcomes", true);
+        }
+        /**
+         * Creates and returns a new UserTaskOutcome instance in the SDK and on the server.
+         * The new UserTaskOutcome will be automatically stored in the 'outcomes' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderOutcomes(container) {
+            internal.createInVersionCheck(container.model, UserTaskOutcome.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, UserTaskOutcome, "outcomes", true);
         }
         /**
@@ -2643,6 +3469,9 @@ var workflows;
         get containerAsMultiInputCompletion() {
             return super.getContainerAs(MultiInputCompletion);
         }
+        get containerAsMultiUserTaskActivity() {
+            return super.getContainerAs(MultiUserTaskActivity);
+        }
         get vetoOutcome() {
             return this.__vetoOutcome.get();
         }
@@ -2655,10 +3484,22 @@ var workflows;
          * of the parent MultiInputCompletion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.22.0 and higher
+         *  9.22.0 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, VetoCompletionCriteria.structureTypeName, { start: "9.22.0" });
+        static createInMultiInputCompletionUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, VetoCompletionCriteria.structureTypeName, { start: "9.22.0", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, VetoCompletionCriteria, "completionCriteria", false);
+        }
+        /**
+         * Creates and returns a new VetoCompletionCriteria instance in the SDK and on the server.
+         * The new VetoCompletionCriteria will be automatically stored in the 'completionCriteria' property
+         * of the parent MultiUserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInMultiUserTaskActivityUnderCompletionCriteria(container) {
+            internal.createInVersionCheck(container.model, VetoCompletionCriteria.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, VetoCompletionCriteria, "completionCriteria", false);
         }
         /**
@@ -2736,12 +3577,20 @@ var workflows;
     class WaitForNotificationActivity extends WorkflowActivity {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__boundaryEvents = new internal.PartListProperty(WaitForNotificationActivity, this, "boundaryEvents", []);
             if (arguments.length < 4) {
                 throw new Error("new WaitForNotificationActivity() cannot be invoked directly, please use 'model.workflows.createWaitForNotificationActivity()'");
             }
         }
         get containerAsFlow() {
             return super.getContainerAs(Flow);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get boundaryEvents() {
+            return this.__boundaryEvents.get();
         }
         /**
          * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
@@ -2775,6 +3624,14 @@ var workflows;
     WaitForNotificationActivity.structureTypeName = "Workflows$WaitForNotificationActivity";
     WaitForNotificationActivity.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.0.0",
+        properties: {
+            boundaryEvents: {
+                introduced: "10.14.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
         public: {
             currentValue: true
         }
@@ -2874,6 +3731,8 @@ var workflows;
             this.__workflowOnStateChangeEvent = new internal.PartProperty(Workflow, this, "workflowOnStateChangeEvent", null, false);
             /** @internal */
             this.__usertaskOnStateChangeEvent = new internal.PartProperty(Workflow, this, "usertaskOnStateChangeEvent", null, false);
+            /** @internal */
+            this.__onWorkflowEvent = new internal.PartListProperty(Workflow, this, "onWorkflowEvent", []);
             /** @internal */
             this.__annotation = new internal.PartProperty(Workflow, this, "annotation", null, false);
             this._containmentName = "documents";
@@ -3007,6 +3866,12 @@ var workflows;
             this.__usertaskOnStateChangeEvent.set(newValue);
         }
         /**
+         * In version 10.7.0: introduced
+         */
+        get onWorkflowEvent() {
+            return this.__onWorkflowEvent.get();
+        }
+        /**
          * In version 9.15.0: introduced
          */
         get annotation() {
@@ -3124,6 +3989,9 @@ var workflows;
             },
             usertaskOnStateChangeEvent: {
                 introduced: "9.12.0"
+            },
+            onWorkflowEvent: {
+                introduced: "10.7.0"
             },
             annotation: {
                 introduced: "9.15.0"
@@ -3364,6 +4232,93 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.WorkflowDefinitionObjectSelection = WorkflowDefinitionObjectSelection;
     /**
+     * In version 10.7.0: introduced
+     */
+    class WorkflowEventHandler extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(WorkflowEventHandler, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__microflowEventHandler = new internal.PartProperty(WorkflowEventHandler, this, "microflowEventHandler", null, false);
+            /** @internal */
+            this.__eventTypes = new internal.EnumListProperty(WorkflowEventHandler, this, "eventTypes", [], WorkflowEventType);
+            /** @internal */
+            this.__documentation = new internal.PrimitiveProperty(WorkflowEventHandler, this, "documentation", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowEventHandler() cannot be invoked directly, please use 'model.workflows.createWorkflowEventHandler()'");
+            }
+        }
+        get containerAsWorkflowsProjectSettingsPart() {
+            return super.getContainerAs(settings_1.settings.WorkflowsProjectSettingsPart);
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        get microflowEventHandler() {
+            return this.__microflowEventHandler.get();
+        }
+        set microflowEventHandler(newValue) {
+            this.__microflowEventHandler.set(newValue);
+        }
+        get eventTypes() {
+            return this.__eventTypes.get();
+        }
+        get documentation() {
+            return this.__documentation.get();
+        }
+        set documentation(newValue) {
+            this.__documentation.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * The new WorkflowEventHandler will be automatically stored in the 'onWorkflowEvent' property
+         * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowsProjectSettingsPartUnderOnWorkflowEvent(container) {
+            internal.createInVersionCheck(container.model, WorkflowEventHandler.structureTypeName, { start: "10.7.0" });
+            return internal.instancehelpers.createElement(container, WorkflowEventHandler, "onWorkflowEvent", true);
+        }
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * The new WorkflowEventHandler will be automatically stored in the 'onWorkflowEvent' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInWorkflowUnderOnWorkflowEvent(container) {
+            internal.createInVersionCheck(container.model, WorkflowEventHandler.structureTypeName, { start: "10.7.0" });
+            return internal.instancehelpers.createElement(container, WorkflowEventHandler, "onWorkflowEvent", true);
+        }
+        /**
+         * Creates and returns a new WorkflowEventHandler instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowEventHandler);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowEventHandler.structureTypeName = "Workflows$WorkflowEventHandler";
+    WorkflowEventHandler.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.7.0"
+    }, internal.StructureType.Element);
+    workflows.WorkflowEventHandler = WorkflowEventHandler;
+    /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced
      */
@@ -3446,6 +4401,9 @@ var workflows;
         get containerAsUserTask() {
             return super.getContainerAs(UserTask);
         }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
         /**
          * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
          */
@@ -3461,10 +4419,22 @@ var workflows;
          * of the parent UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, XPathBasedUserSource.structureTypeName, { start: "9.0.2" });
+        static createInUserTaskUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, XPathBasedUserSource.structureTypeName, { start: "9.0.2", end: "10.11.0" });
+            return internal.instancehelpers.createElement(container, XPathBasedUserSource, "userSource", false);
+        }
+        /**
+         * Creates and returns a new XPathBasedUserSource instance in the SDK and on the server.
+         * The new XPathBasedUserSource will be automatically stored in the 'userSource' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderUserSource(container) {
+            internal.createInVersionCheck(container.model, XPathBasedUserSource.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, XPathBasedUserSource, "userSource", false);
         }
         /**

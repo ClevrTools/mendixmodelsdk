@@ -35,6 +35,12 @@ export declare namespace settings {
         static MD5: HashAlgorithmType;
         protected qualifiedTsTypeName: string;
     }
+    class JavaVersion extends internal.AbstractEnum {
+        static Java11: JavaVersion;
+        static Java17: JavaVersion;
+        static Java21: JavaVersion;
+        protected qualifiedTsTypeName: string;
+    }
     class RoundingMode extends internal.AbstractEnum {
         static HalfUp: RoundingMode;
         static HalfEven: RoundingMode;
@@ -214,8 +220,16 @@ export declare namespace settings {
         get constant(): constants.IConstant;
         set constant(newValue: constants.IConstant);
         get constantQualifiedName(): string;
+        /**
+         * In version 10.9.0: deleted
+         */
         get value(): string;
         set value(newValue: string);
+        /**
+         * In version 10.9.0: introduced
+         */
+        get sharedOrPrivateValue(): SharedOrPrivateValue;
+        set sharedOrPrivateValue(newValue: SharedOrPrivateValue);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConstantValue instance in the SDK and on the server.
@@ -426,6 +440,11 @@ export declare namespace settings {
          * In version 8.6.0: introduced
          */
         get actionActivityDefaultColors(): internal.IList<ActionActivityDefaultColor>;
+        /**
+         * In version 10.8.0: introduced
+         */
+        get defaultSequenceFlowLineType(): microflows.FlowLineType;
+        set defaultSequenceFlowLineType(newValue: microflows.FlowLineType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
@@ -439,6 +458,30 @@ export declare namespace settings {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ModelerSettings;
+    }
+    /**
+     * In version 10.9.0: introduced
+     */
+    abstract class SharedOrPrivateValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConstantValue(): ConstantValue;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.9.0: introduced
+     */
+    class PrivateValue extends SharedOrPrivateValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConstantValue(): ConstantValue;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PrivateValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PrivateValue;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/project-settings relevant section in reference guide}
@@ -554,6 +597,16 @@ export declare namespace settings {
          */
         get useDatabaseForeignKeyConstraints(): boolean;
         set useDatabaseForeignKeyConstraints(newValue: boolean);
+        /**
+         * In version 10.8.0: introduced
+         */
+        get javaVersion(): JavaVersion;
+        set javaVersion(newValue: JavaVersion);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get useOQLVersion2(): boolean;
+        set useOQLVersion2(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
@@ -567,6 +620,23 @@ export declare namespace settings {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RuntimeSettings;
+    }
+    /**
+     * In version 10.9.0: introduced
+     */
+    class SharedValue extends SharedOrPrivateValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConstantValue(): ConstantValue;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SharedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SharedValue;
     }
     /**
      * In version 9.3.0: introduced
@@ -720,6 +790,10 @@ export declare namespace settings {
          */
         get usertaskOnStateChangeEvent(): workflows.MicroflowEventHandler | null;
         set usertaskOnStateChangeEvent(newValue: workflows.MicroflowEventHandler | null);
+        /**
+         * In version 10.7.0: introduced
+         */
+        get onWorkflowEvent(): internal.IList<workflows.WorkflowEventHandler> | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.

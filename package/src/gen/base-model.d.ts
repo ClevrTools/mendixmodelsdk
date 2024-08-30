@@ -400,6 +400,7 @@ export declare type ConcreteModelElements = {
     DataTypes$StringType: datatypes.StringType;
     DataTypes$UnknownType: datatypes.UnknownType;
     DataTypes$VoidType: datatypes.VoidType;
+    DatabaseConnector$AdditionalProperty: databaseconnector.AdditionalProperty;
     DatabaseConnector$ColumnMapping: databaseconnector.ColumnMapping;
     DatabaseConnector$ConnectionDetails: databaseconnector.ConnectionDetails;
     DatabaseConnector$ConnectionParts: databaseconnector.ConnectionParts;
@@ -411,6 +412,8 @@ export declare type ConcreteModelElements = {
     DatabaseConnector$QueryParameterMapping: databaseconnector.QueryParameterMapping;
     DatabaseConnector$SimpleSqlDataType: databaseconnector.SimpleSqlDataType;
     DatabaseConnector$TableMapping: databaseconnector.TableMapping;
+    DatabaseConnector$ValueAsConstant: databaseconnector.ValueAsConstant;
+    DatabaseConnector$ValueAsString: databaseconnector.ValueAsString;
     DocumentTemplates$ConditionSettings: documenttemplates.ConditionSettings;
     DocumentTemplates$DataGrid: documenttemplates.DataGrid;
     DocumentTemplates$DataGridCell: documenttemplates.DataGridCell;
@@ -473,6 +476,9 @@ export declare type ConcreteModelElements = {
     DomainModels$MemberAccess: domainmodels.MemberAccess;
     DomainModels$MultiLanguageAttributeType: domainmodels.MultiLanguageAttributeType;
     DomainModels$NoGeneralization: domainmodels.NoGeneralization;
+    DomainModels$OqlViewAssociationSource: domainmodels.OqlViewAssociationSource;
+    DomainModels$OqlViewEntitySource: domainmodels.OqlViewEntitySource;
+    DomainModels$OqlViewValue: domainmodels.OqlViewValue;
     DomainModels$RangeRuleInfo: domainmodels.RangeRuleInfo;
     DomainModels$RegExRuleInfo: domainmodels.RegExRuleInfo;
     DomainModels$RequiredRuleInfo: domainmodels.RequiredRuleInfo;
@@ -627,6 +633,7 @@ export declare type ConcreteModelElements = {
     Microflows$ImportMappingJavaActionParameterValue: microflows.ImportMappingJavaActionParameterValue;
     Microflows$ImportMappingParameterValue: microflows.ImportMappingParameterValue;
     Microflows$ImportXmlAction: microflows.ImportXmlAction;
+    Microflows$IncludedAssociation: microflows.IncludedAssociation;
     Microflows$IncrementCounterMeterAction: microflows.IncrementCounterMeterAction;
     Microflows$InheritanceCase: microflows.InheritanceCase;
     Microflows$InheritanceSplit: microflows.InheritanceSplit;
@@ -724,6 +731,7 @@ export declare type ConcreteModelElements = {
     Navigation$NativeHomePage: navigation.NativeHomePage;
     Navigation$NativeNavigationProfile: navigation.NativeNavigationProfile;
     Navigation$NavigationProfile: navigation.NavigationProfile;
+    Navigation$NotFoundHomePage: navigation.NotFoundHomePage;
     Navigation$OfflineEntityConfig: navigation.OfflineEntityConfig;
     Navigation$ProgressiveWebAppSettings: navigation.ProgressiveWebAppSettings;
     Navigation$RoleBasedHomePage: navigation.RoleBasedHomePage;
@@ -923,6 +931,7 @@ export declare type ConcreteModelElements = {
     Pages$WidgetValidation: pages.WidgetValidation;
     Pages$WorkflowOverviewTemplateType: pages.WorkflowOverviewTemplateType;
     Projects$JarDependency: projects.JarDependency;
+    Projects$JarDependencyExclusion: projects.JarDependencyExclusion;
     Projects$OneTimeConversionMarker: projects.OneTimeConversionMarker;
     Queues$BasicQueueConfig: queues.BasicQueueConfig;
     Queues$QueueExponentialRetry: queues.QueueExponentialRetry;
@@ -952,12 +961,14 @@ export declare type ConcreteModelElements = {
     Rest$ImplicitMappingResponseHandling: rest.ImplicitMappingResponseHandling;
     Rest$MetadataReference: rest.MetadataReference;
     Rest$NoResponseHandling: rest.NoResponseHandling;
+    Rest$ODataEntityTypeSource: rest.ODataEntityTypeSource;
     Rest$ODataKey: rest.ODataKey;
     Rest$ODataKeyPart: rest.ODataKeyPart;
     Rest$ODataMappedValue: rest.ODataMappedValue;
     Rest$ODataRemoteAssociationSource: rest.ODataRemoteAssociationSource;
     Rest$ODataRemoteEntitySource: rest.ODataRemoteEntitySource;
     Rest$ODataRemoteEnumerationSource: rest.ODataRemoteEnumerationSource;
+    Rest$ODataRemoteEnumerationValue: rest.ODataRemoteEnumerationValue;
     Rest$OperationParameter: rest.OperationParameter;
     Rest$PublishedODataContract: rest.PublishedODataContract;
     Rest$PublishedODataEnumeration: rest.PublishedODataEnumeration;
@@ -1005,8 +1016,10 @@ export declare type ConcreteModelElements = {
     Settings$Language: settings.Language;
     Settings$LanguageSettings: settings.LanguageSettings;
     Settings$ModelerSettings: settings.ModelerSettings;
+    Settings$PrivateValue: settings.PrivateValue;
     Settings$ProtectedModuleJarLocation: settings.ProtectedModuleJarLocation;
     Settings$RuntimeSettings: settings.RuntimeSettings;
+    Settings$SharedValue: settings.SharedValue;
     Settings$ThemeModuleEntry: settings.ThemeModuleEntry;
     Settings$UserLibJarLocation: settings.UserLibJarLocation;
     Settings$WebUIProjectSettingsPart: settings.WebUIProjectSettingsPart;
@@ -1037,6 +1050,7 @@ export declare type ConcreteModelElements = {
     Workflows$CallWorkflowActivity: workflows.CallWorkflowActivity;
     Workflows$ConsensusCompletionCriteria: workflows.ConsensusCompletionCriteria;
     Workflows$EmptyUserSource: workflows.EmptyUserSource;
+    Workflows$EndOfBoundaryEventPathActivity: workflows.EndOfBoundaryEventPathActivity;
     Workflows$EndWorkflowActivity: workflows.EndWorkflowActivity;
     Workflows$EnumerationValueConditionOutcome: workflows.EnumerationValueConditionOutcome;
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
@@ -1049,6 +1063,7 @@ export declare type ConcreteModelElements = {
     Workflows$MicroflowCompletionCriteria: workflows.MicroflowCompletionCriteria;
     Workflows$MicroflowEventHandler: workflows.MicroflowEventHandler;
     Workflows$MultiInputCompletion: workflows.MultiInputCompletion;
+    Workflows$MultiUserTaskActivity: workflows.MultiUserTaskActivity;
     Workflows$NoEvent: workflows.NoEvent;
     Workflows$PageParameterMapping: workflows.PageParameterMapping;
     Workflows$PageReference: workflows.PageReference;
@@ -1057,7 +1072,9 @@ export declare type ConcreteModelElements = {
     Workflows$Parameter: workflows.Parameter;
     Workflows$PercentageAmountUserInput: workflows.PercentageAmountUserInput;
     Workflows$SingleInputCompletion: workflows.SingleInputCompletion;
+    Workflows$SingleUserTaskActivity: workflows.SingleUserTaskActivity;
     Workflows$ThresholdCompletionCriteria: workflows.ThresholdCompletionCriteria;
+    Workflows$TimerBoundaryEvent: workflows.TimerBoundaryEvent;
     Workflows$UserTask: workflows.UserTask;
     Workflows$UserTaskOutcome: workflows.UserTaskOutcome;
     Workflows$VetoCompletionCriteria: workflows.VetoCompletionCriteria;
@@ -1067,6 +1084,7 @@ export declare type ConcreteModelElements = {
     Workflows$WorkflowCallParameterMapping: workflows.WorkflowCallParameterMapping;
     Workflows$WorkflowDefinitionNameSelection: workflows.WorkflowDefinitionNameSelection;
     Workflows$WorkflowDefinitionObjectSelection: workflows.WorkflowDefinitionObjectSelection;
+    Workflows$WorkflowEventHandler: workflows.WorkflowEventHandler;
     Workflows$WorkflowType: workflows.WorkflowType;
     Workflows$XPathBasedUserSource: workflows.XPathBasedUserSource;
     XmlSchemas$XmlElement: xmlschemas.XmlElement;

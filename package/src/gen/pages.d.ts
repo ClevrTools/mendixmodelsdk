@@ -1415,6 +1415,11 @@ export declare namespace pages {
         static versionInfo: StructureVersionInfo;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsEntityWidget(): EntityWidget;
+        /**
+         * In version 10.8.0: introduced
+         */
+        get forceFullObjects(): boolean;
+        set forceFullObjects(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     abstract class EntityPathSource extends DataSource {
@@ -1766,8 +1771,16 @@ export declare namespace pages {
         get containerAsVerticalFlow(): VerticalFlow;
         get containerAsWebLayoutContent(): WebLayoutContent;
         get containerAsReportPane(): reports.ReportPane;
+        /**
+         * In version 10.11.0: deleted
+         */
         get placeholder(): texts.Text;
         set placeholder(newValue: texts.Text);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get placeholderTemplate(): ClientTemplate;
+        set placeholderTemplate(newValue: ClientTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -2147,6 +2160,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 8.12.0: introduced
@@ -2175,6 +2189,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 7.10.0: introduced
@@ -2339,6 +2354,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CallNanoflowClientAction;
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
+         * The new CallNanoflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): CallNanoflowClientAction;
+        /**
+         * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
          * The new CallNanoflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -2372,6 +2396,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get workflow(): workflows.IWorkflow | null;
         set workflow(newValue: workflows.IWorkflow | null);
@@ -2524,6 +2549,15 @@ export declare namespace pages {
          *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CallWorkflowClientAction;
+        /**
+         * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
+         * The new CallWorkflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): CallWorkflowClientAction;
         /**
          * Creates and returns a new CallWorkflowClientAction instance in the SDK and on the server.
          * The new CallWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -2796,6 +2830,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get closePage(): boolean;
         set closePage(newValue: boolean);
@@ -2944,6 +2979,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CancelChangesClientAction;
+        /**
+         * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
+         * The new CancelChangesClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): CancelChangesClientAction;
         /**
          * Creates and returns a new CancelChangesClientAction instance in the SDK and on the server.
          * The new CancelChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -3480,6 +3524,7 @@ export declare namespace pages {
         get containerAsWidgetObject(): customwidgets.WidgetObject;
         get containerAsWidgetValue(): customwidgets.WidgetValue;
         get containerAsAccessibilitySettings(): AccessibilitySettings;
+        get containerAsAttributeWidgetWithPlaceholder(): AttributeWidgetWithPlaceholder;
         get containerAsButton(): Button;
         get containerAsControlBarButton(): ControlBarButton;
         get containerAsDataGrid(): DataGrid;
@@ -3543,6 +3588,15 @@ export declare namespace pages {
          *  9.22.0 and higher
          */
         static createInAccessibilitySettingsUnderScreenReaderTitle(container: AccessibilitySettings): ClientTemplate;
+        /**
+         * Creates and returns a new ClientTemplate instance in the SDK and on the server.
+         * The new ClientTemplate will be automatically stored in the 'placeholderTemplate' property
+         * of the parent AttributeWidgetWithPlaceholder element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.11.0 and higher
+         */
+        static createInAttributeWidgetWithPlaceholderUnderPlaceholderTemplate(container: AttributeWidgetWithPlaceholder): ClientTemplate;
         /**
          * Creates and returns a new ClientTemplate instance in the SDK and on the server.
          * The new ClientTemplate will be automatically stored in the 'caption' property
@@ -3694,6 +3748,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 8.14.0: deleted
@@ -3853,6 +3908,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): ClosePageClientAction;
+        /**
+         * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
+         * The new ClosePageClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): ClosePageClientAction;
         /**
          * Creates and returns a new ClosePageClientAction instance in the SDK and on the server.
          * The new ClosePageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -4127,6 +4191,7 @@ export declare namespace pages {
         get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
         get containerAsConditionallyVisibleWidget(): ConditionallyVisibleWidget;
         get containerAsControlBarButton(): ControlBarButton;
+        get containerAsDataView(): DataView;
         get containerAsLayoutGridRow(): LayoutGridRow;
         get containerAsNavigationListItem(): NavigationListItem;
         get containerAsTabPage(): TabPage;
@@ -4164,6 +4229,7 @@ export declare namespace pages {
         static versionInfo: StructureVersionInfo;
         get containerAsCustomWidget(): customwidgets.CustomWidget;
         get containerAsConditionallyEditableWidget(): ConditionallyEditableWidget;
+        get containerAsDataView(): DataView;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
@@ -4189,6 +4255,15 @@ export declare namespace pages {
          * of the parent ConditionallyEditableWidget element passed as argument.
          */
         static createInConditionallyEditableWidgetUnderConditionalEditabilitySettings(container: ConditionallyEditableWidget): ConditionalEditabilitySettings;
+        /**
+         * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
+         * The new ConditionalEditabilitySettings will be automatically stored in the 'conditionalEditabilitySettings' property
+         * of the parent DataView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.7.0 and higher
+         */
+        static createInDataViewUnderConditionalEditabilitySettings(container: DataView): ConditionalEditabilitySettings;
         /**
          * Creates and returns a new ConditionalEditabilitySettings instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -4377,6 +4452,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get entityRef(): domainmodels.EntityRef | null;
         set entityRef(newValue: domainmodels.EntityRef | null);
@@ -4540,6 +4616,15 @@ export declare namespace pages {
          *  7.17.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CreateObjectClientAction;
+        /**
+         * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
+         * The new CreateObjectClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): CreateObjectClientAction;
         /**
          * Creates and returns a new CreateObjectClientAction instance in the SDK and on the server.
          * The new CreateObjectClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -5244,8 +5329,21 @@ export declare namespace pages {
          * In version 7.15.0: introduced
          */
         get footerWidgets(): internal.IList<Widget>;
+        /**
+         * In version 10.7.0: deleted
+         */
         get editable(): boolean;
         set editable(newValue: boolean);
+        /**
+         * In version 10.7.0: introduced
+         */
+        get editability(): EditableEnum;
+        set editability(newValue: EditableEnum);
+        /**
+         * In version 10.7.0: introduced
+         */
+        get conditionalEditabilitySettings(): ConditionalEditabilitySettings | null;
+        set conditionalEditabilitySettings(newValue: ConditionalEditabilitySettings | null);
         /**
          * In version 6.7.0: deleted
          */
@@ -6543,6 +6641,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get closePage(): boolean;
         set closePage(newValue: boolean);
@@ -6696,6 +6795,15 @@ export declare namespace pages {
          *  7.17.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): DeleteClientAction;
+        /**
+         * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
+         * The new DeleteClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): DeleteClientAction;
         /**
          * Creates and returns a new DeleteClientAction instance in the SDK and on the server.
          * The new DeleteClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -17829,6 +17937,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get microflowSettings(): MicroflowSettings;
         set microflowSettings(newValue: MicroflowSettings);
@@ -17970,6 +18079,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): MicroflowClientAction;
         /**
          * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
+         * The new MicroflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): MicroflowClientAction;
+        /**
+         * Creates and returns a new MicroflowClientAction instance in the SDK and on the server.
          * The new MicroflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -17995,10 +18113,18 @@ export declare namespace pages {
         set parameter(newValue: microflows.IMicroflowParameter);
         get parameterQualifiedName(): string;
         /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.10.0: introduced
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        /**
+         * In version 10.10.0: added optional
          * In version 8.4.0: introduced
          */
-        get variable(): PageVariable;
-        set variable(newValue: PageVariable);
+        get variable(): PageVariable | null;
+        set variable(newValue: PageVariable | null);
         /**
          * In version 8.4.0: deleted
          */
@@ -18213,10 +18339,18 @@ export declare namespace pages {
         set parameter(newValue: microflows.INanoflowParameter);
         get parameterQualifiedName(): string;
         /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.10.0: introduced
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        /**
+         * In version 10.10.0: added optional
          * In version 8.4.0: introduced
          */
-        get variable(): PageVariable;
-        set variable(newValue: PageVariable);
+        get variable(): PageVariable | null;
+        set variable(newValue: PageVariable | null);
         /**
          * In version 8.4.0: deleted
          */
@@ -19902,6 +20036,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -20039,6 +20174,15 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): NoClientAction;
+        /**
+         * Creates and returns a new NoClientAction instance in the SDK and on the server.
+         * The new NoClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): NoClientAction;
         /**
          * Creates and returns a new NoClientAction instance in the SDK and on the server.
          * The new NoClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -20196,6 +20340,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get linkType(): LinkType;
         set linkType(newValue: LinkType);
@@ -20348,6 +20493,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenLinkClientAction;
         /**
          * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
+         * The new OpenLinkClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): OpenLinkClientAction;
+        /**
+         * Creates and returns a new OpenLinkClientAction instance in the SDK and on the server.
          * The new OpenLinkClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -20381,6 +20535,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 9.20.0: introduced
@@ -20530,6 +20685,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenUserTaskClientAction;
         /**
          * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
+         * The new OpenUserTaskClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): OpenUserTaskClientAction;
+        /**
+         * Creates and returns a new OpenUserTaskClientAction instance in the SDK and on the server.
          * The new OpenUserTaskClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -20563,6 +20727,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 9.0.5: introduced
@@ -20706,6 +20871,15 @@ export declare namespace pages {
          *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): OpenWorkflowClientAction;
+        /**
+         * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
+         * The new OpenWorkflowClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): OpenWorkflowClientAction;
         /**
          * Creates and returns a new OpenWorkflowClientAction instance in the SDK and on the server.
          * The new OpenWorkflowClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -20853,6 +21027,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get pageSettings(): PageSettings;
         set pageSettings(newValue: PageSettings);
@@ -21009,6 +21184,15 @@ export declare namespace pages {
          * of the parent StaticImageViewer element passed as argument.
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): PageClientAction;
+        /**
+         * Creates and returns a new PageClientAction instance in the SDK and on the server.
+         * The new PageClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): PageClientAction;
         /**
          * Creates and returns a new PageClientAction instance in the SDK and on the server.
          * The new PageClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -21357,6 +21541,7 @@ export declare namespace pages {
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
         get containerAsPageParameterMapping(): PageParameterMapping;
         get containerAsSnippetParameterMapping(): SnippetParameterMapping;
+        get containerAsTabContainer(): TabContainer;
         get widget(): Widget | null;
         set widget(newValue: Widget | null);
         get widgetLocalName(): string | null;
@@ -21474,6 +21659,15 @@ export declare namespace pages {
          *  9.21.0 and higher
          */
         static createInSnippetParameterMappingUnderVariable(container: SnippetParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'activePageSourceVariable' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageSourceVariable(container: TabContainer): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -24643,6 +24837,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         get syncAutomatically(): boolean;
         set syncAutomatically(newValue: boolean);
@@ -24793,6 +24988,15 @@ export declare namespace pages {
          *  7.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SaveChangesClientAction;
+        /**
+         * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
+         * The new SaveChangesClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): SaveChangesClientAction;
         /**
          * Creates and returns a new SaveChangesClientAction instance in the SDK and on the server.
          * The new SaveChangesClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -25632,6 +25836,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         /**
          * In version 9.19.0: deleted
@@ -25784,6 +25989,15 @@ export declare namespace pages {
          *  9.0.2 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SetTaskOutcomeClientAction;
+        /**
+         * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
+         * The new SetTaskOutcomeClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): SetTaskOutcomeClientAction;
         /**
          * Creates and returns a new SetTaskOutcomeClientAction instance in the SDK and on the server.
          * The new SetTaskOutcomeClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -26332,6 +26546,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -26478,6 +26693,15 @@ export declare namespace pages {
          *  7.1.0 and higher
          */
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SignOutClientAction;
+        /**
+         * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
+         * The new SignOutClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): SignOutClientAction;
         /**
          * Creates and returns a new SignOutClientAction instance in the SDK and on the server.
          * The new SignOutClientAction will be automatically stored in the 'onEnterKeyPressAction' property
@@ -28500,6 +28724,7 @@ export declare namespace pages {
         get containerAsListView(): ListView;
         get containerAsReferenceSetSelector(): ReferenceSetSelector;
         get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
         get containerAsTextBox(): TextBox;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -28648,6 +28873,15 @@ export declare namespace pages {
         static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): SyncClientAction;
         /**
          * Creates and returns a new SyncClientAction instance in the SDK and on the server.
+         * The new SyncClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): SyncClientAction;
+        /**
+         * Creates and returns a new SyncClientAction instance in the SDK and on the server.
          * The new SyncClientAction will be automatically stored in the 'onEnterKeyPressAction' property
          * of the parent TextBox element passed as argument.
          *
@@ -28696,6 +28930,21 @@ export declare namespace pages {
         get tabPages(): internal.IList<TabPage>;
         get defaultPage(): TabPage | null;
         set defaultPage(newValue: TabPage | null);
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageAttributeRef(): domainmodels.AttributeRef | null;
+        set activePageAttributeRef(newValue: domainmodels.AttributeRef | null);
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageSourceVariable(): PageVariable | null;
+        set activePageSourceVariable(newValue: PageVariable | null);
+        /**
+         * In version 10.14.0: introduced
+         */
+        get activePageOnChangeAction(): ClientAction;
+        set activePageOnChangeAction(newValue: ClientAction);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new TabContainer instance in the SDK and on the server.

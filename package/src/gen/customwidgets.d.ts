@@ -1065,6 +1065,16 @@ export declare namespace customwidgets {
         set type(newValue: WidgetValueTypeEnum);
         get isList(): boolean;
         set isList(newValue: boolean);
+        /**
+         * In version 10.14.0: introduced
+         */
+        get isLinked(): boolean;
+        set isLinked(newValue: boolean);
+        /**
+         * In version 10.14.0: introduced
+         */
+        get isMetaData(): boolean;
+        set isMetaData(newValue: boolean);
         get entityProperty(): string;
         set entityProperty(newValue: string);
         get allowNonPersistableEntities(): boolean;

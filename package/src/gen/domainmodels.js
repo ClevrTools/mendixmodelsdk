@@ -801,6 +801,9 @@ var domainmodels;
         get containerAsStaticOrDynamicString() {
             return super.getContainerAs(pages_1.pages.StaticOrDynamicString);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(pages_1.pages.TabContainer);
+        }
         /**
          * In version 9.6.0: added public
          */
@@ -1228,6 +1231,9 @@ var domainmodels;
         get containerAsStaticOrDynamicString() {
             return super.getContainerAs(pages_1.pages.StaticOrDynamicString);
         }
+        get containerAsTabContainer() {
+            return super.getContainerAs(pages_1.pages.TabContainer);
+        }
         get attribute() {
             return this.__attribute.get();
         }
@@ -1416,6 +1422,18 @@ var domainmodels;
         static createInStaticOrDynamicStringUnderAttributeRef(container) {
             internal.createInVersionCheck(container.model, AttributeRef.structureTypeName, { start: "7.11.0" });
             return internal.instancehelpers.createElement(container, AttributeRef, "attributeRef", false);
+        }
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'activePageAttributeRef' property
+         * of the parent pages.TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 and higher
+         */
+        static createInTabContainerUnderActivePageAttributeRef(container) {
+            internal.createInVersionCheck(container.model, AttributeRef.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, AttributeRef, "activePageAttributeRef", false);
         }
         /**
          * Creates and returns a new AttributeRef instance in the SDK and on the server.
@@ -4080,6 +4098,8 @@ var domainmodels;
             this.__dataStorageGuid = new internal.PrimitiveProperty(Index, this, "dataStorageGuid", "", internal.PrimitiveTypeEnum.Guid);
             /** @internal */
             this.__attributes = new internal.PartListProperty(Index, this, "attributes", []);
+            /** @internal */
+            this.__includeInOffline = new internal.PrimitiveProperty(Index, this, "includeInOffline", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new Index() cannot be invoked directly, please use 'model.domainmodels.createIndex()'");
             }
@@ -4095,6 +4115,15 @@ var domainmodels;
         }
         get attributes() {
             return this.__attributes.get();
+        }
+        /**
+         * In version 10.12.0: introduced
+         */
+        get includeInOffline() {
+            return this.__includeInOffline.get();
+        }
+        set includeInOffline(newValue) {
+            this.__includeInOffline.set(newValue);
         }
         /**
          * Creates and returns a new Index instance in the SDK and on the server.
@@ -4116,10 +4145,19 @@ var domainmodels;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.dataStorageGuid = utils_1.utils.randomUuid();
+            if (this.__includeInOffline.isAvailable) {
+                this.includeInOffline = false;
+            }
         }
     }
     Index.structureTypeName = "DomainModels$Index";
-    Index.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    Index.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            includeInOffline: {
+                introduced: "10.12.0"
+            }
+        }
+    }, internal.StructureType.Element);
     domainmodels.Index = Index;
     class IndexedAttribute extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -5016,6 +5054,225 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.NoGeneralization = NoGeneralization;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewAssociationSource extends AssociationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__reference = new internal.PrimitiveProperty(OqlViewAssociationSource, this, "reference", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OqlViewAssociationSource() cannot be invoked directly, please use 'model.domainmodels.createOqlViewAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(AssociationBase);
+        }
+        get reference() {
+            return this.__reference.get();
+        }
+        set reference(newValue) {
+            this.__reference.set(newValue);
+        }
+        /**
+         * Creates and returns a new OqlViewAssociationSource instance in the SDK and on the server.
+         * The new OqlViewAssociationSource will be automatically stored in the 'source' property
+         * of the parent AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OqlViewAssociationSource.structureTypeName, { start: "10.9.0" });
+            return internal.instancehelpers.createElement(container, OqlViewAssociationSource, "source", false);
+        }
+        /**
+         * Creates and returns a new OqlViewAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OqlViewAssociationSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OqlViewAssociationSource.structureTypeName = "DomainModels$OqlViewAssociationSource";
+    OqlViewAssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0",
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.OqlViewAssociationSource = OqlViewAssociationSource;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class ViewEntitySource extends EntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ViewEntitySource() cannot be invoked directly, please use 'model.domainmodels.createViewEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ViewEntitySource.structureTypeName = "DomainModels$ViewEntitySource";
+    ViewEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0",
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.ViewEntitySource = ViewEntitySource;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewEntitySource extends ViewEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__oql = new internal.PrimitiveProperty(OqlViewEntitySource, this, "oql", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OqlViewEntitySource() cannot be invoked directly, please use 'model.domainmodels.createOqlViewEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(Entity);
+        }
+        /**
+         * The value of this property is conceptually of type oql.OqlQuery.
+         */
+        get oql() {
+            return this.__oql.get();
+        }
+        set oql(newValue) {
+            this.__oql.set(newValue);
+        }
+        /**
+         * Creates and returns a new OqlViewEntitySource instance in the SDK and on the server.
+         * The new OqlViewEntitySource will be automatically stored in the 'source' property
+         * of the parent Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OqlViewEntitySource.structureTypeName, { start: "10.9.0" });
+            return internal.instancehelpers.createElement(container, OqlViewEntitySource, "source", false);
+        }
+        /**
+         * Creates and returns a new OqlViewEntitySource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OqlViewEntitySource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OqlViewEntitySource.structureTypeName = "DomainModels$OqlViewEntitySource";
+    OqlViewEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0",
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.OqlViewEntitySource = OqlViewEntitySource;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.9.0: introduced
+     */
+    class OqlViewValue extends ValueType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__reference = new internal.PrimitiveProperty(OqlViewValue, this, "reference", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OqlViewValue() cannot be invoked directly, please use 'model.domainmodels.createOqlViewValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(Attribute);
+        }
+        get reference() {
+            return this.__reference.get();
+        }
+        set reference(newValue) {
+            this.__reference.set(newValue);
+        }
+        /**
+         * Creates and returns a new OqlViewValue instance in the SDK and on the server.
+         * The new OqlViewValue will be automatically stored in the 'value' property
+         * of the parent Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.9.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OqlViewValue.structureTypeName, { start: "10.9.0" });
+            return internal.instancehelpers.createElement(container, OqlViewValue, "value", false);
+        }
+        /**
+         * Creates and returns a new OqlViewValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OqlViewValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OqlViewValue.structureTypeName = "DomainModels$OqlViewValue";
+    OqlViewValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0",
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    domainmodels.OqlViewValue = OqlViewValue;
     /**
      * In version 8.10.0: introduced
      */

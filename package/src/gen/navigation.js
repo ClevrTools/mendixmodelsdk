@@ -43,6 +43,16 @@ var navigation;
         introduced: "10.2.0"
     });
     navigation.OfflineEntitySyncMode = OfflineEntitySyncMode;
+    class PopupNavigationTransition extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "navigation.PopupNavigationTransition";
+        }
+    }
+    PopupNavigationTransition.SystemDefault = new PopupNavigationTransition("SystemDefault", {});
+    PopupNavigationTransition.ModalPresentationIOS = new PopupNavigationTransition("ModalPresentationIOS", {});
+    PopupNavigationTransition.BottomSheetAndroid = new PopupNavigationTransition("BottomSheetAndroid", {});
+    navigation.PopupNavigationTransition = PopupNavigationTransition;
     class ProfileKind extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -125,6 +135,16 @@ var navigation;
         deletionMessage: null
     });
     navigation.ProfileType = ProfileType;
+    class ScreenNavigationTransition extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "navigation.ScreenNavigationTransition";
+        }
+    }
+    ScreenNavigationTransition.SystemDefault = new ScreenNavigationTransition("SystemDefault", {});
+    ScreenNavigationTransition.SlideFromRightIOS = new ScreenNavigationTransition("SlideFromRightIOS", {});
+    ScreenNavigationTransition.ScaleFromCenterAndroid = new ScreenNavigationTransition("ScaleFromCenterAndroid", {});
+    navigation.ScreenNavigationTransition = ScreenNavigationTransition;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Navigation`.
      */
@@ -371,6 +391,14 @@ var navigation;
             this.__encryptionDbEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "encryptionDbEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__localFileEncryptionEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "localFileEncryptionEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__screenNavigationTransition = new internal.EnumProperty(NativeNavigationProfile, this, "screenNavigationTransition", ScreenNavigationTransition.SystemDefault, ScreenNavigationTransition);
+            /** @internal */
+            this.__popupNavigationTransition = new internal.EnumProperty(NativeNavigationProfile, this, "popupNavigationTransition", PopupNavigationTransition.SystemDefault, PopupNavigationTransition);
+            /** @internal */
+            this.__applyScreenTransition = new internal.PrimitiveProperty(NativeNavigationProfile, this, "applyScreenTransition", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__hermesEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "hermesEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -452,6 +480,42 @@ var navigation;
             this.__localFileEncryptionEnabled.set(newValue);
         }
         /**
+         * In version 10.11.0: introduced
+         */
+        get screenNavigationTransition() {
+            return this.__screenNavigationTransition.get();
+        }
+        set screenNavigationTransition(newValue) {
+            this.__screenNavigationTransition.set(newValue);
+        }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get popupNavigationTransition() {
+            return this.__popupNavigationTransition.get();
+        }
+        set popupNavigationTransition(newValue) {
+            this.__popupNavigationTransition.set(newValue);
+        }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get applyScreenTransition() {
+            return this.__applyScreenTransition.get();
+        }
+        set applyScreenTransition(newValue) {
+            this.__applyScreenTransition.set(newValue);
+        }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get hermesEnabled() {
+            return this.__hermesEnabled.get();
+        }
+        set hermesEnabled(newValue) {
+            this.__hermesEnabled.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -474,8 +538,14 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__applyScreenTransition.isAvailable) {
+                this.applyScreenTransition = false;
+            }
             if (this.__encryptionDbEnabled.isAvailable) {
                 this.encryptionDbEnabled = false;
+            }
+            if (this.__hermesEnabled.isAvailable) {
+                this.hermesEnabled = false;
             }
             if (this.__localFileEncryptionEnabled.isAvailable) {
                 this.localFileEncryptionEnabled = false;
@@ -488,6 +558,12 @@ var navigation;
             }
             if (this.__otaEnabled.isAvailable) {
                 this.otaEnabled = false;
+            }
+            if (this.__popupNavigationTransition.isAvailable) {
+                this.popupNavigationTransition = PopupNavigationTransition.SystemDefault;
+            }
+            if (this.__screenNavigationTransition.isAvailable) {
+                this.screenNavigationTransition = ScreenNavigationTransition.SystemDefault;
             }
         }
     }
@@ -522,6 +598,18 @@ var navigation;
             },
             localFileEncryptionEnabled: {
                 introduced: "9.22.0"
+            },
+            screenNavigationTransition: {
+                introduced: "10.11.0"
+            },
+            popupNavigationTransition: {
+                introduced: "10.11.0"
+            },
+            applyScreenTransition: {
+                introduced: "10.11.0"
+            },
+            hermesEnabled: {
+                introduced: "10.11.0"
             }
         },
         public: {
@@ -787,6 +875,8 @@ var navigation;
             this.__offlineEnabled6 = new internal.PrimitiveProperty(NavigationProfile, this, "offlineEnabled6", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__progressiveWebAppSettings = new internal.PartProperty(NavigationProfile, this, "progressiveWebAppSettings", null, false);
+            /** @internal */
+            this.__notFoundHomepage = new internal.PartProperty(NavigationProfile, this, "notFoundHomepage", null, false);
             if (arguments.length < 4) {
                 throw new Error("new NavigationProfile() cannot be invoked directly, please use 'model.navigation.createNavigationProfile()'");
             }
@@ -898,6 +988,15 @@ var navigation;
         }
         set progressiveWebAppSettings(newValue) {
             this.__progressiveWebAppSettings.set(newValue);
+        }
+        /**
+         * In version 10.13.0: introduced
+         */
+        get notFoundHomepage() {
+            return this.__notFoundHomepage.get();
+        }
+        set notFoundHomepage(newValue) {
+            this.__notFoundHomepage.set(newValue);
         }
         /**
          * Creates and returns a new NavigationProfile instance in the SDK and on the server.
@@ -1137,6 +1236,9 @@ var navigation;
             },
             progressiveWebAppSettings: {
                 introduced: "9.0.3"
+            },
+            notFoundHomepage: {
+                introduced: "10.13.0"
             }
         },
         public: {
@@ -1145,6 +1247,49 @@ var navigation;
         }
     }, internal.StructureType.Element);
     navigation.NavigationProfile = NavigationProfile;
+    /**
+     * In version 10.13.0: introduced
+     */
+    class NotFoundHomePage extends HomePageBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NotFoundHomePage() cannot be invoked directly, please use 'model.navigation.createNotFoundHomePage()'");
+            }
+        }
+        get containerAsNavigationProfile() {
+            return super.getContainerAs(NavigationProfile);
+        }
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'notFoundHomepage' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.13.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, NotFoundHomePage.structureTypeName, { start: "10.13.0" });
+            return internal.instancehelpers.createElement(container, NotFoundHomePage, "notFoundHomepage", false);
+        }
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NotFoundHomePage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotFoundHomePage.structureTypeName = "Navigation$NotFoundHomePage";
+    NotFoundHomePage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.13.0"
+    }, internal.StructureType.Element);
+    navigation.NotFoundHomePage = NotFoundHomePage;
     /**
      * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
      *

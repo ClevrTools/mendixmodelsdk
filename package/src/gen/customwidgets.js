@@ -2098,6 +2098,10 @@ var customwidgets;
             /** @internal */
             this.__isList = new internal.PrimitiveProperty(WidgetValueType, this, "isList", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__isLinked = new internal.PrimitiveProperty(WidgetValueType, this, "isLinked", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__isMetaData = new internal.PrimitiveProperty(WidgetValueType, this, "isMetaData", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
             this.__entityProperty = new internal.PrimitiveProperty(WidgetValueType, this, "entityProperty", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__allowNonPersistableEntities = new internal.PrimitiveProperty(WidgetValueType, this, "allowNonPersistableEntities", false, internal.PrimitiveTypeEnum.Boolean);
@@ -2155,6 +2159,24 @@ var customwidgets;
         }
         set isList(newValue) {
             this.__isList.set(newValue);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get isLinked() {
+            return this.__isLinked.get();
+        }
+        set isLinked(newValue) {
+            this.__isLinked.set(newValue);
+        }
+        /**
+         * In version 10.14.0: introduced
+         */
+        get isMetaData() {
+            return this.__isMetaData.get();
+        }
+        set isMetaData(newValue) {
+            this.__isMetaData.set(newValue);
         }
         get entityProperty() {
             return this.__entityProperty.get();
@@ -2310,6 +2332,12 @@ var customwidgets;
     WidgetValueType.structureTypeName = "CustomWidgets$WidgetValueType";
     WidgetValueType.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            isLinked: {
+                introduced: "10.14.0"
+            },
+            isMetaData: {
+                introduced: "10.14.0"
+            },
             onChangeProperty: {
                 introduced: "8.0.0"
             },

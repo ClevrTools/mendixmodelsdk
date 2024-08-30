@@ -60,6 +60,18 @@ var settings;
     HashAlgorithmType.SHA256 = new HashAlgorithmType("SHA256", {});
     HashAlgorithmType.MD5 = new HashAlgorithmType("MD5", {});
     settings.HashAlgorithmType = HashAlgorithmType;
+    class JavaVersion extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "settings.JavaVersion";
+        }
+    }
+    JavaVersion.Java11 = new JavaVersion("Java11", {});
+    JavaVersion.Java17 = new JavaVersion("Java17", {});
+    JavaVersion.Java21 = new JavaVersion("Java21", {
+        introduced: "10.11.0"
+    });
+    settings.JavaVersion = JavaVersion;
     class RoundingMode extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -501,6 +513,8 @@ var settings;
             this.__constant = new internal.ByNameReferenceProperty(ConstantValue, this, "constant", null, "Constants$Constant");
             /** @internal */
             this.__value = new internal.PrimitiveProperty(ConstantValue, this, "value", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__sharedOrPrivateValue = new internal.PartProperty(ConstantValue, this, "sharedOrPrivateValue", null, true);
             if (arguments.length < 4) {
                 throw new Error("new ConstantValue() cannot be invoked directly, please use 'model.settings.createConstantValue()'");
             }
@@ -517,11 +531,23 @@ var settings;
         get constantQualifiedName() {
             return this.__constant.qualifiedName();
         }
+        /**
+         * In version 10.9.0: deleted
+         */
         get value() {
             return this.__value.get();
         }
         set value(newValue) {
             this.__value.set(newValue);
+        }
+        /**
+         * In version 10.9.0: introduced
+         */
+        get sharedOrPrivateValue() {
+            return this.__sharedOrPrivateValue.get();
+        }
+        set sharedOrPrivateValue(newValue) {
+            this.__sharedOrPrivateValue.set(newValue);
         }
         /**
          * Creates and returns a new ConstantValue instance in the SDK and on the server.
@@ -542,12 +568,25 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__sharedOrPrivateValue.isAvailable) {
+                this.sharedOrPrivateValue = SharedValue.create(this.model);
+            }
         }
     }
     ConstantValue.structureTypeName = "Settings$ConstantValue";
     ConstantValue.versionInfo = new exports.StructureVersionInfo({
         properties: {
             constant: {
+                required: {
+                    currentValue: true
+                }
+            },
+            value: {
+                deleted: "10.9.0",
+                deletionMessage: null
+            },
+            sharedOrPrivateValue: {
+                introduced: "10.9.0",
                 required: {
                     currentValue: true
                 }
@@ -981,6 +1020,8 @@ var settings;
             this.__lowerCaseMicroflowVariables = new internal.PrimitiveProperty(ModelerSettings, this, "lowerCaseMicroflowVariables", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__actionActivityDefaultColors = new internal.PartListProperty(ModelerSettings, this, "actionActivityDefaultColors", []);
+            /** @internal */
+            this.__defaultSequenceFlowLineType = new internal.EnumProperty(ModelerSettings, this, "defaultSequenceFlowLineType", microflows_1.microflows.FlowLineType.BezierCurve, microflows_1.microflows.FlowLineType);
             if (arguments.length < 4) {
                 throw new Error("new ModelerSettings() cannot be invoked directly, please use 'model.settings.createModelerSettings()'");
             }
@@ -1001,6 +1042,15 @@ var settings;
             return this.__actionActivityDefaultColors.get();
         }
         /**
+         * In version 10.8.0: introduced
+         */
+        get defaultSequenceFlowLineType() {
+            return this.__defaultSequenceFlowLineType.get();
+        }
+        set defaultSequenceFlowLineType(newValue) {
+            this.__defaultSequenceFlowLineType.set(newValue);
+        }
+        /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
          * The new ModelerSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1019,6 +1069,9 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__defaultSequenceFlowLineType.isAvailable) {
+                this.defaultSequenceFlowLineType = microflows_1.microflows.FlowLineType.BezierCurve;
+            }
         }
     }
     ModelerSettings.structureTypeName = "Settings$ModelerSettings";
@@ -1026,10 +1079,67 @@ var settings;
         properties: {
             actionActivityDefaultColors: {
                 introduced: "8.6.0"
+            },
+            defaultSequenceFlowLineType: {
+                introduced: "10.8.0"
             }
         }
     }, internal.StructureType.Element);
     settings.ModelerSettings = ModelerSettings;
+    /**
+     * In version 10.9.0: introduced
+     */
+    class SharedOrPrivateValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new SharedOrPrivateValue() cannot be invoked directly, please use 'model.settings.createSharedOrPrivateValue()'");
+            }
+        }
+        get containerAsConstantValue() {
+            return super.getContainerAs(ConstantValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SharedOrPrivateValue.structureTypeName = "Settings$SharedOrPrivateValue";
+    SharedOrPrivateValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0"
+    }, internal.StructureType.Element);
+    settings.SharedOrPrivateValue = SharedOrPrivateValue;
+    /**
+     * In version 10.9.0: introduced
+     */
+    class PrivateValue extends SharedOrPrivateValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new PrivateValue() cannot be invoked directly, please use 'model.settings.createPrivateValue()'");
+            }
+        }
+        get containerAsConstantValue() {
+            return super.getContainerAs(ConstantValue);
+        }
+        /**
+         * Creates and returns a new PrivateValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PrivateValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PrivateValue.structureTypeName = "Settings$PrivateValue";
+    PrivateValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0"
+    }, internal.StructureType.Element);
+    settings.PrivateValue = PrivateValue;
     /**
      * See: {@link https://docs.mendix.com/refguide/project-settings relevant section in reference guide}
      */
@@ -1147,6 +1257,10 @@ var settings;
             this.__useSystemContextForBackgroundTasks = new internal.PrimitiveProperty(RuntimeSettings, this, "useSystemContextForBackgroundTasks", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__useDatabaseForeignKeyConstraints = new internal.PrimitiveProperty(RuntimeSettings, this, "useDatabaseForeignKeyConstraints", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__javaVersion = new internal.EnumProperty(RuntimeSettings, this, "javaVersion", JavaVersion.Java11, JavaVersion);
+            /** @internal */
+            this.__useOQLVersion2 = new internal.PrimitiveProperty(RuntimeSettings, this, "useOQLVersion2", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new RuntimeSettings() cannot be invoked directly, please use 'model.settings.createRuntimeSettings()'");
             }
@@ -1284,6 +1398,24 @@ var settings;
             this.__useDatabaseForeignKeyConstraints.set(newValue);
         }
         /**
+         * In version 10.8.0: introduced
+         */
+        get javaVersion() {
+            return this.__javaVersion.get();
+        }
+        set javaVersion(newValue) {
+            this.__javaVersion.set(newValue);
+        }
+        /**
+         * In version 10.11.0: introduced
+         */
+        get useOQLVersion2() {
+            return this.__useOQLVersion2.get();
+        }
+        set useOQLVersion2(newValue) {
+            this.__useOQLVersion2.set(newValue);
+        }
+        /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
          * The new RuntimeSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1322,6 +1454,9 @@ var settings;
             }
             this.firstDayOfWeek = FirstDayOfWeekEnum.Default;
             this.hashAlgorithm = HashAlgorithmType.BCrypt;
+            if (this.__javaVersion.isAvailable) {
+                this.javaVersion = JavaVersion.Java11;
+            }
             this.roundingMode = RoundingMode.HalfUp;
             this.scheduledEventTimeZoneCode = "Etc/UTC";
             if (this.__useDatabaseForeignKeyConstraints.isAvailable) {
@@ -1329,6 +1464,9 @@ var settings;
             }
             if (this.__useDeprecatedClientForWebServiceCalls.isAvailable) {
                 this.useDeprecatedClientForWebServiceCalls = false;
+            }
+            if (this.__useOQLVersion2.isAvailable) {
+                this.useOQLVersion2 = false;
             }
             if (this.__useSystemContextForBackgroundTasks.isAvailable) {
                 this.useSystemContextForBackgroundTasks = false;
@@ -1364,10 +1502,55 @@ var settings;
             },
             useDatabaseForeignKeyConstraints: {
                 introduced: "10.6.0"
+            },
+            javaVersion: {
+                introduced: "10.8.0"
+            },
+            useOQLVersion2: {
+                introduced: "10.11.0"
             }
         }
     }, internal.StructureType.Element);
     settings.RuntimeSettings = RuntimeSettings;
+    /**
+     * In version 10.9.0: introduced
+     */
+    class SharedValue extends SharedOrPrivateValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(SharedValue, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new SharedValue() cannot be invoked directly, please use 'model.settings.createSharedValue()'");
+            }
+        }
+        get containerAsConstantValue() {
+            return super.getContainerAs(ConstantValue);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new SharedValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SharedValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    SharedValue.structureTypeName = "Settings$SharedValue";
+    SharedValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.9.0"
+    }, internal.StructureType.Element);
+    settings.SharedValue = SharedValue;
     /**
      * In version 9.3.0: introduced
      */
@@ -1680,6 +1863,8 @@ var settings;
             this.__workflowOnStateChangeEvent = new internal.PartProperty(WorkflowsProjectSettingsPart, this, "workflowOnStateChangeEvent", null, false);
             /** @internal */
             this.__usertaskOnStateChangeEvent = new internal.PartProperty(WorkflowsProjectSettingsPart, this, "usertaskOnStateChangeEvent", null, false);
+            /** @internal */
+            this.__onWorkflowEvent = new internal.PartListProperty(WorkflowsProjectSettingsPart, this, "onWorkflowEvent", []);
             if (arguments.length < 4) {
                 throw new Error("new WorkflowsProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWorkflowsProjectSettingsPart()'");
             }
@@ -1745,6 +1930,12 @@ var settings;
             this.__usertaskOnStateChangeEvent.set(newValue);
         }
         /**
+         * In version 10.7.0: introduced
+         */
+        get onWorkflowEvent() {
+            return this.__onWorkflowEvent.get();
+        }
+        /**
          * Creates and returns a new WorkflowsProjectSettingsPart instance in the SDK and on the server.
          * The new WorkflowsProjectSettingsPart will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1800,6 +1991,9 @@ var settings;
             },
             usertaskOnStateChangeEvent: {
                 introduced: "9.12.0"
+            },
+            onWorkflowEvent: {
+                introduced: "10.7.0"
             }
         },
         experimental: {

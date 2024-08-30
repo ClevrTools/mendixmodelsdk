@@ -64,6 +64,11 @@ export declare namespace microflows {
         static None: ErrorResultHandlingType;
         protected qualifiedTsTypeName: string;
     }
+    class FlowLineType extends internal.AbstractEnum {
+        static BezierCurve: FlowLineType;
+        static Orthogonal: FlowLineType;
+        protected qualifiedTsTypeName: string;
+    }
     class HttpMethod extends internal.AbstractEnum {
         static Post: HttpMethod;
         static Get: HttpMethod;
@@ -381,6 +386,11 @@ export declare namespace microflows {
         set origin(newValue: MicroflowObject);
         get destination(): MicroflowObject;
         set destination(newValue: MicroflowObject);
+        /**
+         * In version 10.8.0: introduced
+         */
+        get lineType(): FlowLineType;
+        set lineType(newValue: FlowLineType);
         get originConnectionIndex(): number;
         set originConnectionIndex(newValue: number);
         get destinationConnectionIndex(): number;
@@ -486,6 +496,8 @@ export declare namespace microflows {
         static create(model: IModel): AppServiceCallParameterMapping;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/apply-jump-to-option relevant section in reference guide}
+     *
      * In version 9.15.0: introduced
      */
     class ApplyJumpToOptionAction extends MicroflowAction {
@@ -734,10 +746,7 @@ export declare namespace microflows {
         static create(model: IModel): BinaryRequestHandling;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.5.0: introduced
      */
     class BodyVariable extends internal.Element<IModel> {
@@ -815,6 +824,10 @@ export declare namespace microflows {
          */
         get variableDataType(): datatypes.DataType;
         set variableDataType(newValue: datatypes.DataType);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get includedAssociations(): internal.IList<IncludedAssociation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallExternalAction instance in the SDK and on the server.
@@ -1950,6 +1963,10 @@ export declare namespace microflows {
          */
         get argument(): string;
         set argument(newValue: string);
+        /**
+         * In version 10.11.0: introduced
+         */
+        get includedAssociations(): internal.IList<IncludedAssociation>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
@@ -2329,6 +2346,8 @@ export declare namespace microflows {
         static create(model: IModel): GenerateDocumentAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/generate-jump-to-options relevant section in reference guide}
+     *
      * In version 9.14.0: introduced
      */
     class GenerateJumpToOptionsAction extends MicroflowAction {
@@ -2363,6 +2382,8 @@ export declare namespace microflows {
         static create(model: IModel): GenerateJumpToOptionsAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/retrieve-workflow-activity-records relevant section in reference guide}
+     *
      * In version 10.4.0: introduced
      */
     class GetWorkflowActivityRecordsAction extends MicroflowAction {
@@ -2391,6 +2412,8 @@ export declare namespace microflows {
         static create(model: IModel): GetWorkflowActivityRecordsAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/retrieve-workflow-context relevant section in reference guide}
+     *
      * In version 9.12.0: removed experimental
      * In version 9.10.0: introduced
      */
@@ -2423,6 +2446,8 @@ export declare namespace microflows {
         static create(model: IModel): GetWorkflowDataAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/retrieve-workflows relevant section in reference guide}
+     *
      * In version 10.4.0: introduced
      */
     class GetWorkflowsAction extends MicroflowAction {
@@ -2778,6 +2803,56 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ImportXmlAction;
+    }
+    /**
+     * In version 10.11.0: introduced
+     */
+    class IncludedAssociation extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallExternalAction(): CallExternalAction;
+        get containerAsExternalActionParameterMapping(): ExternalActionParameterMapping;
+        get containerAsIncludedAssociation(): IncludedAssociation;
+        get association(): domainmodels.IAssociationBase;
+        set association(newValue: domainmodels.IAssociationBase);
+        get associationQualifiedName(): string;
+        get isParent(): boolean;
+        set isParent(newValue: boolean);
+        get includedAssociations(): internal.IList<IncludedAssociation>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new IncludedAssociation instance in the SDK and on the server.
+         * The new IncludedAssociation will be automatically stored in the 'includedAssociations' property
+         * of the parent CallExternalAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInCallExternalActionUnderIncludedAssociations(container: CallExternalAction): IncludedAssociation;
+        /**
+         * Creates and returns a new IncludedAssociation instance in the SDK and on the server.
+         * The new IncludedAssociation will be automatically stored in the 'includedAssociations' property
+         * of the parent ExternalActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.11.0 and higher
+         */
+        static createInExternalActionParameterMappingUnderIncludedAssociations(container: ExternalActionParameterMapping): IncludedAssociation;
+        /**
+         * Creates and returns a new IncludedAssociation instance in the SDK and on the server.
+         * The new IncludedAssociation will be automatically stored in the 'includedAssociations' property
+         * of the parent IncludedAssociation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.11.0 and higher
+         */
+        static createInIncludedAssociationUnderIncludedAssociations(container: IncludedAssociation): IncludedAssociation;
+        /**
+         * Creates and returns a new IncludedAssociation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): IncludedAssociation;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/metrics-increment-counter relevant section in reference guide}
@@ -3545,6 +3620,11 @@ export declare namespace microflows {
         set microflowReturnType(newValue: datatypes.DataType);
         get markAsUsed(): boolean;
         set markAsUsed(newValue: boolean);
+        /**
+         * In version 10.12.0: introduced
+         */
+        get returnVariableName(): string;
+        set returnVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
     }
     interface IServerSideMicroflow extends IMicroflowBase {
@@ -3619,6 +3699,11 @@ export declare namespace microflows {
          */
         get url(): string;
         set url(newValue: string);
+        /**
+         * In version 10.9.0: introduced
+         */
+        get urlSearchParameters(): internal.IList<IMicroflowParameter>;
+        get urlSearchParametersQualifiedNames(): string[];
         /**
          * In version 10.2.0: introduced
          */
@@ -4138,6 +4223,8 @@ export declare namespace microflows {
         static create(model: IModel): NoCase;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/notify-workflow relevant section in reference guide}
+     *
      * In version 10.0.0: introduced
      */
     class NotifyWorkflowAction extends MicroflowAction {
@@ -4237,10 +4324,7 @@ export declare namespace microflows {
         static create(model: IModel): OpenWorkflowAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
      */
     class OutputVariable extends internal.Element<IModel> {
@@ -4568,46 +4652,26 @@ export declare namespace microflows {
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-entity-to-microflow relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
     class RestOperationCallAction extends MicroflowAction {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get operation(): rest.IRestOperation | null;
         set operation(newValue: rest.IRestOperation | null);
         get operationQualifiedName(): string | null;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.5.0: introduced
          */
         get bodyVariable(): BodyVariable | null;
         set bodyVariable(newValue: BodyVariable | null);
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.2.0: introduced
          */
         get parameterMappings(): internal.IList<RestOperationParameterMapping>;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.4.0: introduced
          */
         get outputVariable(): OutputVariable | null;
@@ -4630,21 +4694,13 @@ export declare namespace microflows {
         static create(model: IModel): RestOperationCallAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 10.7.0: removed experimental
      * In version 10.2.0: introduced
      */
     class RestOperationParameterMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsRestOperationCallAction(): RestOperationCallAction;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get parameter(): rest.IOperationParameter;
         set parameter(newValue: rest.IOperationParameter);
         get parameterQualifiedName(): string;
@@ -5038,7 +5094,7 @@ export declare namespace microflows {
         static create(model: IModel): SequenceFlow;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/complete-task relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/complete-user-task relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
@@ -5311,6 +5367,7 @@ export declare namespace microflows {
         get containerAsValidationFeedbackAction(): ValidationFeedbackAction;
         get containerAsPageSettings(): pages.PageSettings;
         get containerAsUserTask(): workflows.UserTask;
+        get containerAsUserTaskActivity(): workflows.UserTaskActivity;
         get containerAsWorkflow(): workflows.Workflow;
         get arguments(): internal.IList<TemplateArgument>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -5324,6 +5381,7 @@ export declare namespace microflows {
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
         get containerAsUserTask(): workflows.UserTask;
+        get containerAsUserTaskActivity(): workflows.UserTaskActivity;
         get containerAsWorkflow(): workflows.Workflow;
         get text(): string;
         set text(newValue: string);
@@ -5373,7 +5431,7 @@ export declare namespace microflows {
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
         static createInUserTaskUnderTaskDescription(container: workflows.UserTask): StringTemplate;
         /**
@@ -5382,9 +5440,27 @@ export declare namespace microflows {
          * of the parent workflows.UserTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 10.11.0
          */
         static createInUserTaskUnderTaskName(container: workflows.UserTask): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'taskDescription' property
+         * of the parent workflows.UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderTaskDescription(container: workflows.UserTaskActivity): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'taskName' property
+         * of the parent workflows.UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInUserTaskActivityUnderTaskName(container: workflows.UserTaskActivity): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * The new StringTemplate will be automatically stored in the 'workflowDescription' property
@@ -5983,6 +6059,8 @@ export declare namespace microflows {
         static create(model: IModel): WorkflowCallAction;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/change-workflow-state relevant section in reference guide}
+     *
      * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced
      */

@@ -141,6 +141,8 @@ var enumerations;
             this.__caption = new internal.PartProperty(EnumerationValue, this, "caption", null, true);
             /** @internal */
             this.__image = new internal.ByNameReferenceProperty(EnumerationValue, this, "image", null, "Images$Image");
+            /** @internal */
+            this.__remoteValue = new internal.PartProperty(EnumerationValue, this, "remoteValue", null, false);
             if (arguments.length < 4) {
                 throw new Error("new EnumerationValue() cannot be invoked directly, please use 'model.enumerations.createEnumerationValue()'");
             }
@@ -168,6 +170,15 @@ var enumerations;
         }
         get imageQualifiedName() {
             return this.__image.qualifiedName();
+        }
+        /**
+         * In version 10.12.0: introduced
+         */
+        get remoteValue() {
+            return this.__remoteValue.get();
+        }
+        set remoteValue(newValue) {
+            this.__remoteValue.set(newValue);
         }
         /**
          * Creates and returns a new EnumerationValue instance in the SDK and on the server.
@@ -210,6 +221,9 @@ var enumerations;
                 required: {
                     currentValue: true
                 }
+            },
+            remoteValue: {
+                introduced: "10.12.0"
             }
         },
         public: {
@@ -240,6 +254,29 @@ var enumerations;
         introduced: "10.2.0"
     }, internal.StructureType.Element);
     enumerations.RemoteEnumerationSource = RemoteEnumerationSource;
+    /**
+     * In version 10.12.0: introduced
+     */
+    class RemoteEnumerationValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RemoteEnumerationValue() cannot be invoked directly, please use 'model.enumerations.createRemoteEnumerationValue()'");
+            }
+        }
+        get containerAsEnumerationValue() {
+            return super.getContainerAs(EnumerationValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RemoteEnumerationValue.structureTypeName = "Enumerations$RemoteEnumerationValue";
+    RemoteEnumerationValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.12.0"
+    }, internal.StructureType.Element);
+    enumerations.RemoteEnumerationValue = RemoteEnumerationValue;
 })(enumerations = exports.enumerations || (exports.enumerations = {}));
 const documenttemplates_1 = require("./documenttemplates");
 const pages_1 = require("./pages");
