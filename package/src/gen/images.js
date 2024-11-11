@@ -19,6 +19,9 @@ var images;
     MxImageFormat.Bmp = new MxImageFormat("Bmp", {});
     MxImageFormat.Gif = new MxImageFormat("Gif", {});
     MxImageFormat.Svg = new MxImageFormat("Svg", {});
+    MxImageFormat.Webp = new MxImageFormat("Webp", {
+        introduced: "10.16.0"
+    });
     images.MxImageFormat = MxImageFormat;
     class Image extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

@@ -47,6 +47,29 @@ var customwidgets;
     CustomWidgetSelectionType.Single = new CustomWidgetSelectionType("Single", {});
     CustomWidgetSelectionType.Multi = new CustomWidgetSelectionType("Multi", {});
     customwidgets.CustomWidgetSelectionType = CustomWidgetSelectionType;
+    class DefaultTypeEnum extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "customwidgets.DefaultTypeEnum";
+        }
+    }
+    DefaultTypeEnum.None = new DefaultTypeEnum("None", {});
+    DefaultTypeEnum.CallMicroflow = new DefaultTypeEnum("CallMicroflow", {});
+    DefaultTypeEnum.CallNanoflow = new DefaultTypeEnum("CallNanoflow", {});
+    DefaultTypeEnum.OpenPage = new DefaultTypeEnum("OpenPage", {});
+    DefaultTypeEnum.Database = new DefaultTypeEnum("Database", {
+        introduced: "10.16.0"
+    });
+    DefaultTypeEnum.Microflow = new DefaultTypeEnum("Microflow", {
+        introduced: "10.16.0"
+    });
+    DefaultTypeEnum.Nanoflow = new DefaultTypeEnum("Nanoflow", {
+        introduced: "10.16.0"
+    });
+    DefaultTypeEnum.Association = new DefaultTypeEnum("Association", {
+        introduced: "10.16.0"
+    });
+    customwidgets.DefaultTypeEnum = DefaultTypeEnum;
     class IsPath extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -2141,6 +2164,8 @@ var customwidgets;
             this.__translations = new internal.PartListProperty(WidgetValueType, this, "translations", []);
             /** @internal */
             this.__setLabel = new internal.PrimitiveProperty(WidgetValueType, this, "setLabel", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__defaultType = new internal.EnumProperty(WidgetValueType, this, "defaultType", DefaultTypeEnum.None, DefaultTypeEnum);
             if (arguments.length < 4) {
                 throw new Error("new WidgetValueType() cannot be invoked directly, please use 'model.customwidgets.createWidgetValueType()'");
             }
@@ -2306,6 +2331,15 @@ var customwidgets;
             this.__setLabel.set(newValue);
         }
         /**
+         * In version 10.15.0: introduced
+         */
+        get defaultType() {
+            return this.__defaultType.get();
+        }
+        set defaultType(newValue) {
+            this.__defaultType.set(newValue);
+        }
+        /**
          * Creates and returns a new WidgetValueType instance in the SDK and on the server.
          * The new WidgetValueType will be automatically stored in the 'valueType' property
          * of the parent WidgetPropertyType element passed as argument.
@@ -2324,6 +2358,9 @@ var customwidgets;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__defaultType.isAvailable) {
+                this.defaultType = DefaultTypeEnum.None;
+            }
             this.isPath = IsPath.No;
             this.pathType = PathType.None;
             this.type = WidgetValueTypeEnum.String;
@@ -2360,6 +2397,9 @@ var customwidgets;
             },
             setLabel: {
                 introduced: "10.5.0"
+            },
+            defaultType: {
+                introduced: "10.15.0"
             }
         }
     }, internal.StructureType.Element);

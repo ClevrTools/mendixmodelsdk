@@ -79,6 +79,7 @@ export interface IBaseModel extends IAbstractModel {
     allLayouts(): pages.ILayout[];
     allMLMappingDocuments(): mlmappings.IMLMappingDocument[];
     allMappingDocuments(): mappings.IMappingDocument[];
+    allMappingSourceDocuments(): mappings.IMappingSourceDocument[];
     allMenuDocuments(): menus.IMenuDocument[];
     allMessageDefinitionCollections(): messagedefinitions.IMessageDefinitionCollection[];
     allMicroflows(): microflows.IMicroflow[];
@@ -133,6 +134,8 @@ export interface IBaseModel extends IAbstractModel {
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
+    findCSVSheetByQualifiedName(qname: string): exceldataimporter.ICSVSheet | null;
+    findExcelSheetByQualifiedName(qname: string): exceldataimporter.IExcelSheet | null;
     findTemplateByQualifiedName(qname: string): exceldataimporter.ITemplate | null;
     findExportMappingByQualifiedName(qname: string): exportmappings.IExportMapping | null;
     findImageByQualifiedName(qname: string): images.IImage | null;
@@ -209,6 +212,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allLayouts(): pages.ILayout[];
     allMLMappingDocuments(): mlmappings.IMLMappingDocument[];
     allMappingDocuments(): mappings.IMappingDocument[];
+    allMappingSourceDocuments(): mappings.IMappingSourceDocument[];
     allMenuDocuments(): menus.IMenuDocument[];
     allMessageDefinitionCollections(): messagedefinitions.IMessageDefinitionCollection[];
     allMicroflows(): microflows.IMicroflow[];
@@ -263,6 +267,8 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
+    findCSVSheetByQualifiedName(qname: string): exceldataimporter.ICSVSheet | null;
+    findExcelSheetByQualifiedName(qname: string): exceldataimporter.IExcelSheet | null;
     findTemplateByQualifiedName(qname: string): exceldataimporter.ITemplate | null;
     findExportMappingByQualifiedName(qname: string): exportmappings.IExportMapping | null;
     findImageByQualifiedName(qname: string): images.IImage | null;
@@ -491,7 +497,10 @@ export declare type ConcreteModelElements = {
     ExcelDataImporter$CSVSheet: exceldataimporter.CSVSheet;
     ExcelDataImporter$CSVTemplateContents: exceldataimporter.CSVTemplateContents;
     ExcelDataImporter$ColumnAttributeMapping: exceldataimporter.ColumnAttributeMapping;
+    ExcelDataImporter$CsvSheetMappingSourceReference: exceldataimporter.CsvSheetMappingSourceReference;
+    ExcelDataImporter$DataImporterElement: exceldataimporter.DataImporterElement;
     ExcelDataImporter$ExcelSheet: exceldataimporter.ExcelSheet;
+    ExcelDataImporter$ExcelSheetMappingSourceReference: exceldataimporter.ExcelSheetMappingSourceReference;
     ExcelDataImporter$ExcelTemplateContents: exceldataimporter.ExcelTemplateContents;
     ExcelDataImporter$ImportExcelDataAction: exceldataimporter.ImportExcelDataAction;
     ExcelDataImporter$IndexReference: exceldataimporter.IndexReference;
@@ -575,6 +584,7 @@ export declare type ConcreteModelElements = {
     Microflows$AssociationRetrieveSource: microflows.AssociationRetrieveSource;
     Microflows$BasicCodeActionParameterValue: microflows.BasicCodeActionParameterValue;
     Microflows$BasicJavaActionParameterValue: microflows.BasicJavaActionParameterValue;
+    Microflows$BezierCurve: microflows.BezierCurve;
     Microflows$BinaryRequestHandling: microflows.BinaryRequestHandling;
     Microflows$BodyVariable: microflows.BodyVariable;
     Microflows$BreakEvent: microflows.BreakEvent;
@@ -673,6 +683,7 @@ export declare type ConcreteModelElements = {
     Microflows$NotifyWorkflowAction: microflows.NotifyWorkflowAction;
     Microflows$OpenUserTaskAction: microflows.OpenUserTaskAction;
     Microflows$OpenWorkflowAction: microflows.OpenWorkflowAction;
+    Microflows$OrthogonalPath: microflows.OrthogonalPath;
     Microflows$OutputVariable: microflows.OutputVariable;
     Microflows$ParameterIdUrlSegment: microflows.ParameterIdUrlSegment;
     Microflows$PauseOperation: microflows.PauseOperation;

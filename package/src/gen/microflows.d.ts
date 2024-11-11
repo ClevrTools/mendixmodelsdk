@@ -386,19 +386,31 @@ export declare namespace microflows {
         set origin(newValue: MicroflowObject);
         get destination(): MicroflowObject;
         set destination(newValue: MicroflowObject);
-        /**
-         * In version 10.8.0: introduced
-         */
-        get lineType(): FlowLineType;
-        set lineType(newValue: FlowLineType);
         get originConnectionIndex(): number;
         set originConnectionIndex(newValue: number);
         get destinationConnectionIndex(): number;
         set destinationConnectionIndex(newValue: number);
+        /**
+         * In version 10.16.0: deleted
+         */
         get originBezierVector(): common.ISize;
         set originBezierVector(newValue: common.ISize);
+        /**
+         * In version 10.16.0: deleted
+         */
         get destinationBezierVector(): common.ISize;
         set destinationBezierVector(newValue: common.ISize);
+        /**
+         * In version 10.16.0: deleted
+         * In version 10.8.0: introduced
+         */
+        get lineType(): FlowLineType;
+        set lineType(newValue: FlowLineType);
+        /**
+         * In version 10.16.0: introduced
+         */
+        get line(): Line;
+        set line(newValue: Line);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -670,6 +682,43 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): BasicJavaActionParameterValue;
+    }
+    /**
+     * In version 10.16.0: introduced
+     */
+    abstract class Line extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.16.0: introduced
+     */
+    class BezierCurve extends Line {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get originControlVector(): common.ISize;
+        set originControlVector(newValue: common.ISize);
+        get destinationControlVector(): common.ISize;
+        set destinationControlVector(newValue: common.ISize);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * The new BezierCurve will be automatically stored in the 'line' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container: Flow): BezierCurve;
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BezierCurve;
     }
     abstract class ListOperation extends internal.Element<IModel> {
         static structureTypeName: string;
@@ -1697,8 +1746,20 @@ export declare namespace microflows {
          * Creates and returns a new EnumerationCase instance in the SDK and on the server.
          * The new EnumerationCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container: SequenceFlow): EnumerationCase;
+        static createInSequenceFlowUnderCaseValue(container: SequenceFlow): EnumerationCase;
+        /**
+         * Creates and returns a new EnumerationCase instance in the SDK and on the server.
+         * The new EnumerationCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container: SequenceFlow): EnumerationCase;
         /**
          * Creates and returns a new EnumerationCase instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2893,8 +2954,20 @@ export declare namespace microflows {
          * Creates and returns a new InheritanceCase instance in the SDK and on the server.
          * The new InheritanceCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container: SequenceFlow): InheritanceCase;
+        static createInSequenceFlowUnderCaseValue(container: SequenceFlow): InheritanceCase;
+        /**
+         * Creates and returns a new InheritanceCase instance in the SDK and on the server.
+         * The new InheritanceCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container: SequenceFlow): InheritanceCase;
         /**
          * Creates and returns a new InheritanceCase instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -4213,8 +4286,20 @@ export declare namespace microflows {
          * Creates and returns a new NoCase instance in the SDK and on the server.
          * The new NoCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container: SequenceFlow): NoCase;
+        static createInSequenceFlowUnderCaseValue(container: SequenceFlow): NoCase;
+        /**
+         * Creates and returns a new NoCase instance in the SDK and on the server.
+         * The new NoCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container: SequenceFlow): NoCase;
         /**
          * Creates and returns a new NoCase instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -4322,6 +4407,31 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): OpenWorkflowAction;
+    }
+    /**
+     * In version 10.16.0: introduced
+     */
+    class OrthogonalPath extends Line {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get segmentPositions(): internal.IList<number>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * The new OrthogonalPath will be automatically stored in the 'line' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container: Flow): OrthogonalPath;
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OrthogonalPath;
     }
     /**
      * In version 10.7.0: removed experimental
@@ -5075,8 +5185,15 @@ export declare namespace microflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMicroflowBase(): MicroflowBase;
+        /**
+         * In version 10.15.0: deleted
+         */
         get caseValue(): CaseValue;
         set caseValue(newValue: CaseValue);
+        /**
+         * In version 10.15.0: introduced
+         */
+        get caseValues(): internal.IList<CaseValue>;
         get isErrorHandler(): boolean;
         set isErrorHandler(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

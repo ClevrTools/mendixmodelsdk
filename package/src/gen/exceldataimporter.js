@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.exceldataimporter = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+const mappings_1 = require("./mappings");
 const microflows_1 = require("./microflows");
-const projects_1 = require("./projects");
 /**
  * @ignore
  */
@@ -19,9 +19,10 @@ var exceldataimporter;
      *
      * @ignore
      *
+     * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
-    class CSVSheet extends internal.Element {
+    class CSVSheet extends mappings_1.mappings.MappingSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -36,6 +37,8 @@ var exceldataimporter;
             this.__entity = new internal.ByNameReferenceProperty(CSVSheet, this, "entity", null, "DomainModels$Entity");
             /** @internal */
             this.__columnAttributeMappings = new internal.PartListProperty(CSVSheet, this, "columnAttributeMappings", []);
+            /** @internal */
+            this.__csvRootElement = new internal.PartProperty(CSVSheet, this, "csvRootElement", null, true);
             if (arguments.length < 4) {
                 throw new Error("new CSVSheet() cannot be invoked directly, please use 'model.exceldataimporter.createCSVSheet()'");
             }
@@ -67,6 +70,9 @@ var exceldataimporter;
         set headerIncluded(newValue) {
             this.__headerIncluded.set(newValue);
         }
+        /**
+         * In version 10.16.0: added optional
+         */
         get entity() {
             return this.__entity.get();
         }
@@ -83,6 +89,19 @@ var exceldataimporter;
          */
         get columnAttributeMappings() {
             return this.__columnAttributeMappings.get();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.15.0: introduced
+         */
+        get csvRootElement() {
+            return this.__csvRootElement.get();
+        }
+        set csvRootElement(newValue) {
+            this.__csvRootElement.set(newValue);
         }
         /**
          * Creates and returns a new CSVSheet instance in the SDK and on the server.
@@ -105,8 +124,15 @@ var exceldataimporter;
             return internal.instancehelpers.createElement(model, CSVSheet);
         }
         /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__csvRootElement.isAvailable) {
+                this.csvRootElement = DataImporterElement.create(this.model);
+            }
             this.headerIncluded = true;
         }
     }
@@ -116,9 +142,20 @@ var exceldataimporter;
         properties: {
             entity: {
                 required: {
+                    currentValue: false,
+                    changedIn: ["10.16.0"]
+                }
+            },
+            csvRootElement: {
+                introduced: "10.15.0",
+                required: {
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
         },
         experimental: {
             currentValue: true
@@ -130,6 +167,7 @@ var exceldataimporter;
      *
      * @ignore
      *
+     * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
     class TemplateContents extends internal.Element {
@@ -150,6 +188,10 @@ var exceldataimporter;
     TemplateContents.structureTypeName = "ExcelDataImporter$TemplateContents";
     TemplateContents.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.6.0",
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -160,6 +202,7 @@ var exceldataimporter;
      *
      * @ignore
      *
+     * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
     class CSVTemplateContents extends TemplateContents {
@@ -178,6 +221,8 @@ var exceldataimporter;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.15.0: added public
          */
         get sheet() {
             return this.__sheet.get();
@@ -208,7 +253,16 @@ var exceldataimporter;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.sheet = CSVSheet.create(this.model);
+            (() => {
+                if (internal.isAtLeast("10.15.0", this.model)) {
+                    this.sheet = ((cSVSheet) => {
+                        cSVSheet.name = "CsvSheet";
+                        return cSVSheet;
+                    })(CSVSheet.create(this.model));
+                    return;
+                }
+                this.sheet = CSVSheet.create(this.model);
+            })();
         }
     }
     CSVTemplateContents.structureTypeName = "ExcelDataImporter$CSVTemplateContents";
@@ -216,10 +270,18 @@ var exceldataimporter;
         introduced: "10.6.0",
         properties: {
             sheet: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["10.15.0"]
+                },
                 required: {
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
         },
         experimental: {
             currentValue: true
@@ -360,9 +422,186 @@ var exceldataimporter;
      *
      * @ignore
      *
+     * In version 10.16.0: introduced
+     */
+    class CsvSheetMappingSourceReference extends mappings_1.mappings.MappingSourceReference {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__csvSheet = new internal.ByNameReferenceProperty(CsvSheetMappingSourceReference, this, "csvSheet", null, "ExcelDataImporter$CSVSheet");
+            if (arguments.length < 4) {
+                throw new Error("new CsvSheetMappingSourceReference() cannot be invoked directly, please use 'model.exceldataimporter.createCsvSheetMappingSourceReference()'");
+            }
+        }
+        get containerAsMappingDocument() {
+            return super.getContainerAs(mappings_1.mappings.MappingDocument);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get csvSheet() {
+            return this.__csvSheet.get();
+        }
+        set csvSheet(newValue) {
+            this.__csvSheet.set(newValue);
+        }
+        get csvSheetQualifiedName() {
+            return this.__csvSheet.qualifiedName();
+        }
+        /**
+         * Creates and returns a new CsvSheetMappingSourceReference instance in the SDK and on the server.
+         * The new CsvSheetMappingSourceReference will be automatically stored in the 'mappingSourceReference' property
+         * of the parent mappings.MappingDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CsvSheetMappingSourceReference.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, CsvSheetMappingSourceReference, "mappingSourceReference", false);
+        }
+        /**
+         * Creates and returns a new CsvSheetMappingSourceReference instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CsvSheetMappingSourceReference);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CsvSheetMappingSourceReference.structureTypeName = "ExcelDataImporter$CsvSheetMappingSourceReference";
+    CsvSheetMappingSourceReference.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0",
+        properties: {
+            csvSheet: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    exceldataimporter.CsvSheetMappingSourceReference = CsvSheetMappingSourceReference;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.15.0: introduced
+     */
+    class DataImporterElement extends mappings_1.mappings.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__originalValues = new internal.PrimitiveListProperty(DataImporterElement, this, "originalValues", [], internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new DataImporterElement() cannot be invoked directly, please use 'model.exceldataimporter.createDataImporterElement()'");
+            }
+        }
+        get containerAsCSVSheet() {
+            return super.getContainerAs(CSVSheet);
+        }
+        get containerAsExcelSheet() {
+            return super.getContainerAs(ExcelSheet);
+        }
+        get containerAsJsonStructure() {
+            return super.getContainerAs(jsonstructures_1.jsonstructures.JsonStructure);
+        }
+        get containerAsElement() {
+            return super.getContainerAs(mappings_1.mappings.Element);
+        }
+        get originalValues() {
+            return this.__originalValues.get();
+        }
+        /**
+         * Creates and returns a new DataImporterElement instance in the SDK and on the server.
+         * The new DataImporterElement will be automatically stored in the 'csvRootElement' property
+         * of the parent CSVSheet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInCSVSheetUnderCsvRootElement(container) {
+            internal.createInVersionCheck(container.model, DataImporterElement.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, DataImporterElement, "csvRootElement", false);
+        }
+        /**
+         * Creates and returns a new DataImporterElement instance in the SDK and on the server.
+         * The new DataImporterElement will be automatically stored in the 'excelRootElement' property
+         * of the parent ExcelSheet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInExcelSheetUnderExcelRootElement(container) {
+            internal.createInVersionCheck(container.model, DataImporterElement.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, DataImporterElement, "excelRootElement", false);
+        }
+        /**
+         * Creates and returns a new DataImporterElement instance in the SDK and on the server.
+         * The new DataImporterElement will be automatically stored in the 'elements' property
+         * of the parent jsonstructures.JsonStructure element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInJsonStructureUnderElements(container) {
+            internal.createInVersionCheck(container.model, DataImporterElement.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, DataImporterElement, "elements", true);
+        }
+        /**
+         * Creates and returns a new DataImporterElement instance in the SDK and on the server.
+         * The new DataImporterElement will be automatically stored in the 'children' property
+         * of the parent mappings.Element element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInElementUnderChildren(container) {
+            internal.createInVersionCheck(container.model, DataImporterElement.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, DataImporterElement, "children", true);
+        }
+        /**
+         * Creates and returns a new DataImporterElement instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, DataImporterElement);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    DataImporterElement.structureTypeName = "ExcelDataImporter$DataImporterElement";
+    DataImporterElement.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.15.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    exceldataimporter.DataImporterElement = DataImporterElement;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
-    class ExcelSheet extends internal.Element {
+    class ExcelSheet extends mappings_1.mappings.MappingSource {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
@@ -375,6 +614,8 @@ var exceldataimporter;
             this.__entity = new internal.ByNameReferenceProperty(ExcelSheet, this, "entity", null, "DomainModels$Entity");
             /** @internal */
             this.__columnAttributeMappings = new internal.PartListProperty(ExcelSheet, this, "columnAttributeMappings", []);
+            /** @internal */
+            this.__excelRootElement = new internal.PartProperty(ExcelSheet, this, "excelRootElement", null, true);
             if (arguments.length < 4) {
                 throw new Error("new ExcelSheet() cannot be invoked directly, please use 'model.exceldataimporter.createExcelSheet()'");
             }
@@ -405,6 +646,9 @@ var exceldataimporter;
         set dataRowStartsAt(newValue) {
             this.__dataRowStartsAt.set(newValue);
         }
+        /**
+         * In version 10.16.0: added optional
+         */
         get entity() {
             return this.__entity.get();
         }
@@ -421,6 +665,19 @@ var exceldataimporter;
          */
         get columnAttributeMappings() {
             return this.__columnAttributeMappings.get();
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.15.0: introduced
+         */
+        get excelRootElement() {
+            return this.__excelRootElement.get();
+        }
+        set excelRootElement(newValue) {
+            this.__excelRootElement.set(newValue);
         }
         /**
          * Creates and returns a new ExcelSheet instance in the SDK and on the server.
@@ -443,9 +700,16 @@ var exceldataimporter;
             return internal.instancehelpers.createElement(model, ExcelSheet);
         }
         /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.dataRowStartsAt = 1;
+            if (this.__excelRootElement.isAvailable) {
+                this.excelRootElement = DataImporterElement.create(this.model);
+            }
             this.headerRowStartsAt = 1;
             this.reference = IndexReference.create(this.model);
         }
@@ -461,9 +725,20 @@ var exceldataimporter;
             },
             entity: {
                 required: {
+                    currentValue: false,
+                    changedIn: ["10.16.0"]
+                }
+            },
+            excelRootElement: {
+                introduced: "10.15.0",
+                required: {
                     currentValue: true
                 }
             }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
         },
         experimental: {
             currentValue: true
@@ -475,6 +750,83 @@ var exceldataimporter;
      *
      * @ignore
      *
+     * In version 10.16.0: introduced
+     */
+    class ExcelSheetMappingSourceReference extends mappings_1.mappings.MappingSourceReference {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__excelSheet = new internal.ByNameReferenceProperty(ExcelSheetMappingSourceReference, this, "excelSheet", null, "ExcelDataImporter$ExcelSheet");
+            if (arguments.length < 4) {
+                throw new Error("new ExcelSheetMappingSourceReference() cannot be invoked directly, please use 'model.exceldataimporter.createExcelSheetMappingSourceReference()'");
+            }
+        }
+        get containerAsMappingDocument() {
+            return super.getContainerAs(mappings_1.mappings.MappingDocument);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get excelSheet() {
+            return this.__excelSheet.get();
+        }
+        set excelSheet(newValue) {
+            this.__excelSheet.set(newValue);
+        }
+        get excelSheetQualifiedName() {
+            return this.__excelSheet.qualifiedName();
+        }
+        /**
+         * Creates and returns a new ExcelSheetMappingSourceReference instance in the SDK and on the server.
+         * The new ExcelSheetMappingSourceReference will be automatically stored in the 'mappingSourceReference' property
+         * of the parent mappings.MappingDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ExcelSheetMappingSourceReference.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, ExcelSheetMappingSourceReference, "mappingSourceReference", false);
+        }
+        /**
+         * Creates and returns a new ExcelSheetMappingSourceReference instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ExcelSheetMappingSourceReference);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ExcelSheetMappingSourceReference.structureTypeName = "ExcelDataImporter$ExcelSheetMappingSourceReference";
+    ExcelSheetMappingSourceReference.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0",
+        properties: {
+            excelSheet: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    exceldataimporter.ExcelSheetMappingSourceReference = ExcelSheetMappingSourceReference;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
     class ExcelTemplateContents extends TemplateContents {
@@ -493,6 +845,8 @@ var exceldataimporter;
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
          * @ignore
+         *
+         * In version 10.15.0: added public
          */
         get sheets() {
             return this.__sheets.get();
@@ -525,6 +879,18 @@ var exceldataimporter;
     ExcelTemplateContents.structureTypeName = "ExcelDataImporter$ExcelTemplateContents";
     ExcelTemplateContents.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.6.0",
+        properties: {
+            sheets: {
+                public: {
+                    currentValue: true,
+                    changedIn: ["10.15.0"]
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
+        },
         experimental: {
             currentValue: true
         }
@@ -964,7 +1330,7 @@ var exceldataimporter;
      *
      * In version 9.24.0: introduced
      */
-    class Template extends projects_1.projects.Document {
+    class Template extends mappings_1.mappings.MappingSourceDocument {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
@@ -975,6 +1341,8 @@ var exceldataimporter;
             this.__contents = new internal.PartProperty(Template, this, "contents", null, false);
             /** @internal */
             this.__fileName = new internal.PrimitiveProperty(Template, this, "fileName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__useAsMappingSource = new internal.PrimitiveProperty(Template, this, "useAsMappingSource", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1001,6 +1369,7 @@ var exceldataimporter;
          *
          * @ignore
          *
+         * In version 10.15.0: added public
          * In version 10.6.0: introduced
          */
         get contents() {
@@ -1014,6 +1383,15 @@ var exceldataimporter;
         }
         set fileName(newValue) {
             this.__fileName.set(newValue);
+        }
+        /**
+         * In version 10.15.0: introduced
+         */
+        get useAsMappingSource() {
+            return this.__useAsMappingSource.get();
+        }
+        set useAsMappingSource(newValue) {
+            this.__useAsMappingSource.set(newValue);
         }
         /**
          * Creates a new Template unit in the SDK and on the server.
@@ -1040,7 +1418,14 @@ var exceldataimporter;
                 deletionMessage: "Moved to ExcelTemplateContents.sheets"
             },
             contents: {
-                introduced: "10.6.0"
+                introduced: "10.6.0",
+                public: {
+                    currentValue: true,
+                    changedIn: ["10.15.0"]
+                }
+            },
+            useAsMappingSource: {
+                introduced: "10.15.0"
             }
         },
         experimental: {
@@ -1049,4 +1434,6 @@ var exceldataimporter;
     }, internal.StructureType.ModelUnit);
     exceldataimporter.Template = Template;
 })(exceldataimporter = exports.exceldataimporter || (exports.exceldataimporter = {}));
+const jsonstructures_1 = require("./jsonstructures");
+const projects_1 = require("./projects");
 //# sourceMappingURL=exceldataimporter.js.map

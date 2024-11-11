@@ -160,6 +160,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allMappingDocuments() {
         return super._allOfTypes(["ExportMappings$ExportMapping", "ImportMappings$ImportMapping"]);
     }
+    allMappingSourceDocuments() {
+        return super._allOfTypes(["ExcelDataImporter$Template"]);
+    }
     allMenuDocuments() {
         return super._allOfTypes(["Menus$MenuDocument"]);
     }
@@ -375,6 +378,12 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findEnumerationValueByQualifiedName(qname) {
         return this._resolveName("Enumerations$EnumerationValue", qname);
+    }
+    findCSVSheetByQualifiedName(qname) {
+        return this._resolveName("ExcelDataImporter$CSVSheet", qname);
+    }
+    findExcelSheetByQualifiedName(qname) {
+        return this._resolveName("ExcelDataImporter$ExcelSheet", qname);
     }
     findTemplateByQualifiedName(qname) {
         return this._resolveName("ExcelDataImporter$Template", qname);

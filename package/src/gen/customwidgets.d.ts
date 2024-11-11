@@ -28,6 +28,17 @@ export declare namespace customwidgets {
         static Multi: CustomWidgetSelectionType;
         protected qualifiedTsTypeName: string;
     }
+    class DefaultTypeEnum extends internal.AbstractEnum {
+        static None: DefaultTypeEnum;
+        static CallMicroflow: DefaultTypeEnum;
+        static CallNanoflow: DefaultTypeEnum;
+        static OpenPage: DefaultTypeEnum;
+        static Database: DefaultTypeEnum;
+        static Microflow: DefaultTypeEnum;
+        static Nanoflow: DefaultTypeEnum;
+        static Association: DefaultTypeEnum;
+        protected qualifiedTsTypeName: string;
+    }
     class IsPath extends internal.AbstractEnum {
         static No: IsPath;
         static Optional: IsPath;
@@ -1132,6 +1143,11 @@ export declare namespace customwidgets {
          */
         get setLabel(): boolean;
         set setLabel(newValue: boolean);
+        /**
+         * In version 10.15.0: introduced
+         */
+        get defaultType(): DefaultTypeEnum;
+        set defaultType(newValue: DefaultTypeEnum);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValueType instance in the SDK and on the server.

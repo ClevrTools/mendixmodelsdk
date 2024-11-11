@@ -98,6 +98,12 @@ var mappings;
                 throw new Error("new Element() cannot be invoked directly, please use 'model.mappings.createElement()'");
             }
         }
+        get containerAsCSVSheet() {
+            return super.getContainerAs(exceldataimporter_1.exceldataimporter.CSVSheet);
+        }
+        get containerAsExcelSheet() {
+            return super.getContainerAs(exceldataimporter_1.exceldataimporter.ExcelSheet);
+        }
         get containerAsJsonStructure() {
             return super.getContainerAs(jsonstructures_1.jsonstructures.JsonStructure);
         }
@@ -246,6 +252,8 @@ var mappings;
             /** @internal */
             this.__messageDefinition = new internal.ByNameReferenceProperty(MappingDocument, this, "messageDefinition", null, "MessageDefinitions$MessageDefinition");
             /** @internal */
+            this.__mappingSourceReference = new internal.PartProperty(MappingDocument, this, "mappingSourceReference", null, false);
+            /** @internal */
             this.__publicName = new internal.PrimitiveProperty(MappingDocument, this, "publicName", "", internal.PrimitiveTypeEnum.String);
         }
         get containerAsFolderBase() {
@@ -315,6 +323,15 @@ var mappings;
             return this.__messageDefinition.qualifiedName();
         }
         /**
+         * In version 10.16.0: introduced
+         */
+        get mappingSourceReference() {
+            return this.__mappingSourceReference.get();
+        }
+        set mappingSourceReference(newValue) {
+            this.__mappingSourceReference.set(newValue);
+        }
+        /**
          * In version 7.14.0: introduced
          */
         get publicName() {
@@ -336,6 +353,12 @@ var mappings;
             },
             messageDefinition: {
                 introduced: "7.6.0"
+            },
+            mappingSourceReference: {
+                introduced: "10.16.0",
+                public: {
+                    currentValue: true
+                }
             },
             publicName: {
                 introduced: "7.14.0"
@@ -633,6 +656,105 @@ var mappings;
         }
     }, internal.StructureType.Element);
     mappings.MappingMicroflowParameter = MappingMicroflowParameter;
+    /**
+     * In version 10.15.0: added public
+     * In version 10.6.0: introduced
+     */
+    class MappingSource extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(MappingSource, this, "name", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new MappingSource() cannot be invoked directly, please use 'model.mappings.createMappingSource()'");
+            }
+        }
+        get containerAsCSVTemplateContents() {
+            return super.getContainerAs(exceldataimporter_1.exceldataimporter.CSVTemplateContents);
+        }
+        get containerAsExcelTemplateContents() {
+            return super.getContainerAs(exceldataimporter_1.exceldataimporter.ExcelTemplateContents);
+        }
+        /**
+         * In version 10.15.0: introduced
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappingSource.structureTypeName = "Mappings$MappingSource";
+    MappingSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.6.0",
+        properties: {
+            name: {
+                introduced: "10.15.0",
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true,
+            changedIn: ["10.15.0"]
+        }
+    }, internal.StructureType.Element);
+    mappings.MappingSource = MappingSource;
+    /**
+     * In version 9.24.0: introduced
+     */
+    class MappingSourceDocument extends projects_1.projects.Document {
+        constructor(model, structureTypeName, id, isPartial, container) {
+            super(model, structureTypeName, id, isPartial, container);
+        }
+        get containerAsFolderBase() {
+            return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappingSourceDocument.structureTypeName = "Mappings$MappingSourceDocument";
+    MappingSourceDocument.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.24.0"
+    }, internal.StructureType.ModelUnit);
+    mappings.MappingSourceDocument = MappingSourceDocument;
+    /**
+     * In version 10.16.0: introduced
+     */
+    class MappingSourceReference extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MappingSourceReference() cannot be invoked directly, please use 'model.mappings.createMappingSourceReference()'");
+            }
+        }
+        get containerAsMappingDocument() {
+            return super.getContainerAs(MappingDocument);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MappingSourceReference.structureTypeName = "Mappings$MappingSourceReference";
+    MappingSourceReference.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    mappings.MappingSourceReference = MappingSourceReference;
     class ObjectMappingElement extends MappingElement {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -932,6 +1054,7 @@ var mappings;
     mappings.ValueMappingElement = ValueMappingElement;
 })(mappings = exports.mappings || (exports.mappings = {}));
 const datatypes_1 = require("./datatypes");
+const exceldataimporter_1 = require("./exceldataimporter");
 const jsonstructures_1 = require("./jsonstructures");
 const messagedefinitions_1 = require("./messagedefinitions");
 const rest_1 = require("./rest");

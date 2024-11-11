@@ -37,6 +37,8 @@ export declare namespace mappings {
     abstract class Element extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsCSVSheet(): exceldataimporter.CSVSheet;
+        get containerAsExcelSheet(): exceldataimporter.ExcelSheet;
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): Element;
         get containerAsEntityMessageDefinition(): messagedefinitions.EntityMessageDefinition;
@@ -83,6 +85,10 @@ export declare namespace mappings {
     interface IMappingDocument extends projects.IDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
+        /**
+         * In version 10.16.0: introduced
+         */
+        readonly mappingSourceReference: IMappingSourceReference | null;
         asLoaded(): MappingDocument;
         load(callback: (element: MappingDocument) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<MappingDocument>;
@@ -119,6 +125,11 @@ export declare namespace mappings {
         get messageDefinition(): messagedefinitions.IMessageDefinition | null;
         set messageDefinition(newValue: messagedefinitions.IMessageDefinition | null);
         get messageDefinitionQualifiedName(): string | null;
+        /**
+         * In version 10.16.0: introduced
+         */
+        get mappingSourceReference(): MappingSourceReference | null;
+        set mappingSourceReference(newValue: MappingSourceReference | null);
         /**
          * In version 7.14.0: introduced
          */
@@ -237,6 +248,75 @@ export declare namespace mappings {
          */
         static create(model: IModel): MappingMicroflowParameter;
     }
+    /**
+     * In version 10.15.0: added public
+     * In version 10.6.0: introduced
+     */
+    interface IMappingSource extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        /**
+         * In version 10.15.0: introduced
+         */
+        readonly name: string;
+        asLoaded(): MappingSource;
+        load(callback: (element: MappingSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappingSource>;
+    }
+    /**
+     * In version 10.15.0: added public
+     * In version 10.6.0: introduced
+     */
+    abstract class MappingSource extends internal.Element<IModel> implements IMappingSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCSVTemplateContents(): exceldataimporter.CSVTemplateContents;
+        get containerAsExcelTemplateContents(): exceldataimporter.ExcelTemplateContents;
+        /**
+         * In version 10.15.0: introduced
+         */
+        get name(): string;
+        set name(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 9.24.0: introduced
+     */
+    interface IMappingSourceDocument extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        asLoaded(): MappingSourceDocument;
+        load(callback: (element: MappingSourceDocument) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappingSourceDocument>;
+    }
+    /**
+     * In version 9.24.0: introduced
+     */
+    abstract class MappingSourceDocument extends projects.Document implements IMappingSourceDocument {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+    }
+    /**
+     * In version 10.16.0: introduced
+     */
+    interface IMappingSourceReference extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsMappingDocument: IMappingDocument;
+        asLoaded(): MappingSourceReference;
+        load(callback: (element: MappingSourceReference) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MappingSourceReference>;
+    }
+    /**
+     * In version 10.16.0: introduced
+     */
+    abstract class MappingSourceReference extends internal.Element<IModel> implements IMappingSourceReference {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsMappingDocument(): MappingDocument;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
     abstract class ObjectMappingElement extends MappingElement {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -323,6 +403,7 @@ export declare namespace mappings {
 }
 import { datatypes } from "./datatypes";
 import { domainmodels } from "./domainmodels";
+import { exceldataimporter } from "./exceldataimporter";
 import { jsonstructures } from "./jsonstructures";
 import { messagedefinitions } from "./messagedefinitions";
 import { microflows } from "./microflows";

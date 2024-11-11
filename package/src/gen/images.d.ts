@@ -9,6 +9,7 @@ export declare namespace images {
         static Bmp: MxImageFormat;
         static Gif: MxImageFormat;
         static Svg: MxImageFormat;
+        static Webp: MxImageFormat;
         protected qualifiedTsTypeName: string;
     }
     /**

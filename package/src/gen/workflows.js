@@ -230,6 +230,9 @@ var workflows;
                 throw new Error("new Annotation() cannot be invoked directly, please use 'model.workflows.createAnnotation()'");
             }
         }
+        get containerAsBoundaryEvent() {
+            return super.getContainerAs(BoundaryEvent);
+        }
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
@@ -241,6 +244,18 @@ var workflows;
         }
         set description(newValue) {
             this.__description.set(newValue);
+        }
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent BoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createInBoundaryEventUnderAnnotation(container) {
+            internal.createInVersionCheck(container.model, Annotation.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, Annotation, "annotation", false);
         }
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
@@ -443,6 +458,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.BooleanConditionOutcome = BooleanConditionOutcome;
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-boundary-events relevant section in reference guide}
+     *
      * In version 10.14.0: introduced
      */
     class BoundaryEvent extends internal.Element {
@@ -452,6 +469,8 @@ var workflows;
             this.__flow = new internal.PartProperty(BoundaryEvent, this, "flow", null, true);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(BoundaryEvent, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__annotation = new internal.PartProperty(BoundaryEvent, this, "annotation", null, false);
             if (arguments.length < 4) {
                 throw new Error("new BoundaryEvent() cannot be invoked directly, please use 'model.workflows.createBoundaryEvent()'");
             }
@@ -480,6 +499,15 @@ var workflows;
         set caption(newValue) {
             this.__caption.set(newValue);
         }
+        /**
+         * In version 10.16.0: introduced
+         */
+        get annotation() {
+            return this.__annotation.get();
+        }
+        set annotation(newValue) {
+            this.__annotation.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -502,6 +530,9 @@ var workflows;
                 public: {
                     currentValue: true
                 }
+            },
+            annotation: {
+                introduced: "10.16.0"
             }
         },
         public: {
@@ -3572,6 +3603,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.VoidConditionOutcome = VoidConditionOutcome;
     /**
+     * See: {@link https://docs.mendix.com/refguide/wait-for-notification relevant section in reference guide}
+     *
      * In version 10.0.0: introduced
      */
     class WaitForNotificationActivity extends WorkflowActivity {
@@ -3638,6 +3671,8 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.WaitForNotificationActivity = WaitForNotificationActivity;
     /**
+     * See: {@link https://docs.mendix.com/refguide/timer relevant section in reference guide}
+     *
      * In version 10.6.0: introduced
      */
     class WaitForTimerActivity extends WorkflowActivity {

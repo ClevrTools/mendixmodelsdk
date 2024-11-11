@@ -1503,6 +1503,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRef extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         asLoaded(): EntityRef;
         load(callback: (element: EntityRef) => void, forceRefresh?: boolean): void;
@@ -1926,6 +1927,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRefStep extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsIndirectEntityRef: IIndirectEntityRef;
         asLoaded(): EntityRefStep;
         load(callback: (element: EntityRefStep) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EntityRefStep>;
@@ -2398,6 +2400,7 @@ export declare namespace domainmodels {
      */
     interface IIndirectEntityRef extends IEntityRef {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         /**
          * In version 9.6.0: added public

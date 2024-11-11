@@ -130,11 +130,21 @@ export declare namespace workflows {
     class Annotation extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsBoundaryEvent(): BoundaryEvent;
         get containerAsWorkflow(): Workflow;
         get containerAsWorkflowActivity(): WorkflowActivity;
         get description(): string;
         set description(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent BoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createInBoundaryEventUnderAnnotation(container: BoundaryEvent): Annotation;
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
          * The new Annotation will be automatically stored in the 'annotation' property
@@ -258,6 +268,8 @@ export declare namespace workflows {
         static create(model: IModel): BooleanConditionOutcome;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-boundary-events relevant section in reference guide}
+     *
      * In version 10.14.0: introduced
      */
     interface IBoundaryEvent extends internal.IElement {
@@ -276,6 +288,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<BoundaryEvent>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-boundary-events relevant section in reference guide}
+     *
      * In version 10.14.0: introduced
      */
     abstract class BoundaryEvent extends internal.Element<IModel> implements IBoundaryEvent {
@@ -289,6 +303,11 @@ export declare namespace workflows {
         set flow(newValue: Flow);
         get caption(): string;
         set caption(newValue: string);
+        /**
+         * In version 10.16.0: introduced
+         */
+        get annotation(): Annotation | null;
+        set annotation(newValue: Annotation | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -1945,6 +1964,8 @@ export declare namespace workflows {
         static create(model: IModel): VoidConditionOutcome;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/wait-for-notification relevant section in reference guide}
+     *
      * In version 10.0.0: introduced
      */
     interface IWaitForNotificationActivity extends IWorkflowActivity {
@@ -1959,6 +1980,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<WaitForNotificationActivity>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/wait-for-notification relevant section in reference guide}
+     *
      * In version 10.0.0: introduced
      */
     class WaitForNotificationActivity extends WorkflowActivity implements IWaitForNotificationActivity {
@@ -1987,6 +2010,8 @@ export declare namespace workflows {
         static create(model: IModel): WaitForNotificationActivity;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/timer relevant section in reference guide}
+     *
      * In version 10.6.0: introduced
      */
     interface IWaitForTimerActivity extends IWorkflowActivity {
@@ -1997,6 +2022,8 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<WaitForTimerActivity>;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/timer relevant section in reference guide}
+     *
      * In version 10.6.0: introduced
      */
     class WaitForTimerActivity extends WorkflowActivity implements IWaitForTimerActivity {

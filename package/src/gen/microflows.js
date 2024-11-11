@@ -869,8 +869,6 @@ var microflows;
             /** @internal */
             this.__destination = new internal.ByIdReferenceProperty(Flow, this, "destination", null);
             /** @internal */
-            this.__lineType = new internal.EnumProperty(Flow, this, "lineType", FlowLineType.BezierCurve, FlowLineType);
-            /** @internal */
             this.__originConnectionIndex = new internal.PrimitiveProperty(Flow, this, "originConnectionIndex", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
             this.__destinationConnectionIndex = new internal.PrimitiveProperty(Flow, this, "destinationConnectionIndex", 0, internal.PrimitiveTypeEnum.Integer);
@@ -878,6 +876,10 @@ var microflows;
             this.__originBezierVector = new internal.PrimitiveProperty(Flow, this, "originBezierVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
             /** @internal */
             this.__destinationBezierVector = new internal.PrimitiveProperty(Flow, this, "destinationBezierVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            /** @internal */
+            this.__lineType = new internal.EnumProperty(Flow, this, "lineType", FlowLineType.BezierCurve, FlowLineType);
+            /** @internal */
+            this.__line = new internal.PartProperty(Flow, this, "line", null, true);
             if (arguments.length < 4) {
                 throw new Error("new Flow() cannot be invoked directly, please use 'model.microflows.createFlow()'");
             }
@@ -897,15 +899,6 @@ var microflows;
         set destination(newValue) {
             this.__destination.set(newValue);
         }
-        /**
-         * In version 10.8.0: introduced
-         */
-        get lineType() {
-            return this.__lineType.get();
-        }
-        set lineType(newValue) {
-            this.__lineType.set(newValue);
-        }
         get originConnectionIndex() {
             return this.__originConnectionIndex.get();
         }
@@ -918,21 +911,49 @@ var microflows;
         set destinationConnectionIndex(newValue) {
             this.__destinationConnectionIndex.set(newValue);
         }
+        /**
+         * In version 10.16.0: deleted
+         */
         get originBezierVector() {
             return this.__originBezierVector.get();
         }
         set originBezierVector(newValue) {
             this.__originBezierVector.set(newValue);
         }
+        /**
+         * In version 10.16.0: deleted
+         */
         get destinationBezierVector() {
             return this.__destinationBezierVector.get();
         }
         set destinationBezierVector(newValue) {
             this.__destinationBezierVector.set(newValue);
         }
+        /**
+         * In version 10.16.0: deleted
+         * In version 10.8.0: introduced
+         */
+        get lineType() {
+            return this.__lineType.get();
+        }
+        set lineType(newValue) {
+            this.__lineType.set(newValue);
+        }
+        /**
+         * In version 10.16.0: introduced
+         */
+        get line() {
+            return this.__line.get();
+        }
+        set line(newValue) {
+            this.__line.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__line.isAvailable) {
+                this.line = BezierCurve.create(this.model);
+            }
             if (this.__lineType.isAvailable) {
                 this.lineType = FlowLineType.BezierCurve;
             }
@@ -951,13 +972,27 @@ var microflows;
                     currentValue: true
                 }
             },
-            lineType: {
-                introduced: "10.8.0"
-            },
             originConnectionIndex: {},
             destinationConnectionIndex: {},
-            originBezierVector: {},
-            destinationBezierVector: {}
+            originBezierVector: {
+                deleted: "10.16.0",
+                deletionMessage: null
+            },
+            destinationBezierVector: {
+                deleted: "10.16.0",
+                deletionMessage: null
+            },
+            lineType: {
+                introduced: "10.8.0",
+                deleted: "10.16.0",
+                deletionMessage: null
+            },
+            line: {
+                introduced: "10.16.0",
+                required: {
+                    currentValue: true
+                }
+            }
         }
     }, internal.StructureType.Element);
     microflows.Flow = Flow;
@@ -1559,6 +1594,88 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.BasicJavaActionParameterValue = BasicJavaActionParameterValue;
+    /**
+     * In version 10.16.0: introduced
+     */
+    class Line extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new Line() cannot be invoked directly, please use 'model.microflows.createLine()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Line.structureTypeName = "Microflows$Line";
+    Line.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0"
+    }, internal.StructureType.Element);
+    microflows.Line = Line;
+    /**
+     * In version 10.16.0: introduced
+     */
+    class BezierCurve extends Line {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__originControlVector = new internal.PrimitiveProperty(BezierCurve, this, "originControlVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            /** @internal */
+            this.__destinationControlVector = new internal.PrimitiveProperty(BezierCurve, this, "destinationControlVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            if (arguments.length < 4) {
+                throw new Error("new BezierCurve() cannot be invoked directly, please use 'model.microflows.createBezierCurve()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get originControlVector() {
+            return this.__originControlVector.get();
+        }
+        set originControlVector(newValue) {
+            this.__originControlVector.set(newValue);
+        }
+        get destinationControlVector() {
+            return this.__destinationControlVector.get();
+        }
+        set destinationControlVector(newValue) {
+            this.__destinationControlVector.set(newValue);
+        }
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * The new BezierCurve will be automatically stored in the 'line' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BezierCurve.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, BezierCurve, "line", false);
+        }
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BezierCurve);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    BezierCurve.structureTypeName = "Microflows$BezierCurve";
+    BezierCurve.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0"
+    }, internal.StructureType.Element);
+    microflows.BezierCurve = BezierCurve;
     class ListOperation extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3836,9 +3953,25 @@ var microflows;
          * Creates and returns a new EnumerationCase instance in the SDK and on the server.
          * The new EnumerationCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container) {
+        static createInSequenceFlowUnderCaseValue(container) {
+            internal.createInVersionCheck(container.model, EnumerationCase.structureTypeName, { end: "10.14.0" });
             return internal.instancehelpers.createElement(container, EnumerationCase, "caseValue", false);
+        }
+        /**
+         * Creates and returns a new EnumerationCase instance in the SDK and on the server.
+         * The new EnumerationCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container) {
+            internal.createInVersionCheck(container.model, EnumerationCase.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, EnumerationCase, "caseValues", true);
         }
         /**
          * Creates and returns a new EnumerationCase instance in the SDK and on the server.
@@ -6570,9 +6703,25 @@ var microflows;
          * Creates and returns a new InheritanceCase instance in the SDK and on the server.
          * The new InheritanceCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container) {
+        static createInSequenceFlowUnderCaseValue(container) {
+            internal.createInVersionCheck(container.model, InheritanceCase.structureTypeName, { end: "10.14.0" });
             return internal.instancehelpers.createElement(container, InheritanceCase, "caseValue", false);
+        }
+        /**
+         * Creates and returns a new InheritanceCase instance in the SDK and on the server.
+         * The new InheritanceCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container) {
+            internal.createInVersionCheck(container.model, InheritanceCase.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, InheritanceCase, "caseValues", true);
         }
         /**
          * Creates and returns a new InheritanceCase instance in the SDK and on the server.
@@ -9626,9 +9775,25 @@ var microflows;
          * Creates and returns a new NoCase instance in the SDK and on the server.
          * The new NoCase will be automatically stored in the 'caseValue' property
          * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 10.14.0
          */
-        static createIn(container) {
+        static createInSequenceFlowUnderCaseValue(container) {
+            internal.createInVersionCheck(container.model, NoCase.structureTypeName, { end: "10.14.0" });
             return internal.instancehelpers.createElement(container, NoCase, "caseValue", false);
+        }
+        /**
+         * Creates and returns a new NoCase instance in the SDK and on the server.
+         * The new NoCase will be automatically stored in the 'caseValues' property
+         * of the parent SequenceFlow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.15.0 and higher
+         */
+        static createInSequenceFlowUnderCaseValues(container) {
+            internal.createInVersionCheck(container.model, NoCase.structureTypeName, { start: "10.15.0" });
+            return internal.instancehelpers.createElement(container, NoCase, "caseValues", true);
         }
         /**
          * Creates and returns a new NoCase instance in the SDK and on the server.
@@ -9870,6 +10035,54 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.OpenWorkflowAction = OpenWorkflowAction;
+    /**
+     * In version 10.16.0: introduced
+     */
+    class OrthogonalPath extends Line {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__segmentPositions = new internal.PrimitiveListProperty(OrthogonalPath, this, "segmentPositions", [], internal.PrimitiveTypeEnum.Integer);
+            if (arguments.length < 4) {
+                throw new Error("new OrthogonalPath() cannot be invoked directly, please use 'model.microflows.createOrthogonalPath()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get segmentPositions() {
+            return this.__segmentPositions.get();
+        }
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * The new OrthogonalPath will be automatically stored in the 'line' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.16.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OrthogonalPath.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, OrthogonalPath, "line", false);
+        }
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OrthogonalPath);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OrthogonalPath.structureTypeName = "Microflows$OrthogonalPath";
+    OrthogonalPath.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.16.0"
+    }, internal.StructureType.Element);
+    microflows.OrthogonalPath = OrthogonalPath;
     /**
      * In version 10.7.0: removed experimental
      * In version 10.4.0: introduced
@@ -11588,6 +11801,8 @@ var microflows;
             /** @internal */
             this.__caseValue = new internal.PartProperty(SequenceFlow, this, "caseValue", null, true);
             /** @internal */
+            this.__caseValues = new internal.PartListProperty(SequenceFlow, this, "caseValues", []);
+            /** @internal */
             this.__isErrorHandler = new internal.PrimitiveProperty(SequenceFlow, this, "isErrorHandler", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new SequenceFlow() cannot be invoked directly, please use 'model.microflows.createSequenceFlow()'");
@@ -11596,11 +11811,20 @@ var microflows;
         get containerAsMicroflowBase() {
             return super.getContainerAs(MicroflowBase);
         }
+        /**
+         * In version 10.15.0: deleted
+         */
         get caseValue() {
             return this.__caseValue.get();
         }
         set caseValue(newValue) {
             this.__caseValue.set(newValue);
+        }
+        /**
+         * In version 10.15.0: introduced
+         */
+        get caseValues() {
+            return this.__caseValues.get();
         }
         get isErrorHandler() {
             return this.__isErrorHandler.get();
@@ -11627,16 +11851,23 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.caseValue = NoCase.create(this.model);
+            if (this.__caseValue.isAvailable) {
+                this.caseValue = NoCase.create(this.model);
+            }
         }
     }
     SequenceFlow.structureTypeName = "Microflows$SequenceFlow";
     SequenceFlow.versionInfo = new exports.StructureVersionInfo({
         properties: {
             caseValue: {
+                deleted: "10.15.0",
+                deletionMessage: "Use property 'caseValues' instead",
                 required: {
                     currentValue: true
                 }
+            },
+            caseValues: {
+                introduced: "10.15.0"
             }
         }
     }, internal.StructureType.Element);
