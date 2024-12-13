@@ -169,6 +169,7 @@ export interface IBaseModel extends IAbstractModel {
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
     findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
+    findRestParameterByQualifiedName(qname: string): rest.IRestParameter | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
@@ -302,6 +303,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
     findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
+    findRestParameterByQualifiedName(qname: string): rest.IRestParameter | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
     findUserRoleByQualifiedName(qname: string): security.IUserRole | null;
     findImportedWebServiceByQualifiedName(qname: string): webservices.IImportedWebService | null;
@@ -693,6 +695,7 @@ export declare type ConcreteModelElements = {
     Microflows$RestCallAction: microflows.RestCallAction;
     Microflows$RestOperationCallAction: microflows.RestOperationCallAction;
     Microflows$RestOperationParameterMapping: microflows.RestOperationParameterMapping;
+    Microflows$RestParameterMapping: microflows.RestParameterMapping;
     Microflows$RestartOperation: microflows.RestartOperation;
     Microflows$ResultHandling: microflows.ResultHandling;
     Microflows$ResumeOperation: microflows.ResumeOperation;
@@ -846,6 +849,7 @@ export declare type ConcreteModelElements = {
     Pages$ListViewTemplate: pages.ListViewTemplate;
     Pages$ListViewXPathSource: pages.ListViewXPathSource;
     Pages$ListenTargetSource: pages.ListenTargetSource;
+    Pages$LocalVariable: pages.LocalVariable;
     Pages$LoginButton: pages.LoginButton;
     Pages$LoginIdTextBox: pages.LoginIdTextBox;
     Pages$LogoutButton: pages.LogoutButton;
@@ -995,6 +999,7 @@ export declare type ConcreteModelElements = {
     Rest$RestOperationMethodWithBody: rest.RestOperationMethodWithBody;
     Rest$RestOperationMethodWithoutBody: rest.RestOperationMethodWithoutBody;
     Rest$RestOperationParameter: rest.RestOperationParameter;
+    Rest$RestParameter: rest.RestParameter;
     Rest$ServiceFeed: rest.ServiceFeed;
     Rest$StringBody: rest.StringBody;
     Rest$StringValue: rest.StringValue;

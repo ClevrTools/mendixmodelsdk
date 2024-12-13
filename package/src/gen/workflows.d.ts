@@ -39,6 +39,7 @@ export declare namespace workflows {
         static MultiUserTaskOutcomeSelected: WorkflowEventType;
         static UserTaskEnded: WorkflowEventType;
         static NonInterruptingTimerEventExecuted: WorkflowEventType;
+        static InterruptingTimerEventExecuted: WorkflowEventType;
         protected qualifiedTsTypeName: string;
     }
     /**
@@ -283,6 +284,10 @@ export declare namespace workflows {
          */
         readonly flow: IFlow;
         readonly caption: string;
+        /**
+         * In version 10.17.0: introduced
+         */
+        readonly isInterrupting: boolean;
         asLoaded(): BoundaryEvent;
         load(callback: (element: BoundaryEvent) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BoundaryEvent>;
@@ -308,6 +313,11 @@ export declare namespace workflows {
          */
         get annotation(): Annotation | null;
         set annotation(newValue: Annotation | null);
+        /**
+         * In version 10.17.0: introduced
+         */
+        get isInterrupting(): boolean;
+        set isInterrupting(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**

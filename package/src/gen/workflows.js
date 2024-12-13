@@ -55,6 +55,9 @@ var workflows;
     WorkflowEventType.NonInterruptingTimerEventExecuted = new WorkflowEventType("NonInterruptingTimerEventExecuted", {
         introduced: "10.14.0"
     });
+    WorkflowEventType.InterruptingTimerEventExecuted = new WorkflowEventType("InterruptingTimerEventExecuted", {
+        introduced: "10.17.0"
+    });
     workflows.WorkflowEventType = WorkflowEventType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
@@ -471,6 +474,8 @@ var workflows;
             this.__caption = new internal.PrimitiveProperty(BoundaryEvent, this, "caption", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__annotation = new internal.PartProperty(BoundaryEvent, this, "annotation", null, false);
+            /** @internal */
+            this.__isInterrupting = new internal.PrimitiveProperty(BoundaryEvent, this, "isInterrupting", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new BoundaryEvent() cannot be invoked directly, please use 'model.workflows.createBoundaryEvent()'");
             }
@@ -508,6 +513,15 @@ var workflows;
         set annotation(newValue) {
             this.__annotation.set(newValue);
         }
+        /**
+         * In version 10.17.0: introduced
+         */
+        get isInterrupting() {
+            return this.__isInterrupting.get();
+        }
+        set isInterrupting(newValue) {
+            this.__isInterrupting.set(newValue);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -533,6 +547,12 @@ var workflows;
             },
             annotation: {
                 introduced: "10.16.0"
+            },
+            isInterrupting: {
+                introduced: "10.17.0",
+                public: {
+                    currentValue: true
+                }
             }
         },
         public: {

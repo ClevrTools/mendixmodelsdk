@@ -6,6 +6,26 @@ Use to to keep customizations and bugfixes for the npm module while updating.
 
 To publish changes navigate to package and run `npm publish`
 
+## Steps
+- Delete folder '.\package'
+- Run in the terminal from root folder:  
+```npm pack mendixmodelsdk```
+- Run in the terminal from root folder:  
+```tar xzvf mendixmodelsdk-<version>/tar.gz```
+- Files are extracted to '.\package' folder
+- Make the changes listed in the next section
+- Run in the terminal:  
+```npm login```
+- Follow instructions to login NPM
+- Go to './package':  
+```cd .\package```
+- Run in the terminal to publish to NPM:  
+```npm publish```
+- Follow NPM steps to enter 2FA
+- After publish, you will receive an email
+
+
+
 ## Changes
 
 - `package.json` - Line: **2**

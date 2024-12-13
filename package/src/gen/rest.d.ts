@@ -274,6 +274,7 @@ export declare namespace rest {
         get containerAsBasicAuthenticationScheme(): BasicAuthenticationScheme;
         get containerAsImplicitMappingBody(): ImplicitMappingBody;
         get containerAsOperationParameter(): OperationParameter;
+        get containerAsRestParameter(): RestParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
@@ -286,6 +287,7 @@ export declare namespace rest {
         get containerAsBasicAuthenticationScheme(): BasicAuthenticationScheme;
         get containerAsImplicitMappingBody(): ImplicitMappingBody;
         get containerAsOperationParameter(): OperationParameter;
+        get containerAsRestParameter(): RestParameter;
         get value(): constants.IConstant;
         set value(newValue: constants.IConstant);
         get valueQualifiedName(): string;
@@ -326,6 +328,15 @@ export declare namespace rest {
          *  10.2.0 and higher
          */
         static createInOperationParameterUnderTestValue(container: OperationParameter): ConstantValue;
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'testValue' property
+         * of the parent RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderTestValue(container: RestParameter): ConstantValue;
         /**
          * Creates and returns a new ConstantValue instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -463,6 +474,10 @@ export declare namespace rest {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         readonly operations: internal.IList<IRestOperation>;
+        /**
+         * In version 10.17.0: introduced
+         */
+        readonly baseUrlParameter: IRestParameter | null;
         asLoaded(): ConsumedRestService;
         load(callback: (element: ConsumedRestService) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ConsumedRestService>;
@@ -485,6 +500,11 @@ export declare namespace rest {
         get authenticationScheme(): AuthenticationScheme | null;
         set authenticationScheme(newValue: AuthenticationScheme | null);
         get operations(): internal.IList<RestOperation>;
+        /**
+         * In version 10.17.0: introduced
+         */
+        get baseUrlParameter(): RestParameter | null;
+        set baseUrlParameter(newValue: RestParameter | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new ConsumedRestService unit in the SDK and on the server.
@@ -2022,6 +2042,48 @@ export declare namespace rest {
         static create(model: IModel): RestOperationParameter;
     }
     /**
+     * In version 10.17.0: introduced
+     */
+    interface IRestParameter extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsConsumedRestService: IConsumedRestService;
+        readonly name: string;
+        asLoaded(): RestParameter;
+        load(callback: (element: RestParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<RestParameter>;
+    }
+    /**
+     * In version 10.17.0: introduced
+     */
+    class RestParameter extends internal.Element<IModel> implements IRestParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConsumedRestService(): ConsumedRestService;
+        get name(): string;
+        set name(newValue: string);
+        get dataType(): datatypes.DataType;
+        set dataType(newValue: datatypes.DataType);
+        get testValue(): Value;
+        set testValue(newValue: Value);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestParameter instance in the SDK and on the server.
+         * The new RestParameter will be automatically stored in the 'baseUrlParameter' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createIn(container: ConsumedRestService): RestParameter;
+        /**
+         * Creates and returns a new RestParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestParameter;
+        get qualifiedName(): string | null;
+    }
+    /**
      * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
@@ -2077,6 +2139,7 @@ export declare namespace rest {
         get containerAsBasicAuthenticationScheme(): BasicAuthenticationScheme;
         get containerAsImplicitMappingBody(): ImplicitMappingBody;
         get containerAsOperationParameter(): OperationParameter;
+        get containerAsRestParameter(): RestParameter;
         get value(): string;
         set value(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -2125,6 +2188,15 @@ export declare namespace rest {
          *  10.1.0 and higher
          */
         static createInOperationParameterUnderTestValue(container: OperationParameter): StringValue;
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'testValue' property
+         * of the parent RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderTestValue(container: RestParameter): StringValue;
         /**
          * Creates and returns a new StringValue instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

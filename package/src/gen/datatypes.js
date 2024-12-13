@@ -81,6 +81,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -98,6 +101,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -188,6 +194,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -205,6 +214,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -454,6 +466,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -535,6 +559,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, BinaryType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "dataType", false);
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
@@ -651,6 +687,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -668,6 +707,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -917,6 +959,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -998,6 +1052,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, BooleanType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "dataType", false);
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -1114,6 +1180,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -1131,6 +1200,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -1380,6 +1452,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -1461,6 +1545,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, DateTimeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "dataType", false);
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -1577,6 +1673,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -1594,6 +1693,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -1843,6 +1945,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -1924,6 +2038,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, DecimalType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "dataType", false);
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -2040,6 +2166,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -2057,6 +2186,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -2306,6 +2438,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -2387,6 +2531,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, EmptyType, "type", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "dataType", false);
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
@@ -2505,6 +2661,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -2522,6 +2681,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -2633,6 +2795,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -2650,6 +2815,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -2908,6 +3076,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -2989,6 +3169,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, EnumerationType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "dataType", false);
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -3115,6 +3307,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -3132,6 +3327,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -3381,6 +3579,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3462,6 +3672,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, FloatType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "dataType", false);
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -3578,6 +3800,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -3595,6 +3820,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -3844,6 +4072,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3925,6 +4165,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, IntegerType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "dataType", false);
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -4041,6 +4293,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -4058,6 +4313,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -4307,6 +4565,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, ListType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -4388,6 +4658,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, ListType, "type", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, ListType, "dataType", false);
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -4504,6 +4786,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -4521,6 +4806,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -4770,6 +5058,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -4851,6 +5151,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, ObjectType, "type", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "dataType", false);
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
@@ -4967,6 +5279,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -4984,6 +5299,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -5233,6 +5551,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, StringType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -5314,6 +5644,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, StringType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, StringType, "dataType", false);
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -5430,6 +5772,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -5447,6 +5792,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -5696,6 +6044,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -5777,6 +6137,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, UnknownType, "type", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "dataType", false);
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
@@ -5893,6 +6265,9 @@ var datatypes;
         get containerAsPublishedMicroflowParameter() {
             return super.getContainerAs(odatapublish_1.odatapublish.PublishedMicroflowParameter);
         }
+        get containerAsLocalVariable() {
+            return super.getContainerAs(pages_1.pages.LocalVariable);
+        }
         get containerAsPageParameter() {
             return super.getContainerAs(pages_1.pages.PageParameter);
         }
@@ -5910,6 +6285,9 @@ var datatypes;
         }
         get containerAsRestOperationParameter() {
             return super.getContainerAs(rest_1.rest.RestOperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(rest_1.rest.RestParameter);
         }
         get containerAsPublishedOperation() {
             return super.getContainerAs(webservices_1.webservices.PublishedOperation);
@@ -6159,6 +6537,18 @@ var datatypes;
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "variableType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -6240,6 +6630,18 @@ var datatypes;
         static createInRestOperationParameterUnderType(container) {
             internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.17.0" });
             return internal.instancehelpers.createElement(container, VoidType, "type", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "dataType", false);
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.

@@ -4047,6 +4047,18 @@ export declare namespace microflows {
          */
         get hasVariableNameBeenChanged(): boolean;
         set hasVariableNameBeenChanged(newValue: boolean);
+        /**
+         * In version 10.17.0: introduced
+         */
+        get isRequired(): boolean;
+        set isRequired(newValue: boolean);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.17.0: introduced
+         */
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowParameterObject instance in the SDK and on the server.
@@ -4773,6 +4785,11 @@ export declare namespace microflows {
         set operation(newValue: rest.IRestOperation | null);
         get operationQualifiedName(): string | null;
         /**
+         * In version 10.17.0: introduced
+         */
+        get baseUrlParameterMapping(): RestParameterMapping | null;
+        set baseUrlParameterMapping(newValue: RestParameterMapping | null);
+        /**
          * In version 10.5.0: introduced
          */
         get bodyVariable(): BodyVariable | null;
@@ -4835,6 +4852,38 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): RestOperationParameterMapping;
+    }
+    /**
+     * In version 10.17.0: introduced
+     */
+    class RestParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationCallAction(): RestOperationCallAction;
+        get parameter(): rest.IRestParameter;
+        set parameter(newValue: rest.IRestParameter);
+        get parameterQualifiedName(): string;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RestParameterMapping instance in the SDK and on the server.
+         * The new RestParameterMapping will be automatically stored in the 'baseUrlParameterMapping' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createIn(container: RestOperationCallAction): RestParameterMapping;
+        /**
+         * Creates and returns a new RestParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RestParameterMapping;
     }
     /**
      * In version 9.12.0: removed experimental

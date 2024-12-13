@@ -9223,6 +9223,10 @@ var microflows;
             this.__documentation = new internal.PrimitiveProperty(MicroflowParameterObject, this, "documentation", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__hasVariableNameBeenChanged = new internal.PrimitiveProperty(MicroflowParameterObject, this, "hasVariableNameBeenChanged", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__isRequired = new internal.PrimitiveProperty(MicroflowParameterObject, this, "isRequired", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__defaultValue = new internal.PrimitiveProperty(MicroflowParameterObject, this, "defaultValue", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowParameterObject() cannot be invoked directly, please use 'model.microflows.createMicroflowParameterObject()'");
             }
@@ -9272,6 +9276,26 @@ var microflows;
             this.__hasVariableNameBeenChanged.set(newValue);
         }
         /**
+         * In version 10.17.0: introduced
+         */
+        get isRequired() {
+            return this.__isRequired.get();
+        }
+        set isRequired(newValue) {
+            this.__isRequired.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.17.0: introduced
+         */
+        get defaultValue() {
+            return this.__defaultValue.get();
+        }
+        set defaultValue(newValue) {
+            this.__defaultValue.set(newValue);
+        }
+        /**
          * Creates and returns a new MicroflowParameterObject instance in the SDK and on the server.
          * The new MicroflowParameterObject will be automatically stored in the 'objects' property
          * of the parent MicroflowObjectCollection element passed as argument.
@@ -9290,6 +9314,9 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__isRequired.isAvailable) {
+                this.isRequired = true;
+            }
             this.size = { width: 30, height: 30 };
             if (this.__type.isAvailable) {
                 this.type = "Unknown";
@@ -9314,6 +9341,12 @@ var microflows;
             },
             hasVariableNameBeenChanged: {
                 introduced: "9.17.0"
+            },
+            isRequired: {
+                introduced: "10.17.0"
+            },
+            defaultValue: {
+                introduced: "10.17.0"
             }
         }
     }, internal.StructureType.Element);
@@ -10879,6 +10912,8 @@ var microflows;
             /** @internal */
             this.__operation = new internal.ByNameReferenceProperty(RestOperationCallAction, this, "operation", null, "Rest$RestOperation");
             /** @internal */
+            this.__baseUrlParameterMapping = new internal.PartProperty(RestOperationCallAction, this, "baseUrlParameterMapping", null, false);
+            /** @internal */
             this.__bodyVariable = new internal.PartProperty(RestOperationCallAction, this, "bodyVariable", null, false);
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(RestOperationCallAction, this, "parameterMappings", []);
@@ -10899,6 +10934,15 @@ var microflows;
         }
         get operationQualifiedName() {
             return this.__operation.qualifiedName();
+        }
+        /**
+         * In version 10.17.0: introduced
+         */
+        get baseUrlParameterMapping() {
+            return this.__baseUrlParameterMapping.get();
+        }
+        set baseUrlParameterMapping(newValue) {
+            this.__baseUrlParameterMapping.set(newValue);
         }
         /**
          * In version 10.5.0: introduced
@@ -10953,6 +10997,9 @@ var microflows;
     RestOperationCallAction.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.1.0",
         properties: {
+            baseUrlParameterMapping: {
+                introduced: "10.17.0"
+            },
             bodyVariable: {
                 introduced: "10.5.0"
             },
@@ -11046,6 +11093,78 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.RestOperationParameterMapping = RestOperationParameterMapping;
+    /**
+     * In version 10.17.0: introduced
+     */
+    class RestParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameter = new internal.ByNameReferenceProperty(RestParameterMapping, this, "parameter", null, "Rest$RestParameter");
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(RestParameterMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new RestParameterMapping() cannot be invoked directly, please use 'model.microflows.createRestParameterMapping()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        get parameter() {
+            return this.__parameter.get();
+        }
+        set parameter(newValue) {
+            this.__parameter.set(newValue);
+        }
+        get parameterQualifiedName() {
+            return this.__parameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new RestParameterMapping instance in the SDK and on the server.
+         * The new RestParameterMapping will be automatically stored in the 'baseUrlParameterMapping' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RestParameterMapping.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, RestParameterMapping, "baseUrlParameterMapping", false);
+        }
+        /**
+         * Creates and returns a new RestParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RestParameterMapping.structureTypeName = "Microflows$RestParameterMapping";
+    RestParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.17.0",
+        properties: {
+            parameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.RestParameterMapping = RestParameterMapping;
     /**
      * In version 9.12.0: removed experimental
      * In version 9.2.0: introduced

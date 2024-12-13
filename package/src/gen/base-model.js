@@ -484,6 +484,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findRestOperationByQualifiedName(qname) {
         return this._resolveName("Rest$RestOperation", qname);
     }
+    findRestParameterByQualifiedName(qname) {
+        return this._resolveName("Rest$RestParameter", qname);
+    }
     findModuleRoleByQualifiedName(qname) {
         return this._resolveName("Security$ModuleRole", qname);
     }

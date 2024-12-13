@@ -573,6 +573,9 @@ var rest;
         get containerAsOperationParameter() {
             return super.getContainerAs(OperationParameter);
         }
+        get containerAsRestParameter() {
+            return super.getContainerAs(RestParameter);
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -608,6 +611,9 @@ var rest;
         }
         get containerAsOperationParameter() {
             return super.getContainerAs(OperationParameter);
+        }
+        get containerAsRestParameter() {
+            return super.getContainerAs(RestParameter);
         }
         get value() {
             return this.__value.get();
@@ -664,6 +670,18 @@ var rest;
          */
         static createInOperationParameterUnderTestValue(container) {
             internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.2.0" });
+            return internal.instancehelpers.createElement(container, ConstantValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new ConstantValue instance in the SDK and on the server.
+         * The new ConstantValue will be automatically stored in the 'testValue' property
+         * of the parent RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, ConstantValue.structureTypeName, { start: "10.17.0" });
             return internal.instancehelpers.createElement(container, ConstantValue, "testValue", false);
         }
         /**
@@ -1020,6 +1038,8 @@ var rest;
             this.__authenticationScheme = new internal.PartProperty(ConsumedRestService, this, "authenticationScheme", null, false);
             /** @internal */
             this.__operations = new internal.PartListProperty(ConsumedRestService, this, "operations", []);
+            /** @internal */
+            this.__baseUrlParameter = new internal.PartProperty(ConsumedRestService, this, "baseUrlParameter", null, false);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -1042,6 +1062,15 @@ var rest;
         }
         get operations() {
             return this.__operations.get();
+        }
+        /**
+         * In version 10.17.0: introduced
+         */
+        get baseUrlParameter() {
+            return this.__baseUrlParameter.get();
+        }
+        set baseUrlParameter(newValue) {
+            this.__baseUrlParameter.set(newValue);
         }
         /**
          * Creates a new ConsumedRestService unit in the SDK and on the server.
@@ -1069,6 +1098,12 @@ var rest;
                 introduced: "10.2.0"
             },
             operations: {
+                public: {
+                    currentValue: true
+                }
+            },
+            baseUrlParameter: {
+                introduced: "10.17.0",
                 public: {
                     currentValue: true
                 }
@@ -4723,6 +4758,102 @@ var rest;
     }, internal.StructureType.Element);
     rest.RestOperationParameter = RestOperationParameter;
     /**
+     * In version 10.17.0: introduced
+     */
+    class RestParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(RestParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__dataType = new internal.PartProperty(RestParameter, this, "dataType", null, true);
+            /** @internal */
+            this.__testValue = new internal.PartProperty(RestParameter, this, "testValue", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new RestParameter() cannot be invoked directly, please use 'model.rest.createRestParameter()'");
+            }
+        }
+        get containerAsConsumedRestService() {
+            return super.getContainerAs(ConsumedRestService);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get dataType() {
+            return this.__dataType.get();
+        }
+        set dataType(newValue) {
+            this.__dataType.set(newValue);
+        }
+        get testValue() {
+            return this.__testValue.get();
+        }
+        set testValue(newValue) {
+            this.__testValue.set(newValue);
+        }
+        /**
+         * Creates and returns a new RestParameter instance in the SDK and on the server.
+         * The new RestParameter will be automatically stored in the 'baseUrlParameter' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RestParameter.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, RestParameter, "baseUrlParameter", false);
+        }
+        /**
+         * Creates and returns a new RestParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RestParameter);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.dataType = datatypes_1.datatypes.StringType.create(this.model);
+            this.testValue = StringValue.create(this.model);
+        }
+    }
+    RestParameter.structureTypeName = "Rest$RestParameter";
+    RestParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.17.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            dataType: {
+                required: {
+                    currentValue: true
+                }
+            },
+            testValue: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.RestParameter = RestParameter;
+    /**
      * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
@@ -4870,6 +5001,9 @@ var rest;
         get containerAsOperationParameter() {
             return super.getContainerAs(OperationParameter);
         }
+        get containerAsRestParameter() {
+            return super.getContainerAs(RestParameter);
+        }
         get value() {
             return this.__value.get();
         }
@@ -4934,6 +5068,18 @@ var rest;
          */
         static createInOperationParameterUnderTestValue(container) {
             internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, StringValue, "testValue", false);
+        }
+        /**
+         * Creates and returns a new StringValue instance in the SDK and on the server.
+         * The new StringValue will be automatically stored in the 'testValue' property
+         * of the parent RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderTestValue(container) {
+            internal.createInVersionCheck(container.model, StringValue.structureTypeName, { start: "10.17.0" });
             return internal.instancehelpers.createElement(container, StringValue, "testValue", false);
         }
         /**

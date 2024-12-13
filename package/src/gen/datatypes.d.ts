@@ -22,6 +22,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): DataType;
         load(callback: (element: DataType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DataType>;
@@ -54,12 +55,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -80,6 +83,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): BinaryType;
         load(callback: (element: BinaryType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BinaryType>;
@@ -110,12 +114,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -301,6 +307,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -364,6 +379,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -403,6 +427,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): BooleanType;
         load(callback: (element: BooleanType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<BooleanType>;
@@ -433,12 +458,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -624,6 +651,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -687,6 +723,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -726,6 +771,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): DateTimeType;
         load(callback: (element: DateTimeType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DateTimeType>;
@@ -756,12 +802,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -947,6 +995,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -1010,6 +1067,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -1049,6 +1115,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): DecimalType;
         load(callback: (element: DecimalType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DecimalType>;
@@ -1079,12 +1146,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1270,6 +1339,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -1333,6 +1411,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -1372,6 +1459,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): EmptyType;
         load(callback: (element: EmptyType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EmptyType>;
@@ -1402,12 +1490,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -1593,6 +1683,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -1656,6 +1755,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -1695,6 +1803,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1730,12 +1839,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         get entity(): domainmodels.IEntity;
@@ -1759,6 +1870,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         /**
          * This property is required and cannot be set to null.
          */
@@ -1794,12 +1906,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         get enumeration(): enumerations.IEnumeration;
@@ -1988,6 +2102,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -2051,6 +2174,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -2090,6 +2222,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): FloatType;
         load(callback: (element: FloatType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<FloatType>;
@@ -2120,12 +2253,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -2311,6 +2446,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -2374,6 +2518,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -2413,6 +2566,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): IntegerType;
         load(callback: (element: IntegerType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<IntegerType>;
@@ -2443,12 +2597,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -2634,6 +2790,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -2697,6 +2862,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -2736,6 +2910,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): ListType;
         load(callback: (element: ListType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ListType>;
@@ -2766,12 +2941,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -2957,6 +3134,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3020,6 +3206,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -3059,6 +3254,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): ObjectType;
         load(callback: (element: ObjectType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ObjectType>;
@@ -3089,12 +3285,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3280,6 +3478,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3343,6 +3550,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -3382,6 +3598,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): StringType;
         load(callback: (element: StringType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StringType>;
@@ -3412,12 +3629,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3603,6 +3822,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3666,6 +3894,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -3705,6 +3942,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): UnknownType;
         load(callback: (element: UnknownType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<UnknownType>;
@@ -3735,12 +3973,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -3926,6 +4166,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -3989,6 +4238,15 @@ export declare namespace datatypes {
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'operationReturnType' property
          * of the parent webservices.PublishedOperation element passed as argument.
          *
@@ -4028,6 +4286,7 @@ export declare namespace datatypes {
         readonly containerAsPageParameter: pages.IPageParameter;
         readonly containerAsSnippetParameter: pages.ISnippetParameter;
         readonly containerAsOperationParameter: rest.IOperationParameter;
+        readonly containerAsRestParameter: rest.IRestParameter;
         asLoaded(): VoidType;
         load(callback: (element: VoidType) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<VoidType>;
@@ -4058,12 +4317,14 @@ export declare namespace datatypes {
         get containerAsResultHandling(): microflows.ResultHandling;
         get containerAsPublishedMicroflow(): odatapublish.PublishedMicroflow;
         get containerAsPublishedMicroflowParameter(): odatapublish.PublishedMicroflowParameter;
+        get containerAsLocalVariable(): pages.LocalVariable;
         get containerAsPageParameter(): pages.PageParameter;
         get containerAsSnippetParameter(): pages.SnippetParameter;
         get containerAsOperationParameter(): rest.OperationParameter;
         get containerAsPublishedODataMicroflow(): rest.PublishedODataMicroflow;
         get containerAsPublishedODataMicroflowParameter(): rest.PublishedODataMicroflowParameter;
         get containerAsRestOperationParameter(): rest.RestOperationParameter;
+        get containerAsRestParameter(): rest.RestParameter;
         get containerAsPublishedOperation(): webservices.PublishedOperation;
         get containerAsPublishedParameter(): webservices.PublishedParameter;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -4249,6 +4510,15 @@ export declare namespace datatypes {
         static createInPublishedMicroflowParameterUnderDataType(container: odatapublish.PublishedMicroflowParameter): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'variableType' property
+         * of the parent pages.LocalVariable element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInLocalVariableUnderVariableType(container: pages.LocalVariable): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'parameterType' property
          * of the parent pages.PageParameter element passed as argument.
          *
@@ -4310,6 +4580,15 @@ export declare namespace datatypes {
          *  7.17.0 and higher
          */
         static createInRestOperationParameterUnderType(container: rest.RestOperationParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'dataType' property
+         * of the parent rest.RestParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInRestParameterUnderDataType(container: rest.RestParameter): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'operationReturnType' property

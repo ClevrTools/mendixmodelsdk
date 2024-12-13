@@ -7,6 +7,9 @@ const version_1 = require("../../version");
 const getAuthInfo_1 = require("./getAuthInfo");
 // Postpone requiring the 'got' module to prevent errors when using the Model SDK in the browser.
 let gotImpl;
+//const SHORT_TIMEOUT = 1 * 60 * 1000;
+//const LONG_TIMEOUT = 15 * 60 * 1000;
+// Updated
 const SHORT_TIMEOUT = 5 * 60 * 1000;
 const LONG_TIMEOUT = 45 * 60 * 1000;
 /**

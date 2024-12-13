@@ -27793,6 +27793,88 @@ var pages;
     ListenTargetSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     pages.ListenTargetSource = ListenTargetSource;
     /**
+     * In version 10.17.0: introduced
+     */
+    class LocalVariable extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(LocalVariable, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__variableType = new internal.PartProperty(LocalVariable, this, "variableType", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new LocalVariable() cannot be invoked directly, please use 'model.pages.createLocalVariable()'");
+            }
+        }
+        get containerAsPage() {
+            return super.getContainerAs(Page);
+        }
+        get containerAsSnippet() {
+            return super.getContainerAs(Snippet);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get variableType() {
+            return this.__variableType.get();
+        }
+        set variableType(newValue) {
+            this.__variableType.set(newValue);
+        }
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * The new LocalVariable will be automatically stored in the 'variables' property
+         * of the parent Page element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInPageUnderVariables(container) {
+            internal.createInVersionCheck(container.model, LocalVariable.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, LocalVariable, "variables", true);
+        }
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * The new LocalVariable will be automatically stored in the 'variables' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInSnippetUnderVariables(container) {
+            internal.createInVersionCheck(container.model, LocalVariable.structureTypeName, { start: "10.17.0" });
+            return internal.instancehelpers.createElement(container, LocalVariable, "variables", true);
+        }
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, LocalVariable);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.variableType = datatypes_1.datatypes.UnknownType.create(this.model);
+        }
+    }
+    LocalVariable.structureTypeName = "Pages$LocalVariable";
+    LocalVariable.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.17.0",
+        properties: {
+            variableType: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.LocalVariable = LocalVariable;
+    /**
      * See: {@link https://docs.mendix.com/refguide/sign-in-button relevant section in reference guide}
      *
      * In version 7.0.2: introduced
@@ -36243,6 +36325,8 @@ var pages;
             this.__markAsUsed = new internal.PrimitiveProperty(Page, this, "markAsUsed", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__url = new internal.PrimitiveProperty(Page, this, "url", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__variables = new internal.PartListProperty(Page, this, "variables", []);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -36348,6 +36432,12 @@ var pages;
             this.__url.set(newValue);
         }
         /**
+         * In version 10.17.0: introduced
+         */
+        get variables() {
+            return this.__variables.get();
+        }
+        /**
          * Creates a new Page unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -36432,6 +36522,9 @@ var pages;
             },
             url: {
                 introduced: "6.7.0"
+            },
+            variables: {
+                introduced: "10.17.0"
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -37426,6 +37519,8 @@ var pages;
             /** @internal */
             this.__snippetParameter = new internal.LocalByNameReferenceProperty(PageVariable, this, "snippetParameter", null, "Pages$SnippetParameter");
             /** @internal */
+            this.__localVariable = new internal.LocalByNameReferenceProperty(PageVariable, this, "localVariable", null, "Pages$LocalVariable");
+            /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(PageVariable, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
@@ -37499,6 +37594,18 @@ var pages;
         }
         get snippetParameterLocalName() {
             return this.__snippetParameter.localName();
+        }
+        /**
+         * In version 10.17.0: introduced
+         */
+        get localVariable() {
+            return this.__localVariable.get();
+        }
+        set localVariable(newValue) {
+            this.__localVariable.set(newValue);
+        }
+        get localVariableLocalName() {
+            return this.__localVariable.localName();
         }
         get useAllPages() {
             return this.__useAllPages.get();
@@ -37673,6 +37780,9 @@ var pages;
             },
             snippetParameter: {
                 introduced: "9.21.0"
+            },
+            localVariable: {
+                introduced: "10.17.0"
             }
         }
     }, internal.StructureType.Element);
@@ -46622,6 +46732,8 @@ var pages;
             this.__type = new internal.EnumProperty(Snippet, this, "type", SnippetType.Web, SnippetType);
             /** @internal */
             this.__parameters = new internal.PartListProperty(Snippet, this, "parameters", []);
+            /** @internal */
+            this.__variables = new internal.PartListProperty(Snippet, this, "variables", []);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -46671,6 +46783,12 @@ var pages;
             return this.__parameters.get();
         }
         /**
+         * In version 10.17.0: introduced
+         */
+        get variables() {
+            return this.__variables.get();
+        }
+        /**
          * Creates a new Snippet unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -46718,6 +46836,9 @@ var pages;
                 public: {
                     currentValue: true
                 }
+            },
+            variables: {
+                introduced: "10.17.0"
             }
         }
     }, internal.StructureType.ModelUnit);

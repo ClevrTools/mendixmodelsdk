@@ -15789,6 +15789,44 @@ export declare namespace pages {
         static create(model: IModel): ListenTargetSource;
     }
     /**
+     * In version 10.17.0: introduced
+     */
+    class LocalVariable extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPage(): Page;
+        get containerAsSnippet(): Snippet;
+        get name(): string;
+        set name(newValue: string);
+        get variableType(): datatypes.DataType;
+        set variableType(newValue: datatypes.DataType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * The new LocalVariable will be automatically stored in the 'variables' property
+         * of the parent Page element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInPageUnderVariables(container: Page): LocalVariable;
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * The new LocalVariable will be automatically stored in the 'variables' property
+         * of the parent Snippet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.17.0 and higher
+         */
+        static createInSnippetUnderVariables(container: Snippet): LocalVariable;
+        /**
+         * Creates and returns a new LocalVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): LocalVariable;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/sign-in-button relevant section in reference guide}
      *
      * In version 7.0.2: introduced
@@ -21003,6 +21041,10 @@ export declare namespace pages {
          */
         get url(): string;
         set url(newValue: string);
+        /**
+         * In version 10.17.0: introduced
+         */
+        get variables(): internal.IList<LocalVariable>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Page unit in the SDK and on the server.
@@ -21557,6 +21599,12 @@ export declare namespace pages {
         get snippetParameter(): SnippetParameter | null;
         set snippetParameter(newValue: SnippetParameter | null);
         get snippetParameterLocalName(): string | null;
+        /**
+         * In version 10.17.0: introduced
+         */
+        get localVariable(): LocalVariable | null;
+        set localVariable(newValue: LocalVariable | null);
+        get localVariableLocalName(): string | null;
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -27274,6 +27322,10 @@ export declare namespace pages {
          * In version 9.21.0: introduced
          */
         get parameters(): internal.IList<SnippetParameter>;
+        /**
+         * In version 10.17.0: introduced
+         */
+        get variables(): internal.IList<LocalVariable>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Snippet unit in the SDK and on the server.
