@@ -507,6 +507,7 @@ var navigation;
             this.__applyScreenTransition.set(newValue);
         }
         /**
+         * In version 10.18.0: deleted
          * In version 10.11.0: introduced
          */
         get hermesEnabled() {
@@ -609,7 +610,9 @@ var navigation;
                 introduced: "10.11.0"
             },
             hermesEnabled: {
-                introduced: "10.11.0"
+                introduced: "10.11.0",
+                deleted: "10.18.0",
+                deletionMessage: null
             }
         },
         public: {

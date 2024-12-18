@@ -254,6 +254,8 @@ export declare namespace mappings {
      */
     interface IMappingSource extends internal.IElement, internal.IByNameReferrable {
         readonly model: IModel;
+        readonly containerAsCSVTemplateContents: exceldataimporter.ICSVTemplateContents;
+        readonly containerAsExcelTemplateContents: exceldataimporter.IExcelTemplateContents;
         /**
          * In version 10.15.0: introduced
          */

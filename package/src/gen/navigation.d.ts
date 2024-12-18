@@ -242,6 +242,7 @@ export declare namespace navigation {
         get applyScreenTransition(): boolean;
         set applyScreenTransition(newValue: boolean);
         /**
+         * In version 10.18.0: deleted
          * In version 10.11.0: introduced
          */
         get hermesEnabled(): boolean;

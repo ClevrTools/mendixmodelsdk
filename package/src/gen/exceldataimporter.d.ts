@@ -19,6 +19,7 @@ export declare namespace exceldataimporter {
      */
     interface ICSVSheet extends mappings.IMappingSource {
         readonly model: IModel;
+        readonly containerAsCSVTemplateContents: ICSVTemplateContents;
         asLoaded(): CSVSheet;
         load(callback: (element: CSVSheet) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<CSVSheet>;
@@ -359,6 +360,7 @@ export declare namespace exceldataimporter {
      */
     interface IExcelSheet extends mappings.IMappingSource {
         readonly model: IModel;
+        readonly containerAsExcelTemplateContents: IExcelTemplateContents;
         asLoaded(): ExcelSheet;
         load(callback: (element: ExcelSheet) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<ExcelSheet>;
