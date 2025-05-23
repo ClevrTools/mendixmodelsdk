@@ -66,6 +66,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "DataSets$DataSet",
             "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
+            "DomainModels$ViewEntitySourceDocument",
             "Enumerations$Enumeration",
             "ExcelDataImporter$Template",
             "ExportMappings$ExportMapping",
@@ -190,6 +191,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
             "DomainModels$DomainModel",
+            "DomainModels$ViewEntitySourceDocument",
             "Enumerations$Enumeration",
             "ExcelDataImporter$Template",
             "ExportMappings$ExportMapping",
@@ -331,6 +333,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allTemplateFormBases() {
         return super._allOfTypes(["Pages$BuildingBlock", "Pages$PageTemplate"]);
     }
+    allViewEntitySourceDocuments() {
+        return super._allOfTypes(["DomainModels$ViewEntitySourceDocument"]);
+    }
     allWorkflows() {
         return super._allOfTypes(["Workflows$Workflow"]);
     }
@@ -372,6 +377,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findRemoteEntitySourceDocumentByQualifiedName(qname) {
         return this._resolveName("DomainModels$RemoteEntitySourceDocument", qname);
+    }
+    findViewEntitySourceDocumentByQualifiedName(qname) {
+        return this._resolveName("DomainModels$ViewEntitySourceDocument", qname);
     }
     findEnumerationByQualifiedName(qname) {
         return this._resolveName("Enumerations$Enumeration", qname);

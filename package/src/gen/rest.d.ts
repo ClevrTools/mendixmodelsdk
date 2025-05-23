@@ -288,9 +288,12 @@ export declare namespace rest {
         get containerAsImplicitMappingBody(): ImplicitMappingBody;
         get containerAsOperationParameter(): OperationParameter;
         get containerAsRestParameter(): RestParameter;
-        get value(): constants.IConstant;
-        set value(newValue: constants.IConstant);
-        get valueQualifiedName(): string;
+        /**
+         * In version 10.20.0: added optional
+         */
+        get value(): constants.IConstant | null;
+        set value(newValue: constants.IConstant | null);
+        get valueQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ConstantValue instance in the SDK and on the server.
@@ -492,6 +495,11 @@ export declare namespace rest {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get openApiFile(): OpenApiFile | null;
+        set openApiFile(newValue: OpenApiFile | null);
         get baseUrl(): ValueTemplate;
         set baseUrl(newValue: ValueTemplate);
         /**
@@ -1221,6 +1229,32 @@ export declare namespace rest {
         static create(model: IModel): ODataRemoteEnumerationValue;
     }
     /**
+     * In version 10.21.0: introduced
+     */
+    class OpenApiFile extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConsumedRestService(): ConsumedRestService;
+        get content(): string;
+        set content(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenApiFile instance in the SDK and on the server.
+         * The new OpenApiFile will be automatically stored in the 'openApiFile' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container: ConsumedRestService): OpenApiFile;
+        /**
+         * Creates and returns a new OpenApiFile instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenApiFile;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
@@ -1915,6 +1949,10 @@ export declare namespace rest {
          */
         get responseHandling(): RestOperationResponseHandling;
         set responseHandling(newValue: RestOperationResponseHandling);
+        /**
+         * In version 10.21.0: introduced
+         */
+        get tags(): internal.IList<string>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RestOperation instance in the SDK and on the server.

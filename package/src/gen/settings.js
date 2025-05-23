@@ -81,6 +81,15 @@ var settings;
     RoundingMode.HalfUp = new RoundingMode("HalfUp", {});
     RoundingMode.HalfEven = new RoundingMode("HalfEven", {});
     settings.RoundingMode = RoundingMode;
+    class SslCertificateAlgorithm extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "settings.SslCertificateAlgorithm";
+        }
+    }
+    SslCertificateAlgorithm.PKIX = new SslCertificateAlgorithm("PKIX", {});
+    SslCertificateAlgorithm.SunX509 = new SslCertificateAlgorithm("SunX509", {});
+    settings.SslCertificateAlgorithm = SslCertificateAlgorithm;
     class ThemeConversionStatusEnum extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -314,6 +323,8 @@ var settings;
             this.__customSettings = new internal.PartListProperty(Configuration, this, "customSettings", []);
             /** @internal */
             this.__constantValues = new internal.PartListProperty(Configuration, this, "constantValues", []);
+            /** @internal */
+            this.__tracing = new internal.PartProperty(Configuration, this, "tracing", null, false);
             if (arguments.length < 4) {
                 throw new Error("new Configuration() cannot be invoked directly, please use 'model.settings.createConfiguration()'");
             }
@@ -421,6 +432,15 @@ var settings;
             return this.__constantValues.get();
         }
         /**
+         * In version 10.21.0: introduced
+         */
+        get tracing() {
+            return this.__tracing.get();
+        }
+        set tracing(newValue) {
+            this.__tracing.set(newValue);
+        }
+        /**
          * Creates and returns a new Configuration instance in the SDK and on the server.
          * The new Configuration will be automatically stored in the 'configurations' property
          * of the parent ConfigurationSettings element passed as argument.
@@ -457,6 +477,9 @@ var settings;
             emulateCloudSecurity: {
                 deleted: "7.21.0",
                 deletionMessage: null
+            },
+            tracing: {
+                introduced: "10.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -714,12 +737,23 @@ var settings;
     class IntegrationProjectSettingsPart extends ProjectSettingsPart {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__obsoleteEnableUrlEncoding = new internal.PrimitiveProperty(IntegrationProjectSettingsPart, this, "obsoleteEnableUrlEncoding", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new IntegrationProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createIntegrationProjectSettingsPart()'");
             }
         }
         get containerAsProjectSettings() {
             return super.getContainerAs(ProjectSettings);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get obsoleteEnableUrlEncoding() {
+            return this.__obsoleteEnableUrlEncoding.get();
+        }
+        set obsoleteEnableUrlEncoding(newValue) {
+            this.__obsoleteEnableUrlEncoding.set(newValue);
         }
         /**
          * Creates and returns a new IntegrationProjectSettingsPart instance in the SDK and on the server.
@@ -740,10 +774,19 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__obsoleteEnableUrlEncoding.isAvailable) {
+                this.obsoleteEnableUrlEncoding = false;
+            }
         }
     }
     IntegrationProjectSettingsPart.structureTypeName = "Settings$IntegrationProjectSettingsPart";
-    IntegrationProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    IntegrationProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            obsoleteEnableUrlEncoding: {
+                introduced: "10.21.0"
+            }
+        }
+    }, internal.StructureType.Element);
     settings.IntegrationProjectSettingsPart = IntegrationProjectSettingsPart;
     /**
      * In version 9.10.0: introduced
@@ -1022,6 +1065,8 @@ var settings;
             this.__actionActivityDefaultColors = new internal.PartListProperty(ModelerSettings, this, "actionActivityDefaultColors", []);
             /** @internal */
             this.__defaultSequenceFlowLineType = new internal.EnumProperty(ModelerSettings, this, "defaultSequenceFlowLineType", microflows_1.microflows.FlowLineType.BezierCurve, microflows_1.microflows.FlowLineType);
+            /** @internal */
+            this.__defaultAssociationStorage = new internal.EnumProperty(ModelerSettings, this, "defaultAssociationStorage", domainmodels_1.domainmodels.AssociationStorage.Table, domainmodels_1.domainmodels.AssociationStorage);
             if (arguments.length < 4) {
                 throw new Error("new ModelerSettings() cannot be invoked directly, please use 'model.settings.createModelerSettings()'");
             }
@@ -1051,6 +1096,15 @@ var settings;
             this.__defaultSequenceFlowLineType.set(newValue);
         }
         /**
+         * In version 10.21.0: introduced
+         */
+        get defaultAssociationStorage() {
+            return this.__defaultAssociationStorage.get();
+        }
+        set defaultAssociationStorage(newValue) {
+            this.__defaultAssociationStorage.set(newValue);
+        }
+        /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
          * The new ModelerSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1069,6 +1123,9 @@ var settings;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__defaultAssociationStorage.isAvailable) {
+                this.defaultAssociationStorage = domainmodels_1.domainmodels.AssociationStorage.Table;
+            }
             if (this.__defaultSequenceFlowLineType.isAvailable) {
                 this.defaultSequenceFlowLineType = microflows_1.microflows.FlowLineType.BezierCurve;
             }
@@ -1082,6 +1139,9 @@ var settings;
             },
             defaultSequenceFlowLineType: {
                 introduced: "10.8.0"
+            },
+            defaultAssociationStorage: {
+                introduced: "10.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1261,6 +1321,8 @@ var settings;
             this.__javaVersion = new internal.EnumProperty(RuntimeSettings, this, "javaVersion", JavaVersion.Java11, JavaVersion);
             /** @internal */
             this.__useOQLVersion2 = new internal.PrimitiveProperty(RuntimeSettings, this, "useOQLVersion2", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__sslCertificateAlgorithm = new internal.EnumProperty(RuntimeSettings, this, "sslCertificateAlgorithm", SslCertificateAlgorithm.SunX509, SslCertificateAlgorithm);
             if (arguments.length < 4) {
                 throw new Error("new RuntimeSettings() cannot be invoked directly, please use 'model.settings.createRuntimeSettings()'");
             }
@@ -1416,6 +1478,15 @@ var settings;
             this.__useOQLVersion2.set(newValue);
         }
         /**
+         * In version 10.21.0: introduced
+         */
+        get sslCertificateAlgorithm() {
+            return this.__sslCertificateAlgorithm.get();
+        }
+        set sslCertificateAlgorithm(newValue) {
+            this.__sslCertificateAlgorithm.set(newValue);
+        }
+        /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
          * The new RuntimeSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1459,6 +1530,9 @@ var settings;
             }
             this.roundingMode = RoundingMode.HalfUp;
             this.scheduledEventTimeZoneCode = "Etc/UTC";
+            if (this.__sslCertificateAlgorithm.isAvailable) {
+                this.sslCertificateAlgorithm = SslCertificateAlgorithm.SunX509;
+            }
             if (this.__useDatabaseForeignKeyConstraints.isAvailable) {
                 this.useDatabaseForeignKeyConstraints = false;
             }
@@ -1508,6 +1582,9 @@ var settings;
             },
             useOQLVersion2: {
                 introduced: "10.11.0"
+            },
+            sslCertificateAlgorithm: {
+                introduced: "10.21.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1590,6 +1667,76 @@ var settings;
         introduced: "9.3.0"
     }, internal.StructureType.Element);
     settings.ThemeModuleEntry = ThemeModuleEntry;
+    /**
+     * In version 10.21.0: introduced
+     */
+    class TracingConfiguration extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(TracingConfiguration, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__serviceName = new internal.PrimitiveProperty(TracingConfiguration, this, "serviceName", "MendixApp", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__endpoint = new internal.PrimitiveProperty(TracingConfiguration, this, "endpoint", "http://localhost:4318/v1/traces", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new TracingConfiguration() cannot be invoked directly, please use 'model.settings.createTracingConfiguration()'");
+            }
+        }
+        get containerAsConfiguration() {
+            return super.getContainerAs(Configuration);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        get serviceName() {
+            return this.__serviceName.get();
+        }
+        set serviceName(newValue) {
+            this.__serviceName.set(newValue);
+        }
+        get endpoint() {
+            return this.__endpoint.get();
+        }
+        set endpoint(newValue) {
+            this.__endpoint.set(newValue);
+        }
+        /**
+         * Creates and returns a new TracingConfiguration instance in the SDK and on the server.
+         * The new TracingConfiguration will be automatically stored in the 'tracing' property
+         * of the parent Configuration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, TracingConfiguration.structureTypeName, { start: "10.21.0" });
+            return internal.instancehelpers.createElement(container, TracingConfiguration, "tracing", false);
+        }
+        /**
+         * Creates and returns a new TracingConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TracingConfiguration);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = false;
+            this.endpoint = "http://localhost:4318/v1/traces";
+            this.serviceName = "MendixApp";
+        }
+    }
+    TracingConfiguration.structureTypeName = "Settings$TracingConfiguration";
+    TracingConfiguration.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0"
+    }, internal.StructureType.Element);
+    settings.TracingConfiguration = TracingConfiguration;
     /**
      * In version 9.10.0: introduced
      */
@@ -2003,5 +2150,6 @@ var settings;
     }, internal.StructureType.Element);
     settings.WorkflowsProjectSettingsPart = WorkflowsProjectSettingsPart;
 })(settings = exports.settings || (exports.settings = {}));
+const domainmodels_1 = require("./domainmodels");
 const microflows_1 = require("./microflows");
 //# sourceMappingURL=settings.js.map

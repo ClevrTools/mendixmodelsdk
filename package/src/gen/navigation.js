@@ -392,6 +392,8 @@ var navigation;
             /** @internal */
             this.__localFileEncryptionEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "localFileEncryptionEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
+            this.__sessionCookieEncryptionEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "sessionCookieEncryptionEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
             this.__screenNavigationTransition = new internal.EnumProperty(NativeNavigationProfile, this, "screenNavigationTransition", ScreenNavigationTransition.SystemDefault, ScreenNavigationTransition);
             /** @internal */
             this.__popupNavigationTransition = new internal.EnumProperty(NativeNavigationProfile, this, "popupNavigationTransition", PopupNavigationTransition.SystemDefault, PopupNavigationTransition);
@@ -480,6 +482,15 @@ var navigation;
             this.__localFileEncryptionEnabled.set(newValue);
         }
         /**
+         * In version 10.21.0: introduced
+         */
+        get sessionCookieEncryptionEnabled() {
+            return this.__sessionCookieEncryptionEnabled.get();
+        }
+        set sessionCookieEncryptionEnabled(newValue) {
+            this.__sessionCookieEncryptionEnabled.set(newValue);
+        }
+        /**
          * In version 10.11.0: introduced
          */
         get screenNavigationTransition() {
@@ -566,6 +577,9 @@ var navigation;
             if (this.__screenNavigationTransition.isAvailable) {
                 this.screenNavigationTransition = ScreenNavigationTransition.SystemDefault;
             }
+            if (this.__sessionCookieEncryptionEnabled.isAvailable) {
+                this.sessionCookieEncryptionEnabled = false;
+            }
         }
     }
     NativeNavigationProfile.structureTypeName = "Navigation$NativeNavigationProfile";
@@ -599,6 +613,9 @@ var navigation;
             },
             localFileEncryptionEnabled: {
                 introduced: "9.22.0"
+            },
+            sessionCookieEncryptionEnabled: {
+                introduced: "10.21.0"
             },
             screenNavigationTransition: {
                 introduced: "10.11.0"

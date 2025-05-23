@@ -115,6 +115,40 @@ var javascriptactions;
     }, internal.StructureType.Element);
     javascriptactions.JavaScriptActionParameter = JavaScriptActionParameter;
     /**
+     * In version 10.21.0: introduced
+     */
+    class MicroflowJavaScriptActionParameterType extends codeactions_1.codeactions.ParameterType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowJavaScriptActionParameterType() cannot be invoked directly, please use 'model.javascriptactions.createMicroflowJavaScriptActionParameterType()'");
+            }
+        }
+        get containerAsCodeActionParameter() {
+            return super.getContainerAs(codeactions_1.codeactions.CodeActionParameter);
+        }
+        /**
+         * Creates and returns a new MicroflowJavaScriptActionParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowJavaScriptActionParameterType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowJavaScriptActionParameterType.structureTypeName = "JavaScriptActions$MicroflowJavaScriptActionParameterType";
+    MicroflowJavaScriptActionParameterType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    javascriptactions.MicroflowJavaScriptActionParameterType = MicroflowJavaScriptActionParameterType;
+    /**
      * In version 8.4.0: introduced
      */
     class NanoflowJavaScriptActionParameterType extends codeactions_1.codeactions.ParameterType {

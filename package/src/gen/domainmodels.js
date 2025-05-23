@@ -36,6 +36,15 @@ var domainmodels;
     AssociationOwner.Default = new AssociationOwner("Default", {});
     AssociationOwner.Both = new AssociationOwner("Both", {});
     domainmodels.AssociationOwner = AssociationOwner;
+    class AssociationStorage extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "domainmodels.AssociationStorage";
+        }
+    }
+    AssociationStorage.Table = new AssociationStorage("Table", {});
+    AssociationStorage.Column = new AssociationStorage("Column", {});
+    domainmodels.AssociationStorage = AssociationStorage;
     class AssociationType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -340,6 +349,8 @@ var domainmodels;
             /** @internal */
             this.__owner = new internal.EnumProperty(AssociationBase, this, "owner", AssociationOwner.Default, AssociationOwner);
             /** @internal */
+            this.__storageFormat = new internal.EnumProperty(AssociationBase, this, "storageFormat", AssociationStorage.Table, AssociationStorage);
+            /** @internal */
             this.__deleteBehavior = new internal.PartProperty(AssociationBase, this, "deleteBehavior", null, true);
             /** @internal */
             this.__parent = new internal.ByIdReferenceProperty(AssociationBase, this, "parent", null);
@@ -383,6 +394,15 @@ var domainmodels;
         }
         set owner(newValue) {
             this.__owner.set(newValue);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get storageFormat() {
+            return this.__storageFormat.get();
+        }
+        set storageFormat(newValue) {
+            this.__storageFormat.set(newValue);
         }
         get deleteBehavior() {
             return this.__deleteBehavior.get();
@@ -469,6 +489,9 @@ var domainmodels;
                 this.exportLevel = projects_1.projects.ExportLevel.Hidden;
             }
             this.owner = AssociationOwner.Default;
+            if (this.__storageFormat.isAvailable) {
+                this.storageFormat = AssociationStorage.Table;
+            }
             this.type = AssociationType.Reference;
         }
     }
@@ -486,6 +509,12 @@ var domainmodels;
                 }
             },
             owner: {
+                public: {
+                    currentValue: true
+                }
+            },
+            storageFormat: {
+                introduced: "10.21.0",
                 public: {
                     currentValue: true
                 }
@@ -5159,6 +5188,8 @@ var domainmodels;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__sourceDocument = new internal.ByNameReferenceProperty(OqlViewEntitySource, this, "sourceDocument", null, "DomainModels$ViewEntitySourceDocument");
+            /** @internal */
             this.__oql = new internal.PrimitiveProperty(OqlViewEntitySource, this, "oql", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new OqlViewEntitySource() cannot be invoked directly, please use 'model.domainmodels.createOqlViewEntitySource()'");
@@ -5166,6 +5197,22 @@ var domainmodels;
         }
         get containerAsEntity() {
             return super.getContainerAs(Entity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.21.0: introduced
+         */
+        get sourceDocument() {
+            return this.__sourceDocument.get();
+        }
+        set sourceDocument(newValue) {
+            this.__sourceDocument.set(newValue);
+        }
+        get sourceDocumentQualifiedName() {
+            return this.__sourceDocument.qualifiedName();
         }
         /**
          * The value of this property is conceptually of type oql.OqlQuery.
@@ -5204,6 +5251,11 @@ var domainmodels;
     OqlViewEntitySource.structureTypeName = "DomainModels$OqlViewEntitySource";
     OqlViewEntitySource.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.9.0",
+        properties: {
+            sourceDocument: {
+                introduced: "10.21.0"
+            }
+        },
         public: {
             currentValue: true
         },
@@ -6077,6 +6129,56 @@ var domainmodels;
         }
     }, internal.StructureType.Element);
     domainmodels.ValidationRule = ValidationRule;
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.21.0: introduced
+     */
+    class ViewEntitySourceDocument extends projects_1.projects.Document {
+        constructor(model, structureTypeName, id, isPartial, container) {
+            super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__oql = new internal.PrimitiveProperty(ViewEntitySourceDocument, this, "oql", "", internal.PrimitiveTypeEnum.String);
+            this._containmentName = "documents";
+        }
+        get containerAsFolderBase() {
+            return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * The value of this property is conceptually of type oql.OqlQuery.
+         */
+        get oql() {
+            return this.__oql.get();
+        }
+        set oql(newValue) {
+            this.__oql.set(newValue);
+        }
+        /**
+         * Creates a new ViewEntitySourceDocument unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container) {
+            return internal.instancehelpers.createUnit(container, ViewEntitySourceDocument);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ViewEntitySourceDocument.structureTypeName = "DomainModels$ViewEntitySourceDocument";
+    ViewEntitySourceDocument.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0",
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.ModelUnit);
+    domainmodels.ViewEntitySourceDocument = ViewEntitySourceDocument;
 })(domainmodels = exports.domainmodels || (exports.domainmodels = {}));
 const businessevents_1 = require("./businessevents");
 const customwidgets_1 = require("./customwidgets");

@@ -27802,6 +27802,8 @@ var pages;
             this.__name = new internal.PrimitiveProperty(LocalVariable, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__variableType = new internal.PartProperty(LocalVariable, this, "variableType", null, true);
+            /** @internal */
+            this.__defaultValue = new internal.PrimitiveProperty(LocalVariable, this, "defaultValue", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new LocalVariable() cannot be invoked directly, please use 'model.pages.createLocalVariable()'");
             }
@@ -27823,6 +27825,17 @@ var pages;
         }
         set variableType(newValue) {
             this.__variableType.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.20.0: introduced
+         */
+        get defaultValue() {
+            return this.__defaultValue.get();
+        }
+        set defaultValue(newValue) {
+            this.__defaultValue.set(newValue);
         }
         /**
          * Creates and returns a new LocalVariable instance in the SDK and on the server.
@@ -27870,6 +27883,9 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            defaultValue: {
+                introduced: "10.20.0"
             }
         }
     }, internal.StructureType.Element);

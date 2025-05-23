@@ -4060,6 +4060,10 @@ var microflows;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             (() => {
+                if (internal.isAtLeast("10.21.0", this.model)) {
+                    this.size = { width: 40, height: 40 };
+                    return;
+                }
                 if (internal.isAtLeast("7.4.0", this.model)) {
                     this.size = { width: 90, height: 60 };
                     return;

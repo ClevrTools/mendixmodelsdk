@@ -1302,6 +1302,74 @@ var customwidgets;
         introduced: "8.5.0"
     }, internal.StructureType.Element);
     customwidgets.CustomWidgetXPathSource = CustomWidgetXPathSource;
+    /**
+     * In version 10.21.0: introduced
+     */
+    class WidgetActionVariable extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__key = new internal.PrimitiveProperty(WidgetActionVariable, this, "key", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.EnumProperty(WidgetActionVariable, this, "type", WidgetReturnTypeEnum.None, WidgetReturnTypeEnum);
+            /** @internal */
+            this.__caption = new internal.PrimitiveProperty(WidgetActionVariable, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WidgetActionVariable() cannot be invoked directly, please use 'model.customwidgets.createWidgetActionVariable()'");
+            }
+        }
+        get containerAsWidgetValueType() {
+            return super.getContainerAs(WidgetValueType);
+        }
+        get key() {
+            return this.__key.get();
+        }
+        set key(newValue) {
+            this.__key.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        get caption() {
+            return this.__caption.get();
+        }
+        set caption(newValue) {
+            this.__caption.set(newValue);
+        }
+        /**
+         * Creates and returns a new WidgetActionVariable instance in the SDK and on the server.
+         * The new WidgetActionVariable will be automatically stored in the 'actionVariables' property
+         * of the parent WidgetValueType element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WidgetActionVariable.structureTypeName, { start: "10.21.0" });
+            return internal.instancehelpers.createElement(container, WidgetActionVariable, "actionVariables", true);
+        }
+        /**
+         * Creates and returns a new WidgetActionVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WidgetActionVariable);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.type = WidgetReturnTypeEnum.None;
+        }
+    }
+    WidgetActionVariable.structureTypeName = "CustomWidgets$WidgetActionVariable";
+    WidgetActionVariable.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0"
+    }, internal.StructureType.Element);
+    customwidgets.WidgetActionVariable = WidgetActionVariable;
     class WidgetEnumerationValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -2157,6 +2225,8 @@ var customwidgets;
             /** @internal */
             this.__enumerationValues = new internal.PartListProperty(WidgetValueType, this, "enumerationValues", []);
             /** @internal */
+            this.__actionVariables = new internal.PartListProperty(WidgetValueType, this, "actionVariables", []);
+            /** @internal */
             this.__objectType = new internal.PartProperty(WidgetValueType, this, "objectType", null, false);
             /** @internal */
             this.__returnType = new internal.PartProperty(WidgetValueType, this, "returnType", null, false);
@@ -2306,6 +2376,12 @@ var customwidgets;
         get enumerationValues() {
             return this.__enumerationValues.get();
         }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get actionVariables() {
+            return this.__actionVariables.get();
+        }
         get objectType() {
             return this.__objectType.get();
         }
@@ -2394,6 +2470,9 @@ var customwidgets;
             },
             selectionTypes: {
                 introduced: "9.23.0"
+            },
+            actionVariables: {
+                introduced: "10.21.0"
             },
             setLabel: {
                 introduced: "10.5.0"

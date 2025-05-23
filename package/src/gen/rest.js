@@ -615,6 +615,9 @@ var rest;
         get containerAsRestParameter() {
             return super.getContainerAs(RestParameter);
         }
+        /**
+         * In version 10.20.0: added optional
+         */
         get value() {
             return this.__value.get();
         }
@@ -703,7 +706,8 @@ var rest;
         properties: {
             value: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["10.20.0"]
                 }
             }
         },
@@ -1033,6 +1037,8 @@ var rest;
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
+            this.__openApiFile = new internal.PartProperty(ConsumedRestService, this, "openApiFile", null, false);
+            /** @internal */
             this.__baseUrl = new internal.PartProperty(ConsumedRestService, this, "baseUrl", null, true);
             /** @internal */
             this.__authenticationScheme = new internal.PartProperty(ConsumedRestService, this, "authenticationScheme", null, false);
@@ -1044,6 +1050,15 @@ var rest;
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get openApiFile() {
+            return this.__openApiFile.get();
+        }
+        set openApiFile(newValue) {
+            this.__openApiFile.set(newValue);
         }
         get baseUrl() {
             return this.__baseUrl.get();
@@ -1089,6 +1104,9 @@ var rest;
     ConsumedRestService.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.1.0",
         properties: {
+            openApiFile: {
+                introduced: "10.21.0"
+            },
             baseUrl: {
                 required: {
                     currentValue: true
@@ -2570,6 +2588,57 @@ var rest;
         introduced: "10.12.0"
     }, internal.StructureType.Element);
     rest.ODataRemoteEnumerationValue = ODataRemoteEnumerationValue;
+    /**
+     * In version 10.21.0: introduced
+     */
+    class OpenApiFile extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__content = new internal.PrimitiveProperty(OpenApiFile, this, "content", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new OpenApiFile() cannot be invoked directly, please use 'model.rest.createOpenApiFile()'");
+            }
+        }
+        get containerAsConsumedRestService() {
+            return super.getContainerAs(ConsumedRestService);
+        }
+        get content() {
+            return this.__content.get();
+        }
+        set content(newValue) {
+            this.__content.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenApiFile instance in the SDK and on the server.
+         * The new OpenApiFile will be automatically stored in the 'openApiFile' property
+         * of the parent ConsumedRestService element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenApiFile.structureTypeName, { start: "10.21.0" });
+            return internal.instancehelpers.createElement(container, OpenApiFile, "openApiFile", false);
+        }
+        /**
+         * Creates and returns a new OpenApiFile instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenApiFile);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OpenApiFile.structureTypeName = "Rest$OpenApiFile";
+    OpenApiFile.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0"
+    }, internal.StructureType.Element);
+    rest.OpenApiFile = OpenApiFile;
     /**
      * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
      *
@@ -4339,6 +4408,8 @@ var rest;
             this.__parameters = new internal.PartListProperty(RestOperation, this, "parameters", []);
             /** @internal */
             this.__responseHandling = new internal.PartProperty(RestOperation, this, "responseHandling", null, true);
+            /** @internal */
+            this.__tags = new internal.PrimitiveListProperty(RestOperation, this, "tags", [], internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new RestOperation() cannot be invoked directly, please use 'model.rest.createRestOperation()'");
             }
@@ -4387,6 +4458,12 @@ var rest;
         }
         set responseHandling(newValue) {
             this.__responseHandling.set(newValue);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get tags() {
+            return this.__tags.get();
         }
         /**
          * Creates and returns a new RestOperation instance in the SDK and on the server.
@@ -4464,6 +4541,9 @@ var rest;
                 required: {
                     currentValue: true
                 }
+            },
+            tags: {
+                introduced: "10.21.0"
             }
         },
         public: {

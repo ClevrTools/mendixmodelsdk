@@ -151,6 +151,11 @@ export declare namespace businessevents {
          * @ignore
          */
         get operationImplementations(): internal.IList<ServiceOperation>;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get sourceApi(): integrationoverview.SourceApi | null;
+        set sourceApi(newValue: integrationoverview.SourceApi | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new BusinessEventService unit in the SDK and on the server.
@@ -551,5 +556,6 @@ export declare namespace businessevents {
     }
 }
 import { domainmodels } from "./domainmodels";
+import { integrationoverview } from "./integrationoverview";
 import { microflows } from "./microflows";
 import { IModel } from "./base-model";

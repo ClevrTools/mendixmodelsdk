@@ -35,6 +35,7 @@ __exportStar(require("./exportmappings"), exports);
 __exportStar(require("./expressions"), exports);
 __exportStar(require("./images"), exports);
 __exportStar(require("./importmappings"), exports);
+__exportStar(require("./integrationoverview"), exports);
 __exportStar(require("./javaactions"), exports);
 __exportStar(require("./javascriptactions"), exports);
 __exportStar(require("./jsonstructures"), exports);

@@ -46,6 +46,11 @@ export declare namespace settings {
         static HalfEven: RoundingMode;
         protected qualifiedTsTypeName: string;
     }
+    class SslCertificateAlgorithm extends internal.AbstractEnum {
+        static PKIX: SslCertificateAlgorithm;
+        static SunX509: SslCertificateAlgorithm;
+        protected qualifiedTsTypeName: string;
+    }
     class ThemeConversionStatusEnum extends internal.AbstractEnum {
         static Done: ThemeConversionStatusEnum;
         static ConvertedChangesInVariables: ThemeConversionStatusEnum;
@@ -180,6 +185,11 @@ export declare namespace settings {
         set databasePassword(newValue: string);
         get customSettings(): internal.IList<CustomSetting>;
         get constantValues(): internal.IList<ConstantValue>;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get tracing(): TracingConfiguration | null;
+        set tracing(newValue: TracingConfiguration | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Configuration instance in the SDK and on the server.
@@ -300,6 +310,11 @@ export declare namespace settings {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsProjectSettings(): ProjectSettings;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get obsoleteEnableUrlEncoding(): boolean;
+        set obsoleteEnableUrlEncoding(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new IntegrationProjectSettingsPart instance in the SDK and on the server.
@@ -445,6 +460,11 @@ export declare namespace settings {
          */
         get defaultSequenceFlowLineType(): microflows.FlowLineType;
         set defaultSequenceFlowLineType(newValue: microflows.FlowLineType);
+        /**
+         * In version 10.21.0: introduced
+         */
+        get defaultAssociationStorage(): domainmodels.AssociationStorage;
+        set defaultAssociationStorage(newValue: domainmodels.AssociationStorage);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ModelerSettings instance in the SDK and on the server.
@@ -607,6 +627,11 @@ export declare namespace settings {
          */
         get useOQLVersion2(): boolean;
         set useOQLVersion2(newValue: boolean);
+        /**
+         * In version 10.21.0: introduced
+         */
+        get sslCertificateAlgorithm(): SslCertificateAlgorithm;
+        set sslCertificateAlgorithm(newValue: SslCertificateAlgorithm);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
@@ -654,6 +679,36 @@ export declare namespace settings {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ThemeModuleEntry;
+    }
+    /**
+     * In version 10.21.0: introduced
+     */
+    class TracingConfiguration extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConfiguration(): Configuration;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        get endpoint(): string;
+        set endpoint(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new TracingConfiguration instance in the SDK and on the server.
+         * The new TracingConfiguration will be automatically stored in the 'tracing' property
+         * of the parent Configuration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container: Configuration): TracingConfiguration;
+        /**
+         * Creates and returns a new TracingConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): TracingConfiguration;
     }
     /**
      * In version 9.10.0: introduced

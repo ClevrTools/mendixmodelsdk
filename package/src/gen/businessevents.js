@@ -236,6 +236,8 @@ var businessevents;
             this.__document = new internal.PrimitiveProperty(BusinessEventService, this, "document", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__operationImplementations = new internal.PartListProperty(BusinessEventService, this, "operationImplementations", []);
+            /** @internal */
+            this.__sourceApi = new internal.PartProperty(BusinessEventService, this, "sourceApi", null, false);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -267,6 +269,15 @@ var businessevents;
             return this.__operationImplementations.get();
         }
         /**
+         * In version 10.21.0: introduced
+         */
+        get sourceApi() {
+            return this.__sourceApi.get();
+        }
+        set sourceApi(newValue) {
+            this.__sourceApi.set(newValue);
+        }
+        /**
          * Creates a new BusinessEventService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -281,6 +292,11 @@ var businessevents;
     BusinessEventService.structureTypeName = "BusinessEvents$BusinessEventService";
     BusinessEventService.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.24.0",
+        properties: {
+            sourceApi: {
+                introduced: "10.21.0"
+            }
+        },
         experimental: {
             currentValue: true
         }

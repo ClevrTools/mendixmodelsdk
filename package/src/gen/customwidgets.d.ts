@@ -761,6 +761,36 @@ export declare namespace customwidgets {
          */
         static create(model: IModel): CustomWidgetXPathSource;
     }
+    /**
+     * In version 10.21.0: introduced
+     */
+    class WidgetActionVariable extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValueType(): WidgetValueType;
+        get key(): string;
+        set key(newValue: string);
+        get type(): WidgetReturnTypeEnum;
+        set type(newValue: WidgetReturnTypeEnum);
+        get caption(): string;
+        set caption(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WidgetActionVariable instance in the SDK and on the server.
+         * The new WidgetActionVariable will be automatically stored in the 'actionVariables' property
+         * of the parent WidgetValueType element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container: WidgetValueType): WidgetActionVariable;
+        /**
+         * Creates and returns a new WidgetActionVariable instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WidgetActionVariable;
+    }
     class WidgetEnumerationValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -1133,6 +1163,10 @@ export declare namespace customwidgets {
          */
         get selectionTypes(): internal.IList<CustomWidgetSelectionType>;
         get enumerationValues(): internal.IList<WidgetEnumerationValue>;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get actionVariables(): internal.IList<WidgetActionVariable>;
         get objectType(): WidgetObjectType | null;
         set objectType(newValue: WidgetObjectType | null);
         get returnType(): WidgetReturnType | null;

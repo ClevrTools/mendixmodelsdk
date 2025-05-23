@@ -15800,6 +15800,13 @@ export declare namespace pages {
         set name(newValue: string);
         get variableType(): datatypes.DataType;
         set variableType(newValue: datatypes.DataType);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 10.20.0: introduced
+         */
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new LocalVariable instance in the SDK and on the server.

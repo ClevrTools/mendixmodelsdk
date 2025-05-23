@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.workflows = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
+const utils_1 = require("../sdk/utils");
 const projects_1 = require("./projects");
 var workflows;
 (function (workflows) {
@@ -312,6 +313,8 @@ var workflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(Outcome, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
             this.__flow = new internal.PartProperty(Outcome, this, "flow", null, true);
             if (arguments.length < 4) {
                 throw new Error("new Outcome() cannot be invoked directly, please use 'model.workflows.createOutcome()'");
@@ -329,6 +332,15 @@ var workflows;
         get containerAsUserTaskActivity() {
             return super.getContainerAs(UserTaskActivity);
         }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
+        }
         get flow() {
             return this.__flow.get();
         }
@@ -339,12 +351,18 @@ var workflows;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.flow = Flow.create(this.model);
+            if (this.__persistentId.isAvailable) {
+                this.persistentId = utils_1.utils.randomUuid();
+            }
         }
     }
     Outcome.structureTypeName = "Workflows$Outcome";
     Outcome.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
         properties: {
+            persistentId: {
+                introduced: "10.21.0"
+            },
             flow: {
                 public: {
                     currentValue: true
@@ -469,6 +487,8 @@ var workflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(BoundaryEvent, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
             this.__flow = new internal.PartProperty(BoundaryEvent, this, "flow", null, true);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(BoundaryEvent, this, "caption", "", internal.PrimitiveTypeEnum.String);
@@ -492,6 +512,15 @@ var workflows;
         get containerAsWaitForNotificationActivity() {
             return super.getContainerAs(WaitForNotificationActivity);
         }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
+        }
         get flow() {
             return this.__flow.get();
         }
@@ -514,6 +543,7 @@ var workflows;
             this.__annotation.set(newValue);
         }
         /**
+         * In version 10.20.0: deleted
          * In version 10.17.0: introduced
          */
         get isInterrupting() {
@@ -526,12 +556,18 @@ var workflows;
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
             this.flow = Flow.create(this.model);
+            if (this.__persistentId.isAvailable) {
+                this.persistentId = utils_1.utils.randomUuid();
+            }
         }
     }
     BoundaryEvent.structureTypeName = "Workflows$BoundaryEvent";
     BoundaryEvent.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.14.0",
         properties: {
+            persistentId: {
+                introduced: "10.21.0"
+            },
             flow: {
                 public: {
                     currentValue: true
@@ -550,6 +586,8 @@ var workflows;
             },
             isInterrupting: {
                 introduced: "10.17.0",
+                deleted: "10.20.0",
+                deletionMessage: null,
                 public: {
                     currentValue: true
                 }
@@ -570,6 +608,8 @@ var workflows;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(WorkflowActivity, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
             this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
@@ -581,6 +621,15 @@ var workflows;
         }
         get containerAsFlow() {
             return super.getContainerAs(Flow);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
         }
         /**
          * In version 9.0.5: introduced
@@ -612,12 +661,18 @@ var workflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__persistentId.isAvailable) {
+                this.persistentId = utils_1.utils.randomUuid();
+            }
         }
     }
     WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
     WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
         properties: {
+            persistentId: {
+                introduced: "10.21.0"
+            },
             name: {
                 introduced: "9.0.5",
                 public: {
@@ -1133,6 +1188,52 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.EndOfBoundaryEventPathActivity = EndOfBoundaryEventPathActivity;
     /**
+     * In version 10.21.0: introduced
+     */
+    class EndOfParallelSplitPathActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EndOfParallelSplitPathActivity() cannot be invoked directly, please use 'model.workflows.createEndOfParallelSplitPathActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EndOfParallelSplitPathActivity.structureTypeName, { start: "10.21.0" });
+            return internal.instancehelpers.createElement(container, EndOfParallelSplitPathActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EndOfParallelSplitPathActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EndOfParallelSplitPathActivity.structureTypeName = "Workflows$EndOfParallelSplitPathActivity";
+    EndOfParallelSplitPathActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.21.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.EndOfParallelSplitPathActivity = EndOfParallelSplitPathActivity;
+    /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1410,6 +1511,108 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.Flow = Flow;
     /**
+     * In version 10.20.0: introduced
+     */
+    class InterruptingTimerBoundaryEvent extends BoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__firstExecutionTime = new internal.PrimitiveProperty(InterruptingTimerBoundaryEvent, this, "firstExecutionTime", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new InterruptingTimerBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createInterruptingTimerBoundaryEvent()'");
+            }
+        }
+        get containerAsCallMicroflowTask() {
+            return super.getContainerAs(CallMicroflowTask);
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime() {
+            return this.__firstExecutionTime.get();
+        }
+        set firstExecutionTime(newValue) {
+            this.__firstExecutionTime.set(newValue);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, InterruptingTimerBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    InterruptingTimerBoundaryEvent.structureTypeName = "Workflows$InterruptingTimerBoundaryEvent";
+    InterruptingTimerBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.20.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.InterruptingTimerBoundaryEvent = InterruptingTimerBoundaryEvent;
+    /**
      * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
      *
      * In version 9.0.5: introduced
@@ -1468,6 +1671,122 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.JumpToActivity = JumpToActivity;
+    /**
+     * In version 10.20.0: introduced
+     */
+    class Recurrence extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new Recurrence() cannot be invoked directly, please use 'model.workflows.createRecurrence()'");
+            }
+        }
+        get containerAsNonInterruptingTimerBoundaryEvent() {
+            return super.getContainerAs(NonInterruptingTimerBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Recurrence.structureTypeName = "Workflows$Recurrence";
+    Recurrence.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.20.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.Recurrence = Recurrence;
+    /**
+     * In version 10.20.0: introduced
+     */
+    class LinearRecurrence extends Recurrence {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__intervalType = new internal.EnumProperty(LinearRecurrence, this, "intervalType", scheduledevents_1.scheduledevents.IntervalType.Minute, scheduledevents_1.scheduledevents.IntervalType);
+            /** @internal */
+            this.__interval = new internal.PrimitiveProperty(LinearRecurrence, this, "interval", 1, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__maxExecutions = new internal.PrimitiveProperty(LinearRecurrence, this, "maxExecutions", 1, internal.PrimitiveTypeEnum.Integer);
+            if (arguments.length < 4) {
+                throw new Error("new LinearRecurrence() cannot be invoked directly, please use 'model.workflows.createLinearRecurrence()'");
+            }
+        }
+        get containerAsNonInterruptingTimerBoundaryEvent() {
+            return super.getContainerAs(NonInterruptingTimerBoundaryEvent);
+        }
+        get intervalType() {
+            return this.__intervalType.get();
+        }
+        set intervalType(newValue) {
+            this.__intervalType.set(newValue);
+        }
+        get interval() {
+            return this.__interval.get();
+        }
+        set interval(newValue) {
+            this.__interval.set(newValue);
+        }
+        get maxExecutions() {
+            return this.__maxExecutions.get();
+        }
+        set maxExecutions(newValue) {
+            this.__maxExecutions.set(newValue);
+        }
+        /**
+         * Creates and returns a new LinearRecurrence instance in the SDK and on the server.
+         * The new LinearRecurrence will be automatically stored in the 'recurrence' property
+         * of the parent NonInterruptingTimerBoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, LinearRecurrence.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, LinearRecurrence, "recurrence", false);
+        }
+        /**
+         * Creates and returns a new LinearRecurrence instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, LinearRecurrence);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.interval = 1;
+            this.intervalType = scheduledevents_1.scheduledevents.IntervalType.Minute;
+            this.maxExecutions = 1;
+        }
+    }
+    LinearRecurrence.structureTypeName = "Workflows$LinearRecurrence";
+    LinearRecurrence.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.20.0",
+        properties: {
+            intervalType: {
+                public: {
+                    currentValue: true
+                }
+            },
+            interval: {
+                public: {
+                    currentValue: true
+                }
+            },
+            maxExecutions: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.LinearRecurrence = LinearRecurrence;
     /**
      * In version 10.0.0: introduced
      */
@@ -2368,6 +2687,123 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.NoEvent = NoEvent;
     /**
+     * In version 10.20.0: introduced
+     */
+    class NonInterruptingTimerBoundaryEvent extends BoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__firstExecutionTime = new internal.PrimitiveProperty(NonInterruptingTimerBoundaryEvent, this, "firstExecutionTime", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__recurrence = new internal.PartProperty(NonInterruptingTimerBoundaryEvent, this, "recurrence", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new NonInterruptingTimerBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createNonInterruptingTimerBoundaryEvent()'");
+            }
+        }
+        get containerAsCallMicroflowTask() {
+            return super.getContainerAs(CallMicroflowTask);
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime() {
+            return this.__firstExecutionTime.get();
+        }
+        set firstExecutionTime(newValue) {
+            this.__firstExecutionTime.set(newValue);
+        }
+        get recurrence() {
+            return this.__recurrence.get();
+        }
+        set recurrence(newValue) {
+            this.__recurrence.set(newValue);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NonInterruptingTimerBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NonInterruptingTimerBoundaryEvent.structureTypeName = "Workflows$NonInterruptingTimerBoundaryEvent";
+    NonInterruptingTimerBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "10.20.0",
+        properties: {
+            recurrence: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NonInterruptingTimerBoundaryEvent = NonInterruptingTimerBoundaryEvent;
+    /**
      * In version 9.11.0: introduced
      */
     class PageParameterMapping extends internal.Element {
@@ -3011,6 +3447,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ThresholdCompletionCriteria = ThresholdCompletionCriteria;
     /**
+     * In version 10.20.0: deleted
      * In version 10.14.0: introduced
      */
     class TimerBoundaryEvent extends BoundaryEvent {
@@ -3049,10 +3486,10 @@ var workflows;
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0", end: "10.19.0" });
             return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3061,10 +3498,10 @@ var workflows;
          * of the parent CallWorkflowActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0", end: "10.19.0" });
             return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3073,10 +3510,10 @@ var workflows;
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInUserTaskActivityUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0", end: "10.19.0" });
             return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3085,10 +3522,10 @@ var workflows;
          * of the parent WaitForNotificationActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0" });
+            internal.createInVersionCheck(container.model, TimerBoundaryEvent.structureTypeName, { start: "10.14.0", end: "10.19.0" });
             return internal.instancehelpers.createElement(container, TimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3107,6 +3544,8 @@ var workflows;
     TimerBoundaryEvent.structureTypeName = "Workflows$TimerBoundaryEvent";
     TimerBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.14.0",
+        deleted: "10.20.0",
+        deletionMessage: null,
         public: {
             currentValue: true
         }
@@ -3759,6 +4198,8 @@ var workflows;
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(Workflow, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
             this.__title = new internal.PrimitiveProperty(Workflow, this, "title", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__contextEntity = new internal.ByNameReferenceProperty(Workflow, this, "contextEntity", null, "DomainModels$Entity");
@@ -3794,6 +4235,15 @@ var workflows;
         }
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
         }
         get title() {
             return this.__title.get();
@@ -3953,6 +4403,9 @@ var workflows;
             if (this.__parameter.isAvailable) {
                 this.parameter = Parameter.create(this.model);
             }
+            if (this.__persistentId.isAvailable) {
+                this.persistentId = utils_1.utils.randomUuid();
+            }
             this.workflowDescription = microflows_1.microflows.StringTemplate.create(this.model);
             this.workflowName = microflows_1.microflows.StringTemplate.create(this.model);
             if (this.__workflowType.isAvailable) {
@@ -3964,6 +4417,9 @@ var workflows;
     Workflow.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
         properties: {
+            persistentId: {
+                introduced: "10.21.0"
+            },
             title: {
                 public: {
                     currentValue: true
@@ -4516,5 +4972,6 @@ var workflows;
     workflows.XPathBasedUserSource = XPathBasedUserSource;
 })(workflows = exports.workflows || (exports.workflows = {}));
 const microflows_1 = require("./microflows");
+const scheduledevents_1 = require("./scheduledevents");
 const settings_1 = require("./settings");
 //# sourceMappingURL=workflows.js.map

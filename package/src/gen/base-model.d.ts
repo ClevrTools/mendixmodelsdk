@@ -16,6 +16,7 @@ import { exportmappings } from "./exportmappings";
 import { expressions } from "./expressions";
 import { images } from "./images";
 import { importmappings } from "./importmappings";
+import { integrationoverview } from "./integrationoverview";
 import { javaactions } from "./javaactions";
 import { javascriptactions } from "./javascriptactions";
 import { jsonstructures } from "./jsonstructures";
@@ -118,6 +119,7 @@ export interface IBaseModel extends IAbstractModel {
     allSystemTextCollections(): texts.ISystemTextCollection[];
     allTemplates(): exceldataimporter.ITemplate[];
     allTemplateFormBases(): pages.ITemplateFormBase[];
+    allViewEntitySourceDocuments(): domainmodels.IViewEntitySourceDocument[];
     allWorkflows(): workflows.IWorkflow[];
     allXmlSchemas(): xmlschemas.IXmlSchema[];
     findAppServiceActionByQualifiedName(qname: string): appservices.IAppServiceAction | null;
@@ -132,6 +134,7 @@ export interface IBaseModel extends IAbstractModel {
     findAttributeByQualifiedName(qname: string): domainmodels.IAttribute | null;
     findEntityByQualifiedName(qname: string): domainmodels.IEntity | null;
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
+    findViewEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IViewEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
     findCSVSheetByQualifiedName(qname: string): exceldataimporter.ICSVSheet | null;
@@ -252,6 +255,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allSystemTextCollections(): texts.ISystemTextCollection[];
     allTemplates(): exceldataimporter.ITemplate[];
     allTemplateFormBases(): pages.ITemplateFormBase[];
+    allViewEntitySourceDocuments(): domainmodels.IViewEntitySourceDocument[];
     allWorkflows(): workflows.IWorkflow[];
     allXmlSchemas(): xmlschemas.IXmlSchema[];
     findAppServiceActionByQualifiedName(qname: string): appservices.IAppServiceAction | null;
@@ -266,6 +270,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findAttributeByQualifiedName(qname: string): domainmodels.IAttribute | null;
     findEntityByQualifiedName(qname: string): domainmodels.IEntity | null;
     findRemoteEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IRemoteEntitySourceDocument | null;
+    findViewEntitySourceDocumentByQualifiedName(qname: string): domainmodels.IViewEntitySourceDocument | null;
     findEnumerationByQualifiedName(qname: string): enumerations.IEnumeration | null;
     findEnumerationValueByQualifiedName(qname: string): enumerations.IEnumerationValue | null;
     findCSVSheetByQualifiedName(qname: string): exceldataimporter.ICSVSheet | null;
@@ -375,6 +380,7 @@ export declare type ConcreteModelElements = {
     CustomWidgets$CustomWidgetDatabaseSource: customwidgets.CustomWidgetDatabaseSource;
     CustomWidgets$CustomWidgetType: customwidgets.CustomWidgetType;
     CustomWidgets$CustomWidgetXPathSource: customwidgets.CustomWidgetXPathSource;
+    CustomWidgets$WidgetActionVariable: customwidgets.WidgetActionVariable;
     CustomWidgets$WidgetEnumerationValue: customwidgets.WidgetEnumerationValue;
     CustomWidgets$WidgetObject: customwidgets.WidgetObject;
     CustomWidgets$WidgetObjectType: customwidgets.WidgetObjectType;
@@ -530,6 +536,7 @@ export declare type ConcreteModelElements = {
     Images$Image: images.Image;
     ImportMappings$ImportObjectMappingElement: importmappings.ImportObjectMappingElement;
     ImportMappings$ImportValueMappingElement: importmappings.ImportValueMappingElement;
+    IntegrationOverview$CatalogApi: integrationoverview.CatalogApi;
     JavaActions$BasicParameterType: javaactions.BasicParameterType;
     JavaActions$BooleanType: javaactions.BooleanType;
     JavaActions$ConcreteEntityType: javaactions.ConcreteEntityType;
@@ -552,6 +559,7 @@ export declare type ConcreteModelElements = {
     JavaActions$StringType: javaactions.StringType;
     JavaActions$TypeParameter: javaactions.TypeParameter;
     JavaScriptActions$JavaScriptActionParameter: javascriptactions.JavaScriptActionParameter;
+    JavaScriptActions$MicroflowJavaScriptActionParameterType: javascriptactions.MicroflowJavaScriptActionParameterType;
     JavaScriptActions$NanoflowJavaScriptActionParameterType: javascriptactions.NanoflowJavaScriptActionParameterType;
     JsonStructures$JsonElement: jsonstructures.JsonElement;
     Kafka$KafkaMappedValue: kafka.KafkaMappedValue;
@@ -984,6 +992,7 @@ export declare type ConcreteModelElements = {
     Rest$ODataRemoteEntitySource: rest.ODataRemoteEntitySource;
     Rest$ODataRemoteEnumerationSource: rest.ODataRemoteEnumerationSource;
     Rest$ODataRemoteEnumerationValue: rest.ODataRemoteEnumerationValue;
+    Rest$OpenApiFile: rest.OpenApiFile;
     Rest$OperationParameter: rest.OperationParameter;
     Rest$PublishedODataContract: rest.PublishedODataContract;
     Rest$PublishedODataEnumeration: rest.PublishedODataEnumeration;
@@ -1037,6 +1046,7 @@ export declare type ConcreteModelElements = {
     Settings$RuntimeSettings: settings.RuntimeSettings;
     Settings$SharedValue: settings.SharedValue;
     Settings$ThemeModuleEntry: settings.ThemeModuleEntry;
+    Settings$TracingConfiguration: settings.TracingConfiguration;
     Settings$UserLibJarLocation: settings.UserLibJarLocation;
     Settings$WebUIProjectSettingsPart: settings.WebUIProjectSettingsPart;
     Settings$WorkflowsProjectSettingsPart: settings.WorkflowsProjectSettingsPart;
@@ -1067,11 +1077,14 @@ export declare type ConcreteModelElements = {
     Workflows$ConsensusCompletionCriteria: workflows.ConsensusCompletionCriteria;
     Workflows$EmptyUserSource: workflows.EmptyUserSource;
     Workflows$EndOfBoundaryEventPathActivity: workflows.EndOfBoundaryEventPathActivity;
+    Workflows$EndOfParallelSplitPathActivity: workflows.EndOfParallelSplitPathActivity;
     Workflows$EndWorkflowActivity: workflows.EndWorkflowActivity;
     Workflows$EnumerationValueConditionOutcome: workflows.EnumerationValueConditionOutcome;
     Workflows$ExclusiveSplitActivity: workflows.ExclusiveSplitActivity;
     Workflows$Flow: workflows.Flow;
+    Workflows$InterruptingTimerBoundaryEvent: workflows.InterruptingTimerBoundaryEvent;
     Workflows$JumpToActivity: workflows.JumpToActivity;
+    Workflows$LinearRecurrence: workflows.LinearRecurrence;
     Workflows$MajorityCompletionCriteria: workflows.MajorityCompletionCriteria;
     Workflows$MicroflowBasedEvent: workflows.MicroflowBasedEvent;
     Workflows$MicroflowBasedUserSource: workflows.MicroflowBasedUserSource;
@@ -1081,6 +1094,7 @@ export declare type ConcreteModelElements = {
     Workflows$MultiInputCompletion: workflows.MultiInputCompletion;
     Workflows$MultiUserTaskActivity: workflows.MultiUserTaskActivity;
     Workflows$NoEvent: workflows.NoEvent;
+    Workflows$NonInterruptingTimerBoundaryEvent: workflows.NonInterruptingTimerBoundaryEvent;
     Workflows$PageParameterMapping: workflows.PageParameterMapping;
     Workflows$PageReference: workflows.PageReference;
     Workflows$ParallelSplitActivity: workflows.ParallelSplitActivity;

@@ -204,6 +204,11 @@ export declare namespace workflows {
         get containerAsParallelSplitActivity(): ParallelSplitActivity;
         get containerAsUserTask(): UserTask;
         get containerAsUserTaskActivity(): UserTaskActivity;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId(): string;
+        set persistentId(newValue: string);
         get flow(): Flow;
         set flow(newValue: Flow);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -285,6 +290,7 @@ export declare namespace workflows {
         readonly flow: IFlow;
         readonly caption: string;
         /**
+         * In version 10.20.0: deleted
          * In version 10.17.0: introduced
          */
         readonly isInterrupting: boolean;
@@ -304,6 +310,11 @@ export declare namespace workflows {
         get containerAsCallWorkflowActivity(): CallWorkflowActivity;
         get containerAsUserTaskActivity(): UserTaskActivity;
         get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId(): string;
+        set persistentId(newValue: string);
         get flow(): Flow;
         set flow(newValue: Flow);
         get caption(): string;
@@ -314,6 +325,7 @@ export declare namespace workflows {
         get annotation(): Annotation | null;
         set annotation(newValue: Annotation | null);
         /**
+         * In version 10.20.0: deleted
          * In version 10.17.0: introduced
          */
         get isInterrupting(): boolean;
@@ -348,6 +360,11 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId(): string;
+        set persistentId(newValue: string);
         /**
          * In version 9.0.5: introduced
          */
@@ -632,6 +649,40 @@ export declare namespace workflows {
         static create(model: IModel): EndOfBoundaryEventPathActivity;
     }
     /**
+     * In version 10.21.0: introduced
+     */
+    interface IEndOfParallelSplitPathActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): EndOfParallelSplitPathActivity;
+        load(callback: (element: EndOfParallelSplitPathActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EndOfParallelSplitPathActivity>;
+    }
+    /**
+     * In version 10.21.0: introduced
+     */
+    class EndOfParallelSplitPathActivity extends WorkflowActivity implements IEndOfParallelSplitPathActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 and higher
+         */
+        static createIn(container: Flow): EndOfParallelSplitPathActivity;
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EndOfParallelSplitPathActivity;
+    }
+    /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -814,6 +865,78 @@ export declare namespace workflows {
         static create(model: IModel): Flow;
     }
     /**
+     * In version 10.20.0: introduced
+     */
+    interface IInterruptingTimerBoundaryEvent extends IBoundaryEvent {
+        readonly model: IModel;
+        readonly containerAsCallMicroflowTask: ICallMicroflowTask;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        asLoaded(): InterruptingTimerBoundaryEvent;
+        load(callback: (element: InterruptingTimerBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<InterruptingTimerBoundaryEvent>;
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    class InterruptingTimerBoundaryEvent extends BoundaryEvent implements IInterruptingTimerBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime(): string;
+        set firstExecutionTime(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): InterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): InterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): InterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): InterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): InterruptingTimerBoundaryEvent;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
      *
      * In version 9.0.5: introduced
@@ -853,6 +976,68 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): JumpToActivity;
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    interface IRecurrence extends internal.IElement {
+        readonly model: IModel;
+        readonly containerAsNonInterruptingTimerBoundaryEvent: INonInterruptingTimerBoundaryEvent;
+        asLoaded(): Recurrence;
+        load(callback: (element: Recurrence) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<Recurrence>;
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    abstract class Recurrence extends internal.Element<IModel> implements IRecurrence {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNonInterruptingTimerBoundaryEvent(): NonInterruptingTimerBoundaryEvent;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    interface ILinearRecurrence extends IRecurrence {
+        readonly model: IModel;
+        readonly containerAsNonInterruptingTimerBoundaryEvent: INonInterruptingTimerBoundaryEvent;
+        readonly intervalType: scheduledevents.IntervalType;
+        readonly interval: number;
+        readonly maxExecutions: number;
+        asLoaded(): LinearRecurrence;
+        load(callback: (element: LinearRecurrence) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<LinearRecurrence>;
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    class LinearRecurrence extends Recurrence implements ILinearRecurrence {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNonInterruptingTimerBoundaryEvent(): NonInterruptingTimerBoundaryEvent;
+        get intervalType(): scheduledevents.IntervalType;
+        set intervalType(newValue: scheduledevents.IntervalType);
+        get interval(): number;
+        set interval(newValue: number);
+        get maxExecutions(): number;
+        set maxExecutions(newValue: number);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new LinearRecurrence instance in the SDK and on the server.
+         * The new LinearRecurrence will be automatically stored in the 'recurrence' property
+         * of the parent NonInterruptingTimerBoundaryEvent element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createIn(container: NonInterruptingTimerBoundaryEvent): LinearRecurrence;
+        /**
+         * Creates and returns a new LinearRecurrence instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): LinearRecurrence;
     }
     /**
      * In version 10.0.0: introduced
@@ -1272,6 +1457,81 @@ export declare namespace workflows {
         static create(model: IModel): NoEvent;
     }
     /**
+     * In version 10.20.0: introduced
+     */
+    interface INonInterruptingTimerBoundaryEvent extends IBoundaryEvent {
+        readonly model: IModel;
+        readonly containerAsCallMicroflowTask: ICallMicroflowTask;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        readonly recurrence: IRecurrence | null;
+        asLoaded(): NonInterruptingTimerBoundaryEvent;
+        load(callback: (element: NonInterruptingTimerBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NonInterruptingTimerBoundaryEvent>;
+    }
+    /**
+     * In version 10.20.0: introduced
+     */
+    class NonInterruptingTimerBoundaryEvent extends BoundaryEvent implements INonInterruptingTimerBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime(): string;
+        set firstExecutionTime(newValue: string);
+        get recurrence(): Recurrence | null;
+        set recurrence(newValue: Recurrence | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): NonInterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): NonInterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): NonInterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.20.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): NonInterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NonInterruptingTimerBoundaryEvent;
+    }
+    /**
      * In version 9.11.0: introduced
      */
     class PageParameterMapping extends internal.Element<IModel> {
@@ -1640,6 +1900,7 @@ export declare namespace workflows {
         static create(model: IModel): ThresholdCompletionCriteria;
     }
     /**
+     * In version 10.20.0: deleted
      * In version 10.14.0: introduced
      */
     interface ITimerBoundaryEvent extends IBoundaryEvent {
@@ -1653,6 +1914,7 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<TimerBoundaryEvent>;
     }
     /**
+     * In version 10.20.0: deleted
      * In version 10.14.0: introduced
      */
     class TimerBoundaryEvent extends BoundaryEvent implements ITimerBoundaryEvent {
@@ -1674,7 +1936,7 @@ export declare namespace workflows {
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): TimerBoundaryEvent;
         /**
@@ -1683,7 +1945,7 @@ export declare namespace workflows {
          * of the parent CallWorkflowActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): TimerBoundaryEvent;
         /**
@@ -1692,7 +1954,7 @@ export declare namespace workflows {
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): TimerBoundaryEvent;
         /**
@@ -1701,7 +1963,7 @@ export declare namespace workflows {
          * of the parent WaitForNotificationActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.14.0 and higher
+         *  10.14.0 to 10.19.0
          */
         static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): TimerBoundaryEvent;
         /**
@@ -2124,6 +2386,11 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId(): string;
+        set persistentId(newValue: string);
         get title(): string;
         set title(newValue: string);
         /**
@@ -2436,6 +2703,7 @@ import { domainmodels } from "./domainmodels";
 import { enumerations } from "./enumerations";
 import { microflows } from "./microflows";
 import { pages } from "./pages";
+import { scheduledevents } from "./scheduledevents";
 import { security } from "./security";
 import { settings } from "./settings";
 import { IModel } from "./base-model";

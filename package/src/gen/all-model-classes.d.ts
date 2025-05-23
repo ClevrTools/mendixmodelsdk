@@ -19,6 +19,7 @@ export * from "./exportmappings";
 export * from "./expressions";
 export * from "./images";
 export * from "./importmappings";
+export * from "./integrationoverview";
 export * from "./javaactions";
 export * from "./javascriptactions";
 export * from "./jsonstructures";

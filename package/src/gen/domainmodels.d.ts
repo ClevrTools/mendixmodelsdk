@@ -19,6 +19,11 @@ export declare namespace domainmodels {
         static Both: AssociationOwner;
         protected qualifiedTsTypeName: string;
     }
+    class AssociationStorage extends internal.AbstractEnum {
+        static Table: AssociationStorage;
+        static Column: AssociationStorage;
+        protected qualifiedTsTypeName: string;
+    }
     class AssociationType extends internal.AbstractEnum {
         static Reference: AssociationType;
         static ReferenceSet: AssociationType;
@@ -161,6 +166,10 @@ export declare namespace domainmodels {
         readonly type: AssociationType;
         readonly owner: AssociationOwner;
         /**
+         * In version 10.21.0: introduced
+         */
+        readonly storageFormat: AssociationStorage;
+        /**
          * This property is required and cannot be set to null.
          */
         readonly parent: IEntity;
@@ -208,6 +217,11 @@ export declare namespace domainmodels {
         set type(newValue: AssociationType);
         get owner(): AssociationOwner;
         set owner(newValue: AssociationOwner);
+        /**
+         * In version 10.21.0: introduced
+         */
+        get storageFormat(): AssociationStorage;
+        set storageFormat(newValue: AssociationStorage);
         get deleteBehavior(): AssociationDeleteBehavior;
         set deleteBehavior(newValue: AssociationDeleteBehavior);
         get parent(): Entity;
@@ -1503,6 +1517,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRef extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         asLoaded(): EntityRef;
         load(callback: (element: EntityRef) => void, forceRefresh?: boolean): void;
@@ -1926,6 +1941,7 @@ export declare namespace domainmodels {
      */
     interface IEntityRefStep extends internal.IElement {
         readonly model: IModel;
+        readonly containerAsIndirectEntityRef: IIndirectEntityRef;
         asLoaded(): EntityRefStep;
         load(callback: (element: EntityRefStep) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<EntityRefStep>;
@@ -2398,6 +2414,7 @@ export declare namespace domainmodels {
      */
     interface IIndirectEntityRef extends IEntityRef {
         readonly model: IModel;
+        readonly containerAsMemberRef: IMemberRef;
         readonly containerAsParameter: workflows.IParameter;
         /**
          * In version 9.6.0: added public
@@ -3003,6 +3020,16 @@ export declare namespace domainmodels {
         static versionInfo: StructureVersionInfo;
         get containerAsEntity(): Entity;
         /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 10.21.0: introduced
+         */
+        get sourceDocument(): IViewEntitySourceDocument | null;
+        set sourceDocument(newValue: IViewEntitySourceDocument | null);
+        get sourceDocumentQualifiedName(): string | null;
+        /**
          * The value of this property is conceptually of type oql.OqlQuery.
          */
         get oql(): string;
@@ -3492,6 +3519,43 @@ export declare namespace domainmodels {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ValidationRule;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.21.0: introduced
+     */
+    interface IViewEntitySourceDocument extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        asLoaded(): ViewEntitySourceDocument;
+        load(callback: (element: ViewEntitySourceDocument) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ViewEntitySourceDocument>;
+    }
+    /**
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 10.21.0: introduced
+     */
+    class ViewEntitySourceDocument extends projects.Document implements IViewEntitySourceDocument {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        /**
+         * The value of this property is conceptually of type oql.OqlQuery.
+         */
+        get oql(): string;
+        set oql(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+        /**
+         * Creates a new ViewEntitySourceDocument unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container: projects.IFolderBase): ViewEntitySourceDocument;
     }
 }
 import { businessevents } from "./businessevents";

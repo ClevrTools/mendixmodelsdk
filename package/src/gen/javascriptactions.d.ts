@@ -72,6 +72,31 @@ export declare namespace javascriptactions {
         static create(model: IModel): JavaScriptActionParameter;
     }
     /**
+     * In version 10.21.0: introduced
+     */
+    interface IMicroflowJavaScriptActionParameterType extends codeactions.IParameterType {
+        readonly model: IModel;
+        readonly containerAsCodeActionParameter: codeactions.ICodeActionParameter;
+        asLoaded(): MicroflowJavaScriptActionParameterType;
+        load(callback: (element: MicroflowJavaScriptActionParameterType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MicroflowJavaScriptActionParameterType>;
+    }
+    /**
+     * In version 10.21.0: introduced
+     */
+    class MicroflowJavaScriptActionParameterType extends codeactions.ParameterType implements IMicroflowJavaScriptActionParameterType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCodeActionParameter(): codeactions.CodeActionParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowJavaScriptActionParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowJavaScriptActionParameterType;
+    }
+    /**
      * In version 8.4.0: introduced
      */
     interface INanoflowJavaScriptActionParameterType extends codeactions.IParameterType {

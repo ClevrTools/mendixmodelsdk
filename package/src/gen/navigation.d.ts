@@ -227,6 +227,11 @@ export declare namespace navigation {
         get localFileEncryptionEnabled(): boolean;
         set localFileEncryptionEnabled(newValue: boolean);
         /**
+         * In version 10.21.0: introduced
+         */
+        get sessionCookieEncryptionEnabled(): boolean;
+        set sessionCookieEncryptionEnabled(newValue: boolean);
+        /**
          * In version 10.11.0: introduced
          */
         get screenNavigationTransition(): ScreenNavigationTransition;
