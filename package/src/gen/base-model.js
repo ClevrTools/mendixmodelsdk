@@ -28,6 +28,12 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allCodeActions() {
         return super._allOfTypes(["JavaActions$JavaAction", "JavaScriptActions$JavaScriptAction"]);
     }
+    allConnectors() {
+        return super._allOfTypes(["ConnectorKit$Connector"]);
+    }
+    allConnectorTypes() {
+        return super._allOfTypes(["ConnectorKit$ConnectorType"]);
+    }
     allConstants() {
         return super._allOfTypes(["Constants$Constant"]);
     }
@@ -61,6 +67,8 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
+            "ConnectorKit$Connector",
+            "ConnectorKit$ConnectorType",
             "Constants$Constant",
             "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
@@ -185,6 +193,8 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
+            "ConnectorKit$Connector",
+            "ConnectorKit$ConnectorType",
             "Constants$Constant",
             "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
@@ -348,6 +358,15 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findAppServiceActionParameterByQualifiedName(qname) {
         return this._resolveName("AppServices$AppServiceActionParameter", qname);
     }
+    findConnectorActionByQualifiedName(qname) {
+        return this._resolveName("ConnectorKit$ConnectorAction", qname);
+    }
+    findConnectorPropertyByQualifiedName(qname) {
+        return this._resolveName("ConnectorKit$ConnectorProperty", qname);
+    }
+    findConnectorTypeByQualifiedName(qname) {
+        return this._resolveName("ConnectorKit$ConnectorType", qname);
+    }
     findConstantByQualifiedName(qname) {
         return this._resolveName("Constants$Constant", qname);
     }
@@ -488,6 +507,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findOperationParameterByQualifiedName(qname) {
         return this._resolveName("Rest$OperationParameter", qname);
+    }
+    findQueryParameterByQualifiedName(qname) {
+        return this._resolveName("Rest$QueryParameter", qname);
     }
     findRestOperationByQualifiedName(qname) {
         return this._resolveName("Rest$RestOperation", qname);

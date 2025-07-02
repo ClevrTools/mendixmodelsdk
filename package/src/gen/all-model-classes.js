@@ -21,6 +21,7 @@ __exportStar(require("./appservices"), exports);
 __exportStar(require("./businessevents"), exports);
 __exportStar(require("./client"), exports);
 __exportStar(require("./codeactions"), exports);
+__exportStar(require("./connectorkit"), exports);
 __exportStar(require("./constants"), exports);
 __exportStar(require("./customicons"), exports);
 __exportStar(require("./customwidgets"), exports);

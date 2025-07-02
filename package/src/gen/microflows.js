@@ -132,6 +132,16 @@ var microflows;
     HttpMethod.Patch = new HttpMethod("Patch", {});
     HttpMethod.Delete = new HttpMethod("Delete", {});
     microflows.HttpMethod = HttpMethod;
+    class IncludedOption extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.IncludedOption";
+        }
+    }
+    IncludedOption.Yes = new IncludedOption("Yes", {});
+    IncludedOption.WhenNotNull = new IncludedOption("WhenNotNull", {});
+    IncludedOption.No = new IncludedOption("No", {});
+    microflows.IncludedOption = IncludedOption;
     class LanguageSettingType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -10628,6 +10638,87 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.PushToClientAction = PushToClientAction;
     /**
+     * In version 11.0.0: introduced
+     */
+    class QueryParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__queryParameter = new internal.ByNameReferenceProperty(QueryParameterMapping, this, "queryParameter", null, "Rest$QueryParameter");
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(QueryParameterMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__included = new internal.EnumProperty(QueryParameterMapping, this, "included", IncludedOption.Yes, IncludedOption);
+            if (arguments.length < 4) {
+                throw new Error("new QueryParameterMapping() cannot be invoked directly, please use 'model.microflows.createQueryParameterMapping()'");
+            }
+        }
+        get containerAsRestOperationCallAction() {
+            return super.getContainerAs(RestOperationCallAction);
+        }
+        get queryParameter() {
+            return this.__queryParameter.get();
+        }
+        set queryParameter(newValue) {
+            this.__queryParameter.set(newValue);
+        }
+        get queryParameterQualifiedName() {
+            return this.__queryParameter.qualifiedName();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        get included() {
+            return this.__included.get();
+        }
+        set included(newValue) {
+            this.__included.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueryParameterMapping instance in the SDK and on the server.
+         * The new QueryParameterMapping will be automatically stored in the 'queryParameterMappings' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, QueryParameterMapping.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, QueryParameterMapping, "queryParameterMappings", true);
+        }
+        /**
+         * Creates and returns a new QueryParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueryParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.included = IncludedOption.Yes;
+        }
+    }
+    QueryParameterMapping.structureTypeName = "Microflows$QueryParameterMapping";
+    QueryParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0",
+        properties: {
+            queryParameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.QueryParameterMapping = QueryParameterMapping;
+    /**
      * See: {@link https://docs.mendix.com/refguide/call-rest-action relevant section in reference guide}
      *
      * In version 6.6.0: introduced
@@ -10905,7 +10996,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RestCallAction = RestCallAction;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-entity-to-microflow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-entity-to-microflow relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -10921,6 +11012,8 @@ var microflows;
             this.__bodyVariable = new internal.PartProperty(RestOperationCallAction, this, "bodyVariable", null, false);
             /** @internal */
             this.__parameterMappings = new internal.PartListProperty(RestOperationCallAction, this, "parameterMappings", []);
+            /** @internal */
+            this.__queryParameterMappings = new internal.PartListProperty(RestOperationCallAction, this, "queryParameterMappings", []);
             /** @internal */
             this.__outputVariable = new internal.PartProperty(RestOperationCallAction, this, "outputVariable", null, false);
             if (arguments.length < 4) {
@@ -10962,6 +11055,12 @@ var microflows;
          */
         get parameterMappings() {
             return this.__parameterMappings.get();
+        }
+        /**
+         * In version 11.0.0: introduced
+         */
+        get queryParameterMappings() {
+            return this.__queryParameterMappings.get();
         }
         /**
          * In version 10.4.0: introduced
@@ -11009,6 +11108,9 @@ var microflows;
             },
             parameterMappings: {
                 introduced: "10.2.0"
+            },
+            queryParameterMappings: {
+                introduced: "11.0.0"
             },
             outputVariable: {
                 introduced: "10.4.0"

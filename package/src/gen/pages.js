@@ -37538,6 +37538,8 @@ var pages;
             this.__localVariable = new internal.LocalByNameReferenceProperty(PageVariable, this, "localVariable", null, "Pages$LocalVariable");
             /** @internal */
             this.__useAllPages = new internal.PrimitiveProperty(PageVariable, this, "useAllPages", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__subKey = new internal.PrimitiveProperty(PageVariable, this, "subKey", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PageVariable() cannot be invoked directly, please use 'model.pages.createPageVariable()'");
             }
@@ -37628,6 +37630,15 @@ var pages;
         }
         set useAllPages(newValue) {
             this.__useAllPages.set(newValue);
+        }
+        /**
+         * In version 11.0.0: introduced
+         */
+        get subKey() {
+            return this.__subKey.get();
+        }
+        set subKey(newValue) {
+            this.__subKey.set(newValue);
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
@@ -37799,6 +37810,9 @@ var pages;
             },
             localVariable: {
                 introduced: "10.17.0"
+            },
+            subKey: {
+                introduced: "11.0.0"
             }
         }
     }, internal.StructureType.Element);

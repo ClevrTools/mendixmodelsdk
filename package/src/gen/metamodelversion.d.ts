@@ -1,2 +1,2 @@
-/** Highest supported Metamodel version: 10.24.0 */
+/** Highest supported Metamodel version: 11.0.0 */
 export declare const MAX_METAMODEL_VERSION: string;

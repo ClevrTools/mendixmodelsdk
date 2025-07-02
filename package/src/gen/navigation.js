@@ -401,6 +401,8 @@ var navigation;
             this.__applyScreenTransition = new internal.PrimitiveProperty(NativeNavigationProfile, this, "applyScreenTransition", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__hermesEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "hermesEnabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__networkTimeoutMs = new internal.PrimitiveProperty(NativeNavigationProfile, this, "networkTimeoutMs", 60000, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -528,6 +530,15 @@ var navigation;
             this.__hermesEnabled.set(newValue);
         }
         /**
+         * In version 11.0.0: introduced
+         */
+        get networkTimeoutMs() {
+            return this.__networkTimeoutMs.get();
+        }
+        set networkTimeoutMs(newValue) {
+            this.__networkTimeoutMs.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -567,6 +578,9 @@ var navigation;
             }
             if (this.__nativeHomePage.isAvailable) {
                 this.nativeHomePage = NativeHomePage.create(this.model);
+            }
+            if (this.__networkTimeoutMs.isAvailable) {
+                this.networkTimeoutMs = 60000;
             }
             if (this.__otaEnabled.isAvailable) {
                 this.otaEnabled = false;
@@ -630,6 +644,9 @@ var navigation;
                 introduced: "10.11.0",
                 deleted: "10.18.0",
                 deletionMessage: null
+            },
+            networkTimeoutMs: {
+                introduced: "11.0.0"
             }
         },
         public: {

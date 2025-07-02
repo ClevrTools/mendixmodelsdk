@@ -3031,6 +3031,8 @@ export declare namespace domainmodels {
         get sourceDocumentQualifiedName(): string | null;
         /**
          * The value of this property is conceptually of type oql.OqlQuery.
+         *
+         * In version 11.0.0: deleted
          */
         get oql(): string;
         set oql(newValue: string);

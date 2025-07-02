@@ -2203,14 +2203,26 @@ var workflows;
         }
         /**
          * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'microflowEventHandler' property
+         * of the parent WorkflowEventHandler element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, MicroflowEventHandler, "microflowEventHandler", false);
+        }
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
          * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
          * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowsProjectSettingsPartUnderUsertaskOnStateChangeEvent(container) {
-            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0", end: "10.21.0" });
             return internal.instancehelpers.createElement(container, MicroflowEventHandler, "usertaskOnStateChangeEvent", false);
         }
         /**
@@ -2219,10 +2231,10 @@ var workflows;
          * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowsProjectSettingsPartUnderWorkflowOnStateChangeEvent(container) {
-            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0", end: "10.21.0" });
             return internal.instancehelpers.createElement(container, MicroflowEventHandler, "workflowOnStateChangeEvent", false);
         }
         /**
@@ -2231,10 +2243,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowUnderUsertaskOnStateChangeEvent(container) {
-            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0", end: "10.21.0" });
             return internal.instancehelpers.createElement(container, MicroflowEventHandler, "usertaskOnStateChangeEvent", false);
         }
         /**
@@ -2243,10 +2255,10 @@ var workflows;
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowUnderWorkflowOnStateChangeEvent(container) {
-            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0" });
+            internal.createInVersionCheck(container.model, MicroflowEventHandler.structureTypeName, { start: "9.12.0", end: "10.21.0" });
             return internal.instancehelpers.createElement(container, MicroflowEventHandler, "workflowOnStateChangeEvent", false);
         }
         /**
@@ -4353,6 +4365,7 @@ var workflows;
             return this.__allowedModuleRoles.qualifiedNames();
         }
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get workflowOnStateChangeEvent() {
@@ -4362,6 +4375,7 @@ var workflows;
             this.__workflowOnStateChangeEvent.set(newValue);
         }
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get usertaskOnStateChangeEvent() {
@@ -4496,10 +4510,14 @@ var workflows;
                 }
             },
             workflowOnStateChangeEvent: {
-                introduced: "9.12.0"
+                introduced: "9.12.0",
+                deleted: "11.0.0",
+                deletionMessage: null
             },
             usertaskOnStateChangeEvent: {
-                introduced: "9.12.0"
+                introduced: "9.12.0",
+                deleted: "11.0.0",
+                deletionMessage: null
             },
             onWorkflowEvent: {
                 introduced: "10.7.0"

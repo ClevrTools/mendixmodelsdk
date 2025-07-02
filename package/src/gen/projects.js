@@ -381,6 +381,8 @@ var projects;
             /** @internal */
             this.__appStorePackageId = new internal.PrimitiveProperty(Module, this, "appStorePackageId", 0, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
+            this.__appStorePackageIdString = new internal.PrimitiveProperty(Module, this, "appStorePackageIdString", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__exportLevel = new internal.EnumProperty(Module, this, "exportLevel", ModuleExportLevel.Source, ModuleExportLevel);
             /** @internal */
             this.__isThemeModule = new internal.PrimitiveProperty(Module, this, "isThemeModule", false, internal.PrimitiveTypeEnum.Boolean);
@@ -464,6 +466,7 @@ var projects;
             this.__appStoreVersion.set(newValue);
         }
         /**
+         * In version 11.0.0: deleted
          * In version 8.13.0: introduced
          */
         get appStorePackageId() {
@@ -471,6 +474,15 @@ var projects;
         }
         set appStorePackageId(newValue) {
             this.__appStorePackageId.set(newValue);
+        }
+        /**
+         * In version 11.0.0: introduced
+         */
+        get appStorePackageIdString() {
+            return this.__appStorePackageIdString.get();
+        }
+        set appStorePackageIdString(newValue) {
+            this.__appStorePackageIdString.set(newValue);
         }
         /**
          * In version 9.8.0: deleted
@@ -531,7 +543,12 @@ var projects;
                 deletionMessage: null
             },
             appStorePackageId: {
-                introduced: "8.13.0"
+                introduced: "8.13.0",
+                deleted: "11.0.0",
+                deletionMessage: null
+            },
+            appStorePackageIdString: {
+                introduced: "11.0.0"
             },
             exportLevel: {
                 introduced: "9.3.0",

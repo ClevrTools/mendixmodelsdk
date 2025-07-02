@@ -27,6 +27,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -140,6 +143,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -247,6 +253,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BinaryType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "propertyType", false);
         }
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
@@ -633,6 +651,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -740,6 +761,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, BooleanType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "propertyType", false);
         }
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
@@ -1126,6 +1159,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -1233,6 +1269,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DateTimeType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "propertyType", false);
         }
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
@@ -1619,6 +1667,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -1726,6 +1777,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, DecimalType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "propertyType", false);
         }
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
@@ -2112,6 +2175,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -2219,6 +2285,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EmptyType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "propertyType", false);
         }
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
@@ -2607,6 +2685,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -2741,6 +2822,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -2857,6 +2941,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, EnumerationType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "propertyType", false);
         }
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
@@ -3253,6 +3349,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -3360,6 +3459,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, FloatType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "propertyType", false);
         }
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
@@ -3746,6 +3857,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -3853,6 +3967,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, IntegerType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "propertyType", false);
         }
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
@@ -4239,6 +4365,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -4346,6 +4475,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ListType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, ListType, "propertyType", false);
         }
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
@@ -4732,6 +4873,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -4839,6 +4983,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, ObjectType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "propertyType", false);
         }
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
@@ -5225,6 +5381,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -5332,6 +5491,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, StringType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, StringType, "propertyType", false);
         }
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
@@ -5718,6 +5889,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -5825,6 +5999,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, UnknownType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "propertyType", false);
         }
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
@@ -6211,6 +6397,9 @@ var datatypes;
         get containerAsAppServiceActionParameter() {
             return super.getContainerAs(appservices_1.appservices.AppServiceActionParameter);
         }
+        get containerAsConnectorProperty() {
+            return super.getContainerAs(connectorkit_1.connectorkit.ConnectorProperty);
+        }
         get containerAsConstant() {
             return super.getContainerAs(constants_1.constants.Constant);
         }
@@ -6318,6 +6507,18 @@ var datatypes;
         static createInAppServiceActionParameterUnderParameterType(container) {
             internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0", end: "9.0.1" });
             return internal.instancehelpers.createElement(container, VoidType, "parameterType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "propertyType", false);
         }
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
@@ -6690,6 +6891,7 @@ var datatypes;
     datatypes.VoidType = VoidType;
 })(datatypes = exports.datatypes || (exports.datatypes = {}));
 const appservices_1 = require("./appservices");
+const connectorkit_1 = require("./connectorkit");
 const constants_1 = require("./constants");
 const datasets_1 = require("./datasets");
 const databaseconnector_1 = require("./databaseconnector");

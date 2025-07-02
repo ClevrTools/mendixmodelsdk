@@ -747,6 +747,7 @@ var settings;
             return super.getContainerAs(ProjectSettings);
         }
         /**
+         * In version 11.0.0: deleted
          * In version 10.21.0: introduced
          */
         get obsoleteEnableUrlEncoding() {
@@ -783,7 +784,9 @@ var settings;
     IntegrationProjectSettingsPart.versionInfo = new exports.StructureVersionInfo({
         properties: {
             obsoleteEnableUrlEncoding: {
-                introduced: "10.21.0"
+                introduced: "10.21.0",
+                deleted: "11.0.0",
+                deletionMessage: "Encoding full url is no longer supported."
             }
         }
     }, internal.StructureType.Element);
@@ -1784,7 +1787,7 @@ var settings;
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
             /** @internal */
-            this.__useOptimizedClient = new internal.EnumProperty(WebUIProjectSettingsPart, this, "useOptimizedClient", UseOptimizedClient.No, UseOptimizedClient);
+            this.__useOptimizedClient = new internal.EnumProperty(WebUIProjectSettingsPart, this, "useOptimizedClient", UseOptimizedClient.Yes, UseOptimizedClient);
             /** @internal */
             this.__urlPrefix = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "urlPrefix", "p", internal.PrimitiveTypeEnum.String);
             /** @internal */
@@ -1943,7 +1946,13 @@ var settings;
                 this.urlPrefix = "p";
             }
             if (this.__useOptimizedClient.isAvailable) {
-                this.useOptimizedClient = UseOptimizedClient.No;
+                (() => {
+                    if (internal.isAtLeast("11.0.0", this.model)) {
+                        this.useOptimizedClient = UseOptimizedClient.Yes;
+                        return;
+                    }
+                    this.useOptimizedClient = UseOptimizedClient.No;
+                })();
             }
         }
     }
@@ -2059,6 +2068,7 @@ var settings;
             this.__defaultTaskParallelism.set(newValue);
         }
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get workflowOnStateChangeEvent() {
@@ -2068,6 +2078,7 @@ var settings;
             this.__workflowOnStateChangeEvent.set(newValue);
         }
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get usertaskOnStateChangeEvent() {
@@ -2134,10 +2145,14 @@ var settings;
                 introduced: "9.0.5"
             },
             workflowOnStateChangeEvent: {
-                introduced: "9.12.0"
+                introduced: "9.12.0",
+                deleted: "11.0.0",
+                deletionMessage: null
             },
             usertaskOnStateChangeEvent: {
-                introduced: "9.12.0"
+                introduced: "9.12.0",
+                deleted: "11.0.0",
+                deletionMessage: null
             },
             onWorkflowEvent: {
                 introduced: "10.7.0"

@@ -77,6 +77,12 @@ export declare namespace microflows {
         static Delete: HttpMethod;
         protected qualifiedTsTypeName: string;
     }
+    class IncludedOption extends internal.AbstractEnum {
+        static Yes: IncludedOption;
+        static WhenNotNull: IncludedOption;
+        static No: IncludedOption;
+        protected qualifiedTsTypeName: string;
+    }
     class LanguageSettingType extends internal.AbstractEnum {
         static CurrentUser: LanguageSettingType;
         static ProjectDefault: LanguageSettingType;
@@ -4687,6 +4693,40 @@ export declare namespace microflows {
         static create(model: IModel): PushToClientAction;
     }
     /**
+     * In version 11.0.0: introduced
+     */
+    class QueryParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationCallAction(): RestOperationCallAction;
+        get queryParameter(): rest.IQueryParameter;
+        set queryParameter(newValue: rest.IQueryParameter);
+        get queryParameterQualifiedName(): string;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        get included(): IncludedOption;
+        set included(newValue: IncludedOption);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueryParameterMapping instance in the SDK and on the server.
+         * The new QueryParameterMapping will be automatically stored in the 'queryParameterMappings' property
+         * of the parent RestOperationCallAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container: RestOperationCallAction): QueryParameterMapping;
+        /**
+         * Creates and returns a new QueryParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueryParameterMapping;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/call-rest-action relevant section in reference guide}
      *
      * In version 6.6.0: introduced
@@ -4772,7 +4812,7 @@ export declare namespace microflows {
         static create(model: IModel): RestCallAction;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-entity-to-microflow relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-entity-to-microflow relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -4798,6 +4838,10 @@ export declare namespace microflows {
          * In version 10.2.0: introduced
          */
         get parameterMappings(): internal.IList<RestOperationParameterMapping>;
+        /**
+         * In version 11.0.0: introduced
+         */
+        get queryParameterMappings(): internal.IList<QueryParameterMapping>;
         /**
          * In version 10.4.0: introduced
          */

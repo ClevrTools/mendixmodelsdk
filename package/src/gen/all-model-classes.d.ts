@@ -5,6 +5,7 @@ export * from "./appservices";
 export * from "./businessevents";
 export * from "./client";
 export * from "./codeactions";
+export * from "./connectorkit";
 export * from "./constants";
 export * from "./customicons";
 export * from "./customwidgets";

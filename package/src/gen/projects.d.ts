@@ -217,9 +217,14 @@ export declare namespace projects {
         appStoreVersionGuid: string;
         appStoreVersion: string;
         /**
+         * In version 11.0.0: deleted
          * In version 8.13.0: introduced
          */
         appStorePackageId: number;
+        /**
+         * In version 11.0.0: introduced
+         */
+        appStorePackageIdString: string;
         /**
          * In version 9.8.0: deleted
          * In version 9.3.0: introduced
@@ -271,10 +276,16 @@ export declare namespace projects {
         get appStoreVersion(): string;
         set appStoreVersion(newValue: string);
         /**
+         * In version 11.0.0: deleted
          * In version 8.13.0: introduced
          */
         get appStorePackageId(): number;
         set appStorePackageId(newValue: number);
+        /**
+         * In version 11.0.0: introduced
+         */
+        get appStorePackageIdString(): string;
+        set appStorePackageIdString(newValue: string);
         /**
          * In version 9.8.0: deleted
          * In version 9.3.0: introduced

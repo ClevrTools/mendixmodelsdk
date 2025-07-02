@@ -468,7 +468,7 @@ export declare namespace rest {
         static createIn(container: projects.IFolderBase): ConsumedODataService;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -486,7 +486,7 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<ConsumedRestService>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -555,7 +555,7 @@ export declare namespace rest {
         static create(model: IModel): CorsConfiguration;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-headers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-headers relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -569,7 +569,7 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<HeaderWithValueTemplate>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-headers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-headers relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -651,6 +651,23 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ImplicitMappingResponseHandling;
+    }
+    /**
+     * In version 11.0.0: introduced
+     */
+    class JsonBody extends Body {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperationMethodWithBody(): RestOperationMethodWithBody;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new JsonBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): JsonBody;
     }
     /**
      * In version 8.6.0: introduced
@@ -1255,7 +1272,7 @@ export declare namespace rest {
         static create(model: IModel): OpenApiFile;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-parameters relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -1269,7 +1286,7 @@ export declare namespace rest {
         load(forceRefresh?: boolean): Promise<OperationParameter>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-parameters relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -1292,6 +1309,41 @@ export declare namespace rest {
          */
         static create(model: IModel): OperationParameter;
         get qualifiedName(): string | null;
+    }
+    /**
+     * In version 11.0.0: introduced
+     */
+    abstract class QueryParameterUsage extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueryParameter(): QueryParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.0.0: introduced
+     */
+    class OptionalQueryParameterUsage extends QueryParameterUsage {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueryParameter(): QueryParameter;
+        get included(): boolean;
+        set included(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OptionalQueryParameterUsage instance in the SDK and on the server.
+         * The new OptionalQueryParameterUsage will be automatically stored in the 'parameterUsage' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container: QueryParameter): OptionalQueryParameterUsage;
+        /**
+         * Creates and returns a new OptionalQueryParameterUsage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OptionalQueryParameterUsage;
     }
     /**
      * In version 10.4.0: deleted
@@ -1885,6 +1937,48 @@ export declare namespace rest {
         static create(model: IModel): QueryOptions;
     }
     /**
+     * In version 11.0.0: introduced
+     */
+    interface IQueryParameter extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsRestOperation: IRestOperation;
+        readonly name: string;
+        asLoaded(): QueryParameter;
+        load(callback: (element: QueryParameter) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<QueryParameter>;
+    }
+    /**
+     * In version 11.0.0: introduced
+     */
+    class QueryParameter extends internal.Element<IModel> implements IQueryParameter {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsRestOperation(): RestOperation;
+        get name(): string;
+        set name(newValue: string);
+        get testValue(): string;
+        set testValue(newValue: string);
+        get parameterUsage(): QueryParameterUsage;
+        set parameterUsage(newValue: QueryParameterUsage);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new QueryParameter instance in the SDK and on the server.
+         * The new QueryParameter will be automatically stored in the 'queryParameters' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container: RestOperation): QueryParameter;
+        /**
+         * Creates and returns a new QueryParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): QueryParameter;
+        get qualifiedName(): string | null;
+    }
+    /**
      * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
@@ -1910,6 +2004,30 @@ export declare namespace rest {
         static create(model: IModel): ReadSource;
     }
     /**
+     * In version 11.0.0: introduced
+     */
+    class RequiredQueryParameterUsage extends QueryParameterUsage {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsQueryParameter(): QueryParameter;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new RequiredQueryParameterUsage instance in the SDK and on the server.
+         * The new RequiredQueryParameterUsage will be automatically stored in the 'parameterUsage' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container: QueryParameter): RequiredQueryParameterUsage;
+        /**
+         * Creates and returns a new RequiredQueryParameterUsage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): RequiredQueryParameterUsage;
+    }
+    /**
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
@@ -1919,6 +2037,10 @@ export declare namespace rest {
         readonly name: string;
         readonly headers: internal.IList<IHeaderWithValueTemplate>;
         readonly parameters: internal.IList<IOperationParameter>;
+        /**
+         * In version 11.0.0: introduced
+         */
+        readonly queryParameters: internal.IList<IQueryParameter>;
         asLoaded(): RestOperation;
         load(callback: (element: RestOperation) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<RestOperation>;
@@ -1944,6 +2066,10 @@ export declare namespace rest {
         set timeout(newValue: number);
         get headers(): internal.IList<HeaderWithValueTemplate>;
         get parameters(): internal.IList<OperationParameter>;
+        /**
+         * In version 11.0.0: introduced
+         */
+        get queryParameters(): internal.IList<QueryParameter>;
         /**
          * In version 10.3.0: introduced
          */

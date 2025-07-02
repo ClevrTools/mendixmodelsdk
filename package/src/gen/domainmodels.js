@@ -5216,6 +5216,8 @@ var domainmodels;
         }
         /**
          * The value of this property is conceptually of type oql.OqlQuery.
+         *
+         * In version 11.0.0: deleted
          */
         get oql() {
             return this.__oql.get();
@@ -5254,6 +5256,10 @@ var domainmodels;
         properties: {
             sourceDocument: {
                 introduced: "10.21.0"
+            },
+            oql: {
+                deleted: "11.0.0",
+                deletionMessage: "Moved to source document"
             }
         },
         public: {

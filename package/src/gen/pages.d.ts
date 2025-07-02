@@ -21614,6 +21614,11 @@ export declare namespace pages {
         get localVariableLocalName(): string | null;
         get useAllPages(): boolean;
         set useAllPages(newValue: boolean);
+        /**
+         * In version 11.0.0: introduced
+         */
+        get subKey(): string;
+        set subKey(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.

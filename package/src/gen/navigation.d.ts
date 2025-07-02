@@ -252,6 +252,11 @@ export declare namespace navigation {
          */
         get hermesEnabled(): boolean;
         set hermesEnabled(newValue: boolean);
+        /**
+         * In version 11.0.0: introduced
+         */
+        get networkTimeoutMs(): number;
+        set networkTimeoutMs(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.

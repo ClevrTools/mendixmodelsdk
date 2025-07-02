@@ -1028,7 +1028,7 @@ var rest;
     }, internal.StructureType.ModelUnit);
     rest.ConsumedODataService = ConsumedODataService;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -1210,7 +1210,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.CorsConfiguration = CorsConfiguration;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-headers relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-headers relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -1458,6 +1458,46 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.ImplicitMappingResponseHandling = ImplicitMappingResponseHandling;
+    /**
+     * In version 11.0.0: introduced
+     */
+    class JsonBody extends Body {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(JsonBody, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new JsonBody() cannot be invoked directly, please use 'model.rest.createJsonBody()'");
+            }
+        }
+        get containerAsRestOperationMethodWithBody() {
+            return super.getContainerAs(RestOperationMethodWithBody);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new JsonBody instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, JsonBody);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.value = "";
+        }
+    }
+    JsonBody.structureTypeName = "Rest$JsonBody";
+    JsonBody.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0"
+    }, internal.StructureType.Element);
+    rest.JsonBody = JsonBody;
     /**
      * In version 8.6.0: introduced
      */
@@ -2640,7 +2680,7 @@ var rest;
     }, internal.StructureType.Element);
     rest.OpenApiFile = OpenApiFile;
     /**
-     * See: {@link https://docs.mendix.com/refguide/consumed-rest-services-beta/#add-parameters relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/consumed-rest-service/#add-parameters relevant section in reference guide}
      *
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
@@ -2730,6 +2770,81 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.OperationParameter = OperationParameter;
+    /**
+     * In version 11.0.0: introduced
+     */
+    class QueryParameterUsage extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new QueryParameterUsage() cannot be invoked directly, please use 'model.rest.createQueryParameterUsage()'");
+            }
+        }
+        get containerAsQueryParameter() {
+            return super.getContainerAs(QueryParameter);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    QueryParameterUsage.structureTypeName = "Rest$QueryParameterUsage";
+    QueryParameterUsage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0"
+    }, internal.StructureType.Element);
+    rest.QueryParameterUsage = QueryParameterUsage;
+    /**
+     * In version 11.0.0: introduced
+     */
+    class OptionalQueryParameterUsage extends QueryParameterUsage {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__included = new internal.PrimitiveProperty(OptionalQueryParameterUsage, this, "included", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new OptionalQueryParameterUsage() cannot be invoked directly, please use 'model.rest.createOptionalQueryParameterUsage()'");
+            }
+        }
+        get containerAsQueryParameter() {
+            return super.getContainerAs(QueryParameter);
+        }
+        get included() {
+            return this.__included.get();
+        }
+        set included(newValue) {
+            this.__included.set(newValue);
+        }
+        /**
+         * Creates and returns a new OptionalQueryParameterUsage instance in the SDK and on the server.
+         * The new OptionalQueryParameterUsage will be automatically stored in the 'parameterUsage' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OptionalQueryParameterUsage.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, OptionalQueryParameterUsage, "parameterUsage", false);
+        }
+        /**
+         * Creates and returns a new OptionalQueryParameterUsage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OptionalQueryParameterUsage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.included = false;
+        }
+    }
+    OptionalQueryParameterUsage.structureTypeName = "Rest$OptionalQueryParameterUsage";
+    OptionalQueryParameterUsage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0"
+    }, internal.StructureType.Element);
+    rest.OptionalQueryParameterUsage = OptionalQueryParameterUsage;
     /**
      * In version 10.4.0: deleted
      * In version 9.14.0: introduced
@@ -4342,6 +4457,96 @@ var rest;
     }, internal.StructureType.Element);
     rest.QueryOptions = QueryOptions;
     /**
+     * In version 11.0.0: introduced
+     */
+    class QueryParameter extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(QueryParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__testValue = new internal.PrimitiveProperty(QueryParameter, this, "testValue", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__parameterUsage = new internal.PartProperty(QueryParameter, this, "parameterUsage", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new QueryParameter() cannot be invoked directly, please use 'model.rest.createQueryParameter()'");
+            }
+        }
+        get containerAsRestOperation() {
+            return super.getContainerAs(RestOperation);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get testValue() {
+            return this.__testValue.get();
+        }
+        set testValue(newValue) {
+            this.__testValue.set(newValue);
+        }
+        get parameterUsage() {
+            return this.__parameterUsage.get();
+        }
+        set parameterUsage(newValue) {
+            this.__parameterUsage.set(newValue);
+        }
+        /**
+         * Creates and returns a new QueryParameter instance in the SDK and on the server.
+         * The new QueryParameter will be automatically stored in the 'queryParameters' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, QueryParameter.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, QueryParameter, "queryParameters", true);
+        }
+        /**
+         * Creates and returns a new QueryParameter instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, QueryParameter);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.parameterUsage = RequiredQueryParameterUsage.create(this.model);
+        }
+    }
+    QueryParameter.structureTypeName = "Rest$QueryParameter";
+    QueryParameter.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            parameterUsage: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.QueryParameter = QueryParameter;
+    /**
      * In version 10.4.0: deleted
      * In version 9.14.0: introduced
      */
@@ -4388,6 +4593,49 @@ var rest;
     }, internal.StructureType.Element);
     rest.ReadSource = ReadSource;
     /**
+     * In version 11.0.0: introduced
+     */
+    class RequiredQueryParameterUsage extends QueryParameterUsage {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new RequiredQueryParameterUsage() cannot be invoked directly, please use 'model.rest.createRequiredQueryParameterUsage()'");
+            }
+        }
+        get containerAsQueryParameter() {
+            return super.getContainerAs(QueryParameter);
+        }
+        /**
+         * Creates and returns a new RequiredQueryParameterUsage instance in the SDK and on the server.
+         * The new RequiredQueryParameterUsage will be automatically stored in the 'parameterUsage' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, RequiredQueryParameterUsage.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, RequiredQueryParameterUsage, "parameterUsage", false);
+        }
+        /**
+         * Creates and returns a new RequiredQueryParameterUsage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, RequiredQueryParameterUsage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    RequiredQueryParameterUsage.structureTypeName = "Rest$RequiredQueryParameterUsage";
+    RequiredQueryParameterUsage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.0.0"
+    }, internal.StructureType.Element);
+    rest.RequiredQueryParameterUsage = RequiredQueryParameterUsage;
+    /**
      * In version 10.7.0: removed experimental
      * In version 10.1.0: introduced
      */
@@ -4406,6 +4654,8 @@ var rest;
             this.__headers = new internal.PartListProperty(RestOperation, this, "headers", []);
             /** @internal */
             this.__parameters = new internal.PartListProperty(RestOperation, this, "parameters", []);
+            /** @internal */
+            this.__queryParameters = new internal.PartListProperty(RestOperation, this, "queryParameters", []);
             /** @internal */
             this.__responseHandling = new internal.PartProperty(RestOperation, this, "responseHandling", null, true);
             /** @internal */
@@ -4449,6 +4699,12 @@ var rest;
         }
         get parameters() {
             return this.__parameters.get();
+        }
+        /**
+         * In version 11.0.0: introduced
+         */
+        get queryParameters() {
+            return this.__queryParameters.get();
         }
         /**
          * In version 10.3.0: introduced
@@ -4532,6 +4788,12 @@ var rest;
                 }
             },
             parameters: {
+                public: {
+                    currentValue: true
+                }
+            },
+            queryParameters: {
+                introduced: "11.0.0",
                 public: {
                     currentValue: true
                 }

@@ -912,6 +912,8 @@ var databaseconnector;
             this.__databaseParameterName = new internal.PrimitiveProperty(QueryParameter, this, "databaseParameterName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__emptyValueBecomesNull = new internal.PrimitiveProperty(QueryParameter, this, "emptyValueBecomesNull", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__tableMapping = new internal.PartProperty(QueryParameter, this, "tableMapping", null, false);
             if (arguments.length < 4) {
                 throw new Error("new QueryParameter() cannot be invoked directly, please use 'model.databaseconnector.createQueryParameter()'");
             }
@@ -974,6 +976,15 @@ var databaseconnector;
             this.__emptyValueBecomesNull.set(newValue);
         }
         /**
+         * In version 11.0.0: introduced
+         */
+        get tableMapping() {
+            return this.__tableMapping.get();
+        }
+        set tableMapping(newValue) {
+            this.__tableMapping.set(newValue);
+        }
+        /**
          * Creates and returns a new QueryParameter instance in the SDK and on the server.
          * The new QueryParameter will be automatically stored in the 'parameters' property
          * of the parent DatabaseQuery element passed as argument.
@@ -1025,6 +1036,9 @@ var databaseconnector;
             },
             emptyValueBecomesNull: {
                 introduced: "10.12.0"
+            },
+            tableMapping: {
+                introduced: "11.0.0"
             }
         },
         experimental: {
@@ -1183,6 +1197,9 @@ var databaseconnector;
         get containerAsDatabaseQuery() {
             return super.getContainerAs(DatabaseQuery);
         }
+        get containerAsQueryParameter() {
+            return super.getContainerAs(QueryParameter);
+        }
         get tableName() {
             return this.__tableName.get();
         }
@@ -1224,6 +1241,18 @@ var databaseconnector;
         static createInDatabaseQueryUnderTableMappings(container) {
             internal.createInVersionCheck(container.model, TableMapping.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, TableMapping, "tableMappings", true);
+        }
+        /**
+         * Creates and returns a new TableMapping instance in the SDK and on the server.
+         * The new TableMapping will be automatically stored in the 'tableMapping' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInQueryParameterUnderTableMapping(container) {
+            internal.createInVersionCheck(container.model, TableMapping.structureTypeName, { start: "11.0.0" });
+            return internal.instancehelpers.createElement(container, TableMapping, "tableMapping", false);
         }
         /**
          * Creates and returns a new TableMapping instance in the SDK and on the server.

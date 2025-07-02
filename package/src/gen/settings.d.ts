@@ -311,6 +311,7 @@ export declare namespace settings {
         static versionInfo: StructureVersionInfo;
         get containerAsProjectSettings(): ProjectSettings;
         /**
+         * In version 11.0.0: deleted
          * In version 10.21.0: introduced
          */
         get obsoleteEnableUrlEncoding(): boolean;
@@ -836,11 +837,13 @@ export declare namespace settings {
         get defaultTaskParallelism(): number;
         set defaultTaskParallelism(newValue: number);
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get workflowOnStateChangeEvent(): workflows.MicroflowEventHandler | null;
         set workflowOnStateChangeEvent(newValue: workflows.MicroflowEventHandler | null);
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get usertaskOnStateChangeEvent(): workflows.MicroflowEventHandler | null;

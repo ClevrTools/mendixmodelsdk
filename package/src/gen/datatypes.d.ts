@@ -13,6 +13,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -37,6 +38,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -74,6 +76,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -96,6 +99,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -143,6 +147,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'type' property
@@ -418,6 +431,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -440,6 +454,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -487,6 +502,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'type' property
@@ -762,6 +786,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -784,6 +809,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -831,6 +857,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'type' property
@@ -1106,6 +1141,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -1128,6 +1164,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -1175,6 +1212,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'type' property
@@ -1450,6 +1496,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -1472,6 +1519,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -1519,6 +1567,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'type' property
@@ -1794,6 +1851,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -1821,6 +1879,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -1861,6 +1920,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -1888,6 +1948,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -1938,6 +1999,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'type' property
@@ -2213,6 +2283,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -2235,6 +2306,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -2282,6 +2354,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'type' property
@@ -2557,6 +2638,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -2579,6 +2661,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -2626,6 +2709,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'type' property
@@ -2901,6 +2993,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -2923,6 +3016,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -2970,6 +3064,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'type' property
@@ -3245,6 +3348,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -3267,6 +3371,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -3314,6 +3419,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'type' property
@@ -3589,6 +3703,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -3611,6 +3726,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -3658,6 +3774,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'type' property
@@ -3933,6 +4058,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -3955,6 +4081,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -4002,6 +4129,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'type' property
@@ -4277,6 +4413,7 @@ export declare namespace datatypes {
         readonly model: IModel;
         readonly containerAsAppServiceAction: appservices.IAppServiceAction;
         readonly containerAsAppServiceActionParameter: appservices.IAppServiceActionParameter;
+        readonly containerAsConnectorProperty: connectorkit.IConnectorProperty;
         readonly containerAsConstant: constants.IConstant;
         readonly containerAsDataSetParameter: datasets.IDataSetParameter;
         readonly containerAsDocumentTemplateParameter: documenttemplates.IDocumentTemplateParameter;
@@ -4299,6 +4436,7 @@ export declare namespace datatypes {
         static versionInfo: StructureVersionInfo;
         get containerAsAppServiceAction(): appservices.AppServiceAction;
         get containerAsAppServiceActionParameter(): appservices.AppServiceActionParameter;
+        get containerAsConnectorProperty(): connectorkit.ConnectorProperty;
         get containerAsConstant(): constants.Constant;
         get containerAsDataSetColumn(): datasets.DataSetColumn;
         get containerAsDataSetParameter(): datasets.DataSetParameter;
@@ -4346,6 +4484,15 @@ export declare namespace datatypes {
          *  7.9.0 to 9.0.1
          */
         static createInAppServiceActionParameterUnderParameterType(container: appservices.AppServiceActionParameter): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'propertyType' property
+         * of the parent connectorkit.ConnectorProperty element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInConnectorPropertyUnderPropertyType(container: connectorkit.ConnectorProperty): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'type' property
@@ -4616,6 +4763,7 @@ export declare namespace datatypes {
     }
 }
 import { appservices } from "./appservices";
+import { connectorkit } from "./connectorkit";
 import { constants } from "./constants";
 import { datasets } from "./datasets";
 import { databaseconnector } from "./databaseconnector";

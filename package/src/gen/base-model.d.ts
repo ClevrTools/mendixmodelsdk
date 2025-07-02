@@ -2,6 +2,7 @@ import { IAbstractModel, AbstractModel } from "../sdk/internal/AbstractModel";
 import { appservices } from "./appservices";
 import { businessevents } from "./businessevents";
 import { codeactions } from "./codeactions";
+import { connectorkit } from "./connectorkit";
 import { constants } from "./constants";
 import { customicons } from "./customicons";
 import { customwidgets } from "./customwidgets";
@@ -54,6 +55,8 @@ export interface IBaseModel extends IAbstractModel {
     allBuildingBlocks(): pages.IBuildingBlock[];
     allBusinessEventServices(): businessevents.IBusinessEventService[];
     allCodeActions(): codeactions.ICodeAction[];
+    allConnectors(): connectorkit.IConnector[];
+    allConnectorTypes(): connectorkit.IConnectorType[];
     allConstants(): constants.IConstant[];
     allConsumedAppServices(): appservices.IConsumedAppService[];
     allConsumedBusinessEventServices(): businessevents.IConsumedBusinessEventService[];
@@ -124,6 +127,9 @@ export interface IBaseModel extends IAbstractModel {
     allXmlSchemas(): xmlschemas.IXmlSchema[];
     findAppServiceActionByQualifiedName(qname: string): appservices.IAppServiceAction | null;
     findAppServiceActionParameterByQualifiedName(qname: string): appservices.IAppServiceActionParameter | null;
+    findConnectorActionByQualifiedName(qname: string): connectorkit.IConnectorAction | null;
+    findConnectorPropertyByQualifiedName(qname: string): connectorkit.IConnectorProperty | null;
+    findConnectorTypeByQualifiedName(qname: string): connectorkit.IConnectorType | null;
     findConstantByQualifiedName(qname: string): constants.IConstant | null;
     findCustomIconByQualifiedName(qname: string): customicons.ICustomIcon | null;
     findDataSetByQualifiedName(qname: string): datasets.IDataSet | null;
@@ -171,6 +177,7 @@ export interface IBaseModel extends IAbstractModel {
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
+    findQueryParameterByQualifiedName(qname: string): rest.IQueryParameter | null;
     findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
     findRestParameterByQualifiedName(qname: string): rest.IRestParameter | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
@@ -190,6 +197,8 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allBuildingBlocks(): pages.IBuildingBlock[];
     allBusinessEventServices(): businessevents.IBusinessEventService[];
     allCodeActions(): codeactions.ICodeAction[];
+    allConnectors(): connectorkit.IConnector[];
+    allConnectorTypes(): connectorkit.IConnectorType[];
     allConstants(): constants.IConstant[];
     allConsumedAppServices(): appservices.IConsumedAppService[];
     allConsumedBusinessEventServices(): businessevents.IConsumedBusinessEventService[];
@@ -260,6 +269,9 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     allXmlSchemas(): xmlschemas.IXmlSchema[];
     findAppServiceActionByQualifiedName(qname: string): appservices.IAppServiceAction | null;
     findAppServiceActionParameterByQualifiedName(qname: string): appservices.IAppServiceActionParameter | null;
+    findConnectorActionByQualifiedName(qname: string): connectorkit.IConnectorAction | null;
+    findConnectorPropertyByQualifiedName(qname: string): connectorkit.IConnectorProperty | null;
+    findConnectorTypeByQualifiedName(qname: string): connectorkit.IConnectorType | null;
     findConstantByQualifiedName(qname: string): constants.IConstant | null;
     findCustomIconByQualifiedName(qname: string): customicons.ICustomIcon | null;
     findDataSetByQualifiedName(qname: string): datasets.IDataSet | null;
@@ -307,6 +319,7 @@ export declare abstract class BaseModel extends AbstractModel implements IBaseMo
     findRegularExpressionByQualifiedName(qname: string): regularexpressions.IRegularExpression | null;
     findConsumedODataServiceByQualifiedName(qname: string): rest.IConsumedODataService | null;
     findOperationParameterByQualifiedName(qname: string): rest.IOperationParameter | null;
+    findQueryParameterByQualifiedName(qname: string): rest.IQueryParameter | null;
     findRestOperationByQualifiedName(qname: string): rest.IRestOperation | null;
     findRestParameterByQualifiedName(qname: string): rest.IRestParameter | null;
     findModuleRoleByQualifiedName(qname: string): security.IModuleRole | null;
@@ -375,6 +388,11 @@ export declare type ConcreteModelElements = {
     CodeActions$StringType: codeactions.StringType;
     CodeActions$TypeParameter: codeactions.TypeParameter;
     CodeActions$VoidType: codeactions.VoidType;
+    ConnectorKit$ConnectorAction: connectorkit.ConnectorAction;
+    ConnectorKit$ConnectorActionCallAction: connectorkit.ConnectorActionCallAction;
+    ConnectorKit$ConnectorActionParameterMapping: connectorkit.ConnectorActionParameterMapping;
+    ConnectorKit$ConnectorProperty: connectorkit.ConnectorProperty;
+    ConnectorKit$ConnectorPropertyMapping: connectorkit.ConnectorPropertyMapping;
     CustomIcons$CustomIcon: customicons.CustomIcon;
     CustomWidgets$CustomWidget: customwidgets.CustomWidget;
     CustomWidgets$CustomWidgetDatabaseSource: customwidgets.CustomWidgetDatabaseSource;
@@ -700,6 +718,7 @@ export declare type ConcreteModelElements = {
     Microflows$PrimitiveTypedTemplateArgument: microflows.PrimitiveTypedTemplateArgument;
     Microflows$ProxyConfiguration: microflows.ProxyConfiguration;
     Microflows$PushToClientAction: microflows.PushToClientAction;
+    Microflows$QueryParameterMapping: microflows.QueryParameterMapping;
     Microflows$RestCallAction: microflows.RestCallAction;
     Microflows$RestOperationCallAction: microflows.RestOperationCallAction;
     Microflows$RestOperationParameterMapping: microflows.RestOperationParameterMapping;
@@ -982,6 +1001,7 @@ export declare type ConcreteModelElements = {
     Rest$HeaderWithValueTemplate: rest.HeaderWithValueTemplate;
     Rest$ImplicitMappingBody: rest.ImplicitMappingBody;
     Rest$ImplicitMappingResponseHandling: rest.ImplicitMappingResponseHandling;
+    Rest$JsonBody: rest.JsonBody;
     Rest$MetadataReference: rest.MetadataReference;
     Rest$NoResponseHandling: rest.NoResponseHandling;
     Rest$ODataEntityTypeSource: rest.ODataEntityTypeSource;
@@ -994,6 +1014,7 @@ export declare type ConcreteModelElements = {
     Rest$ODataRemoteEnumerationValue: rest.ODataRemoteEnumerationValue;
     Rest$OpenApiFile: rest.OpenApiFile;
     Rest$OperationParameter: rest.OperationParameter;
+    Rest$OptionalQueryParameterUsage: rest.OptionalQueryParameterUsage;
     Rest$PublishedODataContract: rest.PublishedODataContract;
     Rest$PublishedODataEnumeration: rest.PublishedODataEnumeration;
     Rest$PublishedODataEnumerationValue: rest.PublishedODataEnumerationValue;
@@ -1003,7 +1024,9 @@ export declare type ConcreteModelElements = {
     Rest$PublishedRestServiceOperation: rest.PublishedRestServiceOperation;
     Rest$PublishedRestServiceResource: rest.PublishedRestServiceResource;
     Rest$QueryOptions: rest.QueryOptions;
+    Rest$QueryParameter: rest.QueryParameter;
     Rest$ReadSource: rest.ReadSource;
+    Rest$RequiredQueryParameterUsage: rest.RequiredQueryParameterUsage;
     Rest$RestOperation: rest.RestOperation;
     Rest$RestOperationMethodWithBody: rest.RestOperationMethodWithBody;
     Rest$RestOperationMethodWithoutBody: rest.RestOperationMethodWithoutBody;

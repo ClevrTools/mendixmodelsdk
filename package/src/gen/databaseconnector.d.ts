@@ -422,6 +422,11 @@ export declare namespace databaseconnector {
          */
         get emptyValueBecomesNull(): boolean;
         set emptyValueBecomesNull(newValue: boolean);
+        /**
+         * In version 11.0.0: introduced
+         */
+        get tableMapping(): TableMapping | null;
+        set tableMapping(newValue: TableMapping | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new QueryParameter instance in the SDK and on the server.
@@ -514,6 +519,7 @@ export declare namespace databaseconnector {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDatabaseQuery(): DatabaseQuery;
+        get containerAsQueryParameter(): QueryParameter;
         get tableName(): string;
         set tableName(newValue: string);
         get entity(): domainmodels.IEntity;
@@ -539,6 +545,15 @@ export declare namespace databaseconnector {
          *  10.12.0 and higher
          */
         static createInDatabaseQueryUnderTableMappings(container: DatabaseQuery): TableMapping;
+        /**
+         * Creates and returns a new TableMapping instance in the SDK and on the server.
+         * The new TableMapping will be automatically stored in the 'tableMapping' property
+         * of the parent QueryParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createInQueryParameterUnderTableMapping(container: QueryParameter): TableMapping;
         /**
          * Creates and returns a new TableMapping instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

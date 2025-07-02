@@ -1238,11 +1238,20 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
+         * The new MicroflowEventHandler will be automatically stored in the 'microflowEventHandler' property
+         * of the parent WorkflowEventHandler element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.0.0 and higher
+         */
+        static createIn(container: WorkflowEventHandler): MicroflowEventHandler;
+        /**
+         * Creates and returns a new MicroflowEventHandler instance in the SDK and on the server.
          * The new MicroflowEventHandler will be automatically stored in the 'usertaskOnStateChangeEvent' property
          * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowsProjectSettingsPartUnderUsertaskOnStateChangeEvent(container: settings.WorkflowsProjectSettingsPart): MicroflowEventHandler;
         /**
@@ -1251,7 +1260,7 @@ export declare namespace workflows {
          * of the parent settings.WorkflowsProjectSettingsPart element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowsProjectSettingsPartUnderWorkflowOnStateChangeEvent(container: settings.WorkflowsProjectSettingsPart): MicroflowEventHandler;
         /**
@@ -1260,7 +1269,7 @@ export declare namespace workflows {
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowUnderUsertaskOnStateChangeEvent(container: Workflow): MicroflowEventHandler;
         /**
@@ -1269,7 +1278,7 @@ export declare namespace workflows {
          * of the parent Workflow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.12.0 and higher
+         *  9.12.0 to 10.21.0
          */
         static createInWorkflowUnderWorkflowOnStateChangeEvent(container: Workflow): MicroflowEventHandler;
         /**
@@ -2445,11 +2454,13 @@ export declare namespace workflows {
         get allowedModuleRoles(): internal.IList<security.IModuleRole>;
         get allowedModuleRolesQualifiedNames(): string[];
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get workflowOnStateChangeEvent(): MicroflowEventHandler | null;
         set workflowOnStateChangeEvent(newValue: MicroflowEventHandler | null);
         /**
+         * In version 11.0.0: deleted
          * In version 9.12.0: introduced
          */
         get usertaskOnStateChangeEvent(): MicroflowEventHandler | null;
