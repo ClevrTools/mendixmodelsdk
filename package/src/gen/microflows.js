@@ -174,6 +174,15 @@ var microflows;
     NullValueOption.SendAsNil = new NullValueOption("SendAsNil", {});
     NullValueOption.LeaveOutElement = new NullValueOption("LeaveOutElement", {});
     microflows.NullValueOption = NullValueOption;
+    class ProtocolType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.ProtocolType";
+        }
+    }
+    ProtocolType.Unknown = new ProtocolType("Unknown", {});
+    ProtocolType.SMTP = new ProtocolType("SMTP", {});
+    microflows.ProtocolType = ProtocolType;
     class RequestHandlingType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -213,6 +222,16 @@ var microflows;
     ResultHandlingType.FileDocument = new ResultHandlingType("FileDocument", {});
     ResultHandlingType.None = new ResultHandlingType("None", {});
     microflows.ResultHandlingType = ResultHandlingType;
+    class SecurityType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "microflows.SecurityType";
+        }
+    }
+    SecurityType.None = new SecurityType("None", {});
+    SecurityType.SSL = new SecurityType("SSL", {});
+    SecurityType.TLS = new SecurityType("TLS", {});
+    microflows.SecurityType = SecurityType;
     class ShowMessageType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -524,6 +543,121 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.ActionActivity = ActionActivity;
+    /**
+     * In version 11.5.0: introduced
+     */
+    class AdditionalAttribute extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(AdditionalAttribute, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__type = new internal.PartProperty(AdditionalAttribute, this, "type", null, true);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(AdditionalAttribute, this, "value", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__attribute = new internal.ByNameReferenceProperty(AdditionalAttribute, this, "attribute", null, "DomainModels$Attribute");
+            /** @internal */
+            this.__attributeDataType = new internal.PartProperty(AdditionalAttribute, this, "attributeDataType", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new AdditionalAttribute() cannot be invoked directly, please use 'model.microflows.createAdditionalAttribute()'");
+            }
+        }
+        get containerAsExternalActionParameterMapping() {
+            return super.getContainerAs(ExternalActionParameterMapping);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * In version 11.6.0: introduced
+         */
+        get attribute() {
+            return this.__attribute.get();
+        }
+        set attribute(newValue) {
+            this.__attribute.set(newValue);
+        }
+        get attributeQualifiedName() {
+            return this.__attribute.qualifiedName();
+        }
+        /**
+         * In version 11.6.0: introduced
+         */
+        get attributeDataType() {
+            return this.__attributeDataType.get();
+        }
+        set attributeDataType(newValue) {
+            this.__attributeDataType.set(newValue);
+        }
+        /**
+         * Creates and returns a new AdditionalAttribute instance in the SDK and on the server.
+         * The new AdditionalAttribute will be automatically stored in the 'additionalAttributes' property
+         * of the parent ExternalActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AdditionalAttribute.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, AdditionalAttribute, "additionalAttributes", true);
+        }
+        /**
+         * Creates and returns a new AdditionalAttribute instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AdditionalAttribute);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__attributeDataType.isAvailable) {
+                this.attributeDataType = datatypes_1.datatypes.UnknownType.create(this.model);
+            }
+            this.type = datatypes_1.datatypes.UnknownType.create(this.model);
+        }
+    }
+    AdditionalAttribute.structureTypeName = "Microflows$AdditionalAttribute";
+    AdditionalAttribute.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0",
+        properties: {
+            type: {
+                required: {
+                    currentValue: true
+                }
+            },
+            attribute: {
+                introduced: "11.6.0"
+            },
+            attributeDataType: {
+                introduced: "11.6.0",
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.AdditionalAttribute = AdditionalAttribute;
     class RequestHandling extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1344,6 +1478,157 @@ var microflows;
     AssociationRetrieveSource.structureTypeName = "Microflows$AssociationRetrieveSource";
     AssociationRetrieveSource.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.AssociationRetrieveSource = AssociationRetrieveSource;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class AuthenticationConfig extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__optForAuthDocument = new internal.PrimitiveProperty(AuthenticationConfig, this, "optForAuthDocument", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new AuthenticationConfig() cannot be invoked directly, please use 'model.microflows.createAuthenticationConfig()'");
+            }
+        }
+        get containerAsSendEmailAction() {
+            return super.getContainerAs(SendEmailAction);
+        }
+        get optForAuthDocument() {
+            return this.__optForAuthDocument.get();
+        }
+        set optForAuthDocument(newValue) {
+            this.__optForAuthDocument.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.optForAuthDocument = false;
+        }
+    }
+    AuthenticationConfig.structureTypeName = "Microflows$AuthenticationConfig";
+    AuthenticationConfig.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    microflows.AuthenticationConfig = AuthenticationConfig;
+    /**
+     * In version 11.5.0: introduced
+     */
+    class AuthenticationDocumentConfig extends AuthenticationConfig {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__authenticationDocument = new internal.ByNameReferenceProperty(AuthenticationDocumentConfig, this, "authenticationDocument", null, "Authentication$Authentication");
+            if (arguments.length < 4) {
+                throw new Error("new AuthenticationDocumentConfig() cannot be invoked directly, please use 'model.microflows.createAuthenticationDocumentConfig()'");
+            }
+        }
+        get containerAsSendEmailAction() {
+            return super.getContainerAs(SendEmailAction);
+        }
+        get authenticationDocument() {
+            return this.__authenticationDocument.get();
+        }
+        set authenticationDocument(newValue) {
+            this.__authenticationDocument.set(newValue);
+        }
+        get authenticationDocumentQualifiedName() {
+            return this.__authenticationDocument.qualifiedName();
+        }
+        /**
+         * Creates and returns a new AuthenticationDocumentConfig instance in the SDK and on the server.
+         * The new AuthenticationDocumentConfig will be automatically stored in the 'emailAuthenticationConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, AuthenticationDocumentConfig.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, AuthenticationDocumentConfig, "emailAuthenticationConfig", false);
+        }
+        /**
+         * Creates and returns a new AuthenticationDocumentConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AuthenticationDocumentConfig);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AuthenticationDocumentConfig.structureTypeName = "Microflows$AuthenticationDocumentConfig";
+    AuthenticationDocumentConfig.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    microflows.AuthenticationDocumentConfig = AuthenticationDocumentConfig;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class BasicAuthConfig extends AuthenticationConfig {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__username = new internal.PrimitiveProperty(BasicAuthConfig, this, "username", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__password = new internal.PrimitiveProperty(BasicAuthConfig, this, "password", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new BasicAuthConfig() cannot be invoked directly, please use 'model.microflows.createBasicAuthConfig()'");
+            }
+        }
+        get containerAsSendEmailAction() {
+            return super.getContainerAs(SendEmailAction);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get username() {
+            return this.__username.get();
+        }
+        set username(newValue) {
+            this.__username.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get password() {
+            return this.__password.get();
+        }
+        set password(newValue) {
+            this.__password.set(newValue);
+        }
+        /**
+         * Creates and returns a new BasicAuthConfig instance in the SDK and on the server.
+         * The new BasicAuthConfig will be automatically stored in the 'emailAuthenticationConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BasicAuthConfig.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, BasicAuthConfig, "emailAuthenticationConfig", false);
+        }
+        /**
+         * Creates and returns a new BasicAuthConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BasicAuthConfig);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    BasicAuthConfig.structureTypeName = "Microflows$BasicAuthConfig";
+    BasicAuthConfig.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    microflows.BasicAuthConfig = BasicAuthConfig;
     /**
      * In version 7.21.0: introduced
      */
@@ -3175,6 +3460,79 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.CreateVariableAction = CreateVariableAction;
+    /**
+     * In version 11.6.0: introduced
+     */
+    class CustomBlobDocumentCodeActionParameterValue extends CodeActionParameterValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__customDocument = new internal.ByNameReferenceProperty(CustomBlobDocumentCodeActionParameterValue, this, "customDocument", null, "CustomBlobDocuments$CustomBlobDocument");
+            if (arguments.length < 4) {
+                throw new Error("new CustomBlobDocumentCodeActionParameterValue() cannot be invoked directly, please use 'model.microflows.createCustomBlobDocumentCodeActionParameterValue()'");
+            }
+        }
+        get containerAsJavaActionParameterMapping() {
+            return super.getContainerAs(JavaActionParameterMapping);
+        }
+        get containerAsJavaScriptActionParameterMapping() {
+            return super.getContainerAs(JavaScriptActionParameterMapping);
+        }
+        get customDocument() {
+            return this.__customDocument.get();
+        }
+        set customDocument(newValue) {
+            this.__customDocument.set(newValue);
+        }
+        get customDocumentQualifiedName() {
+            return this.__customDocument.qualifiedName();
+        }
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * The new CustomBlobDocumentCodeActionParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInJavaActionParameterMappingUnderParameterValue(container) {
+            internal.createInVersionCheck(container.model, CustomBlobDocumentCodeActionParameterValue.structureTypeName, {
+                start: "11.6.0"
+            });
+            return internal.instancehelpers.createElement(container, CustomBlobDocumentCodeActionParameterValue, "parameterValue", false);
+        }
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * The new CustomBlobDocumentCodeActionParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaScriptActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInJavaScriptActionParameterMappingUnderParameterValue(container) {
+            internal.createInVersionCheck(container.model, CustomBlobDocumentCodeActionParameterValue.structureTypeName, {
+                start: "11.6.0"
+            });
+            return internal.instancehelpers.createElement(container, CustomBlobDocumentCodeActionParameterValue, "parameterValue", false);
+        }
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CustomBlobDocumentCodeActionParameterValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CustomBlobDocumentCodeActionParameterValue.structureTypeName = "Microflows$CustomBlobDocumentCodeActionParameterValue";
+    CustomBlobDocumentCodeActionParameterValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.6.0"
+    }, internal.StructureType.Element);
+    microflows.CustomBlobDocumentCodeActionParameterValue = CustomBlobDocumentCodeActionParameterValue;
     class CustomRange extends Range {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -3725,6 +4083,258 @@ var microflows;
     DownloadFileAction.structureTypeName = "Microflows$DownloadFileAction";
     DownloadFileAction.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     microflows.DownloadFileAction = DownloadFileAction;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class EmailConnectionConfig extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__emailId = new internal.PrimitiveProperty(EmailConnectionConfig, this, "emailId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__protocol = new internal.EnumProperty(EmailConnectionConfig, this, "protocol", ProtocolType.SMTP, ProtocolType);
+            /** @internal */
+            this.__host = new internal.PrimitiveProperty(EmailConnectionConfig, this, "host", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__port = new internal.PrimitiveProperty(EmailConnectionConfig, this, "port", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__securityType = new internal.EnumProperty(EmailConnectionConfig, this, "securityType", SecurityType.TLS, SecurityType);
+            /** @internal */
+            this.__checkServerIdentity = new internal.PrimitiveProperty(EmailConnectionConfig, this, "checkServerIdentity", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__connectionTimeout = new internal.PrimitiveProperty(EmailConnectionConfig, this, "connectionTimeout", 20000, internal.PrimitiveTypeEnum.Integer);
+            if (arguments.length < 4) {
+                throw new Error("new EmailConnectionConfig() cannot be invoked directly, please use 'model.microflows.createEmailConnectionConfig()'");
+            }
+        }
+        get containerAsSendEmailAction() {
+            return super.getContainerAs(SendEmailAction);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get emailId() {
+            return this.__emailId.get();
+        }
+        set emailId(newValue) {
+            this.__emailId.set(newValue);
+        }
+        get protocol() {
+            return this.__protocol.get();
+        }
+        set protocol(newValue) {
+            this.__protocol.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get host() {
+            return this.__host.get();
+        }
+        set host(newValue) {
+            this.__host.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get port() {
+            return this.__port.get();
+        }
+        set port(newValue) {
+            this.__port.set(newValue);
+        }
+        get securityType() {
+            return this.__securityType.get();
+        }
+        set securityType(newValue) {
+            this.__securityType.set(newValue);
+        }
+        get checkServerIdentity() {
+            return this.__checkServerIdentity.get();
+        }
+        set checkServerIdentity(newValue) {
+            this.__checkServerIdentity.set(newValue);
+        }
+        get connectionTimeout() {
+            return this.__connectionTimeout.get();
+        }
+        set connectionTimeout(newValue) {
+            this.__connectionTimeout.set(newValue);
+        }
+        /**
+         * Creates and returns a new EmailConnectionConfig instance in the SDK and on the server.
+         * The new EmailConnectionConfig will be automatically stored in the 'emailConnectionConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmailConnectionConfig.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, EmailConnectionConfig, "emailConnectionConfig", false);
+        }
+        /**
+         * Creates and returns a new EmailConnectionConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmailConnectionConfig);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.checkServerIdentity = false;
+            this.connectionTimeout = 20000;
+            this.protocol = ProtocolType.SMTP;
+            this.securityType = SecurityType.TLS;
+        }
+    }
+    EmailConnectionConfig.structureTypeName = "Microflows$EmailConnectionConfig";
+    EmailConnectionConfig.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    microflows.EmailConnectionConfig = EmailConnectionConfig;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class EmailMessage extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__to = new internal.PrimitiveProperty(EmailMessage, this, "to", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__cc = new internal.PrimitiveProperty(EmailMessage, this, "cc", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__bcc = new internal.PrimitiveProperty(EmailMessage, this, "bcc", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__subject = new internal.PrimitiveProperty(EmailMessage, this, "subject", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__messageBodyPlainText = new internal.PrimitiveProperty(EmailMessage, this, "messageBodyPlainText", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__messageBodyHtml = new internal.PrimitiveProperty(EmailMessage, this, "messageBodyHtml", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__attachments = new internal.ByNameReferenceListProperty(EmailMessage, this, "attachments", [], "DomainModels$Entity");
+            /** @internal */
+            this.__attachment = new internal.PrimitiveProperty(EmailMessage, this, "attachment", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new EmailMessage() cannot be invoked directly, please use 'model.microflows.createEmailMessage()'");
+            }
+        }
+        get containerAsSendEmailAction() {
+            return super.getContainerAs(SendEmailAction);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get to() {
+            return this.__to.get();
+        }
+        set to(newValue) {
+            this.__to.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get cc() {
+            return this.__cc.get();
+        }
+        set cc(newValue) {
+            this.__cc.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get bcc() {
+            return this.__bcc.get();
+        }
+        set bcc(newValue) {
+            this.__bcc.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get subject() {
+            return this.__subject.get();
+        }
+        set subject(newValue) {
+            this.__subject.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get messageBodyPlainText() {
+            return this.__messageBodyPlainText.get();
+        }
+        set messageBodyPlainText(newValue) {
+            this.__messageBodyPlainText.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get messageBodyHtml() {
+            return this.__messageBodyHtml.get();
+        }
+        set messageBodyHtml(newValue) {
+            this.__messageBodyHtml.set(newValue);
+        }
+        /**
+         * In version 11.3.0: deleted
+         */
+        get attachments() {
+            return this.__attachments.get();
+        }
+        get attachmentsQualifiedNames() {
+            return this.__attachments.qualifiedNames();
+        }
+        /**
+         * In version 11.3.0: introduced
+         */
+        get attachment() {
+            return this.__attachment.get();
+        }
+        set attachment(newValue) {
+            this.__attachment.set(newValue);
+        }
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'emailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmailMessage.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, EmailMessage, "emailMessage", false);
+        }
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmailMessage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EmailMessage.structureTypeName = "Microflows$EmailMessage";
+    EmailMessage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0",
+        properties: {
+            attachments: {
+                deleted: "11.3.0",
+                deletionMessage: "Use attachment instead"
+            },
+            attachment: {
+                introduced: "11.3.0"
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.EmailMessage = EmailMessage;
     /**
      * See: {@link https://docs.mendix.com/refguide/end-event relevant section in reference guide}
      */
@@ -4585,6 +5195,8 @@ var microflows;
             this.__argument = new internal.PrimitiveProperty(ExternalActionParameterMapping, this, "argument", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__includedAssociations = new internal.PartListProperty(ExternalActionParameterMapping, this, "includedAssociations", []);
+            /** @internal */
+            this.__additionalAttributes = new internal.PartListProperty(ExternalActionParameterMapping, this, "additionalAttributes", []);
             if (arguments.length < 4) {
                 throw new Error("new ExternalActionParameterMapping() cannot be invoked directly, please use 'model.microflows.createExternalActionParameterMapping()'");
             }
@@ -4626,6 +5238,12 @@ var microflows;
             return this.__includedAssociations.get();
         }
         /**
+         * In version 11.5.0: introduced
+         */
+        get additionalAttributes() {
+            return this.__additionalAttributes.get();
+        }
+        /**
          * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
          * The new ExternalActionParameterMapping will be automatically stored in the 'parameterMappings' property
          * of the parent CallExternalAction element passed as argument.
@@ -4662,6 +5280,9 @@ var microflows;
             },
             includedAssociations: {
                 introduced: "10.11.0"
+            },
+            additionalAttributes: {
+                introduced: "11.5.0"
             }
         }
     }, internal.StructureType.Element);
@@ -11949,6 +12570,89 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RuleSplitCondition = RuleSplitCondition;
     /**
+     * See: {@link https://docs.mendix.com/refguide/sendemail-action relevant section in reference guide}
+     *
+     * In version 11.2.0: introduced
+     */
+    class SendEmailAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__emailAuthenticationConfig = new internal.PartProperty(SendEmailAction, this, "emailAuthenticationConfig", null, false);
+            /** @internal */
+            this.__emailConnectionConfig = new internal.PartProperty(SendEmailAction, this, "emailConnectionConfig", null, true);
+            /** @internal */
+            this.__emailMessage = new internal.PartProperty(SendEmailAction, this, "emailMessage", null, true);
+            if (arguments.length < 4) {
+                throw new Error("new SendEmailAction() cannot be invoked directly, please use 'model.microflows.createSendEmailAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        get emailAuthenticationConfig() {
+            return this.__emailAuthenticationConfig.get();
+        }
+        set emailAuthenticationConfig(newValue) {
+            this.__emailAuthenticationConfig.set(newValue);
+        }
+        get emailConnectionConfig() {
+            return this.__emailConnectionConfig.get();
+        }
+        set emailConnectionConfig(newValue) {
+            this.__emailConnectionConfig.set(newValue);
+        }
+        get emailMessage() {
+            return this.__emailMessage.get();
+        }
+        set emailMessage(newValue) {
+            this.__emailMessage.set(newValue);
+        }
+        /**
+         * Creates and returns a new SendEmailAction instance in the SDK and on the server.
+         * The new SendEmailAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SendEmailAction.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, SendEmailAction, "action", false);
+        }
+        /**
+         * Creates and returns a new SendEmailAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, SendEmailAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.emailConnectionConfig = EmailConnectionConfig.create(this.model);
+            this.emailMessage = EmailMessage.create(this.model);
+        }
+    }
+    SendEmailAction.structureTypeName = "Microflows$SendEmailAction";
+    SendEmailAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0",
+        properties: {
+            emailConnectionConfig: {
+                required: {
+                    currentValue: true
+                }
+            },
+            emailMessage: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    microflows.SendEmailAction = SendEmailAction;
+    /**
      * See: {@link https://docs.mendix.com/refguide/send-external-object relevant section in reference guide}
      *
      * In version 9.6.0: introduced
@@ -13326,6 +14030,97 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.TextTemplate = TextTemplate;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/data-transformer/#transform-json-action relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 11.4.0: introduced
+     */
+    class TransformJsonAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__transformation = new internal.ByNameReferenceProperty(TransformJsonAction, this, "transformation", null, "DataTransformers$DataTransformer");
+            /** @internal */
+            this.__inputVariableName = new internal.PrimitiveProperty(TransformJsonAction, this, "inputVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__outputVariableName = new internal.PrimitiveProperty(TransformJsonAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new TransformJsonAction() cannot be invoked directly, please use 'model.microflows.createTransformJsonAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get transformation() {
+            return this.__transformation.get();
+        }
+        set transformation(newValue) {
+            this.__transformation.set(newValue);
+        }
+        get transformationQualifiedName() {
+            return this.__transformation.qualifiedName();
+        }
+        get inputVariableName() {
+            return this.__inputVariableName.get();
+        }
+        set inputVariableName(newValue) {
+            this.__inputVariableName.set(newValue);
+        }
+        get outputVariableName() {
+            return this.__outputVariableName.get();
+        }
+        set outputVariableName(newValue) {
+            this.__outputVariableName.set(newValue);
+        }
+        /**
+         * Creates and returns a new TransformJsonAction instance in the SDK and on the server.
+         * The new TransformJsonAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, TransformJsonAction.structureTypeName, { start: "11.4.0" });
+            return internal.instancehelpers.createElement(container, TransformJsonAction, "action", false);
+        }
+        /**
+         * Creates and returns a new TransformJsonAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, TransformJsonAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TransformJsonAction.structureTypeName = "Microflows$TransformJsonAction";
+    TransformJsonAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.4.0",
+        properties: {
+            transformation: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        experimental: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    microflows.TransformJsonAction = TransformJsonAction;
     /**
      * In version 8.6.0: introduced
      */

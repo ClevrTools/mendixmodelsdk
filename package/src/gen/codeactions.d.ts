@@ -348,6 +348,37 @@ export declare namespace codeactions {
         static create(model: IModel): ConcreteEntityType;
     }
     /**
+     * In version 11.6.0: introduced
+     */
+    interface ICustomBlobDocumentParameterType extends IParameterType {
+        readonly model: IModel;
+        readonly containerAsCodeActionParameter: ICodeActionParameter;
+        readonly customDocumentReadableTypeName: string;
+        readonly customDocumentTypeName: string;
+        asLoaded(): CustomBlobDocumentParameterType;
+        load(callback: (element: CustomBlobDocumentParameterType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CustomBlobDocumentParameterType>;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    class CustomBlobDocumentParameterType extends ParameterType implements ICustomBlobDocumentParameterType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCodeActionParameter(): CodeActionParameter;
+        get customDocumentReadableTypeName(): string;
+        set customDocumentReadableTypeName(newValue: string);
+        get customDocumentTypeName(): string;
+        set customDocumentTypeName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CustomBlobDocumentParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CustomBlobDocumentParameterType;
+    }
+    /**
      * In version 7.21.0: introduced
      */
     interface IDateTimeType extends IPrimitiveType {

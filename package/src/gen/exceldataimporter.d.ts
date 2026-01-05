@@ -557,10 +557,18 @@ export declare namespace exceldataimporter {
         get template(): ITemplate | null;
         set template(newValue: ITemplate | null);
         get templateQualifiedName(): string | null;
+        /**
+         * In version 11.2.0: deleted
+         */
         get fileVariableName(): string;
         set fileVariableName(newValue: string);
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
+        /**
+         * In version 11.2.0: introduced
+         */
+        get inputFileVariableName(): string;
+        set inputFileVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.

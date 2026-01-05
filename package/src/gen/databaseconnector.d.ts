@@ -128,6 +128,37 @@ export declare namespace databaseconnector {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 11.1.0: introduced
+     */
+    class ConnectionParameterMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsExecuteDatabaseQueryAction(): ExecuteDatabaseQueryAction;
+        get parameterName(): string;
+        set parameterName(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ConnectionParameterMapping instance in the SDK and on the server.
+         * The new ConnectionParameterMapping will be automatically stored in the 'connectionParameterMappings' property
+         * of the parent ExecuteDatabaseQueryAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: ExecuteDatabaseQueryAction): ConnectionParameterMapping;
+        /**
+         * Creates and returns a new ConnectionParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ConnectionParameterMapping;
+    }
+    /**
      * In version 10.0.0: introduced
      */
     class ConnectionParts extends ConnectionInput {
@@ -318,7 +349,18 @@ export declare namespace databaseconnector {
         get query(): IDatabaseQuery | null;
         set query(newValue: IDatabaseQuery | null);
         get queryQualifiedName(): string | null;
+        /**
+         * In version 11.1.0: introduced
+         */
+        get connectionParameterMappings(): internal.IList<ConnectionParameterMapping>;
         get parameterMappings(): internal.IList<QueryParameterMapping>;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.3.0: introduced
+         */
+        get dynamicQuery(): string;
+        set dynamicQuery(newValue: string);
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

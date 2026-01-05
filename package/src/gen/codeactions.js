@@ -576,6 +576,68 @@ var codeactions;
     }, internal.StructureType.Element);
     codeactions.ConcreteEntityType = ConcreteEntityType;
     /**
+     * In version 11.6.0: introduced
+     */
+    class CustomBlobDocumentParameterType extends ParameterType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__customDocumentReadableTypeName = new internal.PrimitiveProperty(CustomBlobDocumentParameterType, this, "customDocumentReadableTypeName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__customDocumentTypeName = new internal.PrimitiveProperty(CustomBlobDocumentParameterType, this, "customDocumentTypeName", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new CustomBlobDocumentParameterType() cannot be invoked directly, please use 'model.codeactions.createCustomBlobDocumentParameterType()'");
+            }
+        }
+        get containerAsCodeActionParameter() {
+            return super.getContainerAs(CodeActionParameter);
+        }
+        get customDocumentReadableTypeName() {
+            return this.__customDocumentReadableTypeName.get();
+        }
+        set customDocumentReadableTypeName(newValue) {
+            this.__customDocumentReadableTypeName.set(newValue);
+        }
+        get customDocumentTypeName() {
+            return this.__customDocumentTypeName.get();
+        }
+        set customDocumentTypeName(newValue) {
+            this.__customDocumentTypeName.set(newValue);
+        }
+        /**
+         * Creates and returns a new CustomBlobDocumentParameterType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CustomBlobDocumentParameterType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CustomBlobDocumentParameterType.structureTypeName = "CodeActions$CustomBlobDocumentParameterType";
+    CustomBlobDocumentParameterType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.6.0",
+        properties: {
+            customDocumentReadableTypeName: {
+                public: {
+                    currentValue: true
+                }
+            },
+            customDocumentTypeName: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    codeactions.CustomBlobDocumentParameterType = CustomBlobDocumentParameterType;
+    /**
      * In version 7.21.0: introduced
      */
     class DateTimeType extends PrimitiveType {

@@ -257,6 +257,11 @@ export declare namespace navigation {
          */
         get networkTimeoutMs(): number;
         set networkTimeoutMs(newValue: number);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get nativeNavigationEnabled(): boolean;
+        set nativeNavigationEnabled(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.

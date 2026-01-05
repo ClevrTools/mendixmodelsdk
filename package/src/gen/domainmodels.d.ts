@@ -398,6 +398,7 @@ export declare namespace domainmodels {
         get containerAsPagesGridSortItem(): pages.GridSortItem;
         get containerAsListViewSearch(): pages.ListViewSearch;
         get containerAsMemberWidget(): pages.MemberWidget;
+        get containerAsOutputMapping(): pages.OutputMapping;
         get containerAsRangeSearchField(): pages.RangeSearchField;
         get containerAsSingleSearchField(): pages.SingleSearchField;
         get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
@@ -617,6 +618,7 @@ export declare namespace domainmodels {
         get containerAsPagesGridSortItem(): pages.GridSortItem;
         get containerAsListViewSearch(): pages.ListViewSearch;
         get containerAsMemberWidget(): pages.MemberWidget;
+        get containerAsOutputMapping(): pages.OutputMapping;
         get containerAsRangeSearchField(): pages.RangeSearchField;
         get containerAsSingleSearchField(): pages.SingleSearchField;
         get containerAsStaticOrDynamicString(): pages.StaticOrDynamicString;
@@ -724,6 +726,24 @@ export declare namespace domainmodels {
          *  7.11.0 and higher
          */
         static createInMemberWidgetUnderAttributeRef(container: pages.MemberWidget): AttributeRef;
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'attributeRef' property
+         * of the parent pages.OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderAttributeRef(container: pages.OutputMapping): AttributeRef;
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'sourceAttributeRef' property
+         * of the parent pages.OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderSourceAttributeRef(container: pages.OutputMapping): AttributeRef;
         /**
          * Creates and returns a new AttributeRef instance in the SDK and on the server.
          * The new AttributeRef will be automatically stored in the 'lowerBoundRef' property

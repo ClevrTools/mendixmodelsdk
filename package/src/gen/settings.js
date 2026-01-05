@@ -1326,6 +1326,8 @@ var settings;
             this.__useOQLVersion2 = new internal.PrimitiveProperty(RuntimeSettings, this, "useOQLVersion2", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sslCertificateAlgorithm = new internal.EnumProperty(RuntimeSettings, this, "sslCertificateAlgorithm", SslCertificateAlgorithm.SunX509, SslCertificateAlgorithm);
+            /** @internal */
+            this.__decimalScale = new internal.PrimitiveProperty(RuntimeSettings, this, "decimalScale", 8, internal.PrimitiveTypeEnum.Integer);
             if (arguments.length < 4) {
                 throw new Error("new RuntimeSettings() cannot be invoked directly, please use 'model.settings.createRuntimeSettings()'");
             }
@@ -1490,6 +1492,15 @@ var settings;
             this.__sslCertificateAlgorithm.set(newValue);
         }
         /**
+         * In version 11.4.0: introduced
+         */
+        get decimalScale() {
+            return this.__decimalScale.get();
+        }
+        set decimalScale(newValue) {
+            this.__decimalScale.set(newValue);
+        }
+        /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
          * The new RuntimeSettings will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1516,6 +1527,9 @@ var settings;
                     }
                     this.bcryptCost = 10;
                 })();
+            }
+            if (this.__decimalScale.isAvailable) {
+                this.decimalScale = 8;
             }
             if (this.__enableDataStorageNewQueryHandling.isAvailable) {
                 this.enableDataStorageNewQueryHandling = true;
@@ -1588,6 +1602,9 @@ var settings;
             },
             sslCertificateAlgorithm: {
                 introduced: "10.21.0"
+            },
+            decimalScale: {
+                introduced: "11.4.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1808,6 +1825,8 @@ var settings;
             this.__themeModuleOrder = new internal.PartListProperty(WebUIProjectSettingsPart, this, "themeModuleOrder", []);
             /** @internal */
             this.__enableNewWidgetGeneration = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableNewWidgetGeneration", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__enableNewStringBehavior = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableNewStringBehavior", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new WebUIProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWebUIProjectSettingsPart()'");
             }
@@ -1912,6 +1931,15 @@ var settings;
             this.__enableNewWidgetGeneration.set(newValue);
         }
         /**
+         * In version 11.6.0: introduced
+         */
+        get enableNewStringBehavior() {
+            return this.__enableNewStringBehavior.get();
+        }
+        set enableNewStringBehavior(newValue) {
+            this.__enableNewStringBehavior.set(newValue);
+        }
+        /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.
          * The new WebUIProjectSettingsPart will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1932,6 +1960,9 @@ var settings;
             super._initializeDefaultProperties();
             if (this.__enableMicroflowReachabilityAnalysis.isAvailable) {
                 this.enableMicroflowReachabilityAnalysis = true;
+            }
+            if (this.__enableNewStringBehavior.isAvailable) {
+                this.enableNewStringBehavior = false;
             }
             if (this.__enableNewWidgetGeneration.isAvailable) {
                 this.enableNewWidgetGeneration = true;
@@ -1996,10 +2027,60 @@ var settings;
             },
             enableNewWidgetGeneration: {
                 introduced: "10.6.0"
+            },
+            enableNewStringBehavior: {
+                introduced: "11.6.0"
             }
         }
     }, internal.StructureType.Element);
     settings.WebUIProjectSettingsPart = WebUIProjectSettingsPart;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class WorkflowGroup extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(WorkflowGroup, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(WorkflowGroup, this, "description", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowGroup() cannot be invoked directly, please use 'model.settings.createWorkflowGroup()'");
+            }
+        }
+        get containerAsWorkflowsProjectSettingsPart() {
+            return super.getContainerAs(WorkflowsProjectSettingsPart);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        /**
+         * Creates and returns a new WorkflowGroup instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowGroup);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowGroup.structureTypeName = "Settings$WorkflowGroup";
+    WorkflowGroup.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    settings.WorkflowGroup = WorkflowGroup;
     /**
      * In version 9.0.5: removed experimental
      * In version 8.8.0: introduced
@@ -2011,6 +2092,8 @@ var settings;
             this.__enabled = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__userEntity = new internal.ByNameReferenceProperty(WorkflowsProjectSettingsPart, this, "userEntity", null, "DomainModels$Entity");
+            /** @internal */
+            this.__groups = new internal.PartListProperty(WorkflowsProjectSettingsPart, this, "groups", []);
             /** @internal */
             this.__workflowEngineParallelism = new internal.PrimitiveProperty(WorkflowsProjectSettingsPart, this, "workflowEngineParallelism", 5, internal.PrimitiveTypeEnum.Integer);
             /** @internal */
@@ -2048,6 +2131,12 @@ var settings;
         }
         get userEntityQualifiedName() {
             return this.__userEntity.qualifiedName();
+        }
+        /**
+         * In version 11.2.0: introduced
+         */
+        get groups() {
+            return this.__groups.get();
         }
         /**
          * In version 9.0.5: introduced
@@ -2137,6 +2226,9 @@ var settings;
             },
             userEntity: {
                 introduced: "8.11.0"
+            },
+            groups: {
+                introduced: "11.2.0"
             },
             workflowEngineParallelism: {
                 introduced: "9.0.5"

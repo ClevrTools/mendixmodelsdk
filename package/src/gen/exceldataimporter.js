@@ -912,6 +912,8 @@ var exceldataimporter;
             this.__fileVariableName = new internal.PrimitiveProperty(ImportExcelDataAction, this, "fileVariableName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(ImportExcelDataAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__inputFileVariableName = new internal.PrimitiveProperty(ImportExcelDataAction, this, "inputFileVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new ImportExcelDataAction() cannot be invoked directly, please use 'model.exceldataimporter.createImportExcelDataAction()'");
             }
@@ -935,6 +937,9 @@ var exceldataimporter;
         get templateQualifiedName() {
             return this.__template.qualifiedName();
         }
+        /**
+         * In version 11.2.0: deleted
+         */
         get fileVariableName() {
             return this.__fileVariableName.get();
         }
@@ -946,6 +951,15 @@ var exceldataimporter;
         }
         set outputVariableName(newValue) {
             this.__outputVariableName.set(newValue);
+        }
+        /**
+         * In version 11.2.0: introduced
+         */
+        get inputFileVariableName() {
+            return this.__inputFileVariableName.get();
+        }
+        set inputFileVariableName(newValue) {
+            this.__inputFileVariableName.set(newValue);
         }
         /**
          * Creates and returns a new ImportExcelDataAction instance in the SDK and on the server.
@@ -981,6 +995,13 @@ var exceldataimporter;
                     currentValue: false,
                     changedIn: ["10.1.0"]
                 }
+            },
+            fileVariableName: {
+                deleted: "11.2.0",
+                deletionMessage: "Moved to ImportExcelDataAction.inputFileVariableName"
+            },
+            inputFileVariableName: {
+                introduced: "11.2.0"
             }
         },
         experimental: {

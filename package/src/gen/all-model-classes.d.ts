@@ -2,14 +2,18 @@
  * Convenience to be able to export everything at once.
  */
 export * from "./appservices";
+export * from "./authentication";
 export * from "./businessevents";
+export * from "./changedatacapture";
 export * from "./client";
 export * from "./codeactions";
 export * from "./connectorkit";
 export * from "./constants";
+export * from "./customblobdocuments";
 export * from "./customicons";
 export * from "./customwidgets";
 export * from "./datasets";
+export * from "./datatransformers";
 export * from "./datatypes";
 export * from "./databaseconnector";
 export * from "./documenttemplates";

@@ -1660,6 +1660,8 @@ var rest;
             this.__entityTypeName = new internal.PrimitiveProperty(ODataEntityTypeSource, this, "entityTypeName", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__key = new internal.PartProperty(ODataEntityTypeSource, this, "key", null, false);
+            /** @internal */
+            this.__isOpen = new internal.PrimitiveProperty(ODataEntityTypeSource, this, "isOpen", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new ODataEntityTypeSource() cannot be invoked directly, please use 'model.rest.createODataEntityTypeSource()'");
             }
@@ -1694,6 +1696,15 @@ var rest;
             this.__key.set(newValue);
         }
         /**
+         * In version 11.5.0: introduced
+         */
+        get isOpen() {
+            return this.__isOpen.get();
+        }
+        set isOpen(newValue) {
+            this.__isOpen.set(newValue);
+        }
+        /**
          * Creates and returns a new ODataEntityTypeSource instance in the SDK and on the server.
          * The new ODataEntityTypeSource will be automatically stored in the 'source' property
          * of the parent domainmodels.Entity element passed as argument.
@@ -1716,6 +1727,9 @@ var rest;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__isOpen.isAvailable) {
+                this.isOpen = false;
+            }
         }
     }
     ODataEntityTypeSource.structureTypeName = "Rest$ODataEntityTypeSource";
@@ -1726,6 +1740,9 @@ var rest;
                 public: {
                     currentValue: true
                 }
+            },
+            isOpen: {
+                introduced: "11.5.0"
             }
         },
         public: {
@@ -1950,6 +1967,68 @@ var rest;
     }, internal.StructureType.Element);
     rest.ODataKeyPart = ODataKeyPart;
     /**
+     * In version 11.6.0: introduced
+     */
+    class ODataMappedPrimitiveCollectionValue extends domainmodels_1.domainmodels.MappedValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__remoteName = new internal.PrimitiveProperty(ODataMappedPrimitiveCollectionValue, this, "remoteName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__remoteType = new internal.PrimitiveProperty(ODataMappedPrimitiveCollectionValue, this, "remoteType", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ODataMappedPrimitiveCollectionValue() cannot be invoked directly, please use 'model.rest.createODataMappedPrimitiveCollectionValue()'");
+            }
+        }
+        get containerAsAttribute() {
+            return super.getContainerAs(domainmodels_1.domainmodels.Attribute);
+        }
+        get remoteName() {
+            return this.__remoteName.get();
+        }
+        set remoteName(newValue) {
+            this.__remoteName.set(newValue);
+        }
+        get remoteType() {
+            return this.__remoteType.get();
+        }
+        set remoteType(newValue) {
+            this.__remoteType.set(newValue);
+        }
+        /**
+         * Creates and returns a new ODataMappedPrimitiveCollectionValue instance in the SDK and on the server.
+         * The new ODataMappedPrimitiveCollectionValue will be automatically stored in the 'value' property
+         * of the parent domainmodels.Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataMappedPrimitiveCollectionValue.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, ODataMappedPrimitiveCollectionValue, "value", false);
+        }
+        /**
+         * Creates and returns a new ODataMappedPrimitiveCollectionValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataMappedPrimitiveCollectionValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataMappedPrimitiveCollectionValue.structureTypeName = "Rest$ODataMappedPrimitiveCollectionValue";
+    ODataMappedPrimitiveCollectionValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.6.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataMappedPrimitiveCollectionValue = ODataMappedPrimitiveCollectionValue;
+    /**
      * In version 8.10.0: introduced
      */
     class ODataMappedValue extends domainmodels_1.domainmodels.MappedValue {
@@ -2113,6 +2192,111 @@ var rest;
         }
     }, internal.StructureType.Element);
     rest.ODataMappedValue = ODataMappedValue;
+    /**
+     * In version 11.6.0: introduced
+     */
+    class ODataPrimitiveCollectionAssociationSource extends domainmodels_1.domainmodels.RemoteAssociationSource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new ODataPrimitiveCollectionAssociationSource() cannot be invoked directly, please use 'model.rest.createODataPrimitiveCollectionAssociationSource()'");
+            }
+        }
+        get containerAsAssociationBase() {
+            return super.getContainerAs(domainmodels_1.domainmodels.AssociationBase);
+        }
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionAssociationSource instance in the SDK and on the server.
+         * The new ODataPrimitiveCollectionAssociationSource will be automatically stored in the 'source' property
+         * of the parent domainmodels.AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataPrimitiveCollectionAssociationSource.structureTypeName, {
+                start: "11.6.0"
+            });
+            return internal.instancehelpers.createElement(container, ODataPrimitiveCollectionAssociationSource, "source", false);
+        }
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataPrimitiveCollectionAssociationSource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataPrimitiveCollectionAssociationSource.structureTypeName = "Rest$ODataPrimitiveCollectionAssociationSource";
+    ODataPrimitiveCollectionAssociationSource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.6.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataPrimitiveCollectionAssociationSource = ODataPrimitiveCollectionAssociationSource;
+    /**
+     * In version 11.6.0: introduced
+     */
+    class ODataPrimitiveCollectionEntitySource extends domainmodels_1.domainmodels.RemoteEntitySource {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__sourceDocument = new internal.ByNameReferenceProperty(ODataPrimitiveCollectionEntitySource, this, "sourceDocument", null, "Rest$ConsumedODataService");
+            if (arguments.length < 4) {
+                throw new Error("new ODataPrimitiveCollectionEntitySource() cannot be invoked directly, please use 'model.rest.createODataPrimitiveCollectionEntitySource()'");
+            }
+        }
+        get containerAsEntity() {
+            return super.getContainerAs(domainmodels_1.domainmodels.Entity);
+        }
+        get sourceDocument() {
+            return this.__sourceDocument.get();
+        }
+        set sourceDocument(newValue) {
+            this.__sourceDocument.set(newValue);
+        }
+        get sourceDocumentQualifiedName() {
+            return this.__sourceDocument.qualifiedName();
+        }
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionEntitySource instance in the SDK and on the server.
+         * The new ODataPrimitiveCollectionEntitySource will be automatically stored in the 'source' property
+         * of the parent domainmodels.Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ODataPrimitiveCollectionEntitySource.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, ODataPrimitiveCollectionEntitySource, "source", false);
+        }
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionEntitySource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ODataPrimitiveCollectionEntitySource);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ODataPrimitiveCollectionEntitySource.structureTypeName = "Rest$ODataPrimitiveCollectionEntitySource";
+    ODataPrimitiveCollectionEntitySource.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.6.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    rest.ODataPrimitiveCollectionEntitySource = ODataPrimitiveCollectionEntitySource;
     /**
      * In version 8.10.0: introduced
      */
@@ -2718,6 +2902,18 @@ var rest;
         }
         set testValue(newValue) {
             this.__testValue.set(newValue);
+        }
+        /**
+         * Creates and returns a new OperationParameter instance in the SDK and on the server.
+         * The new OperationParameter will be automatically stored in the 'parameters' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OperationParameter.structureTypeName, { start: "10.1.0" });
+            return internal.instancehelpers.createElement(container, OperationParameter, "parameters", true);
         }
         /**
          * Creates and returns a new OperationParameter instance in the SDK and on the server.

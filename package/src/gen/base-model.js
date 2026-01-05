@@ -19,6 +19,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
         }
         return internal_1.instancehelpers.createElement(this, elementClass);
     }
+    allAuthentications() {
+        return super._allOfTypes(["Authentication$Authentication"]);
+    }
     allBuildingBlocks() {
         return super._allOfTypes(["Pages$BuildingBlock"]);
     }
@@ -52,11 +55,17 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allConsumedRestServices() {
         return super._allOfTypes(["Rest$ConsumedRestService"]);
     }
+    allCustomBlobDocuments() {
+        return super._allOfTypes(["CustomBlobDocuments$CustomBlobDocument"]);
+    }
     allCustomIconCollections() {
         return super._allOfTypes(["CustomIcons$CustomIconCollection"]);
     }
     allDataSets() {
         return super._allOfTypes(["DataSets$DataSet"]);
+    }
+    allDataTransformers() {
+        return super._allOfTypes(["DataTransformers$DataTransformer"]);
     }
     allDatabaseConnections() {
         return super._allOfTypes(["DatabaseConnector$DatabaseConnection"]);
@@ -64,14 +73,18 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allDocuments() {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
+            "Authentication$Authentication",
             "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
+            "ChangeDataCapture$EntityChangeDataCaptureService",
             "ConnectorKit$Connector",
             "ConnectorKit$ConnectorType",
             "Constants$Constant",
+            "CustomBlobDocuments$CustomBlobDocument",
             "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
+            "DataTransformers$DataTransformer",
             "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
             "DomainModels$ViewEntitySourceDocument",
@@ -118,6 +131,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     allDomainModels() {
         return super._allOfTypes(["DomainModels$DomainModel"]);
+    }
+    allEntityChangeDataCaptureServices() {
+        return super._allOfTypes(["ChangeDataCapture$EntityChangeDataCaptureService"]);
     }
     allEnumerations() {
         return super._allOfTypes(["Enumerations$Enumeration"]);
@@ -190,14 +206,18 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allModuleDocuments() {
         return super._allOfTypes([
             "AppServices$ConsumedAppService",
+            "Authentication$Authentication",
             "BusinessEvents$BusinessEventService",
             "BusinessEvents$ConsumedBusinessEventService",
             "BusinessEvents$PublishedBusinessEventService",
+            "ChangeDataCapture$EntityChangeDataCaptureService",
             "ConnectorKit$Connector",
             "ConnectorKit$ConnectorType",
             "Constants$Constant",
+            "CustomBlobDocuments$CustomBlobDocument",
             "CustomIcons$CustomIconCollection",
             "DataSets$DataSet",
+            "DataTransformers$DataTransformer",
             "DatabaseConnector$DatabaseConnection",
             "DocumentTemplates$DocumentTemplate",
             "DomainModels$DomainModel",
@@ -358,6 +378,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findAppServiceActionParameterByQualifiedName(qname) {
         return this._resolveName("AppServices$AppServiceActionParameter", qname);
     }
+    findAuthenticationByQualifiedName(qname) {
+        return this._resolveName("Authentication$Authentication", qname);
+    }
     findConnectorActionByQualifiedName(qname) {
         return this._resolveName("ConnectorKit$ConnectorAction", qname);
     }
@@ -370,6 +393,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findConstantByQualifiedName(qname) {
         return this._resolveName("Constants$Constant", qname);
     }
+    findCustomBlobDocumentByQualifiedName(qname) {
+        return this._resolveName("CustomBlobDocuments$CustomBlobDocument", qname);
+    }
     findCustomIconByQualifiedName(qname) {
         return this._resolveName("CustomIcons$CustomIcon", qname);
     }
@@ -378,6 +404,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findDataSetParameterByQualifiedName(qname) {
         return this._resolveName("DataSets$DataSetParameter", qname);
+    }
+    findDataTransformerByQualifiedName(qname) {
+        return this._resolveName("DataTransformers$DataTransformer", qname);
     }
     findDatabaseQueryByQualifiedName(qname) {
         return this._resolveName("DatabaseConnector$DatabaseQuery", qname);

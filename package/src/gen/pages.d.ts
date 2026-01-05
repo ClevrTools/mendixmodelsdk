@@ -77,6 +77,12 @@ export declare namespace pages {
         static InstantMessageProtocol: AutocompletePurposeType;
         protected qualifiedTsTypeName: string;
     }
+    class Autofocus extends internal.AbstractEnum {
+        static Off: Autofocus;
+        static DesktopOnly: Autofocus;
+        static AllPlatforms: Autofocus;
+        protected qualifiedTsTypeName: string;
+    }
     class ButtonAriaRoleType extends internal.AbstractEnum {
         static Button: ButtonAriaRoleType;
         static Link: ButtonAriaRoleType;
@@ -2207,6 +2213,10 @@ export declare namespace pages {
         set progressMessage(newValue: texts.Text | null);
         get confirmationInfo(): ConfirmationInfo | null;
         set confirmationInfo(newValue: ConfirmationInfo | null);
+        /**
+         * In version 11.5.0: introduced
+         */
+        get outputMappings(): internal.IList<OutputMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
@@ -18233,6 +18243,10 @@ export declare namespace pages {
         set formValidations(newValue: FormValidations);
         get confirmationInfo(): ConfirmationInfo | null;
         set confirmationInfo(newValue: ConfirmationInfo | null);
+        /**
+         * In version 11.5.0: introduced
+         */
+        get outputMappings(): internal.IList<OutputMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new MicroflowSettings instance in the SDK and on the server.
@@ -20968,6 +20982,85 @@ export declare namespace pages {
         static create(model: IModel): OptionDesignPropertyValue;
     }
     /**
+     * In version 11.5.0: introduced
+     */
+    class OutputMapping extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallNanoflowClientAction(): CallNanoflowClientAction;
+        get containerAsMicroflowSettings(): MicroflowSettings;
+        get sourceVariable(): PageVariable | null;
+        set sourceVariable(newValue: PageVariable | null);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression(): string;
+        set expression(newValue: string);
+        get attributeRef(): domainmodels.AttributeRef | null;
+        set attributeRef(newValue: domainmodels.AttributeRef | null);
+        get sourceAttributeRef(): domainmodels.AttributeRef | null;
+        set sourceAttributeRef(newValue: domainmodels.AttributeRef | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * The new OutputMapping will be automatically stored in the 'outputMappings' property
+         * of the parent CallNanoflowClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInCallNanoflowClientActionUnderOutputMappings(container: CallNanoflowClientAction): OutputMapping;
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * The new OutputMapping will be automatically stored in the 'outputMappings' property
+         * of the parent MicroflowSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInMicroflowSettingsUnderOutputMappings(container: MicroflowSettings): OutputMapping;
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OutputMapping;
+    }
+    /**
+     * In version 11.4.0: introduced
+     */
+    interface IOverviewPageTemplateType extends ITemplateType {
+        readonly model: IModel;
+        readonly containerAsPageTemplate: IPageTemplate;
+        asLoaded(): OverviewPageTemplateType;
+        load(callback: (element: OverviewPageTemplateType) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<OverviewPageTemplateType>;
+    }
+    /**
+     * In version 11.4.0: introduced
+     */
+    class OverviewPageTemplateType extends TemplateType implements IOverviewPageTemplateType {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsPageTemplate(): PageTemplate;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OverviewPageTemplateType instance in the SDK and on the server.
+         * The new OverviewPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.4.0 and higher
+         */
+        static createIn(container: PageTemplate): OverviewPageTemplateType;
+        /**
+         * Creates and returns a new OverviewPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OverviewPageTemplateType;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     interface IPage extends IFormBase {
@@ -21048,6 +21141,11 @@ export declare namespace pages {
          */
         get url(): string;
         set url(newValue: string);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get autofocus(): Autofocus;
+        set autofocus(newValue: Autofocus);
         /**
          * In version 10.17.0: introduced
          */
@@ -21320,6 +21418,18 @@ export declare namespace pages {
         set name(newValue: string);
         get parameterType(): datatypes.DataType;
         set parameterType(newValue: datatypes.DataType);
+        /**
+         * In version 11.5.0: introduced
+         */
+        get isRequired(): boolean;
+        set isRequired(newValue: boolean);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.5.0: introduced
+         */
+        get defaultValue(): string;
+        set defaultValue(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PageParameter instance in the SDK and on the server.
@@ -21348,8 +21458,11 @@ export declare namespace pages {
         get parameter(): IPageParameter;
         set parameter(newValue: IPageParameter);
         get parameterQualifiedName(): string;
-        get variable(): PageVariable;
-        set variable(newValue: PageVariable);
+        /**
+         * In version 11.1.0: added optional
+         */
+        get variable(): PageVariable | null;
+        set variable(newValue: PageVariable | null);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -21588,6 +21701,7 @@ export declare namespace pages {
         get containerAsEntityPathSource(): EntityPathSource;
         get containerAsMicroflowParameterMapping(): MicroflowParameterMapping;
         get containerAsNanoflowParameterMapping(): NanoflowParameterMapping;
+        get containerAsOutputMapping(): OutputMapping;
         get containerAsPageParameterMapping(): PageParameterMapping;
         get containerAsSnippetParameterMapping(): SnippetParameterMapping;
         get containerAsTabContainer(): TabContainer;
@@ -21701,6 +21815,15 @@ export declare namespace pages {
          *  8.4.0 and higher
          */
         static createInNanoflowParameterMappingUnderVariable(container: NanoflowParameterMapping): PageVariable;
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderSourceVariable(container: OutputMapping): PageVariable;
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.
          * The new PageVariable will be automatically stored in the 'variable' property

@@ -1,10 +1,18 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
+import { common } from "../common";
 import { projects } from "./projects";
 export declare namespace workflows {
     class CompletionType extends internal.AbstractEnum {
         static Relative: CompletionType;
         static Absolute: CompletionType;
+        protected qualifiedTsTypeName: string;
+    }
+    class ConnectionSide extends internal.AbstractEnum {
+        static Top: ConnectionSide;
+        static Bottom: ConnectionSide;
+        static Left: ConnectionSide;
+        static Right: ConnectionSide;
         protected qualifiedTsTypeName: string;
     }
     class WorkflowEventType extends internal.AbstractEnum {
@@ -170,6 +178,78 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Annotation;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    abstract class Line extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    class BezierCurve extends Line {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        get originControlVector(): common.ISize;
+        set originControlVector(newValue: common.ISize);
+        get destinationControlVector(): common.ISize;
+        set destinationControlVector(newValue: common.ISize);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * The new BezierCurve will be automatically stored in the 'line' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: FlowLine): BezierCurve;
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BezierCurve;
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    abstract class CaseValue extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    class BooleanCase extends CaseValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        get value(): boolean;
+        set value(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BooleanCase instance in the SDK and on the server.
+         * The new BooleanCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container: FlowLine): BooleanCase;
+        /**
+         * Creates and returns a new BooleanCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BooleanCase;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
@@ -360,6 +440,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         /**
          * In version 10.21.0: introduced
          */
@@ -377,6 +458,16 @@ export declare namespace workflows {
          */
         get annotation(): Annotation | null;
         set annotation(newValue: Annotation | null);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get relativeMiddlePoint(): common.IPoint;
+        set relativeMiddlePoint(newValue: common.IPoint);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get size(): common.ISize;
+        set size(newValue: common.ISize);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         get qualifiedName(): string | null;
     }
@@ -400,6 +491,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get outcomes(): internal.IList<ConditionOutcome>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
@@ -432,6 +524,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get microflow(): microflows.IMicroflow | null;
         set microflow(newValue: microflows.IMicroflow | null);
         get microflowQualifiedName(): string | null;
@@ -447,9 +540,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container: Flow): CallMicroflowTask;
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * The new CallMicroflowTask will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): CallMicroflowTask;
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * The new CallMicroflowTask will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): CallMicroflowTask;
         /**
          * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -482,6 +593,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get workflow(): IWorkflow | null;
         set workflow(newValue: IWorkflow | null);
         get workflowQualifiedName(): string | null;
@@ -513,9 +625,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container: Flow): CallWorkflowActivity;
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * The new CallWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): CallWorkflowActivity;
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * The new CallWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): CallWorkflowActivity;
         /**
          * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -570,6 +700,7 @@ export declare namespace workflows {
         static create(model: IModel): ConsensusCompletionCriteria;
     }
     /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -581,6 +712,7 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
+     * In version 11.2.0: deleted
      * In version 9.10.0: introduced
      */
     class EmptyUserSource extends UserSource {
@@ -604,7 +736,7 @@ export declare namespace workflows {
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): EmptyUserSource;
         /**
@@ -631,7 +763,17 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 to 11.0.0
+         */
+        static createIn(container: Flow): EndOfBoundaryEventPathActivity;
         /**
          * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
          * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
@@ -640,7 +782,16 @@ export declare namespace workflows {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.14.0 and higher
          */
-        static createIn(container: Flow): EndOfBoundaryEventPathActivity;
+        static createInFlowUnderActivities(container: Flow): EndOfBoundaryEventPathActivity;
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): EndOfBoundaryEventPathActivity;
         /**
          * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -665,7 +816,17 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 to 11.0.0
+         */
+        static createIn(container: Flow): EndOfParallelSplitPathActivity;
         /**
          * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
          * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
@@ -674,7 +835,16 @@ export declare namespace workflows {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.21.0 and higher
          */
-        static createIn(container: Flow): EndOfParallelSplitPathActivity;
+        static createInFlowUnderActivities(container: Flow): EndOfParallelSplitPathActivity;
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): EndOfParallelSplitPathActivity;
         /**
          * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -701,7 +871,17 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
+         * The new EndWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 to 11.0.0
+         */
+        static createIn(container: Flow): EndWorkflowActivity;
         /**
          * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
          * The new EndWorkflowActivity will be automatically stored in the 'activities' property
@@ -710,7 +890,16 @@ export declare namespace workflows {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  9.0.2 and higher
          */
-        static createIn(container: Flow): EndWorkflowActivity;
+        static createInFlowUnderActivities(container: Flow): EndWorkflowActivity;
+        /**
+         * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
+         * The new EndWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): EndWorkflowActivity;
         /**
          * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -782,6 +971,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -794,15 +984,63 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container: Flow): ExclusiveSplitActivity;
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * The new ExclusiveSplitActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): ExclusiveSplitActivity;
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * The new ExclusiveSplitActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): ExclusiveSplitActivity;
         /**
          * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ExclusiveSplitActivity;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    class FloatingAnnotation extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        get description(): string;
+        set description(newValue: string);
+        get relativeMiddlePoint(): common.IPoint;
+        set relativeMiddlePoint(newValue: common.IPoint);
+        get size(): common.ISize;
+        set size(newValue: common.ISize);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new FloatingAnnotation instance in the SDK and on the server.
+         * The new FloatingAnnotation will be automatically stored in the 'annotation' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: WorkflowMetaData): FloatingAnnotation;
+        /**
+         * Creates and returns a new FloatingAnnotation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): FloatingAnnotation;
     }
     /**
      * In version 9.0.5: removed experimental
@@ -863,6 +1101,48 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): Flow;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    class FlowLine extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        get origin(): WorkflowActivity;
+        set origin(newValue: WorkflowActivity);
+        get destination(): WorkflowActivity;
+        set destination(newValue: WorkflowActivity);
+        get line(): Line;
+        set line(newValue: Line);
+        get originConnectionSide(): ConnectionSide;
+        set originConnectionSide(newValue: ConnectionSide);
+        get originalConnectionFactor(): number;
+        set originalConnectionFactor(newValue: number);
+        get destinationConnectionSide(): ConnectionSide;
+        set destinationConnectionSide(newValue: ConnectionSide);
+        get destinationConnectionFactor(): number;
+        set destinationConnectionFactor(newValue: number);
+        /**
+         * In version 11.5.0: introduced
+         */
+        get caseValues(): internal.IList<CaseValue>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new FlowLine instance in the SDK and on the server.
+         * The new FlowLine will be automatically stored in the 'flowLines' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: WorkflowMetaData): FlowLine;
+        /**
+         * Creates and returns a new FlowLine instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): FlowLine;
     }
     /**
      * In version 10.20.0: introduced
@@ -957,6 +1237,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get targetActivity(): WorkflowActivity | null;
         set targetActivity(newValue: WorkflowActivity | null);
         get targetActivityLocalName(): string | null;
@@ -967,9 +1248,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 11.0.0
          */
         static createIn(container: Flow): JumpToActivity;
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * The new JumpToActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.5 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): JumpToActivity;
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * The new JumpToActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): JumpToActivity;
         /**
          * Creates and returns a new JumpToActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1078,6 +1377,50 @@ export declare namespace workflows {
         static create(model: IModel): MajorityCompletionCriteria;
     }
     /**
+     * In version 11.5.0: introduced
+     */
+    interface IMergeActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): MergeActivity;
+        load(callback: (element: MergeActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MergeActivity>;
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    class MergeActivity extends WorkflowActivity implements IMergeActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * The new MergeActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): MergeActivity;
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * The new MergeActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): MergeActivity;
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MergeActivity;
+    }
+    /**
      * In version 9.0.5: introduced
      */
     abstract class UserTaskEvent extends internal.Element<IModel> {
@@ -1125,6 +1468,28 @@ export declare namespace workflows {
         static create(model: IModel): MicroflowBasedEvent;
     }
     /**
+     * In version 11.2.0: introduced
+     */
+    abstract class UserTargeting extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    abstract class MicroflowBasedTargeting extends UserTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1152,7 +1517,7 @@ export declare namespace workflows {
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): MicroflowBasedUserSource;
         /**
@@ -1298,6 +1663,54 @@ export declare namespace workflows {
         static create(model: IModel): MicroflowEventHandler;
     }
     /**
+     * In version 11.2.0: introduced
+     */
+    class MicroflowGroupTargeting extends MicroflowBasedTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowGroupTargeting instance in the SDK and on the server.
+         * The new MicroflowGroupTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: UserTaskActivity): MicroflowGroupTargeting;
+        /**
+         * Creates and returns a new MicroflowGroupTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowGroupTargeting;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class MicroflowUserTargeting extends MicroflowBasedTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowUserTargeting instance in the SDK and on the server.
+         * The new MicroflowUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: UserTaskActivity): MicroflowUserTargeting;
+        /**
+         * Creates and returns a new MicroflowUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): MicroflowUserTargeting;
+    }
+    /**
      * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
@@ -1367,6 +1780,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get taskPage(): PageReference;
         set taskPage(newValue: PageReference);
         get taskName(): microflows.StringTemplate;
@@ -1378,8 +1792,16 @@ export declare namespace workflows {
          */
         get dueDate(): string;
         set dueDate(newValue: string);
+        /**
+         * In version 11.2.0: deleted
+         */
         get userSource(): UserSource;
         set userSource(newValue: UserSource);
+        /**
+         * In version 11.2.0: introduced
+         */
+        get userTargeting(): UserTargeting;
+        set userTargeting(newValue: UserTargeting);
         get outcomes(): internal.IList<UserTaskOutcome>;
         /**
          * In version 10.14.0: introduced
@@ -1408,6 +1830,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get targetUserInput(): TargetUserInput;
         set targetUserInput(newValue: TargetUserInput);
         get completionCriteria(): UserTaskCompletionCriteria;
@@ -1421,9 +1844,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.0.0
          */
         static createIn(container: Flow): MultiUserTaskActivity;
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): MultiUserTaskActivity;
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): MultiUserTaskActivity;
         /**
          * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1464,6 +1905,30 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NoEvent;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class NoUserTargeting extends UserTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NoUserTargeting instance in the SDK and on the server.
+         * The new NoUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: UserTaskActivity): NoUserTargeting;
+        /**
+         * Creates and returns a new NoUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NoUserTargeting;
     }
     /**
      * In version 10.20.0: introduced
@@ -1539,6 +2004,31 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NonInterruptingTimerBoundaryEvent;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    class OrthogonalPath extends Line {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        get segmentPositions(): internal.IList<number>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * The new OrthogonalPath will be automatically stored in the 'line' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: FlowLine): OrthogonalPath;
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OrthogonalPath;
     }
     /**
      * In version 9.11.0: introduced
@@ -1655,6 +2145,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         get outcomes(): internal.IList<ParallelSplitOutcome>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -1663,9 +2154,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container: Flow): ParallelSplitActivity;
+        /**
+         * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
+         * The new ParallelSplitActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): ParallelSplitActivity;
+        /**
+         * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
+         * The new ParallelSplitActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): ParallelSplitActivity;
         /**
          * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1851,7 +2360,17 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 to 11.0.0
+         */
+        static createIn(container: Flow): SingleUserTaskActivity;
         /**
          * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
          * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
@@ -1860,13 +2379,92 @@ export declare namespace workflows {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.12.0 and higher
          */
-        static createIn(container: Flow): SingleUserTaskActivity;
+        static createInFlowUnderActivities(container: Flow): SingleUserTaskActivity;
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): SingleUserTaskActivity;
         /**
          * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): SingleUserTaskActivity;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    interface IStartWorkflowActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): StartWorkflowActivity;
+        load(callback: (element: StartWorkflowActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<StartWorkflowActivity>;
+    }
+    /**
+     * In version 11.1.0: introduced
+     */
+    class StartWorkflowActivity extends WorkflowActivity implements IStartWorkflowActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * The new StartWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): StartWorkflowActivity;
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * The new StartWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): StartWorkflowActivity;
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): StartWorkflowActivity;
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    class StringCase extends CaseValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new StringCase instance in the SDK and on the server.
+         * The new StringCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container: FlowLine): StringCase;
+        /**
+         * Creates and returns a new StringCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): StringCase;
     }
     /**
      * In version 10.0.0: introduced
@@ -2083,15 +2681,6 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
-         * The new UserTask will be automatically stored in the 'activities' property
-         * of the parent Flow element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 to 10.11.0
-         */
-        static createIn(container: Flow): UserTask;
-        /**
-         * Creates and returns a new UserTask instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -2209,6 +2798,30 @@ export declare namespace workflows {
         static create(model: IModel): VetoCompletionCriteria;
     }
     /**
+     * In version 11.5.0: introduced
+     */
+    class VoidCase extends CaseValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlowLine(): FlowLine;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new VoidCase instance in the SDK and on the server.
+         * The new VoidCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container: FlowLine): VoidCase;
+        /**
+         * Creates and returns a new VoidCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): VoidCase;
+    }
+    /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -2269,6 +2882,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         /**
          * In version 10.14.0: introduced
          */
@@ -2280,9 +2894,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 11.0.0
          */
         static createIn(container: Flow): WaitForNotificationActivity;
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): WaitForNotificationActivity;
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): WaitForNotificationActivity;
         /**
          * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2311,6 +2943,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -2323,9 +2956,27 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.6.0 and higher
+         *  10.6.0 to 11.0.0
          */
         static createIn(container: Flow): WaitForTimerActivity;
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * The new WaitForTimerActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.6.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): WaitForTimerActivity;
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * The new WaitForTimerActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): WaitForTimerActivity;
         /**
          * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -2474,6 +3125,16 @@ export declare namespace workflows {
          */
         get annotation(): Annotation | null;
         set annotation(newValue: Annotation | null);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get workflowMetaData(): WorkflowMetaData | null;
+        set workflowMetaData(newValue: WorkflowMetaData | null);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get workflowV2(): boolean;
+        set workflowV2(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Workflow unit in the SDK and on the server.
@@ -2629,6 +3290,33 @@ export declare namespace workflows {
         static create(model: IModel): WorkflowEventHandler;
     }
     /**
+     * In version 11.1.0: introduced
+     */
+    class WorkflowMetaData extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        get detachedActivities(): internal.IList<WorkflowActivity>;
+        get flowLines(): internal.IList<FlowLine>;
+        get annotation(): internal.IList<FloatingAnnotation>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowMetaData instance in the SDK and on the server.
+         * The new WorkflowMetaData will be automatically stored in the 'workflowMetaData' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container: Workflow): WorkflowMetaData;
+        /**
+         * Creates and returns a new WorkflowMetaData instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowMetaData;
+    }
+    /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced
      */
@@ -2670,6 +3358,21 @@ export declare namespace workflows {
         static create(model: IModel): WorkflowType;
     }
     /**
+     * In version 11.2.0: introduced
+     */
+    abstract class XPathBasedTargeting extends UserTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        /**
+         * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
+         */
+        get xPathConstraint(): string;
+        set xPathConstraint(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -2699,7 +3402,7 @@ export declare namespace workflows {
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container: UserTaskActivity): XPathBasedUserSource;
         /**
@@ -2708,6 +3411,54 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): XPathBasedUserSource;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class XPathGroupTargeting extends XPathBasedTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new XPathGroupTargeting instance in the SDK and on the server.
+         * The new XPathGroupTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: UserTaskActivity): XPathGroupTargeting;
+        /**
+         * Creates and returns a new XPathGroupTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): XPathGroupTargeting;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class XPathUserTargeting extends XPathBasedTargeting {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new XPathUserTargeting instance in the SDK and on the server.
+         * The new XPathUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: UserTaskActivity): XPathUserTargeting;
+        /**
+         * Creates and returns a new XPathUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): XPathUserTargeting;
     }
 }
 import { domainmodels } from "./domainmodels";

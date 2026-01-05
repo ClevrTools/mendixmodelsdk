@@ -633,6 +633,11 @@ export declare namespace settings {
          */
         get sslCertificateAlgorithm(): SslCertificateAlgorithm;
         set sslCertificateAlgorithm(newValue: SslCertificateAlgorithm);
+        /**
+         * In version 11.4.0: introduced
+         */
+        get decimalScale(): number;
+        set decimalScale(newValue: number);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new RuntimeSettings instance in the SDK and on the server.
@@ -793,6 +798,11 @@ export declare namespace settings {
          */
         get enableNewWidgetGeneration(): boolean;
         set enableNewWidgetGeneration(newValue: boolean);
+        /**
+         * In version 11.6.0: introduced
+         */
+        get enableNewStringBehavior(): boolean;
+        set enableNewStringBehavior(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.
@@ -806,6 +816,25 @@ export declare namespace settings {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): WebUIProjectSettingsPart;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class WorkflowGroup extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflowsProjectSettingsPart(): WorkflowsProjectSettingsPart;
+        get name(): string;
+        set name(newValue: string);
+        get description(): string;
+        set description(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new WorkflowGroup instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): WorkflowGroup;
     }
     /**
      * In version 9.0.5: removed experimental
@@ -826,6 +855,10 @@ export declare namespace settings {
         get userEntity(): domainmodels.IEntity | null;
         set userEntity(newValue: domainmodels.IEntity | null);
         get userEntityQualifiedName(): string | null;
+        /**
+         * In version 11.2.0: introduced
+         */
+        get groups(): internal.IList<WorkflowGroup> | null;
         /**
          * In version 9.0.5: introduced
          */

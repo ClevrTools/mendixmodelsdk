@@ -94,6 +94,16 @@ var pages;
     AutocompletePurposeType.Email = new AutocompletePurposeType("Email", {});
     AutocompletePurposeType.InstantMessageProtocol = new AutocompletePurposeType("InstantMessageProtocol", {});
     pages.AutocompletePurposeType = AutocompletePurposeType;
+    class Autofocus extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "pages.Autofocus";
+        }
+    }
+    Autofocus.Off = new Autofocus("Off", {});
+    Autofocus.DesktopOnly = new Autofocus("DesktopOnly", {});
+    Autofocus.AllPlatforms = new Autofocus("AllPlatforms", {});
+    pages.Autofocus = Autofocus;
     class ButtonAriaRoleType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -4352,6 +4362,8 @@ var pages;
             this.__progressMessage = new internal.PartProperty(CallNanoflowClientAction, this, "progressMessage", null, false);
             /** @internal */
             this.__confirmationInfo = new internal.PartProperty(CallNanoflowClientAction, this, "confirmationInfo", null, false);
+            /** @internal */
+            this.__outputMappings = new internal.PartListProperty(CallNanoflowClientAction, this, "outputMappings", []);
             if (arguments.length < 4) {
                 throw new Error("new CallNanoflowClientAction() cannot be invoked directly, please use 'model.pages.createCallNanoflowClientAction()'");
             }
@@ -4436,6 +4448,12 @@ var pages;
         }
         set confirmationInfo(newValue) {
             this.__confirmationInfo.set(newValue);
+        }
+        /**
+         * In version 11.5.0: introduced
+         */
+        get outputMappings() {
+            return this.__outputMappings.get();
         }
         /**
          * Creates and returns a new CallNanoflowClientAction instance in the SDK and on the server.
@@ -4676,6 +4694,9 @@ var pages;
             },
             parameterMappings: {
                 introduced: "7.19.0"
+            },
+            outputMappings: {
+                introduced: "11.5.0"
             }
         },
         experimental: {
@@ -31744,6 +31765,8 @@ var pages;
             this.__formValidations = new internal.EnumProperty(MicroflowSettings, this, "formValidations", FormValidations.All, FormValidations);
             /** @internal */
             this.__confirmationInfo = new internal.PartProperty(MicroflowSettings, this, "confirmationInfo", null, false);
+            /** @internal */
+            this.__outputMappings = new internal.PartListProperty(MicroflowSettings, this, "outputMappings", []);
             if (arguments.length < 4) {
                 throw new Error("new MicroflowSettings() cannot be invoked directly, please use 'model.pages.createMicroflowSettings()'");
             }
@@ -31822,6 +31845,12 @@ var pages;
         }
         set confirmationInfo(newValue) {
             this.__confirmationInfo.set(newValue);
+        }
+        /**
+         * In version 11.5.0: introduced
+         */
+        get outputMappings() {
+            return this.__outputMappings.get();
         }
         /**
          * Creates and returns a new MicroflowSettings instance in the SDK and on the server.
@@ -31943,6 +31972,9 @@ var pages;
             useAllPages: {
                 deleted: "7.19.0",
                 deletionMessage: "Use parameterMappings instead"
+            },
+            outputMappings: {
+                introduced: "11.5.0"
             }
         }
     }, internal.StructureType.Element);
@@ -36310,6 +36342,145 @@ var pages;
     }, internal.StructureType.Element);
     pages.OptionDesignPropertyValue = OptionDesignPropertyValue;
     /**
+     * In version 11.5.0: introduced
+     */
+    class OutputMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__sourceVariable = new internal.PartProperty(OutputMapping, this, "sourceVariable", null, false);
+            /** @internal */
+            this.__expression = new internal.PrimitiveProperty(OutputMapping, this, "expression", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__attributeRef = new internal.PartProperty(OutputMapping, this, "attributeRef", null, false);
+            /** @internal */
+            this.__sourceAttributeRef = new internal.PartProperty(OutputMapping, this, "sourceAttributeRef", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new OutputMapping() cannot be invoked directly, please use 'model.pages.createOutputMapping()'");
+            }
+        }
+        get containerAsCallNanoflowClientAction() {
+            return super.getContainerAs(CallNanoflowClientAction);
+        }
+        get containerAsMicroflowSettings() {
+            return super.getContainerAs(MicroflowSettings);
+        }
+        get sourceVariable() {
+            return this.__sourceVariable.get();
+        }
+        set sourceVariable(newValue) {
+            this.__sourceVariable.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get expression() {
+            return this.__expression.get();
+        }
+        set expression(newValue) {
+            this.__expression.set(newValue);
+        }
+        get attributeRef() {
+            return this.__attributeRef.get();
+        }
+        set attributeRef(newValue) {
+            this.__attributeRef.set(newValue);
+        }
+        get sourceAttributeRef() {
+            return this.__sourceAttributeRef.get();
+        }
+        set sourceAttributeRef(newValue) {
+            this.__sourceAttributeRef.set(newValue);
+        }
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * The new OutputMapping will be automatically stored in the 'outputMappings' property
+         * of the parent CallNanoflowClientAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInCallNanoflowClientActionUnderOutputMappings(container) {
+            internal.createInVersionCheck(container.model, OutputMapping.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, OutputMapping, "outputMappings", true);
+        }
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * The new OutputMapping will be automatically stored in the 'outputMappings' property
+         * of the parent MicroflowSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInMicroflowSettingsUnderOutputMappings(container) {
+            internal.createInVersionCheck(container.model, OutputMapping.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, OutputMapping, "outputMappings", true);
+        }
+        /**
+         * Creates and returns a new OutputMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OutputMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OutputMapping.structureTypeName = "Pages$OutputMapping";
+    OutputMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    pages.OutputMapping = OutputMapping;
+    /**
+     * In version 11.4.0: introduced
+     */
+    class OverviewPageTemplateType extends TemplateType {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new OverviewPageTemplateType() cannot be invoked directly, please use 'model.pages.createOverviewPageTemplateType()'");
+            }
+        }
+        get containerAsPageTemplate() {
+            return super.getContainerAs(PageTemplate);
+        }
+        /**
+         * Creates and returns a new OverviewPageTemplateType instance in the SDK and on the server.
+         * The new OverviewPageTemplateType will be automatically stored in the 'templateType' property
+         * of the parent PageTemplate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.4.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OverviewPageTemplateType.structureTypeName, { start: "11.4.0" });
+            return internal.instancehelpers.createElement(container, OverviewPageTemplateType, "templateType", false);
+        }
+        /**
+         * Creates and returns a new OverviewPageTemplateType instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OverviewPageTemplateType);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OverviewPageTemplateType.structureTypeName = "Pages$OverviewPageTemplateType";
+    OverviewPageTemplateType.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.4.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    pages.OverviewPageTemplateType = OverviewPageTemplateType;
+    /**
      * See: {@link https://docs.mendix.com/refguide/page relevant section in reference guide}
      */
     class Page extends FormBase {
@@ -36341,6 +36512,8 @@ var pages;
             this.__markAsUsed = new internal.PrimitiveProperty(Page, this, "markAsUsed", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__url = new internal.PrimitiveProperty(Page, this, "url", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__autofocus = new internal.EnumProperty(Page, this, "autofocus", Autofocus.Off, Autofocus);
             /** @internal */
             this.__variables = new internal.PartListProperty(Page, this, "variables", []);
             this._containmentName = "documents";
@@ -36448,6 +36621,15 @@ var pages;
             this.__url.set(newValue);
         }
         /**
+         * In version 11.1.0: introduced
+         */
+        get autofocus() {
+            return this.__autofocus.get();
+        }
+        set autofocus(newValue) {
+            this.__autofocus.set(newValue);
+        }
+        /**
          * In version 10.17.0: introduced
          */
         get variables() {
@@ -36469,6 +36651,9 @@ var pages;
             super._initializeDefaultProperties();
             if (this.__appearance.isAvailable) {
                 this.appearance = Appearance.create(this.model);
+            }
+            if (this.__autofocus.isAvailable) {
+                this.autofocus = Autofocus.Off;
             }
             this.layoutCall = LayoutCall.create(this.model);
             this.popupResizable = true;
@@ -36538,6 +36723,9 @@ var pages;
             },
             url: {
                 introduced: "6.7.0"
+            },
+            autofocus: {
+                introduced: "11.1.0"
             },
             variables: {
                 introduced: "10.17.0"
@@ -36977,6 +37165,10 @@ var pages;
             this.__name = new internal.PrimitiveProperty(PageParameter, this, "name", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__parameterType = new internal.PartProperty(PageParameter, this, "parameterType", null, true);
+            /** @internal */
+            this.__isRequired = new internal.PrimitiveProperty(PageParameter, this, "isRequired", true, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__defaultValue = new internal.PrimitiveProperty(PageParameter, this, "defaultValue", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PageParameter() cannot be invoked directly, please use 'model.pages.createPageParameter()'");
             }
@@ -36995,6 +37187,26 @@ var pages;
         }
         set parameterType(newValue) {
             this.__parameterType.set(newValue);
+        }
+        /**
+         * In version 11.5.0: introduced
+         */
+        get isRequired() {
+            return this.__isRequired.get();
+        }
+        set isRequired(newValue) {
+            this.__isRequired.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.5.0: introduced
+         */
+        get defaultValue() {
+            return this.__defaultValue.get();
+        }
+        set defaultValue(newValue) {
+            this.__defaultValue.set(newValue);
         }
         /**
          * Creates and returns a new PageParameter instance in the SDK and on the server.
@@ -37026,6 +37238,9 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__isRequired.isAvailable) {
+                this.isRequired = true;
+            }
             this.parameterType = datatypes_1.datatypes.UnknownType.create(this.model);
         }
     }
@@ -37045,6 +37260,12 @@ var pages;
                 required: {
                     currentValue: true
                 }
+            },
+            isRequired: {
+                introduced: "11.5.0"
+            },
+            defaultValue: {
+                introduced: "11.5.0"
             }
         },
         public: {
@@ -37061,7 +37282,7 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(PageParameterMapping, this, "parameter", null, "Pages$PageParameter");
             /** @internal */
-            this.__variable = new internal.PartProperty(PageParameterMapping, this, "variable", null, true);
+            this.__variable = new internal.PartProperty(PageParameterMapping, this, "variable", null, false);
             /** @internal */
             this.__argument = new internal.PrimitiveProperty(PageParameterMapping, this, "argument", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -37080,6 +37301,9 @@ var pages;
         get parameterQualifiedName() {
             return this.__parameter.qualifiedName();
         }
+        /**
+         * In version 11.1.0: added optional
+         */
         get variable() {
             return this.__variable.get();
         }
@@ -37118,7 +37342,12 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.variable = PageVariable.create(this.model);
+            (() => {
+                if (internal.isAtLeast("11.1.0", this.model)) {
+                    return;
+                }
+                this.variable = PageVariable.create(this.model);
+            })();
         }
     }
     PageParameterMapping.structureTypeName = "Pages$PageParameterMapping";
@@ -37132,7 +37361,8 @@ var pages;
             },
             variable: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["11.1.0"]
                 }
             }
         }
@@ -37571,6 +37801,9 @@ var pages;
         get containerAsNanoflowParameterMapping() {
             return super.getContainerAs(NanoflowParameterMapping);
         }
+        get containerAsOutputMapping() {
+            return super.getContainerAs(OutputMapping);
+        }
         get containerAsPageParameterMapping() {
             return super.getContainerAs(PageParameterMapping);
         }
@@ -37747,6 +37980,18 @@ var pages;
         static createInNanoflowParameterMappingUnderVariable(container) {
             internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "8.4.0" });
             return internal.instancehelpers.createElement(container, PageVariable, "variable", false);
+        }
+        /**
+         * Creates and returns a new PageVariable instance in the SDK and on the server.
+         * The new PageVariable will be automatically stored in the 'sourceVariable' property
+         * of the parent OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderSourceVariable(container) {
+            internal.createInVersionCheck(container.model, PageVariable.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, PageVariable, "sourceVariable", false);
         }
         /**
          * Creates and returns a new PageVariable instance in the SDK and on the server.

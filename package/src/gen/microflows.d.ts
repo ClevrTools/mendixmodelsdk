@@ -103,6 +103,11 @@ export declare namespace microflows {
         static LeaveOutElement: NullValueOption;
         protected qualifiedTsTypeName: string;
     }
+    class ProtocolType extends internal.AbstractEnum {
+        static Unknown: ProtocolType;
+        static SMTP: ProtocolType;
+        protected qualifiedTsTypeName: string;
+    }
     class RequestHandlingType extends internal.AbstractEnum {
         static Mapping: RequestHandlingType;
         static Simple: RequestHandlingType;
@@ -124,6 +129,12 @@ export declare namespace microflows {
         static HttpResponse: ResultHandlingType;
         static FileDocument: ResultHandlingType;
         static None: ResultHandlingType;
+        protected qualifiedTsTypeName: string;
+    }
+    class SecurityType extends internal.AbstractEnum {
+        static None: SecurityType;
+        static SSL: SecurityType;
+        static TLS: SecurityType;
         protected qualifiedTsTypeName: string;
     }
     class ShowMessageType extends internal.AbstractEnum {
@@ -250,6 +261,50 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ActionActivity;
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    class AdditionalAttribute extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsExternalActionParameterMapping(): ExternalActionParameterMapping;
+        get name(): string;
+        set name(newValue: string);
+        get type(): datatypes.DataType;
+        set type(newValue: datatypes.DataType);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value(): string;
+        set value(newValue: string);
+        /**
+         * In version 11.6.0: introduced
+         */
+        get attribute(): domainmodels.IAttribute | null;
+        set attribute(newValue: domainmodels.IAttribute | null);
+        get attributeQualifiedName(): string | null;
+        /**
+         * In version 11.6.0: introduced
+         */
+        get attributeDataType(): datatypes.DataType;
+        set attributeDataType(newValue: datatypes.DataType);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AdditionalAttribute instance in the SDK and on the server.
+         * The new AdditionalAttribute will be automatically stored in the 'additionalAttributes' property
+         * of the parent ExternalActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container: ExternalActionParameterMapping): AdditionalAttribute;
+        /**
+         * Creates and returns a new AdditionalAttribute instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AdditionalAttribute;
     }
     abstract class RequestHandling extends internal.Element<IModel> {
         static structureTypeName: string;
@@ -571,6 +626,78 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): AssociationRetrieveSource;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    abstract class AuthenticationConfig extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSendEmailAction(): SendEmailAction;
+        get optForAuthDocument(): boolean;
+        set optForAuthDocument(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.5.0: introduced
+     */
+    class AuthenticationDocumentConfig extends AuthenticationConfig {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSendEmailAction(): SendEmailAction;
+        get authenticationDocument(): authentication.IAuthentication | null;
+        set authenticationDocument(newValue: authentication.IAuthentication | null);
+        get authenticationDocumentQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AuthenticationDocumentConfig instance in the SDK and on the server.
+         * The new AuthenticationDocumentConfig will be automatically stored in the 'emailAuthenticationConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container: SendEmailAction): AuthenticationDocumentConfig;
+        /**
+         * Creates and returns a new AuthenticationDocumentConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AuthenticationDocumentConfig;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class BasicAuthConfig extends AuthenticationConfig {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSendEmailAction(): SendEmailAction;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get username(): string;
+        set username(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get password(): string;
+        set password(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new BasicAuthConfig instance in the SDK and on the server.
+         * The new BasicAuthConfig will be automatically stored in the 'emailAuthenticationConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: SendEmailAction): BasicAuthConfig;
+        /**
+         * Creates and returns a new BasicAuthConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): BasicAuthConfig;
     }
     /**
      * In version 7.21.0: introduced
@@ -1392,6 +1519,43 @@ export declare namespace microflows {
          */
         static create(model: IModel): CreateVariableAction;
     }
+    /**
+     * In version 11.6.0: introduced
+     */
+    class CustomBlobDocumentCodeActionParameterValue extends CodeActionParameterValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsJavaActionParameterMapping(): JavaActionParameterMapping;
+        get containerAsJavaScriptActionParameterMapping(): JavaScriptActionParameterMapping;
+        get customDocument(): customblobdocuments.ICustomBlobDocument | null;
+        set customDocument(newValue: customblobdocuments.ICustomBlobDocument | null);
+        get customDocumentQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * The new CustomBlobDocumentCodeActionParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInJavaActionParameterMappingUnderParameterValue(container: JavaActionParameterMapping): CustomBlobDocumentCodeActionParameterValue;
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * The new CustomBlobDocumentCodeActionParameterValue will be automatically stored in the 'parameterValue' property
+         * of the parent JavaScriptActionParameterMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInJavaScriptActionParameterMappingUnderParameterValue(container: JavaScriptActionParameterMapping): CustomBlobDocumentCodeActionParameterValue;
+        /**
+         * Creates and returns a new CustomBlobDocumentCodeActionParameterValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CustomBlobDocumentCodeActionParameterValue;
+    }
     class CustomRange extends Range {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -1637,6 +1801,117 @@ export declare namespace microflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): DownloadFileAction;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class EmailConnectionConfig extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSendEmailAction(): SendEmailAction;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get emailId(): string;
+        set emailId(newValue: string);
+        get protocol(): ProtocolType;
+        set protocol(newValue: ProtocolType);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get host(): string;
+        set host(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get port(): string;
+        set port(newValue: string);
+        get securityType(): SecurityType;
+        set securityType(newValue: SecurityType);
+        get checkServerIdentity(): boolean;
+        set checkServerIdentity(newValue: boolean);
+        get connectionTimeout(): number;
+        set connectionTimeout(newValue: number);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmailConnectionConfig instance in the SDK and on the server.
+         * The new EmailConnectionConfig will be automatically stored in the 'emailConnectionConfig' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: SendEmailAction): EmailConnectionConfig;
+        /**
+         * Creates and returns a new EmailConnectionConfig instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EmailConnectionConfig;
+    }
+    /**
+     * In version 11.2.0: introduced
+     */
+    class EmailMessage extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsSendEmailAction(): SendEmailAction;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get to(): string;
+        set to(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get cc(): string;
+        set cc(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get bcc(): string;
+        set bcc(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get subject(): string;
+        set subject(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get messageBodyPlainText(): string;
+        set messageBodyPlainText(newValue: string);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get messageBodyHtml(): string;
+        set messageBodyHtml(newValue: string);
+        /**
+         * In version 11.3.0: deleted
+         */
+        get attachments(): internal.IList<domainmodels.IEntity> | null;
+        get attachmentsQualifiedNames(): string[];
+        /**
+         * In version 11.3.0: introduced
+         */
+        get attachment(): string;
+        set attachment(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'emailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: SendEmailAction): EmailMessage;
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EmailMessage;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/end-event relevant section in reference guide}
@@ -2034,6 +2309,10 @@ export declare namespace microflows {
          * In version 10.11.0: introduced
          */
         get includedAssociations(): internal.IList<IncludedAssociation>;
+        /**
+         * In version 11.5.0: introduced
+         */
+        get additionalAttributes(): internal.IList<AdditionalAttribute>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExternalActionParameterMapping instance in the SDK and on the server.
@@ -5239,6 +5518,38 @@ export declare namespace microflows {
         static create(model: IModel): RuleSplitCondition;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/sendemail-action relevant section in reference guide}
+     *
+     * In version 11.2.0: introduced
+     */
+    class SendEmailAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        get emailAuthenticationConfig(): AuthenticationConfig | null;
+        set emailAuthenticationConfig(newValue: AuthenticationConfig | null);
+        get emailConnectionConfig(): EmailConnectionConfig;
+        set emailConnectionConfig(newValue: EmailConnectionConfig);
+        get emailMessage(): EmailMessage;
+        set emailMessage(newValue: EmailMessage);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new SendEmailAction instance in the SDK and on the server.
+         * The new SendEmailAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container: ActionActivity): SendEmailAction;
+        /**
+         * Creates and returns a new SendEmailAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): SendEmailAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/send-external-object relevant section in reference guide}
      *
      * In version 9.6.0: introduced
@@ -5883,6 +6194,48 @@ export declare namespace microflows {
         static create(model: IModel): TextTemplate;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/data-transformer/#transform-json-action relevant section in reference guide}
+     *
+     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
+     *
+     * @ignore
+     *
+     * In version 11.4.0: introduced
+     */
+    class TransformJsonAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         */
+        get transformation(): datatransformers.IDataTransformer;
+        set transformation(newValue: datatransformers.IDataTransformer);
+        get transformationQualifiedName(): string;
+        get inputVariableName(): string;
+        set inputVariableName(newValue: string);
+        get outputVariableName(): string;
+        set outputVariableName(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new TransformJsonAction instance in the SDK and on the server.
+         * The new TransformJsonAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.4.0 and higher
+         */
+        static createIn(container: ActionActivity): TransformJsonAction;
+        /**
+         * Creates and returns a new TransformJsonAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): TransformJsonAction;
+    }
+    /**
      * In version 8.6.0: introduced
      */
     class TypedTemplate extends internal.Element<IModel> {
@@ -6299,7 +6652,10 @@ export declare namespace microflows {
     }
 }
 import { appservices } from "./appservices";
+import { authentication } from "./authentication";
 import { codeactions } from "./codeactions";
+import { customblobdocuments } from "./customblobdocuments";
+import { datatransformers } from "./datatransformers";
 import { datatypes } from "./datatypes";
 import { documenttemplates } from "./documenttemplates";
 import { domainmodels } from "./domainmodels";

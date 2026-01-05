@@ -17,6 +17,17 @@ var workflows;
     CompletionType.Relative = new CompletionType("Relative", {});
     CompletionType.Absolute = new CompletionType("Absolute", {});
     workflows.CompletionType = CompletionType;
+    class ConnectionSide extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "workflows.ConnectionSide";
+        }
+    }
+    ConnectionSide.Top = new ConnectionSide("Top", {});
+    ConnectionSide.Bottom = new ConnectionSide("Bottom", {});
+    ConnectionSide.Left = new ConnectionSide("Left", {});
+    ConnectionSide.Right = new ConnectionSide("Right", {});
+    workflows.ConnectionSide = ConnectionSide;
     class WorkflowEventType extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -303,6 +314,162 @@ var workflows;
         introduced: "9.15.0"
     }, internal.StructureType.Element);
     workflows.Annotation = Annotation;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class Line extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new Line() cannot be invoked directly, please use 'model.workflows.createLine()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    Line.structureTypeName = "Workflows$Line";
+    Line.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    workflows.Line = Line;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class BezierCurve extends Line {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__originControlVector = new internal.PrimitiveProperty(BezierCurve, this, "originControlVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            /** @internal */
+            this.__destinationControlVector = new internal.PrimitiveProperty(BezierCurve, this, "destinationControlVector", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            if (arguments.length < 4) {
+                throw new Error("new BezierCurve() cannot be invoked directly, please use 'model.workflows.createBezierCurve()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        get originControlVector() {
+            return this.__originControlVector.get();
+        }
+        set originControlVector(newValue) {
+            this.__originControlVector.set(newValue);
+        }
+        get destinationControlVector() {
+            return this.__destinationControlVector.get();
+        }
+        set destinationControlVector(newValue) {
+            this.__destinationControlVector.set(newValue);
+        }
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * The new BezierCurve will be automatically stored in the 'line' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BezierCurve.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, BezierCurve, "line", false);
+        }
+        /**
+         * Creates and returns a new BezierCurve instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BezierCurve);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    BezierCurve.structureTypeName = "Workflows$BezierCurve";
+    BezierCurve.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    workflows.BezierCurve = BezierCurve;
+    /**
+     * In version 11.5.0: introduced
+     */
+    class CaseValue extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CaseValue() cannot be invoked directly, please use 'model.workflows.createCaseValue()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CaseValue.structureTypeName = "Workflows$CaseValue";
+    CaseValue.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    workflows.CaseValue = CaseValue;
+    /**
+     * In version 11.5.0: introduced
+     */
+    class BooleanCase extends CaseValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(BooleanCase, this, "value", false, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new BooleanCase() cannot be invoked directly, please use 'model.workflows.createBooleanCase()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new BooleanCase instance in the SDK and on the server.
+         * The new BooleanCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, BooleanCase.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, BooleanCase, "caseValues", true);
+        }
+        /**
+         * Creates and returns a new BooleanCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, BooleanCase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    BooleanCase.structureTypeName = "Workflows$BooleanCase";
+    BooleanCase.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    workflows.BooleanCase = BooleanCase;
     /**
      * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
      *
@@ -615,12 +782,19 @@ var workflows;
             this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__annotation = new internal.PartProperty(WorkflowActivity, this, "annotation", null, false);
+            /** @internal */
+            this.__relativeMiddlePoint = new internal.PrimitiveProperty(WorkflowActivity, this, "relativeMiddlePoint", { x: 0, y: 0 }, internal.PrimitiveTypeEnum.Point);
+            /** @internal */
+            this.__size = new internal.PrimitiveProperty(WorkflowActivity, this, "size", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
             if (arguments.length < 4) {
                 throw new Error("new WorkflowActivity() cannot be invoked directly, please use 'model.workflows.createWorkflowActivity()'");
             }
         }
         get containerAsFlow() {
             return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
         }
         /**
          * In version 10.21.0: introduced
@@ -655,6 +829,24 @@ var workflows;
         set annotation(newValue) {
             this.__annotation.set(newValue);
         }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get relativeMiddlePoint() {
+            return this.__relativeMiddlePoint.get();
+        }
+        set relativeMiddlePoint(newValue) {
+            this.__relativeMiddlePoint.set(newValue);
+        }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get size() {
+            return this.__size.get();
+        }
+        set size(newValue) {
+            this.__size.set(newValue);
+        }
         get qualifiedName() {
             return this._getQualifiedName();
         }
@@ -686,6 +878,12 @@ var workflows;
             },
             annotation: {
                 introduced: "9.15.0"
+            },
+            relativeMiddlePoint: {
+                introduced: "11.1.0"
+            },
+            size: {
+                introduced: "11.1.0"
             }
         },
         public: {
@@ -712,6 +910,9 @@ var workflows;
         }
         get containerAsFlow() {
             return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
         }
         get outcomes() {
             return this.__outcomes.get();
@@ -762,6 +963,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         get microflow() {
             return this.__microflow.get();
         }
@@ -786,11 +990,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "9.0.2", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowTask, "activities", true);
+        }
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * The new CallMicroflowTask will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallMicroflowTask, "activities", true);
+        }
+        /**
+         * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
+         * The new CallMicroflowTask will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowTask, "detachedActivities", true);
         }
         /**
          * Creates and returns a new CallMicroflowTask instance in the SDK and on the server.
@@ -854,6 +1082,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         get workflow() {
             return this.__workflow.get();
         }
@@ -902,11 +1133,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowActivity.structureTypeName, { start: "9.0.2", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * The new CallWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, CallWorkflowActivity.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, CallWorkflowActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
+         * The new CallWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, CallWorkflowActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, CallWorkflowActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new CallWorkflowActivity instance in the SDK and on the server.
@@ -1053,6 +1308,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.ConsensusCompletionCriteria = ConsensusCompletionCriteria;
     /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1077,6 +1333,8 @@ var workflows;
     UserSource.structureTypeName = "Workflows$UserSource";
     UserSource.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "11.2.0",
+        deletionMessage: null,
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -1084,6 +1342,7 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.UserSource = UserSource;
     /**
+     * In version 11.2.0: deleted
      * In version 9.10.0: introduced
      */
     class EmptyUserSource extends UserSource {
@@ -1117,10 +1376,10 @@ var workflows;
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container) {
-            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "10.12.0" });
+            internal.createInVersionCheck(container.model, EmptyUserSource.structureTypeName, { start: "10.12.0", end: "11.1.0" });
             return internal.instancehelpers.createElement(container, EmptyUserSource, "userSource", false);
         }
         /**
@@ -1138,7 +1397,9 @@ var workflows;
     }
     EmptyUserSource.structureTypeName = "Workflows$EmptyUserSource";
     EmptyUserSource.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.10.0"
+        introduced: "9.10.0",
+        deleted: "11.2.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     workflows.EmptyUserSource = EmptyUserSource;
     /**
@@ -1154,6 +1415,24 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.14.0 to 11.0.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EndOfBoundaryEventPathActivity.structureTypeName, {
+                start: "10.14.0",
+                end: "11.0.0"
+            });
+            return internal.instancehelpers.createElement(container, EndOfBoundaryEventPathActivity, "activities", true);
+        }
         /**
          * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
          * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'activities' property
@@ -1162,9 +1441,21 @@ var workflows;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.14.0 and higher
          */
-        static createIn(container) {
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, EndOfBoundaryEventPathActivity.structureTypeName, { start: "10.14.0" });
             return internal.instancehelpers.createElement(container, EndOfBoundaryEventPathActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
+         * The new EndOfBoundaryEventPathActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, EndOfBoundaryEventPathActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, EndOfBoundaryEventPathActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new EndOfBoundaryEventPathActivity instance in the SDK and on the server.
@@ -1200,6 +1491,24 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.21.0 to 11.0.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EndOfParallelSplitPathActivity.structureTypeName, {
+                start: "10.21.0",
+                end: "11.0.0"
+            });
+            return internal.instancehelpers.createElement(container, EndOfParallelSplitPathActivity, "activities", true);
+        }
         /**
          * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
          * The new EndOfParallelSplitPathActivity will be automatically stored in the 'activities' property
@@ -1208,9 +1517,21 @@ var workflows;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.21.0 and higher
          */
-        static createIn(container) {
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, EndOfParallelSplitPathActivity.structureTypeName, { start: "10.21.0" });
             return internal.instancehelpers.createElement(container, EndOfParallelSplitPathActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
+         * The new EndOfParallelSplitPathActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, EndOfParallelSplitPathActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, EndOfParallelSplitPathActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new EndOfParallelSplitPathActivity instance in the SDK and on the server.
@@ -1247,6 +1568,21 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
+         * The new EndWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 to 11.0.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EndWorkflowActivity.structureTypeName, { start: "9.0.2", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, EndWorkflowActivity, "activities", true);
+        }
         /**
          * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
          * The new EndWorkflowActivity will be automatically stored in the 'activities' property
@@ -1255,9 +1591,21 @@ var workflows;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  9.0.2 and higher
          */
-        static createIn(container) {
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, EndWorkflowActivity.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, EndWorkflowActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
+         * The new EndWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, EndWorkflowActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, EndWorkflowActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new EndWorkflowActivity instance in the SDK and on the server.
@@ -1371,6 +1719,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -1386,11 +1737,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ExclusiveSplitActivity.structureTypeName, { start: "9.0.2", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, ExclusiveSplitActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * The new ExclusiveSplitActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, ExclusiveSplitActivity.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, ExclusiveSplitActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
+         * The new ExclusiveSplitActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, ExclusiveSplitActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, ExclusiveSplitActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new ExclusiveSplitActivity instance in the SDK and on the server.
@@ -1417,6 +1792,73 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.ExclusiveSplitActivity = ExclusiveSplitActivity;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class FloatingAnnotation extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__description = new internal.PrimitiveProperty(FloatingAnnotation, this, "description", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__relativeMiddlePoint = new internal.PrimitiveProperty(FloatingAnnotation, this, "relativeMiddlePoint", { x: 0, y: 0 }, internal.PrimitiveTypeEnum.Point);
+            /** @internal */
+            this.__size = new internal.PrimitiveProperty(FloatingAnnotation, this, "size", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            if (arguments.length < 4) {
+                throw new Error("new FloatingAnnotation() cannot be invoked directly, please use 'model.workflows.createFloatingAnnotation()'");
+            }
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        get description() {
+            return this.__description.get();
+        }
+        set description(newValue) {
+            this.__description.set(newValue);
+        }
+        get relativeMiddlePoint() {
+            return this.__relativeMiddlePoint.get();
+        }
+        set relativeMiddlePoint(newValue) {
+            this.__relativeMiddlePoint.set(newValue);
+        }
+        get size() {
+            return this.__size.get();
+        }
+        set size(newValue) {
+            this.__size.set(newValue);
+        }
+        /**
+         * Creates and returns a new FloatingAnnotation instance in the SDK and on the server.
+         * The new FloatingAnnotation will be automatically stored in the 'annotation' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, FloatingAnnotation.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, FloatingAnnotation, "annotation", true);
+        }
+        /**
+         * Creates and returns a new FloatingAnnotation instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, FloatingAnnotation);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    FloatingAnnotation.structureTypeName = "Workflows$FloatingAnnotation";
+    FloatingAnnotation.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    workflows.FloatingAnnotation = FloatingAnnotation;
     /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
@@ -1510,6 +1952,138 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.Flow = Flow;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class FlowLine extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__origin = new internal.ByIdReferenceProperty(FlowLine, this, "origin", null);
+            /** @internal */
+            this.__destination = new internal.ByIdReferenceProperty(FlowLine, this, "destination", null);
+            /** @internal */
+            this.__line = new internal.PartProperty(FlowLine, this, "line", null, true);
+            /** @internal */
+            this.__originConnectionSide = new internal.EnumProperty(FlowLine, this, "originConnectionSide", ConnectionSide.Bottom, ConnectionSide);
+            /** @internal */
+            this.__originalConnectionFactor = new internal.PrimitiveProperty(FlowLine, this, "originalConnectionFactor", 0.5, internal.PrimitiveTypeEnum.Double);
+            /** @internal */
+            this.__destinationConnectionSide = new internal.EnumProperty(FlowLine, this, "destinationConnectionSide", ConnectionSide.Top, ConnectionSide);
+            /** @internal */
+            this.__destinationConnectionFactor = new internal.PrimitiveProperty(FlowLine, this, "destinationConnectionFactor", 0.5, internal.PrimitiveTypeEnum.Double);
+            /** @internal */
+            this.__caseValues = new internal.PartListProperty(FlowLine, this, "caseValues", []);
+            if (arguments.length < 4) {
+                throw new Error("new FlowLine() cannot be invoked directly, please use 'model.workflows.createFlowLine()'");
+            }
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        get origin() {
+            return this.__origin.get();
+        }
+        set origin(newValue) {
+            this.__origin.set(newValue);
+        }
+        get destination() {
+            return this.__destination.get();
+        }
+        set destination(newValue) {
+            this.__destination.set(newValue);
+        }
+        get line() {
+            return this.__line.get();
+        }
+        set line(newValue) {
+            this.__line.set(newValue);
+        }
+        get originConnectionSide() {
+            return this.__originConnectionSide.get();
+        }
+        set originConnectionSide(newValue) {
+            this.__originConnectionSide.set(newValue);
+        }
+        get originalConnectionFactor() {
+            return this.__originalConnectionFactor.get();
+        }
+        set originalConnectionFactor(newValue) {
+            this.__originalConnectionFactor.set(newValue);
+        }
+        get destinationConnectionSide() {
+            return this.__destinationConnectionSide.get();
+        }
+        set destinationConnectionSide(newValue) {
+            this.__destinationConnectionSide.set(newValue);
+        }
+        get destinationConnectionFactor() {
+            return this.__destinationConnectionFactor.get();
+        }
+        set destinationConnectionFactor(newValue) {
+            this.__destinationConnectionFactor.set(newValue);
+        }
+        /**
+         * In version 11.5.0: introduced
+         */
+        get caseValues() {
+            return this.__caseValues.get();
+        }
+        /**
+         * Creates and returns a new FlowLine instance in the SDK and on the server.
+         * The new FlowLine will be automatically stored in the 'flowLines' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, FlowLine.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, FlowLine, "flowLines", true);
+        }
+        /**
+         * Creates and returns a new FlowLine instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, FlowLine);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.destinationConnectionFactor = 0.5;
+            this.destinationConnectionSide = ConnectionSide.Top;
+            this.line = OrthogonalPath.create(this.model);
+            this.originConnectionSide = ConnectionSide.Bottom;
+            this.originalConnectionFactor = 0.5;
+        }
+    }
+    FlowLine.structureTypeName = "Workflows$FlowLine";
+    FlowLine.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0",
+        properties: {
+            origin: {
+                required: {
+                    currentValue: true
+                }
+            },
+            destination: {
+                required: {
+                    currentValue: true
+                }
+            },
+            line: {
+                required: {
+                    currentValue: true
+                }
+            },
+            caseValues: {
+                introduced: "11.5.0"
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.FlowLine = FlowLine;
     /**
      * In version 10.20.0: introduced
      */
@@ -1629,6 +2203,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         get targetActivity() {
             return this.__targetActivity.get();
         }
@@ -1644,11 +2221,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.5 and higher
+         *  9.0.5 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, JumpToActivity.structureTypeName, { start: "9.0.5", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, JumpToActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * The new JumpToActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.5 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, JumpToActivity.structureTypeName, { start: "9.0.5" });
             return internal.instancehelpers.createElement(container, JumpToActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new JumpToActivity instance in the SDK and on the server.
+         * The new JumpToActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, JumpToActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, JumpToActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new JumpToActivity instance in the SDK and on the server.
@@ -1866,6 +2467,67 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MajorityCompletionCriteria = MajorityCompletionCriteria;
     /**
+     * In version 11.5.0: introduced
+     */
+    class MergeActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MergeActivity() cannot be invoked directly, please use 'model.workflows.createMergeActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * The new MergeActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, MergeActivity.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, MergeActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * The new MergeActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, MergeActivity.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, MergeActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new MergeActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MergeActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MergeActivity.structureTypeName = "Workflows$MergeActivity";
+    MergeActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.MergeActivity = MergeActivity;
+    /**
      * In version 9.0.5: introduced
      */
     class UserTaskEvent extends internal.Element {
@@ -1961,6 +2623,64 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MicroflowBasedEvent = MicroflowBasedEvent;
     /**
+     * In version 11.2.0: introduced
+     */
+    class UserTargeting extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new UserTargeting() cannot be invoked directly, please use 'model.workflows.createUserTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    UserTargeting.structureTypeName = "Workflows$UserTargeting";
+    UserTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.UserTargeting = UserTargeting;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class MicroflowBasedTargeting extends UserTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(MicroflowBasedTargeting, this, "microflow", null, "Microflows$Microflow");
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowBasedTargeting() cannot be invoked directly, please use 'model.workflows.createMicroflowBasedTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowBasedTargeting.structureTypeName = "Workflows$MicroflowBasedTargeting";
+    MicroflowBasedTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.MicroflowBasedTargeting = MicroflowBasedTargeting;
+    /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -2006,10 +2726,10 @@ var workflows;
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container) {
-            internal.createInVersionCheck(container.model, MicroflowBasedUserSource.structureTypeName, { start: "10.12.0" });
+            internal.createInVersionCheck(container.model, MicroflowBasedUserSource.structureTypeName, { start: "10.12.0", end: "11.1.0" });
             return internal.instancehelpers.createElement(container, MicroflowBasedUserSource, "userSource", false);
         }
         /**
@@ -2028,6 +2748,8 @@ var workflows;
     MicroflowBasedUserSource.structureTypeName = "Workflows$MicroflowBasedUserSource";
     MicroflowBasedUserSource.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "11.2.0",
+        deletionMessage: null,
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
@@ -2292,6 +3014,92 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.MicroflowEventHandler = MicroflowEventHandler;
     /**
+     * In version 11.2.0: introduced
+     */
+    class MicroflowGroupTargeting extends MicroflowBasedTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowGroupTargeting() cannot be invoked directly, please use 'model.workflows.createMicroflowGroupTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * Creates and returns a new MicroflowGroupTargeting instance in the SDK and on the server.
+         * The new MicroflowGroupTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MicroflowGroupTargeting.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, MicroflowGroupTargeting, "userTargeting", false);
+        }
+        /**
+         * Creates and returns a new MicroflowGroupTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowGroupTargeting);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowGroupTargeting.structureTypeName = "Workflows$MicroflowGroupTargeting";
+    MicroflowGroupTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.MicroflowGroupTargeting = MicroflowGroupTargeting;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class MicroflowUserTargeting extends MicroflowBasedTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowUserTargeting() cannot be invoked directly, please use 'model.workflows.createMicroflowUserTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * Creates and returns a new MicroflowUserTargeting instance in the SDK and on the server.
+         * The new MicroflowUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, MicroflowUserTargeting.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, MicroflowUserTargeting, "userTargeting", false);
+        }
+        /**
+         * Creates and returns a new MicroflowUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, MicroflowUserTargeting);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowUserTargeting.structureTypeName = "Workflows$MicroflowUserTargeting";
+    MicroflowUserTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.MicroflowUserTargeting = MicroflowUserTargeting;
+    /**
      * In version 10.12.0: deleted
      * In version 9.22.0: introduced
      */
@@ -2427,6 +3235,8 @@ var workflows;
             /** @internal */
             this.__userSource = new internal.PartProperty(UserTaskActivity, this, "userSource", null, true);
             /** @internal */
+            this.__userTargeting = new internal.PartProperty(UserTaskActivity, this, "userTargeting", null, true);
+            /** @internal */
             this.__outcomes = new internal.PartListProperty(UserTaskActivity, this, "outcomes", []);
             /** @internal */
             this.__boundaryEvents = new internal.PartListProperty(UserTaskActivity, this, "boundaryEvents", []);
@@ -2440,6 +3250,9 @@ var workflows;
         }
         get containerAsFlow() {
             return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
         }
         get taskPage() {
             return this.__taskPage.get();
@@ -2468,11 +3281,23 @@ var workflows;
         set dueDate(newValue) {
             this.__dueDate.set(newValue);
         }
+        /**
+         * In version 11.2.0: deleted
+         */
         get userSource() {
             return this.__userSource.get();
         }
         set userSource(newValue) {
             this.__userSource.set(newValue);
+        }
+        /**
+         * In version 11.2.0: introduced
+         */
+        get userTargeting() {
+            return this.__userTargeting.get();
+        }
+        set userTargeting(newValue) {
+            this.__userTargeting.set(newValue);
         }
         get outcomes() {
             return this.__outcomes.get();
@@ -2503,7 +3328,12 @@ var workflows;
             this.taskDescription = microflows_1.microflows.StringTemplate.create(this.model);
             this.taskName = microflows_1.microflows.StringTemplate.create(this.model);
             this.taskPage = PageReference.create(this.model);
-            this.userSource = XPathBasedUserSource.create(this.model);
+            if (this.__userSource.isAvailable) {
+                this.userSource = XPathBasedUserSource.create(this.model);
+            }
+            if (this.__userTargeting.isAvailable) {
+                this.userTargeting = XPathUserTargeting.create(this.model);
+            }
         }
     }
     UserTaskActivity.structureTypeName = "Workflows$UserTaskActivity";
@@ -2529,6 +3359,14 @@ var workflows;
                 }
             },
             userSource: {
+                deleted: "11.2.0",
+                deletionMessage: null,
+                required: {
+                    currentValue: true
+                }
+            },
+            userTargeting: {
+                introduced: "11.2.0",
                 required: {
                     currentValue: true
                 }
@@ -2574,6 +3412,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         get targetUserInput() {
             return this.__targetUserInput.get();
         }
@@ -2598,11 +3439,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, MultiUserTaskActivity.structureTypeName, { start: "10.12.0", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, MultiUserTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, MultiUserTaskActivity.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, MultiUserTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
+         * The new MultiUserTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, MultiUserTaskActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, MultiUserTaskActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new MultiUserTaskActivity instance in the SDK and on the server.
@@ -2698,6 +3563,49 @@ var workflows;
         introduced: "9.0.5"
     }, internal.StructureType.Element);
     workflows.NoEvent = NoEvent;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class NoUserTargeting extends UserTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NoUserTargeting() cannot be invoked directly, please use 'model.workflows.createNoUserTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * Creates and returns a new NoUserTargeting instance in the SDK and on the server.
+         * The new NoUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, NoUserTargeting.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, NoUserTargeting, "userTargeting", false);
+        }
+        /**
+         * Creates and returns a new NoUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NoUserTargeting);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NoUserTargeting.structureTypeName = "Workflows$NoUserTargeting";
+    NoUserTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.NoUserTargeting = NoUserTargeting;
     /**
      * In version 10.20.0: introduced
      */
@@ -2815,6 +3723,54 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.NonInterruptingTimerBoundaryEvent = NonInterruptingTimerBoundaryEvent;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class OrthogonalPath extends Line {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__segmentPositions = new internal.PrimitiveListProperty(OrthogonalPath, this, "segmentPositions", [], internal.PrimitiveTypeEnum.Integer);
+            if (arguments.length < 4) {
+                throw new Error("new OrthogonalPath() cannot be invoked directly, please use 'model.workflows.createOrthogonalPath()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        get segmentPositions() {
+            return this.__segmentPositions.get();
+        }
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * The new OrthogonalPath will be automatically stored in the 'line' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OrthogonalPath.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, OrthogonalPath, "line", false);
+        }
+        /**
+         * Creates and returns a new OrthogonalPath instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OrthogonalPath);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    OrthogonalPath.structureTypeName = "Workflows$OrthogonalPath";
+    OrthogonalPath.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    workflows.OrthogonalPath = OrthogonalPath;
     /**
      * In version 9.11.0: introduced
      */
@@ -2990,6 +3946,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         get outcomes() {
             return this.__outcomes.get();
         }
@@ -2999,11 +3958,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ParallelSplitActivity.structureTypeName, { start: "9.0.2", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, ParallelSplitActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
+         * The new ParallelSplitActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, ParallelSplitActivity.structureTypeName, { start: "9.0.2" });
             return internal.instancehelpers.createElement(container, ParallelSplitActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
+         * The new ParallelSplitActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, ParallelSplitActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, ParallelSplitActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new ParallelSplitActivity instance in the SDK and on the server.
@@ -3338,6 +4321,21 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.12.0 to 11.0.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, SingleUserTaskActivity.structureTypeName, { start: "10.12.0", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, SingleUserTaskActivity, "activities", true);
+        }
         /**
          * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
          * The new SingleUserTaskActivity will be automatically stored in the 'activities' property
@@ -3346,9 +4344,21 @@ var workflows;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  10.12.0 and higher
          */
-        static createIn(container) {
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, SingleUserTaskActivity.structureTypeName, { start: "10.12.0" });
             return internal.instancehelpers.createElement(container, SingleUserTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
+         * The new SingleUserTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, SingleUserTaskActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, SingleUserTaskActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new SingleUserTaskActivity instance in the SDK and on the server.
@@ -3371,6 +4381,118 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.SingleUserTaskActivity = SingleUserTaskActivity;
+    /**
+     * In version 11.1.0: introduced
+     */
+    class StartWorkflowActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new StartWorkflowActivity() cannot be invoked directly, please use 'model.workflows.createStartWorkflowActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * The new StartWorkflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, StartWorkflowActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, StartWorkflowActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * The new StartWorkflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, StartWorkflowActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, StartWorkflowActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new StartWorkflowActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StartWorkflowActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    StartWorkflowActivity.structureTypeName = "Workflows$StartWorkflowActivity";
+    StartWorkflowActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.StartWorkflowActivity = StartWorkflowActivity;
+    /**
+     * In version 11.5.0: introduced
+     */
+    class StringCase extends CaseValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(StringCase, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new StringCase() cannot be invoked directly, please use 'model.workflows.createStringCase()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new StringCase instance in the SDK and on the server.
+         * The new StringCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, StringCase.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, StringCase, "caseValues", true);
+        }
+        /**
+         * Creates and returns a new StringCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, StringCase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    StringCase.structureTypeName = "Workflows$StringCase";
+    StringCase.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    workflows.StringCase = StringCase;
     /**
      * In version 10.0.0: introduced
      */
@@ -3706,18 +4828,6 @@ var workflows;
         }
         /**
          * Creates and returns a new UserTask instance in the SDK and on the server.
-         * The new UserTask will be automatically stored in the 'activities' property
-         * of the parent Flow element passed as argument.
-         *
-         * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 to 10.11.0
-         */
-        static createIn(container) {
-            internal.createInVersionCheck(container.model, UserTask.structureTypeName, { start: "9.0.2", end: "10.11.0" });
-            return internal.instancehelpers.createElement(container, UserTask, "activities", true);
-        }
-        /**
-         * Creates and returns a new UserTask instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -4023,6 +5133,49 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.VetoCompletionCriteria = VetoCompletionCriteria;
     /**
+     * In version 11.5.0: introduced
+     */
+    class VoidCase extends CaseValue {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new VoidCase() cannot be invoked directly, please use 'model.workflows.createVoidCase()'");
+            }
+        }
+        get containerAsFlowLine() {
+            return super.getContainerAs(FlowLine);
+        }
+        /**
+         * Creates and returns a new VoidCase instance in the SDK and on the server.
+         * The new VoidCase will be automatically stored in the 'caseValues' property
+         * of the parent FlowLine element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, VoidCase.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, VoidCase, "caseValues", true);
+        }
+        /**
+         * Creates and returns a new VoidCase instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, VoidCase);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    VoidCase.structureTypeName = "Workflows$VoidCase";
+    VoidCase.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.5.0"
+    }, internal.StructureType.Element);
+    workflows.VoidCase = VoidCase;
+    /**
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -4090,6 +5243,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         /**
          * In version 10.14.0: introduced
          */
@@ -4102,11 +5258,38 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.0.0 and higher
+         *  10.0.0 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, WaitForNotificationActivity.structureTypeName, {
+                start: "10.0.0",
+                end: "11.0.0"
+            });
+            return internal.instancehelpers.createElement(container, WaitForNotificationActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.0.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, WaitForNotificationActivity.structureTypeName, { start: "10.0.0" });
             return internal.instancehelpers.createElement(container, WaitForNotificationActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
+         * The new WaitForNotificationActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, WaitForNotificationActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, WaitForNotificationActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new WaitForNotificationActivity instance in the SDK and on the server.
@@ -4158,6 +5341,9 @@ var workflows;
         get containerAsFlow() {
             return super.getContainerAs(Flow);
         }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
          */
@@ -4173,11 +5359,35 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.6.0 and higher
+         *  10.6.0 to 11.0.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, WaitForTimerActivity.structureTypeName, { start: "10.6.0", end: "11.0.0" });
+            return internal.instancehelpers.createElement(container, WaitForTimerActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * The new WaitForTimerActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.6.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
             internal.createInVersionCheck(container.model, WaitForTimerActivity.structureTypeName, { start: "10.6.0" });
             return internal.instancehelpers.createElement(container, WaitForTimerActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
+         * The new WaitForTimerActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, WaitForTimerActivity.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, WaitForTimerActivity, "detachedActivities", true);
         }
         /**
          * Creates and returns a new WaitForTimerActivity instance in the SDK and on the server.
@@ -4243,6 +5453,10 @@ var workflows;
             this.__onWorkflowEvent = new internal.PartListProperty(Workflow, this, "onWorkflowEvent", []);
             /** @internal */
             this.__annotation = new internal.PartProperty(Workflow, this, "annotation", null, false);
+            /** @internal */
+            this.__workflowMetaData = new internal.PartProperty(Workflow, this, "workflowMetaData", null, false);
+            /** @internal */
+            this.__workflowV2 = new internal.PrimitiveProperty(Workflow, this, "workflowV2", false, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -4400,6 +5614,24 @@ var workflows;
             this.__annotation.set(newValue);
         }
         /**
+         * In version 11.1.0: introduced
+         */
+        get workflowMetaData() {
+            return this.__workflowMetaData.get();
+        }
+        set workflowMetaData(newValue) {
+            this.__workflowMetaData.set(newValue);
+        }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get workflowV2() {
+            return this.__workflowV2.get();
+        }
+        set workflowV2(newValue) {
+            this.__workflowV2.set(newValue);
+        }
+        /**
          * Creates a new Workflow unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -4424,6 +5656,9 @@ var workflows;
             this.workflowName = microflows_1.microflows.StringTemplate.create(this.model);
             if (this.__workflowType.isAvailable) {
                 this.workflowType = WorkflowType.create(this.model);
+            }
+            if (this.__workflowV2.isAvailable) {
+                this.workflowV2 = false;
             }
         }
     }
@@ -4524,6 +5759,12 @@ var workflows;
             },
             annotation: {
                 introduced: "9.15.0"
+            },
+            workflowMetaData: {
+                introduced: "11.1.0"
+            },
+            workflowV2: {
+                introduced: "11.1.0"
             }
         },
         experimental: {
@@ -4848,6 +6089,64 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.WorkflowEventHandler = WorkflowEventHandler;
     /**
+     * In version 11.1.0: introduced
+     */
+    class WorkflowMetaData extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__detachedActivities = new internal.PartListProperty(WorkflowMetaData, this, "detachedActivities", []);
+            /** @internal */
+            this.__flowLines = new internal.PartListProperty(WorkflowMetaData, this, "flowLines", []);
+            /** @internal */
+            this.__annotation = new internal.PartListProperty(WorkflowMetaData, this, "annotation", []);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowMetaData() cannot be invoked directly, please use 'model.workflows.createWorkflowMetaData()'");
+            }
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get detachedActivities() {
+            return this.__detachedActivities.get();
+        }
+        get flowLines() {
+            return this.__flowLines.get();
+        }
+        get annotation() {
+            return this.__annotation.get();
+        }
+        /**
+         * Creates and returns a new WorkflowMetaData instance in the SDK and on the server.
+         * The new WorkflowMetaData will be automatically stored in the 'workflowMetaData' property
+         * of the parent Workflow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, WorkflowMetaData.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, WorkflowMetaData, "workflowMetaData", false);
+        }
+        /**
+         * Creates and returns a new WorkflowMetaData instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, WorkflowMetaData);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    WorkflowMetaData.structureTypeName = "Workflows$WorkflowMetaData";
+    WorkflowMetaData.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    workflows.WorkflowMetaData = WorkflowMetaData;
+    /**
      * In version 9.10.0: deleted
      * In version 9.7.0: introduced
      */
@@ -4915,6 +6214,41 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.WorkflowType = WorkflowType;
     /**
+     * In version 11.2.0: introduced
+     */
+    class XPathBasedTargeting extends UserTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__xPathConstraint = new internal.PrimitiveProperty(XPathBasedTargeting, this, "xPathConstraint", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new XPathBasedTargeting() cannot be invoked directly, please use 'model.workflows.createXPathBasedTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * The value of this property is conceptually of type xPathConstraints.XPathConstraint.
+         */
+        get xPathConstraint() {
+            return this.__xPathConstraint.get();
+        }
+        set xPathConstraint(newValue) {
+            this.__xPathConstraint.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    XPathBasedTargeting.structureTypeName = "Workflows$XPathBasedTargeting";
+    XPathBasedTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.XPathBasedTargeting = XPathBasedTargeting;
+    /**
+     * In version 11.2.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -4960,10 +6294,10 @@ var workflows;
          * of the parent UserTaskActivity element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.12.0 and higher
+         *  10.12.0 to 11.1.0
          */
         static createInUserTaskActivityUnderUserSource(container) {
-            internal.createInVersionCheck(container.model, XPathBasedUserSource.structureTypeName, { start: "10.12.0" });
+            internal.createInVersionCheck(container.model, XPathBasedUserSource.structureTypeName, { start: "10.12.0", end: "11.1.0" });
             return internal.instancehelpers.createElement(container, XPathBasedUserSource, "userSource", false);
         }
         /**
@@ -4982,12 +6316,100 @@ var workflows;
     XPathBasedUserSource.structureTypeName = "Workflows$XPathBasedUserSource";
     XPathBasedUserSource.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "11.2.0",
+        deletionMessage: null,
         experimental: {
             currentValue: false,
             changedIn: ["9.0.5"]
         }
     }, internal.StructureType.Element);
     workflows.XPathBasedUserSource = XPathBasedUserSource;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class XPathGroupTargeting extends XPathBasedTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new XPathGroupTargeting() cannot be invoked directly, please use 'model.workflows.createXPathGroupTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * Creates and returns a new XPathGroupTargeting instance in the SDK and on the server.
+         * The new XPathGroupTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, XPathGroupTargeting.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, XPathGroupTargeting, "userTargeting", false);
+        }
+        /**
+         * Creates and returns a new XPathGroupTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, XPathGroupTargeting);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    XPathGroupTargeting.structureTypeName = "Workflows$XPathGroupTargeting";
+    XPathGroupTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.XPathGroupTargeting = XPathGroupTargeting;
+    /**
+     * In version 11.2.0: introduced
+     */
+    class XPathUserTargeting extends XPathBasedTargeting {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new XPathUserTargeting() cannot be invoked directly, please use 'model.workflows.createXPathUserTargeting()'");
+            }
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        /**
+         * Creates and returns a new XPathUserTargeting instance in the SDK and on the server.
+         * The new XPathUserTargeting will be automatically stored in the 'userTargeting' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, XPathUserTargeting.structureTypeName, { start: "11.2.0" });
+            return internal.instancehelpers.createElement(container, XPathUserTargeting, "userTargeting", false);
+        }
+        /**
+         * Creates and returns a new XPathUserTargeting instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, XPathUserTargeting);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    XPathUserTargeting.structureTypeName = "Workflows$XPathUserTargeting";
+    XPathUserTargeting.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.2.0"
+    }, internal.StructureType.Element);
+    workflows.XPathUserTargeting = XPathUserTargeting;
 })(workflows = exports.workflows || (exports.workflows = {}));
 const microflows_1 = require("./microflows");
 const scheduledevents_1 = require("./scheduledevents");

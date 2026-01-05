@@ -57,6 +57,9 @@ var odatapublish;
         get containerAsEntitySet() {
             return super.getContainerAs(EntitySet);
         }
+        /**
+         * In version 11.1.0: added optional
+         */
         get microflow() {
             return this.__microflow.get();
         }
@@ -121,7 +124,8 @@ var odatapublish;
         properties: {
             microflow: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["11.1.0"]
                 }
             }
         }
@@ -925,7 +929,7 @@ var odatapublish;
     }, internal.StructureType.Element);
     odatapublish.PublishedContract = PublishedContract;
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-enumeration relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services/#enumerations relevant section in reference guide}
      *
      * In version 10.4.0: introduced
      */

@@ -403,6 +403,8 @@ var navigation;
             this.__hermesEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "hermesEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__networkTimeoutMs = new internal.PrimitiveProperty(NativeNavigationProfile, this, "networkTimeoutMs", 60000, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__nativeNavigationEnabled = new internal.PrimitiveProperty(NativeNavigationProfile, this, "nativeNavigationEnabled", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new NativeNavigationProfile() cannot be invoked directly, please use 'model.navigation.createNativeNavigationProfile()'");
             }
@@ -539,6 +541,15 @@ var navigation;
             this.__networkTimeoutMs.set(newValue);
         }
         /**
+         * In version 11.1.0: introduced
+         */
+        get nativeNavigationEnabled() {
+            return this.__nativeNavigationEnabled.get();
+        }
+        set nativeNavigationEnabled(newValue) {
+            this.__nativeNavigationEnabled.set(newValue);
+        }
+        /**
          * Creates and returns a new NativeNavigationProfile instance in the SDK and on the server.
          * The new NativeNavigationProfile will be automatically stored in the 'profiles' property
          * of the parent NavigationDocument element passed as argument.
@@ -578,6 +589,9 @@ var navigation;
             }
             if (this.__nativeHomePage.isAvailable) {
                 this.nativeHomePage = NativeHomePage.create(this.model);
+            }
+            if (this.__nativeNavigationEnabled.isAvailable) {
+                this.nativeNavigationEnabled = false;
             }
             if (this.__networkTimeoutMs.isAvailable) {
                 this.networkTimeoutMs = 60000;
@@ -647,6 +661,9 @@ var navigation;
             },
             networkTimeoutMs: {
                 introduced: "11.0.0"
+            },
+            nativeNavigationEnabled: {
+                introduced: "11.1.0"
             }
         },
         public: {
@@ -1344,7 +1361,7 @@ var navigation;
             /** @internal */
             this.__shouldDownload = new internal.PrimitiveProperty(OfflineEntityConfig, this, "shouldDownload", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
-            this.__syncMode = new internal.EnumProperty(OfflineEntityConfig, this, "syncMode", OfflineEntitySyncMode.All, OfflineEntitySyncMode);
+            this.__syncMode = new internal.EnumProperty(OfflineEntityConfig, this, "syncMode", OfflineEntitySyncMode.Online, OfflineEntitySyncMode);
             /** @internal */
             this.__constraint = new internal.PrimitiveProperty(OfflineEntityConfig, this, "constraint", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -1430,7 +1447,13 @@ var navigation;
                 this.shouldDownload = true;
             }
             if (this.__syncMode.isAvailable) {
-                this.syncMode = OfflineEntitySyncMode.All;
+                (() => {
+                    if (internal.isAtLeast("11.4.0", this.model)) {
+                        this.syncMode = OfflineEntitySyncMode.Online;
+                        return;
+                    }
+                    this.syncMode = OfflineEntitySyncMode.All;
+                })();
             }
         }
     }

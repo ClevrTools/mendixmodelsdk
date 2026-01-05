@@ -26,9 +26,12 @@ export declare namespace odatapublish {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsEntitySet(): EntitySet;
-        get microflow(): microflows.IMicroflow;
-        set microflow(newValue: microflows.IMicroflow);
-        get microflowQualifiedName(): string;
+        /**
+         * In version 11.1.0: added optional
+         */
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new CallMicroflowToChange instance in the SDK and on the server.
@@ -386,7 +389,7 @@ export declare namespace odatapublish {
         static create(model: IModel): PublishedContract;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/published-odata-enumeration relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/published-odata-services/#enumerations relevant section in reference guide}
      *
      * In version 10.4.0: introduced
      */

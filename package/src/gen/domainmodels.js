@@ -821,6 +821,9 @@ var domainmodels;
         get containerAsMemberWidget() {
             return super.getContainerAs(pages_1.pages.MemberWidget);
         }
+        get containerAsOutputMapping() {
+            return super.getContainerAs(pages_1.pages.OutputMapping);
+        }
         get containerAsRangeSearchField() {
             return super.getContainerAs(pages_1.pages.RangeSearchField);
         }
@@ -1251,6 +1254,9 @@ var domainmodels;
         get containerAsMemberWidget() {
             return super.getContainerAs(pages_1.pages.MemberWidget);
         }
+        get containerAsOutputMapping() {
+            return super.getContainerAs(pages_1.pages.OutputMapping);
+        }
         get containerAsRangeSearchField() {
             return super.getContainerAs(pages_1.pages.RangeSearchField);
         }
@@ -1403,6 +1409,30 @@ var domainmodels;
         static createInMemberWidgetUnderAttributeRef(container) {
             internal.createInVersionCheck(container.model, AttributeRef.structureTypeName, { start: "7.11.0" });
             return internal.instancehelpers.createElement(container, AttributeRef, "attributeRef", false);
+        }
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'attributeRef' property
+         * of the parent pages.OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderAttributeRef(container) {
+            internal.createInVersionCheck(container.model, AttributeRef.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, AttributeRef, "attributeRef", false);
+        }
+        /**
+         * Creates and returns a new AttributeRef instance in the SDK and on the server.
+         * The new AttributeRef will be automatically stored in the 'sourceAttributeRef' property
+         * of the parent pages.OutputMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInOutputMappingUnderSourceAttributeRef(container) {
+            internal.createInVersionCheck(container.model, AttributeRef.structureTypeName, { start: "11.5.0" });
+            return internal.instancehelpers.createElement(container, AttributeRef, "sourceAttributeRef", false);
         }
         /**
          * Creates and returns a new AttributeRef instance in the SDK and on the server.

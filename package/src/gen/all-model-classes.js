@@ -18,14 +18,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Convenience to be able to export everything at once.
  */
 __exportStar(require("./appservices"), exports);
+__exportStar(require("./authentication"), exports);
 __exportStar(require("./businessevents"), exports);
+__exportStar(require("./changedatacapture"), exports);
 __exportStar(require("./client"), exports);
 __exportStar(require("./codeactions"), exports);
 __exportStar(require("./connectorkit"), exports);
 __exportStar(require("./constants"), exports);
+__exportStar(require("./customblobdocuments"), exports);
 __exportStar(require("./customicons"), exports);
 __exportStar(require("./customwidgets"), exports);
 __exportStar(require("./datasets"), exports);
+__exportStar(require("./datatransformers"), exports);
 __exportStar(require("./datatypes"), exports);
 __exportStar(require("./databaseconnector"), exports);
 __exportStar(require("./documenttemplates"), exports);

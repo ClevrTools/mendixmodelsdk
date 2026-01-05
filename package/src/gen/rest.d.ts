@@ -781,6 +781,11 @@ export declare namespace rest {
          */
         get key(): ODataKey | null;
         set key(newValue: ODataKey | null);
+        /**
+         * In version 11.5.0: introduced
+         */
+        get isOpen(): boolean;
+        set isOpen(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ODataEntityTypeSource instance in the SDK and on the server.
@@ -935,6 +940,44 @@ export declare namespace rest {
         static create(model: IModel): ODataKeyPart;
     }
     /**
+     * In version 11.6.0: introduced
+     */
+    interface IODataMappedPrimitiveCollectionValue extends domainmodels.IMappedValue {
+        readonly model: IModel;
+        readonly containerAsAttribute: domainmodels.IAttribute;
+        asLoaded(): ODataMappedPrimitiveCollectionValue;
+        load(callback: (element: ODataMappedPrimitiveCollectionValue) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataMappedPrimitiveCollectionValue>;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    class ODataMappedPrimitiveCollectionValue extends domainmodels.MappedValue implements IODataMappedPrimitiveCollectionValue {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAttribute(): domainmodels.Attribute;
+        get remoteName(): string;
+        set remoteName(newValue: string);
+        get remoteType(): string;
+        set remoteType(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataMappedPrimitiveCollectionValue instance in the SDK and on the server.
+         * The new ODataMappedPrimitiveCollectionValue will be automatically stored in the 'value' property
+         * of the parent domainmodels.Attribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container: domainmodels.Attribute): ODataMappedPrimitiveCollectionValue;
+        /**
+         * Creates and returns a new ODataMappedPrimitiveCollectionValue instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataMappedPrimitiveCollectionValue;
+    }
+    /**
      * In version 8.10.0: introduced
      */
     interface IODataMappedValue extends domainmodels.IMappedValue {
@@ -1011,6 +1054,77 @@ export declare namespace rest {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ODataMappedValue;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    interface IODataPrimitiveCollectionAssociationSource extends domainmodels.IRemoteAssociationSource {
+        readonly model: IModel;
+        readonly containerAsAssociationBase: domainmodels.IAssociationBase;
+        asLoaded(): ODataPrimitiveCollectionAssociationSource;
+        load(callback: (element: ODataPrimitiveCollectionAssociationSource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataPrimitiveCollectionAssociationSource>;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    class ODataPrimitiveCollectionAssociationSource extends domainmodels.RemoteAssociationSource implements IODataPrimitiveCollectionAssociationSource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsAssociationBase(): domainmodels.AssociationBase;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionAssociationSource instance in the SDK and on the server.
+         * The new ODataPrimitiveCollectionAssociationSource will be automatically stored in the 'source' property
+         * of the parent domainmodels.AssociationBase element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container: domainmodels.AssociationBase): ODataPrimitiveCollectionAssociationSource;
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionAssociationSource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataPrimitiveCollectionAssociationSource;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    interface IODataPrimitiveCollectionEntitySource extends domainmodels.IRemoteEntitySource {
+        readonly model: IModel;
+        readonly containerAsEntity: domainmodels.IEntity;
+        asLoaded(): ODataPrimitiveCollectionEntitySource;
+        load(callback: (element: ODataPrimitiveCollectionEntitySource) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ODataPrimitiveCollectionEntitySource>;
+    }
+    /**
+     * In version 11.6.0: introduced
+     */
+    class ODataPrimitiveCollectionEntitySource extends domainmodels.RemoteEntitySource implements IODataPrimitiveCollectionEntitySource {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEntity(): domainmodels.Entity;
+        get sourceDocument(): IConsumedODataService | null;
+        set sourceDocument(newValue: IConsumedODataService | null);
+        get sourceDocumentQualifiedName(): string | null;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionEntitySource instance in the SDK and on the server.
+         * The new ODataPrimitiveCollectionEntitySource will be automatically stored in the 'source' property
+         * of the parent domainmodels.Entity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createIn(container: domainmodels.Entity): ODataPrimitiveCollectionEntitySource;
+        /**
+         * Creates and returns a new ODataPrimitiveCollectionEntitySource instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ODataPrimitiveCollectionEntitySource;
     }
     /**
      * In version 8.10.0: introduced
@@ -1302,6 +1416,15 @@ export declare namespace rest {
         get testValue(): Value;
         set testValue(newValue: Value);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OperationParameter instance in the SDK and on the server.
+         * The new OperationParameter will be automatically stored in the 'parameters' property
+         * of the parent RestOperation element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.1.0 and higher
+         */
+        static createIn(container: RestOperation): OperationParameter;
         /**
          * Creates and returns a new OperationParameter instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

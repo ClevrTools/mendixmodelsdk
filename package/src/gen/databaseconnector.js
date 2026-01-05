@@ -292,6 +292,68 @@ var databaseconnector;
     }, internal.StructureType.Element);
     databaseconnector.ConnectionInput = ConnectionInput;
     /**
+     * In version 11.1.0: introduced
+     */
+    class ConnectionParameterMapping extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__parameterName = new internal.PrimitiveProperty(ConnectionParameterMapping, this, "parameterName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(ConnectionParameterMapping, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new ConnectionParameterMapping() cannot be invoked directly, please use 'model.databaseconnector.createConnectionParameterMapping()'");
+            }
+        }
+        get containerAsExecuteDatabaseQueryAction() {
+            return super.getContainerAs(ExecuteDatabaseQueryAction);
+        }
+        get parameterName() {
+            return this.__parameterName.get();
+        }
+        set parameterName(newValue) {
+            this.__parameterName.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new ConnectionParameterMapping instance in the SDK and on the server.
+         * The new ConnectionParameterMapping will be automatically stored in the 'connectionParameterMappings' property
+         * of the parent ExecuteDatabaseQueryAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.1.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ConnectionParameterMapping.structureTypeName, { start: "11.1.0" });
+            return internal.instancehelpers.createElement(container, ConnectionParameterMapping, "connectionParameterMappings", true);
+        }
+        /**
+         * Creates and returns a new ConnectionParameterMapping instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ConnectionParameterMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConnectionParameterMapping.structureTypeName = "DatabaseConnector$ConnectionParameterMapping";
+    ConnectionParameterMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.1.0"
+    }, internal.StructureType.Element);
+    databaseconnector.ConnectionParameterMapping = ConnectionParameterMapping;
+    /**
      * In version 10.0.0: introduced
      */
     class ConnectionParts extends ConnectionInput {
@@ -708,7 +770,11 @@ var databaseconnector;
             /** @internal */
             this.__query = new internal.ByNameReferenceProperty(ExecuteDatabaseQueryAction, this, "query", null, "DatabaseConnector$DatabaseQuery");
             /** @internal */
+            this.__connectionParameterMappings = new internal.PartListProperty(ExecuteDatabaseQueryAction, this, "connectionParameterMappings", []);
+            /** @internal */
             this.__parameterMappings = new internal.PartListProperty(ExecuteDatabaseQueryAction, this, "parameterMappings", []);
+            /** @internal */
+            this.__dynamicQuery = new internal.PrimitiveProperty(ExecuteDatabaseQueryAction, this, "dynamicQuery", "", internal.PrimitiveTypeEnum.String);
             /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(ExecuteDatabaseQueryAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
@@ -730,8 +796,25 @@ var databaseconnector;
         get queryQualifiedName() {
             return this.__query.qualifiedName();
         }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get connectionParameterMappings() {
+            return this.__connectionParameterMappings.get();
+        }
         get parameterMappings() {
             return this.__parameterMappings.get();
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.3.0: introduced
+         */
+        get dynamicQuery() {
+            return this.__dynamicQuery.get();
+        }
+        set dynamicQuery(newValue) {
+            this.__dynamicQuery.set(newValue);
         }
         get outputVariableName() {
             return this.__outputVariableName.get();
@@ -773,6 +856,12 @@ var databaseconnector;
                     currentValue: false,
                     changedIn: ["10.0.0"]
                 }
+            },
+            connectionParameterMappings: {
+                introduced: "11.1.0"
+            },
+            dynamicQuery: {
+                introduced: "11.3.0"
             }
         },
         experimental: {

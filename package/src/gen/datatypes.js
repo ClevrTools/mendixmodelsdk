@@ -51,6 +51,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -166,6 +169,9 @@ var datatypes;
         }
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
+        }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
         }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
@@ -348,6 +354,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "type", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, BinaryType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, BinaryType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, BinaryType, "type", false);
         }
         /**
@@ -675,6 +705,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -856,6 +889,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "type", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, BooleanType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, BooleanType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, BooleanType, "type", false);
         }
         /**
@@ -1183,6 +1240,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -1364,6 +1424,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "type", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, DateTimeType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, DateTimeType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, DateTimeType, "type", false);
         }
         /**
@@ -1691,6 +1775,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -1872,6 +1959,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "type", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, DecimalType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, DecimalType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, DecimalType, "type", false);
         }
         /**
@@ -2199,6 +2310,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -2380,6 +2494,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "type", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, EmptyType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, EmptyType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, EmptyType, "type", false);
         }
         /**
@@ -2709,6 +2847,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -2845,6 +2986,9 @@ var datatypes;
         }
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
+        }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
         }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
@@ -3036,6 +3180,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "type", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, EnumerationType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, EnumerationType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, EnumerationType, "type", false);
         }
         /**
@@ -3373,6 +3541,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -3554,6 +3725,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "type", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, FloatType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, FloatType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, FloatType, "type", false);
         }
         /**
@@ -3881,6 +4076,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -4062,6 +4260,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "type", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, IntegerType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, IntegerType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, IntegerType, "type", false);
         }
         /**
@@ -4389,6 +4611,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -4570,6 +4795,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, ListType, "type", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, ListType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, ListType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, ListType, "type", false);
         }
         /**
@@ -4897,6 +5146,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -5078,6 +5330,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "type", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, ObjectType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, ObjectType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, ObjectType, "type", false);
         }
         /**
@@ -5405,6 +5681,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -5586,6 +5865,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, StringType, "type", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, StringType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, StringType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, StringType, "type", false);
         }
         /**
@@ -5913,6 +6216,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -6094,6 +6400,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "type", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, UnknownType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, UnknownType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, UnknownType, "type", false);
         }
         /**
@@ -6421,6 +6751,9 @@ var datatypes;
         get containerAsValueMappingElement() {
             return super.getContainerAs(mappings_1.mappings.ValueMappingElement);
         }
+        get containerAsAdditionalAttribute() {
+            return super.getContainerAs(microflows_1.microflows.AdditionalAttribute);
+        }
         get containerAsAggregateListAction() {
             return super.getContainerAs(microflows_1.microflows.AggregateListAction);
         }
@@ -6602,6 +6935,30 @@ var datatypes;
          */
         static createInValueMappingElementUnderType(container) {
             internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "7.9.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "type", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "11.6.0" });
+            return internal.instancehelpers.createElement(container, VoidType, "attributeDataType", false);
+        }
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container) {
+            internal.createInVersionCheck(container.model, VoidType.structureTypeName, { start: "11.5.0" });
             return internal.instancehelpers.createElement(container, VoidType, "type", false);
         }
         /**

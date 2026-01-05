@@ -46,6 +46,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -107,6 +108,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -219,6 +221,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): BinaryType;
+        /**
+         * Creates and returns a new BinaryType instance in the SDK and on the server.
+         * The new BinaryType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): BinaryType;
         /**
          * Creates and returns a new BinaryType instance in the SDK and on the server.
          * The new BinaryType will be automatically stored in the 'reduceReturnDataType' property
@@ -462,6 +482,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -574,6 +595,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): BooleanType;
+        /**
+         * Creates and returns a new BooleanType instance in the SDK and on the server.
+         * The new BooleanType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): BooleanType;
         /**
          * Creates and returns a new BooleanType instance in the SDK and on the server.
          * The new BooleanType will be automatically stored in the 'reduceReturnDataType' property
@@ -817,6 +856,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -929,6 +969,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): DateTimeType;
+        /**
+         * Creates and returns a new DateTimeType instance in the SDK and on the server.
+         * The new DateTimeType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): DateTimeType;
         /**
          * Creates and returns a new DateTimeType instance in the SDK and on the server.
          * The new DateTimeType will be automatically stored in the 'reduceReturnDataType' property
@@ -1172,6 +1230,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -1284,6 +1343,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): DecimalType;
+        /**
+         * Creates and returns a new DecimalType instance in the SDK and on the server.
+         * The new DecimalType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): DecimalType;
         /**
          * Creates and returns a new DecimalType instance in the SDK and on the server.
          * The new DecimalType will be automatically stored in the 'reduceReturnDataType' property
@@ -1527,6 +1604,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -1639,6 +1717,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): EmptyType;
+        /**
+         * Creates and returns a new EmptyType instance in the SDK and on the server.
+         * The new EmptyType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): EmptyType;
         /**
          * Creates and returns a new EmptyType instance in the SDK and on the server.
          * The new EmptyType will be automatically stored in the 'reduceReturnDataType' property
@@ -1887,6 +1983,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -1956,6 +2053,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -2071,6 +2169,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): EnumerationType;
+        /**
+         * Creates and returns a new EnumerationType instance in the SDK and on the server.
+         * The new EnumerationType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): EnumerationType;
         /**
          * Creates and returns a new EnumerationType instance in the SDK and on the server.
          * The new EnumerationType will be automatically stored in the 'reduceReturnDataType' property
@@ -2314,6 +2430,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -2426,6 +2543,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): FloatType;
+        /**
+         * Creates and returns a new FloatType instance in the SDK and on the server.
+         * The new FloatType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): FloatType;
         /**
          * Creates and returns a new FloatType instance in the SDK and on the server.
          * The new FloatType will be automatically stored in the 'reduceReturnDataType' property
@@ -2669,6 +2804,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -2781,6 +2917,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): IntegerType;
+        /**
+         * Creates and returns a new IntegerType instance in the SDK and on the server.
+         * The new IntegerType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): IntegerType;
         /**
          * Creates and returns a new IntegerType instance in the SDK and on the server.
          * The new IntegerType will be automatically stored in the 'reduceReturnDataType' property
@@ -3024,6 +3178,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -3136,6 +3291,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): ListType;
+        /**
+         * Creates and returns a new ListType instance in the SDK and on the server.
+         * The new ListType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): ListType;
         /**
          * Creates and returns a new ListType instance in the SDK and on the server.
          * The new ListType will be automatically stored in the 'reduceReturnDataType' property
@@ -3379,6 +3552,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -3491,6 +3665,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): ObjectType;
+        /**
+         * Creates and returns a new ObjectType instance in the SDK and on the server.
+         * The new ObjectType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): ObjectType;
         /**
          * Creates and returns a new ObjectType instance in the SDK and on the server.
          * The new ObjectType will be automatically stored in the 'reduceReturnDataType' property
@@ -3734,6 +3926,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -3846,6 +4039,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): StringType;
+        /**
+         * Creates and returns a new StringType instance in the SDK and on the server.
+         * The new StringType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): StringType;
         /**
          * Creates and returns a new StringType instance in the SDK and on the server.
          * The new StringType will be automatically stored in the 'reduceReturnDataType' property
@@ -4089,6 +4300,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -4201,6 +4413,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): UnknownType;
+        /**
+         * Creates and returns a new UnknownType instance in the SDK and on the server.
+         * The new UnknownType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): UnknownType;
         /**
          * Creates and returns a new UnknownType instance in the SDK and on the server.
          * The new UnknownType will be automatically stored in the 'reduceReturnDataType' property
@@ -4444,6 +4674,7 @@ export declare namespace datatypes {
         get containerAsDocumentTemplateParameter(): documenttemplates.DocumentTemplateParameter;
         get containerAsImportMapping(): importmappings.ImportMapping;
         get containerAsValueMappingElement(): mappings.ValueMappingElement;
+        get containerAsAdditionalAttribute(): microflows.AdditionalAttribute;
         get containerAsAggregateListAction(): microflows.AggregateListAction;
         get containerAsCallExternalAction(): microflows.CallExternalAction;
         get containerAsCreateVariableAction(): microflows.CreateVariableAction;
@@ -4556,6 +4787,24 @@ export declare namespace datatypes {
          *  7.9.0 and higher
          */
         static createInValueMappingElementUnderType(container: mappings.ValueMappingElement): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'attributeDataType' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.6.0 and higher
+         */
+        static createInAdditionalAttributeUnderAttributeDataType(container: microflows.AdditionalAttribute): VoidType;
+        /**
+         * Creates and returns a new VoidType instance in the SDK and on the server.
+         * The new VoidType will be automatically stored in the 'type' property
+         * of the parent microflows.AdditionalAttribute element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.5.0 and higher
+         */
+        static createInAdditionalAttributeUnderType(container: microflows.AdditionalAttribute): VoidType;
         /**
          * Creates and returns a new VoidType instance in the SDK and on the server.
          * The new VoidType will be automatically stored in the 'reduceReturnDataType' property

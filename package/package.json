@@ -1,7 +1,7 @@
 {
   "name": "@clevr/mendixmodelsdk",
   "description": "Mendix Model SDK",
-  "version": "4.100.0",
+  "version": "4.107.0",
   "author": "Mendix",
   "license": "MIT",
   "scripts": {
@@ -22,9 +22,6 @@
     "unit-test": "yarn run test",
     "unit-test-with-snapshot-updates": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true yarn run test"
   },
-  "devDependencies": {
-    "@types/eventsource": "1.1.8"
-  },
   "main": "./src/index.js",
   "typings": "./src/index.d.ts",
   "dependencies": {
@@ -32,7 +29,7 @@
     "wolfy87-eventemitter": "^5.2.1",
     "eventsource": "^2.0.2",
     "got": "^11.8.5",
-    "form-data": "^4.0.0",
+    "form-data": "^4.0.4",
     "deep-equal": "^1.0.1",
     "uuid": "^8.3.2"
   },
