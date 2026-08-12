@@ -40,8 +40,32 @@ var texts;
          * Creates and returns a new SystemText instance in the SDK and on the server.
          * The new SystemText will be automatically stored in the 'systemTexts' property
          * of the parent SystemTextCollection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, SystemText.structureTypeName, { end: "11.12.0" });
+            return internal.instancehelpers.createElement(container, SystemText, "systemTexts", true);
+        }
+        /**
+         * Creates and returns a new SystemText instance in the SDK and on the server.
+         * The new SystemText will be automatically stored in the 'pluggableWidgetSystemTexts' property
+         * of the parent SystemTextCollection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInSystemTextCollectionUnderPluggableWidgetSystemTexts(container) {
+            internal.createInVersionCheck(container.model, SystemText.structureTypeName, { start: "11.13.0" });
+            return internal.instancehelpers.createElement(container, SystemText, "pluggableWidgetSystemTexts", true);
+        }
+        /**
+         * Creates and returns a new SystemText instance in the SDK and on the server.
+         * The new SystemText will be automatically stored in the 'systemTexts' property
+         * of the parent SystemTextCollection element passed as argument.
+         */
+        static createInSystemTextCollectionUnderSystemTexts(container) {
             return internal.instancehelpers.createElement(container, SystemText, "systemTexts", true);
         }
         /**
@@ -77,6 +101,8 @@ var texts;
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
             this.__systemTexts = new internal.PartListProperty(SystemTextCollection, this, "systemTexts", []);
+            /** @internal */
+            this.__pluggableWidgetSystemTexts = new internal.PartListProperty(SystemTextCollection, this, "pluggableWidgetSystemTexts", []);
             this._containmentName = "projectDocuments";
         }
         get containerAsProject() {
@@ -84,6 +110,12 @@ var texts;
         }
         get systemTexts() {
             return this.__systemTexts.get();
+        }
+        /**
+         * In version 11.13.0: introduced
+         */
+        get pluggableWidgetSystemTexts() {
+            return this.__pluggableWidgetSystemTexts.get();
         }
         /**
          * Creates a new SystemTextCollection unit in the SDK and on the server.
@@ -98,7 +130,13 @@ var texts;
         }
     }
     SystemTextCollection.structureTypeName = "Texts$SystemTextCollection";
-    SystemTextCollection.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.ModelUnit);
+    SystemTextCollection.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            pluggableWidgetSystemTexts: {
+                introduced: "11.13.0"
+            }
+        }
+    }, internal.StructureType.ModelUnit);
     texts.SystemTextCollection = SystemTextCollection;
     /**
      * See: {@link https://docs.mendix.com/refguide/translatable-texts relevant section in reference guide}
@@ -676,24 +714,36 @@ var texts;
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.BasicReportAggregate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInBasicReportAggregateUnderCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "caption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.BasicReportColumn element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInBasicReportColumnUnderCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "caption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportButtonUnderCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "caption", false);
         }
         /**
@@ -736,24 +786,36 @@ var texts;
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportDateRangeField element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeFieldUnderCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "caption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'fromCaption' property
          * of the parent reports.ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeSelectorUnderFromCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "fromCaption", false);
         }
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'toCaption' property
          * of the parent reports.ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeSelectorUnderToCaption(container) {
+            internal.createInVersionCheck(container.model, Text.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, Text, "toCaption", false);
         }
         /**

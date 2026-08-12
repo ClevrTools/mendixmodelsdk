@@ -2,18 +2,12 @@ import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { mappings } from "./mappings";
 import { microflows } from "./microflows";
-/**
- * @ignore
- */
 export declare namespace exceldataimporter {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `ExcelDataImporter`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -25,10 +19,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<CSVSheet>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -50,17 +41,8 @@ export declare namespace exceldataimporter {
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
         get entityQualifiedName(): string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings(): internal.IList<ColumnAttributeMapping>;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: introduced
          */
         get csvRootElement(): DataImporterElement;
@@ -83,10 +65,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): CSVSheet;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -98,10 +77,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<TemplateContents>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -112,10 +88,7 @@ export declare namespace exceldataimporter {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -125,10 +98,6 @@ export declare namespace exceldataimporter {
         /**
          * This property is required and cannot be set to null.
          *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         readonly sheet: ICSVSheet;
@@ -137,10 +106,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<CSVTemplateContents>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -149,10 +115,6 @@ export declare namespace exceldataimporter {
         static versionInfo: StructureVersionInfo;
         get containerAsTemplate(): Template;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         get sheet(): CSVSheet;
@@ -175,10 +137,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): CSVTemplateContents;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class ColumnAttributeMapping extends internal.Element<IModel> {
@@ -187,11 +146,6 @@ export declare namespace exceldataimporter {
         get containerAsCSVSheet(): CSVSheet;
         get containerAsExcelSheet(): ExcelSheet;
         get containerAsSheet(): Sheet;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference(): Reference;
         set reference(newValue: Reference);
         get attribute(): domainmodels.IAttribute;
@@ -242,10 +196,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): ColumnAttributeMapping;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     interface ICsvSheetMappingSourceReference extends mappings.IMappingSourceReference {
@@ -256,21 +207,13 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<CsvSheetMappingSourceReference>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     class CsvSheetMappingSourceReference extends mappings.MappingSourceReference implements ICsvSheetMappingSourceReference {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMappingDocument(): mappings.MappingDocument;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get csvSheet(): ICSVSheet;
         set csvSheet(newValue: ICSVSheet);
         get csvSheetQualifiedName(): string;
@@ -292,10 +235,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): CsvSheetMappingSourceReference;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: introduced
      */
     class DataImporterElement extends mappings.Element {
@@ -351,10 +291,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): DataImporterElement;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -366,10 +303,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<ExcelSheet>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -377,11 +311,6 @@ export declare namespace exceldataimporter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsExcelTemplateContents(): ExcelTemplateContents;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference(): Reference;
         set reference(newValue: Reference);
         get headerRowStartsAt(): number;
@@ -394,17 +323,8 @@ export declare namespace exceldataimporter {
         get entity(): domainmodels.IEntity | null;
         set entity(newValue: domainmodels.IEntity | null);
         get entityQualifiedName(): string | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings(): internal.IList<ColumnAttributeMapping>;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: introduced
          */
         get excelRootElement(): DataImporterElement;
@@ -427,10 +347,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): ExcelSheet;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     interface IExcelSheetMappingSourceReference extends mappings.IMappingSourceReference {
@@ -441,21 +358,13 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<ExcelSheetMappingSourceReference>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     class ExcelSheetMappingSourceReference extends mappings.MappingSourceReference implements IExcelSheetMappingSourceReference {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsMappingDocument(): mappings.MappingDocument;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get excelSheet(): IExcelSheet;
         set excelSheet(newValue: IExcelSheet);
         get excelSheetQualifiedName(): string;
@@ -477,10 +386,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): ExcelSheetMappingSourceReference;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -488,10 +394,6 @@ export declare namespace exceldataimporter {
         readonly model: IModel;
         readonly containerAsTemplate: ITemplate;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         readonly sheets: internal.IList<IExcelSheet>;
@@ -500,10 +402,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<ExcelTemplateContents>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -512,10 +411,6 @@ export declare namespace exceldataimporter {
         static versionInfo: StructureVersionInfo;
         get containerAsTemplate(): Template;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         get sheets(): internal.IList<ExcelSheet>;
@@ -537,10 +432,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): ExcelTemplateContents;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.0.0: introduced
      */
     class ImportExcelDataAction extends microflows.MicroflowAction {
@@ -548,10 +440,6 @@ export declare namespace exceldataimporter {
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): microflows.ActionActivity;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.1.0: added optional
          */
         get template(): ITemplate | null;
@@ -587,10 +475,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): ImportExcelDataAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     abstract class Reference extends internal.Element<IModel> {
@@ -602,10 +487,7 @@ export declare namespace exceldataimporter {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class IndexReference extends Reference {
@@ -652,10 +534,7 @@ export declare namespace exceldataimporter {
         static create(model: IModel): IndexReference;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class NameReference extends Reference {
@@ -713,11 +592,6 @@ export declare namespace exceldataimporter {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsTemplate(): Template;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference(): Reference;
         set reference(newValue: Reference);
         get headerRowStartsAt(): number;
@@ -730,11 +604,6 @@ export declare namespace exceldataimporter {
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings(): internal.IList<ColumnAttributeMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -754,20 +623,13 @@ export declare namespace exceldataimporter {
         static create(model: IModel): Sheet;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     interface ITemplate extends mappings.IMappingSourceDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          * In version 10.6.0: introduced
          */
@@ -777,10 +639,7 @@ export declare namespace exceldataimporter {
         load(forceRefresh?: boolean): Promise<Template>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class Template extends mappings.MappingSourceDocument implements ITemplate {
@@ -798,10 +657,6 @@ export declare namespace exceldataimporter {
          */
         get sheets(): internal.IList<Sheet>;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          * In version 10.6.0: introduced
          */

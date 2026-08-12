@@ -6,6 +6,16 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 var projects;
 (function (projects) {
+    class DependencyInAppStatus extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "projects.DependencyInAppStatus";
+        }
+    }
+    DependencyInAppStatus.Available = new DependencyInAppStatus("Available", {});
+    DependencyInAppStatus.Unavailable = new DependencyInAppStatus("Unavailable", {});
+    DependencyInAppStatus.WrongVersion = new DependencyInAppStatus("WrongVersion", {});
+    projects.DependencyInAppStatus = DependencyInAppStatus;
     class ExportLevel extends internal.AbstractEnum {
         constructor() {
             super(...arguments);
@@ -33,6 +43,85 @@ var projects;
     ProtectedModuleType.AddOn = new ProtectedModuleType("AddOn", {});
     ProtectedModuleType.Solution = new ProtectedModuleType("Solution", {});
     projects.ProtectedModuleType = ProtectedModuleType;
+    /**
+     * Interfaces and instance classes for types from the Mendix sub meta model `Projects`.
+     */
+    /**
+     * In version 11.12.0: introduced
+     */
+    class Dependency extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(Dependency, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__minimumVersion = new internal.PrimitiveProperty(Dependency, this, "minimumVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__maximumVersion = new internal.PrimitiveProperty(Dependency, this, "maximumVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__inAppStatus = new internal.EnumProperty(Dependency, this, "inAppStatus", DependencyInAppStatus.Unavailable, DependencyInAppStatus);
+            if (arguments.length < 4) {
+                throw new Error("new Dependency() cannot be invoked directly, please use 'model.projects.createDependency()'");
+            }
+        }
+        get containerAsModuleDependencies() {
+            return super.getContainerAs(ModuleDependencies);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get minimumVersion() {
+            return this.__minimumVersion.get();
+        }
+        set minimumVersion(newValue) {
+            this.__minimumVersion.set(newValue);
+        }
+        get maximumVersion() {
+            return this.__maximumVersion.get();
+        }
+        set maximumVersion(newValue) {
+            this.__maximumVersion.set(newValue);
+        }
+        get inAppStatus() {
+            return this.__inAppStatus.get();
+        }
+        set inAppStatus(newValue) {
+            this.__inAppStatus.set(newValue);
+        }
+        /**
+         * Creates and returns a new Dependency instance in the SDK and on the server.
+         * The new Dependency will be automatically stored in the 'mendix' property
+         * of the parent ModuleDependencies element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, Dependency.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, Dependency, "mendix", true);
+        }
+        /**
+         * Creates and returns a new Dependency instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, Dependency);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.inAppStatus = DependencyInAppStatus.Unavailable;
+        }
+    }
+    Dependency.structureTypeName = "Projects$Dependency";
+    Dependency.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    projects.Dependency = Dependency;
     class ModuleDocument extends internal.ModelUnit {
         constructor(model, structureTypeName, id, isPartial, container) {
             super(model, structureTypeName, id, isPartial, container);
@@ -199,6 +288,65 @@ var projects;
     Folder.structureTypeName = "Projects$Folder";
     Folder.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.StructuralUnit);
     projects.Folder = Folder;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class GuidMappingEntry extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__packageGuid = new internal.PrimitiveProperty(GuidMappingEntry, this, "packageGuid", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__appGuid = new internal.PrimitiveProperty(GuidMappingEntry, this, "appGuid", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new GuidMappingEntry() cannot be invoked directly, please use 'model.projects.createGuidMappingEntry()'");
+            }
+        }
+        get containerAsModuleGuidMapping() {
+            return super.getContainerAs(ModuleGuidMapping);
+        }
+        get packageGuid() {
+            return this.__packageGuid.get();
+        }
+        set packageGuid(newValue) {
+            this.__packageGuid.set(newValue);
+        }
+        get appGuid() {
+            return this.__appGuid.get();
+        }
+        set appGuid(newValue) {
+            this.__appGuid.set(newValue);
+        }
+        /**
+         * Creates and returns a new GuidMappingEntry instance in the SDK and on the server.
+         * The new GuidMappingEntry will be automatically stored in the 'entries' property
+         * of the parent ModuleGuidMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, GuidMappingEntry.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, GuidMappingEntry, "entries", true);
+        }
+        /**
+         * Creates and returns a new GuidMappingEntry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, GuidMappingEntry);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    GuidMappingEntry.structureTypeName = "Projects$GuidMappingEntry";
+    GuidMappingEntry.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    projects.GuidMappingEntry = GuidMappingEntry;
     /**
      * In version 10.12.0: removed experimental
      * In version 10.0.0: introduced
@@ -562,6 +710,103 @@ var projects;
     }, internal.StructureType.StructuralUnit);
     projects.Module = Module;
     /**
+     * In version 11.12.0: introduced
+     */
+    class ModuleDependencies extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__mendix = new internal.PartListProperty(ModuleDependencies, this, "mendix", []);
+            if (arguments.length < 4) {
+                throw new Error("new ModuleDependencies() cannot be invoked directly, please use 'model.projects.createModuleDependencies()'");
+            }
+        }
+        get containerAsModuleSettings() {
+            return super.getContainerAs(ModuleSettings);
+        }
+        get mendix() {
+            return this.__mendix.get();
+        }
+        /**
+         * Creates and returns a new ModuleDependencies instance in the SDK and on the server.
+         * The new ModuleDependencies will be automatically stored in the 'moduleDependencies' property
+         * of the parent ModuleSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, ModuleDependencies.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, ModuleDependencies, "moduleDependencies", false);
+        }
+        /**
+         * Creates and returns a new ModuleDependencies instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, ModuleDependencies);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ModuleDependencies.structureTypeName = "Projects$ModuleDependencies";
+    ModuleDependencies.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    projects.ModuleDependencies = ModuleDependencies;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class ModuleGuidMapping extends internal.ModelUnit {
+        constructor(model, structureTypeName, id, isPartial, container) {
+            super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__importedModuleGuid = new internal.PrimitiveProperty(ModuleGuidMapping, this, "importedModuleGuid", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__packageModuleGuid = new internal.PrimitiveProperty(ModuleGuidMapping, this, "packageModuleGuid", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__entries = new internal.PartListProperty(ModuleGuidMapping, this, "entries", []);
+            this._containmentName = "guidMappings";
+        }
+        get containerAsProject() {
+            return super.getContainerAs(Project);
+        }
+        get importedModuleGuid() {
+            return this.__importedModuleGuid.get();
+        }
+        set importedModuleGuid(newValue) {
+            this.__importedModuleGuid.set(newValue);
+        }
+        get packageModuleGuid() {
+            return this.__packageModuleGuid.get();
+        }
+        set packageModuleGuid(newValue) {
+            this.__packageModuleGuid.set(newValue);
+        }
+        get entries() {
+            return this.__entries.get();
+        }
+        /**
+         * Creates a new ModuleGuidMapping unit in the SDK and on the server.
+         * Expects one argument, the IProject in which this unit is contained.
+         */
+        static createIn(container) {
+            return internal.instancehelpers.createUnit(container, ModuleGuidMapping);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ModuleGuidMapping.structureTypeName = "Projects$ModuleGuidMapping";
+    ModuleGuidMapping.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.ModelUnit);
+    projects.ModuleGuidMapping = ModuleGuidMapping;
+    /**
      * See: {@link https://docs.mendix.com/refguide/module-settings relevant section in reference guide}
      *
      * In version 9.8.0: introduced
@@ -583,6 +828,18 @@ var projects;
             this.__jarDependencies = new internal.PartListProperty(ModuleSettings, this, "jarDependencies", []);
             /** @internal */
             this.__basedOnVersion = new internal.PrimitiveProperty(ModuleSettings, this, "basedOnVersion", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__packageId = new internal.PrimitiveProperty(ModuleSettings, this, "packageId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__originalPackageId = new internal.PrimitiveProperty(ModuleSettings, this, "originalPackageId", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__checksum = new internal.PrimitiveProperty(ModuleSettings, this, "checksum", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__convertedChecksum = new internal.PrimitiveProperty(ModuleSettings, this, "convertedChecksum", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__moduleDependencies = new internal.PartProperty(ModuleSettings, this, "moduleDependencies", null, false);
+            /** @internal */
+            this.__enableDetailedTroubleshooting = new internal.PrimitiveProperty(ModuleSettings, this, "enableDetailedTroubleshooting", true, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "moduleSettings";
         }
         get containerAsModule() {
@@ -643,6 +900,60 @@ var projects;
             this.__basedOnVersion.set(newValue);
         }
         /**
+         * In version 11.12.0: introduced
+         */
+        get packageId() {
+            return this.__packageId.get();
+        }
+        set packageId(newValue) {
+            this.__packageId.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get originalPackageId() {
+            return this.__originalPackageId.get();
+        }
+        set originalPackageId(newValue) {
+            this.__originalPackageId.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get checksum() {
+            return this.__checksum.get();
+        }
+        set checksum(newValue) {
+            this.__checksum.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get convertedChecksum() {
+            return this.__convertedChecksum.get();
+        }
+        set convertedChecksum(newValue) {
+            this.__convertedChecksum.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get moduleDependencies() {
+            return this.__moduleDependencies.get();
+        }
+        set moduleDependencies(newValue) {
+            this.__moduleDependencies.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get enableDetailedTroubleshooting() {
+            return this.__enableDetailedTroubleshooting.get();
+        }
+        set enableDetailedTroubleshooting(newValue) {
+            this.__enableDetailedTroubleshooting.set(newValue);
+        }
+        /**
          * Creates a new ModuleSettings unit in the SDK and on the server.
          * Expects one argument, the IModule in which this unit is contained.
          */
@@ -652,6 +963,9 @@ var projects;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__enableDetailedTroubleshooting.isAvailable) {
+                this.enableDetailedTroubleshooting = true;
+            }
             this.exportLevel = ModuleExportLevel.Source;
             if (this.__protectedModuleType.isAvailable) {
                 this.protectedModuleType = ProtectedModuleType.AddOn;
@@ -677,6 +991,24 @@ var projects;
             },
             basedOnVersion: {
                 introduced: "10.0.0"
+            },
+            packageId: {
+                introduced: "11.12.0"
+            },
+            originalPackageId: {
+                introduced: "11.12.0"
+            },
+            checksum: {
+                introduced: "11.12.0"
+            },
+            convertedChecksum: {
+                introduced: "11.12.0"
+            },
+            moduleDependencies: {
+                introduced: "11.12.0"
+            },
+            enableDetailedTroubleshooting: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.ModelUnit);
@@ -737,6 +1069,8 @@ var projects;
             this.__projectConversion = new internal.StructuralChildProperty(Project, this, "projectConversion", null);
             /** @internal */
             this.__isSystemProject = new internal.PrimitiveProperty(Project, this, "isSystemProject", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__guidMappings = new internal.StructuralChildListProperty(Project, this, "guidMappings", []);
             this._containmentName = "";
         }
         get projectDocuments() {
@@ -757,6 +1091,12 @@ var projects;
         set isSystemProject(newValue) {
             this.__isSystemProject.set(newValue);
         }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get guidMappings() {
+            return this.__guidMappings.get();
+        }
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
@@ -769,6 +1109,9 @@ var projects;
                 required: {
                     currentValue: true
                 }
+            },
+            guidMappings: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.StructuralUnit);

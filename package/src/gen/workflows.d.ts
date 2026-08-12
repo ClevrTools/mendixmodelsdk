@@ -39,6 +39,10 @@ export declare namespace workflows {
         static CallWorkflowEnded: WorkflowEventType;
         static CallMicroflowStarted: WorkflowEventType;
         static CallMicroflowEnded: WorkflowEventType;
+        static AIAgentTaskStarted: WorkflowEventType;
+        static AIAgentTaskEnded: WorkflowEventType;
+        static NotificationStarted: WorkflowEventType;
+        static NotificationEnded: WorkflowEventType;
         static WaitForNotificationStarted: WorkflowEventType;
         static WaitForNotificationEnded: WorkflowEventType;
         static WaitForTimerStarted: WorkflowEventType;
@@ -48,11 +52,176 @@ export declare namespace workflows {
         static UserTaskEnded: WorkflowEventType;
         static NonInterruptingTimerEventExecuted: WorkflowEventType;
         static InterruptingTimerEventExecuted: WorkflowEventType;
+        static NonInterruptingNotificationEventSubProcessStartExecuted: WorkflowEventType;
+        static InterruptingNotificationEventSubProcessStartExecuted: WorkflowEventType;
+        static NonInterruptingNotificationEventExecuted: WorkflowEventType;
+        static InterruptingNotificationEventExecuted: WorkflowEventType;
+        static NonInterruptingTimerEventSubProcessStartExecuted: WorkflowEventType;
+        static InterruptingTimerEventSubProcessStartExecuted: WorkflowEventType;
         protected qualifiedTsTypeName: string;
     }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
      */
+    /**
+     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
+     *
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
+    interface IWorkflowActivity extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        /**
+         * In version 9.0.5: introduced
+         */
+        readonly name: string;
+        readonly caption: string;
+        asLoaded(): WorkflowActivity;
+        load(callback: (element: WorkflowActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<WorkflowActivity>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
+     *
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
+    abstract class WorkflowActivity extends internal.Element<IModel> implements IWorkflowActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId(): string;
+        set persistentId(newValue: string);
+        /**
+         * In version 9.0.5: introduced
+         */
+        get name(): string;
+        set name(newValue: string);
+        get caption(): string;
+        set caption(newValue: string);
+        /**
+         * In version 9.15.0: introduced
+         */
+        get annotation(): Annotation | null;
+        set annotation(newValue: Annotation | null);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get relativeMiddlePoint(): common.IPoint;
+        set relativeMiddlePoint(newValue: common.IPoint);
+        /**
+         * In version 11.1.0: introduced
+         */
+        get size(): common.ISize;
+        set size(newValue: common.ISize);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
+    interface IConditionOutcomeActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        readonly outcomes: internal.IList<IConditionOutcome>;
+        asLoaded(): ConditionOutcomeActivity;
+        load(callback: (element: ConditionOutcomeActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ConditionOutcomeActivity>;
+    }
+    /**
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
+    abstract class ConditionOutcomeActivity extends WorkflowActivity implements IConditionOutcomeActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        get outcomes(): internal.IList<ConditionOutcome>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.9.0: introduced
+     */
+    interface IMicroflowBasedActivity extends IConditionOutcomeActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        readonly microflow: microflows.IMicroflow | null;
+        readonly microflowQualifiedName: string | null;
+        readonly boundaryEvents: internal.IList<IBoundaryEvent>;
+        asLoaded(): MicroflowBasedActivity;
+        load(callback: (element: MicroflowBasedActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MicroflowBasedActivity>;
+    }
+    /**
+     * In version 11.9.0: introduced
+     */
+    abstract class MicroflowBasedActivity extends ConditionOutcomeActivity implements IMicroflowBasedActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        get microflow(): microflows.IMicroflow | null;
+        set microflow(newValue: microflows.IMicroflow | null);
+        get microflowQualifiedName(): string | null;
+        get parameterMappings(): internal.IList<MicroflowCallParameterMapping>;
+        get boundaryEvents(): internal.IList<BoundaryEvent>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/ai-agent-task relevant section in reference guide}
+     *
+     * In version 11.9.0: introduced
+     */
+    interface IAIAgentTaskActivity extends IMicroflowBasedActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): AIAgentTaskActivity;
+        load(callback: (element: AIAgentTaskActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<AIAgentTaskActivity>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/ai-agent-task relevant section in reference guide}
+     *
+     * In version 11.9.0: introduced
+     */
+    class AIAgentTaskActivity extends MicroflowBasedActivity implements IAIAgentTaskActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * The new AIAgentTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): AIAgentTaskActivity;
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * The new AIAgentTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): AIAgentTaskActivity;
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): AIAgentTaskActivity;
+    }
     /**
      * In version 9.22.0: introduced
      */
@@ -140,6 +309,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsBoundaryEvent(): BoundaryEvent;
+        get containerAsEventSubProcess(): EventSubProcess;
         get containerAsWorkflow(): Workflow;
         get containerAsWorkflowActivity(): WorkflowActivity;
         get description(): string;
@@ -154,6 +324,15 @@ export declare namespace workflows {
          *  10.16.0 and higher
          */
         static createInBoundaryEventUnderAnnotation(container: BoundaryEvent): Annotation;
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent EventSubProcess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInEventSubProcessUnderAnnotation(container: EventSubProcess): Annotation;
         /**
          * Creates and returns a new Annotation instance in the SDK and on the server.
          * The new Annotation will be automatically stored in the 'annotation' property
@@ -362,6 +541,7 @@ export declare namespace workflows {
         readonly model: IModel;
         readonly containerAsCallMicroflowTask: ICallMicroflowTask;
         readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
         readonly containerAsUserTaskActivity: IUserTaskActivity;
         readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
         /**
@@ -388,6 +568,7 @@ export declare namespace workflows {
         static versionInfo: StructureVersionInfo;
         get containerAsCallMicroflowTask(): CallMicroflowTask;
         get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
         get containerAsUserTaskActivity(): UserTaskActivity;
         get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
         /**
@@ -413,91 +594,55 @@ export declare namespace workflows {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
      *
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
+     * In version 11.9.0: introduced
      */
-    interface IWorkflowActivity extends internal.IElement, internal.IByNameReferrable {
+    interface ICallMicroflowActivity extends IMicroflowBasedActivity {
         readonly model: IModel;
         readonly containerAsFlow: IFlow;
-        /**
-         * In version 9.0.5: introduced
-         */
-        readonly name: string;
-        readonly caption: string;
-        asLoaded(): WorkflowActivity;
-        load(callback: (element: WorkflowActivity) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<WorkflowActivity>;
-    }
-    /**
-     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
-     *
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
-    abstract class WorkflowActivity extends internal.Element<IModel> implements IWorkflowActivity {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsFlow(): Flow;
-        get containerAsWorkflowMetaData(): WorkflowMetaData;
-        /**
-         * In version 10.21.0: introduced
-         */
-        get persistentId(): string;
-        set persistentId(newValue: string);
-        /**
-         * In version 9.0.5: introduced
-         */
-        get name(): string;
-        set name(newValue: string);
-        get caption(): string;
-        set caption(newValue: string);
-        /**
-         * In version 9.15.0: introduced
-         */
-        get annotation(): Annotation | null;
-        set annotation(newValue: Annotation | null);
-        /**
-         * In version 11.1.0: introduced
-         */
-        get relativeMiddlePoint(): common.IPoint;
-        set relativeMiddlePoint(newValue: common.IPoint);
-        /**
-         * In version 11.1.0: introduced
-         */
-        get size(): common.ISize;
-        set size(newValue: common.ISize);
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        get qualifiedName(): string | null;
-    }
-    /**
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
-    interface IConditionOutcomeActivity extends IWorkflowActivity {
-        readonly model: IModel;
-        readonly containerAsFlow: IFlow;
-        readonly outcomes: internal.IList<IConditionOutcome>;
-        asLoaded(): ConditionOutcomeActivity;
-        load(callback: (element: ConditionOutcomeActivity) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<ConditionOutcomeActivity>;
-    }
-    /**
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
-    abstract class ConditionOutcomeActivity extends WorkflowActivity implements IConditionOutcomeActivity {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsFlow(): Flow;
-        get containerAsWorkflowMetaData(): WorkflowMetaData;
-        get outcomes(): internal.IList<ConditionOutcome>;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        asLoaded(): CallMicroflowActivity;
+        load(callback: (element: CallMicroflowActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<CallMicroflowActivity>;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
      *
+     * In version 11.9.0: introduced
+     */
+    class CallMicroflowActivity extends MicroflowBasedActivity implements ICallMicroflowActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * The new CallMicroflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): CallMicroflowActivity;
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * The new CallMicroflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): CallMicroflowActivity;
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CallMicroflowActivity;
+    }
+    /**
+     * In version 11.9.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -515,8 +660,7 @@ export declare namespace workflows {
         load(forceRefresh?: boolean): Promise<CallMicroflowTask>;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
-     *
+     * In version 11.9.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -549,7 +693,7 @@ export declare namespace workflows {
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.8.0
          */
         static createInFlowUnderActivities(container: Flow): CallMicroflowTask;
         /**
@@ -558,7 +702,7 @@ export declare namespace workflows {
          * of the parent WorkflowMetaData element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  11.1.0 and higher
+         *  11.1.0 to 11.8.0
          */
         static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): CallMicroflowTask;
         /**
@@ -949,6 +1093,52 @@ export declare namespace workflows {
         static create(model: IModel): EnumerationValueConditionOutcome;
     }
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-event-sub-processes relevant section in reference guide}
+     *
+     * In version 11.8.0: introduced
+     */
+    interface IEventSubProcess extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsWorkflow: IWorkflow;
+        readonly name: string;
+        /**
+         * This property is required and cannot be set to null.
+         */
+        readonly flow: IFlow;
+        readonly caption: string;
+        asLoaded(): EventSubProcess;
+        load(callback: (element: EventSubProcess) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EventSubProcess>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-event-sub-processes relevant section in reference guide}
+     *
+     * In version 11.8.0: introduced
+     */
+    class EventSubProcess extends internal.Element<IModel> implements IEventSubProcess {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWorkflow(): Workflow;
+        get persistentId(): string;
+        set persistentId(newValue: string);
+        get name(): string;
+        set name(newValue: string);
+        get flow(): Flow;
+        set flow(newValue: Flow);
+        get caption(): string;
+        set caption(newValue: string);
+        get annotation(): Annotation | null;
+        set annotation(newValue: Annotation | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EventSubProcess instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EventSubProcess;
+        get qualifiedName(): string | null;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/decision-in-workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -1049,6 +1239,7 @@ export declare namespace workflows {
     interface IFlow extends internal.IElement {
         readonly model: IModel;
         readonly containerAsBoundaryEvent: IBoundaryEvent;
+        readonly containerAsEventSubProcess: IEventSubProcess;
         readonly containerAsOutcome: IOutcome;
         readonly containerAsWorkflow: IWorkflow;
         readonly activities: internal.IList<IWorkflowActivity>;
@@ -1064,6 +1255,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsBoundaryEvent(): BoundaryEvent;
+        get containerAsEventSubProcess(): EventSubProcess;
         get containerAsOutcome(): Outcome;
         get containerAsWorkflow(): Workflow;
         get activities(): internal.IList<WorkflowActivity>;
@@ -1077,6 +1269,15 @@ export declare namespace workflows {
          *  10.14.0 and higher
          */
         static createInBoundaryEventUnderFlow(container: BoundaryEvent): Flow;
+        /**
+         * Creates and returns a new Flow instance in the SDK and on the server.
+         * The new Flow will be automatically stored in the 'flow' property
+         * of the parent EventSubProcess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInEventSubProcessUnderFlow(container: EventSubProcess): Flow;
         /**
          * Creates and returns a new Flow instance in the SDK and on the server.
          * The new Flow will be automatically stored in the 'flow' property
@@ -1145,12 +1346,200 @@ export declare namespace workflows {
         static create(model: IModel): FlowLine;
     }
     /**
+     * In version 11.11.0: introduced
+     */
+    interface INotificationBoundaryEvent extends IBoundaryEvent, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        readonly name: string;
+        asLoaded(): NotificationBoundaryEvent;
+        load(callback: (element: NotificationBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NotificationBoundaryEvent>;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    abstract class NotificationBoundaryEvent extends BoundaryEvent implements INotificationBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        get name(): string;
+        set name(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    interface IInterruptingNotificationBoundaryEvent extends INotificationBoundaryEvent {
+        readonly model: IModel;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        asLoaded(): InterruptingNotificationBoundaryEvent;
+        load(callback: (element: InterruptingNotificationBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<InterruptingNotificationBoundaryEvent>;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    class InterruptingNotificationBoundaryEvent extends NotificationBoundaryEvent implements IInterruptingNotificationBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): InterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container: MicroflowBasedActivity): InterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): InterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): InterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): InterruptingNotificationBoundaryEvent;
+    }
+    /**
+     * In version 11.8.0: introduced
+     */
+    interface INotificationEventSubProcessStartActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): NotificationEventSubProcessStartActivity;
+        load(callback: (element: NotificationEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NotificationEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.8.0: introduced
+     */
+    abstract class NotificationEventSubProcessStartActivity extends WorkflowActivity implements INotificationEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.10.0: introduced
+     */
+    interface IInterruptingNotificationEventSubProcessStartActivity extends INotificationEventSubProcessStartActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): InterruptingNotificationEventSubProcessStartActivity;
+        load(callback: (element: InterruptingNotificationEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<InterruptingNotificationEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.10.0: introduced
+     */
+    class InterruptingNotificationEventSubProcessStartActivity extends NotificationEventSubProcessStartActivity implements IInterruptingNotificationEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): InterruptingNotificationEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): InterruptingNotificationEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): InterruptingNotificationEventSubProcessStartActivity;
+    }
+    /**
+     * In version 11.7.0: introduced
+     */
+    abstract class NotifyTarget extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.10.0: introduced
+     */
+    class InterruptingNotificationEventSubProcessStartActivityTarget extends NotifyTarget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        get activity(): IInterruptingNotificationEventSubProcessStartActivity;
+        set activity(newValue: IInterruptingNotificationEventSubProcessStartActivity);
+        get activityQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): InterruptingNotificationEventSubProcessStartActivityTarget;
+    }
+    /**
      * In version 10.20.0: introduced
      */
     interface IInterruptingTimerBoundaryEvent extends IBoundaryEvent {
         readonly model: IModel;
         readonly containerAsCallMicroflowTask: ICallMicroflowTask;
         readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
         readonly containerAsUserTaskActivity: IUserTaskActivity;
         readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
         asLoaded(): InterruptingTimerBoundaryEvent;
@@ -1165,6 +1554,7 @@ export declare namespace workflows {
         static versionInfo: StructureVersionInfo;
         get containerAsCallMicroflowTask(): CallMicroflowTask;
         get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
         get containerAsUserTaskActivity(): UserTaskActivity;
         get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
         /**
@@ -1179,7 +1569,7 @@ export declare namespace workflows {
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.20.0 and higher
+         *  10.20.0 to 11.8.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): InterruptingTimerBoundaryEvent;
         /**
@@ -1191,6 +1581,15 @@ export declare namespace workflows {
          *  10.20.0 and higher
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): InterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container: MicroflowBasedActivity): InterruptingTimerBoundaryEvent;
         /**
          * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
          * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
@@ -1215,6 +1614,75 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): InterruptingTimerBoundaryEvent;
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    interface ITimerEventSubProcessStartActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): TimerEventSubProcessStartActivity;
+        load(callback: (element: TimerEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<TimerEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    abstract class TimerEventSubProcessStartActivity extends WorkflowActivity implements ITimerEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime(): string;
+        set firstExecutionTime(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    interface IInterruptingTimerEventSubProcessStartActivity extends ITimerEventSubProcessStartActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): InterruptingTimerEventSubProcessStartActivity;
+        load(callback: (element: InterruptingTimerEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<InterruptingTimerEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    class InterruptingTimerEventSubProcessStartActivity extends TimerEventSubProcessStartActivity implements IInterruptingTimerEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): InterruptingTimerEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): InterruptingTimerEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): InterruptingTimerEventSubProcessStartActivity;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
@@ -1535,6 +2003,7 @@ export declare namespace workflows {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsCallMicroflowTask(): CallMicroflowTask;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
         get parameter(): microflows.IMicroflowParameter;
         set parameter(newValue: microflows.IMicroflowParameter);
         get parameterQualifiedName(): string;
@@ -1544,6 +2013,24 @@ export declare namespace workflows {
         get expression(): string;
         set expression(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * The new MicroflowCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 to 11.8.0
+         */
+        static createInCallMicroflowTaskUnderParameterMappings(container: CallMicroflowTask): MicroflowCallParameterMapping;
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * The new MicroflowCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderParameterMappings(container: MicroflowBasedActivity): MicroflowCallParameterMapping;
         /**
          * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -1931,12 +2418,142 @@ export declare namespace workflows {
         static create(model: IModel): NoUserTargeting;
     }
     /**
+     * In version 11.11.0: introduced
+     */
+    interface INonInterruptingNotificationBoundaryEvent extends INotificationBoundaryEvent {
+        readonly model: IModel;
+        readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
+        readonly containerAsUserTaskActivity: IUserTaskActivity;
+        readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
+        asLoaded(): NonInterruptingNotificationBoundaryEvent;
+        load(callback: (element: NonInterruptingNotificationBoundaryEvent) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NonInterruptingNotificationBoundaryEvent>;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    class NonInterruptingNotificationBoundaryEvent extends NotificationBoundaryEvent implements INonInterruptingNotificationBoundaryEvent {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
+        get containerAsUserTaskActivity(): UserTaskActivity;
+        get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): NonInterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container: MicroflowBasedActivity): NonInterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container: UserTaskActivity): NonInterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container: WaitForNotificationActivity): NonInterruptingNotificationBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NonInterruptingNotificationBoundaryEvent;
+    }
+    /**
+     * In version 11.8.0: introduced
+     */
+    interface INonInterruptingNotificationEventSubProcessStartActivity extends INotificationEventSubProcessStartActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): NonInterruptingNotificationEventSubProcessStartActivity;
+        load(callback: (element: NonInterruptingNotificationEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NonInterruptingNotificationEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.8.0: introduced
+     */
+    class NonInterruptingNotificationEventSubProcessStartActivity extends NotificationEventSubProcessStartActivity implements INonInterruptingNotificationEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): NonInterruptingNotificationEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): NonInterruptingNotificationEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NonInterruptingNotificationEventSubProcessStartActivity;
+    }
+    /**
+     * In version 11.8.0: introduced
+     */
+    class NonInterruptingNotificationEventSubProcessStartActivityTarget extends NotifyTarget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        get activity(): INonInterruptingNotificationEventSubProcessStartActivity;
+        set activity(newValue: INonInterruptingNotificationEventSubProcessStartActivity);
+        get activityQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NonInterruptingNotificationEventSubProcessStartActivityTarget;
+    }
+    /**
      * In version 10.20.0: introduced
      */
     interface INonInterruptingTimerBoundaryEvent extends IBoundaryEvent {
         readonly model: IModel;
         readonly containerAsCallMicroflowTask: ICallMicroflowTask;
         readonly containerAsCallWorkflowActivity: ICallWorkflowActivity;
+        readonly containerAsMicroflowBasedActivity: IMicroflowBasedActivity;
         readonly containerAsUserTaskActivity: IUserTaskActivity;
         readonly containerAsWaitForNotificationActivity: IWaitForNotificationActivity;
         readonly recurrence: IRecurrence | null;
@@ -1952,6 +2569,7 @@ export declare namespace workflows {
         static versionInfo: StructureVersionInfo;
         get containerAsCallMicroflowTask(): CallMicroflowTask;
         get containerAsCallWorkflowActivity(): CallWorkflowActivity;
+        get containerAsMicroflowBasedActivity(): MicroflowBasedActivity;
         get containerAsUserTaskActivity(): UserTaskActivity;
         get containerAsWaitForNotificationActivity(): WaitForNotificationActivity;
         /**
@@ -1968,7 +2586,7 @@ export declare namespace workflows {
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.20.0 and higher
+         *  10.20.0 to 11.8.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container: CallMicroflowTask): NonInterruptingTimerBoundaryEvent;
         /**
@@ -1980,6 +2598,15 @@ export declare namespace workflows {
          *  10.20.0 and higher
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container: CallWorkflowActivity): NonInterruptingTimerBoundaryEvent;
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container: MicroflowBasedActivity): NonInterruptingTimerBoundaryEvent;
         /**
          * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
          * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
@@ -2004,6 +2631,152 @@ export declare namespace workflows {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NonInterruptingTimerBoundaryEvent;
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    interface INonInterruptingTimerEventSubProcessStartActivity extends ITimerEventSubProcessStartActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): NonInterruptingTimerEventSubProcessStartActivity;
+        load(callback: (element: NonInterruptingTimerEventSubProcessStartActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NonInterruptingTimerEventSubProcessStartActivity>;
+    }
+    /**
+     * In version 11.13.0: introduced
+     */
+    class NonInterruptingTimerEventSubProcessStartActivity extends TimerEventSubProcessStartActivity implements INonInterruptingTimerEventSubProcessStartActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): NonInterruptingTimerEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): NonInterruptingTimerEventSubProcessStartActivity;
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NonInterruptingTimerEventSubProcessStartActivity;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/notification relevant section in reference guide}
+     *
+     * In version 11.11.0: introduced
+     */
+    interface INotificationActivity extends IWorkflowActivity {
+        readonly model: IModel;
+        readonly containerAsFlow: IFlow;
+        asLoaded(): NotificationActivity;
+        load(callback: (element: NotificationActivity) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NotificationActivity>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/notification relevant section in reference guide}
+     *
+     * In version 11.11.0: introduced
+     */
+    class NotificationActivity extends WorkflowActivity implements INotificationActivity {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFlow(): Flow;
+        get containerAsWorkflowMetaData(): WorkflowMetaData;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * The new NotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInFlowUnderActivities(container: Flow): NotificationActivity;
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * The new NotificationActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container: WorkflowMetaData): NotificationActivity;
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotificationActivity;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    class NotifyNotificationActivityTarget extends NotifyTarget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        get activity(): INotificationActivity;
+        set activity(newValue: INotificationActivity);
+        get activityQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotifyNotificationActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotifyNotificationActivityTarget;
+    }
+    /**
+     * In version 11.11.0: introduced
+     */
+    class NotifyNotificationBoundaryEventTarget extends NotifyTarget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        get boundaryEvent(): INotificationBoundaryEvent;
+        set boundaryEvent(newValue: INotificationBoundaryEvent);
+        get boundaryEventQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotifyNotificationBoundaryEventTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotifyNotificationBoundaryEventTarget;
+    }
+    /**
+     * In version 11.7.0: introduced
+     */
+    class NotifyWaitForNotificationActivityTarget extends NotifyTarget {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNotifyWorkflowAction(): microflows.NotifyWorkflowAction;
+        get activity(): IWaitForNotificationActivity;
+        set activity(newValue: IWaitForNotificationActivity);
+        get activityQualifiedName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new NotifyWaitForNotificationActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): NotifyWaitForNotificationActivityTarget;
     }
     /**
      * In version 11.1.0: introduced
@@ -3120,6 +3893,10 @@ export declare namespace workflows {
          * In version 10.7.0: introduced
          */
         get onWorkflowEvent(): internal.IList<WorkflowEventHandler> | null;
+        /**
+         * In version 11.8.0: introduced
+         */
+        get eventSubProcesses(): internal.IList<EventSubProcess>;
         /**
          * In version 9.15.0: introduced
          */

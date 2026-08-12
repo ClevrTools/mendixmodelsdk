@@ -322,6 +322,9 @@ var messagedefinitions;
         get containerAsEntityMessageDefinition() {
             return super.getContainerAs(EntityMessageDefinition);
         }
+        get containerAsMessageDefinition2() {
+            return super.getContainerAs(MessageDefinition2);
+        }
         get originalName() {
             return this.__originalName.get();
         }
@@ -384,6 +387,9 @@ var messagedefinitions;
         }
         get containerAsEntityMessageDefinition() {
             return super.getContainerAs(EntityMessageDefinition);
+        }
+        get containerAsMessageDefinition2() {
+            return super.getContainerAs(MessageDefinition2);
         }
         get entity() {
             return this.__entity.get();
@@ -582,6 +588,9 @@ var messagedefinitions;
         get containerAsEntityMessageDefinition() {
             return super.getContainerAs(EntityMessageDefinition);
         }
+        get containerAsMessageDefinition2() {
+            return super.getContainerAs(MessageDefinition2);
+        }
         /**
          * Creates and returns a new ExposedEntity instance in the SDK and on the server.
          * The new ExposedEntity will be automatically stored in the 'elements' property
@@ -620,6 +629,18 @@ var messagedefinitions;
         }
         /**
          * Creates and returns a new ExposedEntity instance in the SDK and on the server.
+         * The new ExposedEntity will be automatically stored in the 'exposedEntity' property
+         * of the parent MessageDefinition2 element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInMessageDefinition2UnderExposedEntity(container) {
+            internal.createInVersionCheck(container.model, ExposedEntity.structureTypeName, { start: "11.10.0" });
+            return internal.instancehelpers.createElement(container, ExposedEntity, "exposedEntity", false);
+        }
+        /**
+         * Creates and returns a new ExposedEntity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
@@ -636,6 +657,48 @@ var messagedefinitions;
         introduced: "7.6.0"
     }, internal.StructureType.Element);
     messagedefinitions.ExposedEntity = ExposedEntity;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
+     *
+     * In version 11.10.0: introduced
+     */
+    class MessageDefinition2 extends projects_1.projects.Document {
+        constructor(model, structureTypeName, id, isPartial, container) {
+            super(model, structureTypeName, id, isPartial, container);
+            /** @internal */
+            this.__exposedEntity = new internal.PartProperty(MessageDefinition2, this, "exposedEntity", null, false);
+            this._containmentName = "documents";
+        }
+        get containerAsFolderBase() {
+            return super.getContainerAs(projects_1.projects.FolderBase);
+        }
+        get exposedEntity() {
+            return this.__exposedEntity.get();
+        }
+        set exposedEntity(newValue) {
+            this.__exposedEntity.set(newValue);
+        }
+        /**
+         * Creates a new MessageDefinition2 unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container) {
+            return internal.instancehelpers.createUnit(container, MessageDefinition2);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MessageDefinition2.structureTypeName = "MessageDefinitions$MessageDefinition2";
+    MessageDefinition2.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.10.0"
+    }, internal.StructureType.ModelUnit);
+    messagedefinitions.MessageDefinition2 = MessageDefinition2;
     /**
      * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
      *

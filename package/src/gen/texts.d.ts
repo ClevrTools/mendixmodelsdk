@@ -18,8 +18,26 @@ export declare namespace texts {
          * Creates and returns a new SystemText instance in the SDK and on the server.
          * The new SystemText will be automatically stored in the 'systemTexts' property
          * of the parent SystemTextCollection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: SystemTextCollection): SystemText;
+        /**
+         * Creates and returns a new SystemText instance in the SDK and on the server.
+         * The new SystemText will be automatically stored in the 'pluggableWidgetSystemTexts' property
+         * of the parent SystemTextCollection element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInSystemTextCollectionUnderPluggableWidgetSystemTexts(container: SystemTextCollection): SystemText;
+        /**
+         * Creates and returns a new SystemText instance in the SDK and on the server.
+         * The new SystemText will be automatically stored in the 'systemTexts' property
+         * of the parent SystemTextCollection element passed as argument.
+         */
+        static createInSystemTextCollectionUnderSystemTexts(container: SystemTextCollection): SystemText;
         /**
          * Creates and returns a new SystemText instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -45,6 +63,10 @@ export declare namespace texts {
         static versionInfo: StructureVersionInfo;
         get containerAsProject(): projects.Project;
         get systemTexts(): internal.IList<SystemText>;
+        /**
+         * In version 11.13.0: introduced
+         */
+        get pluggableWidgetSystemTexts(): internal.IList<SystemText>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IProject);
         /**
          * Creates a new SystemTextCollection unit in the SDK and on the server.
@@ -428,18 +450,27 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.BasicReportAggregate element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInBasicReportAggregateUnderCaption(container: reports.BasicReportAggregate): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.BasicReportColumn element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInBasicReportColumnUnderCaption(container: reports.BasicReportColumn): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportButtonUnderCaption(container: reports.ReportButton): Text;
         /**
@@ -473,18 +504,27 @@ export declare namespace texts {
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'caption' property
          * of the parent reports.ReportDateRangeField element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeFieldUnderCaption(container: reports.ReportDateRangeField): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'fromCaption' property
          * of the parent reports.ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeSelectorUnderFromCaption(container: reports.ReportDateRangeSelector): Text;
         /**
          * Creates and returns a new Text instance in the SDK and on the server.
          * The new Text will be automatically stored in the 'toCaption' property
          * of the parent reports.ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createInReportDateRangeSelectorUnderToCaption(container: reports.ReportDateRangeSelector): Text;
         /**

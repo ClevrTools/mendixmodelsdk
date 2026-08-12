@@ -46,7 +46,9 @@ export declare namespace reports {
      * Interfaces and instance classes for types from the Mendix sub meta model `Reports`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-widgets relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     abstract class ReportWidget extends pages.Widget {
         static structureTypeName: string;
@@ -87,7 +89,9 @@ export declare namespace reports {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-grid relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class BasicReport extends ReportWidget {
         static structureTypeName: string;
@@ -134,7 +138,7 @@ export declare namespace reports {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container: customwidgets.WidgetValue): BasicReport;
         /**
@@ -179,7 +183,7 @@ export declare namespace reports {
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container: pages.BuildingBlock): BasicReport;
         /**
@@ -197,7 +201,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container: pages.DataView): BasicReport;
         /**
@@ -215,7 +219,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container: pages.DataView): BasicReport;
         /**
@@ -233,7 +237,7 @@ export declare namespace reports {
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container: pages.DivContainer): BasicReport;
         /**
@@ -251,7 +255,7 @@ export declare namespace reports {
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container: pages.GroupBox): BasicReport;
         /**
@@ -269,7 +273,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container: pages.Header): BasicReport;
         /**
@@ -287,7 +291,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container: pages.Header): BasicReport;
         /**
@@ -323,7 +327,7 @@ export declare namespace reports {
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container: pages.LayoutCallArgument): BasicReport;
         /**
@@ -341,7 +345,7 @@ export declare namespace reports {
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container: pages.LayoutGridColumn): BasicReport;
         /**
@@ -359,7 +363,7 @@ export declare namespace reports {
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container: pages.ListView): BasicReport;
         /**
@@ -377,7 +381,7 @@ export declare namespace reports {
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container: pages.ListViewTemplate): BasicReport;
         /**
@@ -395,7 +399,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): BasicReport;
         /**
@@ -404,7 +408,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container: pages.NativeLayoutContent): BasicReport;
         /**
@@ -422,7 +426,7 @@ export declare namespace reports {
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container: pages.NavigationListItem): BasicReport;
         /**
@@ -440,7 +444,7 @@ export declare namespace reports {
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container: pages.ScrollContainerRegion): BasicReport;
         /**
@@ -458,7 +462,7 @@ export declare namespace reports {
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container: pages.Snippet): BasicReport;
         /**
@@ -512,7 +516,7 @@ export declare namespace reports {
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container: pages.TabPage): BasicReport;
         /**
@@ -530,7 +534,7 @@ export declare namespace reports {
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container: pages.TableCell): BasicReport;
         /**
@@ -548,7 +552,7 @@ export declare namespace reports {
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container: pages.TemplateGridContents): BasicReport;
         /**
@@ -566,7 +570,7 @@ export declare namespace reports {
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container: pages.WebLayoutContent): BasicReport;
         /**
@@ -594,6 +598,9 @@ export declare namespace reports {
          */
         static create(model: IModel): BasicReport;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class BasicReportAggregate extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -608,6 +615,9 @@ export declare namespace reports {
          * Creates and returns a new BasicReportAggregate instance in the SDK and on the server.
          * The new BasicReportAggregate will be automatically stored in the 'aggregates' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: BasicReport): BasicReportAggregate;
         /**
@@ -617,6 +627,9 @@ export declare namespace reports {
          */
         static create(model: IModel): BasicReportAggregate;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class BasicReportColumn extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -636,6 +649,9 @@ export declare namespace reports {
          * Creates and returns a new BasicReportColumn instance in the SDK and on the server.
          * The new BasicReportColumn will be automatically stored in the 'columns' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: BasicReport): BasicReportColumn;
         /**
@@ -646,7 +662,9 @@ export declare namespace reports {
         static create(model: IModel): BasicReportColumn;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-button relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportButton extends pages.Widget {
         static structureTypeName: string;
@@ -685,7 +703,7 @@ export declare namespace reports {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container: customwidgets.WidgetValue): ReportButton;
         /**
@@ -730,7 +748,7 @@ export declare namespace reports {
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container: pages.BuildingBlock): ReportButton;
         /**
@@ -748,7 +766,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container: pages.DataView): ReportButton;
         /**
@@ -766,7 +784,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container: pages.DataView): ReportButton;
         /**
@@ -784,7 +802,7 @@ export declare namespace reports {
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container: pages.DivContainer): ReportButton;
         /**
@@ -802,7 +820,7 @@ export declare namespace reports {
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container: pages.GroupBox): ReportButton;
         /**
@@ -820,7 +838,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container: pages.Header): ReportButton;
         /**
@@ -838,7 +856,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container: pages.Header): ReportButton;
         /**
@@ -874,7 +892,7 @@ export declare namespace reports {
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container: pages.LayoutCallArgument): ReportButton;
         /**
@@ -892,7 +910,7 @@ export declare namespace reports {
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container: pages.LayoutGridColumn): ReportButton;
         /**
@@ -910,7 +928,7 @@ export declare namespace reports {
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container: pages.ListView): ReportButton;
         /**
@@ -928,7 +946,7 @@ export declare namespace reports {
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container: pages.ListViewTemplate): ReportButton;
         /**
@@ -946,7 +964,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportButton;
         /**
@@ -955,7 +973,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container: pages.NativeLayoutContent): ReportButton;
         /**
@@ -973,7 +991,7 @@ export declare namespace reports {
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container: pages.NavigationListItem): ReportButton;
         /**
@@ -991,7 +1009,7 @@ export declare namespace reports {
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container: pages.ScrollContainerRegion): ReportButton;
         /**
@@ -1009,7 +1027,7 @@ export declare namespace reports {
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container: pages.Snippet): ReportButton;
         /**
@@ -1063,7 +1081,7 @@ export declare namespace reports {
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container: pages.TabPage): ReportButton;
         /**
@@ -1081,7 +1099,7 @@ export declare namespace reports {
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container: pages.TableCell): ReportButton;
         /**
@@ -1099,7 +1117,7 @@ export declare namespace reports {
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container: pages.TemplateGridContents): ReportButton;
         /**
@@ -1117,7 +1135,7 @@ export declare namespace reports {
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container: pages.WebLayoutContent): ReportButton;
         /**
@@ -1695,7 +1713,9 @@ export declare namespace reports {
         static create(model: IModel): ReportChartSeries;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/date-range-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/date-range-field relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDateRangeField extends internal.Element<IModel> {
         static structureTypeName: string;
@@ -1710,6 +1730,9 @@ export declare namespace reports {
          * Creates and returns a new ReportDateRangeField instance in the SDK and on the server.
          * The new ReportDateRangeField will be automatically stored in the 'fields' property
          * of the parent ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: ReportDateRangeSelector): ReportDateRangeField;
         /**
@@ -1719,6 +1742,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportDateRangeField;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     abstract class ReportParameter extends pages.Widget {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -1761,7 +1787,9 @@ export declare namespace reports {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-date-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-date-parameter relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDateRangeSelector extends ReportParameter {
         static structureTypeName: string;
@@ -1811,7 +1839,7 @@ export declare namespace reports {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container: customwidgets.WidgetValue): ReportDateRangeSelector;
         /**
@@ -1856,7 +1884,7 @@ export declare namespace reports {
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container: pages.BuildingBlock): ReportDateRangeSelector;
         /**
@@ -1874,7 +1902,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container: pages.DataView): ReportDateRangeSelector;
         /**
@@ -1892,7 +1920,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container: pages.DataView): ReportDateRangeSelector;
         /**
@@ -1910,7 +1938,7 @@ export declare namespace reports {
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container: pages.DivContainer): ReportDateRangeSelector;
         /**
@@ -1928,7 +1956,7 @@ export declare namespace reports {
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container: pages.GroupBox): ReportDateRangeSelector;
         /**
@@ -1946,7 +1974,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container: pages.Header): ReportDateRangeSelector;
         /**
@@ -1964,7 +1992,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container: pages.Header): ReportDateRangeSelector;
         /**
@@ -2000,7 +2028,7 @@ export declare namespace reports {
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container: pages.LayoutCallArgument): ReportDateRangeSelector;
         /**
@@ -2018,7 +2046,7 @@ export declare namespace reports {
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container: pages.LayoutGridColumn): ReportDateRangeSelector;
         /**
@@ -2036,7 +2064,7 @@ export declare namespace reports {
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container: pages.ListView): ReportDateRangeSelector;
         /**
@@ -2054,7 +2082,7 @@ export declare namespace reports {
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container: pages.ListViewTemplate): ReportDateRangeSelector;
         /**
@@ -2072,7 +2100,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportDateRangeSelector;
         /**
@@ -2081,7 +2109,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container: pages.NativeLayoutContent): ReportDateRangeSelector;
         /**
@@ -2099,7 +2127,7 @@ export declare namespace reports {
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container: pages.NavigationListItem): ReportDateRangeSelector;
         /**
@@ -2117,7 +2145,7 @@ export declare namespace reports {
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container: pages.ScrollContainerRegion): ReportDateRangeSelector;
         /**
@@ -2135,7 +2163,7 @@ export declare namespace reports {
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container: pages.Snippet): ReportDateRangeSelector;
         /**
@@ -2189,7 +2217,7 @@ export declare namespace reports {
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container: pages.TabPage): ReportDateRangeSelector;
         /**
@@ -2207,7 +2235,7 @@ export declare namespace reports {
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container: pages.TableCell): ReportDateRangeSelector;
         /**
@@ -2225,7 +2253,7 @@ export declare namespace reports {
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container: pages.TemplateGridContents): ReportDateRangeSelector;
         /**
@@ -2243,7 +2271,7 @@ export declare namespace reports {
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container: pages.WebLayoutContent): ReportDateRangeSelector;
         /**
@@ -2272,7 +2300,9 @@ export declare namespace reports {
         static create(model: IModel): ReportDateRangeSelector;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-parameter relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDropDown extends ReportParameter {
         static structureTypeName: string;
@@ -2312,7 +2342,7 @@ export declare namespace reports {
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container: customwidgets.WidgetValue): ReportDropDown;
         /**
@@ -2357,7 +2387,7 @@ export declare namespace reports {
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container: pages.BuildingBlock): ReportDropDown;
         /**
@@ -2375,7 +2405,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container: pages.DataView): ReportDropDown;
         /**
@@ -2393,7 +2423,7 @@ export declare namespace reports {
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container: pages.DataView): ReportDropDown;
         /**
@@ -2411,7 +2441,7 @@ export declare namespace reports {
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container: pages.DivContainer): ReportDropDown;
         /**
@@ -2429,7 +2459,7 @@ export declare namespace reports {
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container: pages.GroupBox): ReportDropDown;
         /**
@@ -2447,7 +2477,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container: pages.Header): ReportDropDown;
         /**
@@ -2465,7 +2495,7 @@ export declare namespace reports {
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container: pages.Header): ReportDropDown;
         /**
@@ -2501,7 +2531,7 @@ export declare namespace reports {
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container: pages.LayoutCallArgument): ReportDropDown;
         /**
@@ -2519,7 +2549,7 @@ export declare namespace reports {
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container: pages.LayoutGridColumn): ReportDropDown;
         /**
@@ -2537,7 +2567,7 @@ export declare namespace reports {
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container: pages.ListView): ReportDropDown;
         /**
@@ -2555,7 +2585,7 @@ export declare namespace reports {
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container: pages.ListViewTemplate): ReportDropDown;
         /**
@@ -2573,7 +2603,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container: pages.NativeLayoutContent): ReportDropDown;
         /**
@@ -2582,7 +2612,7 @@ export declare namespace reports {
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container: pages.NativeLayoutContent): ReportDropDown;
         /**
@@ -2600,7 +2630,7 @@ export declare namespace reports {
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container: pages.NavigationListItem): ReportDropDown;
         /**
@@ -2618,7 +2648,7 @@ export declare namespace reports {
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container: pages.ScrollContainerRegion): ReportDropDown;
         /**
@@ -2636,7 +2666,7 @@ export declare namespace reports {
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container: pages.Snippet): ReportDropDown;
         /**
@@ -2690,7 +2720,7 @@ export declare namespace reports {
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container: pages.TabPage): ReportDropDown;
         /**
@@ -2708,7 +2738,7 @@ export declare namespace reports {
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container: pages.TableCell): ReportDropDown;
         /**
@@ -2726,7 +2756,7 @@ export declare namespace reports {
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container: pages.TemplateGridContents): ReportDropDown;
         /**
@@ -2744,7 +2774,7 @@ export declare namespace reports {
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container: pages.WebLayoutContent): ReportDropDown;
         /**
@@ -3010,6 +3040,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportPane;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class ReportZoomInfo extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -3023,6 +3056,9 @@ export declare namespace reports {
          * Creates and returns a new ReportZoomInfo instance in the SDK and on the server.
          * The new ReportZoomInfo will be automatically stored in the 'zoomInfo' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: BasicReport): ReportZoomInfo;
         /**
@@ -3032,6 +3068,9 @@ export declare namespace reports {
          */
         static create(model: IModel): ReportZoomInfo;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class ReportZoomMapping extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -3045,6 +3084,9 @@ export declare namespace reports {
          * Creates and returns a new ReportZoomMapping instance in the SDK and on the server.
          * The new ReportZoomMapping will be automatically stored in the 'mappings' property
          * of the parent ReportZoomInfo element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: ReportZoomInfo): ReportZoomMapping;
         /**

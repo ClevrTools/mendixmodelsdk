@@ -1027,6 +1027,32 @@ export declare namespace microflows {
          */
         static create(model: IModel): CallExternalAction;
     }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/cancel-synchronization relevant section in reference guide}
+     *
+     * In version 11.8.0: introduced
+     */
+    class CancelSynchronizationAction extends MicroflowAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsActionActivity(): ActionActivity;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CancelSynchronizationAction instance in the SDK and on the server.
+         * The new CancelSynchronizationAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createIn(container: ActionActivity): CancelSynchronizationAction;
+        /**
+         * Creates and returns a new CancelSynchronizationAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CancelSynchronizationAction;
+    }
     abstract class CaseValue extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -1850,6 +1876,34 @@ export declare namespace microflows {
         static create(model: IModel): EmailConnectionConfig;
     }
     /**
+     * In version 11.11.0: introduced
+     */
+    class EmailCustomHeader extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEmailMessage(): EmailMessage;
+        get name(): string;
+        set name(newValue: string);
+        get value(): string;
+        set value(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmailCustomHeader instance in the SDK and on the server.
+         * The new EmailCustomHeader will be automatically stored in the 'customHeaders' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createIn(container: EmailMessage): EmailCustomHeader;
+        /**
+         * Creates and returns a new EmailCustomHeader instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EmailCustomHeader;
+    }
+    /**
      * In version 11.2.0: introduced
      */
     class EmailMessage extends internal.Element<IModel> {
@@ -1873,16 +1927,22 @@ export declare namespace microflows {
         set bcc(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get subject(): string;
         set subject(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get messageBodyPlainText(): string;
         set messageBodyPlainText(newValue: string);
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get messageBodyHtml(): string;
         set messageBodyHtml(newValue: string);
@@ -1896,7 +1956,35 @@ export declare namespace microflows {
          */
         get attachment(): string;
         set attachment(newValue: string);
+        /**
+         * In version 11.11.0: introduced
+         */
+        get customHeaders(): internal.IList<EmailCustomHeader>;
+        /**
+         * In version 11.12.0: introduced
+         */
+        get subjectTemplate(): StringTemplate;
+        set subjectTemplate(newValue: StringTemplate);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get messageBodyPlainTextTemplate(): StringTemplate;
+        set messageBodyPlainTextTemplate(newValue: StringTemplate);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get messageBodyHtmlTemplate(): StringTemplate;
+        set messageBodyHtmlTemplate(newValue: StringTemplate);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'emailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 to 11.11.0
+         */
+        static createIn(container: SendEmailAction): EmailMessage;
         /**
          * Creates and returns a new EmailMessage instance in the SDK and on the server.
          * The new EmailMessage will be automatically stored in the 'emailMessage' property
@@ -1905,7 +1993,16 @@ export declare namespace microflows {
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  11.2.0 and higher
          */
-        static createIn(container: SendEmailAction): EmailMessage;
+        static createInSendEmailActionUnderEmailMessage(container: SendEmailAction): EmailMessage;
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'testEmailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInSendEmailActionUnderTestEmailMessage(container: SendEmailAction): EmailMessage;
         /**
          * Creates and returns a new EmailMessage instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -4445,6 +4542,11 @@ export declare namespace microflows {
          */
         get allowedModuleRoles(): internal.IList<security.IModuleRole>;
         get allowedModuleRolesQualifiedNames(): string[];
+        /**
+         * In version 11.9.0: introduced
+         */
+        get useListParameterByReference(): boolean;
+        set useListParameterByReference(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new Nanoflow unit in the SDK and on the server.
@@ -4615,9 +4717,17 @@ export declare namespace microflows {
         get containerAsActionActivity(): ActionActivity;
         get workflowVariable(): string;
         set workflowVariable(newValue: string);
+        /**
+         * In version 11.7.0: deleted
+         */
         get activity(): workflows.IWaitForNotificationActivity | null;
         set activity(newValue: workflows.IWaitForNotificationActivity | null);
         get activityQualifiedName(): string | null;
+        /**
+         * In version 11.7.0: introduced
+         */
+        get notifyTarget(): workflows.NotifyTarget | null;
+        set notifyTarget(newValue: workflows.NotifyTarget | null);
         get outputVariableName(): string;
         set outputVariableName(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -5518,7 +5628,7 @@ export declare namespace microflows {
         static create(model: IModel): RuleSplitCondition;
     }
     /**
-     * See: {@link https://docs.mendix.com/refguide/sendemail-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/send-email-action relevant section in reference guide}
      *
      * In version 11.2.0: introduced
      */
@@ -5532,6 +5642,16 @@ export declare namespace microflows {
         set emailConnectionConfig(newValue: EmailConnectionConfig);
         get emailMessage(): EmailMessage;
         set emailMessage(newValue: EmailMessage);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get testEmailMessage(): EmailMessage;
+        set testEmailMessage(newValue: EmailMessage);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get useTemplateForTest(): boolean;
+        set useTemplateForTest(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SendEmailAction instance in the SDK and on the server.
@@ -5881,6 +6001,7 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         get containerAsAbortOperation(): AbortOperation;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
+        get containerAsEmailMessage(): EmailMessage;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsShowMessageAction(): ShowMessageAction;
@@ -5898,6 +6019,7 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         get containerAsAbortOperation(): AbortOperation;
         get containerAsCustomRequestHandling(): CustomRequestHandling;
+        get containerAsEmailMessage(): EmailMessage;
         get containerAsHttpConfiguration(): HttpConfiguration;
         get containerAsLogMessageAction(): LogMessageAction;
         get containerAsStringTemplateParameterValue(): StringTemplateParameterValue;
@@ -5922,6 +6044,33 @@ export declare namespace microflows {
          * of the parent CustomRequestHandling element passed as argument.
          */
         static createInCustomRequestHandlingUnderTemplate(container: CustomRequestHandling): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'messageBodyHtmlTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderMessageBodyHtmlTemplate(container: EmailMessage): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'messageBodyPlainTextTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderMessageBodyPlainTextTemplate(container: EmailMessage): StringTemplate;
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subjectTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderSubjectTemplate(container: EmailMessage): StringTemplate;
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
          * The new StringTemplate will be automatically stored in the 'customLocationTemplate' property
@@ -6196,10 +6345,7 @@ export declare namespace microflows {
     /**
      * See: {@link https://docs.mendix.com/refguide/data-transformer/#transform-json-action relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.4.0: introduced
      */
     class TransformJsonAction extends MicroflowAction {
@@ -6207,13 +6353,11 @@ export declare namespace microflows {
         static versionInfo: StructureVersionInfo;
         get containerAsActionActivity(): ActionActivity;
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
+         * In version 11.9.0: added optional
          */
-        get transformation(): datatransformers.IDataTransformer;
-        set transformation(newValue: datatransformers.IDataTransformer);
-        get transformationQualifiedName(): string;
+        get transformation(): datatransformers.IDataTransformer | null;
+        set transformation(newValue: datatransformers.IDataTransformer | null);
+        get transformationQualifiedName(): string | null;
         get inputVariableName(): string;
         set inputVariableName(newValue: string);
         get outputVariableName(): string;

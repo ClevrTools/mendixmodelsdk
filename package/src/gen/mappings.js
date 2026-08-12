@@ -113,6 +113,9 @@ var mappings;
         get containerAsEntityMessageDefinition() {
             return super.getContainerAs(messagedefinitions_1.messagedefinitions.EntityMessageDefinition);
         }
+        get containerAsMessageDefinition2() {
+            return super.getContainerAs(messagedefinitions_1.messagedefinitions.MessageDefinition2);
+        }
         get elementType() {
             return this.__elementType.get();
         }
@@ -252,6 +255,8 @@ var mappings;
             /** @internal */
             this.__messageDefinition = new internal.ByNameReferenceProperty(MappingDocument, this, "messageDefinition", null, "MessageDefinitions$MessageDefinition");
             /** @internal */
+            this.__messageDefinition2 = new internal.ByNameReferenceProperty(MappingDocument, this, "messageDefinition2", null, "MessageDefinitions$MessageDefinition2");
+            /** @internal */
             this.__mappingSourceReference = new internal.PartProperty(MappingDocument, this, "mappingSourceReference", null, false);
             /** @internal */
             this.__publicName = new internal.PrimitiveProperty(MappingDocument, this, "publicName", "", internal.PrimitiveTypeEnum.String);
@@ -323,6 +328,18 @@ var mappings;
             return this.__messageDefinition.qualifiedName();
         }
         /**
+         * In version 11.10.0: introduced
+         */
+        get messageDefinition2() {
+            return this.__messageDefinition2.get();
+        }
+        set messageDefinition2(newValue) {
+            this.__messageDefinition2.set(newValue);
+        }
+        get messageDefinition2QualifiedName() {
+            return this.__messageDefinition2.qualifiedName();
+        }
+        /**
          * In version 10.16.0: introduced
          */
         get mappingSourceReference() {
@@ -353,6 +370,9 @@ var mappings;
             },
             messageDefinition: {
                 introduced: "7.6.0"
+            },
+            messageDefinition2: {
+                introduced: "11.10.0"
             },
             mappingSourceReference: {
                 introduced: "10.16.0",

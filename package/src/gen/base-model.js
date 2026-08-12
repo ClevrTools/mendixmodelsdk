@@ -100,6 +100,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Kafka$PublishedKafkaService",
             "MLMappings$MLMappingDocument",
             "Menus$MenuDocument",
+            "MessageDefinitions$MessageDefinition2",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
             "Microflows$Nanoflow",
@@ -191,6 +192,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     allMenuDocuments() {
         return super._allOfTypes(["Menus$MenuDocument"]);
     }
+    allMessageDefinition2s() {
+        return super._allOfTypes(["MessageDefinitions$MessageDefinition2"]);
+    }
     allMessageDefinitionCollections() {
         return super._allOfTypes(["MessageDefinitions$MessageDefinitionCollection"]);
     }
@@ -234,6 +238,7 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Kafka$PublishedKafkaService",
             "MLMappings$MLMappingDocument",
             "Menus$MenuDocument",
+            "MessageDefinitions$MessageDefinition2",
             "MessageDefinitions$MessageDefinitionCollection",
             "Microflows$Microflow",
             "Microflows$Nanoflow",
@@ -261,6 +266,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
             "Workflows$Workflow",
             "XmlSchemas$XmlSchema"
         ]);
+    }
+    allModuleGuidMappings() {
+        return super._allOfTypes(["Projects$ModuleGuidMapping"]);
     }
     allModuleSecurities() {
         return super._allOfTypes(["Security$ModuleSecurity"]);
@@ -480,6 +488,9 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     findMessageDefinitionByQualifiedName(qname) {
         return this._resolveName("MessageDefinitions$MessageDefinition", qname);
     }
+    findMessageDefinition2ByQualifiedName(qname) {
+        return this._resolveName("MessageDefinitions$MessageDefinition2", qname);
+    }
     findMicroflowByQualifiedName(qname) {
         return this._resolveName("Microflows$Microflow", qname);
     }
@@ -554,6 +565,18 @@ class BaseModel extends AbstractModel_1.AbstractModel {
     }
     findImportedWebServiceByQualifiedName(qname) {
         return this._resolveName("WebServices$ImportedWebService", qname);
+    }
+    findInterruptingNotificationEventSubProcessStartActivityByQualifiedName(qname) {
+        return this._resolveName("Workflows$InterruptingNotificationEventSubProcessStartActivity", qname);
+    }
+    findNonInterruptingNotificationEventSubProcessStartActivityByQualifiedName(qname) {
+        return this._resolveName("Workflows$NonInterruptingNotificationEventSubProcessStartActivity", qname);
+    }
+    findNotificationActivityByQualifiedName(qname) {
+        return this._resolveName("Workflows$NotificationActivity", qname);
+    }
+    findNotificationBoundaryEventByQualifiedName(qname) {
+        return this._resolveName("Workflows$NotificationBoundaryEvent", qname);
     }
     findParameterByQualifiedName(qname) {
         return this._resolveName("Workflows$Parameter", qname);

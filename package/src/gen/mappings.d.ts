@@ -42,6 +42,7 @@ export declare namespace mappings {
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): Element;
         get containerAsEntityMessageDefinition(): messagedefinitions.EntityMessageDefinition;
+        get containerAsMessageDefinition2(): messagedefinitions.MessageDefinition2;
         get elementType(): ElementType;
         set elementType(newValue: ElementType);
         get primitiveType(): xmlschemas.XmlPrimitiveType;
@@ -125,6 +126,12 @@ export declare namespace mappings {
         get messageDefinition(): messagedefinitions.IMessageDefinition | null;
         set messageDefinition(newValue: messagedefinitions.IMessageDefinition | null);
         get messageDefinitionQualifiedName(): string | null;
+        /**
+         * In version 11.10.0: introduced
+         */
+        get messageDefinition2(): messagedefinitions.IMessageDefinition2 | null;
+        set messageDefinition2(newValue: messagedefinitions.IMessageDefinition2 | null);
+        get messageDefinition2QualifiedName(): string | null;
         /**
          * In version 10.16.0: introduced
          */

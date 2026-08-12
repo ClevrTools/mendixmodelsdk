@@ -664,6 +664,8 @@ var odatapublish;
             this.__canBeEmpty = new internal.PrimitiveProperty(PublishedAssociationEnd, this, "canBeEmpty", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__exposedAssociationName = new internal.PrimitiveProperty(PublishedAssociationEnd, this, "exposedAssociationName", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__isMany = new internal.PrimitiveProperty(PublishedAssociationEnd, this, "isMany", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new PublishedAssociationEnd() cannot be invoked directly, please use 'model.odatapublish.createPublishedAssociationEnd()'");
             }
@@ -702,6 +704,15 @@ var odatapublish;
             this.__exposedAssociationName.set(newValue);
         }
         /**
+         * In version 11.12.0: introduced
+         */
+        get isMany() {
+            return this.__isMany.get();
+        }
+        set isMany(newValue) {
+            this.__isMany.set(newValue);
+        }
+        /**
          * Creates and returns a new PublishedAssociationEnd instance in the SDK and on the server.
          * The new PublishedAssociationEnd will be automatically stored in the 'childMembers' property
          * of the parent EntityType element passed as argument.
@@ -734,6 +745,9 @@ var odatapublish;
                 required: {
                     currentValue: true
                 }
+            },
+            isMany: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.Element);
@@ -758,6 +772,8 @@ var odatapublish;
             this.__enumerationAsString = new internal.PrimitiveProperty(PublishedAttribute, this, "enumerationAsString", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__stringAsGuid = new internal.PrimitiveProperty(PublishedAttribute, this, "stringAsGuid", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__edmType = new internal.PrimitiveProperty(PublishedAttribute, this, "edmType", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new PublishedAttribute() cannot be invoked directly, please use 'model.odatapublish.createPublishedAttribute()'");
             }
@@ -814,6 +830,15 @@ var odatapublish;
             this.__stringAsGuid.set(newValue);
         }
         /**
+         * In version 11.12.0: introduced
+         */
+        get edmType() {
+            return this.__edmType.get();
+        }
+        set edmType(newValue) {
+            this.__edmType.set(newValue);
+        }
+        /**
          * Creates and returns a new PublishedAttribute instance in the SDK and on the server.
          * The new PublishedAttribute will be automatically stored in the 'childMembers' property
          * of the parent EntityType element passed as argument.
@@ -850,6 +875,9 @@ var odatapublish;
         properties: {
             stringAsGuid: {
                 introduced: "10.12.0"
+            },
+            edmType: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.Element);

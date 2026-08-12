@@ -5723,6 +5723,280 @@ var pages;
     }, internal.StructureType.Element);
     pages.CancelChangesClientAction = CancelChangesClientAction;
     /**
+     * In version 11.8.0: introduced
+     */
+    class CancelSynchronizationClientAction extends ClientAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CancelSynchronizationClientAction() cannot be invoked directly, please use 'model.pages.createCancelSynchronizationClientAction()'");
+            }
+        }
+        get containerAsWidgetValue() {
+            return super.getContainerAs(customwidgets_1.customwidgets.WidgetValue);
+        }
+        get containerAsMenuItem() {
+            return super.getContainerAs(menus_1.menus.MenuItem);
+        }
+        get containerAsActionButton() {
+            return super.getContainerAs(ActionButton);
+        }
+        get containerAsActionItem() {
+            return super.getContainerAs(ActionItem);
+        }
+        get containerAsAssociationWidget() {
+            return super.getContainerAs(AssociationWidget);
+        }
+        get containerAsAttributeWidget() {
+            return super.getContainerAs(AttributeWidget);
+        }
+        get containerAsDivContainer() {
+            return super.getContainerAs(DivContainer);
+        }
+        get containerAsDynamicImageViewer() {
+            return super.getContainerAs(DynamicImageViewer);
+        }
+        get containerAsGridActionButton() {
+            return super.getContainerAs(GridActionButton);
+        }
+        get containerAsListView() {
+            return super.getContainerAs(ListView);
+        }
+        get containerAsReferenceSetSelector() {
+            return super.getContainerAs(ReferenceSetSelector);
+        }
+        get containerAsStaticImageViewer() {
+            return super.getContainerAs(StaticImageViewer);
+        }
+        get containerAsTabContainer() {
+            return super.getContainerAs(TabContainer);
+        }
+        get containerAsTextBox() {
+            return super.getContainerAs(TextBox);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInWidgetValueUnderAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInMenuItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInActionItemUnderAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onEnterAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onLeaveAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onClickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInListViewUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "pullDownAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "clickAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "activePageOnChangeAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationClientAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationClientAction, "onEnterKeyPressAction", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CancelSynchronizationClientAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CancelSynchronizationClientAction.structureTypeName = "Pages$CancelSynchronizationClientAction";
+    CancelSynchronizationClientAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0"
+    }, internal.StructureType.Element);
+    pages.CancelSynchronizationClientAction = CancelSynchronizationClientAction;
+    /**
      * See: {@link https://docs.mendix.com/refguide/check-box relevant section in reference guide}
      */
     class CheckBox extends AttributeWidget {
@@ -37369,6 +37643,52 @@ var pages;
     }, internal.StructureType.Element);
     pages.PageParameterMapping = PageParameterMapping;
     /**
+     * In version 11.9.0: introduced
+     */
+    class PagePrimitiveParameterUrlSegment extends url_1.url.UrlSegment {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__pageParameter = new internal.LocalByNameReferenceProperty(PagePrimitiveParameterUrlSegment, this, "pageParameter", null, "Pages$PageParameter");
+            if (arguments.length < 4) {
+                throw new Error("new PagePrimitiveParameterUrlSegment() cannot be invoked directly, please use 'model.pages.createPagePrimitiveParameterUrlSegment()'");
+            }
+        }
+        get pageParameter() {
+            return this.__pageParameter.get();
+        }
+        set pageParameter(newValue) {
+            this.__pageParameter.set(newValue);
+        }
+        get pageParameterLocalName() {
+            return this.__pageParameter.localName();
+        }
+        /**
+         * Creates and returns a new PagePrimitiveParameterUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, PagePrimitiveParameterUrlSegment);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    PagePrimitiveParameterUrlSegment.structureTypeName = "Pages$PagePrimitiveParameterUrlSegment";
+    PagePrimitiveParameterUrlSegment.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.9.0",
+        properties: {
+            pageParameter: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    pages.PagePrimitiveParameterUrlSegment = PagePrimitiveParameterUrlSegment;
+    /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element {
@@ -48001,7 +48321,9 @@ var pages;
             /** @internal */
             this.__parameter = new internal.ByNameReferenceProperty(SnippetParameterMapping, this, "parameter", null, "Pages$SnippetParameter");
             /** @internal */
-            this.__variable = new internal.PartProperty(SnippetParameterMapping, this, "variable", null, true);
+            this.__variable = new internal.PartProperty(SnippetParameterMapping, this, "variable", null, false);
+            /** @internal */
+            this.__argument = new internal.PrimitiveProperty(SnippetParameterMapping, this, "argument", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new SnippetParameterMapping() cannot be invoked directly, please use 'model.pages.createSnippetParameterMapping()'");
             }
@@ -48018,11 +48340,25 @@ var pages;
         get parameterQualifiedName() {
             return this.__parameter.qualifiedName();
         }
+        /**
+         * In version 11.8.0: added optional
+         */
         get variable() {
             return this.__variable.get();
         }
         set variable(newValue) {
             this.__variable.set(newValue);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.8.0: introduced
+         */
+        get argument() {
+            return this.__argument.get();
+        }
+        set argument(newValue) {
+            this.__argument.set(newValue);
         }
         /**
          * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.
@@ -48047,7 +48383,12 @@ var pages;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.variable = PageVariable.create(this.model);
+            (() => {
+                if (internal.isAtLeast("11.8.0", this.model)) {
+                    return;
+                }
+                this.variable = PageVariable.create(this.model);
+            })();
         }
     }
     SnippetParameterMapping.structureTypeName = "Pages$SnippetParameterMapping";
@@ -48061,8 +48402,12 @@ var pages;
             },
             variable: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["11.8.0"]
                 }
+            },
+            argument: {
+                introduced: "11.8.0"
             }
         }
     }, internal.StructureType.Element);

@@ -745,6 +745,10 @@ var rest;
             /** @internal */
             this.__configurationMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "configurationMicroflow", null, "Microflows$Microflow");
             /** @internal */
+            this.__headerListMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "headerListMicroflow", null, "Microflows$Microflow");
+            /** @internal */
+            this.__configurationEntityMicroflow = new internal.ByNameReferenceProperty(ConsumedODataService, this, "configurationEntityMicroflow", null, "Microflows$Microflow");
+            /** @internal */
             this.__timeoutModel = new internal.PartProperty(ConsumedODataService, this, "timeoutModel", null, true);
             /** @internal */
             this.__timeoutExpression = new internal.PrimitiveProperty(ConsumedODataService, this, "timeoutExpression", "300", internal.PrimitiveTypeEnum.String);
@@ -836,6 +840,7 @@ var rest;
             return this.__headersMicroflow.qualifiedName();
         }
         /**
+         * In version 11.10.0: deleted
          * In version 10.12.0: introduced
          */
         get configurationMicroflow() {
@@ -846,6 +851,30 @@ var rest;
         }
         get configurationMicroflowQualifiedName() {
             return this.__configurationMicroflow.qualifiedName();
+        }
+        /**
+         * In version 11.10.0: introduced
+         */
+        get headerListMicroflow() {
+            return this.__headerListMicroflow.get();
+        }
+        set headerListMicroflow(newValue) {
+            this.__headerListMicroflow.set(newValue);
+        }
+        get headerListMicroflowQualifiedName() {
+            return this.__headerListMicroflow.qualifiedName();
+        }
+        /**
+         * In version 11.10.0: introduced
+         */
+        get configurationEntityMicroflow() {
+            return this.__configurationEntityMicroflow.get();
+        }
+        set configurationEntityMicroflow(newValue) {
+            this.__configurationEntityMicroflow.set(newValue);
+        }
+        get configurationEntityMicroflowQualifiedName() {
+            return this.__configurationEntityMicroflow.qualifiedName();
         }
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
@@ -982,7 +1011,15 @@ var rest;
                 deletionMessage: "Replaced by configurationMicroflow"
             },
             configurationMicroflow: {
-                introduced: "10.12.0"
+                introduced: "10.12.0",
+                deleted: "11.10.0",
+                deletionMessage: "Split into configurationEntityMicroflow and headerListMicroflow"
+            },
+            headerListMicroflow: {
+                introduced: "11.10.0"
+            },
+            configurationEntityMicroflow: {
+                introduced: "11.10.0"
             },
             timeoutModel: {
                 introduced: "8.5.0",
@@ -4156,6 +4193,8 @@ var rest;
             this.__resources = new internal.PartListProperty(PublishedRestService, this, "resources", []);
             /** @internal */
             this.__parameters = new internal.PartListProperty(PublishedRestService, this, "parameters", []);
+            /** @internal */
+            this.__publicDocumentation = new internal.PrimitiveProperty(PublishedRestService, this, "publicDocumentation", "", internal.PrimitiveTypeEnum.String);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -4241,6 +4280,15 @@ var rest;
             return this.__parameters.get();
         }
         /**
+         * In version 11.10.0: introduced
+         */
+        get publicDocumentation() {
+            return this.__publicDocumentation.get();
+        }
+        set publicDocumentation(newValue) {
+            this.__publicDocumentation.set(newValue);
+        }
+        /**
          * Creates a new PublishedRestService unit in the SDK and on the server.
          * Expects one argument, the projects.IFolderBase in which this unit is contained.
          */
@@ -4290,6 +4338,9 @@ var rest;
             },
             parameters: {
                 introduced: "7.17.0"
+            },
+            publicDocumentation: {
+                introduced: "11.10.0"
             }
         },
         experimental: {

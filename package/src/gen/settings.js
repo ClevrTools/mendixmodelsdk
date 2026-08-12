@@ -325,6 +325,8 @@ var settings;
             this.__constantValues = new internal.PartListProperty(Configuration, this, "constantValues", []);
             /** @internal */
             this.__tracing = new internal.PartProperty(Configuration, this, "tracing", null, false);
+            /** @internal */
+            this.__openTelemetry = new internal.PartProperty(Configuration, this, "openTelemetry", null, false);
             if (arguments.length < 4) {
                 throw new Error("new Configuration() cannot be invoked directly, please use 'model.settings.createConfiguration()'");
             }
@@ -432,6 +434,7 @@ var settings;
             return this.__constantValues.get();
         }
         /**
+         * In version 11.12.0: deleted
          * In version 10.21.0: introduced
          */
         get tracing() {
@@ -439,6 +442,15 @@ var settings;
         }
         set tracing(newValue) {
             this.__tracing.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get openTelemetry() {
+            return this.__openTelemetry.get();
+        }
+        set openTelemetry(newValue) {
+            this.__openTelemetry.set(newValue);
         }
         /**
          * Creates and returns a new Configuration instance in the SDK and on the server.
@@ -479,7 +491,12 @@ var settings;
                 deletionMessage: null
             },
             tracing: {
-                introduced: "10.21.0"
+                introduced: "10.21.0",
+                deleted: "11.12.0",
+                deletionMessage: null
+            },
+            openTelemetry: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.Element);
@@ -1150,6 +1167,196 @@ var settings;
     }, internal.StructureType.Element);
     settings.ModelerSettings = ModelerSettings;
     /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryConfiguration extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(OpenTelemetryConfiguration, this, "enabled", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__endpoint = new internal.PrimitiveProperty(OpenTelemetryConfiguration, this, "endpoint", "http://localhost:4318", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__serviceName = new internal.PrimitiveProperty(OpenTelemetryConfiguration, this, "serviceName", "MendixApp", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__traces = new internal.PartProperty(OpenTelemetryConfiguration, this, "traces", null, false);
+            /** @internal */
+            this.__logs = new internal.PartProperty(OpenTelemetryConfiguration, this, "logs", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new OpenTelemetryConfiguration() cannot be invoked directly, please use 'model.settings.createOpenTelemetryConfiguration()'");
+            }
+        }
+        get containerAsConfiguration() {
+            return super.getContainerAs(Configuration);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        get endpoint() {
+            return this.__endpoint.get();
+        }
+        set endpoint(newValue) {
+            this.__endpoint.set(newValue);
+        }
+        get serviceName() {
+            return this.__serviceName.get();
+        }
+        set serviceName(newValue) {
+            this.__serviceName.set(newValue);
+        }
+        get traces() {
+            return this.__traces.get();
+        }
+        set traces(newValue) {
+            this.__traces.set(newValue);
+        }
+        get logs() {
+            return this.__logs.get();
+        }
+        set logs(newValue) {
+            this.__logs.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryConfiguration will be automatically stored in the 'openTelemetry' property
+         * of the parent Configuration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenTelemetryConfiguration.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, OpenTelemetryConfiguration, "openTelemetry", false);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenTelemetryConfiguration);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = false;
+            this.endpoint = "http://localhost:4318";
+            this.serviceName = "MendixApp";
+        }
+    }
+    OpenTelemetryConfiguration.structureTypeName = "Settings$OpenTelemetryConfiguration";
+    OpenTelemetryConfiguration.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    settings.OpenTelemetryConfiguration = OpenTelemetryConfiguration;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryLogsConfiguration extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(OpenTelemetryLogsConfiguration, this, "enabled", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new OpenTelemetryLogsConfiguration() cannot be invoked directly, please use 'model.settings.createOpenTelemetryLogsConfiguration()'");
+            }
+        }
+        get containerAsOpenTelemetryConfiguration() {
+            return super.getContainerAs(OpenTelemetryConfiguration);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryLogsConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryLogsConfiguration will be automatically stored in the 'logs' property
+         * of the parent OpenTelemetryConfiguration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenTelemetryLogsConfiguration.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, OpenTelemetryLogsConfiguration, "logs", false);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryLogsConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenTelemetryLogsConfiguration);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = true;
+        }
+    }
+    OpenTelemetryLogsConfiguration.structureTypeName = "Settings$OpenTelemetryLogsConfiguration";
+    OpenTelemetryLogsConfiguration.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    settings.OpenTelemetryLogsConfiguration = OpenTelemetryLogsConfiguration;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryTracesConfiguration extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__enabled = new internal.PrimitiveProperty(OpenTelemetryTracesConfiguration, this, "enabled", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new OpenTelemetryTracesConfiguration() cannot be invoked directly, please use 'model.settings.createOpenTelemetryTracesConfiguration()'");
+            }
+        }
+        get containerAsOpenTelemetryConfiguration() {
+            return super.getContainerAs(OpenTelemetryConfiguration);
+        }
+        get enabled() {
+            return this.__enabled.get();
+        }
+        set enabled(newValue) {
+            this.__enabled.set(newValue);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryTracesConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryTracesConfiguration will be automatically stored in the 'traces' property
+         * of the parent OpenTelemetryConfiguration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, OpenTelemetryTracesConfiguration.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, OpenTelemetryTracesConfiguration, "traces", false);
+        }
+        /**
+         * Creates and returns a new OpenTelemetryTracesConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, OpenTelemetryTracesConfiguration);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.enabled = true;
+        }
+    }
+    OpenTelemetryTracesConfiguration.structureTypeName = "Settings$OpenTelemetryTracesConfiguration";
+    OpenTelemetryTracesConfiguration.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    settings.OpenTelemetryTracesConfiguration = OpenTelemetryTracesConfiguration;
+    /**
      * In version 10.9.0: introduced
      */
     class SharedOrPrivateValue extends internal.Element {
@@ -1323,6 +1530,8 @@ var settings;
             /** @internal */
             this.__javaVersion = new internal.EnumProperty(RuntimeSettings, this, "javaVersion", JavaVersion.Java11, JavaVersion);
             /** @internal */
+            this.__javaMajorVersion = new internal.PrimitiveProperty(RuntimeSettings, this, "javaMajorVersion", "21", internal.PrimitiveTypeEnum.String);
+            /** @internal */
             this.__useOQLVersion2 = new internal.PrimitiveProperty(RuntimeSettings, this, "useOQLVersion2", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__sslCertificateAlgorithm = new internal.EnumProperty(RuntimeSettings, this, "sslCertificateAlgorithm", SslCertificateAlgorithm.SunX509, SslCertificateAlgorithm);
@@ -1465,6 +1674,7 @@ var settings;
             this.__useDatabaseForeignKeyConstraints.set(newValue);
         }
         /**
+         * In version 11.12.0: deleted
          * In version 10.8.0: introduced
          */
         get javaVersion() {
@@ -1472,6 +1682,15 @@ var settings;
         }
         set javaVersion(newValue) {
             this.__javaVersion.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get javaMajorVersion() {
+            return this.__javaMajorVersion.get();
+        }
+        set javaMajorVersion(newValue) {
+            this.__javaMajorVersion.set(newValue);
         }
         /**
          * In version 10.11.0: introduced
@@ -1542,6 +1761,9 @@ var settings;
             }
             this.firstDayOfWeek = FirstDayOfWeekEnum.Default;
             this.hashAlgorithm = HashAlgorithmType.BCrypt;
+            if (this.__javaMajorVersion.isAvailable) {
+                this.javaMajorVersion = "21";
+            }
             if (this.__javaVersion.isAvailable) {
                 this.javaVersion = JavaVersion.Java11;
             }
@@ -1595,7 +1817,12 @@ var settings;
                 introduced: "10.6.0"
             },
             javaVersion: {
-                introduced: "10.8.0"
+                introduced: "10.8.0",
+                deleted: "11.12.0",
+                deletionMessage: null
+            },
+            javaMajorVersion: {
+                introduced: "11.12.0"
             },
             useOQLVersion2: {
                 introduced: "10.11.0"
@@ -1688,6 +1915,7 @@ var settings;
     }, internal.StructureType.Element);
     settings.ThemeModuleEntry = ThemeModuleEntry;
     /**
+     * In version 11.12.0: deleted
      * In version 10.21.0: introduced
      */
     class TracingConfiguration extends internal.Element {
@@ -1730,10 +1958,10 @@ var settings;
          * of the parent Configuration element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.21.0 and higher
+         *  10.21.0 to 11.11.0
          */
         static createIn(container) {
-            internal.createInVersionCheck(container.model, TracingConfiguration.structureTypeName, { start: "10.21.0" });
+            internal.createInVersionCheck(container.model, TracingConfiguration.structureTypeName, { start: "10.21.0", end: "11.11.0" });
             return internal.instancehelpers.createElement(container, TracingConfiguration, "tracing", false);
         }
         /**
@@ -1754,7 +1982,9 @@ var settings;
     }
     TracingConfiguration.structureTypeName = "Settings$TracingConfiguration";
     TracingConfiguration.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.21.0"
+        introduced: "10.21.0",
+        deleted: "11.12.0",
+        deletionMessage: null
     }, internal.StructureType.Element);
     settings.TracingConfiguration = TracingConfiguration;
     /**
@@ -1827,6 +2057,10 @@ var settings;
             this.__enableNewWidgetGeneration = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableNewWidgetGeneration", true, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__enableNewStringBehavior = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableNewStringBehavior", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__exportEmbeddedEntrypoint = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "exportEmbeddedEntrypoint", false, internal.PrimitiveTypeEnum.Boolean);
+            /** @internal */
+            this.__enableRspackBundler = new internal.PrimitiveProperty(WebUIProjectSettingsPart, this, "enableRspackBundler", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new WebUIProjectSettingsPart() cannot be invoked directly, please use 'model.settings.createWebUIProjectSettingsPart()'");
             }
@@ -1940,6 +2174,25 @@ var settings;
             this.__enableNewStringBehavior.set(newValue);
         }
         /**
+         * In version 11.12.0: deleted
+         * In version 11.8.0: introduced
+         */
+        get exportEmbeddedEntrypoint() {
+            return this.__exportEmbeddedEntrypoint.get();
+        }
+        set exportEmbeddedEntrypoint(newValue) {
+            this.__exportEmbeddedEntrypoint.set(newValue);
+        }
+        /**
+         * In version 11.9.0: introduced
+         */
+        get enableRspackBundler() {
+            return this.__enableRspackBundler.get();
+        }
+        set enableRspackBundler(newValue) {
+            this.__enableRspackBundler.set(newValue);
+        }
+        /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.
          * The new WebUIProjectSettingsPart will be automatically stored in the 'settingsParts' property
          * of the parent ProjectSettings element passed as argument.
@@ -1966,6 +2219,9 @@ var settings;
             }
             if (this.__enableNewWidgetGeneration.isAvailable) {
                 this.enableNewWidgetGeneration = true;
+            }
+            if (this.__enableRspackBundler.isAvailable) {
+                this.enableRspackBundler = false;
             }
             if (this.__theme.isAvailable) {
                 this.theme = "(Default)";
@@ -2030,6 +2286,14 @@ var settings;
             },
             enableNewStringBehavior: {
                 introduced: "11.6.0"
+            },
+            exportEmbeddedEntrypoint: {
+                introduced: "11.8.0",
+                deleted: "11.12.0",
+                deletionMessage: null
+            },
+            enableRspackBundler: {
+                introduced: "11.9.0"
             }
         }
     }, internal.StructureType.Element);

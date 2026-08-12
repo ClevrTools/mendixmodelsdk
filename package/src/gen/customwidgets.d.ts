@@ -57,6 +57,7 @@ export declare namespace customwidgets {
         static TabIndex: SystemPropertyEnum;
         static Editability: SystemPropertyEnum;
         static Visibility: SystemPropertyEnum;
+        static Text: SystemPropertyEnum;
         protected qualifiedTsTypeName: string;
     }
     class WidgetReturnTypeEnum extends internal.AbstractEnum {
@@ -1182,6 +1183,11 @@ export declare namespace customwidgets {
          */
         get defaultType(): DefaultTypeEnum;
         set defaultType(newValue: DefaultTypeEnum);
+        /**
+         * In version 11.8.0: introduced
+         */
+        get allowUpload(): boolean;
+        set allowUpload(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WidgetValueType instance in the SDK and on the server.

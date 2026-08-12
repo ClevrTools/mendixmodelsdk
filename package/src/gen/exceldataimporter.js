@@ -6,19 +6,13 @@ const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const mappings_1 = require("./mappings");
 const microflows_1 = require("./microflows");
-/**
- * @ignore
- */
 var exceldataimporter;
 (function (exceldataimporter) {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `ExcelDataImporter`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -82,19 +76,10 @@ var exceldataimporter;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings() {
             return this.__columnAttributeMappings.get();
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: introduced
          */
         get csvRootElement() {
@@ -158,15 +143,13 @@ var exceldataimporter;
             changedIn: ["10.15.0"]
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.CSVSheet = CSVSheet;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -193,15 +176,13 @@ var exceldataimporter;
             changedIn: ["10.15.0"]
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.TemplateContents = TemplateContents;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -218,10 +199,6 @@ var exceldataimporter;
             return super.getContainerAs(Template);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         get sheet() {
@@ -284,15 +261,13 @@ var exceldataimporter;
             changedIn: ["10.15.0"]
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.CSVTemplateContents = CSVTemplateContents;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class ColumnAttributeMapping extends internal.Element {
@@ -315,11 +290,6 @@ var exceldataimporter;
         get containerAsSheet() {
             return super.getContainerAs(Sheet);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference() {
             return this.__reference.get();
         }
@@ -413,15 +383,13 @@ var exceldataimporter;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.ColumnAttributeMapping = ColumnAttributeMapping;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     class CsvSheetMappingSourceReference extends mappings_1.mappings.MappingSourceReference {
@@ -436,11 +404,6 @@ var exceldataimporter;
         get containerAsMappingDocument() {
             return super.getContainerAs(mappings_1.mappings.MappingDocument);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get csvSheet() {
             return this.__csvSheet.get();
         }
@@ -489,15 +452,13 @@ var exceldataimporter;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.CsvSheetMappingSourceReference = CsvSheetMappingSourceReference;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: introduced
      */
     class DataImporterElement extends mappings_1.mappings.Element {
@@ -589,15 +550,13 @@ var exceldataimporter;
     DataImporterElement.versionInfo = new exports.StructureVersionInfo({
         introduced: "10.15.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.DataImporterElement = DataImporterElement;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -623,11 +582,6 @@ var exceldataimporter;
         get containerAsExcelTemplateContents() {
             return super.getContainerAs(ExcelTemplateContents);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference() {
             return this.__reference.get();
         }
@@ -658,19 +612,10 @@ var exceldataimporter;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings() {
             return this.__columnAttributeMappings.get();
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: introduced
          */
         get excelRootElement() {
@@ -741,15 +686,13 @@ var exceldataimporter;
             changedIn: ["10.15.0"]
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.ExcelSheet = ExcelSheet;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.16.0: introduced
      */
     class ExcelSheetMappingSourceReference extends mappings_1.mappings.MappingSourceReference {
@@ -764,11 +707,6 @@ var exceldataimporter;
         get containerAsMappingDocument() {
             return super.getContainerAs(mappings_1.mappings.MappingDocument);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get excelSheet() {
             return this.__excelSheet.get();
         }
@@ -817,15 +755,13 @@ var exceldataimporter;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.ExcelSheetMappingSourceReference = ExcelSheetMappingSourceReference;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.15.0: added public
      * In version 10.6.0: introduced
      */
@@ -842,10 +778,6 @@ var exceldataimporter;
             return super.getContainerAs(Template);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          */
         get sheets() {
@@ -892,15 +824,13 @@ var exceldataimporter;
             changedIn: ["10.15.0"]
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.ExcelTemplateContents = ExcelTemplateContents;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 10.0.0: introduced
      */
     class ImportExcelDataAction extends microflows_1.microflows.MicroflowAction {
@@ -922,10 +852,6 @@ var exceldataimporter;
             return super.getContainerAs(microflows_1.microflows.ActionActivity);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.1.0: added optional
          */
         get template() {
@@ -1005,15 +931,13 @@ var exceldataimporter;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.ImportExcelDataAction = ImportExcelDataAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class Reference extends internal.Element {
@@ -1041,15 +965,13 @@ var exceldataimporter;
     Reference.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.24.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.Reference = Reference;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class IndexReference extends Reference {
@@ -1130,15 +1052,13 @@ var exceldataimporter;
     IndexReference.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.24.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.IndexReference = IndexReference;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class NameReference extends Reference {
@@ -1218,7 +1138,8 @@ var exceldataimporter;
     NameReference.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.24.0",
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.Element);
     exceldataimporter.NameReference = NameReference;
@@ -1250,11 +1171,6 @@ var exceldataimporter;
         get containerAsTemplate() {
             return super.getContainerAs(Template);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get reference() {
             return this.__reference.get();
         }
@@ -1285,11 +1201,6 @@ var exceldataimporter;
         get entityQualifiedName() {
             return this.__entity.qualifiedName();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get columnAttributeMappings() {
             return this.__columnAttributeMappings.get();
         }
@@ -1345,10 +1256,7 @@ var exceldataimporter;
     }, internal.StructureType.Element);
     exceldataimporter.Sheet = Sheet;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.7.0: removed experimental
      * In version 9.24.0: introduced
      */
     class Template extends mappings_1.mappings.MappingSourceDocument {
@@ -1386,10 +1294,6 @@ var exceldataimporter;
             return this.__sheets.get();
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
          * In version 10.15.0: added public
          * In version 10.6.0: introduced
          */
@@ -1450,7 +1354,8 @@ var exceldataimporter;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.7.0"]
         }
     }, internal.StructureType.ModelUnit);
     exceldataimporter.Template = Template;

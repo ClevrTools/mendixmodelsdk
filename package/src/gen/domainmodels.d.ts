@@ -53,6 +53,9 @@ export declare namespace domainmodels {
         static Normal: IndexedAttributeType;
         static CreatedDate: IndexedAttributeType;
         static ChangedDate: IndexedAttributeType;
+        static Association: IndexedAttributeType;
+        static Owner: IndexedAttributeType;
+        static ChangedBy: IndexedAttributeType;
         protected qualifiedTsTypeName: string;
     }
     class MemberAccessRights extends internal.AbstractEnum {
@@ -2409,6 +2412,11 @@ export declare namespace domainmodels {
         set type(newValue: IndexedAttributeType);
         get attribute(): Attribute | null;
         set attribute(newValue: Attribute | null);
+        /**
+         * In version 11.11.0: introduced
+         */
+        get association(): Association | null;
+        set association(newValue: Association | null);
         /**
          * In version 7.14.0: introduced
          */

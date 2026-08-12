@@ -19,6 +19,17 @@ var databaseconnector;
     QueryParameterMode.Out = new QueryParameterMode("Out", {});
     QueryParameterMode.InOut = new QueryParameterMode("InOut", {});
     databaseconnector.QueryParameterMode = QueryParameterMode;
+    class QueryType extends internal.AbstractEnum {
+        constructor() {
+            super(...arguments);
+            this.qualifiedTsTypeName = "databaseconnector.QueryType";
+        }
+    }
+    QueryType.Unknown = new QueryType("Unknown", {});
+    QueryType.Select = new QueryType("Select", {});
+    QueryType.NonSelect = new QueryType("NonSelect", {});
+    QueryType.Callable = new QueryType("Callable", {});
+    databaseconnector.QueryType = QueryType;
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DatabaseConnector`.
      */
@@ -557,6 +568,7 @@ var databaseconnector;
             return this.__password.qualifiedName();
         }
         /**
+         * In version 11.11.0: deleted
          * In version 10.0.0: introduced
          */
         get lastSelectedQuery() {
@@ -601,7 +613,9 @@ var databaseconnector;
                 deletionMessage: null
             },
             lastSelectedQuery: {
-                introduced: "10.0.0"
+                introduced: "10.0.0",
+                deleted: "11.11.0",
+                deletionMessage: null
             },
             queries: {
                 public: {
@@ -637,6 +651,8 @@ var databaseconnector;
             this.__parameters = new internal.PartListProperty(DatabaseQuery, this, "parameters", []);
             /** @internal */
             this.__queryType = new internal.PrimitiveProperty(DatabaseQuery, this, "queryType", -1, internal.PrimitiveTypeEnum.Integer);
+            /** @internal */
+            this.__type = new internal.EnumProperty(DatabaseQuery, this, "type", QueryType.Unknown, QueryType);
             if (arguments.length < 4) {
                 throw new Error("new DatabaseQuery() cannot be invoked directly, please use 'model.databaseconnector.createDatabaseQuery()'");
             }
@@ -676,6 +692,7 @@ var databaseconnector;
             return this.__parameters.get();
         }
         /**
+         * In version 11.13.0: deleted
          * In version 10.12.0: introduced
          */
         get queryType() {
@@ -683,6 +700,15 @@ var databaseconnector;
         }
         set queryType(newValue) {
             this.__queryType.set(newValue);
+        }
+        /**
+         * In version 11.13.0: introduced
+         */
+        get type() {
+            return this.__type.get();
+        }
+        set type(newValue) {
+            this.__type.set(newValue);
         }
         /**
          * Creates and returns a new DatabaseQuery instance in the SDK and on the server.
@@ -725,6 +751,9 @@ var databaseconnector;
                     this.tableMapping = TableMapping.create(this.model);
                 })();
             }
+            if (this.__type.isAvailable) {
+                this.type = QueryType.Unknown;
+            }
         }
     }
     DatabaseQuery.structureTypeName = "DatabaseConnector$DatabaseQuery";
@@ -748,7 +777,12 @@ var databaseconnector;
                 introduced: "10.12.0"
             },
             queryType: {
-                introduced: "10.12.0"
+                introduced: "10.12.0",
+                deleted: "11.13.0",
+                deletionMessage: null
+            },
+            type: {
+                introduced: "11.13.0"
             }
         },
         public: {

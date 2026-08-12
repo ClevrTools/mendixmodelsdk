@@ -186,10 +186,16 @@ export declare namespace settings {
         get customSettings(): internal.IList<CustomSetting>;
         get constantValues(): internal.IList<ConstantValue>;
         /**
+         * In version 11.12.0: deleted
          * In version 10.21.0: introduced
          */
         get tracing(): TracingConfiguration | null;
         set tracing(newValue: TracingConfiguration | null);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get openTelemetry(): OpenTelemetryConfiguration | null;
+        set openTelemetry(newValue: OpenTelemetryConfiguration | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new Configuration instance in the SDK and on the server.
@@ -481,6 +487,92 @@ export declare namespace settings {
         static create(model: IModel): ModelerSettings;
     }
     /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryConfiguration extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsConfiguration(): Configuration;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
+        get endpoint(): string;
+        set endpoint(newValue: string);
+        get serviceName(): string;
+        set serviceName(newValue: string);
+        get traces(): OpenTelemetryTracesConfiguration | null;
+        set traces(newValue: OpenTelemetryTracesConfiguration | null);
+        get logs(): OpenTelemetryLogsConfiguration | null;
+        set logs(newValue: OpenTelemetryLogsConfiguration | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenTelemetryConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryConfiguration will be automatically stored in the 'openTelemetry' property
+         * of the parent Configuration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: Configuration): OpenTelemetryConfiguration;
+        /**
+         * Creates and returns a new OpenTelemetryConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenTelemetryConfiguration;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryLogsConfiguration extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsOpenTelemetryConfiguration(): OpenTelemetryConfiguration;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenTelemetryLogsConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryLogsConfiguration will be automatically stored in the 'logs' property
+         * of the parent OpenTelemetryConfiguration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: OpenTelemetryConfiguration): OpenTelemetryLogsConfiguration;
+        /**
+         * Creates and returns a new OpenTelemetryLogsConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenTelemetryLogsConfiguration;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class OpenTelemetryTracesConfiguration extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsOpenTelemetryConfiguration(): OpenTelemetryConfiguration;
+        get enabled(): boolean;
+        set enabled(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new OpenTelemetryTracesConfiguration instance in the SDK and on the server.
+         * The new OpenTelemetryTracesConfiguration will be automatically stored in the 'traces' property
+         * of the parent OpenTelemetryConfiguration element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: OpenTelemetryConfiguration): OpenTelemetryTracesConfiguration;
+        /**
+         * Creates and returns a new OpenTelemetryTracesConfiguration instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): OpenTelemetryTracesConfiguration;
+    }
+    /**
      * In version 10.9.0: introduced
      */
     abstract class SharedOrPrivateValue extends internal.Element<IModel> {
@@ -619,10 +711,16 @@ export declare namespace settings {
         get useDatabaseForeignKeyConstraints(): boolean;
         set useDatabaseForeignKeyConstraints(newValue: boolean);
         /**
+         * In version 11.12.0: deleted
          * In version 10.8.0: introduced
          */
         get javaVersion(): JavaVersion;
         set javaVersion(newValue: JavaVersion);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get javaMajorVersion(): string;
+        set javaMajorVersion(newValue: string);
         /**
          * In version 10.11.0: introduced
          */
@@ -687,6 +785,7 @@ export declare namespace settings {
         static create(model: IModel): ThemeModuleEntry;
     }
     /**
+     * In version 11.12.0: deleted
      * In version 10.21.0: introduced
      */
     class TracingConfiguration extends internal.Element<IModel> {
@@ -706,7 +805,7 @@ export declare namespace settings {
          * of the parent Configuration element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.21.0 and higher
+         *  10.21.0 to 11.11.0
          */
         static createIn(container: Configuration): TracingConfiguration;
         /**
@@ -803,6 +902,17 @@ export declare namespace settings {
          */
         get enableNewStringBehavior(): boolean;
         set enableNewStringBehavior(newValue: boolean);
+        /**
+         * In version 11.12.0: deleted
+         * In version 11.8.0: introduced
+         */
+        get exportEmbeddedEntrypoint(): boolean;
+        set exportEmbeddedEntrypoint(newValue: boolean);
+        /**
+         * In version 11.9.0: introduced
+         */
+        get enableRspackBundler(): boolean;
+        set enableRspackBundler(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new WebUIProjectSettingsPart instance in the SDK and on the server.

@@ -44,6 +44,9 @@ export declare namespace datasets {
         get source(): DataSetSource;
         set source(newValue: DataSetSource);
         get parameters(): internal.IList<DataSetParameter>;
+        /**
+         * In version 11.13.0: deleted
+         */
         get dataSetAccess(): DataSetAccess;
         set dataSetAccess(newValue: DataSetAccess);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
@@ -53,6 +56,9 @@ export declare namespace datasets {
          */
         static createIn(container: projects.IFolderBase): DataSet;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -63,6 +69,9 @@ export declare namespace datasets {
          * Creates and returns a new DataSetAccess instance in the SDK and on the server.
          * The new DataSetAccess will be automatically stored in the 'dataSetAccess' property
          * of the parent DataSet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: DataSet): DataSetAccess;
         /**
@@ -104,6 +113,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetColumn;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetConstraintAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -117,6 +129,9 @@ export declare namespace datasets {
          * Creates and returns a new DataSetConstraintAccess instance in the SDK and on the server.
          * The new DataSetConstraintAccess will be automatically stored in the 'constraintAccessList' property
          * of the parent DataSetParameterAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: DataSetParameterAccess): DataSetConstraintAccess;
         /**
@@ -154,6 +169,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetDateTimeConstraint;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetModuleRoleAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -167,6 +185,9 @@ export declare namespace datasets {
          * Creates and returns a new DataSetModuleRoleAccess instance in the SDK and on the server.
          * The new DataSetModuleRoleAccess will be automatically stored in the 'moduleRoleAccessList' property
          * of the parent DataSetAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: DataSetAccess): DataSetModuleRoleAccess;
         /**
@@ -202,6 +223,9 @@ export declare namespace datasets {
          */
         static create(model: IModel): DataSetNumericConstraint;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetObjectConstraint extends DataSetParameterConstraint {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -218,6 +242,9 @@ export declare namespace datasets {
          * Creates and returns a new DataSetObjectConstraint instance in the SDK and on the server.
          * The new DataSetObjectConstraint will be automatically stored in the 'constraints' property
          * of the parent DataSetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: DataSetParameter): DataSetObjectConstraint;
         /**
@@ -274,6 +301,9 @@ export declare namespace datasets {
         static create(model: IModel): DataSetParameter;
         get qualifiedName(): string | null;
     }
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetParameterAccess extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
@@ -286,6 +316,9 @@ export declare namespace datasets {
          * Creates and returns a new DataSetParameterAccess instance in the SDK and on the server.
          * The new DataSetParameterAccess will be automatically stored in the 'parameterAccessList' property
          * of the parent DataSetModuleRoleAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container: DataSetModuleRoleAccess): DataSetParameterAccess;
         /**

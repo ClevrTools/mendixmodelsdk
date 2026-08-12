@@ -59,6 +59,9 @@ var datasets;
         get parameters() {
             return this.__parameters.get();
         }
+        /**
+         * In version 11.13.0: deleted
+         */
         get dataSetAccess() {
             return this.__dataSetAccess.get();
         }
@@ -79,7 +82,9 @@ var datasets;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
-            this.dataSetAccess = DataSetAccess.create(this.model);
+            if (this.__dataSetAccess.isAvailable) {
+                this.dataSetAccess = DataSetAccess.create(this.model);
+            }
             this.source = OqlDataSetSource.create(this.model);
         }
     }
@@ -97,6 +102,8 @@ var datasets;
                 }
             },
             dataSetAccess: {
+                deleted: "11.13.0",
+                deletionMessage: null,
                 required: {
                     currentValue: true
                 }
@@ -104,6 +111,9 @@ var datasets;
         }
     }, internal.StructureType.ModelUnit);
     datasets.DataSet = DataSet;
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetAccess extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -123,8 +133,12 @@ var datasets;
          * Creates and returns a new DataSetAccess instance in the SDK and on the server.
          * The new DataSetAccess will be automatically stored in the 'dataSetAccess' property
          * of the parent DataSet element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DataSetAccess.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, DataSetAccess, "dataSetAccess", false);
         }
         /**
@@ -141,7 +155,10 @@ var datasets;
         }
     }
     DataSetAccess.structureTypeName = "DataSets$DataSetAccess";
-    DataSetAccess.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSetAccess.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     datasets.DataSetAccess = DataSetAccess;
     class DataSetColumn extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -229,6 +246,9 @@ var datasets;
         }
     }, internal.StructureType.Element);
     datasets.DataSetColumn = DataSetColumn;
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetConstraintAccess extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -259,8 +279,12 @@ var datasets;
          * Creates and returns a new DataSetConstraintAccess instance in the SDK and on the server.
          * The new DataSetConstraintAccess will be automatically stored in the 'constraintAccessList' property
          * of the parent DataSetParameterAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DataSetConstraintAccess.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, DataSetConstraintAccess, "constraintAccessList", true);
         }
         /**
@@ -277,7 +301,10 @@ var datasets;
         }
     }
     DataSetConstraintAccess.structureTypeName = "DataSets$DataSetConstraintAccess";
-    DataSetConstraintAccess.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSetConstraintAccess.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     datasets.DataSetConstraintAccess = DataSetConstraintAccess;
     class DataSetParameterConstraint extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -349,6 +376,9 @@ var datasets;
     DataSetDateTimeConstraint.structureTypeName = "DataSets$DataSetDateTimeConstraint";
     DataSetDateTimeConstraint.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     datasets.DataSetDateTimeConstraint = DataSetDateTimeConstraint;
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetModuleRoleAccess extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -379,8 +409,12 @@ var datasets;
          * Creates and returns a new DataSetModuleRoleAccess instance in the SDK and on the server.
          * The new DataSetModuleRoleAccess will be automatically stored in the 'moduleRoleAccessList' property
          * of the parent DataSetAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DataSetModuleRoleAccess.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, DataSetModuleRoleAccess, "moduleRoleAccessList", true);
         }
         /**
@@ -397,7 +431,10 @@ var datasets;
         }
     }
     DataSetModuleRoleAccess.structureTypeName = "DataSets$DataSetModuleRoleAccess";
-    DataSetModuleRoleAccess.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSetModuleRoleAccess.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     datasets.DataSetModuleRoleAccess = DataSetModuleRoleAccess;
     class DataSetNumericConstraint extends DataSetParameterConstraint {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -469,6 +506,9 @@ var datasets;
     DataSetNumericConstraint.structureTypeName = "DataSets$DataSetNumericConstraint";
     DataSetNumericConstraint.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     datasets.DataSetNumericConstraint = DataSetNumericConstraint;
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetObjectConstraint extends DataSetParameterConstraint {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -502,8 +542,12 @@ var datasets;
          * Creates and returns a new DataSetObjectConstraint instance in the SDK and on the server.
          * The new DataSetObjectConstraint will be automatically stored in the 'constraints' property
          * of the parent DataSetParameter element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DataSetObjectConstraint.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, DataSetObjectConstraint, "constraints", true);
         }
         /**
@@ -520,7 +564,10 @@ var datasets;
         }
     }
     DataSetObjectConstraint.structureTypeName = "DataSets$DataSetObjectConstraint";
-    DataSetObjectConstraint.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSetObjectConstraint.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     datasets.DataSetObjectConstraint = DataSetObjectConstraint;
     class DataSetParameter extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -641,6 +688,9 @@ var datasets;
         }
     }, internal.StructureType.Element);
     datasets.DataSetParameter = DataSetParameter;
+    /**
+     * In version 11.13.0: deleted
+     */
     class DataSetParameterAccess extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -668,8 +718,12 @@ var datasets;
          * Creates and returns a new DataSetParameterAccess instance in the SDK and on the server.
          * The new DataSetParameterAccess will be automatically stored in the 'parameterAccessList' property
          * of the parent DataSetModuleRoleAccess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, DataSetParameterAccess.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, DataSetParameterAccess, "parameterAccessList", true);
         }
         /**
@@ -686,7 +740,10 @@ var datasets;
         }
     }
     DataSetParameterAccess.structureTypeName = "DataSets$DataSetParameterAccess";
-    DataSetParameterAccess.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    DataSetParameterAccess.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     datasets.DataSetParameterAccess = DataSetParameterAccess;
     class DataSetSource extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {

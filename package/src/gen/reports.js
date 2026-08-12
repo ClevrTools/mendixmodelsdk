@@ -71,7 +71,9 @@ var reports;
      * Interfaces and instance classes for types from the Mendix sub meta model `Reports`.
      */
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-widgets relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-widgets relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportWidget extends pages_1.pages.Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -187,6 +189,8 @@ var reports;
     }
     ReportWidget.structureTypeName = "Reports$ReportWidget";
     ReportWidget.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             generateOnLoad: {
                 introduced: "6.10.0"
@@ -195,7 +199,9 @@ var reports;
     }, internal.StructureType.Element);
     reports.ReportWidget = ReportWidget;
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-grid relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-grid relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class BasicReport extends ReportWidget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -327,10 +333,10 @@ var reports;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.2.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.2.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -387,10 +393,10 @@ var reports;
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -411,10 +417,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "footerWidgets", true);
         }
         /**
@@ -435,10 +441,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -459,10 +465,10 @@ var reports;
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -483,10 +489,10 @@ var reports;
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -507,10 +513,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "leftWidgets", true);
         }
         /**
@@ -531,10 +537,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "rightWidgets", true);
         }
         /**
@@ -579,10 +585,10 @@ var reports;
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -603,10 +609,10 @@ var reports;
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -627,10 +633,10 @@ var reports;
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -651,10 +657,10 @@ var reports;
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -675,10 +681,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.5.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.5.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "sidebarWidgets", true);
         }
         /**
@@ -687,10 +693,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -711,10 +717,10 @@ var reports;
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -735,10 +741,10 @@ var reports;
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -759,10 +765,10 @@ var reports;
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -831,10 +837,10 @@ var reports;
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -855,10 +861,10 @@ var reports;
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -879,10 +885,10 @@ var reports;
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -903,10 +909,10 @@ var reports;
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, BasicReport.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReport, "widgets", true);
         }
         /**
@@ -997,6 +1003,8 @@ var reports;
     }
     BasicReport.structureTypeName = "Reports$BasicReport";
     BasicReport.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             columns: {},
             zoomInfo: {
@@ -1007,6 +1015,9 @@ var reports;
         }
     }, internal.StructureType.Element);
     reports.BasicReport = BasicReport;
+    /**
+     * In version 11.13.0: deleted
+     */
     class BasicReportAggregate extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1042,8 +1053,12 @@ var reports;
          * Creates and returns a new BasicReportAggregate instance in the SDK and on the server.
          * The new BasicReportAggregate will be automatically stored in the 'aggregates' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, BasicReportAggregate.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReportAggregate, "aggregates", true);
         }
         /**
@@ -1063,6 +1078,8 @@ var reports;
     }
     BasicReportAggregate.structureTypeName = "Reports$BasicReportAggregate";
     BasicReportAggregate.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             caption: {
                 required: {
@@ -1072,6 +1089,9 @@ var reports;
         }
     }, internal.StructureType.Element);
     reports.BasicReportAggregate = BasicReportAggregate;
+    /**
+     * In version 11.13.0: deleted
+     */
     class BasicReportColumn extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -1126,8 +1146,12 @@ var reports;
          * Creates and returns a new BasicReportColumn instance in the SDK and on the server.
          * The new BasicReportColumn will be automatically stored in the 'columns' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, BasicReportColumn.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, BasicReportColumn, "columns", true);
         }
         /**
@@ -1149,6 +1173,8 @@ var reports;
     }
     BasicReportColumn.structureTypeName = "Reports$BasicReportColumn";
     BasicReportColumn.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             caption: {
                 required: {
@@ -1159,7 +1185,9 @@ var reports;
     }, internal.StructureType.Element);
     reports.BasicReportColumn = BasicReportColumn;
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-button relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-button relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportButton extends pages_1.pages.Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -1257,10 +1285,10 @@ var reports;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.2.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.2.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1317,10 +1345,10 @@ var reports;
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1341,10 +1369,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "footerWidgets", true);
         }
         /**
@@ -1365,10 +1393,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1389,10 +1417,10 @@ var reports;
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1413,10 +1441,10 @@ var reports;
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1437,10 +1465,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "leftWidgets", true);
         }
         /**
@@ -1461,10 +1489,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "rightWidgets", true);
         }
         /**
@@ -1509,10 +1537,10 @@ var reports;
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1533,10 +1561,10 @@ var reports;
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1557,10 +1585,10 @@ var reports;
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1581,10 +1609,10 @@ var reports;
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1605,10 +1633,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.5.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.5.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "sidebarWidgets", true);
         }
         /**
@@ -1617,10 +1645,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1641,10 +1669,10 @@ var reports;
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1665,10 +1693,10 @@ var reports;
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1689,10 +1717,10 @@ var reports;
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1761,10 +1789,10 @@ var reports;
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1785,10 +1813,10 @@ var reports;
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1809,10 +1837,10 @@ var reports;
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1833,10 +1861,10 @@ var reports;
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportButton.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportButton, "widgets", true);
         }
         /**
@@ -1894,6 +1922,8 @@ var reports;
     }
     ReportButton.structureTypeName = "Reports$ReportButton";
     ReportButton.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             caption: {
                 required: {
@@ -2823,7 +2853,9 @@ var reports;
     }, internal.StructureType.Element);
     reports.ReportChartSeries = ReportChartSeries;
     /**
-     * See: {@link https://docs.mendix.com/refguide/date-range-field relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/date-range-field relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDateRangeField extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -2855,8 +2887,12 @@ var reports;
          * Creates and returns a new ReportDateRangeField instance in the SDK and on the server.
          * The new ReportDateRangeField will be automatically stored in the 'fields' property
          * of the parent ReportDateRangeSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ReportDateRangeField.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeField, "fields", true);
         }
         /**
@@ -2876,6 +2912,8 @@ var reports;
     }
     ReportDateRangeField.structureTypeName = "Reports$ReportDateRangeField";
     ReportDateRangeField.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             caption: {
                 required: {
@@ -2885,6 +2923,9 @@ var reports;
         }
     }, internal.StructureType.Element);
     reports.ReportDateRangeField = ReportDateRangeField;
+    /**
+     * In version 11.13.0: deleted
+     */
     class ReportParameter extends pages_1.pages.Widget {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -2999,6 +3040,8 @@ var reports;
     }
     ReportParameter.structureTypeName = "Reports$ReportParameter";
     ReportParameter.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             parameter: {
                 introduced: "6.10.0"
@@ -3011,7 +3054,9 @@ var reports;
     }, internal.StructureType.Element);
     reports.ReportParameter = ReportParameter;
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-date-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-date-parameter relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDateRangeSelector extends ReportParameter {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3154,10 +3199,10 @@ var reports;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.2.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.2.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3214,10 +3259,10 @@ var reports;
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3238,10 +3283,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "footerWidgets", true);
         }
         /**
@@ -3262,10 +3307,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3286,10 +3331,10 @@ var reports;
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3310,10 +3355,10 @@ var reports;
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3334,10 +3379,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "leftWidgets", true);
         }
         /**
@@ -3358,10 +3403,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "rightWidgets", true);
         }
         /**
@@ -3406,10 +3451,10 @@ var reports;
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3430,10 +3475,10 @@ var reports;
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3454,10 +3499,10 @@ var reports;
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3478,10 +3523,10 @@ var reports;
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3502,10 +3547,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.5.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.5.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "sidebarWidgets", true);
         }
         /**
@@ -3514,10 +3559,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3538,10 +3583,10 @@ var reports;
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3562,10 +3607,10 @@ var reports;
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3586,10 +3631,10 @@ var reports;
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3658,10 +3703,10 @@ var reports;
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3682,10 +3727,10 @@ var reports;
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3706,10 +3751,10 @@ var reports;
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3730,10 +3775,10 @@ var reports;
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportDateRangeSelector.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDateRangeSelector, "widgets", true);
         }
         /**
@@ -3821,6 +3866,8 @@ var reports;
     }
     ReportDateRangeSelector.structureTypeName = "Reports$ReportDateRangeSelector";
     ReportDateRangeSelector.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null,
         properties: {
             minYear: {},
             maxYear: {},
@@ -3838,7 +3885,9 @@ var reports;
     }, internal.StructureType.Element);
     reports.ReportDateRangeSelector = ReportDateRangeSelector;
     /**
-     * See: {@link https://docs.mendix.com/refguide/report-parameter relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide11/report-parameter relevant section in reference guide}
+     *
+     * In version 11.13.0: deleted
      */
     class ReportDropDown extends ReportParameter {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
@@ -3939,10 +3988,10 @@ var reports;
          * of the parent customwidgets.WidgetValue element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.2.0 and higher
+         *  8.2.0 to 11.12.0
          */
         static createInWidgetValueUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.2.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.2.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -3999,10 +4048,10 @@ var reports;
          * of the parent pages.BuildingBlock element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInBuildingBlockUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4023,10 +4072,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderFooterWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "footerWidgets", true);
         }
         /**
@@ -4047,10 +4096,10 @@ var reports;
          * of the parent pages.DataView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDataViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4071,10 +4120,10 @@ var reports;
          * of the parent pages.DivContainer element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInDivContainerUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4095,10 +4144,10 @@ var reports;
          * of the parent pages.GroupBox element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInGroupBoxUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4119,10 +4168,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderLeftWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "leftWidgets", true);
         }
         /**
@@ -4143,10 +4192,10 @@ var reports;
          * of the parent pages.Header element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInHeaderUnderRightWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "rightWidgets", true);
         }
         /**
@@ -4191,10 +4240,10 @@ var reports;
          * of the parent pages.LayoutCallArgument element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutCallArgumentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4215,10 +4264,10 @@ var reports;
          * of the parent pages.LayoutGridColumn element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInLayoutGridColumnUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4239,10 +4288,10 @@ var reports;
          * of the parent pages.ListView element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4263,10 +4312,10 @@ var reports;
          * of the parent pages.ListViewTemplate element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInListViewTemplateUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4287,10 +4336,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.5.0 and higher
+         *  8.5.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderSidebarWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.5.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.5.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "sidebarWidgets", true);
         }
         /**
@@ -4299,10 +4348,10 @@ var reports;
          * of the parent pages.NativeLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInNativeLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4323,10 +4372,10 @@ var reports;
          * of the parent pages.NavigationListItem element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInNavigationListItemUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4347,10 +4396,10 @@ var reports;
          * of the parent pages.ScrollContainerRegion element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInScrollContainerRegionUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4371,10 +4420,10 @@ var reports;
          * of the parent pages.Snippet element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInSnippetUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4443,10 +4492,10 @@ var reports;
          * of the parent pages.TabPage element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTabPageUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4467,10 +4516,10 @@ var reports;
          * of the parent pages.TableCell element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTableCellUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4491,10 +4540,10 @@ var reports;
          * of the parent pages.TemplateGridContents element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  7.15.0 and higher
+         *  7.15.0 to 11.12.0
          */
         static createInTemplateGridContentsUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "7.15.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4515,10 +4564,10 @@ var reports;
          * of the parent pages.WebLayoutContent element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  8.0.0 and higher
+         *  8.0.0 to 11.12.0
          */
         static createInWebLayoutContentUnderWidgets(container) {
-            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.0.0" });
+            internal.createInVersionCheck(container.model, ReportDropDown.structureTypeName, { start: "8.0.0", end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportDropDown, "widgets", true);
         }
         /**
@@ -4559,7 +4608,10 @@ var reports;
         }
     }
     ReportDropDown.structureTypeName = "Reports$ReportDropDown";
-    ReportDropDown.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ReportDropDown.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     reports.ReportDropDown = ReportDropDown;
     /**
      * See: {@link https://docs.mendix.com/refguide6/report-pane relevant section in reference guide}
@@ -4934,6 +4986,9 @@ var reports;
         deletionMessage: null
     }, internal.StructureType.Element);
     reports.ReportPane = ReportPane;
+    /**
+     * In version 11.13.0: deleted
+     */
     class ReportZoomInfo extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -4964,8 +5019,12 @@ var reports;
          * Creates and returns a new ReportZoomInfo instance in the SDK and on the server.
          * The new ReportZoomInfo will be automatically stored in the 'zoomInfo' property
          * of the parent BasicReport element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ReportZoomInfo.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportZoomInfo, "zoomInfo", false);
         }
         /**
@@ -4982,8 +5041,14 @@ var reports;
         }
     }
     ReportZoomInfo.structureTypeName = "Reports$ReportZoomInfo";
-    ReportZoomInfo.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ReportZoomInfo.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     reports.ReportZoomInfo = ReportZoomInfo;
+    /**
+     * In version 11.13.0: deleted
+     */
     class ReportZoomMapping extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -5014,8 +5079,12 @@ var reports;
          * Creates and returns a new ReportZoomMapping instance in the SDK and on the server.
          * The new ReportZoomMapping will be automatically stored in the 'mappings' property
          * of the parent ReportZoomInfo element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  6.0.0 to 11.12.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, ReportZoomMapping.structureTypeName, { end: "11.12.0" });
             return internal.instancehelpers.createElement(container, ReportZoomMapping, "mappings", true);
         }
         /**
@@ -5032,7 +5101,10 @@ var reports;
         }
     }
     ReportZoomMapping.structureTypeName = "Reports$ReportZoomMapping";
-    ReportZoomMapping.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
+    ReportZoomMapping.versionInfo = new exports.StructureVersionInfo({
+        deleted: "11.13.0",
+        deletionMessage: null
+    }, internal.StructureType.Element);
     reports.ReportZoomMapping = ReportZoomMapping;
 })(reports = exports.reports || (exports.reports = {}));
 const customwidgets_1 = require("./customwidgets");

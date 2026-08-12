@@ -95,6 +95,15 @@ var domainmodels;
     IndexedAttributeType.Normal = new IndexedAttributeType("Normal", {});
     IndexedAttributeType.CreatedDate = new IndexedAttributeType("CreatedDate", {});
     IndexedAttributeType.ChangedDate = new IndexedAttributeType("ChangedDate", {});
+    IndexedAttributeType.Association = new IndexedAttributeType("Association", {
+        introduced: "11.11.0"
+    });
+    IndexedAttributeType.Owner = new IndexedAttributeType("Owner", {
+        introduced: "11.11.0"
+    });
+    IndexedAttributeType.ChangedBy = new IndexedAttributeType("ChangedBy", {
+        introduced: "11.11.0"
+    });
     domainmodels.IndexedAttributeType = IndexedAttributeType;
     class MemberAccessRights extends internal.AbstractEnum {
         constructor() {
@@ -4226,6 +4235,8 @@ var domainmodels;
             /** @internal */
             this.__attribute = new internal.ByIdReferenceProperty(IndexedAttribute, this, "attribute", null);
             /** @internal */
+            this.__association = new internal.ByIdReferenceProperty(IndexedAttribute, this, "association", null);
+            /** @internal */
             this.__ascending = new internal.PrimitiveProperty(IndexedAttribute, this, "ascending", true, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new IndexedAttribute() cannot be invoked directly, please use 'model.domainmodels.createIndexedAttribute()'");
@@ -4245,6 +4256,15 @@ var domainmodels;
         }
         set attribute(newValue) {
             this.__attribute.set(newValue);
+        }
+        /**
+         * In version 11.11.0: introduced
+         */
+        get association() {
+            return this.__association.get();
+        }
+        set association(newValue) {
+            this.__association.set(newValue);
         }
         /**
          * In version 7.14.0: introduced
@@ -4283,6 +4303,9 @@ var domainmodels;
     IndexedAttribute.structureTypeName = "DomainModels$IndexedAttribute";
     IndexedAttribute.versionInfo = new exports.StructureVersionInfo({
         properties: {
+            association: {
+                introduced: "11.11.0"
+            },
             ascending: {
                 introduced: "7.14.0"
             }

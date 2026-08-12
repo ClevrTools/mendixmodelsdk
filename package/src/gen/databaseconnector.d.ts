@@ -10,6 +10,13 @@ export declare namespace databaseconnector {
         static InOut: QueryParameterMode;
         protected qualifiedTsTypeName: string;
     }
+    class QueryType extends internal.AbstractEnum {
+        static Unknown: QueryType;
+        static Select: QueryType;
+        static NonSelect: QueryType;
+        static Callable: QueryType;
+        protected qualifiedTsTypeName: string;
+    }
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DatabaseConnector`.
      */
@@ -260,6 +267,7 @@ export declare namespace databaseconnector {
         set password(newValue: constants.IConstant | null);
         get passwordQualifiedName(): string | null;
         /**
+         * In version 11.11.0: deleted
          * In version 10.0.0: introduced
          */
         get lastSelectedQuery(): IDatabaseQuery | null;
@@ -313,10 +321,16 @@ export declare namespace databaseconnector {
         get tableMappings(): internal.IList<TableMapping> | null;
         get parameters(): internal.IList<QueryParameter>;
         /**
+         * In version 11.13.0: deleted
          * In version 10.12.0: introduced
          */
         get queryType(): number;
         set queryType(newValue: number);
+        /**
+         * In version 11.13.0: introduced
+         */
+        get type(): QueryType;
+        set type(newValue: QueryType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new DatabaseQuery instance in the SDK and on the server.

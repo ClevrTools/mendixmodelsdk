@@ -5,19 +5,13 @@ exports.datatransformers = exports.StructureVersionInfo = void 0;
 const internal = require("../sdk/internal");
 exports.StructureVersionInfo = internal.StructureVersionInfo;
 const projects_1 = require("./projects");
-/**
- * @ignore
- */
 var datatransformers;
 (function (datatransformers) {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DataTransformers`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureValueType extends internal.Element {
@@ -42,15 +36,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StructureValueType = StructureValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class BooleanValueType extends StructureValueType {
@@ -95,15 +87,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.BooleanValueType = BooleanValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DataTransformer extends projects_1.projects.Document {
@@ -122,38 +112,18 @@ var datatransformers;
         get containerAsFolderBase() {
             return super.getContainerAs(projects_1.projects.FolderBase);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get elements() {
             return this.__elements.get();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get rootElement() {
             return this.__rootElement.get();
         }
         set rootElement(newValue) {
             this.__rootElement.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get steps() {
             return this.__steps.get();
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get source() {
             return this.__source.get();
         }
@@ -202,15 +172,13 @@ var datatransformers;
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.ModelUnit);
     datatransformers.DataTransformer = DataTransformer;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DateTimeValueType extends StructureValueType {
@@ -255,15 +223,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.DateTimeValueType = DateTimeValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DecimalValueType extends StructureValueType {
@@ -308,15 +274,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.DecimalValueType = DecimalValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class TransformerAction extends internal.Element {
@@ -341,15 +305,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.TransformerAction = TransformerAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class JsltAction extends TransformerAction {
@@ -410,15 +372,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.JsltAction = JsltAction;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class Source extends internal.Element {
@@ -443,15 +403,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.Source = Source;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class JsonSource extends Source {
@@ -512,15 +470,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.JsonSource = JsonSource;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class LongValueType extends StructureValueType {
@@ -565,15 +521,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.LongValueType = LongValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class Step extends internal.Element {
@@ -592,33 +546,18 @@ var datatransformers;
         get containerAsDataTransformer() {
             return super.getContainerAs(DataTransformer);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get action() {
             return this.__action.get();
         }
         set action(newValue) {
             this.__action.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get inputElement() {
             return this.__inputElement.get();
         }
         set inputElement(newValue) {
             this.__inputElement.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get outputElement() {
             return this.__outputElement.get();
         }
@@ -684,15 +623,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.Step = Step;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StringValueType extends StructureValueType {
@@ -737,15 +674,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StringValueType = StringValueType;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureElement extends internal.Element {
@@ -773,15 +708,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StructureElement = StructureElement;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureAttribute extends StructureElement {
@@ -807,11 +740,6 @@ var datatransformers;
         set name(newValue) {
             this.__name.set(newValue);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get value() {
             return this.__value.get();
         }
@@ -880,15 +808,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StructureAttribute = StructureAttribute;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureObject extends StructureElement {
@@ -903,11 +829,6 @@ var datatransformers;
         get containerAsDataTransformer() {
             return super.getContainerAs(DataTransformer);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get attributes() {
             return this.__attributes.get();
         }
@@ -938,15 +859,13 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StructureObject = StructureObject;
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureValue extends StructureElement {
@@ -961,11 +880,6 @@ var datatransformers;
         get containerAsDataTransformer() {
             return super.getContainerAs(DataTransformer);
         }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get type() {
             return this.__type.get();
         }
@@ -1003,7 +917,8 @@ var datatransformers;
             currentValue: true
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     datatransformers.StructureValue = StructureValue;

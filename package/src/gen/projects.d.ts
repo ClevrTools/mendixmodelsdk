@@ -1,6 +1,12 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 export declare namespace projects {
+    class DependencyInAppStatus extends internal.AbstractEnum {
+        static Available: DependencyInAppStatus;
+        static Unavailable: DependencyInAppStatus;
+        static WrongVersion: DependencyInAppStatus;
+        protected qualifiedTsTypeName: string;
+    }
     class ExportLevel extends internal.AbstractEnum {
         static Hidden: ExportLevel;
         static API: ExportLevel;
@@ -19,6 +25,38 @@ export declare namespace projects {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `Projects`.
      */
+    /**
+     * In version 11.12.0: introduced
+     */
+    class Dependency extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsModuleDependencies(): ModuleDependencies;
+        get name(): string;
+        set name(newValue: string);
+        get minimumVersion(): string;
+        set minimumVersion(newValue: string);
+        get maximumVersion(): string;
+        set maximumVersion(newValue: string);
+        get inAppStatus(): DependencyInAppStatus;
+        set inAppStatus(newValue: DependencyInAppStatus);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new Dependency instance in the SDK and on the server.
+         * The new Dependency will be automatically stored in the 'mendix' property
+         * of the parent ModuleDependencies element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: ModuleDependencies): Dependency;
+        /**
+         * Creates and returns a new Dependency instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): Dependency;
+    }
     interface IModuleDocument extends internal.IModelUnit {
         readonly model: IModel;
         readonly containerAsFolderBase: IFolderBase;
@@ -113,6 +151,34 @@ export declare namespace projects {
          * Expects one argument, the IFolderBase in which this unit is contained.
          */
         static createIn(container: IFolderBase): Folder;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class GuidMappingEntry extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsModuleGuidMapping(): ModuleGuidMapping;
+        get packageGuid(): string;
+        set packageGuid(newValue: string);
+        get appGuid(): string;
+        set appGuid(newValue: string);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new GuidMappingEntry instance in the SDK and on the server.
+         * The new GuidMappingEntry will be automatically stored in the 'entries' property
+         * of the parent ModuleGuidMapping element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: ModuleGuidMapping): GuidMappingEntry;
+        /**
+         * Creates and returns a new GuidMappingEntry instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): GuidMappingEntry;
     }
     /**
      * In version 10.12.0: removed experimental
@@ -305,6 +371,60 @@ export declare namespace projects {
         static createIn(container: IProject): Module;
     }
     /**
+     * In version 11.12.0: introduced
+     */
+    class ModuleDependencies extends internal.Element<IModel> {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsModuleSettings(): ModuleSettings;
+        get mendix(): internal.IList<Dependency>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new ModuleDependencies instance in the SDK and on the server.
+         * The new ModuleDependencies will be automatically stored in the 'moduleDependencies' property
+         * of the parent ModuleSettings element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: ModuleSettings): ModuleDependencies;
+        /**
+         * Creates and returns a new ModuleDependencies instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): ModuleDependencies;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    interface IModuleGuidMapping extends internal.IModelUnit {
+        readonly model: IModel;
+        readonly containerAsProject: IProject;
+        asLoaded(): ModuleGuidMapping;
+        load(callback: (element: ModuleGuidMapping) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<ModuleGuidMapping>;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class ModuleGuidMapping extends internal.ModelUnit<IModel> implements IModuleGuidMapping {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsProject(): Project;
+        get importedModuleGuid(): string;
+        set importedModuleGuid(newValue: string);
+        get packageModuleGuid(): string;
+        set packageModuleGuid(newValue: string);
+        get entries(): internal.IList<GuidMappingEntry>;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IProject);
+        /**
+         * Creates a new ModuleGuidMapping unit in the SDK and on the server.
+         * Expects one argument, the IProject in which this unit is contained.
+         */
+        static createIn(container: IProject): ModuleGuidMapping;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/module-settings relevant section in reference guide}
      *
      * In version 9.8.0: introduced
@@ -353,6 +473,36 @@ export declare namespace projects {
          */
         get basedOnVersion(): string;
         set basedOnVersion(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get packageId(): string;
+        set packageId(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get originalPackageId(): string;
+        set originalPackageId(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get checksum(): string;
+        set checksum(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get convertedChecksum(): string;
+        set convertedChecksum(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get moduleDependencies(): ModuleDependencies | null;
+        set moduleDependencies(newValue: ModuleDependencies | null);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get enableDetailedTroubleshooting(): boolean;
+        set enableDetailedTroubleshooting(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: IModule);
         /**
          * Creates a new ModuleSettings unit in the SDK and on the server.
@@ -392,6 +542,10 @@ export declare namespace projects {
          */
         projectConversion: IProjectConversion;
         isSystemProject: boolean;
+        /**
+         * In version 11.12.0: introduced
+         */
+        guidMappings: internal.IList<IModuleGuidMapping>;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/project relevant section in reference guide}
@@ -405,6 +559,10 @@ export declare namespace projects {
         set projectConversion(newValue: IProjectConversion);
         get isSystemProject(): boolean;
         set isSystemProject(newValue: boolean);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get guidMappings(): internal.IList<IModuleGuidMapping>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: internal.IStructuralUnit);
     }
     interface IProjectConversion extends internal.IModelUnit {

@@ -304,6 +304,11 @@ export declare namespace odatapublish {
         set canBeEmpty(newValue: boolean);
         get exposedAssociationName(): string;
         set exposedAssociationName(newValue: string);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get isMany(): boolean;
+        set isMany(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedAssociationEnd instance in the SDK and on the server.
@@ -346,6 +351,11 @@ export declare namespace odatapublish {
          */
         get stringAsGuid(): boolean;
         set stringAsGuid(newValue: boolean);
+        /**
+         * In version 11.12.0: introduced
+         */
+        get edmType(): string;
+        set edmType(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new PublishedAttribute instance in the SDK and on the server.

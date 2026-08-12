@@ -69,6 +69,7 @@ export declare namespace navigation {
     abstract class HomePageBase extends internal.Element<IModel> {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsEmbeddedNavigationProfile(): EmbeddedNavigationProfile;
         get containerAsNavigationProfile(): NavigationProfile;
         get page(): pages.IPage | null;
         set page(newValue: pages.IPage | null);
@@ -78,17 +79,100 @@ export declare namespace navigation {
         get microflowQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class EmbeddedHomePage extends HomePageBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsEmbeddedNavigationProfile(): EmbeddedNavigationProfile;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmbeddedHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EmbeddedHomePage;
+    }
+    interface INavigationProfileBase extends internal.IElement, internal.IByNameReferrable {
+        readonly model: IModel;
+        readonly containerAsNavigationDocument: INavigationDocument;
+        /**
+         * In version 7.2.0: introduced
+         */
+        readonly name: string;
+        asLoaded(): NavigationProfileBase;
+        load(callback: (element: NavigationProfileBase) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<NavigationProfileBase>;
+    }
+    abstract class NavigationProfileBase extends internal.Element<IModel> implements INavigationProfileBase {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNavigationDocument(): NavigationDocument;
+        /**
+         * In version 7.2.0: introduced
+         */
+        get name(): string;
+        set name(newValue: string);
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 7.22.0: introduced
+         */
+        get offlineEntityConfigs(): internal.IList<OfflineEntityConfig> | null;
+        /**
+         * In version 11.12.0: introduced
+         */
+        get throwPartialSyncError(): boolean;
+        set throwPartialSyncError(newValue: boolean);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        get qualifiedName(): string | null;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    interface IEmbeddedNavigationProfile extends INavigationProfileBase {
+        readonly model: IModel;
+        readonly containerAsNavigationDocument: INavigationDocument;
+        asLoaded(): EmbeddedNavigationProfile;
+        load(callback: (element: EmbeddedNavigationProfile) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<EmbeddedNavigationProfile>;
+    }
+    /**
+     * In version 11.12.0: introduced
+     */
+    class EmbeddedNavigationProfile extends NavigationProfileBase implements IEmbeddedNavigationProfile {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsNavigationDocument(): NavigationDocument;
+        get home(): EmbeddedHomePage;
+        set home(newValue: EmbeddedHomePage);
+        get errorHome(): NotFoundHomePage | null;
+        set errorHome(newValue: NotFoundHomePage | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new EmbeddedNavigationProfile instance in the SDK and on the server.
+         * The new EmbeddedNavigationProfile will be automatically stored in the 'profiles' property
+         * of the parent NavigationDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container: NavigationDocument): EmbeddedNavigationProfile;
+        /**
+         * Creates and returns a new EmbeddedNavigationProfile instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): EmbeddedNavigationProfile;
+    }
     class HomePage extends HomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsNavigationProfile(): NavigationProfile;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new HomePage instance in the SDK and on the server.
-         * The new HomePage will be automatically stored in the 'homePage' property
-         * of the parent NavigationProfile element passed as argument.
-         */
-        static createIn(container: NavigationProfile): HomePage;
         /**
          * Creates and returns a new HomePage instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -134,37 +218,6 @@ export declare namespace navigation {
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): NativeHomePage;
-    }
-    interface INavigationProfileBase extends internal.IElement, internal.IByNameReferrable {
-        readonly model: IModel;
-        readonly containerAsNavigationDocument: INavigationDocument;
-        /**
-         * In version 7.2.0: introduced
-         */
-        readonly name: string;
-        asLoaded(): NavigationProfileBase;
-        load(callback: (element: NavigationProfileBase) => void, forceRefresh?: boolean): void;
-        load(forceRefresh?: boolean): Promise<NavigationProfileBase>;
-    }
-    abstract class NavigationProfileBase extends internal.Element<IModel> implements INavigationProfileBase {
-        static structureTypeName: string;
-        static versionInfo: StructureVersionInfo;
-        get containerAsNavigationDocument(): NavigationDocument;
-        /**
-         * In version 7.2.0: introduced
-         */
-        get name(): string;
-        set name(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 7.22.0: introduced
-         */
-        get offlineEntityConfigs(): internal.IList<OfflineEntityConfig> | null;
-        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        get qualifiedName(): string | null;
     }
     /**
      * In version 7.22.0: introduced
@@ -538,6 +591,7 @@ export declare namespace navigation {
     class NotFoundHomePage extends HomePageBase {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
+        get containerAsEmbeddedNavigationProfile(): EmbeddedNavigationProfile;
         get containerAsNavigationProfile(): NavigationProfile;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -546,9 +600,27 @@ export declare namespace navigation {
          * of the parent NavigationProfile element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.13.0 and higher
+         *  10.13.0 to 11.11.0
          */
         static createIn(container: NavigationProfile): NotFoundHomePage;
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'errorHome' property
+         * of the parent EmbeddedNavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmbeddedNavigationProfileUnderErrorHome(container: EmbeddedNavigationProfile): NotFoundHomePage;
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'notFoundHomepage' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.13.0 and higher
+         */
+        static createInNavigationProfileUnderNotFoundHomepage(container: NavigationProfile): NotFoundHomePage;
         /**
          * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
@@ -591,6 +663,11 @@ export declare namespace navigation {
          */
         get constraint(): string;
         set constraint(newValue: string);
+        /**
+         * In version 11.10.0: introduced
+         */
+        get compatibilityMode(): boolean;
+        set compatibilityMode(newValue: boolean);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new OfflineEntityConfig instance in the SDK and on the server.
@@ -650,12 +727,6 @@ export declare namespace navigation {
         set userRole(newValue: security.IUserRole | null);
         get userRoleQualifiedName(): string | null;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
-        /**
-         * Creates and returns a new RoleBasedHomePage instance in the SDK and on the server.
-         * The new RoleBasedHomePage will be automatically stored in the 'roleBasedHomePages' property
-         * of the parent NavigationProfile element passed as argument.
-         */
-        static createIn(container: NavigationProfile): RoleBasedHomePage;
         /**
          * Creates and returns a new RoleBasedHomePage instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".

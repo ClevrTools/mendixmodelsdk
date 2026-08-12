@@ -2359,6 +2359,51 @@ var microflows;
         }
     }, internal.StructureType.Element);
     microflows.CallExternalAction = CallExternalAction;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/cancel-synchronization relevant section in reference guide}
+     *
+     * In version 11.8.0: introduced
+     */
+    class CancelSynchronizationAction extends MicroflowAction {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CancelSynchronizationAction() cannot be invoked directly, please use 'model.microflows.createCancelSynchronizationAction()'");
+            }
+        }
+        get containerAsActionActivity() {
+            return super.getContainerAs(ActionActivity);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationAction instance in the SDK and on the server.
+         * The new CancelSynchronizationAction will be automatically stored in the 'action' property
+         * of the parent ActionActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, CancelSynchronizationAction.structureTypeName, { start: "11.8.0" });
+            return internal.instancehelpers.createElement(container, CancelSynchronizationAction, "action", false);
+        }
+        /**
+         * Creates and returns a new CancelSynchronizationAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CancelSynchronizationAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CancelSynchronizationAction.structureTypeName = "Microflows$CancelSynchronizationAction";
+    CancelSynchronizationAction.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0"
+    }, internal.StructureType.Element);
+    microflows.CancelSynchronizationAction = CancelSynchronizationAction;
     class CaseValue extends internal.Element {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -4196,6 +4241,65 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.EmailConnectionConfig = EmailConnectionConfig;
     /**
+     * In version 11.11.0: introduced
+     */
+    class EmailCustomHeader extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(EmailCustomHeader, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__value = new internal.PrimitiveProperty(EmailCustomHeader, this, "value", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new EmailCustomHeader() cannot be invoked directly, please use 'model.microflows.createEmailCustomHeader()'");
+            }
+        }
+        get containerAsEmailMessage() {
+            return super.getContainerAs(EmailMessage);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get value() {
+            return this.__value.get();
+        }
+        set value(newValue) {
+            this.__value.set(newValue);
+        }
+        /**
+         * Creates and returns a new EmailCustomHeader instance in the SDK and on the server.
+         * The new EmailCustomHeader will be automatically stored in the 'customHeaders' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmailCustomHeader.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, EmailCustomHeader, "customHeaders", true);
+        }
+        /**
+         * Creates and returns a new EmailCustomHeader instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmailCustomHeader);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EmailCustomHeader.structureTypeName = "Microflows$EmailCustomHeader";
+    EmailCustomHeader.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0"
+    }, internal.StructureType.Element);
+    microflows.EmailCustomHeader = EmailCustomHeader;
+    /**
      * In version 11.2.0: introduced
      */
     class EmailMessage extends internal.Element {
@@ -4217,6 +4321,14 @@ var microflows;
             this.__attachments = new internal.ByNameReferenceListProperty(EmailMessage, this, "attachments", [], "DomainModels$Entity");
             /** @internal */
             this.__attachment = new internal.PrimitiveProperty(EmailMessage, this, "attachment", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__customHeaders = new internal.PartListProperty(EmailMessage, this, "customHeaders", []);
+            /** @internal */
+            this.__subjectTemplate = new internal.PartProperty(EmailMessage, this, "subjectTemplate", null, true);
+            /** @internal */
+            this.__messageBodyPlainTextTemplate = new internal.PartProperty(EmailMessage, this, "messageBodyPlainTextTemplate", null, true);
+            /** @internal */
+            this.__messageBodyHtmlTemplate = new internal.PartProperty(EmailMessage, this, "messageBodyHtmlTemplate", null, true);
             if (arguments.length < 4) {
                 throw new Error("new EmailMessage() cannot be invoked directly, please use 'model.microflows.createEmailMessage()'");
             }
@@ -4253,6 +4365,8 @@ var microflows;
         }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get subject() {
             return this.__subject.get();
@@ -4262,6 +4376,8 @@ var microflows;
         }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get messageBodyPlainText() {
             return this.__messageBodyPlainText.get();
@@ -4271,6 +4387,8 @@ var microflows;
         }
         /**
          * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.13.0: deleted
          */
         get messageBodyHtml() {
             return this.__messageBodyHtml.get();
@@ -4297,6 +4415,51 @@ var microflows;
             this.__attachment.set(newValue);
         }
         /**
+         * In version 11.11.0: introduced
+         */
+        get customHeaders() {
+            return this.__customHeaders.get();
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get subjectTemplate() {
+            return this.__subjectTemplate.get();
+        }
+        set subjectTemplate(newValue) {
+            this.__subjectTemplate.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get messageBodyPlainTextTemplate() {
+            return this.__messageBodyPlainTextTemplate.get();
+        }
+        set messageBodyPlainTextTemplate(newValue) {
+            this.__messageBodyPlainTextTemplate.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get messageBodyHtmlTemplate() {
+            return this.__messageBodyHtmlTemplate.get();
+        }
+        set messageBodyHtmlTemplate(newValue) {
+            this.__messageBodyHtmlTemplate.set(newValue);
+        }
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'emailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.2.0 to 11.11.0
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmailMessage.structureTypeName, { start: "11.2.0", end: "11.11.0" });
+            return internal.instancehelpers.createElement(container, EmailMessage, "emailMessage", false);
+        }
+        /**
          * Creates and returns a new EmailMessage instance in the SDK and on the server.
          * The new EmailMessage will be automatically stored in the 'emailMessage' property
          * of the parent SendEmailAction element passed as argument.
@@ -4304,9 +4467,21 @@ var microflows;
          * Warning! Can only be used on models with the following Mendix meta model versions:
          *  11.2.0 and higher
          */
-        static createIn(container) {
+        static createInSendEmailActionUnderEmailMessage(container) {
             internal.createInVersionCheck(container.model, EmailMessage.structureTypeName, { start: "11.2.0" });
             return internal.instancehelpers.createElement(container, EmailMessage, "emailMessage", false);
+        }
+        /**
+         * Creates and returns a new EmailMessage instance in the SDK and on the server.
+         * The new EmailMessage will be automatically stored in the 'testEmailMessage' property
+         * of the parent SendEmailAction element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInSendEmailActionUnderTestEmailMessage(container) {
+            internal.createInVersionCheck(container.model, EmailMessage.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, EmailMessage, "testEmailMessage", false);
         }
         /**
          * Creates and returns a new EmailMessage instance in the SDK and on the server.
@@ -4319,18 +4494,60 @@ var microflows;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__messageBodyHtmlTemplate.isAvailable) {
+                this.messageBodyHtmlTemplate = StringTemplate.create(this.model);
+            }
+            if (this.__messageBodyPlainTextTemplate.isAvailable) {
+                this.messageBodyPlainTextTemplate = StringTemplate.create(this.model);
+            }
+            if (this.__subjectTemplate.isAvailable) {
+                this.subjectTemplate = StringTemplate.create(this.model);
+            }
         }
     }
     EmailMessage.structureTypeName = "Microflows$EmailMessage";
     EmailMessage.versionInfo = new exports.StructureVersionInfo({
         introduced: "11.2.0",
         properties: {
+            subject: {
+                deleted: "11.13.0",
+                deletionMessage: "Use subjectTemplate instead"
+            },
+            messageBodyPlainText: {
+                deleted: "11.13.0",
+                deletionMessage: "Use messageBodyPlainTextTemplate instead"
+            },
+            messageBodyHtml: {
+                deleted: "11.13.0",
+                deletionMessage: "Use messageBodyHtmlTemplate instead"
+            },
             attachments: {
                 deleted: "11.3.0",
                 deletionMessage: "Use attachment instead"
             },
             attachment: {
                 introduced: "11.3.0"
+            },
+            customHeaders: {
+                introduced: "11.11.0"
+            },
+            subjectTemplate: {
+                introduced: "11.12.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            messageBodyPlainTextTemplate: {
+                introduced: "11.12.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            messageBodyHtmlTemplate: {
+                introduced: "11.12.0",
+                required: {
+                    currentValue: true
+                }
             }
         }
     }, internal.StructureType.Element);
@@ -10112,6 +10329,8 @@ var microflows;
             super(model, structureTypeName, id, isPartial, container);
             /** @internal */
             this.__allowedModuleRoles = new internal.ByNameReferenceListProperty(Nanoflow, this, "allowedModuleRoles", [], "Security$ModuleRole");
+            /** @internal */
+            this.__useListParameterByReference = new internal.PrimitiveProperty(Nanoflow, this, "useListParameterByReference", true, internal.PrimitiveTypeEnum.Boolean);
             this._containmentName = "documents";
         }
         get containerAsFolderBase() {
@@ -10125,6 +10344,15 @@ var microflows;
         }
         get allowedModuleRolesQualifiedNames() {
             return this.__allowedModuleRoles.qualifiedNames();
+        }
+        /**
+         * In version 11.9.0: introduced
+         */
+        get useListParameterByReference() {
+            return this.__useListParameterByReference.get();
+        }
+        set useListParameterByReference(newValue) {
+            this.__useListParameterByReference.set(newValue);
         }
         /**
          * Creates a new Nanoflow unit in the SDK and on the server.
@@ -10143,6 +10371,9 @@ var microflows;
             if (this.__microflowReturnType.isAvailable) {
                 this.microflowReturnType = datatypes_1.datatypes.VoidType.create(this.model);
             }
+            if (this.__useListParameterByReference.isAvailable) {
+                this.useListParameterByReference = true;
+            }
         }
     }
     Nanoflow.structureTypeName = "Microflows$Nanoflow";
@@ -10154,6 +10385,9 @@ var microflows;
                     currentValue: true,
                     changedIn: ["7.23.0"]
                 }
+            },
+            useListParameterByReference: {
+                introduced: "11.9.0"
             }
         },
         experimental: {
@@ -10492,6 +10726,8 @@ var microflows;
             /** @internal */
             this.__activity = new internal.ByNameReferenceProperty(NotifyWorkflowAction, this, "activity", null, "Workflows$WaitForNotificationActivity");
             /** @internal */
+            this.__notifyTarget = new internal.PartProperty(NotifyWorkflowAction, this, "notifyTarget", null, false);
+            /** @internal */
             this.__outputVariableName = new internal.PrimitiveProperty(NotifyWorkflowAction, this, "outputVariableName", "", internal.PrimitiveTypeEnum.String);
             if (arguments.length < 4) {
                 throw new Error("new NotifyWorkflowAction() cannot be invoked directly, please use 'model.microflows.createNotifyWorkflowAction()'");
@@ -10506,6 +10742,9 @@ var microflows;
         set workflowVariable(newValue) {
             this.__workflowVariable.set(newValue);
         }
+        /**
+         * In version 11.7.0: deleted
+         */
         get activity() {
             return this.__activity.get();
         }
@@ -10514,6 +10753,15 @@ var microflows;
         }
         get activityQualifiedName() {
             return this.__activity.qualifiedName();
+        }
+        /**
+         * In version 11.7.0: introduced
+         */
+        get notifyTarget() {
+            return this.__notifyTarget.get();
+        }
+        set notifyTarget(newValue) {
+            this.__notifyTarget.set(newValue);
         }
         get outputVariableName() {
             return this.__outputVariableName.get();
@@ -10548,7 +10796,16 @@ var microflows;
     }
     NotifyWorkflowAction.structureTypeName = "Microflows$NotifyWorkflowAction";
     NotifyWorkflowAction.versionInfo = new exports.StructureVersionInfo({
-        introduced: "10.0.0"
+        introduced: "10.0.0",
+        properties: {
+            activity: {
+                deleted: "11.7.0",
+                deletionMessage: null
+            },
+            notifyTarget: {
+                introduced: "11.7.0"
+            }
+        }
     }, internal.StructureType.Element);
     microflows.NotifyWorkflowAction = NotifyWorkflowAction;
     /**
@@ -12570,7 +12827,7 @@ var microflows;
     }, internal.StructureType.Element);
     microflows.RuleSplitCondition = RuleSplitCondition;
     /**
-     * See: {@link https://docs.mendix.com/refguide/sendemail-action relevant section in reference guide}
+     * See: {@link https://docs.mendix.com/refguide/send-email-action relevant section in reference guide}
      *
      * In version 11.2.0: introduced
      */
@@ -12583,6 +12840,10 @@ var microflows;
             this.__emailConnectionConfig = new internal.PartProperty(SendEmailAction, this, "emailConnectionConfig", null, true);
             /** @internal */
             this.__emailMessage = new internal.PartProperty(SendEmailAction, this, "emailMessage", null, true);
+            /** @internal */
+            this.__testEmailMessage = new internal.PartProperty(SendEmailAction, this, "testEmailMessage", null, true);
+            /** @internal */
+            this.__useTemplateForTest = new internal.PrimitiveProperty(SendEmailAction, this, "useTemplateForTest", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new SendEmailAction() cannot be invoked directly, please use 'model.microflows.createSendEmailAction()'");
             }
@@ -12609,6 +12870,24 @@ var microflows;
             this.__emailMessage.set(newValue);
         }
         /**
+         * In version 11.12.0: introduced
+         */
+        get testEmailMessage() {
+            return this.__testEmailMessage.get();
+        }
+        set testEmailMessage(newValue) {
+            this.__testEmailMessage.set(newValue);
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get useTemplateForTest() {
+            return this.__useTemplateForTest.get();
+        }
+        set useTemplateForTest(newValue) {
+            this.__useTemplateForTest.set(newValue);
+        }
+        /**
          * Creates and returns a new SendEmailAction instance in the SDK and on the server.
          * The new SendEmailAction will be automatically stored in the 'action' property
          * of the parent ActionActivity element passed as argument.
@@ -12633,6 +12912,12 @@ var microflows;
             super._initializeDefaultProperties();
             this.emailConnectionConfig = EmailConnectionConfig.create(this.model);
             this.emailMessage = EmailMessage.create(this.model);
+            if (this.__testEmailMessage.isAvailable) {
+                this.testEmailMessage = EmailMessage.create(this.model);
+            }
+            if (this.__useTemplateForTest.isAvailable) {
+                this.useTemplateForTest = false;
+            }
         }
     }
     SendEmailAction.structureTypeName = "Microflows$SendEmailAction";
@@ -12648,6 +12933,15 @@ var microflows;
                 required: {
                     currentValue: true
                 }
+            },
+            testEmailMessage: {
+                introduced: "11.12.0",
+                required: {
+                    currentValue: true
+                }
+            },
+            useTemplateForTest: {
+                introduced: "11.12.0"
             }
         }
     }, internal.StructureType.Element);
@@ -13412,6 +13706,9 @@ var microflows;
         get containerAsCustomRequestHandling() {
             return super.getContainerAs(CustomRequestHandling);
         }
+        get containerAsEmailMessage() {
+            return super.getContainerAs(EmailMessage);
+        }
         get containerAsHttpConfiguration() {
             return super.getContainerAs(HttpConfiguration);
         }
@@ -13465,6 +13762,9 @@ var microflows;
         get containerAsCustomRequestHandling() {
             return super.getContainerAs(CustomRequestHandling);
         }
+        get containerAsEmailMessage() {
+            return super.getContainerAs(EmailMessage);
+        }
         get containerAsHttpConfiguration() {
             return super.getContainerAs(HttpConfiguration);
         }
@@ -13508,6 +13808,42 @@ var microflows;
          */
         static createInCustomRequestHandlingUnderTemplate(container) {
             return internal.instancehelpers.createElement(container, StringTemplate, "template", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'messageBodyHtmlTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderMessageBodyHtmlTemplate(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "messageBodyHtmlTemplate", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'messageBodyPlainTextTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderMessageBodyPlainTextTemplate(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "messageBodyPlainTextTemplate", false);
+        }
+        /**
+         * Creates and returns a new StringTemplate instance in the SDK and on the server.
+         * The new StringTemplate will be automatically stored in the 'subjectTemplate' property
+         * of the parent EmailMessage element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmailMessageUnderSubjectTemplate(container) {
+            internal.createInVersionCheck(container.model, StringTemplate.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, StringTemplate, "subjectTemplate", false);
         }
         /**
          * Creates and returns a new StringTemplate instance in the SDK and on the server.
@@ -14033,10 +14369,7 @@ var microflows;
     /**
      * See: {@link https://docs.mendix.com/refguide/data-transformer/#transform-json-action relevant section in reference guide}
      *
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.4.0: introduced
      */
     class TransformJsonAction extends MicroflowAction {
@@ -14056,9 +14389,7 @@ var microflows;
             return super.getContainerAs(ActionActivity);
         }
         /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
+         * In version 11.9.0: added optional
          */
         get transformation() {
             return this.__transformation.get();
@@ -14112,12 +14443,14 @@ var microflows;
         properties: {
             transformation: {
                 required: {
-                    currentValue: true
+                    currentValue: false,
+                    changedIn: ["11.9.0"]
                 }
             }
         },
         experimental: {
-            currentValue: true
+            currentValue: false,
+            changedIn: ["11.8.0"]
         }
     }, internal.StructureType.Element);
     microflows.TransformJsonAction = TransformJsonAction;

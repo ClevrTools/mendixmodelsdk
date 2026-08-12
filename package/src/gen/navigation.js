@@ -159,6 +159,9 @@ var navigation;
                 throw new Error("new HomePageBase() cannot be invoked directly, please use 'model.navigation.createHomePageBase()'");
             }
         }
+        get containerAsEmbeddedNavigationProfile() {
+            return super.getContainerAs(EmbeddedNavigationProfile);
+        }
         get containerAsNavigationProfile() {
             return super.getContainerAs(NavigationProfile);
         }
@@ -188,6 +191,183 @@ var navigation;
     HomePageBase.structureTypeName = "Navigation$HomePageBase";
     HomePageBase.versionInfo = new exports.StructureVersionInfo({}, internal.StructureType.Element);
     navigation.HomePageBase = HomePageBase;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class EmbeddedHomePage extends HomePageBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new EmbeddedHomePage() cannot be invoked directly, please use 'model.navigation.createEmbeddedHomePage()'");
+            }
+        }
+        get containerAsEmbeddedNavigationProfile() {
+            return super.getContainerAs(EmbeddedNavigationProfile);
+        }
+        /**
+         * Creates and returns a new EmbeddedHomePage instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmbeddedHomePage);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    EmbeddedHomePage.structureTypeName = "Navigation$EmbeddedHomePage";
+    EmbeddedHomePage.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0"
+    }, internal.StructureType.Element);
+    navigation.EmbeddedHomePage = EmbeddedHomePage;
+    class NavigationProfileBase extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(NavigationProfileBase, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__offlineEntityConfigs = new internal.PartListProperty(NavigationProfileBase, this, "offlineEntityConfigs", []);
+            /** @internal */
+            this.__throwPartialSyncError = new internal.PrimitiveProperty(NavigationProfileBase, this, "throwPartialSyncError", true, internal.PrimitiveTypeEnum.Boolean);
+            if (arguments.length < 4) {
+                throw new Error("new NavigationProfileBase() cannot be invoked directly, please use 'model.navigation.createNavigationProfileBase()'");
+            }
+        }
+        get containerAsNavigationDocument() {
+            return super.getContainerAs(NavigationDocument);
+        }
+        /**
+         * In version 7.2.0: introduced
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /**
+         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
+         *
+         * @ignore
+         *
+         * In version 7.22.0: introduced
+         */
+        get offlineEntityConfigs() {
+            return this.__offlineEntityConfigs.get();
+        }
+        /**
+         * In version 11.12.0: introduced
+         */
+        get throwPartialSyncError() {
+            return this.__throwPartialSyncError.get();
+        }
+        set throwPartialSyncError(newValue) {
+            this.__throwPartialSyncError.set(newValue);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__throwPartialSyncError.isAvailable) {
+                this.throwPartialSyncError = true;
+            }
+        }
+    }
+    NavigationProfileBase.structureTypeName = "Navigation$NavigationProfileBase";
+    NavigationProfileBase.versionInfo = new exports.StructureVersionInfo({
+        properties: {
+            name: {
+                introduced: "7.2.0",
+                public: {
+                    currentValue: true
+                }
+            },
+            offlineEntityConfigs: {
+                introduced: "7.22.0"
+            },
+            throwPartialSyncError: {
+                introduced: "11.12.0"
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    navigation.NavigationProfileBase = NavigationProfileBase;
+    /**
+     * In version 11.12.0: introduced
+     */
+    class EmbeddedNavigationProfile extends NavigationProfileBase {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__home = new internal.PartProperty(EmbeddedNavigationProfile, this, "home", null, true);
+            /** @internal */
+            this.__errorHome = new internal.PartProperty(EmbeddedNavigationProfile, this, "errorHome", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new EmbeddedNavigationProfile() cannot be invoked directly, please use 'model.navigation.createEmbeddedNavigationProfile()'");
+            }
+        }
+        get containerAsNavigationDocument() {
+            return super.getContainerAs(NavigationDocument);
+        }
+        get home() {
+            return this.__home.get();
+        }
+        set home(newValue) {
+            this.__home.set(newValue);
+        }
+        get errorHome() {
+            return this.__errorHome.get();
+        }
+        set errorHome(newValue) {
+            this.__errorHome.set(newValue);
+        }
+        /**
+         * Creates and returns a new EmbeddedNavigationProfile instance in the SDK and on the server.
+         * The new EmbeddedNavigationProfile will be automatically stored in the 'profiles' property
+         * of the parent NavigationDocument element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createIn(container) {
+            internal.createInVersionCheck(container.model, EmbeddedNavigationProfile.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, EmbeddedNavigationProfile, "profiles", true);
+        }
+        /**
+         * Creates and returns a new EmbeddedNavigationProfile instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EmbeddedNavigationProfile);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.home = EmbeddedHomePage.create(this.model);
+        }
+    }
+    EmbeddedNavigationProfile.structureTypeName = "Navigation$EmbeddedNavigationProfile";
+    EmbeddedNavigationProfile.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.12.0",
+        properties: {
+            home: {
+                required: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    navigation.EmbeddedNavigationProfile = EmbeddedNavigationProfile;
     class HomePage extends HomePageBase {
         constructor(model, structureTypeName, id, isPartial, unit, container) {
             super(model, structureTypeName, id, isPartial, unit, container);
@@ -197,14 +377,6 @@ var navigation;
         }
         get containerAsNavigationProfile() {
             return super.getContainerAs(NavigationProfile);
-        }
-        /**
-         * Creates and returns a new HomePage instance in the SDK and on the server.
-         * The new HomePage will be automatically stored in the 'homePage' property
-         * of the parent NavigationProfile element passed as argument.
-         */
-        static createIn(container) {
-            return internal.instancehelpers.createElement(container, HomePage, "homePage", false);
         }
         /**
          * Creates and returns a new HomePage instance in the SDK and on the server.
@@ -310,65 +482,6 @@ var navigation;
         introduced: "9.4.0"
     }, internal.StructureType.Element);
     navigation.NativeHomePage = NativeHomePage;
-    class NavigationProfileBase extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            /** @internal */
-            this.__name = new internal.PrimitiveProperty(NavigationProfileBase, this, "name", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__offlineEntityConfigs = new internal.PartListProperty(NavigationProfileBase, this, "offlineEntityConfigs", []);
-            if (arguments.length < 4) {
-                throw new Error("new NavigationProfileBase() cannot be invoked directly, please use 'model.navigation.createNavigationProfileBase()'");
-            }
-        }
-        get containerAsNavigationDocument() {
-            return super.getContainerAs(NavigationDocument);
-        }
-        /**
-         * In version 7.2.0: introduced
-         */
-        get name() {
-            return this.__name.get();
-        }
-        set name(newValue) {
-            this.__name.set(newValue);
-        }
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         *
-         * In version 7.22.0: introduced
-         */
-        get offlineEntityConfigs() {
-            return this.__offlineEntityConfigs.get();
-        }
-        get qualifiedName() {
-            return this._getQualifiedName();
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    NavigationProfileBase.structureTypeName = "Navigation$NavigationProfileBase";
-    NavigationProfileBase.versionInfo = new exports.StructureVersionInfo({
-        properties: {
-            name: {
-                introduced: "7.2.0",
-                public: {
-                    currentValue: true
-                }
-            },
-            offlineEntityConfigs: {
-                introduced: "7.22.0"
-            }
-        },
-        public: {
-            currentValue: true
-        }
-    }, internal.StructureType.Element);
-    navigation.NavigationProfileBase = NavigationProfileBase;
     /**
      * In version 7.22.0: introduced
      */
@@ -1311,6 +1424,9 @@ var navigation;
                 throw new Error("new NotFoundHomePage() cannot be invoked directly, please use 'model.navigation.createNotFoundHomePage()'");
             }
         }
+        get containerAsEmbeddedNavigationProfile() {
+            return super.getContainerAs(EmbeddedNavigationProfile);
+        }
         get containerAsNavigationProfile() {
             return super.getContainerAs(NavigationProfile);
         }
@@ -1320,9 +1436,33 @@ var navigation;
          * of the parent NavigationProfile element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.13.0 and higher
+         *  10.13.0 to 11.11.0
          */
         static createIn(container) {
+            internal.createInVersionCheck(container.model, NotFoundHomePage.structureTypeName, { start: "10.13.0", end: "11.11.0" });
+            return internal.instancehelpers.createElement(container, NotFoundHomePage, "notFoundHomepage", false);
+        }
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'errorHome' property
+         * of the parent EmbeddedNavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.12.0 and higher
+         */
+        static createInEmbeddedNavigationProfileUnderErrorHome(container) {
+            internal.createInVersionCheck(container.model, NotFoundHomePage.structureTypeName, { start: "11.12.0" });
+            return internal.instancehelpers.createElement(container, NotFoundHomePage, "errorHome", false);
+        }
+        /**
+         * Creates and returns a new NotFoundHomePage instance in the SDK and on the server.
+         * The new NotFoundHomePage will be automatically stored in the 'notFoundHomepage' property
+         * of the parent NavigationProfile element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  10.13.0 and higher
+         */
+        static createInNavigationProfileUnderNotFoundHomepage(container) {
             internal.createInVersionCheck(container.model, NotFoundHomePage.structureTypeName, { start: "10.13.0" });
             return internal.instancehelpers.createElement(container, NotFoundHomePage, "notFoundHomepage", false);
         }
@@ -1364,6 +1504,8 @@ var navigation;
             this.__syncMode = new internal.EnumProperty(OfflineEntityConfig, this, "syncMode", OfflineEntitySyncMode.Online, OfflineEntitySyncMode);
             /** @internal */
             this.__constraint = new internal.PrimitiveProperty(OfflineEntityConfig, this, "constraint", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__compatibilityMode = new internal.PrimitiveProperty(OfflineEntityConfig, this, "compatibilityMode", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new OfflineEntityConfig() cannot be invoked directly, please use 'model.navigation.createOfflineEntityConfig()'");
             }
@@ -1418,6 +1560,15 @@ var navigation;
             this.__constraint.set(newValue);
         }
         /**
+         * In version 11.10.0: introduced
+         */
+        get compatibilityMode() {
+            return this.__compatibilityMode.get();
+        }
+        set compatibilityMode(newValue) {
+            this.__compatibilityMode.set(newValue);
+        }
+        /**
          * Creates and returns a new OfflineEntityConfig instance in the SDK and on the server.
          * The new OfflineEntityConfig will be automatically stored in the 'offlineEntityConfigs' property
          * of the parent NavigationProfileBase element passed as argument.
@@ -1440,6 +1591,9 @@ var navigation;
         /** @internal */
         _initializeDefaultProperties() {
             super._initializeDefaultProperties();
+            if (this.__compatibilityMode.isAvailable) {
+                this.compatibilityMode = false;
+            }
             if (this.__downloadMode.isAvailable) {
                 this.downloadMode = OfflineEntitySyncDownloadMode.All;
             }
@@ -1477,6 +1631,9 @@ var navigation;
             },
             syncMode: {
                 introduced: "9.24.0"
+            },
+            compatibilityMode: {
+                introduced: "11.10.0"
             }
         },
         experimental: {
@@ -1574,14 +1731,6 @@ var navigation;
         }
         get userRoleQualifiedName() {
             return this.__userRole.qualifiedName();
-        }
-        /**
-         * Creates and returns a new RoleBasedHomePage instance in the SDK and on the server.
-         * The new RoleBasedHomePage will be automatically stored in the 'roleBasedHomePages' property
-         * of the parent NavigationProfile element passed as argument.
-         */
-        static createIn(container) {
-            return internal.instancehelpers.createElement(container, RoleBasedHomePage, "roleBasedHomePages", true);
         }
         /**
          * Creates and returns a new RoleBasedHomePage instance in the SDK and on the server.

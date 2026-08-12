@@ -57,6 +57,18 @@ var workflows;
     WorkflowEventType.CallWorkflowEnded = new WorkflowEventType("CallWorkflowEnded", {});
     WorkflowEventType.CallMicroflowStarted = new WorkflowEventType("CallMicroflowStarted", {});
     WorkflowEventType.CallMicroflowEnded = new WorkflowEventType("CallMicroflowEnded", {});
+    WorkflowEventType.AIAgentTaskStarted = new WorkflowEventType("AIAgentTaskStarted", {
+        introduced: "11.9.0"
+    });
+    WorkflowEventType.AIAgentTaskEnded = new WorkflowEventType("AIAgentTaskEnded", {
+        introduced: "11.9.0"
+    });
+    WorkflowEventType.NotificationStarted = new WorkflowEventType("NotificationStarted", {
+        introduced: "11.11.0"
+    });
+    WorkflowEventType.NotificationEnded = new WorkflowEventType("NotificationEnded", {
+        introduced: "11.11.0"
+    });
     WorkflowEventType.WaitForNotificationStarted = new WorkflowEventType("WaitForNotificationStarted", {});
     WorkflowEventType.WaitForNotificationEnded = new WorkflowEventType("WaitForNotificationEnded", {});
     WorkflowEventType.WaitForTimerStarted = new WorkflowEventType("WaitForTimerStarted", {});
@@ -70,10 +82,326 @@ var workflows;
     WorkflowEventType.InterruptingTimerEventExecuted = new WorkflowEventType("InterruptingTimerEventExecuted", {
         introduced: "10.17.0"
     });
+    WorkflowEventType.NonInterruptingNotificationEventSubProcessStartExecuted = new WorkflowEventType("NonInterruptingNotificationEventSubProcessStartExecuted", {
+        introduced: "11.8.0"
+    });
+    WorkflowEventType.InterruptingNotificationEventSubProcessStartExecuted = new WorkflowEventType("InterruptingNotificationEventSubProcessStartExecuted", {
+        introduced: "11.10.0"
+    });
+    WorkflowEventType.NonInterruptingNotificationEventExecuted = new WorkflowEventType("NonInterruptingNotificationEventExecuted", {
+        introduced: "11.11.0"
+    });
+    WorkflowEventType.InterruptingNotificationEventExecuted = new WorkflowEventType("InterruptingNotificationEventExecuted", {
+        introduced: "11.11.0"
+    });
+    WorkflowEventType.NonInterruptingTimerEventSubProcessStartExecuted = new WorkflowEventType("NonInterruptingTimerEventSubProcessStartExecuted", {
+        introduced: "11.13.0"
+    });
+    WorkflowEventType.InterruptingTimerEventSubProcessStartExecuted = new WorkflowEventType("InterruptingTimerEventSubProcessStartExecuted", {
+        introduced: "11.13.0"
+    });
     workflows.WorkflowEventType = WorkflowEventType;
     /**
-     * Interfaces and instance classes for types from the Mendix sub meta model `Workflows`.
+     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
+     *
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
      */
+    class WorkflowActivity extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(WorkflowActivity, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__annotation = new internal.PartProperty(WorkflowActivity, this, "annotation", null, false);
+            /** @internal */
+            this.__relativeMiddlePoint = new internal.PrimitiveProperty(WorkflowActivity, this, "relativeMiddlePoint", { x: 0, y: 0 }, internal.PrimitiveTypeEnum.Point);
+            /** @internal */
+            this.__size = new internal.PrimitiveProperty(WorkflowActivity, this, "size", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
+            if (arguments.length < 4) {
+                throw new Error("new WorkflowActivity() cannot be invoked directly, please use 'model.workflows.createWorkflowActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * In version 10.21.0: introduced
+         */
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
+        }
+        /**
+         * In version 9.0.5: introduced
+         */
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get caption() {
+            return this.__caption.get();
+        }
+        set caption(newValue) {
+            this.__caption.set(newValue);
+        }
+        /**
+         * In version 9.15.0: introduced
+         */
+        get annotation() {
+            return this.__annotation.get();
+        }
+        set annotation(newValue) {
+            this.__annotation.set(newValue);
+        }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get relativeMiddlePoint() {
+            return this.__relativeMiddlePoint.get();
+        }
+        set relativeMiddlePoint(newValue) {
+            this.__relativeMiddlePoint.set(newValue);
+        }
+        /**
+         * In version 11.1.0: introduced
+         */
+        get size() {
+            return this.__size.get();
+        }
+        set size(newValue) {
+            this.__size.set(newValue);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            if (this.__persistentId.isAvailable) {
+                this.persistentId = utils_1.utils.randomUuid();
+            }
+        }
+    }
+    WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
+    WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.2",
+        properties: {
+            persistentId: {
+                introduced: "10.21.0"
+            },
+            name: {
+                introduced: "9.0.5",
+                public: {
+                    currentValue: true
+                }
+            },
+            caption: {
+                public: {
+                    currentValue: true
+                }
+            },
+            annotation: {
+                introduced: "9.15.0"
+            },
+            relativeMiddlePoint: {
+                introduced: "11.1.0"
+            },
+            size: {
+                introduced: "11.1.0"
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: false,
+            changedIn: ["9.0.5"]
+        }
+    }, internal.StructureType.Element);
+    workflows.WorkflowActivity = WorkflowActivity;
+    /**
+     * In version 9.0.5: removed experimental
+     * In version 9.0.2: introduced
+     */
+    class ConditionOutcomeActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__outcomes = new internal.PartListProperty(ConditionOutcomeActivity, this, "outcomes", []);
+            if (arguments.length < 4) {
+                throw new Error("new ConditionOutcomeActivity() cannot be invoked directly, please use 'model.workflows.createConditionOutcomeActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        get outcomes() {
+            return this.__outcomes.get();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    ConditionOutcomeActivity.structureTypeName = "Workflows$ConditionOutcomeActivity";
+    ConditionOutcomeActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "9.0.2",
+        properties: {
+            outcomes: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        },
+        experimental: {
+            currentValue: false,
+            changedIn: ["9.0.5"]
+        }
+    }, internal.StructureType.Element);
+    workflows.ConditionOutcomeActivity = ConditionOutcomeActivity;
+    /**
+     * In version 11.9.0: introduced
+     */
+    class MicroflowBasedActivity extends ConditionOutcomeActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__microflow = new internal.ByNameReferenceProperty(MicroflowBasedActivity, this, "microflow", null, "Microflows$Microflow");
+            /** @internal */
+            this.__parameterMappings = new internal.PartListProperty(MicroflowBasedActivity, this, "parameterMappings", []);
+            /** @internal */
+            this.__boundaryEvents = new internal.PartListProperty(MicroflowBasedActivity, this, "boundaryEvents", []);
+            if (arguments.length < 4) {
+                throw new Error("new MicroflowBasedActivity() cannot be invoked directly, please use 'model.workflows.createMicroflowBasedActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        get microflow() {
+            return this.__microflow.get();
+        }
+        set microflow(newValue) {
+            this.__microflow.set(newValue);
+        }
+        get microflowQualifiedName() {
+            return this.__microflow.qualifiedName();
+        }
+        get parameterMappings() {
+            return this.__parameterMappings.get();
+        }
+        get boundaryEvents() {
+            return this.__boundaryEvents.get();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    MicroflowBasedActivity.structureTypeName = "Workflows$MicroflowBasedActivity";
+    MicroflowBasedActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.9.0",
+        properties: {
+            microflow: {
+                public: {
+                    currentValue: true
+                }
+            },
+            boundaryEvents: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.MicroflowBasedActivity = MicroflowBasedActivity;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/ai-agent-task relevant section in reference guide}
+     *
+     * In version 11.9.0: introduced
+     */
+    class AIAgentTaskActivity extends MicroflowBasedActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new AIAgentTaskActivity() cannot be invoked directly, please use 'model.workflows.createAIAgentTaskActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * The new AIAgentTaskActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, AIAgentTaskActivity.structureTypeName, { start: "11.9.0" });
+            return internal.instancehelpers.createElement(container, AIAgentTaskActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * The new AIAgentTaskActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, AIAgentTaskActivity.structureTypeName, { start: "11.9.0" });
+            return internal.instancehelpers.createElement(container, AIAgentTaskActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new AIAgentTaskActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, AIAgentTaskActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    AIAgentTaskActivity.structureTypeName = "Workflows$AIAgentTaskActivity";
+    AIAgentTaskActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.9.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.AIAgentTaskActivity = AIAgentTaskActivity;
     /**
      * In version 9.22.0: introduced
      */
@@ -248,6 +576,9 @@ var workflows;
         get containerAsBoundaryEvent() {
             return super.getContainerAs(BoundaryEvent);
         }
+        get containerAsEventSubProcess() {
+            return super.getContainerAs(EventSubProcess);
+        }
         get containerAsWorkflow() {
             return super.getContainerAs(Workflow);
         }
@@ -270,6 +601,18 @@ var workflows;
          */
         static createInBoundaryEventUnderAnnotation(container) {
             internal.createInVersionCheck(container.model, Annotation.structureTypeName, { start: "10.16.0" });
+            return internal.instancehelpers.createElement(container, Annotation, "annotation", false);
+        }
+        /**
+         * Creates and returns a new Annotation instance in the SDK and on the server.
+         * The new Annotation will be automatically stored in the 'annotation' property
+         * of the parent EventSubProcess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInEventSubProcessUnderAnnotation(container) {
+            internal.createInVersionCheck(container.model, Annotation.structureTypeName, { start: "11.8.0" });
             return internal.instancehelpers.createElement(container, Annotation, "annotation", false);
         }
         /**
@@ -673,6 +1016,9 @@ var workflows;
         get containerAsCallWorkflowActivity() {
             return super.getContainerAs(CallWorkflowActivity);
         }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
+        }
         get containerAsUserTaskActivity() {
             return super.getContainerAs(UserTaskActivity);
         }
@@ -766,184 +1112,70 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.BoundaryEvent = BoundaryEvent;
     /**
-     * See: {@link https://docs.mendix.com/refguide/workflows relevant section in reference guide}
-     *
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
-    class WorkflowActivity extends internal.Element {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            /** @internal */
-            this.__persistentId = new internal.PrimitiveProperty(WorkflowActivity, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
-            /** @internal */
-            this.__name = new internal.PrimitiveProperty(WorkflowActivity, this, "name", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__caption = new internal.PrimitiveProperty(WorkflowActivity, this, "caption", "", internal.PrimitiveTypeEnum.String);
-            /** @internal */
-            this.__annotation = new internal.PartProperty(WorkflowActivity, this, "annotation", null, false);
-            /** @internal */
-            this.__relativeMiddlePoint = new internal.PrimitiveProperty(WorkflowActivity, this, "relativeMiddlePoint", { x: 0, y: 0 }, internal.PrimitiveTypeEnum.Point);
-            /** @internal */
-            this.__size = new internal.PrimitiveProperty(WorkflowActivity, this, "size", { width: 0, height: 0 }, internal.PrimitiveTypeEnum.Size);
-            if (arguments.length < 4) {
-                throw new Error("new WorkflowActivity() cannot be invoked directly, please use 'model.workflows.createWorkflowActivity()'");
-            }
-        }
-        get containerAsFlow() {
-            return super.getContainerAs(Flow);
-        }
-        get containerAsWorkflowMetaData() {
-            return super.getContainerAs(WorkflowMetaData);
-        }
-        /**
-         * In version 10.21.0: introduced
-         */
-        get persistentId() {
-            return this.__persistentId.get();
-        }
-        set persistentId(newValue) {
-            this.__persistentId.set(newValue);
-        }
-        /**
-         * In version 9.0.5: introduced
-         */
-        get name() {
-            return this.__name.get();
-        }
-        set name(newValue) {
-            this.__name.set(newValue);
-        }
-        get caption() {
-            return this.__caption.get();
-        }
-        set caption(newValue) {
-            this.__caption.set(newValue);
-        }
-        /**
-         * In version 9.15.0: introduced
-         */
-        get annotation() {
-            return this.__annotation.get();
-        }
-        set annotation(newValue) {
-            this.__annotation.set(newValue);
-        }
-        /**
-         * In version 11.1.0: introduced
-         */
-        get relativeMiddlePoint() {
-            return this.__relativeMiddlePoint.get();
-        }
-        set relativeMiddlePoint(newValue) {
-            this.__relativeMiddlePoint.set(newValue);
-        }
-        /**
-         * In version 11.1.0: introduced
-         */
-        get size() {
-            return this.__size.get();
-        }
-        set size(newValue) {
-            this.__size.set(newValue);
-        }
-        get qualifiedName() {
-            return this._getQualifiedName();
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-            if (this.__persistentId.isAvailable) {
-                this.persistentId = utils_1.utils.randomUuid();
-            }
-        }
-    }
-    WorkflowActivity.structureTypeName = "Workflows$WorkflowActivity";
-    WorkflowActivity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.0.2",
-        properties: {
-            persistentId: {
-                introduced: "10.21.0"
-            },
-            name: {
-                introduced: "9.0.5",
-                public: {
-                    currentValue: true
-                }
-            },
-            caption: {
-                public: {
-                    currentValue: true
-                }
-            },
-            annotation: {
-                introduced: "9.15.0"
-            },
-            relativeMiddlePoint: {
-                introduced: "11.1.0"
-            },
-            size: {
-                introduced: "11.1.0"
-            }
-        },
-        public: {
-            currentValue: true
-        },
-        experimental: {
-            currentValue: false,
-            changedIn: ["9.0.5"]
-        }
-    }, internal.StructureType.Element);
-    workflows.WorkflowActivity = WorkflowActivity;
-    /**
-     * In version 9.0.5: removed experimental
-     * In version 9.0.2: introduced
-     */
-    class ConditionOutcomeActivity extends WorkflowActivity {
-        constructor(model, structureTypeName, id, isPartial, unit, container) {
-            super(model, structureTypeName, id, isPartial, unit, container);
-            /** @internal */
-            this.__outcomes = new internal.PartListProperty(ConditionOutcomeActivity, this, "outcomes", []);
-            if (arguments.length < 4) {
-                throw new Error("new ConditionOutcomeActivity() cannot be invoked directly, please use 'model.workflows.createConditionOutcomeActivity()'");
-            }
-        }
-        get containerAsFlow() {
-            return super.getContainerAs(Flow);
-        }
-        get containerAsWorkflowMetaData() {
-            return super.getContainerAs(WorkflowMetaData);
-        }
-        get outcomes() {
-            return this.__outcomes.get();
-        }
-        /** @internal */
-        _initializeDefaultProperties() {
-            super._initializeDefaultProperties();
-        }
-    }
-    ConditionOutcomeActivity.structureTypeName = "Workflows$ConditionOutcomeActivity";
-    ConditionOutcomeActivity.versionInfo = new exports.StructureVersionInfo({
-        introduced: "9.0.2",
-        properties: {
-            outcomes: {
-                public: {
-                    currentValue: true
-                }
-            }
-        },
-        public: {
-            currentValue: true
-        },
-        experimental: {
-            currentValue: false,
-            changedIn: ["9.0.5"]
-        }
-    }, internal.StructureType.Element);
-    workflows.ConditionOutcomeActivity = ConditionOutcomeActivity;
-    /**
      * See: {@link https://docs.mendix.com/refguide/call-microflow relevant section in reference guide}
      *
+     * In version 11.9.0: introduced
+     */
+    class CallMicroflowActivity extends MicroflowBasedActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new CallMicroflowActivity() cannot be invoked directly, please use 'model.workflows.createCallMicroflowActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * The new CallMicroflowActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowActivity.structureTypeName, { start: "11.9.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * The new CallMicroflowActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, CallMicroflowActivity.structureTypeName, { start: "11.9.0" });
+            return internal.instancehelpers.createElement(container, CallMicroflowActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new CallMicroflowActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, CallMicroflowActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    CallMicroflowActivity.structureTypeName = "Workflows$CallMicroflowActivity";
+    CallMicroflowActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.9.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.CallMicroflowActivity = CallMicroflowActivity;
+    /**
+     * In version 11.9.0: deleted
      * In version 9.0.5: removed experimental
      * In version 9.0.2: introduced
      */
@@ -1002,10 +1234,10 @@ var workflows;
          * of the parent Flow element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  9.0.2 and higher
+         *  9.0.2 to 11.8.0
          */
         static createInFlowUnderActivities(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "9.0.2" });
+            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "9.0.2", end: "11.8.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowTask, "activities", true);
         }
         /**
@@ -1014,10 +1246,10 @@ var workflows;
          * of the parent WorkflowMetaData element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  11.1.0 and higher
+         *  11.1.0 to 11.8.0
          */
         static createInWorkflowMetaDataUnderDetachedActivities(container) {
-            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "11.1.0" });
+            internal.createInVersionCheck(container.model, CallMicroflowTask.structureTypeName, { start: "11.1.0", end: "11.8.0" });
             return internal.instancehelpers.createElement(container, CallMicroflowTask, "detachedActivities", true);
         }
         /**
@@ -1036,6 +1268,8 @@ var workflows;
     CallMicroflowTask.structureTypeName = "Workflows$CallMicroflowTask";
     CallMicroflowTask.versionInfo = new exports.StructureVersionInfo({
         introduced: "9.0.2",
+        deleted: "11.9.0",
+        deletionMessage: "replaced with the abstract class MicroflowBasedActivity",
         properties: {
             microflow: {
                 public: {
@@ -1702,6 +1936,107 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.EnumerationValueConditionOutcome = EnumerationValueConditionOutcome;
     /**
+     * See: {@link https://docs.mendix.com/refguide/workflow-event-sub-processes relevant section in reference guide}
+     *
+     * In version 11.8.0: introduced
+     */
+    class EventSubProcess extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__persistentId = new internal.PrimitiveProperty(EventSubProcess, this, "persistentId", "", internal.PrimitiveTypeEnum.Guid);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(EventSubProcess, this, "name", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__flow = new internal.PartProperty(EventSubProcess, this, "flow", null, true);
+            /** @internal */
+            this.__caption = new internal.PrimitiveProperty(EventSubProcess, this, "caption", "", internal.PrimitiveTypeEnum.String);
+            /** @internal */
+            this.__annotation = new internal.PartProperty(EventSubProcess, this, "annotation", null, false);
+            if (arguments.length < 4) {
+                throw new Error("new EventSubProcess() cannot be invoked directly, please use 'model.workflows.createEventSubProcess()'");
+            }
+        }
+        get containerAsWorkflow() {
+            return super.getContainerAs(Workflow);
+        }
+        get persistentId() {
+            return this.__persistentId.get();
+        }
+        set persistentId(newValue) {
+            this.__persistentId.set(newValue);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        get flow() {
+            return this.__flow.get();
+        }
+        set flow(newValue) {
+            this.__flow.set(newValue);
+        }
+        get caption() {
+            return this.__caption.get();
+        }
+        set caption(newValue) {
+            this.__caption.set(newValue);
+        }
+        get annotation() {
+            return this.__annotation.get();
+        }
+        set annotation(newValue) {
+            this.__annotation.set(newValue);
+        }
+        /**
+         * Creates and returns a new EventSubProcess instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, EventSubProcess);
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+            this.flow = Flow.create(this.model);
+            this.persistentId = utils_1.utils.randomUuid();
+        }
+    }
+    EventSubProcess.structureTypeName = "Workflows$EventSubProcess";
+    EventSubProcess.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            },
+            flow: {
+                public: {
+                    currentValue: true
+                },
+                required: {
+                    currentValue: true
+                }
+            },
+            caption: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.EventSubProcess = EventSubProcess;
+    /**
      * See: {@link https://docs.mendix.com/refguide/decision-in-workflows relevant section in reference guide}
      *
      * In version 9.0.5: removed experimental
@@ -1875,6 +2210,9 @@ var workflows;
         get containerAsBoundaryEvent() {
             return super.getContainerAs(BoundaryEvent);
         }
+        get containerAsEventSubProcess() {
+            return super.getContainerAs(EventSubProcess);
+        }
         get containerAsOutcome() {
             return super.getContainerAs(Outcome);
         }
@@ -1894,6 +2232,18 @@ var workflows;
          */
         static createInBoundaryEventUnderFlow(container) {
             internal.createInVersionCheck(container.model, Flow.structureTypeName, { start: "10.14.0" });
+            return internal.instancehelpers.createElement(container, Flow, "flow", false);
+        }
+        /**
+         * Creates and returns a new Flow instance in the SDK and on the server.
+         * The new Flow will be automatically stored in the 'flow' property
+         * of the parent EventSubProcess element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInEventSubProcessUnderFlow(container) {
+            internal.createInVersionCheck(container.model, Flow.structureTypeName, { start: "11.8.0" });
             return internal.instancehelpers.createElement(container, Flow, "flow", false);
         }
         /**
@@ -2085,6 +2435,324 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.FlowLine = FlowLine;
     /**
+     * In version 11.11.0: introduced
+     */
+    class NotificationBoundaryEvent extends BoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__name = new internal.PrimitiveProperty(NotificationBoundaryEvent, this, "name", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new NotificationBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createNotificationBoundaryEvent()'");
+            }
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        get name() {
+            return this.__name.get();
+        }
+        set name(newValue) {
+            this.__name.set(newValue);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        get qualifiedName() {
+            return this._getQualifiedName();
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotificationBoundaryEvent.structureTypeName = "Workflows$NotificationBoundaryEvent";
+    NotificationBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        properties: {
+            name: {
+                public: {
+                    currentValue: true
+                }
+            }
+        },
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NotificationBoundaryEvent = NotificationBoundaryEvent;
+    /**
+     * In version 11.11.0: introduced
+     */
+    class InterruptingNotificationBoundaryEvent extends NotificationBoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new InterruptingNotificationBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createInterruptingNotificationBoundaryEvent()'");
+            }
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationBoundaryEvent.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationBoundaryEvent.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationBoundaryEvent.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationBoundaryEvent.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, InterruptingNotificationBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    InterruptingNotificationBoundaryEvent.structureTypeName = "Workflows$InterruptingNotificationBoundaryEvent";
+    InterruptingNotificationBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.InterruptingNotificationBoundaryEvent = InterruptingNotificationBoundaryEvent;
+    /**
+     * In version 11.8.0: introduced
+     */
+    class NotificationEventSubProcessStartActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NotificationEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createNotificationEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotificationEventSubProcessStartActivity.structureTypeName = "Workflows$NotificationEventSubProcessStartActivity";
+    NotificationEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NotificationEventSubProcessStartActivity = NotificationEventSubProcessStartActivity;
+    /**
+     * In version 11.10.0: introduced
+     */
+    class InterruptingNotificationEventSubProcessStartActivity extends NotificationEventSubProcessStartActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new InterruptingNotificationEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createInterruptingNotificationEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationEventSubProcessStartActivity.structureTypeName, {
+                start: "11.10.0"
+            });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationEventSubProcessStartActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, InterruptingNotificationEventSubProcessStartActivity.structureTypeName, {
+                start: "11.10.0"
+            });
+            return internal.instancehelpers.createElement(container, InterruptingNotificationEventSubProcessStartActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, InterruptingNotificationEventSubProcessStartActivity);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    InterruptingNotificationEventSubProcessStartActivity.structureTypeName = "Workflows$InterruptingNotificationEventSubProcessStartActivity";
+    InterruptingNotificationEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.10.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.InterruptingNotificationEventSubProcessStartActivity = InterruptingNotificationEventSubProcessStartActivity;
+    /**
+     * In version 11.7.0: introduced
+     */
+    class NotifyTarget extends internal.Element {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NotifyTarget() cannot be invoked directly, please use 'model.workflows.createNotifyTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotifyTarget.structureTypeName = "Workflows$NotifyTarget";
+    NotifyTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.7.0"
+    }, internal.StructureType.Element);
+    workflows.NotifyTarget = NotifyTarget;
+    /**
+     * In version 11.10.0: introduced
+     */
+    class InterruptingNotificationEventSubProcessStartActivityTarget extends NotifyTarget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__activity = new internal.ByNameReferenceProperty(InterruptingNotificationEventSubProcessStartActivityTarget, this, "activity", null, "Workflows$InterruptingNotificationEventSubProcessStartActivity");
+            if (arguments.length < 4) {
+                throw new Error("new InterruptingNotificationEventSubProcessStartActivityTarget() cannot be invoked directly, please use 'model.workflows.createInterruptingNotificationEventSubProcessStartActivityTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        get activity() {
+            return this.__activity.get();
+        }
+        set activity(newValue) {
+            this.__activity.set(newValue);
+        }
+        get activityQualifiedName() {
+            return this.__activity.qualifiedName();
+        }
+        /**
+         * Creates and returns a new InterruptingNotificationEventSubProcessStartActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, InterruptingNotificationEventSubProcessStartActivityTarget);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    InterruptingNotificationEventSubProcessStartActivityTarget.structureTypeName = "Workflows$InterruptingNotificationEventSubProcessStartActivityTarget";
+    InterruptingNotificationEventSubProcessStartActivityTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.10.0",
+        properties: {
+            activity: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.InterruptingNotificationEventSubProcessStartActivityTarget = InterruptingNotificationEventSubProcessStartActivityTarget;
+    /**
      * In version 10.20.0: introduced
      */
     class InterruptingTimerBoundaryEvent extends BoundaryEvent {
@@ -2101,6 +2769,9 @@ var workflows;
         }
         get containerAsCallWorkflowActivity() {
             return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
         }
         get containerAsUserTaskActivity() {
             return super.getContainerAs(UserTaskActivity);
@@ -2123,10 +2794,13 @@ var workflows;
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.20.0 and higher
+         *  10.20.0 to 11.8.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, {
+                start: "10.20.0",
+                end: "11.8.0"
+            });
             return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -2139,6 +2813,18 @@ var workflows;
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container) {
             internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new InterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerBoundaryEvent.structureTypeName, { start: "11.9.0" });
             return internal.instancehelpers.createElement(container, InterruptingTimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -2186,6 +2872,111 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.InterruptingTimerBoundaryEvent = InterruptingTimerBoundaryEvent;
+    /**
+     * In version 11.13.0: introduced
+     */
+    class TimerEventSubProcessStartActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__firstExecutionTime = new internal.PrimitiveProperty(TimerEventSubProcessStartActivity, this, "firstExecutionTime", "", internal.PrimitiveTypeEnum.String);
+            if (arguments.length < 4) {
+                throw new Error("new TimerEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createTimerEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         */
+        get firstExecutionTime() {
+            return this.__firstExecutionTime.get();
+        }
+        set firstExecutionTime(newValue) {
+            this.__firstExecutionTime.set(newValue);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    TimerEventSubProcessStartActivity.structureTypeName = "Workflows$TimerEventSubProcessStartActivity";
+    TimerEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.TimerEventSubProcessStartActivity = TimerEventSubProcessStartActivity;
+    /**
+     * In version 11.13.0: introduced
+     */
+    class InterruptingTimerEventSubProcessStartActivity extends TimerEventSubProcessStartActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new InterruptingTimerEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createInterruptingTimerEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerEventSubProcessStartActivity.structureTypeName, {
+                start: "11.13.0"
+            });
+            return internal.instancehelpers.createElement(container, InterruptingTimerEventSubProcessStartActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new InterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, InterruptingTimerEventSubProcessStartActivity.structureTypeName, {
+                start: "11.13.0"
+            });
+            return internal.instancehelpers.createElement(container, InterruptingTimerEventSubProcessStartActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new InterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, InterruptingTimerEventSubProcessStartActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    InterruptingTimerEventSubProcessStartActivity.structureTypeName = "Workflows$InterruptingTimerEventSubProcessStartActivity";
+    InterruptingTimerEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.InterruptingTimerEventSubProcessStartActivity = InterruptingTimerEventSubProcessStartActivity;
     /**
      * See: {@link https://docs.mendix.com/refguide/jump-activity relevant section in reference guide}
      *
@@ -2774,6 +3565,9 @@ var workflows;
         get containerAsCallMicroflowTask() {
             return super.getContainerAs(CallMicroflowTask);
         }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
+        }
         get parameter() {
             return this.__parameter.get();
         }
@@ -2791,6 +3585,33 @@ var workflows;
         }
         set expression(newValue) {
             this.__expression.set(newValue);
+        }
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * The new MicroflowCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent CallMicroflowTask element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  9.0.2 to 11.8.0
+         */
+        static createInCallMicroflowTaskUnderParameterMappings(container) {
+            internal.createInVersionCheck(container.model, MicroflowCallParameterMapping.structureTypeName, {
+                start: "9.0.2",
+                end: "11.8.0"
+            });
+            return internal.instancehelpers.createElement(container, MicroflowCallParameterMapping, "parameterMappings", true);
+        }
+        /**
+         * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
+         * The new MicroflowCallParameterMapping will be automatically stored in the 'parameterMappings' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderParameterMappings(container) {
+            internal.createInVersionCheck(container.model, MicroflowCallParameterMapping.structureTypeName, { start: "11.9.0" });
+            return internal.instancehelpers.createElement(container, MicroflowCallParameterMapping, "parameterMappings", true);
         }
         /**
          * Creates and returns a new MicroflowCallParameterMapping instance in the SDK and on the server.
@@ -3607,6 +4428,223 @@ var workflows;
     }, internal.StructureType.Element);
     workflows.NoUserTargeting = NoUserTargeting;
     /**
+     * In version 11.11.0: introduced
+     */
+    class NonInterruptingNotificationBoundaryEvent extends NotificationBoundaryEvent {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NonInterruptingNotificationBoundaryEvent() cannot be invoked directly, please use 'model.workflows.createNonInterruptingNotificationBoundaryEvent()'");
+            }
+        }
+        get containerAsCallWorkflowActivity() {
+            return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
+        }
+        get containerAsUserTaskActivity() {
+            return super.getContainerAs(UserTaskActivity);
+        }
+        get containerAsWaitForNotificationActivity() {
+            return super.getContainerAs(WaitForNotificationActivity);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent CallWorkflowActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInCallWorkflowActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationBoundaryEvent.structureTypeName, {
+                start: "11.11.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationBoundaryEvent.structureTypeName, {
+                start: "11.11.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent UserTaskActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInUserTaskActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationBoundaryEvent.structureTypeName, {
+                start: "11.11.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingNotificationBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent WaitForNotificationActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWaitForNotificationActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationBoundaryEvent.structureTypeName, {
+                start: "11.11.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationBoundaryEvent instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NonInterruptingNotificationBoundaryEvent);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NonInterruptingNotificationBoundaryEvent.structureTypeName = "Workflows$NonInterruptingNotificationBoundaryEvent";
+    NonInterruptingNotificationBoundaryEvent.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NonInterruptingNotificationBoundaryEvent = NonInterruptingNotificationBoundaryEvent;
+    /**
+     * In version 11.8.0: introduced
+     */
+    class NonInterruptingNotificationEventSubProcessStartActivity extends NotificationEventSubProcessStartActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NonInterruptingNotificationEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createNonInterruptingNotificationEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationEventSubProcessStartActivity.structureTypeName, {
+                start: "11.8.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationEventSubProcessStartActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingNotificationEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingNotificationEventSubProcessStartActivity.structureTypeName, {
+                start: "11.8.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingNotificationEventSubProcessStartActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NonInterruptingNotificationEventSubProcessStartActivity);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NonInterruptingNotificationEventSubProcessStartActivity.structureTypeName = "Workflows$NonInterruptingNotificationEventSubProcessStartActivity";
+    NonInterruptingNotificationEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NonInterruptingNotificationEventSubProcessStartActivity = NonInterruptingNotificationEventSubProcessStartActivity;
+    /**
+     * In version 11.8.0: introduced
+     */
+    class NonInterruptingNotificationEventSubProcessStartActivityTarget extends NotifyTarget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__activity = new internal.ByNameReferenceProperty(NonInterruptingNotificationEventSubProcessStartActivityTarget, this, "activity", null, "Workflows$NonInterruptingNotificationEventSubProcessStartActivity");
+            if (arguments.length < 4) {
+                throw new Error("new NonInterruptingNotificationEventSubProcessStartActivityTarget() cannot be invoked directly, please use 'model.workflows.createNonInterruptingNotificationEventSubProcessStartActivityTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        get activity() {
+            return this.__activity.get();
+        }
+        set activity(newValue) {
+            this.__activity.set(newValue);
+        }
+        get activityQualifiedName() {
+            return this.__activity.qualifiedName();
+        }
+        /**
+         * Creates and returns a new NonInterruptingNotificationEventSubProcessStartActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NonInterruptingNotificationEventSubProcessStartActivityTarget);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NonInterruptingNotificationEventSubProcessStartActivityTarget.structureTypeName = "Workflows$NonInterruptingNotificationEventSubProcessStartActivityTarget";
+    NonInterruptingNotificationEventSubProcessStartActivityTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.8.0",
+        properties: {
+            activity: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.NonInterruptingNotificationEventSubProcessStartActivityTarget = NonInterruptingNotificationEventSubProcessStartActivityTarget;
+    /**
      * In version 10.20.0: introduced
      */
     class NonInterruptingTimerBoundaryEvent extends BoundaryEvent {
@@ -3625,6 +4663,9 @@ var workflows;
         }
         get containerAsCallWorkflowActivity() {
             return super.getContainerAs(CallWorkflowActivity);
+        }
+        get containerAsMicroflowBasedActivity() {
+            return super.getContainerAs(MicroflowBasedActivity);
         }
         get containerAsUserTaskActivity() {
             return super.getContainerAs(UserTaskActivity);
@@ -3653,10 +4694,13 @@ var workflows;
          * of the parent CallMicroflowTask element passed as argument.
          *
          * Warning! Can only be used on models with the following Mendix meta model versions:
-         *  10.20.0 and higher
+         *  10.20.0 to 11.8.0
          */
         static createInCallMicroflowTaskUnderBoundaryEvents(container) {
-            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, {
+                start: "10.20.0",
+                end: "11.8.0"
+            });
             return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3669,6 +4713,18 @@ var workflows;
          */
         static createInCallWorkflowActivityUnderBoundaryEvents(container) {
             internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "10.20.0" });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerBoundaryEvent instance in the SDK and on the server.
+         * The new NonInterruptingTimerBoundaryEvent will be automatically stored in the 'boundaryEvents' property
+         * of the parent MicroflowBasedActivity element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.9.0 and higher
+         */
+        static createInMicroflowBasedActivityUnderBoundaryEvents(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerBoundaryEvent.structureTypeName, { start: "11.9.0" });
             return internal.instancehelpers.createElement(container, NonInterruptingTimerBoundaryEvent, "boundaryEvents", true);
         }
         /**
@@ -3723,6 +4779,285 @@ var workflows;
         }
     }, internal.StructureType.Element);
     workflows.NonInterruptingTimerBoundaryEvent = NonInterruptingTimerBoundaryEvent;
+    /**
+     * In version 11.13.0: introduced
+     */
+    class NonInterruptingTimerEventSubProcessStartActivity extends TimerEventSubProcessStartActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NonInterruptingTimerEventSubProcessStartActivity() cannot be invoked directly, please use 'model.workflows.createNonInterruptingTimerEventSubProcessStartActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerEventSubProcessStartActivity.structureTypeName, {
+                start: "11.13.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerEventSubProcessStartActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * The new NonInterruptingTimerEventSubProcessStartActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.13.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, NonInterruptingTimerEventSubProcessStartActivity.structureTypeName, {
+                start: "11.13.0"
+            });
+            return internal.instancehelpers.createElement(container, NonInterruptingTimerEventSubProcessStartActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new NonInterruptingTimerEventSubProcessStartActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NonInterruptingTimerEventSubProcessStartActivity);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NonInterruptingTimerEventSubProcessStartActivity.structureTypeName = "Workflows$NonInterruptingTimerEventSubProcessStartActivity";
+    NonInterruptingTimerEventSubProcessStartActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.13.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NonInterruptingTimerEventSubProcessStartActivity = NonInterruptingTimerEventSubProcessStartActivity;
+    /**
+     * See: {@link https://docs.mendix.com/refguide/notification relevant section in reference guide}
+     *
+     * In version 11.11.0: introduced
+     */
+    class NotificationActivity extends WorkflowActivity {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            if (arguments.length < 4) {
+                throw new Error("new NotificationActivity() cannot be invoked directly, please use 'model.workflows.createNotificationActivity()'");
+            }
+        }
+        get containerAsFlow() {
+            return super.getContainerAs(Flow);
+        }
+        get containerAsWorkflowMetaData() {
+            return super.getContainerAs(WorkflowMetaData);
+        }
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * The new NotificationActivity will be automatically stored in the 'activities' property
+         * of the parent Flow element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInFlowUnderActivities(container) {
+            internal.createInVersionCheck(container.model, NotificationActivity.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, NotificationActivity, "activities", true);
+        }
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * The new NotificationActivity will be automatically stored in the 'detachedActivities' property
+         * of the parent WorkflowMetaData element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.11.0 and higher
+         */
+        static createInWorkflowMetaDataUnderDetachedActivities(container) {
+            internal.createInVersionCheck(container.model, NotificationActivity.structureTypeName, { start: "11.11.0" });
+            return internal.instancehelpers.createElement(container, NotificationActivity, "detachedActivities", true);
+        }
+        /**
+         * Creates and returns a new NotificationActivity instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NotificationActivity);
+        }
+        /** @internal */
+        _isByNameReferrable() {
+            return this.__name.isAvailable;
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotificationActivity.structureTypeName = "Workflows$NotificationActivity";
+    NotificationActivity.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        public: {
+            currentValue: true
+        }
+    }, internal.StructureType.Element);
+    workflows.NotificationActivity = NotificationActivity;
+    /**
+     * In version 11.11.0: introduced
+     */
+    class NotifyNotificationActivityTarget extends NotifyTarget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__activity = new internal.ByNameReferenceProperty(NotifyNotificationActivityTarget, this, "activity", null, "Workflows$NotificationActivity");
+            if (arguments.length < 4) {
+                throw new Error("new NotifyNotificationActivityTarget() cannot be invoked directly, please use 'model.workflows.createNotifyNotificationActivityTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        get activity() {
+            return this.__activity.get();
+        }
+        set activity(newValue) {
+            this.__activity.set(newValue);
+        }
+        get activityQualifiedName() {
+            return this.__activity.qualifiedName();
+        }
+        /**
+         * Creates and returns a new NotifyNotificationActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NotifyNotificationActivityTarget);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotifyNotificationActivityTarget.structureTypeName = "Workflows$NotifyNotificationActivityTarget";
+    NotifyNotificationActivityTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        properties: {
+            activity: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.NotifyNotificationActivityTarget = NotifyNotificationActivityTarget;
+    /**
+     * In version 11.11.0: introduced
+     */
+    class NotifyNotificationBoundaryEventTarget extends NotifyTarget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__boundaryEvent = new internal.ByNameReferenceProperty(NotifyNotificationBoundaryEventTarget, this, "boundaryEvent", null, "Workflows$NotificationBoundaryEvent");
+            if (arguments.length < 4) {
+                throw new Error("new NotifyNotificationBoundaryEventTarget() cannot be invoked directly, please use 'model.workflows.createNotifyNotificationBoundaryEventTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        get boundaryEvent() {
+            return this.__boundaryEvent.get();
+        }
+        set boundaryEvent(newValue) {
+            this.__boundaryEvent.set(newValue);
+        }
+        get boundaryEventQualifiedName() {
+            return this.__boundaryEvent.qualifiedName();
+        }
+        /**
+         * Creates and returns a new NotifyNotificationBoundaryEventTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NotifyNotificationBoundaryEventTarget);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotifyNotificationBoundaryEventTarget.structureTypeName = "Workflows$NotifyNotificationBoundaryEventTarget";
+    NotifyNotificationBoundaryEventTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.11.0",
+        properties: {
+            boundaryEvent: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.NotifyNotificationBoundaryEventTarget = NotifyNotificationBoundaryEventTarget;
+    /**
+     * In version 11.7.0: introduced
+     */
+    class NotifyWaitForNotificationActivityTarget extends NotifyTarget {
+        constructor(model, structureTypeName, id, isPartial, unit, container) {
+            super(model, structureTypeName, id, isPartial, unit, container);
+            /** @internal */
+            this.__activity = new internal.ByNameReferenceProperty(NotifyWaitForNotificationActivityTarget, this, "activity", null, "Workflows$WaitForNotificationActivity");
+            if (arguments.length < 4) {
+                throw new Error("new NotifyWaitForNotificationActivityTarget() cannot be invoked directly, please use 'model.workflows.createNotifyWaitForNotificationActivityTarget()'");
+            }
+        }
+        get containerAsNotifyWorkflowAction() {
+            return super.getContainerAs(microflows_1.microflows.NotifyWorkflowAction);
+        }
+        get activity() {
+            return this.__activity.get();
+        }
+        set activity(newValue) {
+            this.__activity.set(newValue);
+        }
+        get activityQualifiedName() {
+            return this.__activity.qualifiedName();
+        }
+        /**
+         * Creates and returns a new NotifyWaitForNotificationActivityTarget instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model) {
+            return internal.instancehelpers.createElement(model, NotifyWaitForNotificationActivityTarget);
+        }
+        /** @internal */
+        _initializeDefaultProperties() {
+            super._initializeDefaultProperties();
+        }
+    }
+    NotifyWaitForNotificationActivityTarget.structureTypeName = "Workflows$NotifyWaitForNotificationActivityTarget";
+    NotifyWaitForNotificationActivityTarget.versionInfo = new exports.StructureVersionInfo({
+        introduced: "11.7.0",
+        properties: {
+            activity: {
+                required: {
+                    currentValue: true
+                }
+            }
+        }
+    }, internal.StructureType.Element);
+    workflows.NotifyWaitForNotificationActivityTarget = NotifyWaitForNotificationActivityTarget;
     /**
      * In version 11.1.0: introduced
      */
@@ -5452,6 +6787,8 @@ var workflows;
             /** @internal */
             this.__onWorkflowEvent = new internal.PartListProperty(Workflow, this, "onWorkflowEvent", []);
             /** @internal */
+            this.__eventSubProcesses = new internal.PartListProperty(Workflow, this, "eventSubProcesses", []);
+            /** @internal */
             this.__annotation = new internal.PartProperty(Workflow, this, "annotation", null, false);
             /** @internal */
             this.__workflowMetaData = new internal.PartProperty(Workflow, this, "workflowMetaData", null, false);
@@ -5605,6 +6942,12 @@ var workflows;
             return this.__onWorkflowEvent.get();
         }
         /**
+         * In version 11.8.0: introduced
+         */
+        get eventSubProcesses() {
+            return this.__eventSubProcesses.get();
+        }
+        /**
          * In version 9.15.0: introduced
          */
         get annotation() {
@@ -5756,6 +7099,9 @@ var workflows;
             },
             onWorkflowEvent: {
                 introduced: "10.7.0"
+            },
+            eventSubProcesses: {
+                introduced: "11.8.0"
             },
             annotation: {
                 introduced: "9.15.0"

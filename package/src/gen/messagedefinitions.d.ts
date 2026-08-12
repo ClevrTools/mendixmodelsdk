@@ -182,6 +182,7 @@ export declare namespace messagedefinitions {
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
+        get containerAsMessageDefinition2(): MessageDefinition2;
         get originalName(): string;
         set originalName(newValue: string);
         /**
@@ -205,6 +206,7 @@ export declare namespace messagedefinitions {
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
+        get containerAsMessageDefinition2(): MessageDefinition2;
         get entity(): domainmodels.IEntity;
         set entity(newValue: domainmodels.IEntity);
         get entityQualifiedName(): string;
@@ -293,6 +295,7 @@ export declare namespace messagedefinitions {
         get containerAsJsonStructure(): jsonstructures.JsonStructure;
         get containerAsElement(): mappings.Element;
         get containerAsEntityMessageDefinition(): EntityMessageDefinition;
+        get containerAsMessageDefinition2(): MessageDefinition2;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new ExposedEntity instance in the SDK and on the server.
@@ -323,10 +326,49 @@ export declare namespace messagedefinitions {
         static createInEntityMessageDefinitionUnderExposedEntity(container: EntityMessageDefinition): ExposedEntity;
         /**
          * Creates and returns a new ExposedEntity instance in the SDK and on the server.
+         * The new ExposedEntity will be automatically stored in the 'exposedEntity' property
+         * of the parent MessageDefinition2 element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.10.0 and higher
+         */
+        static createInMessageDefinition2UnderExposedEntity(container: MessageDefinition2): ExposedEntity;
+        /**
+         * Creates and returns a new ExposedEntity instance in the SDK and on the server.
          * Expects one argument: the IModel object the instance will "live on".
          * After creation, assign or add this instance to a property that accepts this kind of objects.
          */
         static create(model: IModel): ExposedEntity;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
+     *
+     * In version 11.10.0: introduced
+     */
+    interface IMessageDefinition2 extends projects.IDocument {
+        readonly model: IModel;
+        readonly containerAsFolderBase: projects.IFolderBase;
+        asLoaded(): MessageDefinition2;
+        load(callback: (element: MessageDefinition2) => void, forceRefresh?: boolean): void;
+        load(forceRefresh?: boolean): Promise<MessageDefinition2>;
+    }
+    /**
+     * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}
+     *
+     * In version 11.10.0: introduced
+     */
+    class MessageDefinition2 extends projects.Document implements IMessageDefinition2 {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsFolderBase(): projects.FolderBase;
+        get exposedEntity(): ExposedEntity | null;
+        set exposedEntity(newValue: ExposedEntity | null);
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
+        /**
+         * Creates a new MessageDefinition2 unit in the SDK and on the server.
+         * Expects one argument, the projects.IFolderBase in which this unit is contained.
+         */
+        static createIn(container: projects.IFolderBase): MessageDefinition2;
     }
     /**
      * See: {@link https://docs.mendix.com/refguide/message-definitions relevant section in reference guide}

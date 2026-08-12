@@ -3015,6 +3015,187 @@ export declare namespace pages {
         static create(model: IModel): CancelChangesClientAction;
     }
     /**
+     * In version 11.8.0: introduced
+     */
+    class CancelSynchronizationClientAction extends ClientAction {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get containerAsWidgetValue(): customwidgets.WidgetValue;
+        get containerAsMenuItem(): menus.MenuItem;
+        get containerAsActionButton(): ActionButton;
+        get containerAsActionItem(): ActionItem;
+        get containerAsAssociationWidget(): AssociationWidget;
+        get containerAsAttributeWidget(): AttributeWidget;
+        get containerAsDivContainer(): DivContainer;
+        get containerAsDynamicImageViewer(): DynamicImageViewer;
+        get containerAsGridActionButton(): GridActionButton;
+        get containerAsListView(): ListView;
+        get containerAsReferenceSetSelector(): ReferenceSetSelector;
+        get containerAsStaticImageViewer(): StaticImageViewer;
+        get containerAsTabContainer(): TabContainer;
+        get containerAsTextBox(): TextBox;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent customwidgets.WidgetValue element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInWidgetValueUnderAction(container: customwidgets.WidgetValue): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent menus.MenuItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInMenuItemUnderAction(container: menus.MenuItem): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent ActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInActionButtonUnderAction(container: ActionButton): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent ActionItem element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInActionItemUnderAction(container: ActionItem): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AssociationWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAssociationWidgetUnderOnChangeAction(container: AssociationWidget): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnChangeAction(container: AttributeWidget): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onEnterAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnEnterAction(container: AttributeWidget): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onLeaveAction' property
+         * of the parent AttributeWidget element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInAttributeWidgetUnderOnLeaveAction(container: AttributeWidget): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onClickAction' property
+         * of the parent DivContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInDivContainerUnderOnClickAction(container: DivContainer): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent DynamicImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInDynamicImageViewerUnderClickAction(container: DynamicImageViewer): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'action' property
+         * of the parent GridActionButton element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInGridActionButtonUnderAction(container: GridActionButton): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInListViewUnderClickAction(container: ListView): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'pullDownAction' property
+         * of the parent ListView element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInListViewUnderPullDownAction(container: ListView): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onChangeAction' property
+         * of the parent ReferenceSetSelector element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInReferenceSetSelectorUnderOnChangeAction(container: ReferenceSetSelector): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'clickAction' property
+         * of the parent StaticImageViewer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInStaticImageViewerUnderClickAction(container: StaticImageViewer): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'activePageOnChangeAction' property
+         * of the parent TabContainer element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInTabContainerUnderActivePageOnChangeAction(container: TabContainer): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * The new CancelSynchronizationClientAction will be automatically stored in the 'onEnterKeyPressAction' property
+         * of the parent TextBox element passed as argument.
+         *
+         * Warning! Can only be used on models with the following Mendix meta model versions:
+         *  11.8.0 and higher
+         */
+        static createInTextBoxUnderOnEnterKeyPressAction(container: TextBox): CancelSynchronizationClientAction;
+        /**
+         * Creates and returns a new CancelSynchronizationClientAction instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): CancelSynchronizationClientAction;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/check-box relevant section in reference guide}
      */
     class CheckBox extends AttributeWidget {
@@ -21486,6 +21667,23 @@ export declare namespace pages {
         static create(model: IModel): PageParameterMapping;
     }
     /**
+     * In version 11.9.0: introduced
+     */
+    class PagePrimitiveParameterUrlSegment extends url.UrlSegment {
+        static structureTypeName: string;
+        static versionInfo: StructureVersionInfo;
+        get pageParameter(): PageParameter;
+        set pageParameter(newValue: PageParameter);
+        get pageParameterLocalName(): string;
+        constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
+        /**
+         * Creates and returns a new PagePrimitiveParameterUrlSegment instance in the SDK and on the server.
+         * Expects one argument: the IModel object the instance will "live on".
+         * After creation, assign or add this instance to a property that accepts this kind of objects.
+         */
+        static create(model: IModel): PagePrimitiveParameterUrlSegment;
+    }
+    /**
      * See: {@link https://docs.mendix.com/refguide/on-click-event relevant section in reference guide}
      */
     class PageSettings extends internal.Element<IModel> {
@@ -28047,8 +28245,18 @@ export declare namespace pages {
         get parameter(): ISnippetParameter;
         set parameter(newValue: ISnippetParameter);
         get parameterQualifiedName(): string;
-        get variable(): PageVariable;
-        set variable(newValue: PageVariable);
+        /**
+         * In version 11.8.0: added optional
+         */
+        get variable(): PageVariable | null;
+        set variable(newValue: PageVariable | null);
+        /**
+         * The value of this property is conceptually of type microflowExpressions.MicroflowExpression.
+         *
+         * In version 11.8.0: introduced
+         */
+        get argument(): string;
+        set argument(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
          * Creates and returns a new SnippetParameterMapping instance in the SDK and on the server.

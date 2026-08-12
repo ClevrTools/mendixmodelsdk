@@ -405,11 +405,24 @@ export declare namespace rest {
         set headersMicroflow(newValue: microflows.IMicroflow | null);
         get headersMicroflowQualifiedName(): string | null;
         /**
+         * In version 11.10.0: deleted
          * In version 10.12.0: introduced
          */
         get configurationMicroflow(): microflows.IMicroflow | null;
         set configurationMicroflow(newValue: microflows.IMicroflow | null);
         get configurationMicroflowQualifiedName(): string | null;
+        /**
+         * In version 11.10.0: introduced
+         */
+        get headerListMicroflow(): microflows.IMicroflow | null;
+        set headerListMicroflow(newValue: microflows.IMicroflow | null);
+        get headerListMicroflowQualifiedName(): string | null;
+        /**
+         * In version 11.10.0: introduced
+         */
+        get configurationEntityMicroflow(): microflows.IMicroflow | null;
+        set configurationEntityMicroflow(newValue: microflows.IMicroflow | null);
+        get configurationEntityMicroflowQualifiedName(): string | null;
         /**
          * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
          *
@@ -1914,6 +1927,11 @@ export declare namespace rest {
          * In version 7.17.0: introduced
          */
         get parameters(): internal.IList<RestOperationParameter>;
+        /**
+         * In version 11.10.0: introduced
+         */
+        get publicDocumentation(): string;
+        set publicDocumentation(newValue: string);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
         /**
          * Creates a new PublishedRestService unit in the SDK and on the server.

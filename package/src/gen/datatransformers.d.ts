@@ -1,18 +1,12 @@
 import * as internal from "../sdk/internal";
 export import StructureVersionInfo = internal.StructureVersionInfo;
 import { projects } from "./projects";
-/**
- * @ignore
- */
 export declare namespace datatransformers {
     /**
      * Interfaces and instance classes for types from the Mendix sub meta model `DataTransformers`.
      */
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStructureValueType extends internal.IElement {
@@ -23,10 +17,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<StructureValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     abstract class StructureValueType extends internal.Element<IModel> implements IStructureValueType {
@@ -36,10 +27,7 @@ export declare namespace datatransformers {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IBooleanValueType extends IStructureValueType {
@@ -50,10 +38,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<BooleanValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class BooleanValueType extends StructureValueType implements IBooleanValueType {
@@ -78,78 +63,32 @@ export declare namespace datatransformers {
         static create(model: IModel): BooleanValueType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IDataTransformer extends projects.IDocument {
         readonly model: IModel;
         readonly containerAsFolderBase: projects.IFolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly elements: internal.IList<IStructureElement>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly rootElement: IStructureElement | null;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly steps: internal.IList<IStep>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly source: ISource | null;
         asLoaded(): DataTransformer;
         load(callback: (element: DataTransformer) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<DataTransformer>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DataTransformer extends projects.Document implements IDataTransformer {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsFolderBase(): projects.FolderBase;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get elements(): internal.IList<StructureElement>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get rootElement(): StructureElement | null;
         set rootElement(newValue: StructureElement | null);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get steps(): internal.IList<Step>;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get source(): Source | null;
         set source(newValue: Source | null);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, container: projects.IFolderBase);
@@ -160,10 +99,7 @@ export declare namespace datatransformers {
         static createIn(container: projects.IFolderBase): DataTransformer;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IDateTimeValueType extends IStructureValueType {
@@ -174,10 +110,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<DateTimeValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DateTimeValueType extends StructureValueType implements IDateTimeValueType {
@@ -202,10 +135,7 @@ export declare namespace datatransformers {
         static create(model: IModel): DateTimeValueType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IDecimalValueType extends IStructureValueType {
@@ -216,10 +146,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<DecimalValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class DecimalValueType extends StructureValueType implements IDecimalValueType {
@@ -244,10 +171,7 @@ export declare namespace datatransformers {
         static create(model: IModel): DecimalValueType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface ITransformerAction extends internal.IElement {
@@ -258,10 +182,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<TransformerAction>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     abstract class TransformerAction extends internal.Element<IModel> implements ITransformerAction {
@@ -271,10 +192,7 @@ export declare namespace datatransformers {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IJsltAction extends ITransformerAction {
@@ -286,10 +204,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<JsltAction>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class JsltAction extends TransformerAction implements IJsltAction {
@@ -316,10 +231,7 @@ export declare namespace datatransformers {
         static create(model: IModel): JsltAction;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface ISource extends internal.IElement {
@@ -330,10 +242,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<Source>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     abstract class Source extends internal.Element<IModel> implements ISource {
@@ -343,10 +252,7 @@ export declare namespace datatransformers {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IJsonSource extends ISource {
@@ -358,10 +264,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<JsonSource>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class JsonSource extends Source implements IJsonSource {
@@ -388,10 +291,7 @@ export declare namespace datatransformers {
         static create(model: IModel): JsonSource;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface ILongValueType extends IStructureValueType {
@@ -402,10 +302,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<LongValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class LongValueType extends StructureValueType implements ILongValueType {
@@ -430,10 +327,7 @@ export declare namespace datatransformers {
         static create(model: IModel): LongValueType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStep extends internal.IElement {
@@ -441,26 +335,14 @@ export declare namespace datatransformers {
         readonly containerAsDataTransformer: IDataTransformer;
         /**
          * This property is required and cannot be set to null.
-         *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
          */
         readonly action: ITransformerAction;
         /**
          * This property is required and cannot be set to null.
-         *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
          */
         readonly inputElement: IStructureElement;
         /**
          * This property is required and cannot be set to null.
-         *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
          */
         readonly outputElement: IStructureElement;
         asLoaded(): Step;
@@ -468,35 +350,17 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<Step>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class Step extends internal.Element<IModel> implements IStep {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDataTransformer(): DataTransformer;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get action(): TransformerAction;
         set action(newValue: TransformerAction);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get inputElement(): StructureElement;
         set inputElement(newValue: StructureElement);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get outputElement(): StructureElement;
         set outputElement(newValue: StructureElement);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -517,10 +381,7 @@ export declare namespace datatransformers {
         static create(model: IModel): Step;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStringValueType extends IStructureValueType {
@@ -531,10 +392,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<StringValueType>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StringValueType extends StructureValueType implements IStringValueType {
@@ -559,10 +417,7 @@ export declare namespace datatransformers {
         static create(model: IModel): StringValueType;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStructureElement extends internal.IElement {
@@ -574,10 +429,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<StructureElement>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     abstract class StructureElement extends internal.Element<IModel> implements IStructureElement {
@@ -588,10 +440,7 @@ export declare namespace datatransformers {
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStructureAttribute extends IStructureElement, internal.IByNameReferrable {
@@ -601,10 +450,6 @@ export declare namespace datatransformers {
         readonly name: string;
         /**
          * This property is required and cannot be set to null.
-         *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
          */
         readonly value: IStructureElement;
         asLoaded(): StructureAttribute;
@@ -612,10 +457,7 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<StructureAttribute>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureAttribute extends StructureElement implements IStructureAttribute {
@@ -625,11 +467,6 @@ export declare namespace datatransformers {
         get containerAsStructureObject(): StructureObject;
         get name(): string;
         set name(newValue: string);
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get value(): StructureElement;
         set value(newValue: StructureElement);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
@@ -660,41 +497,25 @@ export declare namespace datatransformers {
         get qualifiedName(): string | null;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStructureObject extends IStructureElement {
         readonly model: IModel;
         readonly containerAsDataTransformer: IDataTransformer;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         readonly attributes: internal.IList<IStructureAttribute>;
         asLoaded(): StructureObject;
         load(callback: (element: StructureObject) => void, forceRefresh?: boolean): void;
         load(forceRefresh?: boolean): Promise<StructureObject>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureObject extends StructureElement implements IStructureObject {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDataTransformer(): DataTransformer;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get attributes(): internal.IList<StructureAttribute>;
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);
         /**
@@ -705,10 +526,7 @@ export declare namespace datatransformers {
         static create(model: IModel): StructureObject;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     interface IStructureValue extends IStructureElement {
@@ -716,10 +534,6 @@ export declare namespace datatransformers {
         readonly containerAsDataTransformer: IDataTransformer;
         /**
          * This property is required and cannot be set to null.
-         *
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
          */
         readonly type: IStructureValueType;
         asLoaded(): StructureValue;
@@ -727,21 +541,13 @@ export declare namespace datatransformers {
         load(forceRefresh?: boolean): Promise<StructureValue>;
     }
     /**
-     * NOTE: This class is experimental and is subject to change in newer Model SDK versions.
-     *
-     * @ignore
-     *
+     * In version 11.8.0: removed experimental
      * In version 11.1.0: introduced
      */
     class StructureValue extends StructureElement implements IStructureValue {
         static structureTypeName: string;
         static versionInfo: StructureVersionInfo;
         get containerAsDataTransformer(): DataTransformer;
-        /**
-         * NOTE: This property is experimental and is subject to change in newer Model SDK versions.
-         *
-         * @ignore
-         */
         get type(): StructureValueType;
         set type(newValue: StructureValueType);
         constructor(model: internal.AbstractModel, structureTypeName: string, id: string, isPartial: boolean, unit: internal.ModelUnit, container: internal.AbstractElement);

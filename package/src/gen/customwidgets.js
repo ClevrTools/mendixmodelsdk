@@ -105,6 +105,9 @@ var customwidgets;
     SystemPropertyEnum.Visibility = new SystemPropertyEnum("Visibility", {
         introduced: "8.1.0"
     });
+    SystemPropertyEnum.Text = new SystemPropertyEnum("Text", {
+        introduced: "11.13.0"
+    });
     customwidgets.SystemPropertyEnum = SystemPropertyEnum;
     class WidgetReturnTypeEnum extends internal.AbstractEnum {
         constructor() {
@@ -2236,6 +2239,8 @@ var customwidgets;
             this.__setLabel = new internal.PrimitiveProperty(WidgetValueType, this, "setLabel", false, internal.PrimitiveTypeEnum.Boolean);
             /** @internal */
             this.__defaultType = new internal.EnumProperty(WidgetValueType, this, "defaultType", DefaultTypeEnum.None, DefaultTypeEnum);
+            /** @internal */
+            this.__allowUpload = new internal.PrimitiveProperty(WidgetValueType, this, "allowUpload", false, internal.PrimitiveTypeEnum.Boolean);
             if (arguments.length < 4) {
                 throw new Error("new WidgetValueType() cannot be invoked directly, please use 'model.customwidgets.createWidgetValueType()'");
             }
@@ -2416,6 +2421,15 @@ var customwidgets;
             this.__defaultType.set(newValue);
         }
         /**
+         * In version 11.8.0: introduced
+         */
+        get allowUpload() {
+            return this.__allowUpload.get();
+        }
+        set allowUpload(newValue) {
+            this.__allowUpload.set(newValue);
+        }
+        /**
          * Creates and returns a new WidgetValueType instance in the SDK and on the server.
          * The new WidgetValueType will be automatically stored in the 'valueType' property
          * of the parent WidgetPropertyType element passed as argument.
@@ -2479,6 +2493,9 @@ var customwidgets;
             },
             defaultType: {
                 introduced: "10.15.0"
+            },
+            allowUpload: {
+                introduced: "11.8.0"
             }
         }
     }, internal.StructureType.Element);
